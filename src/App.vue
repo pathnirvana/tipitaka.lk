@@ -1,32 +1,66 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    
+    <v-app-bar app dense clipped-left color="primary" dark hide-on-scroll >
+      <v-btn icon color="primary--text" @click="showTree = !showTree">
+          <v-icon>mdi-format-list-bulleted</v-icon>
+      </v-btn>
+
+      <v-spacer></v-spacer>
+      <v-toolbar-title id="title-bar-text">{{ 'සෙත් පිරිත්' }}</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-navigation-drawer app clipped v-model="showTree" mobile-break-point="1000" width="350">
+      <v-sheet flat class="d-inline-flex">
+        <TipitakaTree/>
+      </v-sheet>
+    </v-navigation-drawer>
+    
+    <v-content>
+      <router-view></router-view>
+    </v-content>
+
+  </v-app>
 </template>
-
-<style>
+<style scoped>
+@font-face { src: local('###'), url('./assets/fonts/UN-Abhaya.ttf') format('truetype'); font-weight: normal; font-family: 'sinhala'; }
+/*@font-face { src: local('###'), url('./assets/fonts/AbhayaLibre-SemiBold.ttf') format('truetype'); font-weight: bold; font-family: 'sinhala'; }*/
+@font-face { src: local('###'), url('./assets/fonts/UN-Alakamanda-4-95.ttf') format('truetype'); font-weight: normal; font-family: 'styled'; }
+@font-face { src: local('###'), url('./assets/fonts/AbhayaLibre-SemiBold.ttf') format('truetype'); font-weight: normal; font-family: 'heading2'; }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  font-family: 'sinhala'
 }
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+#title-bar-text { font-family: 'styled'; font-size: 1.8rem; }
 </style>
+<style>
+.v-navigation-drawer__content { overflow-x: auto !important; } /** Need to be outside the scope */
+</style>
+
+<script>
+import TipitakaTree from './components/TipitakaTree';
+
+export default {
+  name: 'App',
+
+  components: {
+    TipitakaTree,
+  },
+
+  data: () => ({
+    showTree: null,
+  }),
+
+  created() {
+    this.$store.dispatch('initialize')
+  }
+};
+</script>
