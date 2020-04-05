@@ -1,16 +1,16 @@
 <template>
   <v-card>
     
-    <v-tabs v-model="tab" background-color="primary" dark>
+    <v-tabs v-model="activeKeyInd" background-color="primary" dark>
       <v-tab v-for="item in tabItems" :key="item.key">
-        {{ item.name }}
+        {{ item.pali }}
       </v-tab>
     </v-tabs>
 
-    <v-tabs-items v-model="tab">
+    <v-tabs-items v-model="activeKeyInd">
       <v-tab-item v-for="item in tabItems" :key="item.key">
         <v-sheet flat>
-          <TextTab :filename="item.key"/>
+          <TextTab :item="item"/>
         </v-sheet>
       </v-tab-item>
     </v-tabs-items>
@@ -20,6 +20,7 @@
 
 <script>
 // @ is an alias to /src
+import { mapState } from 'vuex'
 import TextTab from '@/components/TextTab.vue'
 
 export default {
@@ -31,14 +32,24 @@ export default {
     tab: null,
   }),
   computed: {
+    ...mapState('tree', ['activeKey', 'openKeys']),
+    activeKeyInd: {
+      get () { return this.openKeys.indexOf(this.activeKey) },
+      set (ind) {
+        const newKey = this.openKeys[ind]
+        console.log(`change route from home to ${newKey}`)
+        this.$store.commit('tree/setActiveKey', newKey)
+        this.$router.push('/' + newKey)
+      }
+    },
     tabItems() {
-      return this.$store.state.tree.activeKeys.map(key => ({ key, name: 'name ' + key, content: 'tab ' + key } ))
+      return this.openKeys.map(key => this.$store.state.tree.index[key])
     }
   },
   methods: {
-    loadText() {
-      
-    }
   },
+  created() {
+    
+  }
 }
 </script>

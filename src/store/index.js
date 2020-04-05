@@ -17,11 +17,7 @@ export default new Vuex.Store({
   
   actions: {
     initialize({commit}) {
-      fetch('data/tree.json')
-        .then(response => response.json())
-        .then(tree => {
-          commit('setTree', tree)
-      })
+      
     },
   },
   

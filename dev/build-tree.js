@@ -7,30 +7,33 @@ const vkb = require('vkbeautify')
 
 // the base tree - need to be built manually. can be read from a json file
 const TFI = Object.freeze({
-    Name:   0,
-    Level: 1,
-    Parent:  2,
+    Name: 0,
+    Sinhala: 1,
+    Level: 2,
+    EntryInd: 3,
+    Parent:  4,
+    Filename: 5,
 });
 const tree = {
-    'vp': [ 'විනයපිටක', 10, 'root'],
-    'sp': [ 'සුත්තපිටක', 7, 'root'],
-    'ap': [ 'අභිධර්මපිටක', 10, 'root'],
+    'vp': [ 'විනයපිටක', '', 7, 0, 'root', ''],
+    'sp': [ 'සුත්තපිටක', 'සූත්‍ර පිටකය', 7, 0, 'root', ''],
+    'ap': [ 'අභිධර්මපිටක', '', 7, 0, 'root', ''],
 
-    'dn': [ 'දීඝනිකාය', 6, 'sp'],
-    'mn': [ 'මජ්ඣිමනිකාය', 6, 'sp'],
-    'sn': [ 'සංයුත්තනිකාය', 6, 'sp'],
-    'an': [ 'අඞ්ගුත්තරනිකාය', 6, 'sp'],
-    'kn': [ 'ඛුද්දකනිකාය', 6, 'sp'],
+    'dn': [ 'දීඝනිකාය', 'දික් සඟිය', 2, 0, 'sp', 'dn-1-1'],
+    'mn': [ 'මජ්ඣිමනිකාය', '', 6, 0, 'sp', ''],
+    'sn': [ 'සංයුත්තනිකාය', '', 6, 0, 'sp', ''],
+    'an': [ 'අඞ්ගුත්තරනිකාය', '', 6, 0, 'sp', ''],
+    'kn': [ 'ඛුද්දකනිකාය', '', 6, 0, 'sp', ''],
     
-    'dn-1': [ 'සීලක්ඛන්ධවග්ගො', 5, 'dn'],
-    'dn-2': [ 'මහාවග්ගො', 5, 'dn'],
-    'dn-3': [ 'පාථීකවග්ගො', 5, 'dn'],
-    'sn-1': [ 'සගාථවග්ග', 5, 'sn'],
-    'sn-2': [ 'නිදානවග්ග', 5, 'sn'],
+    'dn-1': [ 'සීලක්ඛන්ධවග්ගො', 'සීලස්කන්ධවර්ගය', 4, 3, 'dn', 'dn-1-1'],
+    'dn-2': [ 'මහාවග්ගො', '', 4, 0, 'dn', 'dn-2-1'],
+    'dn-3': [ 'පාථීකවග්ගො', '', 4, 0, 'dn', 'dn-3-1'],
+    'sn-1': [ 'සගාථවග්ග', '', 4, 0, 'sn', 'sn-1-1'],
+    'sn-2': [ 'නිදානවග්ග', '', 4, 0, 'sn', 'sn-2-1'],
 }
 
-const dataInputFolder = __dirname + '/data/'
-const treeOutFilename = __dirname + '/../src/assets/data/tree.json'
+const dataInputFolder = __dirname + '/../public/data/'
+const treeOutFilename = __dirname + '/../public/data/tree.json'
 const filesFilter = /^dn-1-|^sn-1-/ //
 const getKeyAndInc = (stack) => {
     const pInfo = stack.slice(-1)[0] // get last parent
@@ -50,10 +53,10 @@ inputFiles.forEach(filename => {
         return;
     }
     const parentKey = fileKey.split('-').slice(0, -1).join('-');
-    tree[parentKey][TFI.Level] = 4
+    tree[parentKey][TFI.Level] = 4 // TODO - set sinh name too
     const parentStack = [[parentKey, 0]] // key and numChildren
 
-    const headings = pali.entries.filter(e => e.type == 'heading')
+    const headings = pali.entries.map((e, ind) => ({...e, ind})).filter(e => e.type == 'heading')
     if (headings[0].level != 3 || headings.some(he => he.level > 3 || !he.level)) {
         console.error(`malformed headings ${headings[0]} in ${filename}`);
         return;
@@ -63,14 +66,18 @@ inputFiles.forEach(filename => {
         while (tree[parentStack.slice(-1)[0][0]][TFI.Level] <= he.level) {
             parentStack.pop(); // until a parent with a higher level is found
         }
-        
+        const parent = parentStack.slice(-1)[0]
+        parent[1]++ // increment numChildren
+        const newKey = he.level == 3 ? fileKey : `${parent[0]}-${parent[1]}`
+
         const newNode = [ 
             getName(he.text),
+            getName(sinh.entries[he.ind].text), // sinh name (can put in a seperate file too)
             parseInt(he.level),
-            // parent can be determined
+            he.ind, // entry index
+            parent[0], // parent key
+            fileKey // filename without ext
         ]
-        const newKey = he.level == 3 ? fileKey : getKeyAndInc(parentStack)
-
         tree[newKey] = newNode
         parentStack.push([newKey, 0])
     })

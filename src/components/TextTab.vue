@@ -3,26 +3,28 @@
     <div v-scroll:window="handleScroll">{{ scrollTop }}</div>
     <v-card v-if="isError" color="error">Error Loading</v-card>
     <v-skeleton-loader v-if="!isLoaded" type="paragraph"></v-skeleton-loader>
-    <v-card v-else flat>
-      <v-card-text>
-        <v-simple-table dense style="table-layout: fixed">
-          <tr v-for="(row, i) in pages[curPage].rows" :key="i">
-            <TextEntry language="pali" :entry="row.pali"></TextEntry>
-            <TextEntry language="sinh" :entry="row.sinh"></TextEntry>
-          </tr>
-        </v-simple-table>
-      </v-card-text>
-    </v-card>
+    <div v-else>
+      <v-card v-for="page in subPages" :key="page.num">
+        <v-card-text>
+          <v-simple-table dense style="table-layout: fixed">
+            <tr v-for="(row, i) in page.rows" :key="i">
+              <TextEntry language="pali" :entry="row.pali"></TextEntry>
+              <TextEntry language="sinh" :entry="row.sinh"></TextEntry>
+            </tr>
+          </v-simple-table>
+        </v-card-text>
+      </v-card>
+    </div>
 
-    <v-footer v-if="isLoaded" fixed>
-        <v-slider v-model="curPage" step="1" ticks="always" tick-size="4"
+    <!--<v-footer v-if="isLoaded" fixed>
+        <v-slider v-model="curPageNum" step="1" ticks="always" tick-size="4"
           :min="0" :max="pages.length - 1">
         </v-slider>
-    </v-footer>
-    <!--<v-banner v-if="pageEnd != pages.length"
+    </v-footer>-->
+    <v-banner v-if="pageEnd != pages.length"
       v-intersect="{ handler: loadNextPage, options: {threshold: [0.5]} }">
       Loading next page
-    </v-banner>-->
+    </v-banner>
   </v-sheet>
 </template>
 
@@ -39,7 +41,8 @@ export default {
     TextEntry,
   },
   props: {
-    filename: String, //key
+    //filename: String, //key
+    item: Object, // full index object
   },
   data() {
     return {
@@ -50,7 +53,7 @@ export default {
       pageStart: 0,
       pageEnd: 0,
       scrollTop: null,
-      curPage: 0,
+      curPageNum: 0,
     }
   },
   computed: {
@@ -60,7 +63,7 @@ export default {
     pages() { // split entries to pages
       if (!this.isLoaded) return []
       let curPage, pages = []
-      for (let i=0; i < this.paliEntries.length; i++) {
+      for (let i = 0; i < this.paliEntries.length; i++) {
         if (this.paliEntries[i].type == 'page-break') {
           if (curPage) pages.push(curPage)
           curPage = { num: this.paliEntries[i].text, rows: [] }
@@ -85,7 +88,7 @@ export default {
     }
   },
   created() {
-    fetch(`data/${this.filename}.json`)
+    fetch(`data/${this.item.filename}.json`)
         .then(response => response.json())
         .then(data => {
           if (!data.length || !data[0].entries.length) {
@@ -96,7 +99,6 @@ export default {
           this.sinhEntries = data[1].entries
           this.isLoaded = true
           this.pageEnd = 1
-
       })
   },
 

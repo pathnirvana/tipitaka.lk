@@ -1,45 +1,46 @@
 function genTree(key, index) {
-  const { name, children } = index[key]
-  const treeItem = { name, key }
+  const { pali, sinh, children } = index[key]
+  const treeItem = { pali, sinh, key }
   if (children.length) treeItem.children = children.map(cKey => genTree(cKey, index))
   return treeItem
 }
 
 export default {
-  //namespaced: true,
+  namespaced: true,
   state: {
     index: {},
-    items: [], // for the tree-view
-    activeKeys: [], // open keys - sync between treeview and tabs
+    treeView: [], // for the tree-view
+    activeKey: null, // sync between treeview and tabs
+    openKeys: [], // open tabs
     isLoaded: false,
   },
   getters: {
     getName: (state) => (key) => {
-      return state.index[key].name
+      return state.index[key].pali // or sinh
     },
   },
   mutations: {
     setTree(state, jTree) {
-      const index = {}, items = [], rootKeys = []
+      const index = { 'root': {children: []} }
       Object.keys(jTree).forEach(key => {
-        let [ name, level, parent ] = jTree[key]
-        if (!parent) parent = key.replace(/-\d$/,'') // remove last number
-        index[key] = { name, key, level, parent, children: [] }
-        if (parent != 'root') {
-          index[parent].children.push(key) 
-        } else {
-          rootKeys.push(key)
-        }
+        let [ pali, sinh, level, eind, parent, filename ] = jTree[key]
+        //if (!parent) parent = key.replace(/-\d$/,'') // remove last number
+        index[key] = { pali, sinh, level, eind, parent, filename, key, children: [] }
+        index[parent].children.push(key) 
       })
       
-      rootKeys.forEach(key => items.push(genTree(key, index)))
+      index['root'].children.forEach(key => state.treeView.push(genTree(key, index)))
       state.index = index
-      state.items = items
       state.isLoaded = true
     },
-    setActiveKeys(state, keys) {
-      state.activeKeys = keys
+    setActiveKey(state, key) {
+      state.activeKey = key
+      if (state.openKeys.indexOf(key) < 0) state.openKeys.push(key)
     },
+    closeTab(state, key) {
+      // allow closing the last tab?
+      // change activeKey if closing the activeKey
+    }
   },
   actions: {
     async load (context) {
