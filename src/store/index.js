@@ -10,9 +10,13 @@ export default new Vuex.Store({
   },
 
   state: {
+    columns: [0, 1],
   },
   
   mutations: {
+    setColumns(state, columns) {
+      state.columns = columns
+    }
   },
   
   actions: {

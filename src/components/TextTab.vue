@@ -1,19 +1,24 @@
 <template>
-  <v-sheet>
-    <div v-scroll:window="handleScroll">{{ scrollTop }}</div>
+  <v-sheet class="my-4">
+    <!--<div v-scroll:window="handleScroll">{{ scrollTop }}</div>-->
     <v-card v-if="isError" color="error">Error Loading</v-card>
+    
     <v-skeleton-loader v-if="!isLoaded" type="paragraph"></v-skeleton-loader>
+    
     <div v-else>
-      <v-card v-for="page in subPages" :key="page.num">
-        <v-card-text>
-          <v-simple-table dense style="table-layout: fixed">
-            <tr v-for="(row, i) in page.rows" :key="i">
-              <TextEntry language="pali" :entry="row.pali"></TextEntry>
-              <TextEntry language="sinh" :entry="row.sinh"></TextEntry>
-            </tr>
-          </v-simple-table>
-        </v-card-text>
-      </v-card>
+      
+
+      <v-simple-table dense style="table-layout: fixed">
+        <tr v-for="(row, i) in subEntries" :key="i">
+          <TextEntry v-if="columns[0]" language="pali" :entry="row.pali"></TextEntry>
+          <TextEntry v-if="columns[1]" language="sinh" :entry="row.sinh"></TextEntry>
+        </tr>
+      </v-simple-table>
+
+      <v-banner v-if="entryEnd < paliEntries.length"
+        v-intersect="{ handler: loadNextSection, options: {threshold: [0.5]} }">
+        ඊළඟ කොටස ලබාගනිමින්...
+      </v-banner>
     </div>
 
     <!--<v-footer v-if="isLoaded" fixed>
@@ -21,10 +26,7 @@
           :min="0" :max="pages.length - 1">
         </v-slider>
     </v-footer>-->
-    <v-banner v-if="pageEnd != pages.length"
-      v-intersect="{ handler: loadNextPage, options: {threshold: [0.5]} }">
-      Loading next page
-    </v-banner>
+    
   </v-sheet>
 </template>
 
@@ -41,8 +43,7 @@ export default {
     TextEntry,
   },
   props: {
-    //filename: String, //key
-    item: Object, // full index object
+    itemKey: String, // full index object
   },
   data() {
     return {
@@ -50,13 +51,29 @@ export default {
       isLoaded: false,
       paliEntries: null,
       sinhEntries: null,
-      pageStart: 0,
-      pageEnd: 0,
+      pageStart: 0, pageEnd: 0,
+      entryStart: 0, entryEnd: 0,
       scrollTop: null,
       curPageNum: 0,
     }
   },
   computed: {
+    columns() {
+      const columns = this.$store.getters['tree/getTabColumns']
+      //if (!columns) return [true, true]
+      return [columns.indexOf(0) >= 0, columns.indexOf(1) >= 0]
+    },
+    item() {
+      return this.$store.getters['tree/getKey'](this.itemKey)
+    },
+    subEntries() {
+      const rows = []
+      for (let i = this.entryStart; i < this.entryEnd; i++)  {
+        rows.push({ pali: this.paliEntries[i], sinh: this.sinhEntries[i] })
+      }
+      return rows;
+    },
+
     subPages() {
       return this.pages.slice(this.pageStart, this.pageEnd)
     },
@@ -75,11 +92,14 @@ export default {
     },
   },
   methods: {
-    loadNextPage (entries, observer) {
+    loadPrevSection (entries, observer) {
         if (entries[0].isIntersecting) {
-          this.pageEnd++
-          if (this.pageEnd - this.pageStart > 3) this.pageStart++
-          console.log(this.pageEnd)
+          this.entryStart = Math.max(this.entryStart - 5, 0)
+        }
+    },
+    loadNextSection (entries, observer) {
+        if (entries[0].isIntersecting) {
+          this.entryEnd = Math.min(this.entryEnd + 5, this.paliEntries.length)
         }
     },
     handleScroll(e) {
@@ -97,8 +117,11 @@ export default {
           }
           this.paliEntries = data[0].entries
           this.sinhEntries = data[1].entries
-          this.isLoaded = true
+          
           this.pageEnd = 1
+          this.entryStart = this.item.eind
+          this.entryEnd = Math.min(this.entryStart + 15, this.paliEntries.length) // todo 
+          this.isLoaded = true
       })
   },
 

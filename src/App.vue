@@ -7,14 +7,24 @@
       </v-btn>
 
       <v-spacer></v-spacer>
-      <v-toolbar-title id="title-bar-text">{{ 'බුද්ධ ජයන්ති ත්‍රිපිටකය' }}</v-toolbar-title>
+      
+      <template v-if="$route.params.pathMatch">
+        <v-btn icon><v-icon>mdi-skip-previous</v-icon></v-btn>
+        <v-btn-toggle v-model="tabColumns" dense group multiple mandatory tile>
+          <v-btn :value="0" text>පාළි</v-btn>
+          <v-btn :value="1" text>සිංහල</v-btn>
+        </v-btn-toggle>
+        <v-btn icon><v-icon>mdi-skip-next</v-icon></v-btn>
+      </template>
+      <v-toolbar-title v-else id="title-bar-text">{{ 'බුද්ධ ජයන්ති ත්‍රිපිටකය' }}</v-toolbar-title>
+      
       <v-spacer></v-spacer>
       <v-btn icon to="/settings">
         <v-icon>mdi-cog</v-icon>
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer app clipped v-model="showTree" mobile-break-point="1000" width="350">
+    <v-navigation-drawer app clipped v-model="showTree" mobile-break-point="1000" :width="Math.min(350, $vuetify.breakpoint.width)" >
       <v-sheet flat class="d-inline-flex">
         <TipitakaTree/>
       </v-sheet>
@@ -54,6 +64,12 @@ export default {
   data: () => ({
     showTree: null,
   }),
+  computed: {
+    tabColumns: { // columns for the active tab
+      get() { return this.$store.getters['tree/getTabColumns'] },
+      set(cols) { this.$store.commit('tree/setTabColumns', cols) }
+    }
+  },
 
   created() {
     this.$store.dispatch('initialize')

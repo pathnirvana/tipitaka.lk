@@ -1,5 +1,5 @@
 <template>
-  <td class="entry" :lang="language">
+  <td class="entry py-2" :lang="language">
     <!--<span v-if="$parent.showTypeInfo" class="type-info">{{ entry.type + '.' + entry.level }}</span>-->
     <div class="text html" :class="entry.type" :level="entry.level" v-html="renderedHtml">
     </div>

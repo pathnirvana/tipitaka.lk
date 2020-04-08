@@ -1,21 +1,28 @@
 <template>
-  <v-card>
+  <v-sheet>
     
-    <v-tabs v-model="activeKeyInd" background-color="primary" dark>
+    <v-tabs v-model="activeKeyInd" show-arrows>
       <v-tab v-for="item in tabItems" :key="item.key">
         {{ item.pali }}
+        <v-btn icon x-small fab color="error" class="ml-1 mr-n1" @click.stop="closeTab(item.key)">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
       </v-tab>
     </v-tabs>
 
-    <v-tabs-items v-model="activeKeyInd">
+    <v-tabs-items :value="activeKeyInd" mandatory>
       <v-tab-item v-for="item in tabItems" :key="item.key">
         <v-sheet flat>
-          <TextTab :item="item"/>
+          <TextTab :itemKey="item.key"/>
         </v-sheet>
       </v-tab-item>
     </v-tabs-items>
-
-  </v-card>
+    
+    <v-btn fab small dark color="accent" fixed bottom right
+      @click="$vuetify.goTo(0)">
+        <v-icon>mdi-chevron-up</v-icon>
+    </v-btn>
+  </v-sheet>
 </template>
 
 <script>
@@ -29,17 +36,17 @@ export default {
     TextTab,
   },
   data: () => ({
-    tab: null,
+    
   }),
   computed: {
     ...mapState('tree', ['activeKey', 'openKeys']),
     activeKeyInd: {
       get () { return this.openKeys.indexOf(this.activeKey) },
       set (ind) {
+        //if (ind == undefined) return // tab-items set to mandatory so that ind will not be undefined
         const newKey = this.openKeys[ind]
         console.log(`change route from home to ${newKey}`)
-        this.$store.commit('tree/setActiveKey', newKey)
-        this.$router.push('/' + newKey)
+        this.$store.dispatch('tree/setActiveKey', newKey)
       }
     },
     tabItems() {
@@ -47,6 +54,9 @@ export default {
     }
   },
   methods: {
+    closeTab(key) {
+      this.$store.commit('tree/closeKey', key)
+    },
   },
   created() {
     
