@@ -21,19 +21,21 @@
 
     <v-skeleton-loader v-else type="paragraph"></v-skeleton-loader>
     
-    <v-speed-dial v-model="fab" top right direction="bottom" open-on-hover transition="slide-y-transition" absolute>
+    <v-speed-dial v-model="speedDial" top right direction="bottom" transition="slide-y-transition" absolute>
       <template v-slot:activator>
-        <v-btn v-model="fab" color="accent" dark fab small>
-          <v-icon v-if="fab">mdi-close</v-icon>
-          <v-icon v-else>mdi-menu-open</v-icon>
+        <v-btn v-model="speedDial" color="primary" fab small>
+          <v-icon v-if="speedDial">mdi-close</v-icon>
+          <v-icon v-else>mdi-dots-vertical</v-icon>
         </v-btn>
       </template>
-      <v-btn fab small dark color="success"
-        @click="$store.commit('tree/closeAllBranches')">
+      <v-btn fab small color="success" @click="syncBranches">
+        <v-icon>mdi-sync</v-icon>
+      </v-btn>
+      <v-btn fab small color="success" @click="$store.commit('tree/closeAllBranches')">
         <v-icon>mdi-arrow-collapse-vertical</v-icon>
       </v-btn>
-      <v-btn fab small dark color="success" @click.stop="syncBranches">
-        <v-icon>mdi-sync</v-icon>
+      <v-btn fab small color="success" @click="$emit('closeTree')">
+        <v-icon>mdi-menu-open</v-icon>
       </v-btn>
     </v-speed-dial>
 
@@ -53,7 +55,7 @@ export default {
   },
   data() {
     return {
-      fab: false, // speed dial with options
+      speedDial: false, // speed dial with options
       selected: [], // not used
     }
   },
@@ -61,12 +63,10 @@ export default {
     ...mapState('tree', ['activeKey', 'treeView', 'openBranches']),
     activeKeyAr: {
       get () { return [this.activeKey]  },
-      set ([newKey]) {
-        //if (newKey == this.activeKey) return; // this one is getting called even when tabs are changed - so prevent
-        console.log(`change route from treeview to ${newKey}`)
-        //this.$store.commit('tree/openKey', newKey)
-        this.$store.dispatch('tree/setActiveKey', newKey)
-        //this.$router.push('/' + newKey)
+      set ([key]) {
+        if (!key) return; // if user deselects
+        console.log(`change route from treeview to ${key}`)
+        this.$store.dispatch('tree/openAndSetActive', key)
       }
     },
     openedBranches: {
@@ -82,26 +82,27 @@ export default {
         container.scrollTop = document.getElementById('activelabel').offsetParent.offsetTop
         //this.$vuetify.goTo(1000, { offset: 100 })//'#activelabel'
       })
-    }
+    },
+
   },
   async created() {
     const response = await fetch('data/tree.json')
     const tree = await response.json()
     this.$store.commit('tree/setTree', tree)
-
+    
     const key = this.$route.params.pathMatch
     if (key) {
       console.log(`opening initial key ${key} with router`)
-      //this.$store.commit('tree/openKey', key)
-      this.$store.dispatch('tree/setActiveKey', key)
+      this.$store.dispatch('tree/openAndSetActive', key)
     }
   },
   watch: {
     $route(to, from) { // react to route changes...
       const key = to.params.pathMatch
-      console.log(`route change from ${from.params.pathMatch} to ${key}`)
-      if (key) { // when user uses back/forward browser buttons
-        this.$store.dispatch('tree/setActiveKey', key)
+      if (key != this.activeKey) { // when user uses back/forward browser buttons
+        console.log(`route change from ${this.activeKey} to ${key}`)
+        this.$store.commit('tree/replaceTab', {oldKey: this.activeKey, key})
+        this.$store.commit('tree/setActiveKey', key) // do not open a new tab
       }
     }
   }

@@ -1,32 +1,56 @@
 <template>
   <v-app>
     
-    <v-app-bar app dense clipped-left color="primary" dark hide-on-scroll >
-      <v-btn icon color="primary--text" @click="showTree = !showTree">
-          <v-icon>mdi-format-list-bulleted</v-icon>
-      </v-btn>
+    <v-app-bar app dense clipped-left color="primary" hide-on-scroll >
+      <v-app-bar-nav-icon @click="showTree = !showTree"></v-app-bar-nav-icon>
 
       <v-spacer></v-spacer>
+
+      <v-btn icon @click="searchIconPressed = !searchIconPressed" :dark="searchIconPressed">
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+      <v-autocomplete v-if="showSearchBar"
+        :items="searchResults" item-text="name" hide-details
+        placeholder="Start typing to Search" hide-no-data no-filter
+        :search-input.sync="searchInput" no-data-text="no data">
+        <template v-slot:item="{ item }">
+          <v-list-item-content>
+            <v-list-item-title v-text="item.name"></v-list-item-title>
+            <v-list-item-subtitle v-text="item.abbr"></v-list-item-subtitle>
+          </v-list-item-content>
+          <v-list-item-action>
+            <v-btn icon x-small @click.stop="copyToSearchBar(item)" color="accent"><v-icon>mdi-content-copy</v-icon></v-btn>
+          </v-list-item-action>
+        </template>
+      </v-autocomplete>
       
-      <template v-if="$route.params.pathMatch">
-        <v-btn icon><v-icon>mdi-skip-previous</v-icon></v-btn>
+      <v-spacer></v-spacer>
+
+      <template v-if="showNavigateButtons">
+        <v-btn icon @click="$store.dispatch('tree/navigateTabTo', -1)">
+          <v-icon>mdi-skip-previous</v-icon>
+        </v-btn>
         <v-btn-toggle v-model="tabColumns" dense group multiple mandatory tile>
           <v-btn :value="0" text>පාළි</v-btn>
           <v-btn :value="1" text>සිංහල</v-btn>
         </v-btn-toggle>
-        <v-btn icon><v-icon>mdi-skip-next</v-icon></v-btn>
+        <v-btn icon @click="$store.dispatch('tree/navigateTabTo', 1)">
+          <v-icon>mdi-skip-next</v-icon>
+        </v-btn>
       </template>
-      <v-toolbar-title v-else id="title-bar-text">{{ 'බුද්ධ ජයන්ති ත්‍රිපිටකය' }}</v-toolbar-title>
+      <v-toolbar-title v-if="!showNavigateButtons && !showSearchBar" id="title-bar-text">{{ 'බුද්ධ ජයන්ති ත්‍රිපිටකය' }}</v-toolbar-title>
       
       <v-spacer></v-spacer>
+
       <v-btn icon to="/settings">
         <v-icon>mdi-cog</v-icon>
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer app clipped v-model="showTree" mobile-break-point="1000" :width="Math.min(350, $vuetify.breakpoint.width)" >
-      <v-sheet flat class="d-inline-flex">
-        <TipitakaTree/>
+    <v-navigation-drawer app clipped v-model="showTree" mobile-break-point="1000" 
+      :width="Math.min(350, $vuetify.breakpoint.width)" >
+      <v-sheet class="d-inline-flex">
+        <TipitakaTree @closeTree="showTree = false"/>
       </v-sheet>
     </v-navigation-drawer>
     
@@ -52,7 +76,8 @@
 </style>
 
 <script>
-import TipitakaTree from './components/TipitakaTree';
+import TipitakaTree from '@/components/TipitakaTree'
+import { searchBarRules, performSearch } from '@/search.js'
 
 export default {
   name: 'App',
@@ -63,12 +88,25 @@ export default {
 
   data: () => ({
     showTree: null,
+    searchIconPressed: false,
+    searchInput: '',  // search bar input
   }),
   computed: {
     tabColumns: { // columns for the active tab
       get() { return this.$store.getters['tree/getTabColumns'] },
       set(cols) { this.$store.commit('tree/setTabColumns', cols) }
-    }
+    },
+    showSearchBar() {
+      return this.searchIconPressed || this.$route.path == '/search' || this.$vuetify.breakpoint.mdAndUp
+    },
+    showNavigateButtons() {
+      return this.$route.params.pathMatch && !(this.searchIconPressed && this.$vuetify.breakpoint.smAndDown)
+    },
+    searchResults() { return performSearch(this.searchInput) },
+    searchBarRules() { return searchBarRules },
+  },
+  methods: {
+    copyToSearchBar(item) { if (item.name) this.searchInput = item.name }
   },
 
   created() {

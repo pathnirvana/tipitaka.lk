@@ -11,10 +11,14 @@ const childrenSort = (a, b) => {
   return ac - bc
 }
 function genTree(key, index) {
-  const { pali, sinh, children } = index[key]
-  const treeItem = { pali, sinh, key }
+  const { pali, sinh, children, order } = index[key]
+  const treeItem = { pali, sinh, key, order }
   if (children.length) treeItem.children = children.map(cKey => genTree(cKey, index)).sort(childrenSort)
   return treeItem
+}
+function addOrder(treeItem, list) {
+  list.push(treeItem.key)
+  if (treeItem.children) treeItem.children.forEach(child => addOrder(child, list))
 }
 
 export default {
@@ -22,6 +26,7 @@ export default {
   state: {
     index: {},
     treeView: [], // for the tree-view
+    orderedKeys: [], // for prev/next sutta/key
     activeKey: null, // sync between treeview and tabs
     openKeys: [], // open tabs
     tabColumns: [], // columns for each open tab
@@ -54,26 +59,40 @@ export default {
       state.treeView = []
       index['root'].children.forEach(key => state.treeView.push(genTree(key, index)))
       state.index = index
+      // gen order list
+      state.treeView.forEach(child => addOrder(child, state.orderedKeys))
       state.isLoaded = true
     },
     
-    /*openKey(state, key) { 
-      if (state.openKeys.indexOf(key) < 0) state.openKeys.push(key)
-    },*/
-    setActiveKey(state, {key, columns}) {
+    // make existing tab active
+    setActiveKey(state, key) { 
       state.activeKey = key
+      if (router.currentRoute.params.pathMatch != key) {
+        router.push('/' + key)
+      }
+    },
+
+    openTab(state, {key, columns}) {
       if (state.openKeys.indexOf(key) < 0) {
         state.openKeys.push(key)
         state.tabColumns.push([...columns]) // default columns - make a copy
       }
     },
-    closeKey(state, key) {
-      // change activeKey if closing the activeKey
-      if (state.activeKey == key) router.back() // this will also set the activeKey
+    closeTab(state, key) {
       const closeInd = state.openKeys.indexOf(key)
       state.openKeys.splice(closeInd, 1)
       state.tabColumns.splice(closeInd, 1)
+      // if activeKey is closed go to the first tab
+      if (state.openKeys.indexOf(state.activeKey) < 0) state.activeKey = state.openKeys[0]
+      // if all tabs closed - go to welcome page
+      if (!state.openKeys.length) router.replace('/') 
     },
+    replaceTab(state, {oldKey, key}) {
+      if (state.openKeys.indexOf(key) >= 0) return; // the newkey already exists
+      const ind = state.openKeys.indexOf(oldKey)
+      Vue.set(state.openKeys, ind, key)
+    },
+
 
     setOpenBranches(state, ar) {
       state.openBranches = ar
@@ -88,6 +107,7 @@ export default {
       }
       state.openBranches = parents
     },
+
     setTabColumns(state, cols) {
       const activeInd = state.openKeys.indexOf(state.activeKey)
       // last element in cols is the last added col - choose that
@@ -96,16 +116,21 @@ export default {
     },
   },
   actions: {
-    setActiveKey({rootState, commit}, key) { // made this an action since need rootState
-      if (!key) return
-      commit('setActiveKey', {key, columns: rootState.columns})
-      if (router.currentRoute.params.pathMatch != key) {
-        router.push('/' + key)
-      }
+    // made this an action since need rootState
+    openAndSetActive({rootState, commit}, key) {
+      commit('openTab', {key, columns: rootState.columns}) // open if not existing
+      commit('setActiveKey', key)
     },
+    // replace the active tab with prev/next sutta
+    navigateTabTo({state, commit}, direction) {
+      const newOrderInd = state.orderedKeys.indexOf(state.activeKey) + direction
+      if (newOrderInd < 0 || newOrderInd >= state.orderedKeys.length) return;
+      const key = state.orderedKeys[newOrderInd]
+      if (!state.index[key].filename) return; // can not be opened
+      console.log(`replace key ${state.activeKey} -> ${key}`)
 
-    async load (context) {
-    
-    }
+      commit('replaceTab', {oldKey: state.activeKey, key})
+      commit('setActiveKey', key)
+    },
   }
 }

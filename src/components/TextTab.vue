@@ -1,4 +1,5 @@
 <template>
+<v-scale-transition hide-on-leave>
   <v-sheet class="my-4">
     <!--<div v-scroll:window="handleScroll">{{ scrollTop }}</div>-->
     <v-card v-if="isError" color="error">Error Loading</v-card>
@@ -28,6 +29,7 @@
     </v-footer>-->
     
   </v-sheet>
+</v-scale-transition>
 </template>
 
 <style scoped>
@@ -43,7 +45,7 @@ export default {
     TextEntry,
   },
   props: {
-    itemKey: String, // full index object
+    itemKey: String,
   },
   data() {
     return {

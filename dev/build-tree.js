@@ -35,10 +35,7 @@ const tree = {
 const dataInputFolder = __dirname + '/../public/data/'
 const treeOutFilename = __dirname + '/../public/data/tree.json'
 const filesFilter = /^dn-1-|^sn-1-/ //
-const getKeyAndInc = (stack) => {
-    const pInfo = stack.slice(-1)[0] // get last parent
-    return pInfo[0] + '-' + (++pInfo[1]) // append sutta num while incrementing num children
-}
+
 const getName = (text) => {
     text = text.trim().replace(/\{.*?\}/g, '') // remove footnotes
     return text.replace(/\.$/, '') // remove ending .
