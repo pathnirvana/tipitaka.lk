@@ -86,10 +86,9 @@ export default {
 
   },
   async created() {
-    const response = await fetch('data/tree.json')
-    const tree = await response.json()
-    this.$store.commit('tree/setTree', tree)
-    
+    // init done here so can open tree afterwards
+    await this.$store.dispatch('tree/initialize')
+
     const key = this.$route.params.pathMatch
     if (key) {
       console.log(`opening initial key ${key} with router`)

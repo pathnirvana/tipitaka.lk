@@ -20,10 +20,10 @@ const tree = {
     'ap': [ 'අභිධර්මපිටක', '', 7, 0, 'root', ''],
 
     'dn': [ 'දීඝනිකාය', 'දික් සඟිය', 2, 0, 'sp', 'dn-1-1'],
-    'mn': [ 'මජ්ඣිමනිකාය', '', 6, 0, 'sp', ''],
-    'sn': [ 'සංයුත්තනිකාය', '', 6, 0, 'sp', ''],
-    'an': [ 'අඞ්ගුත්තරනිකාය', '', 6, 0, 'sp', ''],
-    'kn': [ 'ඛුද්දකනිකාය', '', 6, 0, 'sp', ''],
+    'mn': [ 'මජ්ඣිමනිකාය', '', 6, 0, 'sp', 'mn-1-1'],
+    'sn': [ 'සංයුත්තනිකාය', '', 6, 0, 'sp', 'sn-1-1'],
+    'an': [ 'අඞ්ගුත්තරනිකාය', '', 6, 0, 'sp', 'an-1-1'],
+    'kn': [ 'ඛුද්දකනිකාය', '', 6, 0, 'sp', 'kn-1-1'],
     
     'dn-1': [ 'සීලක්ඛන්ධවග්ගො', 'සීලස්කන්ධවර්ගය', 4, 3, 'dn', 'dn-1-1'],
     'dn-2': [ 'මහාවග්ගො', '', 4, 0, 'dn', 'dn-2-1'],
@@ -34,6 +34,7 @@ const tree = {
 
 const dataInputFolder = __dirname + '/../public/data/'
 const treeOutFilename = __dirname + '/../public/data/tree.json'
+const searchIndexFilename = __dirname + '/../public/data/searchIndex.json'
 const filesFilter = /^dn-1-|^sn-1-/ //
 
 const getName = (text) => {
@@ -83,3 +84,15 @@ inputFiles.forEach(filename => {
 
 fs.writeFileSync(treeOutFilename, vkb.json(JSON.stringify(tree)), {encoding: 'utf-8'})
 console.log(`wrote tree to ${treeOutFilename} with ${Object.keys(tree).length} nodes`)
+
+const searchIndex = {}
+Object.keys(tree).forEach(key => {
+    const paliW = tree[key][0].replace(/සුත්තං|\d+\.?/g, '').split(' ').filter(w => w.length)
+    paliW.forEach(w => {
+        if (!searchIndex[w]) searchIndex[w] = [w, []] // word and list of keys
+        searchIndex[w][1].push(key)
+    })
+})
+const indexAr = Object.values(searchIndex).sort((a, b) => b[1].length - a[1].length)
+fs.writeFileSync(searchIndexFilename, vkb.json(JSON.stringify(indexAr)), {encoding: 'utf-8'})
+console.log(`wrote searchIndex to ${treeOutFilename} with ${indexAr.length} words`)

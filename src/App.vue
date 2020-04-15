@@ -9,17 +9,22 @@
       <v-btn icon @click="searchIconPressed = !searchIconPressed" :dark="searchIconPressed">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
-      <v-autocomplete v-if="showSearchBar"
-        :items="searchResults" item-text="name" hide-details
-        placeholder="Start typing to Search" hide-no-data no-filter
-        :search-input.sync="searchInput" no-data-text="no data">
+      <v-autocomplete v-if="showSearchBar" dark  ref="searchbar" :menu-props="{ maxHeight: 400, closeOnClick: true }"
+        :items="searchSuggestions" item-text="name" item-value="path" single-line
+        placeholder="සෙවුම් පදය මෙතැන යොදන්න" hide-details no-filter hide-no-data
+        :search-input.sync="searchInput" no-data-text="සෙවුම සඳහා ගැළපෙන වචන කිසිවක් හමුවුයේ නැත">
         <template v-slot:item="{ item }">
-          <v-list-item-content>
+          <v-list-item-content @click.stop="searchResultClick(item)">
             <v-list-item-title v-text="item.name"></v-list-item-title>
-            <v-list-item-subtitle v-text="item.abbr"></v-list-item-subtitle>
+            <v-list-item-subtitle v-if="!item.disabled">
+              <TipitakaLink v-if="item.keys.length == 1" :itemKey="item.keys[0]" short/>
+              <span v-else>{{ `සූත්‍ර ${item.keys.length} ක මේ පදය අඩංගුයි` }}</span>
+            </v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action>
-            <v-btn icon x-small @click.stop="copyToSearchBar(item)" color="accent"><v-icon>mdi-content-copy</v-icon></v-btn>
+            <v-btn icon x-small @click.stop="searchBarAction(item)" :color="item.disabled ? 'error' : 'accent'">
+              <v-icon>{{ item.disabled ? 'mdi-alert-circle' : 'mdi-content-copy' }}</v-icon>
+            </v-btn>
           </v-list-item-action>
         </template>
       </v-autocomplete>
@@ -77,19 +82,21 @@
 
 <script>
 import TipitakaTree from '@/components/TipitakaTree'
-import { searchBarRules, performSearch } from '@/search.js'
+import TipitakaLink from '@/components/TipitakaLink'
 
 export default {
   name: 'App',
 
   components: {
     TipitakaTree,
+    TipitakaLink,
   },
 
   data: () => ({
     showTree: null,
     searchIconPressed: false,
     searchInput: '',  // search bar input
+    searchLoading: false,
   }),
   computed: {
     tabColumns: { // columns for the active tab
@@ -102,15 +109,26 @@ export default {
     showNavigateButtons() {
       return this.$route.params.pathMatch && !(this.searchIconPressed && this.$vuetify.breakpoint.smAndDown)
     },
-    searchResults() { return performSearch(this.searchInput) },
-    searchBarRules() { return searchBarRules },
+    searchSuggestions() {
+      return this.$store.getters['search/getSuggestions'](this.searchInput)
+    },
   },
   methods: {
-    copyToSearchBar(item) { if (item.name) this.searchInput = item.name }
+    toggleSearchMode() {
+      this.searchIconPressed = !this.searchIconPressed
+      //if (this.searchIconPressed) this.$refs.searchbar.focus()
+    },
+    searchBarAction(item) { if (item.name && !item.disabled) this.searchInput = item.name },
+    //navigateOnSelect(path) { this.$router.push('/' + path) },
+    searchResultClick(item) {
+      if (!item.disabled) this.searchInput = item.text
+      this.$router.push('/' + item.path) 
+    },
   },
 
   created() {
     this.$store.dispatch('initialize')
+    this.$store.dispatch('search/initialize')
   }
 };
 </script>

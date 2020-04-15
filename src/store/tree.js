@@ -132,5 +132,10 @@ export default {
       commit('replaceTab', {oldKey: state.activeKey, key})
       commit('setActiveKey', key)
     },
+    async initialize({commit, state}) {
+      const response = await fetch('/data/tree.json')
+      const tree = await response.json()
+      commit('setTree', tree)
+    }
   }
 }

@@ -4,27 +4,21 @@
 "use strict"
 import { isSinglishQuery, getPossibleMatches } from '@/singlish.js'
 
-// search index fields
-var SF = {
-    book: 0,
-    name: 1,
-    parent: 2,
-    page: 3,
-    endPage: 4
-};
+let searchIndex = []
+const searchCache = []
+const curSearchBooks = [] // for searching
 
-var searchPrevQuery = "";
-var searchCache = [];
-var currentSearch = {}; // all results matching query
-var currentSort = {by: 'name', order: 1}; // ascending by name
-var curSearchBooks = []; // for searching
-
-var resultSettings = {
+const resultSettings = { // TODO move to settings
     minQueryLength: 2,
     maxSinglishLength: 10,
     maxResults: 100,  // search stopped after getting this many matches
-    fullSearchBooksLength: 17
-};
+    fullSearchBooksLength: 17,
+}
+
+export async function initSearch() {
+    const response = await fetch('/data/searchIndex.json')
+    searchIndex = await response.json()
+}
 
 function updateFilterStatusDisplay() {
     if (curSearchBooks.length < resultSettings.fullSearchBooksLength) {
@@ -35,52 +29,82 @@ function updateFilterStatusDisplay() {
 }
 
 export const searchBarRules = [
+    v => !!searchIndex.length || 'search index not loaded - wait',
     v => !!v || 'please enter sutta name',
     v => v.length >= 3 || 'අඩුම තරමේ අකුරු 3 ක් වත් ඇතුළු කරන්න.',
     v => (!isSinglishQuery(v) || v.length <= 10) || 'සිංග්ලිෂ් වලින් සෙවීමේ දී උපරිමය අකුරු 10 කට සීමා කර ඇත.',
     v => v.length <= 25 || 'උපරිම දිග අකුරු 25',
-    v => !(/[^A-Za-z\u0D80-\u0DFF\u200D]/.test(v)) || 'please enter only sinhala and english letters',
+    v => !(/[^A-Za-z\u0D80-\u0DFF\u200D]/.test(v)) || 'සෙවුම් පදය සඳහා ඉංග්‍රීසි සහ සිංහල අකුරු පමණක් යොදන්න.',
 ]
 
-export function performSearch(input) {
+export function getSearchSuggestions(input) {
     if (!input) return []
-    const query = input.toLowerCase();
+    const query = input.toLowerCase()
     for (let rule of searchBarRules) {
         const val = rule(query)
-        if (val !== true) return [{ name: val }]
+        if (val !== true) return [{ name: val, disabled: true }]
     }
-    return []
-          /*{ name: query, abbr: 'FL', id: 1 },
-          { name: 'Georgia', abbr: 'GA', id: 2 },
-          { name: 'Nebraska', abbr: 'NE', id: 3 },
-          { name: 'California', abbr: 'CA', id: 4 },
-          { name: 'New York', abbr: 'NY', id: 5 },
-        ]*/
+
+    const results = searchDataSet(query)
+
+    // extract text for each index and sort based on pali text
+    // compute score for sorting
+    return results.map(([i, keys]) => ({ 
+        name: searchIndex[i][0], 
+        score: computeScore(searchIndex[i][0].length, query.length, keys.length),
+        keys, // key occurances in filter
+        path: keys.length == 1 ? keys[0] : ('search/' + searchIndex[i][0]),
+    })).sort((a, b) => b.score - a.score) // descending order
+}
+
+export function getSearchResults(input) {
+    if (!input) return []
+    const query = input.toLowerCase()
+    const results = searchDataSet(query)
+    return results.map(res => res[1]).flat()
+}
+
+const curFilterKeys = ['dn-1', 'sn']
+// check if the entry belongs in the currently selected search books list
+function inSearchFilter(key) {
+    return !curFilterKeys.length || // if empty - no filter
+        curFilterKeys.some(fKey => key.startsWith(fKey)) // key starts with one of the filter keys
+}
+function inFilterKeys(keys) {
+    if (!curFilterKeys.length) return keys
+    return keys.filter(key => curFilterKeys.some(fKey => key.startsWith(fKey)))
+}
+
+function searchDataSet(query) {
+    //Check if we've searched for this term before
+    let results = searchCache[query]
+    if (results) {
+        console.log(`query ${query} found in cache ${results.length} results`);
+        return results;
+    }
     
-    if (query == searchPrevQuery) {
-        return;
+    // Search all singlish_combinations of translations from roman to sinhala
+    let words = isSinglishQuery(query) ? getPossibleMatches(query) : [];
+    if (!words.length) words = [query]; // if not singlish or no possible matches found
+    // TODO: improve this code to ignore na na la la sha sha variations at the comparison
+    results = []
+    const queryReg = new RegExp(words.join('|'), "i");
+    for (let i = 0; i < searchIndex.length && results.length < resultSettings.maxResults; i++) {
+        if (queryReg.test(searchIndex[i][0])) {
+            const filteredKeys = inFilterKeys(searchIndex[i][1])
+            if (filteredKeys.length) results.push([i, filteredKeys]);
+        }
     }
+    console.log(`query ${query} full search ${results.length} results`);
+    searchCache[query] = results
+    return results
+    
+}
 
-    var table = $('#search-results'), statusDiv = $('#search-status');
-    table.hide().find('.result').remove();
-    searchPrevQuery = query;
-    if (query.length < resultSettings.minQueryLength) {
-        statusDiv.text("අඩුම තරමේ අකුරු " + resultSettings.minQueryLength + " ක් වත් ඇතුළු කරන්න.");
-        return;
-    }
-    console.log(query);
-
-    // query could be in roman script
-    if (isSinglishQuery(query) && query.length > resultSettings.maxSinglishLength) {
-        statusDiv.text("සිංග්ලිෂ් වලින් සෙවීමේ දී උපරිමය අකුරු " + resultSettings.maxSinglishLength + " කට සීමා කර ඇත.");
-        return;
-    }
-
-    currentSearch = {query: query};
-    searchDataSet();
-    // sort and display
-    sortSearchResults();
-    displaySearchResults(); // display the results
+/* simple function to prefer shorter matches that occur more frequently */
+function computeScore(matchLen, queryLen, numKeys) {
+    // range 1 - 0.25 to 1 - 0.5
+    return (1 - 0.05 * Math.min(Math.max(5, matchLen), 10)) * numKeys
 }
 
 function displaySearchResults() {
@@ -111,53 +135,6 @@ function displaySearchResults() {
     }
 }
 
-// check if the entry belongs in the currently selected search books list
-function inCurrentSearchBooks(ind) {
-    return curSearchBooks.length == resultSettings.fullSearchBooksLength ||
-        !_.isEmpty(_.intersection(getBJTParents(ind), curSearchBooks));
-}
-
-function searchDataSet() {
-    var query = currentSearch.query;
-    var results = [];
-
-    //Check if we've searched for this term before
-    if (query in searchCache) {
-        results = searchCache[query];
-        console.log("found in cache");
-    } else {
-        // Search all singlish_combinations of translations from roman to sinhala
-        var words = isSinglishQuery(query) ? getPossibleMatches(query) : [];
-        if (!words.length) words = [query]; // if not singlish or no possible matches found
-        // TODO: improve this code to ignore na na la la sha sha variations at the comparison
-        var queryReg = new RegExp(words.join('|'), "i");
-        for (var i = 0; i < searchIndex.length && results.length < resultSettings.maxResults; i++) {
-            if (searchIndex[i][SF.name].search(queryReg) != -1 && inCurrentSearchBooks(i)) {
-                results.push(i);
-            }
-        }
-
-        console.log("" + results.length + " hits");
-        //Add results to cache
-        searchCache[query] = results;
-    }
-
-    // extract text for each index and sort based on pali text
-    // output an array of {index: xx, name: pali_name, parents: list of parents}
-    results = _.uniq(results); // dedup indexes
-    // extract entries
-    results = _.map(results, function(ind) {
-        return {
-            index: ind,
-            name: searchIndex[ind][SF.name],
-            page: searchIndex[ind][SF.page],
-            book: searchIndex[ind][SF.book],
-            parents: getBJTParents(ind)
-        };
-    });
-    currentSearch.results = results;
-}
-
 // sort entries by currentSort
 function sortSearchResults() {
     currentSearch.results.sort(function (e1, e2) {
@@ -175,16 +152,10 @@ function sortSearchResults() {
     });
 }
 
-function refreshCurrentSearchDisplay(by, order) {
-    currentSort = {by: by, order: order == 'asc' ? 1 : -1};
-    sortSearchResults();
-    displaySearchResults();
-}
-
 /**
  * Bookmarks related code
  */
-var bookmarks = [];
+const bookmarks = [];
 function loadBookmarks() {
     bookmarks = JSON.parse(localStorage.getItem('bjt-bookmarks') || '[]');
 }

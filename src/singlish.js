@@ -146,15 +146,15 @@ addToSinglishMapping(singlish_vowels, '', '')
 addToSinglishMapping(singlish_specials, '', '')
 singlish_combinations.forEach(combi => addToSinglishMapping(singlish_consonants, combi[0], combi[1]))
 
-console.log(singlishMapping)
-console.log('maxSinglishKeyLen: '+ maxSinglishKeyLen)
+//console.log(singlishMapping)
+//console.log('maxSinglishKeyLen: '+ maxSinglishKeyLen)
 
 export function isSinglishQuery(query) {
 	return /[a-z]/.test(query.toLowerCase())
 }
 
 export function getPossibleMatches(input) {
-	const matches = [];
+	let matches = [];
 	for (let len = 1; len <= maxSinglishKeyLen && len <= input.length; len++) {
 		const prefix = input.slice(0, len), rest = input.slice(len);
 		matches = matches.concat(permuteMatches(prefix, rest));
