@@ -7,8 +7,8 @@
       activatable
       :active.sync="activeKeyAr"
       item-key="key"
-      item-text="pali"
-      open-on-click dense
+      :item-text="$store.state.treeLanguage"
+      open-on-click dense shaped
     >
       <template v-slot:prepend="{ item, open }">
         <v-icon v-if="item.children">

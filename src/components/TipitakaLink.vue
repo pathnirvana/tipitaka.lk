@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     getLinkText(item) {
-      return this.keyToText[item.key] || item.pali // TODO - choose lang based on settings
+      return this.keyToText[item.key] || item[this.$store.state.treeLanguage]
     }
   },
 

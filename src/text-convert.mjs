@@ -24,10 +24,6 @@ function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }
 export function convertPali(text) {
-    // adding the rakar & repaya
-    // change joiners before U+0DBA Yayanna and U+0DBB Rayanna to Virama + ZWJ
-    text = text.replace(/\u0DCA([\u0DBA\u0DBB])/g, '\u0DCA\u200D$1');
-
     text = text.replace(/\u200C/g, ''); // remove 200c char that appears in tipitaka.org text
     text = text.replace(/([ක-ෆ])\u0DCA([ක-ෆ])/g, '$1\u200D\u0DCA$2'); // adding a zwj between consos
     text = text.replace(/([ක-ෆ])\u0DCA([ක-ෆ])/g, '$1\u200D\u0DCA$2'); // do twice to handle consecutive hal ගන්ත්වා
@@ -45,12 +41,20 @@ export function convertPali(text) {
     return text;
 }
 
+function beautifySinh(text) {
+    // adding the rakar & repaya
+    // change joiners before U+0DBA Yayanna and U+0DBB Rayanna to Virama + ZWJ
+    text = text.replace(/\u0DCA([\u0DBA\u0DBB])/g, '\u0DCA\u200D$1');
+    return text
+}
+
 const footnoteRegEx = '\{(\\d+|\\S)([^\{\}]*?)\}';
 
-export function textToHtml(text, language) {
+export function textToHtml(text, language, bandiLetters) {
     text = text.replace(new RegExp(footnoteRegEx, 'g'), '<span class="fn-pointer">$1</span>');
-    if (language == 'pali') {
-        text = convertPali(text);
+    text = beautifySinh(text)
+    if (language == 'pali' && bandiLetters) {
+        text = convertPali(text)
     }
     text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>') // using the markdown styles
     text = text.replace(/__(.*?)__/g, '<u>$1</u>') // underline

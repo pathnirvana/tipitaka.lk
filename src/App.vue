@@ -1,15 +1,15 @@
 <template>
   <v-app>
     
-    <v-app-bar app dense clipped-left color="primary" hide-on-scroll >
-      <v-app-bar-nav-icon @click="showTree = !showTree"></v-app-bar-nav-icon>
+    <v-app-bar app dense clipped-left  hide-on-scroll>
+      <v-app-bar-nav-icon @click="showTree = !showTree" :color="showTree ? 'primary' : ''"></v-app-bar-nav-icon>
 
       <v-spacer></v-spacer>
 
-      <v-btn icon @click="searchIconPressed = !searchIconPressed" :dark="searchIconPressed">
+      <!--<v-btn icon @click="searchIconPressed = !searchIconPressed" :dark="searchIconPressed">
         <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-autocomplete v-if="showSearchBar" dark  ref="searchbar" :menu-props="{ maxHeight: 400, closeOnClick: true }"
+      </v-btn>-->
+      <v-autocomplete ref="searchbar" :menu-props="{ maxHeight: 400, closeOnClick: true }"
         :items="searchSuggestions" item-text="name" item-value="path" single-line
         placeholder="සෙවුම් පදය මෙතැන යොදන්න" hide-details no-filter hide-no-data
         :search-input.sync="searchInput" no-data-text="සෙවුම සඳහා ගැළපෙන වචන කිසිවක් හමුවුයේ නැත">
@@ -28,14 +28,14 @@
           </v-list-item-action>
         </template>
       </v-autocomplete>
-      
+
       <v-spacer></v-spacer>
 
-      <template v-if="showNavigateButtons">
+      <template v-if="showColumnButtons"><!--show only in bigger screens - swipe for xs-->
         <v-btn icon @click="$store.dispatch('tree/navigateTabTo', -1)">
           <v-icon>mdi-skip-previous</v-icon>
         </v-btn>
-        <v-btn-toggle v-model="tabColumns" dense group multiple mandatory tile>
+        <v-btn-toggle v-model="tabColumns" dense multiple mandatory shaped color="primary">
           <v-btn :value="0" text>පාළි</v-btn>
           <v-btn :value="1" text>සිංහල</v-btn>
         </v-btn-toggle>
@@ -43,11 +43,11 @@
           <v-icon>mdi-skip-next</v-icon>
         </v-btn>
       </template>
-      <v-toolbar-title v-if="!showNavigateButtons && !showSearchBar" id="title-bar-text">{{ 'බුද්ධ ජයන්ති ත්‍රිපිටකය' }}</v-toolbar-title>
+      <!--<v-toolbar-title v-if="!showNavigateButtons && !showSearchBar" id="title-bar-text">{{ 'බුද්ධ ජයන්ති ත්‍රිපිටකය' }}</v-toolbar-title>-->
       
       <v-spacer></v-spacer>
 
-      <v-btn icon to="/settings">
+      <v-btn icon @click="toggleSettings" :color="isSettingsView ? 'primary' : ''">
         <v-icon>mdi-cog</v-icon>
       </v-btn>
     </v-app-bar>
@@ -99,6 +99,9 @@ export default {
     searchLoading: false,
   }),
   computed: {
+    showColumnButtons() {
+      return this.$vuetify.breakpoint.smAndUp && this.$route.params.pathMatch
+    },
     tabColumns: { // columns for the active tab
       get() { return this.$store.getters['tree/getTabColumns'] },
       set(cols) { this.$store.commit('tree/setTabColumns', cols) }
@@ -112,8 +115,13 @@ export default {
     searchSuggestions() {
       return this.$store.getters['search/getSuggestions'](this.searchInput)
     },
+    isSettingsView() { return this.$route.path == '/settings' }
   },
   methods: {
+    toggleSettings() {
+      if (this.isSettingsView) this.$router.go(-1) // go back
+      else this.$router.push('/settings')
+    },
     toggleSearchMode() {
       this.searchIconPressed = !this.searchIconPressed
       //if (this.searchIconPressed) this.$refs.searchbar.focus()

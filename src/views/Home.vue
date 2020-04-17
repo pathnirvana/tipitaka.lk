@@ -8,7 +8,7 @@
         <div v-for="item in tabItems" :key="item.key"
           :class="'tab pa-0' + (item.active ? ' active' : '')">
           <v-btn text @click="tabClicked(item.key)" :color="item.active ? 'primary' : 'secondary'">
-            {{ item.pali }}
+            {{ item[$store.state.treeLanguage] }}
             <v-btn icon x-small fab color="error" class="ml-1 mr-n2" @click.stop="closeTab(item.key)">
               <v-icon>mdi-close</v-icon>
             </v-btn>

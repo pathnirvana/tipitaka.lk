@@ -41,6 +41,7 @@ td.entry { position: relative; }
 
 <script>
 import { textToHtml } from '@/text-convert.mjs'
+import { mapState } from 'vuex'
 
 export default {
   name: 'TextEntry',
@@ -55,8 +56,9 @@ export default {
     }
   },
   computed: {
+    ...mapState(['bandiLetters']),
     renderedHtml() {
-      return textToHtml(this.entry.text, this.language)
+      return textToHtml(this.entry.text, this.language, this.bandiLetters)
     },
   },
   methods: {

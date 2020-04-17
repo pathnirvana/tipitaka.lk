@@ -13,17 +13,42 @@ export default new Vuex.Store({
 
   state: {
     columns: [0, 1],
+    treeLanguage: 'pali',
+    footnoteMethod: 'show-end',
+    bandiLetters: true,
+    showPageNumbers: true,
+    textSize: 16,
+    isLoaded: false,
+  },
+
+  getters: {
+    isLoaded: (state) => {
+      return state.isLoaded && state.tree.isLoaded && state.search.isLoaded
+    },
   },
   
   mutations: {
     setColumns(state, columns) {
       state.columns = columns
-    }
+    },
+    setTreeLanguage(state, lang) {
+      state.treeLanguage = lang
+    },
+    set(state, {name, value}) {
+      state[name] = value
+    },
+    setFootnoteMethod(state, fnm) {
+      state.footnoteMethod = fnm
+    },
+    setSettings(state) {
+      state.isLoaded = true
+    },
   },
   
   actions: {
     initialize({commit}) {
-      
+      // read settings from local storage
+      commit('setSettings')
     },
   },
   

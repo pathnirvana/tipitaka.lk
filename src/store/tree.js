@@ -10,10 +10,12 @@ const childrenSort = (a, b) => {
   if (isNaN(ac = childInd(a.key)) || isNaN(bc = childInd(b.key))) return 0
   return ac - bc
 }
-function genTree(key, index) {
+function genTree(key, index, depth) {
   const { pali, sinh, children, order } = index[key]
   const treeItem = { pali, sinh, key, order }
-  if (children.length) treeItem.children = children.map(cKey => genTree(cKey, index)).sort(childrenSort)
+  if (children.length && depth > 0) {
+    treeItem.children = children.map(cKey => genTree(cKey, index, depth - 1)).sort(childrenSort)
+  }
   return treeItem
 }
 function addOrder(treeItem, list) {
@@ -26,6 +28,7 @@ export default {
   state: {
     index: {},
     treeView: [], // for the tree-view
+    filterTree: [], // used for the search filter tree
     orderedKeys: [], // for prev/next sutta/key
     activeKey: null, // sync between treeview and tabs
     openKeys: [], // open tabs
@@ -37,8 +40,9 @@ export default {
     getKey: (state) => (key) => {
       return state.index[key]
     },
-    getName: (state) => (key) => {
-      return state.index[key].pali // or sinh
+    getName: (state, getters, rState, rGetters) => (key) => {
+      const lang = rState.treeLanguage
+      return state.index[key] ? state.index[key][lang] : 'key error' // or sinh
     },
     getTabColumns: (state) => {
       const activeInd = state.openKeys.indexOf(state.activeKey)
@@ -57,7 +61,9 @@ export default {
       })
       
       state.treeView = []
-      index['root'].children.forEach(key => state.treeView.push(genTree(key, index)))
+      state.filterTree = []
+      index['root'].children.forEach(key => state.treeView.push(genTree(key, index, 100)))
+      index['root'].children.forEach(key => state.filterTree.push(genTree(key, index, 2))) // max two levels
       state.index = index
       // gen order list
       state.treeView.forEach(child => addOrder(child, state.orderedKeys))

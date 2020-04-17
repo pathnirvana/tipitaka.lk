@@ -1,25 +1,48 @@
 <template>
   <v-sheet>
-    <v-banner >{{ searchMessage }}</v-banner>
-    <v-simple-table dense>
+    <v-banner>{{ searchMessage }}
+      <template v-slot:actions="{ }">
+        <v-btn color="primary" @click.stop="showFilter = true" icon><v-icon>mdi-filter-variant</v-icon></v-btn>
+      </template>
+    </v-banner>
+    
+    <v-simple-table v-if="$store.getters.isLoaded" dense>
       <thead><tr>
         <th class="text-left">Name</th>
         <th class="text-left">Location</th>
       </tr></thead>
-      <tbody v-if="$store.state.tree.isLoaded">
+      <tbody >
         <tr v-for="[itemKey, suttaName] in searchResults" :key="itemKey">
-          <td class="sutta-name"><router-link :to="'/' + itemKey">{{ suttaName }}</router-link></td>
+          <td class="sutta-name" ><router-link color="success" :to="'/' + itemKey">{{ suttaName }}</router-link></td>
           <td><TipitakaLink :itemKey="itemKey"/></td>
         </tr>
       </tbody>
-      <!-- v-else show loading indicator -->
     </v-simple-table>
+    <!-- v-else show loading indicator -->
+    <v-skeleton-loader v-else type="table"></v-skeleton-loader>
+
+    <v-dialog v-model="showFilter" max-width="290">
+      <v-card>
+        <v-card-title>Setup Search Filter</v-card-title>
+        <v-card-text>
+          <v-treeview :items="$store.state.tree.filterTree" v-model="filterKeys" dense selectable
+            item-key="key" :item-text="$store.state.treeLanguage">
+          </v-treeview>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="error" text @click="$store.commit('search/setFilter', [])">Clear</v-btn>
+          <v-btn color="success" text @click="showFilter = false">Close</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
   </v-sheet>
 </template>
 
 <style scoped>
 .sutta-name { font-size: 1.1rem; }
-.sutta-name a { text-decoration: none; }
+.sutta-name a { text-decoration: none; color: blue; }
 </style>
 
 <script>
@@ -35,6 +58,7 @@ export default {
 
   data: () => ({
     results: [],
+    showFilter: false,
   }),
   
   computed: {
@@ -50,6 +74,10 @@ export default {
         return `“${this.term}” යන සෙවුම සඳහා ගැළපෙන වචන ${this.searchResults.length} ක් හමුවුනා.`
       else 
         return `ඔබගේ සෙවුම සඳහා ගැළපෙන වචන ${this.maxResults} කට වඩා හමුවුනා. එයින් මුල් වචන ${this.maxResults} පහත දැක්වේ.`
+    },
+    filterKeys: {
+      get() { return this.$store.state.search.filterKeys },
+      set(keys) { this.$store.commit('search/setFilter', keys) },
     },
   },
   methods: {

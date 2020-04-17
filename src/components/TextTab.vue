@@ -6,9 +6,7 @@
     
     <v-skeleton-loader v-if="!isLoaded" type="paragraph"></v-skeleton-loader>
     
-    <div v-else>
-      
-
+    <div v-else v-touch="{ left: () => touchSwipe('L'), right: () => touchSwipe('R') }">
       <v-simple-table dense style="table-layout: fixed">
         <tr v-for="(row, i) in subEntries" :key="i">
           <TextEntry v-if="columns[0]" language="pali" :entry="row.pali"></TextEntry>
@@ -27,13 +25,15 @@
           :min="0" :max="pages.length - 1">
         </v-slider>
     </v-footer>-->
-    
+    <v-snackbar v-model="snackbar" bottom :timeout="1000" class="snack">
+      <v-spacer></v-spacer><span>{{ snackbarMsg }}</span><v-spacer></v-spacer>
+    </v-snackbar>
   </v-sheet>
 </v-scale-transition>
 </template>
 
 <style scoped>
-
+.snack { opacity: 0.85; font-size: 1.1rem; max-width: 100px; }
 </style>
 
 <script>
@@ -53,9 +53,11 @@ export default {
       isLoaded: false,
       paliEntries: null,
       sinhEntries: null,
-      pageStart: 0, pageEnd: 0,
       entryStart: 0, entryEnd: 0,
+      snackbar: false, snackbarMsg: '',
+
       scrollTop: null,
+      pageStart: 0, pageEnd: 0,
       curPageNum: 0,
     }
   },
@@ -94,20 +96,34 @@ export default {
     },
   },
   methods: {
-    loadPrevSection (entries, observer) {
-        if (entries[0].isIntersecting) {
-          this.entryStart = Math.max(this.entryStart - 5, 0)
-        }
+    touchSwipe(direction) {
+      console.log('swipe ' + direction)
+      if (this.columns[0] == this.columns[1]) return // both columns visible
+
+      let swappedCols = [0]
+      this.snackbarMsg = 'පාළි'
+      if (this.columns[0]) {
+        swappedCols = [1]
+        this.snackbarMsg = 'සිංහල'
+      }
+      this.$store.commit('tree/setTabColumns', swappedCols)
+      this.snackbar = true
     },
     loadNextSection (entries, observer) {
         if (entries[0].isIntersecting) {
           this.entryEnd = Math.min(this.entryEnd + 5, this.paliEntries.length)
         }
     },
+
+    /*loadPrevSection (entries, observer) {
+        if (entries[0].isIntersecting) {
+          this.entryStart = Math.max(this.entryStart - 5, 0)
+        }
+    },
     handleScroll(e) {
       console.log('scrolled')
       this.scrollTop = e.target.scrollTop
-    }
+    }*/
   },
   created() {
     fetch(`data/${this.item.filename}.json`)

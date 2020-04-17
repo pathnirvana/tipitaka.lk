@@ -1,0 +1,104 @@
+<template>
+  <v-container>
+    <v-row dense>
+      <v-col cols="12" sm="6">
+        <v-card>
+          <v-card-title v-if="!$vuetify.theme.dark">රාත්‍රී අඳුරු තිරය</v-card-title>
+          <v-card-title v-else>දහවල් ආලෝකමත් තිරය</v-card-title>
+          <v-card-subtitle>රාත්‍රී අඳුරු තිරය සහ දහවල් ආලෝකමත් තිරය අතර මාරු වෙන්න. අඳුරු තිරය රාත්‍රියේදී ඇසට පහසුය.</v-card-subtitle>
+          <v-card-actions>
+            <v-btn @click="$vuetify.theme.dark = !$vuetify.theme.dark" color="primary" outlined>
+              <v-icon class="mr-2">{{ 'mdi-brightness-' + ($vuetify.theme.dark ? '4' : '7') }}</v-icon>
+              {{ $vuetify.theme.dark ? 'ආලෝකමත් තිරය' : 'අඳුරු තිරය' }}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <v-card>  
+          <v-card-title>සූත්‍ර නාමාවලිය පෙන්වන භාෂාව</v-card-title>
+          <v-card-actions>
+            <v-radio-group v-model="treeLanguage" row>
+              <v-radio label="පාළි" value="pali"></v-radio>
+              <v-radio label="සිංහල" value="sinh"></v-radio>
+            </v-radio-group>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <v-card>  
+          <v-card-title>අධෝලිපි (Footnotes)</v-card-title>
+          <v-card-subtitle>අධෝලිපි යනු බුද්ධ ජයන්ති ත්‍රිපිටකය අනෙක් ත්‍රිපිටක ග්‍රන්ථ මාලා වලින් වෙනස් වන ස්ථාන පෙන්වීම පිණිස සෑම පිටුවකම යටින් සටහන් කර ඇති කොටසය.</v-card-subtitle>
+          <v-card-actions>
+            <v-radio-group v-model="footnoteMethod">
+              <v-radio label="නොපෙන්වන්න" value="hidden"></v-radio>
+              <v-radio label="click එබූ විට පෙන්වන්න" value="click"></v-radio>
+              <v-radio label="පිටුවේ අග පෙන්වන්න" value="show-end"></v-radio>
+              <v-radio label="එතැනම පෙන්වන්න" value="show-inline"></v-radio>
+            </v-radio-group>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <v-card>  
+          <v-card-title>වෙනත් සැකසුම්</v-card-title> <!-- bandi akuru, text size, show page numbers-->
+          <v-card-text>
+            <v-switch v-model="bandiLetters" class="mx-2" label="පාළි බැඳි අකුරු භාවිතා කරන්න"></v-switch>
+            <v-switch v-model="showPageNumbers" class="mx-2" label="පොතේ පිටු අංක පෙන්වන්න"></v-switch>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <v-card>  
+          <v-card-title>Text Size</v-card-title> <!-- bandi akuru, text size, show page numbers-->
+          <v-card-actions>
+            <v-slider v-model="textSize" step="1" ticks="always" tick-size="4" :min="10" :max="20"></v-slider>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+
+    </v-row>
+  </v-container>
+</template>
+
+<script>
+export default {
+  name: 'Settings',
+
+  components: {
+  },
+
+  data: () => ({
+    showTree: null,
+    searchIconPressed: false,
+    searchInput: '',  // search bar input
+    searchLoading: false,
+  }),
+  computed: {
+    treeLanguage: {
+      get() { return this.$store.state.treeLanguage },
+      set(value) { this.$store.commit('set', {name: 'treeLanguage', value}) },
+    },
+    footnoteMethod: {
+      get() { return this.$store.state.footnoteMethod },
+      set(value) { this.$store.commit('set', { name: 'footnoteMethod', value }) },
+    },
+    bandiLetters: {
+      get() { return this.$store.state.bandiLetters },
+      set(value) { this.$store.commit('set', { name: 'bandiLetters', value }) },
+    },
+    showPageNumbers: {
+      get() { return this.$store.state.showPageNumbers },
+      set(value) { this.$store.commit('set', { name: 'showPageNumbers', value }) },
+    },
+    textSize: {
+      get() { return this.$store.state.textSize },
+      set(value) { this.$store.commit('set', { name: 'textSize', value }) },
+    },
+  },
+}
+</script>

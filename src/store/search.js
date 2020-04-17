@@ -92,6 +92,10 @@ export default {
       state.searchIndex = index
       state.isLoaded = true
     },
+    setFilter(state, filter) {
+      state.filterKeys = filter
+      state.searchCache = {}
+    },
   },
 
   actions: {
