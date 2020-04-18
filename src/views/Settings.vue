@@ -36,7 +36,7 @@
               <v-radio label="නොපෙන්වන්න" value="hidden"></v-radio>
               <v-radio label="click එබූ විට පෙන්වන්න" value="click"></v-radio>
               <v-radio label="පිටුවේ අග පෙන්වන්න" value="show-end"></v-radio>
-              <v-radio label="එතැනම පෙන්වන්න" value="show-inline"></v-radio>
+              <!--<v-radio label="එතැනම පෙන්වන්න" value="show-inline"></v-radio>-->
             </v-radio-group>
           </v-card-actions>
         </v-card>
@@ -47,6 +47,7 @@
           <v-card-title>වෙනත් සැකසුම්</v-card-title> <!-- bandi akuru, text size, show page numbers-->
           <v-card-text>
             <v-switch v-model="bandiLetters" class="mx-2" label="පාළි බැඳි අකුරු භාවිතා කරන්න"></v-switch>
+            <v-switch v-model="specialLetters" class="mx-2" label="විශේෂ පාළි අකුරු භාවිතා කරන්න"></v-switch>
             <v-switch v-model="showPageNumbers" class="mx-2" label="පොතේ පිටු අංක පෙන්වන්න"></v-switch>
           </v-card-text>
         </v-card>
@@ -54,9 +55,11 @@
 
       <v-col cols="12" sm="6">
         <v-card>  
-          <v-card-title>Text Size</v-card-title> <!-- bandi akuru, text size, show page numbers-->
+          <v-card-title>අකුරු විශාලත්වය</v-card-title> 
+          <v-card-text><span :style="{ fontSize: 16 + $store.state.fontSize + 'px' }">ත්‍රිපිටක ග්‍රන්ථ මාලා වලින්</span></v-card-text>
           <v-card-actions>
-            <v-slider v-model="textSize" step="1" ticks="always" tick-size="4" :min="10" :max="20"></v-slider>
+            <v-slider v-model="fontSize" step="1" ticks="always" :thumb-size="24"
+          thumb-label="always" :min="-5" :max="5"></v-slider>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -66,6 +69,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Settings',
 
@@ -79,9 +84,10 @@ export default {
     searchLoading: false,
   }),
   computed: {
+    ...mapState(['bandiLetters', 'specialLetters']),
     treeLanguage: {
       get() { return this.$store.state.treeLanguage },
-      set(value) { this.$store.commit('set', {name: 'treeLanguage', value}) },
+      set(value) { this.$store.commit('set', { name: 'treeLanguage', value }) },
     },
     footnoteMethod: {
       get() { return this.$store.state.footnoteMethod },
@@ -91,14 +97,22 @@ export default {
       get() { return this.$store.state.bandiLetters },
       set(value) { this.$store.commit('set', { name: 'bandiLetters', value }) },
     },
+    specialLetters: {
+      get() { return this.$store.state.specialLetters },
+      set(value) { this.$store.commit('set', { name: 'specialLetters', value }) },
+    },
     showPageNumbers: {
       get() { return this.$store.state.showPageNumbers },
       set(value) { this.$store.commit('set', { name: 'showPageNumbers', value }) },
     },
-    textSize: {
-      get() { return this.$store.state.textSize },
-      set(value) { this.$store.commit('set', { name: 'textSize', value }) },
+    fontSize: {
+      get() { return this.$store.state.fontSize },
+      set(value) { this.$store.commit('set', { name: 'fontSize', value }) },
     },
+  },
+  watch: {
+    bandiLetters() { this.$store.commit('tree/recomputeTree', this.$store.state) },
+    specialLetters() { this.$store.commit('tree/recomputeTree', this.$store.state) }
   },
 }
 </script>

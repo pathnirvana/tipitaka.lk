@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import router from '@/router'
 import Vuetify from '@/plugins/vuetify'
+import { addSpecialLetters, addBandiLetters, beautifySinh } from '@/text-convert.mjs'
 
 // since the json tree is an object the sort order is not maintained
 // need to sort the children in the correct order for the treeview
@@ -10,14 +11,20 @@ const childrenSort = (a, b) => {
   if (isNaN(ac = childInd(a.key)) || isNaN(bc = childInd(b.key))) return 0
   return ac - bc
 }
-function genTree(key, index, depth) {
-  const { pali, sinh, children, order } = index[key]
-  const treeItem = { pali, sinh, key, order }
+
+function genTree(key, index, depth, letterOpt) {
+  let { pali, sinh, children } = index[key]
+  pali = beautifySinh(pali) // add rakar and common conjuncts
+  sinh = beautifySinh(sinh)
+  if (letterOpt.specialLetters) pali = addSpecialLetters(pali)
+  if (letterOpt.bandiLetters) pali = addBandiLetters(pali)
+  const treeItem = { pali, sinh, key }
   if (children.length && depth > 0) {
-    treeItem.children = children.map(cKey => genTree(cKey, index, depth - 1)).sort(childrenSort)
+    treeItem.children = children.map(cKey => genTree(cKey, index, depth - 1, letterOpt)).sort(childrenSort)
   }
   return treeItem
 }
+
 function addOrder(treeItem, list) {
   list.push(treeItem.key)
   if (treeItem.children) treeItem.children.forEach(child => addOrder(child, list))
@@ -52,26 +59,31 @@ export default {
     },
   },
   mutations: {
-    setTree(state, jTree) {
+    setIndex(state, jTree) {
       const index = { 'root': {children: []} }
       Object.keys(jTree).forEach(key => {
         let [ pali, sinh, level, eind, parent, filename ] = jTree[key]
         index[key] = { pali, sinh, level, eind, parent, filename, key, children: [] }
         index[parent].children.push(key) 
       })
-      
+      state.index = index
+    },
+
+    recomputeTree(state, letterOpt) { // when bandiLetter settings are changed
+      state.isLoaded = false
       state.treeView = []
       state.filterTree = []
-      index['root'].children.forEach(key => state.treeView.push(genTree(key, index, 100)))
-      index['root'].children.forEach(key => state.filterTree.push(genTree(key, index, 2))) // max two levels
-      state.index = index
+      state.index['root'].children.forEach(
+        key => state.treeView.push(genTree(key, state.index, 100, letterOpt)))
+      state.index['root'].children.forEach(
+        key => state.filterTree.push(genTree(key, state.index, 2, letterOpt))) // max two levels
       // gen order list
       state.treeView.forEach(child => addOrder(child, state.orderedKeys))
       state.isLoaded = true
     },
-    
+
     // make existing tab active
-    setActiveKey(state, key) { 
+    setActiveKey(state, key) {
       state.activeKey = key
       if (router.currentRoute.params.pathMatch != key) {
         router.push('/' + key)
@@ -127,6 +139,7 @@ export default {
       commit('openTab', {key, columns: rootState.columns}) // open if not existing
       commit('setActiveKey', key)
     },
+
     // replace the active tab with prev/next sutta
     navigateTabTo({state, commit}, direction) {
       const newOrderInd = state.orderedKeys.indexOf(state.activeKey) + direction
@@ -138,10 +151,12 @@ export default {
       commit('replaceTab', {oldKey: state.activeKey, key})
       commit('setActiveKey', key)
     },
-    async initialize({commit, state}) {
+
+    async initialize({commit, rootState}) {
       const response = await fetch('/data/tree.json')
-      const tree = await response.json()
-      commit('setTree', tree)
+      const index = await response.json()
+      commit('setIndex', index)
+      commit('recomputeTree', rootState)
     }
   }
 }

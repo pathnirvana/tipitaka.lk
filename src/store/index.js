@@ -16,8 +16,9 @@ export default new Vuex.Store({
     treeLanguage: 'pali',
     footnoteMethod: 'show-end',
     bandiLetters: true,
+    specialLetters: false,
     showPageNumbers: true,
-    textSize: 16,
+    fontSize: 0,
     isLoaded: false,
   },
 
@@ -31,14 +32,8 @@ export default new Vuex.Store({
     setColumns(state, columns) {
       state.columns = columns
     },
-    setTreeLanguage(state, lang) {
-      state.treeLanguage = lang
-    },
     set(state, {name, value}) {
       state[name] = value
-    },
-    setFootnoteMethod(state, fnm) {
-      state.footnoteMethod = fnm
     },
     setSettings(state) {
       state.isLoaded = true

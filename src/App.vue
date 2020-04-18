@@ -66,7 +66,7 @@
   </v-app>
 </template>
 
-<style scoped>
+<style>
 @font-face { src: local('###'), url('./assets/fonts/UN-Abhaya.ttf') format('truetype'); font-weight: normal; font-family: 'sinhala'; }
 /*@font-face { src: local('###'), url('./assets/fonts/AbhayaLibre-SemiBold.ttf') format('truetype'); font-weight: bold; font-family: 'sinhala'; }*/
 @font-face { src: local('###'), url('./assets/fonts/UN-Alakamanda-4-95.ttf') format('truetype'); font-weight: normal; font-family: 'styled'; }
@@ -75,8 +75,7 @@
   font-family: 'sinhala'
 }
 #title-bar-text { font-family: 'styled'; font-size: 1.8rem; }
-</style>
-<style>
+
 .v-navigation-drawer__content { overflow-x: auto !important; } /** Need to be outside the scope */
 </style>
 
