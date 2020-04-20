@@ -10,8 +10,8 @@
 
       <v-simple-table v-for="({rows, footnotes}, j) in pages" :key="j" dense style="table-layout: fixed">
         <tr v-for="(row, i) in rows" :key="i">
-          <TextEntry v-if="columns.pali" language="pali" :entry="row.pali"></TextEntry>
-          <TextEntry v-if="columns.sinh" language="sinh" :entry="row.sinh"></TextEntry>
+          <TextEntry v-if="columns.pali" language="pali" :entry="row.pali" :footnotes="footnotes.pali"></TextEntry>
+          <TextEntry v-if="columns.sinh" language="sinh" :entry="row.sinh" :footnotes="footnotes.sinh"></TextEntry>
         </tr>
         <tr>
           <Footnotes v-if="columns.pali" language="pali" :footnotes="footnotes.pali"></Footnotes>
@@ -19,10 +19,10 @@
         </tr>
       </v-simple-table>
 
-      <v-banner v-if="entryEnd < paliEntries.length"
+      <v-card v-if="entryEnd < paliEntries.length" class="text-center" @click="getNextEnd"
         v-intersect="{ handler: loadNextSection, options: {threshold: [0.5]} }">
-        ඊළඟ කොටස ලබාගනිමින්...
-      </v-banner>
+        <v-card-text>ඊළඟ කොටස පෙන්වන්න.</v-card-text>
+      </v-card>
     </div>
 
     <!--<v-footer v-if="isLoaded" fixed>
@@ -44,7 +44,9 @@
 <script>
 import TextEntry from '@/components/TextEntry.vue'
 import Footnotes from '@/components/Footnotes.vue'
-import { extractFootnotes } from '@/text-convert.mjs'
+import { beautifySinh, addSpecialLetters, addBandiLetters } from '@/text-convert.mjs'
+const footnoteRegEx = '\{(\\d+|\\S)([^\{\}]*?)\}'
+const fnPointText = '|$1℗fn-pointer|'
 
 export default {
   name: 'TextTab',
@@ -55,6 +57,7 @@ export default {
   props: {
     itemKey: String,
   },
+
   data() {
     return {
       isError: false,
@@ -65,10 +68,9 @@ export default {
       snackbar: false, snackbarMsg: '',
 
       scrollTop: null,
-      pageStart: 0, pageEnd: 0,
-      curPageNum: 0,
     }
   },
+
   computed: {
     columns() {
       const columns = this.$store.getters['tree/getTabColumns']
@@ -78,55 +80,73 @@ export default {
     item() {
       return this.$store.getters['tree/getKey'](this.itemKey)
     },
-    entriesView() {
-      const rows = []
-      for (let i = this.entryStart; i < this.entryEnd; i++)  {
-        rows.push({ pali: this.paliEntries[i], sinh: this.sinhEntries[i] })
-      }
-      return rows;
-    },
-
-    subPages() {
-      return this.pages.slice(this.pageStart, this.pageEnd)
-    },
 
     pages() { // split entries start->end to pages, also compute footnotes
       let rows = [], footnotes = { pali: [], sinh: [] }, pages = []
       for (let i = this.entryStart; i < this.entryEnd; i++) {
         if (this.paliEntries[i].type == 'page-break') {
           if (rows.length) {
+            // note: no footnote dedup here (must be fixed somewhere else)
             pages.push({ rows, footnotes })
           }
           rows = []
           footnotes = { pali: [], sinh: [] }
         }
-        const pair = { pali: this.paliEntries[i], sinh: this.sinhEntries[i] }
+        footnotes.pali.push(...this.extractFootnotes(this.paliEntries[i].text, 'pali'))
+        footnotes.sinh.push(...this.extractFootnotes(this.sinhEntries[i].text, 'sinh'))
+        const pair = { pali: this.processEntry(this.paliEntries[i], 'pali'), 
+                       sinh: this.processEntry(this.sinhEntries[i], 'sinh') }
         rows.push(pair)
-        footnotes.pali.push(...extractFootnotes(pair.pali.text, 'pali', this.$store.state))
-        footnotes.sinh.push(...extractFootnotes(pair.sinh.text, 'sinh', this.$store.state))
       }
       return pages
     },
   },
+
   methods: {
     touchSwipe(direction) {
       console.log('swipe ' + direction)
-      if (this.columns[0] == this.columns[1]) return // both columns visible
+      if (this.columns.sinh == this.columns.pali) return // both columns visible
 
-      let swappedCols = [0]
-      this.snackbarMsg = 'පාළි'
-      if (this.columns[0]) {
-        swappedCols = [1]
-        this.snackbarMsg = 'සිංහල'
-      }
+      const swappedCols = this.columns.pali ? [1] : [0]
+      this.snackbarMsg = this.columns.pali ? 'සිංහල' : 'පාළි'
       this.$store.commit('tree/setTabColumns', swappedCols)
       this.snackbar = true
     },
     loadNextSection (entries, observer) {
         if (entries[0].isIntersecting) {
           this.getNextEnd()
-          //this.entryEnd = Math.min(this.entryEnd + 5, this.paliEntries.length)
         }
+    },
+    
+    processEntry(entry, language) {
+      return {...entry, text: this.textParts(entry.text, language)}
+    },
+    textParts(text, language) {
+      const {bandiLetters, specialLetters, footnoteMethod} = this.$store.state
+      text = text.replace(new RegExp(footnoteRegEx, 'g'), footnoteMethod == 'hidden' ? '' : fnPointText);
+      text = beautifySinh(text)
+      if (language == 'pali') {
+          if (specialLetters) text = addSpecialLetters(text)
+          if (bandiLetters) text = addBandiLetters(text)
+      }
+      text = text.replace(/\*\*(.*?)\*\*/g, '|$1℗bold|') // using the markdown styles
+      text = text.replace(/__(.*?)__/g, '|$1℗underline|') // underline
+      text = text.replace(/~~(.*?)~~/g, '|$1℗strike|') // strike through
+      if (!text) text = '|Empty - තීරුව හිස් !℗strike|' // if left empty it is not clickable
+      return text.split('|').filter(t => t.length).map(t => t.split('℗'))
+    },
+
+    extractFootnotes(text, language) {
+      const regex = new RegExp(footnoteRegEx, 'g'), notes = [];
+      let r;
+      while ((r = regex.exec(text)) !== null) {
+          const noteText = r[2].trim();
+          if (noteText) {
+              notes.push({ number: r[1], text: this.textParts(noteText, language) })
+              //notes.push(`<span class="fn-number">${r[1]}.</span><span class="fn-text">${noteHtml}</span>`); 
+          }
+      }
+      return notes;
     },
 
     /*loadPrevSection (entries, observer) {
@@ -145,6 +165,7 @@ export default {
       }
     },
   },
+
   created() {
     fetch(`data/${this.item.filename}.json`)
         .then(response => response.json())
@@ -156,10 +177,8 @@ export default {
           this.paliEntries = data[0].entries
           this.sinhEntries = data[1].entries
           
-          //this.pageEnd = 1
           this.entryStart = this.entryEnd = this.item.eind
           this.getNextEnd()
-          //this.entryEnd = Math.min(this.entryStart + 15, this.paliEntries.length) // todo 
           this.isLoaded = true
       })
   },

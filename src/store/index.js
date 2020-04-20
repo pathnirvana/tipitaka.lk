@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Vuetify from '@/plugins/vuetify'
 
 import tree from './tree.js'
 import search from './search.js'
@@ -14,7 +15,7 @@ export default new Vuex.Store({
   state: {
     columns: [0, 1],
     treeLanguage: 'pali',
-    footnoteMethod: 'show-end',
+    footnoteMethod: Vuetify.framework.breakpoint.smAndDown ? 'click' : 'hover',
     bandiLetters: true,
     specialLetters: false,
     showPageNumbers: true,

@@ -35,7 +35,8 @@
             <v-radio-group v-model="footnoteMethod">
               <v-radio label="නොපෙන්වන්න" value="hidden"></v-radio>
               <v-radio label="click එබූ විට පෙන්වන්න" value="click"></v-radio>
-              <v-radio label="පිටුවේ අග පෙන්වන්න" value="show-end"></v-radio>
+              <v-radio label="hover විට පෙන්වන්න" value="hover"></v-radio>
+              <v-radio label="පිටුවේ අග පෙන්වන්න" value="end-page"></v-radio>
               <!--<v-radio label="එතැනම පෙන්වන්න" value="show-inline"></v-radio>-->
             </v-radio-group>
           </v-card-actions>
@@ -56,7 +57,9 @@
       <v-col cols="12" sm="6">
         <v-card>  
           <v-card-title>අකුරු විශාලත්වය</v-card-title> 
-          <v-card-text><span :style="{ fontSize: 16 + $store.state.fontSize + 'px' }">ත්‍රිපිටක ග්‍රන්ථ මාලා වලින්</span></v-card-text>
+          <v-card-text color="info">
+            <span :style="{ fontSize: 16 + $store.state.fontSize + 'px' }">නමො තස‍්ස භගවතො අරහතො</span>
+          </v-card-text>
           <v-card-actions>
             <v-slider v-model="fontSize" step="1" ticks="always" :thumb-size="24"
           thumb-label="always" :min="-5" :max="5"></v-slider>

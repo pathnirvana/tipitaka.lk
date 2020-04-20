@@ -1,7 +1,7 @@
 <template>
   <v-app>
     
-    <v-app-bar app dense clipped-left  hide-on-scroll>
+    <v-app-bar app dense clipped-left :hide-on-scroll="$vuetify.breakpoint.smAndDown">
       <v-app-bar-nav-icon @click="showTree = !showTree" :color="showTree ? 'primary' : ''"></v-app-bar-nav-icon>
 
       <v-spacer></v-spacer>

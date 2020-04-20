@@ -56,34 +56,3 @@ export function beautifySinh(text) {
     })
     return text
 }
-
-const footnoteRegEx = '\{(\\d+|\\S)([^\{\}]*?)\}'
-const fnPointText = '<span class="fn-pointer">$1</span>'
-
-export function textToHtml(text, language, {bandiLetters, specialLetters, footnoteMethod}) {
-    
-    text = text.replace(new RegExp(footnoteRegEx, 'g'), footnoteMethod == 'hidden' ? '' : fnPointText);
-    text = beautifySinh(text)
-    if (language == 'pali') {
-        if (specialLetters) text = addSpecialLetters(text)
-        if (bandiLetters) text = addBandiLetters(text)
-    }
-    text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>') // using the markdown styles
-    text = text.replace(/__(.*?)__/g, '<u>$1</u>') // underline
-    text = text.replace(/~~(.*?)~~/g, '<s>$1</s>') // strike through
-    if (!text) text = '<s>Empty - තීරුව හිස් !</s>' // if left empty it is not clickable
-    return text//text.split('\n').join('<br>')
-}
-
-export function extractFootnotes(text, language, storeState) {
-    const regex = new RegExp(footnoteRegEx, 'g'), notes = [];
-    let r;
-    while ((r = regex.exec(text)) !== null) {
-        const noteText = r[2].trim();
-        if (noteText) {
-            const noteHtml = textToHtml(noteText, language, storeState)
-            notes.push(`<span class="fn-number">${r[1]}.</span><span class="fn-text">${noteHtml}</span>`); 
-        }
-    }
-    return notes;
-}
