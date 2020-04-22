@@ -26,7 +26,7 @@
         <v-card-title>Setup Search Filter</v-card-title>
         <v-card-text>
           <v-treeview :items="$store.state.tree.filterTree" v-model="filterKeys" dense selectable
-            item-key="key" :item-text="$store.state.treeLanguage">
+            item-key="key" :item-text="$store.state.treeLanguage" :open.sync="filterTreeOpenKeys">
           </v-treeview>
         </v-card-text>
         <v-card-actions>
@@ -48,7 +48,7 @@
 <script>
 //
 import TipitakaLink from '@/components/TipitakaLink'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'Search',
@@ -59,12 +59,15 @@ export default {
   data: () => ({
     results: [],
     showFilter: false,
+    filterTreeOpenKeys: ['sp'],
   }),
   
   computed: {
     ...mapState('search', ['maxResults']),
+    ...mapGetters('search', ['getSearchResults']),
     searchResults() {
-      return this.$store.getters['search/getSearchResults'](this.term)
+      console.log('searching for term')
+      return this.getSearchResults(this.term)
     },
     term() { return this.$route.params.term },
     searchMessage() {
@@ -76,25 +79,26 @@ export default {
         return `ඔබගේ සෙවුම සඳහා ගැළපෙන වචන ${this.maxResults} කට වඩා හමුවුනා. එයින් මුල් වචන ${this.maxResults} පහත දැක්වේ.`
     },
     filterKeys: {
-      get() { return this.$store.state.search.filterKeys },
+      get() { return this.$store.state.search.filterKeys  },
       set(keys) { this.$store.commit('search/setFilter', keys) },
     },
   },
   methods: {
-    getSuttaName() {
-      return 
+    refreshSearch() {
+      if (!this.term) return;
+      //console.log(`searching for term ${this.term}`)
+      //this.searchResults = this.getSearchResults(this.term)
     },
   },
-  watch: {
-    /*$route(to, from) { // react to route changes...
-      if (to.params.term) {
-        this.$store.dispatch('search/getResults', to.params.term).then(function(res) {
-          this.results = res
-        })
-      }
-    },*/
+  /*mounted() {
+    this.refreshSearch()
   },
-
-  mounted() {},
+  watch: {
+    $route(to, from) { // react to route changes...
+      if (to.params.term) {
+        this.refreshSearch()
+      }
+    },
+  },*/
 }
 </script>

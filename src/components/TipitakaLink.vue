@@ -42,6 +42,7 @@ export default {
     items() {
       const items = [] //this.getKey(this.itemKey)
       let parent = this.getKey(this.itemKey).parent
+      
       while (parent != 'root') {
         items.push(this.getKey(parent))
         parent = items[items.length - 1].parent

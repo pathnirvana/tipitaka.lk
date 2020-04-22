@@ -23,7 +23,7 @@ export default {
     searchIndex: [],
     isLoaded: false,
     searchCache: {},
-    filterKeys: ['dn-1', 'sn'],
+    filterKeys: ['dn', 'mn', 'sn'],
     minQueryLength: 2,
     maxSinglishLength: 10,
     maxResults: 100,  // search stopped after getting this many matches
@@ -34,7 +34,7 @@ export default {
       return keys.filter(key => state.filterKeys.some(fKey => key.startsWith(fKey)))
     },
     getSearchResults: (state, getters, rState, rGetters) => (input) => {
-      if (!input || !state.isLoaded) return ['not loaded']
+      if (!input || !state.isLoaded) return [['vp', 'search index not loaded - wait']]
       const query = input.toLowerCase()
       const results = getters.searchDataSet(query)
       return results.map(res => res[1]).flat().map(key => [key, rGetters['tree/getName'](key)])
@@ -88,7 +88,8 @@ export default {
   },
 
   mutations: {
-    setIndex(state, index) { 
+    setIndex(state, index) {
+      Object.preventExtensions(index) // readonly does not have to be reactive - improves perf
       state.searchIndex = index
       state.isLoaded = true
     },

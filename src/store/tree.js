@@ -33,13 +33,13 @@ function addOrder(treeItem, list) {
 export default {
   namespaced: true,
   state: {
-    index: {},
+    index: {}, // read-only
     treeView: [], // for the tree-view
     filterTree: [], // used for the search filter tree
     orderedKeys: [], // for prev/next sutta/key
     activeKey: null, // sync between treeview and tabs
     openKeys: [], // open tabs
-    tabColumns: [], // columns for each open tab
+    tabInfo: [], // info about each open tab (columns and dist)
     openBranches: ['sp'], // open in treeview
     isLoaded: false,
   },
@@ -53,9 +53,13 @@ export default {
     },
     getTabColumns: (state) => {
       const activeInd = state.openKeys.indexOf(state.activeKey)
-      const cols = state.tabColumns[activeInd]
+      const cols = state.tabInfo[activeInd].columns
       if (!cols) return cols
       return Vuetify.framework.breakpoint.smAndUp ? cols : cols.slice(-1) // todo get preffered from settings
+    },
+    getTabDist: (state) => {
+      const activeInd = state.openKeys.indexOf(state.activeKey)
+      return state.tabInfo[activeInd].dist
     },
   },
   mutations: {
@@ -66,6 +70,7 @@ export default {
         index[key] = { pali, sinh, level, eind, parent, filename, key, children: [] }
         index[parent].children.push(key) 
       })
+      Object.preventExtensions(index) // read-only not reactive - this improves perf
       state.index = index
     },
 
@@ -85,21 +90,21 @@ export default {
     // make existing tab active
     setActiveKey(state, key) {
       state.activeKey = key
-      if (router.currentRoute.params.pathMatch != key) {
+      if (router.currentRoute.params.key != key) { //pathMatch
         router.push('/' + key)
       }
     },
 
-    openTab(state, {key, columns}) {
+    openTab(state, {key, columns, dist}) {
       if (state.openKeys.indexOf(key) < 0) {
         state.openKeys.push(key)
-        state.tabColumns.push([...columns]) // default columns - make a copy
+        state.tabInfo.push({columns, dist}) 
       }
     },
     closeTab(state, key) {
       const closeInd = state.openKeys.indexOf(key)
       state.openKeys.splice(closeInd, 1)
-      state.tabColumns.splice(closeInd, 1)
+      state.tabInfo.splice(closeInd, 1)
       // if activeKey is closed go to the first tab
       if (state.openKeys.indexOf(state.activeKey) < 0) state.activeKey = state.openKeys[0]
       // if all tabs closed - go to welcome page
@@ -109,6 +114,7 @@ export default {
       if (state.openKeys.indexOf(key) >= 0) return; // the newkey already exists
       const ind = state.openKeys.indexOf(oldKey)
       Vue.set(state.openKeys, ind, key)
+      Vue.set(state.tabInfo[ind], 'dist', 0) // reset dist to 0, columns are unchanged
     },
 
 
@@ -130,13 +136,16 @@ export default {
       const activeInd = state.openKeys.indexOf(state.activeKey)
       // last element in cols is the last added col - choose that
       cols = Vuetify.framework.breakpoint.xsOnly && cols.length > 1 ? cols.slice(-1) : cols
-      Vue.set(state.tabColumns, activeInd, cols)
+      Vue.set(state.tabInfo[activeInd], 'columns', cols)
     },
   },
   actions: {
     // made this an action since need rootState
-    openAndSetActive({rootState, commit}, key) {
-      commit('openTab', {key, columns: rootState.columns}) // open if not existing
+    openAndSetActive({rootState, commit}, {key, column, dist}) {
+      // if no column passed in use default columns - make a copy
+      const columns = !column ? [...rootState.columns] : (column == 'pali' ? [0] : [1])
+      dist = parseInt(dist) || 0
+      commit('openTab', {key, columns, dist}) // open if not existing
       commit('setActiveKey', key)
     },
 

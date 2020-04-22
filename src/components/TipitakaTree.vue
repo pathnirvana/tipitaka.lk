@@ -66,7 +66,7 @@ export default {
       set ([key]) {
         if (!key) return; // if user deselects
         console.log(`change route from treeview to ${key}`)
-        this.$store.dispatch('tree/openAndSetActive', key)
+        this.$store.dispatch('tree/openAndSetActive', {key})
       }
     },
     openedBranches: {
@@ -89,19 +89,24 @@ export default {
     // init done here so can open tree afterwards
     await this.$store.dispatch('tree/initialize')
 
-    const key = this.$route.params.pathMatch
+    const key = this.$route.params.key //pathMatch
+    console.log(this.$route.params)
     if (key) {
       console.log(`opening initial key ${key} with router`)
-      this.$store.dispatch('tree/openAndSetActive', key)
+      this.$store.dispatch('tree/openAndSetActive', this.$route.params)
     }
   },
   watch: {
     $route(to, from) { // react to route changes...
-      const key = to.params.pathMatch
-      if (key != this.activeKey) { // when user uses back/forward browser buttons
+      const key = to.params.key //pathMatch
+      if (key && key != this.activeKey) { // when user uses back/forward browser buttons
         console.log(`route change from ${this.activeKey} to ${key}`)
-        this.$store.commit('tree/replaceTab', {oldKey: this.activeKey, key})
-        this.$store.commit('tree/setActiveKey', key) // do not open a new tab
+        if (this.activeKey) {
+          this.$store.commit('tree/replaceTab', {oldKey: this.activeKey, key})
+          this.$store.commit('tree/setActiveKey', key) // do not open a new tab
+        } else {
+          this.$store.dispatch('tree/openAndSetActive', this.$route.params)
+        }
       }
     }
   }

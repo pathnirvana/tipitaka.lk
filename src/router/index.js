@@ -25,9 +25,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "search" */ '../views/Search.vue'),
   },
   {
-    path: '/*',
+    path: '/:key/:dist(\\d+)?/:column([a-z]{4})?',
+    name: 'Home',
     component: Home,
   },
+  // TODO add a not found handler here
 ]
 
 const router = new VueRouter({

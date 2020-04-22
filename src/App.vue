@@ -12,7 +12,8 @@
       <v-autocomplete ref="searchbar" :menu-props="{ maxHeight: 400, closeOnClick: true }"
         :items="searchSuggestions" item-text="name" item-value="path" single-line
         placeholder="සෙවුම් පදය මෙතැන යොදන්න" hide-details no-filter hide-no-data
-        :search-input.sync="searchInput" no-data-text="සෙවුම සඳහා ගැළපෙන වචන කිසිවක් හමුවුයේ නැත">
+        :search-input.sync="searchInput" no-data-text="සෙවුම සඳහා ගැළපෙන වචන කිසිවක් හමුවුයේ නැත"
+        @update:search-input="runSearch">
         <template v-slot:item="{ item }">
           <v-list-item-content @click.stop="searchResultClick(item)">
             <v-list-item-title v-text="item.name"></v-list-item-title>
@@ -63,6 +64,10 @@
       <router-view></router-view>
     </v-content>
 
+    <v-snackbar v-model="$store.state.snackbar.model" bottom :timeout="$store.state.snackbar.timeout" class="snack">
+      <v-spacer></v-spacer><span>{{ $store.state.snackbar.message }}</span><v-spacer></v-spacer>
+    </v-snackbar>
+
   </v-app>
 </template>
 
@@ -91,44 +96,54 @@ export default {
     TipitakaLink,
   },
 
-  data: () => ({
-    showTree: null,
-    searchIconPressed: false,
-    searchInput: '',  // search bar input
-    searchLoading: false,
-  }),
+  data() {
+    return {
+      showTree: null,
+      //searchIconPressed: false,
+      searchInput: '',  // search bar input
+      searchLoading: false,
+      searchSuggestions: [],
+    }
+  },
   computed: {
     showColumnButtons() {
-      return this.$vuetify.breakpoint.smAndUp && this.$route.params.pathMatch
+      return this.$vuetify.breakpoint.smAndUp && this.$route.name == 'Home' 
+        && this.$store.state.tree.activeKey // not render at the startup until things are loaded
     },
     tabColumns: { // columns for the active tab
       get() { return this.$store.getters['tree/getTabColumns'] },
       set(cols) { this.$store.commit('tree/setTabColumns', cols) }
     },
-    showSearchBar() {
+    /*showSearchBar() {
       return this.searchIconPressed || this.$route.path == '/search' || this.$vuetify.breakpoint.mdAndUp
     },
     showNavigateButtons() {
-      return this.$route.params.pathMatch && !(this.searchIconPressed && this.$vuetify.breakpoint.smAndDown)
-    },
-    searchSuggestions() {
+      return this.$route.params.pathMatch && this.$vuetify.breakpoint.smAndUp)
+    },*/
+    /*searchSuggestions() {
       return this.$store.getters['search/getSuggestions'](this.searchInput)
-    },
+    },*/
     isSettingsView() { return this.$route.path == '/settings' }
   },
   methods: {
+    runSearch(inp) {
+      console.log(`${inp} ${this.searchInput}`)
+      if (!inp) return;
+      this.searchSuggestions = this.$store.getters['search/getSuggestions'](inp)
+    },
     toggleSettings() {
       if (this.isSettingsView) this.$router.go(-1) // go back
       else this.$router.push('/settings')
     },
-    toggleSearchMode() {
+    /*toggleSearchMode() {
       this.searchIconPressed = !this.searchIconPressed
       //if (this.searchIconPressed) this.$refs.searchbar.focus()
-    },
+    },*/
     searchBarAction(item) { if (item.name && !item.disabled) this.searchInput = item.name },
     //navigateOnSelect(path) { this.$router.push('/' + path) },
     searchResultClick(item) {
       if (!item.disabled) this.searchInput = item.text
+      this.searchSuggestions = []
       this.$router.push('/' + item.path) 
     },
   },

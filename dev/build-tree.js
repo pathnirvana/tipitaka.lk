@@ -19,29 +19,37 @@ const tree = {
     'sp': [ 'සුත්තපිටක', 'සූත්‍ර පිටකය', 7, 0, 'root', ''],
     'ap': [ 'අභිධම්මපිටක', 'අභිධර්ම පිටකය', 7, 0, 'root', ''],
 
-    'dn': [ 'දීඝනිකාය', 'දික් සඟිය', 2, 0, 'sp', 'dn-1-1'],
-    'mn': [ 'මජ්ඣිමනිකාය', '', 6, 0, 'sp', 'mn-1-1'],
-    'sn': [ 'සංයුත්තනිකාය', 'සංයුත්තනිකාය', 6, 0, 'sp', 'sn-1-1'],
-    'an': [ 'අඞ්ගුත්තරනිකාය', '', 6, 0, 'sp', 'an-1-1'],
-    'kn': [ 'ඛුද්දකනිකාය', '', 6, 0, 'sp', 'kn-1-1'],
+    'dn': [ 'දීඝනිකාය', 'දික් සඟිය', 5, 0, 'sp', 'dn-1-1'],
+    'mn': [ 'මජ්ඣිමනිකාය', 'මැදුම් සඟිය', 5, 0, 'sp', 'mn-1-1'],
+    'sn': [ 'සංයුත්තනිකායො', 'සංයුත්ත නිකාය', 5, 0, 'sp', 'sn-1-1'],
+    'an': [ 'අඞ්ගුත්තරනිකායො', 'අඞ්ගුත්තර සඟිය', 5, 0, 'sp', 'an-1-1'],
+    'kn': [ 'ඛුද්දකනිකාය', '', 5, 0, 'sp', 'kn-1-1'],
     
-    'dn-1': [ 'සීලක්ඛන්ධවග්ගො', 'සීලස්කන්ධවර්ගය', 4, 3, 'dn', 'dn-1-1'],
-    'dn-2': [ 'මහාවග්ගො', '', 4, 0, 'dn', 'dn-2-1'],
-    'dn-3': [ 'පාථීකවග්ගො', '', 4, 0, 'dn', 'dn-3-1'],
-    'sn-1': [ 'සගාථවග්ග', 'සගාථවර්ගය', 4, 0, 'sn', 'sn-1-1'],
-    'sn-2': [ 'නිදානවග්ග', '', 4, 0, 'sn', 'sn-2-1'],
+    'dn-1': [ 'සීලක්ඛන්ධවග්ගො', 'සීලස්කන්ධ වර්ගය', 4, 3, 'dn', 'dn-1-1'],
+    'dn-2': [ 'මහාවග්ගො', 'මහා වර්ගය', 4, 0, 'dn', 'dn-2-1'],
+    'dn-3': [ 'පාථීකවග්ගො', 'පාථීක වර්ගය', 4, 0, 'dn', 'dn-3-1'],
+    'mn-1': [ 'මූලපණ්ණාසකො', 'මූලපණ්ණාසකය', 4, 0, 'mn', 'mn-1-1'],
+    'mn-2': [ 'මජ්ඣිමපණ්ණාසකො', 'මජ්ඣිමපණ්ණාසකය', 4, 0, 'mn', 'mn-2-1'],
+    'mn-3': [ 'උපරිපණ්ණාසකො', 'උපරිපණ්ණාසකය', 4, 0, 'mn', 'mn-3-1'],
+    'sn-1': [ 'සගාථවග්ගො', 'සගාථ වර්ගය', 4, 0, 'sn', 'sn-1-1'],
+    'sn-2': [ 'නිදානවග්ගො', 'නිදාන වර්ගය', 4, 0, 'sn', 'sn-2-1'],
+    'sn-3': [ 'ඛන්ධකවග්ගො', 'ඛන්ධක වර්ගය', 4, 0, 'sn', 'sn-3-1'],
+    'sn-4': [ 'සළායතනවග්ගො', 'සළායතන වර්ගය', 4, 0, 'sn', 'sn-4-1'],
+    'sn-5': [ 'මහාවග්ගො', 'මහා වර්ගය', 4, 0, 'sn', 'sn-5-1'],
+    'an-1': [ 'එකක නිපාතො', 'ඒකක නිපාතය', 4, 0, 'an', 'an-1-1'],
 }
 
-const dataInputFolder = __dirname + '/../public/data/'
+const dataInputFolder = __dirname + '/../public/text/'
 const treeOutFilename = __dirname + '/../public/data/tree.json'
 const searchIndexFilename = __dirname + '/../public/data/searchIndex.json'
-const filesFilter = /^dn-1-|^sn-1-/ //
+const filesFilter = /^dn-|^mn-|^sn-/ //
 
 const getName = (text) => {
     text = text.trim().replace(/\{.*?\}/g, '') // remove footnotes
     return text.replace(/\.$/, '') // remove ending .
 }
 
+let processedFilesCount = 0
 const inputFiles = fs.readdirSync(dataInputFolder).filter(name => filesFilter.test(name))
 inputFiles.forEach(filename => {
     const obj = JSON.parse(fs.readFileSync(dataInputFolder + filename))
@@ -56,7 +64,7 @@ inputFiles.forEach(filename => {
 
     const headings = pali.entries.map((e, ind) => ({...e, ind})).filter(e => e.type == 'heading')
     if (headings[0].level != 3 || headings.some(he => he.level > 3 || !he.level)) {
-        console.error(`malformed headings ${headings[0]} in ${filename}`);
+        console.error(`malformed headings ${JSON.stringify(headings[0])} in ${filename}`);
         return;
     }
     
@@ -80,10 +88,12 @@ inputFiles.forEach(filename => {
         parentStack.push([newKey, 0])
     })
     console.log(`processed ${filename} with ${headings.length} headings`)
+    processedFilesCount++
 });
 
 fs.writeFileSync(treeOutFilename, vkb.json(JSON.stringify(tree)), {encoding: 'utf-8'})
 console.log(`wrote tree to ${treeOutFilename} with ${Object.keys(tree).length} nodes`)
+console.log(`Processed ${processedFilesCount} out of ${inputFiles.length}`)
 
 const searchIndex = {}
 Object.keys(tree).forEach(key => {

@@ -25,14 +25,6 @@
       </v-card>
     </div>
 
-    <!--<v-footer v-if="isLoaded" fixed>
-        <v-slider v-model="curPageNum" step="1" ticks="always" tick-size="4"
-          :min="0" :max="pages.length - 1">
-        </v-slider>
-    </v-footer>-->
-    <v-snackbar v-model="snackbar" bottom :timeout="1000" class="snack">
-      <v-spacer></v-spacer><span>{{ snackbarMsg }}</span><v-spacer></v-spacer>
-    </v-snackbar>
   </v-sheet>
 </v-scale-transition>
 </template>
@@ -45,6 +37,7 @@
 import TextEntry from '@/components/TextEntry.vue'
 import Footnotes from '@/components/Footnotes.vue'
 import { beautifySinh, addSpecialLetters, addBandiLetters } from '@/text-convert.mjs'
+import { mapState } from 'vuex'
 const footnoteRegEx = '\{(\\d+|\\S)([^\{\}]*?)\}'
 const fnPointText = '|$1℗fn-pointer|'
 
@@ -65,13 +58,13 @@ export default {
       paliEntries: null,
       sinhEntries: null,
       entryStart: 0, entryEnd: 0,
-      snackbar: false, snackbarMsg: '',
 
       scrollTop: null,
     }
   },
 
   computed: {
+    ...mapState('tree', ['orderedKeys']),
     columns() {
       const columns = this.$store.getters['tree/getTabColumns']
       //if (!columns) return [true, true]
@@ -108,9 +101,9 @@ export default {
       if (this.columns.sinh == this.columns.pali) return // both columns visible
 
       const swappedCols = this.columns.pali ? [1] : [0]
-      this.snackbarMsg = this.columns.pali ? 'සිංහල' : 'පාළි'
+      const message = this.columns.pali ? 'සිංහල' : 'පාළි'
       this.$store.commit('tree/setTabColumns', swappedCols)
-      this.snackbar = true
+      this.$store.commit('setSnackbar', {message, timeout: 1000})
     },
     loadNextSection (entries, observer) {
         if (entries[0].isIntersecting) {
@@ -164,10 +157,25 @@ export default {
         this.entryEnd++
       }
     },
+    computeEntryLinks() {
+      let curKey = '', headingDist = 0
+      for (let i = 0; i < this.paliEntries.length; i++) {
+        if (this.paliEntries[i].type == 'heading') {
+          if (curKey) {
+            curKey = this.orderedKeys[this.orderedKeys.indexOf(curKey) + 1] // get next key
+          } else {
+            curKey = this.item.filename
+          }
+          headingDist = 0
+        }
+        this.paliEntries[i].key = this.sinhEntries[i].key = curKey
+        this.paliEntries[i].headingDist = this.sinhEntries[i].headingDist = headingDist++
+      }
+    },
   },
 
   created() {
-    fetch(`data/${this.item.filename}.json`)
+    fetch(`/text/${this.item.filename}.json`)
         .then(response => response.json())
         .then(data => {
           if (!data.length || !data[0].entries.length) {
@@ -176,10 +184,13 @@ export default {
           }
           this.paliEntries = data[0].entries
           this.sinhEntries = data[1].entries
+          this.computeEntryLinks()
           
-          this.entryStart = this.entryEnd = this.item.eind
+          const dist = this.$store.getters['tree/getTabDist']
+          this.entryStart = this.entryEnd = (this.item.eind + dist)
           this.getNextEnd()
           this.isLoaded = true
+          console.log(`loaded from file ${this.item.key}:${dist}`)
       })
   },
 

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuetify from 'vuetify/lib';
 import { Touch } from 'vuetify/lib/directives';
 import VueClipboard from 'vue-clipboard2';
+import '@mdi/font/css/materialdesignicons.css'
 
 Vue.use(Vuetify, {
     directives: {
@@ -22,5 +23,8 @@ export default new Vuetify({
         options: {
             customProperties: true, // generates css variables to use in style blocks
         },
+    },
+    icons: {
+        iconfont: 'mdi', // default - only for display purposes
     },
 });

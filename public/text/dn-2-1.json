@@ -24,7 +24,7 @@
                 "level": 3
             },
             {
-                "type": "heading",
+                "type": "centered",
                 "text": "මහාවග්ගො",
                 "level": 4
             },
@@ -1138,7 +1138,7 @@
             {
                 "format": 5,
                 "text": "මහාවර්‍ගය",
-                "type": "heading",
+                "type": "centered",
                 "level": 4
             },
             {
