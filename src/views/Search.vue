@@ -9,11 +9,9 @@
     <v-simple-table v-if="$store.getters.isLoaded" dense>
       <thead><tr>
         <th class="text-left">Name</th>
-        <th class="text-left">Location</th>
       </tr></thead>
-      <tbody >
-        <tr v-for="[itemKey, suttaName] in searchResults" :key="itemKey">
-          <td class="sutta-name" ><router-link color="success" :to="'/' + itemKey">{{ suttaName }}</router-link></td>
+      <tbody>
+        <tr v-for="itemKey in searchResults" :key="itemKey">
           <td><TipitakaLink :itemKey="itemKey"/></td>
         </tr>
       </tbody>
@@ -41,8 +39,7 @@
 </template>
 
 <style scoped>
-.sutta-name { font-size: 1.1rem; }
-.sutta-name a { text-decoration: none; color: blue; }
+
 </style>
 
 <script>

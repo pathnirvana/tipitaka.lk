@@ -12,12 +12,19 @@ const childrenSort = (a, b) => {
   return ac - bc
 }
 
+// add rakar and common conjuncts
+function displayName(name, lang, letterOpt) {
+  if (lang == 'sinh') return beautifySinh(name)
+  name = beautifySinh(name)
+  if (letterOpt.specialLetters) name = addSpecialLetters(name)
+  if (letterOpt.bandiLetters) name = addBandiLetters(name)
+  return name
+}
+
 function genTree(key, index, depth, letterOpt) {
   let { pali, sinh, children } = index[key]
-  pali = beautifySinh(pali) // add rakar and common conjuncts
-  sinh = beautifySinh(sinh)
-  if (letterOpt.specialLetters) pali = addSpecialLetters(pali)
-  if (letterOpt.bandiLetters) pali = addBandiLetters(pali)
+  pali = displayName(pali, 'pali', letterOpt) 
+  sinh = displayName(sinh, 'sinh', letterOpt) 
   const treeItem = { pali, sinh, key }
   if (children.length && depth > 0) {
     treeItem.children = children.map(cKey => genTree(cKey, index, depth - 1, letterOpt)).sort(childrenSort)
@@ -49,13 +56,16 @@ export default {
     },
     getName: (state, getters, rState, rGetters) => (key) => {
       const lang = rState.treeLanguage
-      return state.index[key] ? state.index[key][lang] : 'key error' // or sinh
+      const rawName = state.index[key] ? state.index[key][lang] : 'key error' // or sinh
+      return displayName(rawName, lang, rState)
     },
-    getTabColumns: (state) => {
+    getTabColumns: (state, getters, rState) => {
       const activeInd = state.openKeys.indexOf(state.activeKey)
-      const cols = state.tabInfo[activeInd].columns
-      if (!cols) return cols
-      return Vuetify.framework.breakpoint.smAndUp ? cols : cols.slice(-1) // todo get preffered from settings
+      const cols = activeInd < 0 ? rState.defaultColumns : state.tabInfo[activeInd].columns // error check
+      if (Vuetify.framework.breakpoint.smAndUp) return cols // if big screen
+      if (cols.length == 1) return cols
+      if (rState.defaultColumns == 1) return rState.defaultColumns
+      return rState.treeLanguage == 'pali' ? [0] : [1] // use the tree language to determine default column (last resort)
     },
     getTabDist: (state) => {
       const activeInd = state.openKeys.indexOf(state.activeKey)
@@ -134,7 +144,7 @@ export default {
 
     setTabColumns(state, cols) {
       const activeInd = state.openKeys.indexOf(state.activeKey)
-      // last element in cols is the last added col - choose that
+      // last element in cols is the last added col - choose that (todo use defaultColumns?)
       cols = Vuetify.framework.breakpoint.xsOnly && cols.length > 1 ? cols.slice(-1) : cols
       Vue.set(state.tabInfo[activeInd], 'columns', cols)
     },
@@ -143,7 +153,7 @@ export default {
     // made this an action since need rootState
     openAndSetActive({rootState, commit}, {key, column, dist}) {
       // if no column passed in use default columns - make a copy
-      const columns = !column ? [...rootState.columns] : (column == 'pali' ? [0] : [1])
+      const columns = !column ? [...rootState.defaultColumns] : (column == 'pali' ? [0] : [1])
       dist = parseInt(dist) || 0
       commit('openTab', {key, columns, dist}) // open if not existing
       commit('setActiveKey', key)

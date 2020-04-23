@@ -95,13 +95,18 @@ fs.writeFileSync(treeOutFilename, vkb.json(JSON.stringify(tree)), {encoding: 'ut
 console.log(`wrote tree to ${treeOutFilename} with ${Object.keys(tree).length} nodes`)
 console.log(`Processed ${processedFilesCount} out of ${inputFiles.length}`)
 
+const ignoreRegex = new RegExp('සුත්තානි|සුත්තං|සූත්‍රය|\d+\.?', 'g')
 const searchIndex = {}
 Object.keys(tree).forEach(key => {
-    const paliW = tree[key][0].replace(/සුත්තං|\d+\.?/g, '').split(' ').filter(w => w.length)
-    paliW.forEach(w => {
-        if (!searchIndex[w]) searchIndex[w] = [w, []] // word and list of keys
-        searchIndex[w][1].push(key)
-    })
+    [tree[key][0], tree[key][1]].forEach((name, lang) => { // process both pali and sinh names
+        const words = name.replace(ignoreRegex, '').split(' ').filter(w => w.length)
+        words.forEach(w => {
+            if (!searchIndex[w]) searchIndex[w] = [w, []] // word and list of keys 
+            if (searchIndex[w][1].indexOf(key) < 0) { // dedup before adding
+                searchIndex[w][1].push(key) // (add lang too if needed later)
+            }
+        })
+    }) 
 })
 const indexAr = Object.values(searchIndex).sort((a, b) => b[1].length - a[1].length)
 fs.writeFileSync(searchIndexFilename, vkb.json(JSON.stringify(indexAr)), {encoding: 'utf-8'})

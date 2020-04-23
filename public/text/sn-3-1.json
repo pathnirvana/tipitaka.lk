@@ -1380,7 +1380,7 @@
             {
                 "type": "heading",
                 "text": "4. නතුම්හාක වග්ගො",
-                "level": 3
+                "level": 2
             },
             {
                 "type": "centered",
@@ -1785,8 +1785,8 @@
             },
             {
                 "type": "heading",
-                "text": "අත්තදීපවග්ගො",
-                "level": 3
+                "text": "5. අත්තදීපවග්ගො",
+                "level": 2
             },
             {
                 "type": "centered",
@@ -5214,7 +5214,7 @@
             {
                 "type": "heading",
                 "text": "5. පුප්ඵවග්ගො",
-                "level": 3
+                "level": 2
             },
             {
                 "type": "centered",
@@ -10117,7 +10117,7 @@
             {
                 "text": "4.නතුම්‌හාක වර්ගය",
                 "type": "heading",
-                "level": 3
+                "level": 2
             },
             {
                 "type": "centered",
@@ -10523,7 +10523,7 @@
             {
                 "text": "5. අත්‌තදීප වර්ගය",
                 "type": "heading",
-                "level": 3
+                "level": 2
             },
             {
                 "type": "centered",
@@ -13951,7 +13951,7 @@
             {
                 "text": "5. පුප්‌ඵ වර්ගය",
                 "type": "heading",
-                "level": 3
+                "level": 2
             },
             {
                 "type": "centered",

@@ -3,13 +3,13 @@
     <v-row dense>
       <v-col cols="12" sm="6">
         <v-card>
-          <v-card-title v-if="!$vuetify.theme.dark">රාත්‍රී අඳුරු තිරය</v-card-title>
+          <v-card-title v-if="!darkMode">රාත්‍රී අඳුරු තිරය</v-card-title>
           <v-card-title v-else>දහවල් ආලෝකමත් තිරය</v-card-title>
           <v-card-subtitle>රාත්‍රී අඳුරු තිරය සහ දහවල් ආලෝකමත් තිරය අතර මාරු වෙන්න. අඳුරු තිරය රාත්‍රියේදී ඇසට පහසුය.</v-card-subtitle>
           <v-card-actions>
-            <v-btn @click="$vuetify.theme.dark = !$vuetify.theme.dark" color="primary" outlined>
-              <v-icon class="mr-2">{{ 'mdi-brightness-' + ($vuetify.theme.dark ? '4' : '7') }}</v-icon>
-              {{ $vuetify.theme.dark ? 'ආලෝකමත් තිරය' : 'අඳුරු තිරය' }}
+            <v-btn @click="darkMode = !darkMode" color="primary" outlined>
+              <v-icon class="mr-2">{{ 'mdi-brightness-' + (darkMode ? '4' : '7') }}</v-icon>
+              {{ darkMode ? 'ආලෝකමත් තිරය' : 'අඳුරු තිරය' }}
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -67,6 +67,19 @@
         </v-card>
       </v-col>
 
+      <v-col cols="12" sm="6">
+        <v-card>  
+          <v-card-title>පාළි සිංහල තීරු තෝරන්න</v-card-title> 
+          <v-card-subtitle>අලුතෙන් සූත්‍රයක් ඇරීමේදී පෙන්වන්නේ පාළි, සිංහල හෝ ඒ තීරු දෙකමද යන්න.</v-card-subtitle>
+          <v-card-actions>
+            <v-btn-toggle v-model="defaultColumns" dense multiple mandatory shaped color="primary">
+              <v-btn :value="0" text>පාළි</v-btn>
+              <v-btn :value="1" text>සිංහල</v-btn>
+            </v-btn-toggle>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+
     </v-row>
   </v-container>
 </template>
@@ -81,13 +94,17 @@ export default {
   },
 
   data: () => ({
-    showTree: null,
-    searchIconPressed: false,
-    searchInput: '',  // search bar input
-    searchLoading: false,
   }),
   computed: {
     ...mapState(['bandiLetters', 'specialLetters']),
+    darkMode: {
+      get() { return this.$store.state.darkMode },
+      set(value) { this.$store.commit('set', { name: 'darkMode', value }) },
+    },
+    defaultColumns: {
+      get() { return this.$store.state.defaultColumns },
+      set(value) { this.$store.commit('set', { name: 'defaultColumns', value }) },
+    },
     treeLanguage: {
       get() { return this.$store.state.treeLanguage },
       set(value) { this.$store.commit('set', { name: 'treeLanguage', value }) },

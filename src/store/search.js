@@ -37,7 +37,10 @@ export default {
       if (!input || !state.isLoaded) return [['vp', 'search index not loaded - wait']]
       const query = input.toLowerCase()
       const results = getters.searchDataSet(query)
-      return results.map(res => res[1]).flat().map(key => [key, rGetters['tree/getName'](key)])
+      return results.map(res => res[1]).flat() // this will increase the size of array beyond maxResults
+        .slice(0, state.maxResults) // remove extra from faltting above
+        .filter((elem, pos, arr) => arr.indexOf(elem) == pos) // dedup
+        //.map(key => [key, rGetters['tree/getName'](key)]) // key and name
     },
     
     getSuggestions: (state, getters, rState, rGetters) => (input) => {
@@ -78,10 +81,12 @@ export default {
       for (let i = 0; i < state.searchIndex.length && results.length < state.maxResults; i++) {
           if (queryReg.test(state.searchIndex[i][0])) {
               const filteredKeys = getters.inFilterKeys(state.searchIndex[i][1])
-              if (filteredKeys.length) results.push([i, filteredKeys]);
+              if (filteredKeys.length) {
+                results.push([i, filteredKeys])
+              }
           }
       }
-      console.log(`query ${query} full search ${results.length} results`);
+      console.log(`query ${query} full search ${results.length} index entries`);
       state.searchCache[query] = results // dont have to be reactive
       return results
     },

@@ -8,7 +8,7 @@
         <div v-for="item in tabItems" :key="item.key"
           :class="'tab pa-0' + (item.active ? ' active' : '')">
           <v-btn text @click="tabClicked(item.key)" :color="item.active ? 'primary' : 'secondary'">
-            {{ item[$store.state.treeLanguage] }}
+            {{ item.name }}
             <v-btn icon x-small fab color="error" class="ml-1 mr-n2" @click.stop="closeTab(item.key)">
               <v-icon>mdi-close</v-icon>
             </v-btn>
@@ -35,7 +35,7 @@
 
 <script>
 // @ is an alias to /src
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import TextTab from '@/components/TextTab.vue'
 
 export default {
@@ -47,10 +47,10 @@ export default {
     
   }),
   computed: {
-    ...mapState('tree', ['activeKey', 'openKeys']),
+    ...mapState('tree', ['activeKey', 'openKeys', 'getName']),
+    ...mapGetters('tree', ['getName']),
     tabItems() {
-      return this.openKeys.map(key => 
-        ({...this.$store.state.tree.index[key], active: this.isActiveTab(key)}))
+      return this.openKeys.map(key => ({key, name: this.getName(key), active: this.isActiveTab(key)}))
     },
     smAndUp() { return this.$vuetify.breakpoint.smAndUp },
   },

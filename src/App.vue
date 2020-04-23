@@ -82,6 +82,7 @@
 #title-bar-text { font-family: 'styled'; font-size: 1.8rem; }
 
 .v-navigation-drawer__content { overflow-x: auto !important; } /** Need to be outside the scope */
+.v-sheet.d-inline-flex { min-width: 100%; min-height: 100%; } /** Needed to fill the drawer */
 </style>
 
 <script>

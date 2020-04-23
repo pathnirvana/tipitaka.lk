@@ -6,9 +6,23 @@
         {{ item.text }}
       </span>
     </template>
-    <v-breadcrumbs v-else :items="items" large divider=">" class="ma-0 pa-0">
+
+    <template v-else>
+      <span class="pitaka-icon mr-2 pa-1">{{ items[0].text }}</span>
+      
+      <span class="sutta-name mr-2">
+        <router-link color="success" :to="suttaNameItem.to">{{ suttaNameItem.text }}</router-link>
+      </span>
+
+      <span v-for="(item, i) in items.slice(1, -1)" :key="item.key" class="parent-name">
+        <v-icon v-if="i > 0">mdi-chevron-right</v-icon>
+        <router-link color="success" :to="item.to">{{ item.text }}</router-link>
+      </span>
+    </template>
+
+    <!--<v-breadcrumbs v-else :items="items" large divider=">" class="ma-0 pa-0">
     </v-breadcrumbs>
-     <!--<template v-slot:item="{ item }">
+     <template v-slot:item="{ item }">
         <v-breadcrumbs-item :to="item.to" :disabled="item.disabled" class="ma-0 pa-0">
           {{ item.text }}
         </v-breadcrumbs-item>
@@ -21,6 +35,10 @@
 </template>
 
 <style scoped>
+.pitaka-icon { font-size: 1.2rem; border: 1px solid black; border-radius: 10px; }
+.sutta-name { font-size: 1.1rem;  }
+.sutta-name a { text-decoration: none; color: var(--v-info-base); }
+.parent-name a { text-decoration: none; font-size: 1rem; }
 </style>
 
 <script>
@@ -38,10 +56,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('tree', ['getKey']),
+    ...mapGetters('tree', ['getKey', 'getName']),
     items() {
-      const items = [] //this.getKey(this.itemKey)
-      let parent = this.getKey(this.itemKey).parent
+      const items = [this.getKey(this.itemKey)]
+      let parent = items[0].parent
       
       while (parent != 'root') {
         items.push(this.getKey(parent))
@@ -53,13 +71,14 @@ export default {
         disabled: !item.filename, // empty filename means disabled
       }))
     },
+    suttaNameItem() { return this.items.slice(-1)[0] },
     shortItems() {
       return this.items.slice(0, 3)
     },
   },
   methods: {
     getLinkText(item) {
-      return this.keyToText[item.key] || item[this.$store.state.treeLanguage]
+      return this.keyToText[item.key] || this.getName(item.key)
     }
   },
 
