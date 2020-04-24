@@ -3,6 +3,7 @@
  */
 "use strict"
 import { isSinglishQuery, getPossibleMatches } from '@/singlish.js'
+import axios from 'axios'
 
 let searchIndex = []
 const searchCache = []
@@ -16,8 +17,8 @@ const resultSettings = { // TODO move to settings
 }
 
 export async function initSearch() {
-    const response = await fetch('/data/searchIndex.json')
-    searchIndex = await response.json()
+    const response = await axios.get('/data/searchIndex.json')
+    searchIndex = response.data
 }
 
 function updateFilterStatusDisplay() {

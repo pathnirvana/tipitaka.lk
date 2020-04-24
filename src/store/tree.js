@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import router from '@/router'
 import Vuetify from '@/plugins/vuetify'
+import axios from 'axios'
 import { addSpecialLetters, addBandiLetters, beautifySinh } from '@/text-convert.mjs'
 
 // since the json tree is an object the sort order is not maintained
@@ -172,8 +173,8 @@ export default {
     },
 
     async initialize({commit, rootState}) {
-      const response = await fetch('/data/tree.json')
-      const index = await response.json()
+      const response = await axios.get('/static/data/tree.json')
+      const index = response.data
       commit('setIndex', index)
       commit('recomputeTree', rootState)
     }

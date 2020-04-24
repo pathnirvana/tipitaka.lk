@@ -2,6 +2,7 @@ import Vue from 'vue'
 import router from '@/router'
 import Vuetify from '@/plugins/vuetify'
 import { isSinglishQuery, getPossibleMatches } from '@/singlish.js'
+import axios from 'axios'
 
 /* simple function to prefer shorter matches that occur more frequently */
 function computeScore(matchLen, queryLen, numKeys) {
@@ -106,8 +107,8 @@ export default {
 
   actions: {
     async initialize({state, rootState, commit}) {
-      const response = await fetch('/data/searchIndex.json')
-      const searchIndex = await response.json()
+      const response = await axios.get('/static/data/searchIndex.json')
+      const searchIndex = response.data
       commit('setIndex', searchIndex)
     },
   }

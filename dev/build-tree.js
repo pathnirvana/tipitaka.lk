@@ -36,13 +36,16 @@ const tree = {
     'sn-3': [ 'ඛන්ධකවග්ගො', 'ඛන්ධක වර්ගය', 5, 0, 'sn', 'sn-3-1'],
     'sn-4': [ 'සළායතනවග්ගො', 'සළායතන වර්ගය', 5, 0, 'sn', 'sn-4-1'],
     'sn-5': [ 'මහාවග්ගො', 'මහා වර්ගය', 5, 0, 'sn', 'sn-5-1'],
-    'an-1': [ 'එකක නිපාතො', 'ඒකක නිපාතය', 5, 0, 'an', 'an-1-1'],
+    'an-1': [ 'එකකනිපාතො', 'ඒකක නිපාතය', 5, 0, 'an', 'an-1-1'],
+    'an-2': [ 'දුකනිපාතො', 'දුක නිපාතය', 5, 0, 'an', 'an-2-1'], 
+    'an-3': [ 'තිකනිපාතො', 'තික නිපාතය', 5, 0, 'an', 'an-3-1'],
+    'an-4': [ 'චතුක්කනිපාතො', 'චතුක්ක නිපාතය', 5, 0, 'an', 'an-4-1'],
 }
 
-const dataInputFolder = __dirname + '/../public/text/'
-const treeOutFilename = __dirname + '/../public/data/tree.json'
-const searchIndexFilename = __dirname + '/../public/data/searchIndex.json'
-const filesFilter = /^dn-|^mn-|^sn-/ //
+const dataInputFolder = __dirname + '/../public/static/text/'
+const treeOutFilename = __dirname + '/../public/static/data/tree.json'
+const searchIndexFilename = __dirname + '/../public/static/data/searchIndex.json'
+const filesFilter = /^dn-|^mn-|^sn-|^an-/ //
 
 const getName = (text) => {
     text = text.trim().replace(/\{.*?\}/g, '') // remove footnotes
@@ -59,7 +62,7 @@ inputFiles.forEach(filename => {
         return;
     }
     const parentKey = fileKey.split('-').slice(0, -1).join('-');
-    tree[parentKey][TFI.Level] = 5
+    //tree[parentKey][TFI.Level] = 5 - set manually above
     const parentStack = [[parentKey, 0]] // key and numChildren
 
     const headings = pali.entries.map((e, ind) => ({...e, ind})).filter(e => e.type == 'heading')

@@ -30,6 +30,7 @@ const routes = [
     component: Home,
   },
   // TODO add a not found handler here
+  //{ path: '*', component: NotFoundComponent }
 ]
 
 const router = new VueRouter({

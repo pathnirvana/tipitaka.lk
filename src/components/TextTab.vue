@@ -2,9 +2,12 @@
 <v-scale-transition hide-on-leave>
   <v-sheet class="my-4">
     <!--<div v-scroll:window="handleScroll">{{ scrollTop }}</div>-->
-    <v-card v-if="isError" color="error">Error Loading</v-card>
+    <v-card v-if="errorMessage" color="error">
+      <v-card-title>සූත්‍රය ලබාගැනීමේදී වරදක් සිදුවිය</v-card-title>
+      <v-card-text>{{ errorMessage }}</v-card-text>
+    </v-card>
     
-    <v-skeleton-loader v-if="!isLoaded" type="paragraph"></v-skeleton-loader>
+    <v-skeleton-loader v-else-if="!isLoaded" type="paragraph"></v-skeleton-loader>
     
     <div v-else v-touch="{ left: () => touchSwipe('L'), right: () => touchSwipe('R') }">
 
@@ -38,6 +41,7 @@ import TextEntry from '@/components/TextEntry.vue'
 import Footnotes from '@/components/Footnotes.vue'
 import { beautifySinh, addSpecialLetters, addBandiLetters } from '@/text-convert.mjs'
 import { mapState } from 'vuex'
+import axios from 'axios'
 const footnoteRegEx = '\{(\\d+|\\S)([^\{\}]*?)\}'
 const fnPointText = '|$1℗fn-pointer|'
 
@@ -53,7 +57,7 @@ export default {
 
   data() {
     return {
-      isError: false,
+      errorMessage: null,
       isLoaded: false,
       paliEntries: null,
       sinhEntries: null,
@@ -175,22 +179,26 @@ export default {
   },
 
   created() {
-    fetch(`/text/${this.item.filename}.json`)
-        .then(response => response.json())
-        .then(data => {
-          if (!data.length || !data[0].entries.length) {
-            this.isError = true
-            return
-          }
-          this.paliEntries = data[0].entries
-          this.sinhEntries = data[1].entries
-          this.computeEntryLinks()
-          
-          const dist = this.$store.getters['tree/getTabDist']
-          this.entryStart = this.entryEnd = (this.item.eind + dist)
-          this.getNextEnd()
-          this.isLoaded = true
-          console.log(`loaded from file ${this.item.key}:${dist}`)
+    axios.get(`/static/text/${this.item.filename}.json`)
+      //.then(response => response.json())
+      .then(({ data }) => {
+        if (!data.length || !data[0].entries.length) {
+          this.isError = true
+          return
+        }
+        this.paliEntries = data[0].entries
+        this.sinhEntries = data[1].entries
+        this.computeEntryLinks()
+        
+        const dist = this.$store.getters['tree/getTabDist']
+        this.entryStart = this.entryEnd = (this.item.eind + dist)
+        this.getNextEnd()
+        this.isLoaded = true
+        console.log(`loaded from file ${this.item.key}:${dist}`)
+      }).catch(error => {
+        // handle error
+        this.errorMessage = error
+        console.log(error);
       })
   },
 
