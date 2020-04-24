@@ -31,12 +31,12 @@
             {
                 "type": "heading",
                 "text": "1. අභිසමයසංයුත්තං",
-                "level": 3
+                "level": 4
             },
             {
                 "type": "heading",
                 "text": "1. බුද්ධවග්ගො",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -471,7 +471,7 @@
             {
                 "type": "heading",
                 "text": "2. ආහාරවග්ගො",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -949,7 +949,7 @@
             {
                 "type": "heading",
                 "text": "3. දසබලවග්ගො",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -1467,7 +1467,7 @@
             {
                 "type": "heading",
                 "text": "4. කළාරඛත්තියවග්ගො",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -2113,7 +2113,7 @@
             {
                 "type": "heading",
                 "text": "5. ගහපතිවග්ගො",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -2595,7 +2595,7 @@
             {
                 "type": "heading",
                 "text": "6. දුක්ඛවග්ගො",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -3185,7 +3185,7 @@
             {
                 "type": "heading",
                 "text": "7. මහාවග්ගො",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -3955,7 +3955,7 @@
             {
                 "type": "heading",
                 "text": "8. සමණබ්රාහ්මණවග්ගො",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -4145,7 +4145,7 @@
                 "text": "204"
             },
             {
-                "type": "centered",
+                "type": "heading",
                 "text": "9. අන්තරපෙය්යාලො",
                 "level": 3
             },
@@ -4333,7 +4333,7 @@
             {
                 "type": "heading",
                 "text": "2. සික්ඛාවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -4357,7 +4357,7 @@
             {
                 "type": "heading",
                 "text": "3. යොගවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -4376,7 +4376,7 @@
             {
                 "type": "heading",
                 "text": "4. ඡන්දවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -4395,7 +4395,7 @@
             {
                 "type": "heading",
                 "text": "5. උස්සොළභිවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -4414,7 +4414,7 @@
             {
                 "type": "heading",
                 "text": "6. අප්පටිවානීවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -4433,7 +4433,7 @@
             {
                 "type": "heading",
                 "text": "7. ආතප්පවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -4456,7 +4456,7 @@
             {
                 "type": "heading",
                 "text": "8. විරියවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -4475,7 +4475,7 @@
             {
                 "type": "heading",
                 "text": "9. සාතච්චවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -4494,7 +4494,7 @@
             {
                 "type": "heading",
                 "text": "10. සතිවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -4513,7 +4513,7 @@
             {
                 "type": "heading",
                 "text": "11. සම්පජඤ්ඤවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -4532,7 +4532,7 @@
             {
                 "type": "heading",
                 "text": "12. අප්පමාදවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -4577,7 +4577,7 @@
             {
                 "type": "heading",
                 "text": "10. අභිසමයවග්ගො",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -5367,7 +5367,7 @@
             {
                 "type": "heading",
                 "text": "1. බුද්ධ වර්ගය",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -5875,7 +5875,7 @@
             {
                 "type": "heading",
                 "text": "2. අහාර වර්ගය",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -6433,7 +6433,7 @@
             {
                 "type": "heading",
                 "text": "3. දසබල වර්ගය",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -7040,7 +7040,7 @@
             {
                 "type": "heading",
                 "text": "4. කළාරඛත්‌තිය වර්ගය",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -7807,7 +7807,7 @@
             {
                 "type": "heading",
                 "text": "5. ගහපති වර්ගය",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -8372,7 +8372,7 @@
             {
                 "type": "heading",
                 "text": "6. දුක්‌ඛ වර්ගය",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -8857,7 +8857,7 @@
             },
             {
                 "type": "heading",
-                "text": "**තරුණරුක්‌ඛ සූත්‍රය**",
+                "text": "තරුණරුක්‌ඛ සූත්‍රය",
                 "level": "1"
             },
             {
@@ -9070,7 +9070,7 @@
             {
                 "type": "heading",
                 "text": "7. මහා වර්ගය",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -9980,7 +9980,7 @@
             {
                 "type": "heading",
                 "text": "8. සමණබ්‍රාහ්‌මණ වර්ගය",
-                "level": 2
+                "level": 3
             },
             {
                 "type": "centered",
@@ -10187,7 +10187,7 @@
                 "text": "205"
             },
             {
-                "type": "centered",
+                "type": "heading",
                 "text": "9. අන්‌තරපෙය්‍යාලය",
                 "level": 3
             },
@@ -10389,7 +10389,7 @@
             {
                 "type": "heading",
                 "text": "2. සික්ඛා වර්ගය",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -10415,7 +10415,7 @@
             {
                 "type": "heading",
                 "text": "3. යොග වර්ගය",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -10435,7 +10435,7 @@
             {
                 "type": "heading",
                 "text": "4. ජන්ද වර්ගය",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -10455,7 +10455,7 @@
             {
                 "type": "heading",
                 "text": "5. උස්සොළහි වර්ගය",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -10475,7 +10475,7 @@
             {
                 "type": "heading",
                 "text": "6. අප්පටිවානි වර්ගය",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -10495,7 +10495,7 @@
             {
                 "type": "heading",
                 "text": "7. ආතප්ප වර්ගය",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -10519,7 +10519,7 @@
             {
                 "type": "heading",
                 "text": "8. විරිය වර්ගය",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -10539,7 +10539,7 @@
             {
                 "type": "heading",
                 "text": "9. සාතච්ච වර්ගය",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -10559,7 +10559,7 @@
             {
                 "type": "heading",
                 "text": "10. සති වර්ගය",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -10579,7 +10579,7 @@
             {
                 "type": "heading",
                 "text": "11. සම්පජඤ්ඤ වර්ගය",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -10599,7 +10599,7 @@
             {
                 "type": "heading",
                 "text": "12. අප්පමාද වර්ගය",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -10651,7 +10651,7 @@
                 "format": 20,
                 "text": "10 අභිසමය වර්ගය",
                 "type": "heading",
-                "level": 2
+                "level": 3
             },
             {
                 "format": 20,

@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row dense>
-      <v-col cols="12" sm="6">
+      <v-col cols="12" sm="6" xl="4">
         <v-card>
           <v-card-title v-if="!darkMode">රාත්‍රී අඳුරු තිරය</v-card-title>
           <v-card-title v-else>දහවල් ආලෝකමත් තිරය</v-card-title>
@@ -15,7 +15,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12" sm="6">
+      <v-col cols="12" sm="6" xl="4">
         <v-card>  
           <v-card-title>සූත්‍ර නාමාවලිය පෙන්වන භාෂාව</v-card-title>
           <v-card-actions>
@@ -27,7 +27,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12" sm="6">
+      <v-col cols="12" sm="6" xl="4">
         <v-card>  
           <v-card-title>අධෝලිපි (Footnotes)</v-card-title>
           <v-card-subtitle>අධෝලිපි යනු බුද්ධ ජයන්ති ත්‍රිපිටකය අනෙක් ත්‍රිපිටක ග්‍රන්ථ මාලා වලින් වෙනස් වන ස්ථාන පෙන්වීම පිණිස සෑම පිටුවකම යටින් සටහන් කර ඇති කොටසය.</v-card-subtitle>
@@ -43,7 +43,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12" sm="6">
+      <v-col cols="12" sm="6" xl="4">
         <v-card>  
           <v-card-title>වෙනත් සැකසුම්</v-card-title> <!-- bandi akuru, text size, show page numbers-->
           <v-card-text>
@@ -54,7 +54,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12" sm="6">
+      <v-col cols="12" sm="6" xl="4">
         <v-card>  
           <v-card-title>අකුරු විශාලත්වය</v-card-title> 
           <v-card-text color="info">
@@ -67,7 +67,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12" sm="6">
+      <v-col cols="12" sm="6" xl="4">
         <v-card>  
           <v-card-title>පාළි සිංහල තීරු තෝරන්න</v-card-title> 
           <v-card-subtitle>අලුතෙන් සූත්‍රයක් ඇරීමේදී පෙන්වන්නේ පාළි, සිංහල හෝ ඒ තීරු දෙකමද යන්න.</v-card-subtitle>
@@ -76,6 +76,7 @@
               <v-btn :value="0" text>පාළි</v-btn>
               <v-btn :value="1" text>සිංහල</v-btn>
             </v-btn-toggle>
+            <span class="ml-3">{{ columnSelectionText }}</span>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -128,6 +129,10 @@ export default {
     fontSize: {
       get() { return this.$store.state.fontSize },
       set(value) { this.$store.commit('set', { name: 'fontSize', value }) },
+    },
+    columnSelectionText() {
+      if (this.defaultColumns.length == 2) return 'පාළි සිංහල දෙකම'
+      return (this.defaultColumns[0] == 0 ? 'පාළි' : 'සිංහල') + ' පමණයි'
     },
   },
   watch: {

@@ -632,7 +632,7 @@
             {
                 "type": "heading",
                 "text": "3. ආයාචනවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -641,7 +641,7 @@
             },
             {
                 "type": "heading",
-                "text": "මාරසුත්තං.",
+                "text": "මාර සුත්තං.",
                 "level": "1"
             },
             {
@@ -959,7 +959,7 @@
             {
                 "type": "heading",
                 "text": "4. උපනිසින්නවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -1932,9 +1932,9 @@
                 "text": "361"
             },
             {
-                "text": "3.ආයාචන වර්ගය",
+                "text": "3. ආයාචන වර්ගය",
                 "type": "heading",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -2258,9 +2258,9 @@
                 "text": "373"
             },
             {
-                "text": "4.උපනිසින්‌න වර්ගය",
+                "text": "4. උපනිසින්‌න වර්ගය",
                 "type": "heading",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",

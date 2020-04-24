@@ -1500,7 +1500,7 @@
             {
                 "type": "heading",
                 "text": "9. අප්පමාදවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -1615,7 +1615,7 @@
             {
                 "type": "heading",
                 "text": "12. ඔඝවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -1652,7 +1652,7 @@
             {
                 "type": "heading",
                 "text": "13. පුනගඞ්ගාපෙය්යාලො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -2273,7 +2273,7 @@
                 "text": "357"
             },
             {
-                "text": "2.මුදුතර වර්ගය",
+                "text": "2. මුදුතර වර්ගය",
                 "type": "heading",
                 "level": 2
             },
@@ -3527,7 +3527,7 @@
             {
                 "text": "9. අප්‌පමාද වර්ගය",
                 "type": "heading",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -3639,7 +3639,7 @@
             {
                 "text": "12. ඔඝ වර්ගය",
                 "type": "heading",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -3675,7 +3675,7 @@
             {
                 "text": "13. පුනගඞ්‌ගාපෙය්‍යාල වර්ගය",
                 "type": "heading",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",

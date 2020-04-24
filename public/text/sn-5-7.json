@@ -289,7 +289,7 @@
             {
                 "type": "heading",
                 "text": "2. පාසාදකම්පනවග්ගො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -1360,7 +1360,7 @@
                 "level": 3
             },
             {
-                "text": "1.චාපාල වර්ගය",
+                "text": "1. චාපාල වර්ගය",
                 "type": "heading",
                 "level": 2
             },
@@ -1613,7 +1613,7 @@
             {
                 "text": "2. පාසාදකම්‌පන වර්ගය",
                 "type": "heading",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",

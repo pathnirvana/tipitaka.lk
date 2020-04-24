@@ -55,6 +55,7 @@ td.entry { width: 50%; vertical-align: top; }
 
 .page-break { text-align: center; color: var(--v-info-base); }
 .heading { /*font-weight: bold;*/ font-family: 'heading2'; color: var(--v-primary-base); text-align: center; }
+.heading[level="4"] { font-size: 1.6em; } /* sn-2-1-9 */
 .heading[level="3"] { font-size: 1.6em; }
 .heading[level="2"] { font-size: 1.4em; }
 .heading[level="1"] { font-size: 1.3em; }

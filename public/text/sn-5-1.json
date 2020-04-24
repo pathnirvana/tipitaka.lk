@@ -2142,7 +2142,7 @@
             {
                 "type": "heading",
                 "text": "10. දුතියගඞ්ගාපෙය්යාලො",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -6139,7 +6139,7 @@
             {
                 "text": "10. දුතියගඞ්‌ගාපෙය්‍යාලය",
                 "type": "heading",
-                "level": "1"
+                "level": "2"
             },
             {
                 "type": "centered",
@@ -6305,12 +6305,12 @@
             },
             {
                 "type": "centered",
-                "text": "",
+                "text": "1. 10. 12.",
                 "level": "1"
             },
             {
                 "type": "heading",
-                "text": "",
+                "text": "ඡෂ්ඨ සමුද්දනින්න සූත්‍රය",
                 "level": "1"
             },
             {
@@ -6730,7 +6730,7 @@
                 "text": "99"
             },
             {
-                "text": "13.අප්‌පමාද වර්ගය",
+                "text": "13. අප්‌පමාද වර්ගය",
                 "type": "heading",
                 "level": 2
             },
