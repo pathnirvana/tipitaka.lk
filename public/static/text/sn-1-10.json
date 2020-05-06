@@ -631,10 +631,6 @@
             {
                 "type": "page-break",
                 "text": "end"
-            },
-            {
-                "text": "end",
-                "type": "page-break"
             }
         ],
         "pages": {
@@ -1415,10 +1411,6 @@
                 "text": "යක්ඛ සංයුත්තය නිමියේ ය.",
                 "type": "centered",
                 "level": "1"
-            },
-            {
-                "text": "end",
-                "type": "page-break"
             },
             {
                 "text": "end",
