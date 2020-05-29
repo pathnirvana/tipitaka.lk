@@ -8,8 +8,8 @@
             "pali": {
                 "entries": [
                     {
-                        "type": "centered",
-                        "text": "2. දුකනිපාතො",
+                        "type": "heading",
+                        "text": "දුකනිපාතො",
                         "level": 4
                     },
                     {
@@ -50,8 +50,8 @@
             "sinh": {
                 "entries": [
                     {
-                        "text": "2. දුකනිපාතය",
-                        "type": "centered",
+                        "text": "දුකනිපාතය",
+                        "type": "heading",
                         "level": 4
                     },
                     {

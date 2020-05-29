@@ -47,7 +47,7 @@ export default {
     orderedKeys: [], // for prev/next sutta/key
     activeKey: null, // sync between treeview and tabs
     openKeys: [], // open tabs
-    tabInfo: [], // info about each open tab (columns and dist)
+    tabInfo: [], // info about each open tab (columns and eind)
     openBranches: ['sp'], // open in treeview
     isLoaded: false,
   },
@@ -68,9 +68,9 @@ export default {
       if (rState.defaultColumns == 1) return rState.defaultColumns
       return rState.treeLanguage == 'pali' ? [0] : [1] // use the tree language to determine default column (last resort)
     },
-    getTabDist: (state) => {
+    getTabEInd: (state) => {
       const activeInd = state.openKeys.indexOf(state.activeKey)
-      return state.tabInfo[activeInd].dist
+      return state.tabInfo[activeInd].eind
     },
   },
   mutations: {
@@ -106,10 +106,10 @@ export default {
       }
     },
 
-    openTab(state, {key, columns, dist}) {
+    openTab(state, {key, columns, eind}) {
       if (state.openKeys.indexOf(key) < 0) {
         state.openKeys.push(key)
-        state.tabInfo.push({columns, dist}) 
+        state.tabInfo.push({columns, eind}) 
       }
     },
     closeTab(state, key) {
@@ -125,9 +125,8 @@ export default {
       if (state.openKeys.indexOf(key) >= 0) return; // the newkey already exists
       const ind = state.openKeys.indexOf(oldKey)
       Vue.set(state.openKeys, ind, key)
-      Vue.set(state.tabInfo[ind], 'dist', 0) // reset dist to 0, columns are unchanged
+      Vue.set(state.tabInfo[ind], 'eind', null) // reset eind to 0, columns are unchanged
     },
-
 
     setOpenBranches(state, ar) {
       state.openBranches = ar
@@ -152,11 +151,12 @@ export default {
   },
   actions: {
     // made this an action since need rootState
-    openAndSetActive({rootState, commit}, {key, column, dist}) {
+    openAndSetActive({rootState, commit}, {key, column, eindStr}) {
       // if no column passed in use default columns - make a copy
       const columns = !column ? [...rootState.defaultColumns] : (column == 'pali' ? [0] : [1])
-      dist = parseInt(dist) || 0
-      commit('openTab', {key, columns, dist}) // open if not existing
+      const eind = (eindStr && eindStr.split(':').length == 2) ? 
+        eindStr.split(':').map(i => parseInt(i) || 0) : null
+      commit('openTab', {key, columns, eind}) // open if not existing
       commit('setActiveKey', key)
     },
 
@@ -173,7 +173,7 @@ export default {
     },
 
     async initialize({commit, rootState}) {
-      const response = await axios.get('/static/data/tree.json')
+      const response = await axios.get('/static/data/tree-2.json')
       const index = response.data
       commit('setIndex', index)
       commit('recomputeTree', rootState)

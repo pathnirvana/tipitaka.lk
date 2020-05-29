@@ -11,10 +11,10 @@
     
     <div v-else v-touch="{ left: () => touchSwipe('L'), right: () => touchSwipe('R') }">
 
-      <v-simple-table v-for="({rows, footnotes}, j) in pages" :key="j" dense style="table-layout: fixed">
-        <tr v-for="(row, i) in rows" :key="i">
-          <TextEntry v-if="columns.pali" language="pali" :entry="row.pali" :footnotes="footnotes.pali"></TextEntry>
-          <TextEntry v-if="columns.sinh" language="sinh" :entry="row.sinh" :footnotes="footnotes.sinh"></TextEntry>
+      <v-simple-table v-for="({rows, footnotes}, pi) in visiblePages" :key="pi" dense style="table-layout: fixed">
+        <tr v-for="(row, ei) in rows" :key="ei">
+          <TextEntry v-if="columns.pali" :entry="row.pali" :footnotes="footnotes.pali"></TextEntry>
+          <TextEntry v-if="columns.sinh" :entry="row.sinh" :footnotes="footnotes.sinh"></TextEntry>
         </tr>
         <tr>
           <Footnotes v-if="columns.pali" language="pali" :footnotes="footnotes.pali"></Footnotes>
@@ -22,7 +22,7 @@
         </tr>
       </v-simple-table>
 
-      <v-card v-if="entryEnd < paliEntries.length" class="text-center" @click="getNextEnd"
+      <v-card v-if="pageEnd < pages.length" class="text-center" @click="incPageEnd"
         v-intersect="{ handler: loadNextSection, options: {threshold: [0.5]} }">
         <v-card-text>ඊළඟ කොටස පෙන්වන්න.</v-card-text>
       </v-card>
@@ -42,8 +42,6 @@ import Footnotes from '@/components/Footnotes.vue'
 import { beautifySinh, addSpecialLetters, addBandiLetters } from '@/text-convert.mjs'
 import { mapState } from 'vuex'
 import axios from 'axios'
-const footnoteRegEx = '\{(\\d+|\\S)([^\{\}]*?)\}'
-const fnPointText = '|$1℗fn-pointer|'
 
 export default {
   name: 'TextTab',
@@ -59,9 +57,8 @@ export default {
     return {
       errorMessage: null,
       isLoaded: false,
-      paliEntries: null,
-      sinhEntries: null,
-      entryStart: 0, entryEnd: 0,
+      pages: null,
+      pageStart: 0, pageEnd: 0, eind: null,
 
       scrollTop: null,
     }
@@ -77,25 +74,19 @@ export default {
     item() {
       return this.$store.getters['tree/getKey'](this.itemKey)
     },
-
-    pages() { // split entries start->end to pages, also compute footnotes
-      let rows = [], footnotes = { pali: [], sinh: [] }, pages = []
-      for (let i = this.entryStart; i < this.entryEnd; i++) {
-        if (this.paliEntries[i].type == 'page-break') {
-          if (rows.length) {
-            // note: no footnote dedup here (must be fixed somewhere else)
-            pages.push({ rows, footnotes })
-          }
-          rows = []
-          footnotes = { pali: [], sinh: [] }
-        }
-        footnotes.pali.push(...this.extractFootnotes(this.paliEntries[i].text, 'pali'))
-        footnotes.sinh.push(...this.extractFootnotes(this.sinhEntries[i].text, 'sinh'))
-        const pair = { pali: this.processEntry(this.paliEntries[i], 'pali'), 
-                       sinh: this.processEntry(this.sinhEntries[i], 'sinh') }
-        rows.push(pair)
-      }
-      return pages
+    visiblePages() {
+      return this.pages.slice(this.pageStart, this.pageEnd).map((page, i) => {
+        const rows = [], footnotes = { pali: [], sinh: [] }, pi = i + this.pageStart
+        page.pali.entries.forEach((paliEntry, ei) => {
+          if (pi <= this.eind[0] && ei < this.eind[1]) return;
+          const pair = { pali: this.processEntry(paliEntry), 
+                         sinh: this.processEntry(page.sinh.entries[ei]) }
+          rows.push(pair)
+        })
+        footnotes.pali = page.pali.footnotes.map(f => this.processFootnote(f, 'pali'))
+        footnotes.sinh = page.sinh.footnotes.map(f => this.processFootnote(f, 'sinh'))
+        return ({ rows, footnotes })
+      })
     },
   },
 
@@ -111,16 +102,21 @@ export default {
     },
     loadNextSection (entries, observer) {
         if (entries[0].isIntersecting) {
-          this.getNextEnd()
+          this.incPageEnd()
         }
     },
-    
-    processEntry(entry, language) {
-      return {...entry, text: this.textParts(entry.text, language)}
+    processEntry(entry) {
+      return {...entry, text: this.textParts(entry.text, entry.language) }
+    },
+    processFootnote(entry, language) {
+      const m = /^([^\s\.\{\}]+)[\.\s]([\s\S]+)$/.exec(entry.text)
+      if (!m) return {...entry, text: this.textParts(entry.text, language) }
+      return {...entry, number: m[1], text: this.textParts(m[2], language) }
     },
     textParts(text, language) {
       const {bandiLetters, specialLetters, footnoteMethod} = this.$store.state
-      text = text.replace(new RegExp(footnoteRegEx, 'g'), footnoteMethod == 'hidden' ? '' : fnPointText);
+      text = text.replace(/\{(.+?)\}/g, footnoteMethod == 'hidden' ? '' : '|$1℗fn-pointer|');
+      //text = text.replace(new RegExp(footnoteRegEx, 'g'), footnoteMethod == 'hidden' ? '' : fnPointText);
       text = beautifySinh(text)
       if (language == 'pali') {
           if (specialLetters) text = addSpecialLetters(text)
@@ -133,68 +129,50 @@ export default {
       return text.split('|').filter(t => t.length).map(t => t.split('℗'))
     },
 
-    extractFootnotes(text, language) {
-      const regex = new RegExp(footnoteRegEx, 'g'), notes = [];
-      let r;
-      while ((r = regex.exec(text)) !== null) {
-          const noteText = r[2].trim();
-          if (noteText) {
-              notes.push({ number: r[1], text: this.textParts(noteText, language) })
-              //notes.push(`<span class="fn-number">${r[1]}.</span><span class="fn-text">${noteHtml}</span>`); 
-          }
-      }
-      return notes;
+    incPageEnd(by = 1) {
+      this.pageEnd = Math.min(this.pages.length, this.pageEnd + by)
     },
 
-    /*loadPrevSection (entries, observer) {
-        if (entries[0].isIntersecting) {
-          this.entryStart = Math.max(this.entryStart - 5, 0)
-        }
-    },
-    handleScroll(e) {
-      console.log('scrolled')
-      this.scrollTop = e.target.scrollTop
-    }*/
-    getNextEnd() {
-      this.entryEnd++
-      while (this.entryEnd < this.paliEntries.length && this.paliEntries[this.entryEnd].type != 'page-break') {
-        this.entryEnd++
-      }
-    },
-    computeEntryLinks() {
-      let curKey = '', headingDist = 0
-      for (let i = 0; i < this.paliEntries.length; i++) {
-        if (this.paliEntries[i].type == 'heading') {
-          if (curKey) {
-            curKey = this.orderedKeys[this.orderedKeys.indexOf(curKey) + 1] // get next key
-          } else {
-            curKey = this.item.filename
+    addEntryFields() {
+      let curKey = ''
+      this.pages.forEach((page, pi) => {
+        page.pali.entries.forEach((paliEntry, ei) => {
+          if (paliEntry.type == 'heading') {
+            if (curKey) {
+              curKey = this.orderedKeys[this.orderedKeys.indexOf(curKey) + 1] // get next key
+            } else {
+              curKey = this.item.filename
+            }
           }
-          headingDist = 0
-        }
-        this.paliEntries[i].key = this.sinhEntries[i].key = curKey
-        this.paliEntries[i].headingDist = this.sinhEntries[i].headingDist = headingDist++
-      }
+          const sinhEntry = page.sinh.entries[ei]
+          paliEntry.key = sinhEntry.key = curKey
+          paliEntry.eind = sinhEntry.eind = [pi, ei]
+          paliEntry.language = 'pali'
+          sinhEntry.language = 'sinh'
+        })
+      })
     },
   },
 
   created() {
-    axios.get(`/static/text/${this.item.filename}.json`)
+    if (!this.item || !this.item.filename) {
+      this.errorMessage = `${this.itemKey} non existant or loading failed`
+      return
+    }
+    axios.get(`/static/text/converted/${this.item.filename}.json`)
       //.then(response => response.json())
       .then(({ data }) => {
-        if (!data.length || !data[0].entries.length) {
+        if (!data.pages || !data.pages.length) {
           this.isError = true
           return
         }
-        this.paliEntries = data[0].entries
-        this.sinhEntries = data[1].entries
-        this.computeEntryLinks()
-        
-        const dist = this.$store.getters['tree/getTabDist']
-        this.entryStart = this.entryEnd = (this.item.eind + dist)
-        this.getNextEnd()
+        this.pages = data.pages
+        this.addEntryFields()
+        this.eind = this.$store.getters['tree/getTabEInd'] || this.item.eind
+        this.pageStart = this.pageEnd = this.eind[0] // pageInd
+        this.incPageEnd(2)
         this.isLoaded = true
-        console.log(`loaded from file ${this.item.key}:${dist}`)
+        console.log(`loaded from file ${this.item.key} ${this.eind[0]}:${this.eind[1]}`)
       }).catch(error => {
         // handle error
         this.errorMessage = error

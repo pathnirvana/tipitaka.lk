@@ -1,5 +1,5 @@
 <template>
-  <td class="entry py-2" :lang="language" :style="{ fontSize }" v-if="entryVisible" @click="toggleOptions">
+  <td class="entry py-2" :lang="entry.language" :style="{ fontSize }" v-if="entryVisible" @click="toggleOptions">
     <!--<span v-if="$parent.showTypeInfo" class="type-info">{{ entry.type + '.' + entry.level }}</span>-->
     <div class="text html" :class="entry.type" :level="entry.level">
       <hr v-if="entry.type == 'page-break'"/>
@@ -92,7 +92,6 @@ export default {
   name: 'TextEntry',
   props: {
     entry: Object,
-    language: String,
     footnotes: Array,
   },
   
@@ -116,9 +115,9 @@ export default {
     },
     linkToEntry() {
       if (this.entry.type == 'heading') {
-        return `https://tipitaka.lk/${this.entry.key}/${this.language}`
+        return `https://tipitaka.lk/${this.entry.key}/${this.entry.language}`
       }
-      return `https://tipitaka.lk/${this.entry.key}/${this.entry.headingDist}/${this.language}`
+      return `https://tipitaka.lk/${this.entry.key}/${this.entry.eind[0]}:${this.entry.eind[1]}/${this.entry.language}`
     },
   },
 
