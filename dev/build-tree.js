@@ -24,7 +24,7 @@ const tree = {
     'mn': [ 'මජ්ඣිමනිකාය', 'මැදුම් සඟිය',     6, [0, 0], 'sp', 'mn-1-1'],
     'sn': [ 'සංයුත්තනිකායො', 'සංයුත්ත නිකාය', 6, [0, 0], 'sp', 'sn-1-1'],
     'an': [ 'අඞ්ගුත්තරනිකායො', 'අඞ්ගුත්තර සඟිය', 6, [0, 0], 'sp', 'an-1'],
-    'kn': [ 'ඛුද්දකනිකායො', 'කුදුගත් සඟිය',      6, [0, 0], 'sp', 'kn-1-1'],
+    'kn': [ 'ඛුද්දකනිකායො', 'කුදුගත් සඟිය',      6, [0, 0], 'sp', 'kn-khp'],
     
     'dn-1': [ 'සීලක්ඛන්ධවග්ගො', 'සීලස්කන්ධ වර්ගය',   5, [0, 0], 'dn', 'dn-1-1'],
     'dn-2': [ 'මහාවග්ගො', 'මහා වර්ගය',            5, [0, 0], 'dn', 'dn-2-1'],
@@ -37,23 +37,34 @@ const tree = {
     'sn-3': [ 'ඛන්ධකවග්ගො', 'ඛන්ධක වර්ගය',       5, [0, 0], 'sn', 'sn-3-1'],
     'sn-4': [ 'සළායතනවග්ගො', 'සළායතන වර්ගය',    5, [0, 0], 'sn', 'sn-4-1'],
     'sn-5': [ 'මහාවග්ගො', 'මහා වර්ගය',           5, [0, 0], 'sn', 'sn-5-1'],
-    //'an-1': [ 'එකකනිපාතො', 'ඒකක නිපාතය', 5, 0, 'an', 'an-1'], // not needed
-    //'an-2': [ 'දුකනිපාතො', 'දුක නිපාතය', 5, 0, 'an', 'an-2'], // not needed
+    'an-1': [], // overwritten - not needed
+    'an-2': [], // not needed
     'an-3': [ 'තිකනිපාතො', 'තික නිපාතය',           5, [0, 0], 'an', 'an-3-1'],
     'an-4': [ 'චතුක්කනිපාතො', 'චතුක්ක නිපාතය',       5, [0, 0], 'an', 'an-4-1'],
     'an-5': [ 'පඤ්චකනිපාතො', 'පඤ්චක නිපාතය',       5, [0, 0], 'an', 'an-5-1'],
     'an-6': [ 'ඡක්කනිපාතො', 'ඡක්ක නිපාතය',         5, [0, 0], 'an', 'an-6-1'],
     'an-7': [ 'සත්තකනිපාතො', 'සත්තක නිපාතය',       5, [0, 0], 'an', 'an-7-1'],
     'an-8': [ 'අට්ඨකනිපාතො', 'අට්ඨක නිපාතය',       5, [0, 0], 'an', 'an-8-1'],
-    // an-9 single file
+    'an-9': [], // not needed
     'an-10': [ 'දසකනිපාතො', 'දසක නිපාතය',        5, [0, 0], 'an', 'an-10-1'],
-    // an-11 single file
+    'an-11': [], // not needed
+
+    'kn-khp': [], // overwritten - but needed to maintain order
+    'kn-dhp': [], // overwritten
+    'kn-ud':  [], // overwritten
+    'kn-iti': [], // overwritten
+    'kn-snp': [ 'සුත්තනිපාතො', 'සූත්‍ර නිපාතය',        5, [0, 0], 'kn', 'kn-snp-1'],
+    'kn-vv': [], 'kn-pv': [],
+    'kn-thag': [], // big file 1.6MB - but if broken would create 21 files
+    'kn-thig': [],
+    'kn-jat' : [ 'ජාතකපාළි', 'ජාතකපාළි',           5, [0,0], 'kn', 'kn-jat-1'],
 }
+const headingAtEndKeys = ['kn-vv', 'kn-pv', 'kn-thag', 'kn-thig', 'kn-jat-22',] //kn-jat-1 to 14
 
 const dataInputFolder = __dirname + '/../public/static/text/'
 const treeOutFilename = __dirname + '/../public/static/data/tree.json'
 const searchIndexFilename = __dirname + '/../public/static/data/searchIndex.json'
-const filesFilter = /^dn-|^mn-|^sn-|^an-/ //
+const filesFilter = /^dn-|^mn-|^sn-|^an-|^kn-/ //
 
 const getName = (text) => { //TODO - remove නිට්ඨිතං/නිමි/යි
     text = text.trim().replace(/\{.*?\}/g, '') // remove footnotes
@@ -81,7 +92,6 @@ inputFiles.forEach(filename => {
     const parentStack = [[parentKey, 0]] // key and numChildren
 
     const headings = getHeadings(pages, 'pali'), sinhHeadings = getHeadings(pages, 'sinh')
-    //const headings = pali.entries.map((e, ind) => ({...e, ind})).filter(e => e.type == 'heading')
     if (headings.length != sinhHeadings.length) {
         console.error(`pali and sinh headings mismatch in ${filename}. ${headings.length} and ${sinhHeadings.length}`)
         return
@@ -95,25 +105,26 @@ inputFiles.forEach(filename => {
         console.error(`some error headings ${JSON.stringify(errorHeadings)} in ${filename}`)
     }
     
+    let prevEInd = null, isHeadingAtEnd = headingAtEndKeys.some(k => fileKey.startsWith(k))
     headings.forEach((he, hei) => {
         while (tree[parentStack.slice(-1)[0][0]][TFI.Level] <= he.level) {
             parentStack.pop(); // until a parent with a higher level is found
         }
-        const parent = parentStack.slice(-1)[0]
+        const parent = parentStack.slice(-1)[0], eInd = [he.pi, he.ei] // page ind and entry index in the page
         parent[1]++ // increment numChildren
-        const newKey = hei > 0 ? `${parent[0]}-${parent[1]}` : fileKey
+        const newKey = hei > 0 ? `${parent[0]}-${parent[1]}` : fileKey, level = parseInt(he.level)
 
         const newNode = [ 
             getName(he.text),
             getName(sinhHeadings[hei].text), // sinh name (can put in a seperate file too)
-            parseInt(he.level),
-            //he.ind, // entry index
-            [he.pi, he.ei], // page ind and entry index in the page
+            level,
+            isHeadingAtEnd && level == 1 ? prevEInd : eInd,
             parent[0], // parent key
             fileKey // filename without ext
         ]
         tree[newKey] = newNode
         parentStack.push([newKey, 0])
+        prevEInd = eInd
     })
     console.log(`processed ${filename} with ${headings.length} headings`)
     processedFilesCount++

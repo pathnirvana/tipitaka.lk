@@ -74,9 +74,9 @@
                         "level": 3
                     },
                     {
-                        "type": "centered",
+                        "type": "heading",
                         "text": "ධම්මපදපාළි",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "type": "centered",
@@ -161,9 +161,9 @@
                         "level": 3
                     },
                     {
-                        "type": "centered",
+                        "type": "heading",
                         "text": "දම්පියාපෙළ",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "type": "centered",
