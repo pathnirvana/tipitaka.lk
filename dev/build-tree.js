@@ -50,9 +50,9 @@ const tree = {
     // an-11 single file
 }
 
-const dataInputFolder = __dirname + '/../public/static/text/converted/'
-const treeOutFilename = __dirname + '/../public/static/data/tree-2.json'
-const searchIndexFilename = __dirname + '/../public/static/data/searchIndex-2.json'
+const dataInputFolder = __dirname + '/../public/static/text/'
+const treeOutFilename = __dirname + '/../public/static/data/tree.json'
+const searchIndexFilename = __dirname + '/../public/static/data/searchIndex.json'
 const filesFilter = /^dn-|^mn-|^sn-|^an-/ //
 
 const getName = (text) => { //TODO - remove නිට්ඨිතං/නිමි/යි

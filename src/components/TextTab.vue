@@ -58,7 +58,8 @@ export default {
       errorMessage: null,
       isLoaded: false,
       pages: null,
-      pageStart: 0, pageEnd: 0, eind: null,
+      pageStart: 0, pageEnd: 0, 
+      eind: null, // from link params or from sutta heading
 
       scrollTop: null,
     }
@@ -155,11 +156,11 @@ export default {
   },
 
   created() {
-    if (!this.item || !this.item.filename) {
+    if (!this.item || !this.item.filename) { // error in link params
       this.errorMessage = `${this.itemKey} non existant or loading failed`
       return
     }
-    axios.get(`/static/text/converted/${this.item.filename}.json`)
+    axios.get(`/static/text/${this.item.filename}.json`)
       //.then(response => response.json())
       .then(({ data }) => {
         if (!data.pages || !data.pages.length) {
