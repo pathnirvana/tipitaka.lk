@@ -23,7 +23,7 @@
                     {
                         "type": "heading",
                         "text": "ඛුද්දකපාඨපාළි",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "type": "centered",
@@ -137,28 +137,28 @@
             "sinh": {
                 "entries": [
                     {
-                        "text": "",
+                        "text": "සූත්‍ර පිටකයෙහි",
                         "type": "centered",
                         "level": 3
                     },
                     {
                         "type": "centered",
-                        "text": "",
+                        "text": "කුදුගත් සඟිය",
                         "level": 5
                     },
                     {
                         "type": "centered",
-                        "text": "",
+                        "text": "(ප්‍රථම ග්‍රන්ථය)",
                         "level": 3
                     },
                     {
                         "type": "heading",
-                        "text": "",
-                        "level": 3
+                        "text": "ඛුද්දකපාඨ පෙළ",
+                        "level": 4
                     },
                     {
                         "type": "centered",
-                        "text": "",
+                        "text": "ඒ භාග්‍යවත් අර්හත් සම්මාසම්බුදුරජාණන් වහන්සේට නමස්කාර වේවා.",
                         "level": 1
                     },
                     {
