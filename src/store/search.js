@@ -107,7 +107,7 @@ export default {
 
   actions: {
     async initialize({state, rootState, commit}) {
-      const response = await axios.get('/static/data/searchIndex-2.json')
+      const response = await axios.get('/static/data/searchIndex.json')
       const searchIndex = response.data
       commit('setIndex', searchIndex)
     },
