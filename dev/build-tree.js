@@ -55,11 +55,17 @@ const tree = {
     'kn-iti': [], // overwritten
     'kn-snp': [ 'සුත්තනිපාතො', 'සූත්‍ර නිපාතය',        5, [0, 0], 'kn', 'kn-snp-1'],
     'kn-vv': [], 'kn-pv': [],
-    'kn-thag': [], // big file 1.6MB - but if broken would create 21 files
-    'kn-thig': [],
-    'kn-jat' : [ 'ජාතකපාළි', 'ජාතකපාළි',           5, [0,0], 'kn', 'kn-jat-1'],
+    'kn-thag': ['ථෙරගාථාපාළි', 'ථෙරගාථා', 5, [0,0], 'kn', 'kn-thag-1'], // broken to two files
+    'kn-thig': [], // single file
+    'kn-jat': [ 'ජාතකපාළි', 'ජාතකපාළි', 5, [0,0], 'kn', 'kn-jat-1'],
+    'kn-jat-22': [ 'මහානිපාතො', 'මහා නිපාතය', 4, [0,4], 'kn-jat', 'kn-jat-22-1'], // broken to 3 files
+    'kn-ps': [ 'පටිසම්භිදාමග්ගො', 'පටිසම්භිදාමාර්‍ගය', 5, [0,0], 'kn', 'kn-ps-1-1'],
+    'kn-ps-1': [ '1. මහාවග්ගො', '1. මහා වර්‍ගය', 4, [0,4], 'kn-ps', 'kn-ps-1-1-1'], // file too big - broken
+    'kn-ps-1-1': [ 'ඤාණකථා', 'ඥාන කතා', 2, [0,7], 'kn-ps-1', 'kn-ps-1-1-1'], // file too big - broken to two
+
 }
-const headingAtEndKeys = ['kn-vv', 'kn-pv', 'kn-thag', 'kn-thig', 'kn-jat-22',] //kn-jat-1 to 14
+//const noRootFiles = ['kn-ps-1-6']
+const headingAtEndKeys = ['kn-vv', 'kn-pv', 'kn-thag', 'kn-thig', 'kn-jat-22',] //kn-jat-1- to 14-
 
 const dataInputFolder = __dirname + '/../public/static/text/'
 const treeOutFilename = __dirname + '/../public/static/data/tree.json'
@@ -67,8 +73,9 @@ const searchIndexFilename = __dirname + '/../public/static/data/searchIndex.json
 const filesFilter = /^dn-|^mn-|^sn-|^an-|^kn-/ //
 
 const getName = (text) => { //TODO - remove නිට්ඨිතං/නිමි/යි
-    text = text.trim().replace(/\{.*?\}/g, '') // remove footnotes
-    return text.replace(/\.$/, '') // remove ending .
+    text = text.replace(/\{.*?\}/g, '') // remove footnotes
+    text = text.replace(/[\[\]]/g, '') // remove [ ]
+    return text.replace(/\.$/, '').trim() // remove ending .
 }
 const getHeadings = (pages, lang) => 
     pages.map((p, pi) => p[lang].entries.map((e, ei) => ({...e, ei, pi}))
@@ -81,25 +88,25 @@ inputFiles.forEach(filename => {
     const obj = JSON.parse(fs.readFileSync(path.join(dataInputFolder, filename)))
     const pages = obj.pages, fileKey = filename.split('.')[0]
     if (obj.filename != fileKey) {
-        console.warning(`filename mismatch ${obj.filename} in ${filename}`)
+        console.error(`filename mismatch ${obj.filename} in ${filename}`)
     }
     if (!pages || !pages.length) {
         console.error(`malformed pages in ${filename}`)
         return;
     }
     const parentKey = fileKey.split('-').slice(0, -1).join('-'); // remove one from key
-    //tree[parentKey][TFI.Level] = 5 - set manually above
-    const parentStack = [[parentKey, 0]] // key and numChildren
+    const fileOffset = fileKey.split('-').slice(-1)[0] // last number
+    const parentStack = [[parentKey, fileOffset]] // key and numChildren(can be non numeric e.g. khp)
 
     const headings = getHeadings(pages, 'pali'), sinhHeadings = getHeadings(pages, 'sinh')
     if (headings.length != sinhHeadings.length) {
         console.error(`pali and sinh headings mismatch in ${filename}. ${headings.length} and ${sinhHeadings.length}`)
         return
     }
-    if (headings[0].level < 3 || headings[0].level > 4) { // should be 3 or 4
-        console.error(`malformed headings ${JSON.stringify(headings[0])} in ${filename}`)
-        return
-    }
+    //if (headings[0].level < 3 || headings[0].level > 4) { // should be 3 or 4
+    //    console.error(`malformed headings ${JSON.stringify(headings[0])} in ${filename}`)
+    //    return
+    //}
     const errorHeadings = headings.filter(he => he.level > headings[0].level || !he.level)
     if (errorHeadings.length) {
         console.error(`some error headings ${JSON.stringify(errorHeadings)} in ${filename}`)
@@ -111,8 +118,8 @@ inputFiles.forEach(filename => {
             parentStack.pop(); // until a parent with a higher level is found
         }
         const parent = parentStack.slice(-1)[0], eInd = [he.pi, he.ei] // page ind and entry index in the page
-        parent[1]++ // increment numChildren
-        const newKey = hei > 0 ? `${parent[0]}-${parent[1]}` : fileKey, level = parseInt(he.level)
+        const newKey = `${parent[0]}-${parent[1]}`, level = parseInt(he.level)
+        parent[1] = parseInt(parent[1]) + 1 // increment numChildren (could be NaN)
 
         const newNode = [ 
             getName(he.text),
@@ -123,7 +130,7 @@ inputFiles.forEach(filename => {
             fileKey // filename without ext
         ]
         tree[newKey] = newNode
-        parentStack.push([newKey, 0])
+        parentStack.push([newKey, 1])
         prevEInd = eInd
     })
     console.log(`processed ${filename} with ${headings.length} headings`)
@@ -140,6 +147,7 @@ const ignoreRegex = new RegExp('සුත්තානි|සුත්තං|ස�
 const searchIndex = {}
 Object.keys(tree).forEach(key => {
     [tree[key][0], tree[key][1]].forEach((name, lang) => { // process both pali and sinh names
+        if (!name) console.log(JSON.stringify(key))
         const words = name.replace(ignoreRegex, '').split(' ').filter(w => w.length)
         words.forEach(w => {
             if (!searchIndex[w]) searchIndex[w] = [w, []] // word and list of keys 
