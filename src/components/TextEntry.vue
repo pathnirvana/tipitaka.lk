@@ -55,7 +55,8 @@ td.entry { width: 50%; vertical-align: top; }
 
 .page-break { text-align: center; color: var(--v-info-base); }
 .heading { /*font-weight: bold;*/ font-family: 'heading2'; color: var(--v-primary-base); text-align: center; }
-.heading[level="4"] { font-size: 1.6em; } /* sn-2-1-9 */
+.heading[level="5"] { font-size: 2.0em; } /* sn-2 */
+.heading[level="4"] { font-size: 1.8em; } /* sn-2-1-9 */
 .heading[level="3"] { font-size: 1.6em; }
 .heading[level="2"] { font-size: 1.4em; }
 .heading[level="1"] { font-size: 1.3em; }
@@ -71,8 +72,9 @@ td.entry { width: 50%; vertical-align: top; }
 .centered[level="5"] { font-size: 2.1em; }
 .centered[level="4"] { font-size: 1.8em; }
 .centered[level="3"] { font-size: 1.5em; }
-.centered[level="2"] { font-size: 1.3em; }
-.centered[level="1"] { font-size: 1.2em; }
+.centered[level="2"] { font-size: 1.25em; }
+.centered[level="1"] { font-size: 1.1em; } /* normal text size here */
+.centered[level="0"] { font-family: 'sinhala'; } /* non bold, just centered */
 
 .html .fn-pointer { font-size: 0.9em; color: var(--v-error-base); cursor: pointer; padding: 0px 3px; }
 .html .underline { text-decoration: underline; text-decoration-color: var(--v-error-base); }
