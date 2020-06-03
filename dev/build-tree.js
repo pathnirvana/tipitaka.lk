@@ -80,16 +80,15 @@ const tree = {
     'ap-dhk': [],
     'ap-pug': [],
     'ap-yam': [],
-    /*'ap-pat': [],
+    'ap-pat': [], // ap-pat cant break due to page boundries, pat-2-83 is small but still needed since it is in a new book
 
     'vp-prj': [],
-    'vp-pct': [],
-    'vp-mv': [],*/
+    'vp-pct': [], // vp-pct-2-5 small but needed
+    'vp-mv': [],
     // 'vp-cv': [], 'vp-pv': [], // wait
 }
-//const noRootFiles = ['kn-ps-1-6']
 const headingAtEndKeys = ['kn-vv', 'kn-pv', 'kn-thag', 'kn-thig', 
-'kn-jat$', 'kn-jat-(5|11|22)', 'ap-dhs', 'ap-vbh', 'ap-yam-(6|7|8|10)'] 
+        'kn-jat$', 'kn-jat-(5|11|22)', 'ap-dhs', 'ap-vbh', 'ap-yam-(6|7|8|10)'] 
 
 const dataInputFolder = __dirname + '/../public/static/text/'
 const treeOutFilename = __dirname + '/../public/static/data/tree.json'
@@ -106,12 +105,21 @@ const getHeadings = (pages, lang) =>
     pages.map((p, pi) => p[lang].entries.map((e, ei) => ({...e, ei, pi}))
         .filter(e => e.type == 'heading')
     ).flat();
+const incrementEInd = ([pi, ei], pages) => (ei + 1) < pages[pi].pali.entries.length ? [pi, ei+1] : [pi+1, 0]
+const getPrevIfCenNum = ([pi, ei], pages) => {
+    if (ei > 0) {
+        const prevE = pages[pi].pali.entries[ei-1]
+        if (prevE.type == 'centered' && /^[\d\. \-]+$/.test(prevE.text)) return [pi, ei-1]
+    }
+    return [pi, ei]
+}
 
 let processedFilesCount = 0
 const inputFiles = fs.readdirSync(dataInputFolder)
     .filter(name => filesFilter.test(name)).map(name => name.split('.')[0]).sort() // sort needed to get kn-nett before kn-nett-x
 inputFiles.forEach(fileKey => {
     const obj = JSON.parse(fs.readFileSync(path.join(dataInputFolder, fileKey + '.json')))
+    const paliOnly = fileKey.startsWith('ap-pat')
     if (obj.filename != fileKey) {
         console.error(`filename mismatch ${obj.filename} in ${fileKey}`)
     }
@@ -125,21 +133,18 @@ inputFiles.forEach(fileKey => {
     const parentStack = [[parentKey, fileOffset]] // key and numChildren(can be non numeric e.g. khp)
 
     const headings = getHeadings(pages, 'pali'), sinhHeadings = getHeadings(pages, 'sinh')
-    if (headings.length != sinhHeadings.length) {
+    if (!paliOnly && headings.length != sinhHeadings.length) {
         console.error(`pali and sinh headings mismatch in ${fileKey}. ${headings.length} and ${sinhHeadings.length}`)
         return
     }
     console.log(`processing ${fileKey} with ${headings.length} headings`)
-    //if (headings[0].level < 3 || headings[0].level > 4) { // should be 3 or 4
-    //    console.error(`malformed headings ${JSON.stringify(headings[0])} in ${filename}`)
-    //    return
-    //}
+
     const errorHeadings = headings.filter(he => he.level > headings[0].level || !he.level)
     if (errorHeadings.length) {
         console.error(`some error headings ${JSON.stringify(errorHeadings)} in ${fileKey}`)
     }
     
-    let prevEInd = [0,0] // init to 0 needed for ap-yam-10-3-4
+    let prevEInd = [0,0] // init to 0 needed for ap-yam-10-3-4 (file starts with a headingAtEnd)
     const isHeadingAtEnd = headingAtEndKeys.some(k => fileKey.search(k) != -1)
     headings.forEach((he, hei) => {
         while (tree[parentStack.slice(-1)[0][0]][TFI.Level] <= he.level) {
@@ -151,16 +156,16 @@ inputFiles.forEach(fileKey => {
 
         const newNode = [ 
             getName(he.text),
-            getName(sinhHeadings[hei].text), // sinh name (can put in a seperate file too)
+            getName(!paliOnly ? sinhHeadings[hei].text : ''), // sinh name (can put in a seperate file too)
             level,
-            // TODO if prev entry is a centered number include it too, +1 when using prevEnd
-            isHeadingAtEnd && level == 1 ? prevEInd : eInd, 
+            // if prev entry is a centered number include it too
+            isHeadingAtEnd && level == 1 ? prevEInd : getPrevIfCenNum(eInd, pages), 
             parent[0], // parent key
             fileKey // filename without ext
         ]
         tree[newKey] = newNode
         parentStack.push([newKey, 1])
-        prevEInd = eInd
+        prevEInd = incrementEInd(eInd, pages) // when using prevEnd for headingAtEnd
     })
     processedFilesCount++
 });
@@ -175,7 +180,7 @@ const ignoreRegex = new RegExp('සුත්තානි|සුත්තං|ස�
 const searchIndex = {}
 Object.keys(tree).forEach(key => {
     [tree[key][0], tree[key][1]].forEach((name, lang) => { // process both pali and sinh names
-        if (!name) console.log(JSON.stringify(key))
+        if (!name && !key.startsWith('ap-pat')) console.error(`empty heading in key ${key}`)
         const words = name.replace(ignoreRegex, '').split(' ').filter(w => w.length)
         words.forEach(w => {
             if (!searchIndex[w]) searchIndex[w] = [w, []] // word and list of keys 

@@ -11,14 +11,18 @@
     
     <div v-else v-touch="{ left: () => touchSwipe('L'), right: () => touchSwipe('R') }">
 
-      <v-simple-table v-for="({rows, footnotes}, pi) in visiblePages" :key="pi" dense style="table-layout: fixed">
+      <v-simple-table v-for="({rows, footnotes, pageNum }, pi) in visiblePages" :key="pi" dense style="table-layout: fixed">
+        <tr v-if="$store.state.showPageNumbers">
+          <td><div v-if="columns.pali" class="page-number">{{ pageNum }}</div></td>
+          <td><div v-if="columns.sinh && !paliOnly" class="page-number">{{ pageNum + 1 }}</div></td>
+        </tr>
         <tr v-for="(row, ei) in rows" :key="ei">
           <TextEntry v-if="columns.pali" :entry="row.pali" :footnotes="footnotes.pali"></TextEntry>
-          <TextEntry v-if="columns.sinh" :entry="row.sinh" :footnotes="footnotes.sinh"></TextEntry>
+          <TextEntry v-if="columns.sinh && !paliOnly" :entry="row.sinh" :footnotes="footnotes.sinh"></TextEntry>
         </tr>
         <tr>
           <Footnotes v-if="columns.pali" language="pali" :footnotes="footnotes.pali"></Footnotes>
-          <Footnotes v-if="columns.sinh" language="sinh" :footnotes="footnotes.sinh"></Footnotes>
+          <Footnotes v-if="columns.sinh && !paliOnly" language="sinh" :footnotes="footnotes.sinh"></Footnotes>
         </tr>
       </v-simple-table>
 
@@ -34,6 +38,7 @@
 
 <style scoped>
 .snack { opacity: 0.85; font-size: 1.1rem; max-width: 100px; }
+.page-number { text-align: center; color: var(--v-info-base); }
 </style>
 
 <script>
@@ -81,14 +86,15 @@ export default {
         page.pali.entries.forEach((paliEntry, ei) => {
           if (pi <= this.eind[0] && ei < this.eind[1]) return;
           const pair = { pali: this.processEntry(paliEntry), 
-                         sinh: this.processEntry(page.sinh.entries[ei]) }
+                         sinh: !this.paliOnly ? this.processEntry(page.sinh.entries[ei]) : null }
           rows.push(pair)
         })
         footnotes.pali = page.pali.footnotes.map(f => this.processFootnote(f, 'pali'))
         footnotes.sinh = page.sinh.footnotes.map(f => this.processFootnote(f, 'sinh'))
-        return ({ rows, footnotes })
+        return ({ rows, footnotes, pageNum: parseInt(page.pageNum) })
       })
     },
+    paliOnly() { return this.item.filename.startsWith('ap-pat') },
   },
 
   methods: {
@@ -145,11 +151,16 @@ export default {
               curKey = this.item.filename
             }
           }
-          const sinhEntry = page.sinh.entries[ei]
-          paliEntry.key = sinhEntry.key = curKey
-          paliEntry.eind = sinhEntry.eind = [pi, ei]
+          
+          paliEntry.key = curKey
+          paliEntry.eind = [pi, ei]
           paliEntry.language = 'pali'
-          sinhEntry.language = 'sinh'
+          if (!this.paliOnly) {
+            const sinhEntry = page.sinh.entries[ei]
+            sinhEntry.key = paliEntry.key
+            sinhEntry.eind = paliEntry.eind
+            sinhEntry.language = 'sinh'
+          }
         })
       })
     },
