@@ -1,8 +1,7 @@
 <template>
-  <td class="entry py-2" :lang="entry.language" :style="{ fontSize }" v-if="entryVisible" @click="toggleOptions">
+  <td class="entry py-2" :lang="entry.language" :style="{ fontSize }" @click="toggleOptions">
     <!--<span v-if="$parent.showTypeInfo" class="type-info">{{ entry.type + '.' + entry.level }}</span>-->
     <div class="text html" :class="entry.type" :level="entry.level">
-      <hr v-if="entry.type == 'page-break'"/>
       <template v-for="(se, i) in entry.text">
 
         <v-tooltip v-if="se[1] == 'fn-pointer' && footnoteMethod != 'end-page'" :key="i" bottom
@@ -53,7 +52,6 @@ td.entry { width: 50%; vertical-align: top; }
 .text { font-family: 'sinhala'; font-size: 1.1em; line-height: 130%; position: relative; 
   word-break: break-word; white-space: pre-wrap; }
 
-.page-break { text-align: center; color: var(--v-info-base); }
 .heading { /*font-weight: bold;*/ font-family: 'heading2'; color: var(--v-primary-base); text-align: center; }
 .heading[level="5"] { font-size: 2.0em; } /* sn-2 */
 .heading[level="4"] { font-size: 1.8em; } /* sn-2-1-9 */
@@ -106,13 +104,8 @@ export default {
   computed: {
     ...mapState(['footnoteMethod']),
     fontSize() { return 16 + this.$store.state.fontSize + 'px' },
-    entryVisible() {
-      if (this.entry.type != 'page-break') return true
-      return this.$store.state.showPageNumbers
-    },
     entryColor() {
       if (this.entry.type == 'heading') return 'primary'
-      if (this.entry.type == 'page-break') return 'info'
       return ''
     },
     linkToEntry() {
