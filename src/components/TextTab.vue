@@ -13,8 +13,12 @@
 
       <v-simple-table v-for="({rows, footnotes, pageNum }, pi) in visiblePages" :key="pi" dense style="table-layout: fixed">
         <tr v-if="$store.state.showPageNumbers">
-          <td><div v-if="columns.pali" class="page-number">{{ pageNum }}</div></td>
-          <td><div v-if="columns.sinh && !paliOnly" class="page-number">{{ pageNum + 1 }}</div></td>
+          <td v-if="columns.pali" class="page-number">
+            <v-btn text small color="info" @click.stop="displayScanned(pageNum)">{{ pageNum }}</v-btn>
+          </td>
+          <td v-if="columns.sinh && !paliOnly" class="page-number">
+            <v-btn text small color="info" @click.stop="displayScanned(pageNum + 1)">{{ pageNum + 1 }}</v-btn>
+          </td>
         </tr>
         <tr v-for="(row, ei) in rows" :key="ei">
           <TextEntry v-if="columns.pali" :entry="row.pali" :footnotes="footnotes.pali"></TextEntry>
@@ -31,6 +35,13 @@
         <v-card-text>ඊළඟ කොටස පෙන්වන්න.</v-card-text>
       </v-card>
     </div>
+
+    <v-dialog v-model="showScanPage" max-width="500">
+      <v-card outlined >
+        <v-img :src="bjtImgSrc"></v-img>
+        <v-btn icon small top right absolute @click="showScanPage = false" color="accent"><v-icon>mdi-close</v-icon></v-btn>
+      </v-card>
+    </v-dialog>
 
   </v-sheet>
 </v-scale-transition>
@@ -66,6 +77,7 @@ export default {
       pageStart: 0, pageEnd: 0, 
       eind: null, // from link params or from sutta heading
 
+      showScanPage: false, clickedPageNum: 0,
       scrollTop: null,
     }
   },
@@ -95,9 +107,18 @@ export default {
       })
     },
     paliOnly() { return this.item.filename.startsWith('ap-pat') },
+    bjtImgSrc() {
+      const pageNum = parseInt(this.clickedPageNum) + parseInt(this.pageOffset)
+      // getBJTImageSrc is imported from https://pitaka.lk/bjt/scripts/books.js
+      return 'https://pitaka.lk/bjt/' + getBJTImageSrc(this.bookId, pageNum)
+    },
   },
 
   methods: {
+    displayScanned(num) {
+      this.clickedPageNum = num
+      this.showScanPage = true
+    },
     touchSwipe(direction) {
       console.log('swipe ' + direction)
       if (this.columns.sinh == this.columns.pali) return // both columns visible
@@ -132,7 +153,8 @@ export default {
       text = text.replace(/\*\*(.*?)\*\*/g, '|$1℗bold|') // using the markdown styles
       text = text.replace(/__(.*?)__/g, '|$1℗underline|') // underline
       text = text.replace(/~~(.*?)~~/g, '|$1℗strike|') // strike through
-      if (!text) text = '|Empty - තීරුව හිස් !℗strike|' // if left empty it is not clickable
+      text = text.replace(/\$\$(.*?)\$\$/g, '$1') // just get rid of $$
+      if (!text) text = '' //|Empty - තීරුව හිස් !℗strike|' // if left empty it is not clickable
       return text.split('|').filter(t => t.length).map(t => t.split('℗'))
     },
 
@@ -172,13 +194,16 @@ export default {
       return
     }
     axios.get(`/static/text/${this.item.filename}.json`)
-      //.then(response => response.json())
       .then(({ data }) => {
         if (!data.pages || !data.pages.length) {
           this.isError = true
           return
         }
+        // copy over data fields
         this.pages = data.pages
+        this.bookId = data.bookId
+        this.pageOffset = data.pageOffset
+        // add computed entries
         this.addEntryFields()
         this.eind = this.$store.getters['tree/getTabEInd'] || this.item.eind
         this.pageStart = this.pageEnd = this.eind[0] // pageInd
@@ -186,7 +211,6 @@ export default {
         this.isLoaded = true
         console.log(`loaded from file ${this.item.key} ${this.eind[0]}:${this.eind[1]}`)
       }).catch(error => {
-        // handle error
         this.errorMessage = error
         console.log(error);
       })
