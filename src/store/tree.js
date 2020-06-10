@@ -154,8 +154,8 @@ export default {
     openAndSetActive({rootState, commit}, {key, column, eindStr}) {
       // if no column passed in use default columns - make a copy
       const columns = !column ? [...rootState.defaultColumns] : (column == 'pali' ? [0] : [1])
-      const eind = (eindStr && eindStr.split(':').length == 2) ? 
-        eindStr.split(':').map(i => parseInt(i) || 0) : null
+      const eind = (eindStr && eindStr.split('-').length == 2) ? 
+        eindStr.split('-').map(i => parseInt(i) || 0) : null
       commit('openTab', {key, columns, eind}) // open if not existing
       commit('setActiveKey', key)
     },

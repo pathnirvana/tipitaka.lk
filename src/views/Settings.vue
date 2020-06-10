@@ -90,9 +90,8 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'Settings',
-
-  components: {
-  },
+  metaInfo: {  title: 'සැකසුම්' },
+  components: { },
 
   data: () => ({
   }),

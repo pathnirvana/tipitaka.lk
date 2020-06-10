@@ -112,7 +112,7 @@ export default {
       if (this.entry.type == 'heading') {
         return `https://tipitaka.lk/${this.entry.key}/${this.entry.language}`
       }
-      return `https://tipitaka.lk/${this.entry.key}/${this.entry.eind[0]}:${this.entry.eind[1]}/${this.entry.language}`
+      return `https://tipitaka.lk/${this.entry.key}/${this.entry.eind.join('-')}/${this.entry.language}`
     },
   },
 

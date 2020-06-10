@@ -209,7 +209,7 @@ export default {
         this.pageStart = this.pageEnd = this.eind[0] // pageInd
         this.incPageEnd(2)
         this.isLoaded = true
-        console.log(`loaded from file ${this.item.key} ${this.eind[0]}:${this.eind[1]}`)
+        console.log(`loaded from file key:${this.item.key} eind:${this.eind.join('-')}`)
       }).catch(error => {
         this.errorMessage = error
         console.log(error);
