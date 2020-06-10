@@ -40,6 +40,7 @@ import TextTab from '@/components/TextTab.vue'
 
 export default {
   name: 'Home',
+  metaInfo() { return {  title: this.pageTitle } },
   components: {
     TextTab,
   },
@@ -53,6 +54,9 @@ export default {
       return this.openKeys.map(key => ({key, name: this.getName(key), active: this.isActiveTab(key)}))
     },
     smAndUp() { return this.$vuetify.breakpoint.smAndUp },
+    pageTitle() {
+      return this.getName(this.activeKey)
+    },
   },
   methods: {
     isActiveTab(key) { return key == this.activeKey },

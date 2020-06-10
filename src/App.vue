@@ -91,6 +91,10 @@ import TipitakaLink from '@/components/TipitakaLink'
 
 export default {
   name: 'App',
+  metaInfo: {
+    title: 'Home',  
+    titleTemplate: '%s | බුද්ධ ජයන්ති ත්‍රිපිටකය' // all titles will be injected into this template
+  },
 
   components: {
     TipitakaTree,

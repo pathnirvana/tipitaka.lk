@@ -92,3 +92,11 @@
     
   </v-sheet>
 </template>
+
+<script>
+export default {
+  metaInfo: {
+    title: 'Introduction',
+  },
+}
+</script>
