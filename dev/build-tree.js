@@ -95,9 +95,10 @@ const treeOutFilename = __dirname + '/../public/static/data/tree.json'
 const searchIndexFilename = __dirname + '/../public/static/data/searchIndex.json'
 const filesFilter = /^dn-|^mn-|^sn-|^an-|^kn-|^ap-|^vp-/ //
 
-const getName = (text) => { //TODO - remove නිට්ඨිතං/නිමි/යි
+const getName = (text) => {
+    text = text.trim()
     text = text.replace(/\{.*?\}/g, '') // remove footnotes
-    text = text.replace(/[\[\]]/g, '') // remove [ ]
+    text = text.replace(/[\[\]]/g, '') // remove []
     text = text.replace(/\$\$/g, '') // remove $$
     return text.replace(/\.$/, '').trim() // remove ending .
 }
@@ -106,10 +107,11 @@ const getHeadings = (pages, lang) =>
         .filter(e => e.type == 'heading')
     ).flat();
 const incrementEInd = ([pi, ei], pages) => (ei + 1) < pages[pi].pali.entries.length ? [pi, ei+1] : [pi+1, 0]
+const numEntryRegEx = /^[\d\. \-]+$/
 const getPrevIfCenNum = ([pi, ei], pages) => {
     if (ei > 0) {
         const prevE = pages[pi].pali.entries[ei-1]
-        if (prevE.type == 'centered' && /^[\d\. \-]+$/.test(prevE.text)) return [pi, ei-1]
+        if (prevE.type == 'centered' && numEntryRegEx.test(prevE.text)) return [pi, ei-1]
     }
     return [pi, ei]
 }
@@ -175,21 +177,26 @@ console.log(`wrote tree to ${treeOutFilename} with ${Object.keys(tree).length} n
 console.log(`Processed ${processedFilesCount} out of ${inputFiles.length}`)
 
 
-// building the search index
-const ignoreRegex = new RegExp('සුත්තානි|සුත්තං|සූත්‍රය|\d+\.?', 'g')
+// building the heading search index
+const ignoreWordList = fs.readFileSync(path.join(__dirname, 'heading-si-ignore-words.txt'), 'utf-8').split('\r\n')
 const searchIndex = {}
 Object.keys(tree).forEach(key => {
     [tree[key][0], tree[key][1]].forEach((name, lang) => { // process both pali and sinh names
         if (!name && !key.startsWith('ap-pat')) console.error(`empty heading in key ${key}`)
-        const words = name.replace(ignoreRegex, '').split(' ').filter(w => w.length)
+
+        const words = name.replace(/[\(\)\u200d]/g, '') // additional removals for si
+            .split(' ')
+            .filter(w => w.length > 1 && ignoreWordList.indexOf(w) == -1)
+            .filter(w => !numEntryRegEx.test(w))
         words.forEach(w => {
             if (!searchIndex[w]) searchIndex[w] = [w, []] // word and list of keys 
             if (searchIndex[w][1].indexOf(key) < 0) { // dedup before adding
                 searchIndex[w][1].push(key) // (add lang too if needed later)
             }
         })
-    }) 
+    })
 })
 const indexAr = Object.values(searchIndex).sort((a, b) => b[1].length - a[1].length)
+//console.log(indexAr.slice(0, 20).map(ar => ar[0] + ' ' + ar[1].length).join('\n')) // log most frequent
 fs.writeFileSync(searchIndexFilename, vkb.json(JSON.stringify(indexAr)), {encoding: 'utf-8'})
 console.log(`wrote searchIndex to ${treeOutFilename} with ${indexAr.length} words`)
