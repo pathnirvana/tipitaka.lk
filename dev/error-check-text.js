@@ -9,7 +9,7 @@ const getHeadings = (pages, lang) =>
         .filter(e => e.type == 'heading')
     ).flat();
 
-const dataInputFolder = path.join(__dirname, '../static/text/') //data
+const dataInputFolder = path.join(__dirname, '../public/static/text/') //data
 
 const inputFiles = fs.readdirSync(dataInputFolder).filter(name => /json$/.test(name))
 inputFiles.forEach(filename => {
