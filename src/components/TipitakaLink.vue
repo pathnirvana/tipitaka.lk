@@ -11,7 +11,7 @@
       <span class="pitaka-icon mr-2 pa-1">{{ items[0].text }}</span>
       
       <span class="sutta-name mr-2">
-        <router-link color="success" :to="suttaNameItem.to">{{ suttaNameItem.text }}</router-link>
+        <router-link color="success" :to="routeLink">{{ suttaNameItem.text }}</router-link>
       </span>
 
       <span v-for="(item, i) in items.slice(1, -1)" :key="item.key" class="parent-name">
@@ -35,10 +35,11 @@
 </template>
 
 <style scoped>
-.pitaka-icon { font-size: 1.2rem; border: 1px solid black; border-radius: 10px; }
-.sutta-name { font-size: 1.1rem;  }
+.pitaka-icon { font-size: 1.1em; border: 1px solid black; border-radius: 10px; }
+.sutta-name { font-size: 1.2em;  }
 .sutta-name a { text-decoration: none; color: var(--v-info-base); }
-.parent-name a { text-decoration: none; font-size: 1rem; }
+.sutta-name a:hover { text-decoration: underline; }
+.parent-name a { text-decoration: none; font-size: 1.1em; }
 </style>
 
 <script>
@@ -49,6 +50,8 @@ export default {
   props: {
     itemKey: String,
     short: Boolean,
+    eInd: Array,
+    language: String,
   },
   data() {
     return {
@@ -72,6 +75,10 @@ export default {
       }))
     },
     suttaNameItem() { return this.items.slice(-1)[0] },
+    routeLink() { 
+      if (!this.eInd) return this.suttaNameItem.to
+      return `${this.suttaNameItem.to}/${this.eInd.join('-')}/${this.language}` 
+    },
     shortItems() {
       return this.items.slice(0, 3)
     },

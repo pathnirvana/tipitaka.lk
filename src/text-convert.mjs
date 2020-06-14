@@ -56,3 +56,13 @@ export function beautifySinh(text) {
     })
     return text
 }
+
+// add rakar and common conjuncts
+export function beautifyText(text, lang, {bandiLetters, specialLetters}) {
+    text = beautifySinh(text)
+    if (lang == 'pali') {
+        if (specialLetters) text = addSpecialLetters(text)
+        if (bandiLetters) text = addBandiLetters(text)
+    }
+    return text
+}

@@ -1,5 +1,6 @@
 /**
  * server for handling fts and other db queries
+ * keep the logic here to a minimum since any logic here may need to be implemented in Java for android
  * also serve static files for offline apps
  */
 const path = require('path')
@@ -28,7 +29,7 @@ fastify.post('/tipitaka-query/fts', async (request, reply) => {
     return rows
 })
 
-fastify.listen(5555, (err, address) => {
+fastify.listen(5555, '0.0.0.0', (err, address) => {
     if (err) throw err
     fastify.log.info(`server listening on ${address}`)
 })

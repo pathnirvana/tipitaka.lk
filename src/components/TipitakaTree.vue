@@ -103,10 +103,10 @@ export default {
         console.log(`route change from ${this.activeKey} to ${key}`)
         //this.$vuetify.goTo(0) // get to top when setting new content
         if (this.activeKey) {
-          this.$store.commit('tree/replaceTab', {oldKey: this.activeKey, key})
+          this.$store.commit('tree/replaceTab', {oldKey: this.activeKey, ...to.params})
           this.$store.commit('tree/setActiveKey', key) // do not open a new tab
         } else {
-          this.$store.dispatch('tree/openAndSetActive', this.$route.params)
+          this.$store.dispatch('tree/openAndSetActive', to.params)
         }
       }
     }
