@@ -24,7 +24,7 @@ export default {
     searchIndex: [],
     isLoaded: false,
     searchCache: {},
-    filterKeys: ['dn', 'mn', 'sn'],
+    filterKeys: ['vp', 'sp', 'ap'],
     minQueryLength: 2,
     maxSinglishLength: 10,
     maxResults: 100,  // search stopped after getting this many matches

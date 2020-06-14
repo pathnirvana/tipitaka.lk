@@ -25,12 +25,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "search" */ '../views/Search.vue'),
   },
   {
-    path: '/fts',
+    path: '/fts/:words?/:options?',
     name: 'fts',
     component: () => import(/* webpackChunkName: "FTS" */ '../views/FTS.vue'),
   },
   {
-    path: '/:key/:eindStr([0-9\-]+)?/:column([a-z]{4})?',
+    path: '/:key/:eindStr([0-9\-]+)?/:language([a-z]{4})?',
     name: 'Home',
     component: Home,
   },

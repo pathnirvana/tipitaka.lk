@@ -2,7 +2,7 @@ import Vue from 'vue'
 import router from '@/router'
 import Vuetify from '@/plugins/vuetify'
 import axios from 'axios'
-import { addSpecialLetters, addBandiLetters, beautifySinh } from '@/text-convert.mjs'
+import { beautifyText } from '@/text-convert.mjs'
 
 // since the json tree is an object the sort order is not maintained
 // need to sort the children in the correct order for the treeview
@@ -13,19 +13,10 @@ const childrenSort = (a, b) => {
   return ac - bc
 }
 
-// add rakar and common conjuncts
-function displayName(name, lang, letterOpt) {
-  if (lang == 'sinh') return beautifySinh(name)
-  name = beautifySinh(name)
-  if (letterOpt.specialLetters) name = addSpecialLetters(name)
-  if (letterOpt.bandiLetters) name = addBandiLetters(name)
-  return name
-}
-
 function genTree(key, index, depth, letterOpt) {
   let { pali, sinh, children } = index[key]
-  pali = displayName(pali, 'pali', letterOpt) 
-  sinh = displayName(sinh, 'sinh', letterOpt) 
+  pali = beautifyText(pali, 'pali', letterOpt) 
+  sinh = beautifyText(sinh, 'sinh', letterOpt) 
   const treeItem = { pali, sinh, key }
   if (children.length && depth > 0) {
     treeItem.children = children.map(cKey => genTree(cKey, index, depth - 1, letterOpt)).sort(childrenSort)
@@ -37,6 +28,9 @@ function addOrder(treeItem, list) {
   list.push(treeItem.key)
   if (treeItem.children) treeItem.children.forEach(child => addOrder(child, list))
 }
+
+const isEIndLessEqual = (a, b) => a[0] < b[0] || (a[0] == b[0] && a[1] <= b[1])
+const parseEInd = (str) =>  (str && str.split('-').length == 2) ? str.split('-').map(i => parseInt(i) || 0) : null
 
 export default {
   namespaced: true,
@@ -58,7 +52,7 @@ export default {
     getName: (state, getters, rState, rGetters) => (key) => {
       const lang = rState.treeLanguage
       const rawName = state.index[key] ? state.index[key][lang] : 'key error' // or sinh
-      return displayName(rawName, lang, rState)
+      return beautifyText(rawName, lang, rState)
     },
     getTabColumns: (state, getters, rState) => {
       const activeInd = state.openKeys.indexOf(state.activeKey)
@@ -71,6 +65,14 @@ export default {
     getTabEInd: (state) => {
       const activeInd = state.openKeys.indexOf(state.activeKey)
       return state.tabInfo[activeInd].eind
+    },
+    getKeyForEInd: (state) => (filename, eind) => {
+      let i = state.orderedKeys.length - 1
+      for (; i >= 0; i--) {
+        const item = state.index[state.orderedKeys[i]]
+        if (item.filename == filename && isEIndLessEqual(item.eind, eind)) break
+      }
+      return i >= 0 ? state.orderedKeys[i] : ''
     },
   },
   mutations: {
@@ -121,11 +123,13 @@ export default {
       // if all tabs closed - go to welcome page
       if (!state.openKeys.length) router.replace('/') 
     },
-    replaceTab(state, {oldKey, key}) {
+    replaceTab(state, {oldKey, key, language, eindStr}) {
       if (state.openKeys.indexOf(key) >= 0) return; // the newkey already exists
       const ind = state.openKeys.indexOf(oldKey)
       Vue.set(state.openKeys, ind, key)
-      Vue.set(state.tabInfo[ind], 'eind', null) // reset eind to 0, columns are unchanged
+      const colInd = ['pali', 'sinh'].indexOf(language) // set only if specified
+      if (colInd >= 0) Vue.set(state.tabInfo[ind], 'columns', [colInd])
+      Vue.set(state.tabInfo[ind], 'eind', parseEInd(eindStr)) // reset eind to 0
     },
 
     setOpenBranches(state, ar) {
@@ -151,11 +155,10 @@ export default {
   },
   actions: {
     // made this an action since need rootState
-    openAndSetActive({rootState, commit}, {key, column, eindStr}) {
-      // if no column passed in use default columns - make a copy
-      const columns = !column ? [...rootState.defaultColumns] : (column == 'pali' ? [0] : [1])
-      const eind = (eindStr && eindStr.split('-').length == 2) ? 
-        eindStr.split('-').map(i => parseInt(i) || 0) : null
+    openAndSetActive({rootState, commit}, {key, language, eindStr}) {
+      // if no lang passed in use default columns - make a copy
+      const columns = !language ? [...rootState.defaultColumns] : (language == 'pali' ? [0] : [1])
+      const eind = parseEInd(eindStr)
       commit('openTab', {key, columns, eind}) // open if not existing
       commit('setActiveKey', key)
     },

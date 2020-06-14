@@ -6,13 +6,10 @@
       </template>
     </v-banner>
     
-    <v-simple-table v-if="$store.getters.isLoaded" dense>
-      <thead><tr>
-        <th class="text-left">Name</th>
-      </tr></thead>
+    <v-simple-table v-if="$store.getters.isLoaded">
       <tbody>
         <tr v-for="itemKey in searchResults" :key="itemKey">
-          <td><TipitakaLink :itemKey="itemKey"/></td>
+          <td class="py-1"><TipitakaLink :itemKey="itemKey"/></td>
         </tr>
       </tbody>
     </v-simple-table>
