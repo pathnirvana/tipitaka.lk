@@ -13,13 +13,13 @@ const childrenSort = (a, b) => {
   return ac - bc
 }
 
-function genTree(key, index, depth, letterOpt) {
+function genTree(key, index, keyLen, letterOpt) {
   let { pali, sinh, children } = index[key]
   pali = beautifyText(pali, 'pali', letterOpt) 
   sinh = beautifyText(sinh, 'sinh', letterOpt) 
   const treeItem = { pali, sinh, key }
-  if (children.length && depth > 0) {
-    treeItem.children = children.map(cKey => genTree(cKey, index, depth - 1, letterOpt)).sort(childrenSort)
+  if (children.length && key.split('-').length < keyLen) {
+    treeItem.children = children.map(cKey => genTree(cKey, index, keyLen, letterOpt)).sort(childrenSort)
   }
   return treeItem
 }
@@ -49,8 +49,8 @@ export default {
     getKey: (state) => (key) => {
       return state.index[key]
     },
-    getName: (state, getters, rState, rGetters) => (key) => {
-      const lang = rState.treeLanguage
+    getName: (state, getters, rState, rGetters) => (key, language) => {
+      const lang = language || rState.treeLanguage
       const rawName = state.index[key] ? state.index[key][lang] : 'key error' // or sinh
       return beautifyText(rawName, lang, rState)
     },
@@ -92,7 +92,7 @@ export default {
       state.treeView = []
       state.filterTree = []
       state.index['root'].children.forEach(
-        key => state.treeView.push(genTree(key, state.index, 100, letterOpt)))
+        key => state.treeView.push(genTree(key, state.index, 10, letterOpt)))
       state.index['root'].children.forEach(
         key => state.filterTree.push(genTree(key, state.index, 2, letterOpt))) // max two levels
       // gen order list

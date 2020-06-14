@@ -8,7 +8,7 @@
 
       <!--<v-btn icon @click="searchIconPressed = !searchIconPressed" :dark="searchIconPressed">
         <v-icon>mdi-magnify</v-icon>
-      </v-btn>-->
+      </v-btn>
       <v-autocomplete ref="searchbar" :menu-props="{ maxHeight: 400, closeOnClick: true }"
         :items="searchSuggestions" item-text="name" item-value="path" single-line
         placeholder="සෙවුම් පදය මෙතැන යොදන්න" hide-details no-filter hide-no-data
@@ -28,7 +28,28 @@
             </v-btn>
           </v-list-item-action>
         </template>
-      </v-autocomplete>
+      </v-autocomplete>-->
+
+      <v-menu offset-y> <!-- search type selector -->
+        <template v-slot:activator="{ on }">
+          <v-btn outlined class="pa-1 mr-1" v-on="on">
+            <v-icon>{{ searchTypeIcon }}</v-icon>{{ searchTypeDesc }}
+          </v-btn>
+        </template>
+        <v-list dense>
+          <v-list-item @click="searchType = 'title'">
+            <v-list-item-icon><v-icon dense>mdi-format-title</v-icon></v-list-item-icon>
+            <v-list-item-title>සූත්‍ර නම් සෙවීම</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="searchType = 'fts'">
+            <v-list-item-icon><v-icon dense>mdi-text</v-icon></v-list-item-icon>
+            <v-list-item-title>සූත්‍ර අන්තර්ගතය සෙවීම</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
+      <v-text-field v-model="searchInput" hide-details placeholder="සෙවුම් පද මෙතැන යොදන්න">
+      </v-text-field> <!-- search bar -->
 
       <v-spacer></v-spacer>
 
@@ -105,7 +126,7 @@ export default {
     return {
       showTree: null,
       //searchIconPressed: false,
-      searchInput: '',  // search bar input
+      
       searchLoading: false,
       searchSuggestions: [],
     }
@@ -118,6 +139,19 @@ export default {
     tabColumns: { // columns for the active tab
       get() { return this.$store.getters['tree/getTabColumns'] },
       set(cols) { this.$store.commit('tree/setTabColumns', cols) }
+    },
+    searchInput: {
+      get() { return this.$store.getters['search/getSearchInput'] },
+      set(input) { this.$store.commit('search/setSearchInput', input.trim()) }
+    },
+    searchType: {
+      get() { return this.$store.getters['search/getSearchType'] },
+      set(type) { this.$store.commit('search/setSearchType', type) }
+    },
+    searchTypeIcon() { return this.searchType == 'fts' ? 'mdi-text' : 'mdi-format-title' },
+    searchTypeDesc() {
+      if (!this.$vuetify.breakpoint.smAndUp) return ''
+      return this.searchType == 'fts' ? 'සූත්‍ර අන්තර්ගතය' : 'සූත්‍ර නම්' 
     },
     /*showSearchBar() {
       return this.searchIconPressed || this.$route.path == '/search' || this.$vuetify.breakpoint.mdAndUp

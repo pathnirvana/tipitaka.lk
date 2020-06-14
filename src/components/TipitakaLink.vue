@@ -1,13 +1,13 @@
 <template>
   <div>
-    <template v-if="short">
+    <!--<template v-if="short">
       <span v-for="(item, i) in shortItems" :key="item.key">
         <v-icon v-if="i > 0">mdi-chevron-right</v-icon>
         {{ item.text }}
       </span>
     </template>
 
-    <template v-else>
+    <template v-else>-->
       <span class="pitaka-icon mr-2 pa-1">{{ items[0].text }}</span>
       
       <span class="sutta-name mr-2">
@@ -16,11 +16,11 @@
 
       <span v-for="(item, i) in items.slice(1, -1)" :key="item.key" class="parent-name">
         <v-icon v-if="i > 0">mdi-chevron-right</v-icon>
-        <router-link color="success" :to="item.to">{{ item.text }}</router-link>
+        <router-link :to="item.to">{{ item.text }}</router-link>
       </span>
-    </template>
+    <!--</template>
 
-    <!--<v-breadcrumbs v-else :items="items" large divider=">" class="ma-0 pa-0">
+    <v-breadcrumbs v-else :items="items" large divider=">" class="ma-0 pa-0">
     </v-breadcrumbs>
      <template v-slot:item="{ item }">
         <v-breadcrumbs-item :to="item.to" :disabled="item.disabled" class="ma-0 pa-0">
@@ -49,7 +49,7 @@ export default {
   name: 'TipitakaLink',
   props: {
     itemKey: String,
-    short: Boolean,
+    //short: Boolean,
     eInd: Array,
     language: String,
   },
@@ -79,13 +79,13 @@ export default {
       if (!this.eInd) return this.suttaNameItem.to
       return `${this.suttaNameItem.to}/${this.eInd.join('-')}/${this.language}` 
     },
-    shortItems() {
-      return this.items.slice(0, 3)
-    },
+    // shortItems() {
+    //   return this.items.slice(0, 3)
+    // },
   },
   methods: {
     getLinkText(item) {
-      return this.keyToText[item.key] || this.getName(item.key)
+      return this.keyToText[item.key] || this.getName(item.key, this.language)
     }
   },
 

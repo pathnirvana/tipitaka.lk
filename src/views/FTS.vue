@@ -2,9 +2,9 @@
   <v-sheet>
     <v-container fluid>
       <v-row dense>
-        <v-col cols="12" sm="6">
+        <!--<v-col cols="12" sm="6">
           <v-text-field label="සෙවිය යුතු වචන" v-model="searchInputRaw" hide-details="auto"></v-text-field>
-        </v-col>
+        </v-col>-->
         <v-col cols="12" sm="6">
           <v-btn outlined @click.stop="showFilter = true"><v-icon class="mr-1" color="primary">mdi-filter-variant</v-icon>සෙවුම සීමා කිරීම</v-btn>
         </v-col>
@@ -32,7 +32,7 @@
     
     <v-card v-if="errorMessage" color="error">
       <v-card-title>අන්තර්ගතය සෙවීමේදී වරදක් සිදුවිය.</v-card-title>
-      <v-card-text>{{ errorMessage + ' ඔබේ අන්තර්ජාල සම්බන්ධතාවය පරික්ෂා කර බලන්න.' }}</v-card-text>
+      <v-card-text>{{ errorMessage + '. ඔබේ අන්තර්ජාල සම්බන්ධතාවය පරික්ෂා කර බලන්න.' }}</v-card-text>
     </v-card>
 
     <v-simple-table v-if="results.length" class="results-table">
@@ -48,21 +48,7 @@
     <!-- v-else show loading indicator -->
     <!--<v-skeleton-loader v-else type="table"></v-skeleton-loader>-->
 
-    <v-dialog v-model="showFilter" max-width="290">
-      <v-card>
-        <v-card-title>Setup Search Filter</v-card-title>
-        <v-card-text>
-          <v-treeview :items="$store.state.tree.filterTree" v-model="filterKeys" dense selectable
-            item-key="key" :item-text="$store.state.treeLanguage" :open.sync="filterTreeOpenKeys">
-          </v-treeview>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="error" text @click="$store.commit('search/setFilter', [])">Clear</v-btn>
-          <v-btn color="success" text @click="showFilter = false">Close</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <FilterTree searchType="fts" />
 
   </v-sheet>
 </template>
@@ -77,6 +63,7 @@
 //
 import { beautifyText } from '@/text-convert.mjs'
 import TipitakaLink from '@/components/TipitakaLink'
+import FilterTree from '@/components/FilterTree'
 import { mapState, mapGetters } from 'vuex'
 import axios from 'axios'
 import _ from 'lodash'
@@ -86,14 +73,14 @@ export default {
   metaInfo: {  title: 'අන්තර්ගතය සෙවීම' },
   components: {
     TipitakaLink,
+    FilterTree,
   },
 
   data: () => ({
     results: [],
-    maxResults: 100,
     errorMessage: '',
     
-    searchInputRaw: '',
+    //searchInputRaw: '',
     exactWord: 1,
     matchPhrase: 0, 
     wordDistance: 10,
@@ -104,18 +91,20 @@ export default {
   
   computed: {
     ...mapGetters('tree', ['getKeyForEInd']),
+    ...mapState('search', ['maxResults']),
     searchInput() {
-      return this.searchInputRaw.trim().replace(/\u200d/g, '').replace(/\s+/g, ' ') // TODO add more here
+      return this.$store.state.search.searchInput.trim().replace(/\u200d/g, '').replace(/\s+/g, ' ') // TODO add more here
     },
     showMatchPhrase() { return this.searchInput.split(' ').length > 1 },
     searchMessage() {
       if (!this.searchInput) return ''
+      const terms = beautifyText(this.searchInput, 'sinh', this.$store.state)
       if (!this.results.length)
-        return `“${this.searchInputRaw}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද කිසිවක් හමුවුයේ නැත. වෙනත් සෙවුමක් උත්සාහ කර බලන්න.`
+        return `“${terms}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද කිසිවක් හමුවුයේ නැත. වෙනත් සෙවුමක් උත්සාහ කර බලන්න.`
       else if(this.results.length < this.maxResults)
-        return `“${this.searchInputRaw}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද ${this.results.length} ක් හමුවුනා.`
+        return `“${terms}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද ${this.results.length} ක් හමුවුනා.`
       else 
-        return `ඔබගේ සෙවුම සඳහා ගැළපෙන පරිච්ඡේද ${this.maxResults} කට වඩා හමුවුනා. එයින් මුල් පරිච්ඡේද ${this.maxResults} පහත දැක්වේ.`
+        return `ඔබගේ “${terms}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද ${this.maxResults} කට වඩා හමුවුනා. එයින් මුල් පරිච්ඡේද ${this.maxResults} පහත දැක්වේ.`
     },
     filterKeys: {
       get() { return this.$store.state.search.filterKeys  },
@@ -176,7 +165,7 @@ export default {
   created() {
     this.debouncedGetResults = _.debounce(this.getSearchResults, 200)
     const { words, options } = this.$route.params
-    if (words) this.searchInputRaw = words
+    if (words) this.$store.commit('search/setSearchInput', words)
     if (options) {
       [this.exactWord, this.matchPhrase, this.wordDistance] = options.split('-').map(o => parseInt(o))
     }
