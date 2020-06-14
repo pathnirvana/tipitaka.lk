@@ -10,82 +10,94 @@ function computeScore(matchLen, queryLen, numKeys) {
   return (1 - 0.05 * Math.min(Math.max(5, matchLen), 10)) * numKeys
 }
 
-const searchBarRules = [
-  v => !!v || 'please enter sutta name',
-  v => v.length >= 3 || 'අඩුම තරමේ අකුරු 3 ක් වත් ඇතුළු කරන්න.',
-  v => (!isSinglishQuery(v) || v.length <= 10) || 'සිංග්ලිෂ් වලින් සෙවීමේ දී උපරිමය අකුරු 10 කට සීමා කර ඇත.',
-  v => v.length <= 25 || 'උපරිම දිග අකුරු 25',
-  v => !(/[^A-Za-z\u0D80-\u0DFF\u200D]/.test(v)) || 'සෙවුම් පදය සඳහා ඉංග්‍රීසි සහ සිංහල අකුරු පමණක් යොදන්න.',
-]
+const routeToSearchPage = (state) => {
+  if (!state.searchInput) return
+  if (['title', 'fts'].indexOf(router.currentRoute.name) < 0) {
+    router.push({ name: state.searchType })
+  } else if (router.currentRoute.name != state.searchType) {
+    router.replace({ name: state.searchType })
+  }
+}
+
+const inFilter = (key, filterKeys) => filterKeys.some(fKey => key.startsWith(fKey))
 
 export default {
   namespaced: true,
   state: {
+    searchType: 'title',
+    searchInput: '',  // search bar input
+
     searchIndex: [],
     isLoaded: false,
     searchCache: {},
-    filterKeys: ['vp', 'sp', 'ap'],
-    minQueryLength: 2,
-    maxSinglishLength: 10,
+
+    filterColumns: [0, 1],
+    filterKeys: {
+      'title': ['vp', 'sp', 'ap'],
+      'fts': ['vp', 'sp', 'ap'],
+    },
+    filterTreeOpenKeys: ['sp'],
+
     maxResults: 100,  // search stopped after getting this many matches
   },
   getters: {
-    inFilterKeys: (state) => (keys) => {
-      if (!state.filterKeys.length) return keys
-      return keys.filter(key => state.filterKeys.some(fKey => key.startsWith(fKey)))
+    getSearchInput: (state) => state.searchInput,
+    getSearchType: (state) => state.searchType,
+    getFilterColumns: (state) => state.filterColumns,
+    getFilterKeys: (state) => (type) => state.filterKeys[type],
+    getFilterTreeOpenKeys: (state) => state.filterTreeOpenKeys,
+    inFilterKeys: (state) => (keys, type) => {
+      if (!state.filterKeys[type].length) return keys
+      return keys.filter(key => state.filterKeys[type].some(fKey => key.startsWith(fKey)))
     },
-    getSearchResults: (state, getters, rState, rGetters) => (input) => {
-      if (!input || !state.isLoaded) return [['vp', 'search index not loaded - wait']]
-      const query = input.toLowerCase()
-      const results = getters.searchDataSet(query)
-      return results.map(res => res[1]).flat() // this will increase the size of array beyond maxResults
-        .slice(0, state.maxResults) // remove extra from faltting above
-        .filter((elem, pos, arr) => arr.indexOf(elem) == pos) // dedup
-        //.map(key => [key, rGetters['tree/getName'](key)]) // key and name
-    },
+    // getSearchResults: (state, getters, rState, rGetters) => (input) => {
+    //   if (!input || !state.isLoaded) return [['vp', 'search index not loaded - wait']]
+    //   const query = input.toLowerCase()
+    //   const results = getters.searchDataSet(query)
+    //   return results.map(res => res[1]).flat() // this will increase the size of array beyond maxResults
+    //     .slice(0, state.maxResults) // remove extra from flatting above
+    //     .filter((elem, pos, arr) => arr.indexOf(elem) == pos) // dedup
+    //     //.map(key => [key, rGetters['tree/getName'](key)]) // key and name
+    // },
     
-    getSuggestions: (state, getters, rState, rGetters) => (input) => {
-      if (!input) return []
-      if (!state.isLoaded) return [{ name: 'search index not loaded - wait', disabled: true }]
-      const query = input.toLowerCase()
-      for (let rule of searchBarRules) {
-          const val = rule(query)
-          if (val !== true) return [{ name: val, disabled: true }]
-      }
-  
-      const results = getters.searchDataSet(query)
-  
-      // extract text for each index and sort based on pali text
-      // compute score for sorting
-      return results.map(([i, keys]) => ({ 
-          name: keys.length == 1 ? rGetters['tree/getName'](keys[0]) : state.searchIndex[i][0], 
-          score: computeScore(state.searchIndex[i][0].length, query.length, keys.length),
-          keys, // key occurances in filter
-          path: keys.length == 1 ? keys[0] : ('search/' + state.searchIndex[i][0]),
-      })).sort((a, b) => b.score - a.score) // descending order
-    },
+    // getSuggestions: (state, getters, rState, rGetters) => (input) => {
 
-    searchDataSet: (state, getters) => (query) => {
+  
+    //   // extract text for each index and sort based on pali text
+    //   // compute score for sorting
+    //   return results.map(([i, key, lang]) => ({ 
+    //       name: keys.length == 1 ? rGetters['tree/getName'](keys[0]) : state.searchIndex[i][0],
+    //       score: computeScore(state.searchIndex[i][0].length, query.length, keys.length),
+    //       keys, // key occurances in filter
+    //       path: keys.length == 1 ? keys[0] : ('search/' + state.searchIndex[i][0]),
+    //   })).sort((a, b) => b.score - a.score) // descending order
+    // },
+
+    searchDataSet: (state, getters, rState, rGetters) => (input) => {
+      if (!input) return []
+      if (!rState.tree.isLoaded) return []
+      const query = input.toLowerCase().replace(/\u200d/g, '')
+
       //Check if we've searched for this term before
       let results = state.searchCache[query]
       if (results) {
           console.log(`query ${query} found in cache ${results.length} results`);
-          return results;
+          return results
       }
       
       // Search all singlish_combinations of translations from roman to sinhala
-      let words = isSinglishQuery(query) ? getPossibleMatches(query) : [];
+      let words = isSinglishQuery(query) ? getPossibleMatches(query) : []
       if (!words.length) words = [query]; // if not singlish or no possible matches found
       // TODO: improve this code to ignore na na la la sha sha variations at the comparison
       results = []
       const queryReg = new RegExp(words.join('|'), "i");
-      for (let i = 0; i < state.searchIndex.length && results.length < state.maxResults; i++) {
-          if (queryReg.test(state.searchIndex[i][0])) {
-              const filteredKeys = getters.inFilterKeys(state.searchIndex[i][1])
-              if (filteredKeys.length) {
-                results.push([i, filteredKeys])
-              }
-          }
+      for (let i = 0; i < rState.tree.orderedKeys.length && results.length < state.maxResults; i++) {
+        const { key, pali, sinh } = rState.tree.index[rState.tree.orderedKeys[i]]
+
+        if ((queryReg.test(pali) || queryReg.test(sinh)) && inFilter(key, state.filterKeys['title'])) {  
+          const lang = queryReg.test(pali) ? 'pali' : 'sinh'
+          results.push({ key, lang })
+        }
       }
       console.log(`query ${query} full search ${results.length} index entries`);
       state.searchCache[query] = results // dont have to be reactive
@@ -94,14 +106,24 @@ export default {
   },
 
   mutations: {
-    setIndex(state, index) {
+    setSearchInput(state, input) {
+      state.searchInput = input
+      routeToSearchPage(state)
+    },
+    setSearchType(state, type) {
+      state.searchType = type
+      routeToSearchPage(state)
+    },
+    setFilterKeys(state, { type, keys }) {
+      Vue.set(state.filterKeys, type, keys)
+      if (type == 'title') state.searchCache = {}
+    },
+    setFilterColumns(state, cols) { state.filterColumns = cols },
+    setFilterTreeOpenKeys(state, keys) { state.filterTreeOpenKeys = keys },
+    setSearchIndex(state, index) {
       Object.preventExtensions(index) // readonly does not have to be reactive - improves perf
       state.searchIndex = index
       state.isLoaded = true
-    },
-    setFilter(state, filter) {
-      state.filterKeys = filter
-      state.searchCache = {}
     },
   },
 
@@ -109,7 +131,7 @@ export default {
     async initialize({state, rootState, commit}) {
       const response = await axios.get('/static/data/searchIndex.json')
       const searchIndex = response.data
-      commit('setIndex', searchIndex)
+      commit('setSearchIndex', searchIndex)
     },
   }
 }
