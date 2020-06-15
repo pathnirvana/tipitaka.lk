@@ -36,7 +36,7 @@ export default new Vuex.Store({
 
   getters: {
     isLoaded: (state) => {
-      return state.isLoaded && state.tree.isLoaded && state.search.isLoaded
+      return state.isLoaded && state.tree.isLoaded
     },
   },
   

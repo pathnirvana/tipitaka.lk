@@ -1,7 +1,10 @@
 <template>
   <v-dialog v-model="dialog" max-width="300">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn outlined v-bind="attrs" v-on="on"><v-icon class="mr-1" color="primary">mdi-filter-variant</v-icon>සෙවුම සීමා කිරීම</v-btn>
+      <v-btn v-bind="attrs" v-on="on" :depressed="!isLimited">
+        <v-icon class="mr-1" :color="isLimited ? 'primary' : ''">mdi-filter-variant</v-icon>
+        {{ isLimited ? 'සෙවුම සීමා වී ඇත' : 'සෙවුම සීමා කිරීම' }}
+      </v-btn>
     </template>
     
     <v-card>
@@ -16,14 +19,13 @@
         </v-treeview>
       </v-card-text>
       <v-card-actions>
+        <v-btn @click="filterKeys = allKeys" text>
+          <v-icon color="accent" class="mr-1">mdi-checkbox-marked</v-icon>සියල්ල තෝරන්න
+        </v-btn>
         <v-spacer></v-spacer>
-        <v-btn color="primary" outlined @click="filterKeys = allKeys">
-          <v-icon class="mr-1">mdi-checkbox-marked</v-icon>තෝරන්න
+        <v-btn @click="dialog = false" text>
+          <v-icon color="success" class="mr-1">mdi-close</v-icon>වසන්න
         </v-btn>
-        <v-btn outlined @click="filterKeys = []">
-          <v-icon class="mr-1">mdi-checkbox-blank-outline</v-icon>මකන්න
-        </v-btn>
-        <v-btn color="success" outlined @click="dialog = false"><v-icon>mdi-close</v-icon></v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -54,13 +56,14 @@ export default {
       set(keys) { this.$store.commit('search/setFilterTreeOpenKeys', keys) }
     },
     filterKeys: {
-      get() { return this.$store.getters['search/getFilterKeys'](this.searchType) },
-      set(keys) { this.$store.commit('search/setFilterKeys', { type: this.searchType, keys }) }
+      get() { return this.$store.getters['search/getFilter'](this.searchType, 'keys') },
+      set(value) { this.$store.commit('search/setFilter', { type: this.searchType, param: 'keys', value }) }
     },
     filterColumns: {
-      get() { return this.$store.getters['search/getFilterColumns'] },
-      set(cols) { this.$store.commit('search/setFilterColumns', cols) }
+      get() { return this.$store.getters['search/getFilter'](this.searchType, 'columns') },
+      set(value) { this.$store.commit('search/setFilter', { type: this.searchType, param: 'columns', value }) }
     },
+    isLimited() { return this.filterKeys.length < 48 },
   },
 
   methods: {

@@ -32,8 +32,12 @@
 
       <v-menu offset-y> <!-- search type selector -->
         <template v-slot:activator="{ on }">
-          <v-btn outlined class="pa-1 mr-1" v-on="on">
-            <v-icon>{{ searchTypeIcon }}</v-icon>{{ searchTypeDesc }}
+          <v-btn v-if="isBigScreen" outlined v-on="on"  class="mr-2">
+            <v-icon color="primary">{{ searchTypeIcon }}</v-icon>
+            <span class="ml-1">{{ searchTypeDesc }}</span>
+          </v-btn>
+          <v-btn v-else icon tile v-on="on" class="mr-1">
+            <v-icon color="primary">{{ searchTypeIcon }}</v-icon>
           </v-btn>
         </template>
         <v-list dense>
@@ -127,8 +131,8 @@ export default {
       showTree: null,
       //searchIconPressed: false,
       
-      searchLoading: false,
-      searchSuggestions: [],
+      //searchLoading: false,
+      //searchSuggestions: [],
     }
   },
   computed: {
@@ -149,47 +153,32 @@ export default {
       set(type) { this.$store.commit('search/setSearchType', type) }
     },
     searchTypeIcon() { return this.searchType == 'fts' ? 'mdi-text' : 'mdi-format-title' },
-    searchTypeDesc() {
-      if (!this.$vuetify.breakpoint.smAndUp) return ''
-      return this.searchType == 'fts' ? 'සූත්‍ර අන්තර්ගතය' : 'සූත්‍ර නම්' 
-    },
-    /*showSearchBar() {
-      return this.searchIconPressed || this.$route.path == '/search' || this.$vuetify.breakpoint.mdAndUp
-    },
-    showNavigateButtons() {
-      return this.$route.params.pathMatch && this.$vuetify.breakpoint.smAndUp)
-    },*/
-    /*searchSuggestions() {
-      return this.$store.getters['search/getSuggestions'](this.searchInput)
-    },*/
+    isBigScreen() { return this.$vuetify.breakpoint.smAndUp },
+    searchTypeDesc() { return this.searchType == 'fts' ? 'සූත්‍ර අන්තර්ගතය' : 'සූත්‍ර නම්' },
     isSettingsView() { return this.$route.path == '/settings' }
   },
   methods: {
-    runSearch(inp) {
-      console.log(`${inp} ${this.searchInput}`)
-      if (!inp) return;
-      this.searchSuggestions = this.$store.getters['search/getSuggestions'](inp)
-    },
+    // runSearch(inp) {
+    //   console.log(`${inp} ${this.searchInput}`)
+    //   if (!inp) return;
+    //   this.searchSuggestions = this.$store.getters['search/getSuggestions'](inp)
+    // },
     toggleSettings() {
       if (this.isSettingsView) this.$router.go(-1) // go back
       else this.$router.push('/settings')
     },
-    /*toggleSearchMode() {
-      this.searchIconPressed = !this.searchIconPressed
-      //if (this.searchIconPressed) this.$refs.searchbar.focus()
-    },*/
-    searchBarAction(item) { if (item.name && !item.disabled) this.searchInput = item.name },
+    //searchBarAction(item) { if (item.name && !item.disabled) this.searchInput = item.name },
     //navigateOnSelect(path) { this.$router.push('/' + path) },
-    searchResultClick(item) {
-      if (!item.disabled) this.searchInput = item.text
-      this.searchSuggestions = []
-      this.$router.push('/' + item.path) 
-    },
+    // searchResultClick(item) {
+    //   if (!item.disabled) this.searchInput = item.text
+    //   this.searchSuggestions = []
+    //   this.$router.push('/' + item.path) 
+    // },
   },
 
   created() {
     this.$store.dispatch('initialize')
-    this.$store.dispatch('search/initialize')
+    //this.$store.dispatch('search/initialize')
   }
 };
 </script>
