@@ -1,26 +1,20 @@
 <template>
   <v-sheet>
-    <v-banner v-if="!!searchError" color="error">{{ searchError }}</v-banner>
+    <v-banner v-if="!!inputError" color="error">{{ inputError }}</v-banner>
     <v-banner v-else-if="!!searchMessage">{{ searchMessage }}</v-banner>
-    
+    <FilterTree searchType="title" />
+
     <v-simple-table v-if="$store.getters.isLoaded">
       <tbody>
         <tr v-for="({key, lang}, i) in results" :key="i">
-          <td class="py-1">
+          <td>
             <TipitakaLink :itemKey="key" :language="lang" />
-            <!--<div v-else @click="setSearchInput(name)">
-              <span color="success">{{ name }}</span>
-              <span>{{ `සූත්‍ර ${keys.length} ක මේ පදය අඩංගුයි` }}</span>
-            </div>-->
           </td>
         </tr>
       </tbody>
     </v-simple-table>
     <!-- v-else show loading indicator -->
     <v-skeleton-loader v-else type="table"></v-skeleton-loader>
-
-    <FilterTree searchType="title" />
-
   </v-sheet>
 </template>
 
@@ -29,7 +23,6 @@
 </style>
 
 <script>
-//
 import TipitakaLink from '@/components/TipitakaLink'
 import FilterTree from '@/components/FilterTree'
 import { isSinglishQuery } from '@/singlish.js'
@@ -37,8 +30,8 @@ import { mapState, mapGetters, mapMutations } from 'vuex'
 import _ from 'lodash'
 
 const searchBarRules = [
-  v => !!v || 'please enter sutta name',
-  v => v.length >= 3 || 'අඩුම තරමේ අකුරු 3 ක් වත් ඇතුළු කරන්න.',
+  v => !!v || 'සෙවීම සඳහා සූත්‍ර නමේ කොටසක් ඇතුළු කරන්න.',
+  v => v.length >= 2 || 'අඩුම තරමේ අකුරු 2 ක් වත් ඇතුළු කරන්න.',
   v => (!isSinglishQuery(v) || v.length <= 10) || 'සිංග්ලිෂ් වලින් සෙවීමේ දී උපරිමය අකුරු 10 කට සීමා කර ඇත.',
   v => v.length <= 25 || 'උපරිම දිග අකුරු 25',
   v => !(/[^A-Za-z\u0D80-\u0DFF\u200D]/.test(v)) || 'සෙවුම් පදය සඳහා ඉංග්‍රීසි සහ සිංහල අකුරු පමණක් යොදන්න.',
@@ -46,6 +39,7 @@ const searchBarRules = [
 
 export default {
   name: 'TSearch',
+  metaInfo: { title: 'සූත්‍ර සෙවුම' },
   components: {
     TipitakaLink,
     FilterTree,
@@ -53,10 +47,11 @@ export default {
 
   data: () => ({
     results: [],
+    resultsInput: '',
   }),
   
   computed: {
-    ...mapState('search', ['maxResults', 'searchInput']),
+    ...mapState('search', ['maxResults', 'searchInput', 'searchType']),
     ...mapGetters('search', ['searchDataSet']),
     searchMessage() {
       if (!this.searchInput) return ''
@@ -68,20 +63,22 @@ export default {
         return `ඔබගේ “${this.searchInput}” යන සෙවුම සඳහා ගැළපෙන වචන ${this.maxResults} කට වඩා හමුවුනා. එයින් මුල් වචන ${this.maxResults} පහත දැක්වේ.`
       }
     },
-    searchError() { // check rules
+    inputError() { // check rules
       for (let rule of searchBarRules) {
           const val = rule(this.searchInput)
           if (val !== true) return val
       }
       return ''
     },
-    filterKeys() { return this.$store.state.search.filterKeys['title']  }, // just for watching 
+    filterTitle() { return this.$store.state.search.filter.title  }, // just for watching 
   },
   methods: {
     ...mapMutations('search', ['setSearchInput']),
     getSearchResults() {
+      if (this.inputError) return;
       this.results = this.searchDataSet(this.searchInput)
       console.log(`title search for term ${this.searchInput} got ${this.results.length} results`)
+      this.resultsInput = this.searchInput
     },
     updatePage() {
       if (this.$route.params.term != this.searchInput) {
@@ -94,19 +91,29 @@ export default {
   
   watch: {
     searchInput(newInput, oldInput) {
-      if (newInput) {
-        this.updatePage()
+      if (newInput != this.resultsInput) {
+        this.updatePage() // update route too
       }
     },
-    filterKeys(newKeys, oldKeys) {
-      console.log(`filter keys updated ${newKeys.length}`)
-      this.debouncedGetResults()
-    }
+    filterTitle: {
+      deep: true,
+      handler() {
+        console.log(`filter title updated`)
+        this.debouncedGetResults()
+      },
+    },
   },
 
+  mounted() {
+    if (this.searchInput != this.resultsInput) {
+      this.updatePage() // update route too
+    }
+  },
+  
   created() {
     this.debouncedGetResults = _.debounce(this.getSearchResults, 200)
     const { term } = this.$route.params
+    this.$store.commit('search/setSearchType', 'title')
     if (term) this.$store.commit('search/setSearchInput', term)
   }
 }

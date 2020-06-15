@@ -1,45 +1,25 @@
 <template>
-  <div>
-    <!--<template v-if="short">
-      <span v-for="(item, i) in shortItems" :key="item.key">
-        <v-icon v-if="i > 0">mdi-chevron-right</v-icon>
-        {{ item.text }}
-      </span>
-    </template>
+  <div class="root py-2" @click="$router.push(routeLink)">
+    <span class="pitaka-icon mr-2 pa-1">{{ items[0].text }}</span>
+    
+    <span class="sutta-name mr-2">
+      {{ suttaNameItem.text.replace(/[\(\)\[\]]/g, '') }}
+    </span>
 
-    <template v-else>-->
-      <span class="pitaka-icon mr-2 pa-1">{{ items[0].text }}</span>
-      
-      <span class="sutta-name mr-2">
-        <router-link color="success" :to="routeLink">{{ suttaNameItem.text }}</router-link>
-      </span>
-
-      <span v-for="(item, i) in items.slice(1, -1)" :key="item.key" class="parent-name">
-        <v-icon v-if="i > 0">mdi-chevron-right</v-icon>
-        <router-link :to="item.to">{{ item.text }}</router-link>
-      </span>
-    <!--</template>
-
-    <v-breadcrumbs v-else :items="items" large divider=">" class="ma-0 pa-0">
-    </v-breadcrumbs>
-     <template v-slot:item="{ item }">
-        <v-breadcrumbs-item :to="item.to" :disabled="item.disabled" class="ma-0 pa-0">
-          {{ item.text }}
-        </v-breadcrumbs-item>
-      </template>
-      <template v-slot:divider >
-        <v-icon>mdi-chevron-right</v-icon>
-      </template>
-    -->
+    <span v-for="(item, i) in items.slice(1, -1)" :key="item.key" class="parents">
+      <v-icon v-if="i > 0">mdi-chevron-right</v-icon>
+      <span>{{ item.text }}</span>
+    </span>
   </div>
 </template>
 
 <style scoped>
-.pitaka-icon { font-size: 1.1em; border: 1px solid black; border-radius: 10px; }
-.sutta-name { font-size: 1.2em;  }
-.sutta-name a { text-decoration: none; color: var(--v-info-base); }
-.sutta-name a:hover { text-decoration: underline; }
-.parent-name a { text-decoration: none; font-size: 1.1em; }
+.root { cursor: pointer; }
+.root:hover { color: var(--v-info-base); }
+.pitaka-icon { font-size: 1.1em; border: 1px solid; border-radius: 10px; }
+.sutta-name { font-size: 1.2em; color: var(--v-primary-base); }
+/** .root:hover .sutta-name { text-decoration: underline; }*/
+.parents { text-decoration: none; font-size: 1.1em; }
 </style>
 
 <script>
@@ -49,7 +29,6 @@ export default {
   name: 'TipitakaLink',
   props: {
     itemKey: String,
-    //short: Boolean,
     eInd: Array,
     language: String,
   },
@@ -79,9 +58,6 @@ export default {
       if (!this.eInd) return this.suttaNameItem.to
       return `${this.suttaNameItem.to}/${this.eInd.join('-')}/${this.language}` 
     },
-    // shortItems() {
-    //   return this.items.slice(0, 3)
-    // },
   },
   methods: {
     getLinkText(item) {

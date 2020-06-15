@@ -6,24 +6,24 @@ const SqliteDB = require('../server/sql-query.js');
 
 /*
 DROP TABLE IF EXISTS tipitaka;
-CREATE VIRTUAL TABLE tipitaka USING fts5(file, eind, lang, type, level, text, 
+CREATE VIRTUAL TABLE tipitaka USING fts5(filename, eind, language, type, level, text, 
     tokenize = "unicode61 tokenchars '' seperators '()[]:'");
-SELECT file, eind, lang, highlight(tipitaka, 5, '<b>', '</b>') AS htext FROM tipitaka 
+SELECT filename, eind, language, highlight(tipitaka, 5, '<b>', '</b>') AS htext FROM tipitaka 
     WHERE text MATCH 'NEAR(අභික්කන්තවණ්ණා තෙනුපසඞ්කමි, 10)';
+    WHERE tipitaka MATCH 'text:NEAR(අභික්කන්තවණ්ණා තෙනුපසඞ්කමි, 10) AND (filename:"an-6" OR "sn-1")' ;
 */
-/*
 // for some reason these statements do not succeed when running from js
-const sinhalaRange = [] // use as tokenchars
+/*const sinhalaRange = [] // use as tokenchars
 for (let i = 0x0d80; i < 0x0dff; i++) sinhalaRange.push(String.fromCharCode(i))
 console.log(`DROP TABLE IF EXISTS tipitaka;`)
-console.log(`CREATE VIRTUAL TABLE tipitaka USING fts5(file, eind, lang, type, level, text, 
+console.log(`CREATE VIRTUAL TABLE tipitaka USING fts5(filename, eind, language, type, level, text, 
         tokenize = "unicode61 tokenchars '${sinhalaRange.join('')}' separators '()[]:'");`)
 process.exit(0)*/
 
 function writeEntry(e, eind, lang, fileKey) {
     let text = e.text.replace(/\*|_|~|\$|\{\d\}|\u200d/g, '') // zwj and footnote pointers
     if (writeFtsDb) {
-        ftsDb.db.run('INSERT INTO tipitaka (file, eind, lang, type, level, text) VALUES (?, ?, ?, ?, ?, ?)', 
+        ftsDb.db.run('INSERT INTO tipitaka (filename, eind, language, type, level, text) VALUES (?, ?, ?, ?, ?, ?)', 
             [fileKey, eind.join('-'), lang, e.type, e.level || 0, text]);
     }
     
