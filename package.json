@@ -12,6 +12,7 @@
     "fastify": "^2.14.1",
     "fastify-cors": "^3.0.3",
     "lodash": "^4.17.15",
+    "md5": "^2.2.1",
     "vkbeautify": "^0.99.3",
     "vue": "^2.6.11",
     "vue-clipboard2": "^0.3.1",

@@ -32,7 +32,7 @@ export default new Vuex.Store({
     showPageNumbers: true,
     fontSize: 0,
     isLoaded: false,
-    snackbar: {model: false, timeout: 1000, message: ''},
+    snackbar: {model: false, timeout: 2000, message: ''},
   },
 
   getters: {
@@ -61,7 +61,7 @@ export default new Vuex.Store({
     },
     setSnackbar(state, {timeout, message}) {
       if (message) {
-        state.snackbar = { model: true, timeout: timeout || 1000, message }
+        state.snackbar = { model: true, timeout: timeout || 2000, message }
       }
     },
   },

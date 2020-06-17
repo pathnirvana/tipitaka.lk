@@ -113,10 +113,6 @@ export default {
       }
       return ''
     },
-    filterKeys: {
-      get() { return this.$store.state.search.filterKeys  },
-      set(keys) { this.$store.commit('search/setFilter', keys) },
-    },
     isAdvancedMode() { return /AND|OR|NOT|[\*\^\(\)]/.test(this.searchInput) },
     ftsMatchClause() {
       // check sqlite fts spec here https://www.sqlite.org/fts5.html
@@ -139,14 +135,24 @@ export default {
       }
       return clauses.join(' AND ')
     },
-    filterFTS() { return this.$store.state.search.filter.fts  }, // just for watching 
+    filterFTS() { return this.$store.state.search.filter.fts  },
   },
+
   methods: {
     async getSearchResults() {
       if (this.inputError) return
+      this.errorMessage = ''
+
       const sql = `SELECT filename, eind, language, highlight(tipitaka, 5, '<sr>', '</sr>') AS htext FROM tipitaka 
           WHERE text MATCH '${this.ftsMatchClause}' ${this.filterClause ? (' AND ' + this.filterClause) : ''} 
-          ORDER BY rank LIMIT 100;`
+          ORDER BY rank LIMIT ${this.$store.state.search.maxResults};`
+      const cachedRes = this.$store.getters['search/getFtsCache'](sql)
+      if (cachedRes) {
+        this.results = cachedRes
+        console.log(`received fts results with ${this.results.length} from fts cache`)
+        return
+      }
+
       try {
         const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''
         //const baseUrl = 'https://tipitaka.lk' // force prod server
@@ -155,15 +161,16 @@ export default {
         response.data.forEach(res => {
           res.eind = res.eind.split('-').map(i => parseInt(i))
           res.itemKey = this.getKeyForEInd(res.filename, res.eind)
-          res.htext = beautifyText(res.htext, res.lang, this.$store.state)
+          res.htext = beautifyText(res.htext, res.language, this.$store.state)
         })
         this.results = response.data
         this.resultsInput = this.searchInput
-        this.errorMessage = ''
+        this.$store.commit('search/setFtsCache', { sql, results: this.results })
       } catch (e) {
         this.errorMessage = e.message
       }
     },
+
     updatePage() {
       const options = [this.exactWord, this.matchPhrase, this.wordDistance].join('-')
       if (this.$route.params.words != this.searchInput || this.$route.params.options != options) {

@@ -58,7 +58,7 @@
 <script>
 import TextEntry from '@/components/TextEntry.vue'
 import Footnotes from '@/components/Footnotes.vue'
-import { beautifySinh, addSpecialLetters, addBandiLetters } from '@/text-convert.mjs'
+import { beautifyText } from '@/text-convert.mjs'
 import { mapState } from 'vuex'
 import axios from 'axios'
 
@@ -153,13 +153,14 @@ export default {
       return {...entry, number: m[1], text: this.textParts(m[2], language) }
     },
     textParts(text, language) {
-      const {bandiLetters, specialLetters, footnoteMethod} = this.$store.state
-      text = text.replace(/\{(.+?)\}/g, footnoteMethod == 'hidden' ? '' : '|$1℗fn-pointer|');
-      text = beautifySinh(text)
-      if (language == 'pali') {
-          if (specialLetters) text = addSpecialLetters(text)
-          if (bandiLetters) text = addBandiLetters(text)
-      }
+      text = text.replace(/\{(.+?)\}/g, this.$store.state.footnoteMethod == 'hidden' ? '' : '|$1℗fn-pointer|');
+      text = beautifyText(text, language, this.$store.state)
+      // text = beautifySinh(text)
+      // if (language == 'pali') {
+      //     if (specialLetters) text = addSpecialLetters(text)
+      //     if (bandiLetters) text = addBandiLetters(text)
+      // }
+
       text = text.replace(/\*\*(.*?)\*\*/g, '|$1℗bold|') // using the markdown styles
       text = text.replace(/__(.*?)__/g, '|$1℗underline|') // underline
       text = text.replace(/~~(.*?)~~/g, '|$1℗strike|') // strike through

@@ -25,7 +25,7 @@
 <script>
 import TipitakaLink from '@/components/TipitakaLink'
 import FilterTree from '@/components/FilterTree'
-import { isSinglishQuery } from '@/singlish.js'
+import { isSinglishQuery, getPossibleMatches } from '@/singlish.js'
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import _ from 'lodash'
 
@@ -37,6 +37,8 @@ const searchBarRules = [
   v => v.length <= 25 || 'උපරිම දිග අකුරු 25',
   v => !(/[^A-Za-z\u0D80-\u0DFF\u200D]/.test(v)) || 'සෙවුම් පදය සඳහා ඉංග්‍රීසි සහ සිංහල අකුරු පමණක් යොදන්න.',
 ]
+
+const inFilter = (key, filterKeys) => filterKeys.some(fKey => key.startsWith(fKey))
 
 export default {
   name: 'TSearch',
@@ -53,7 +55,9 @@ export default {
   
   computed: {
     ...mapState('search', ['maxResults', 'searchInput', 'searchType']),
-    ...mapGetters('search', ['searchDataSet']),
+    ...mapState('tree', ['orderedKeys']),
+    filterTitle() { return this.$store.state.search.filter.title  },
+    
     searchMessage() {
       if (!this.searchInput) return ''
       if (!this.results.length) {
@@ -71,16 +75,46 @@ export default {
       }
       return ''
     },
-    filterTitle() { return this.$store.state.search.filter.title  }, // just for watching 
   },
+
   methods: {
-    ...mapMutations('search', ['setSearchInput']),
     getSearchResults() {
-      if (this.inputError) return;
-      this.results = this.searchDataSet(this.searchInput)
-      console.log(`title search for term ${this.searchInput} got ${this.results.length} results`)
+      if (this.inputError) return
+      if (!this.$store.getters.isLoaded) return
       this.resultsInput = this.searchInput
+      const query = this.searchInput.toLowerCase().replace(/\u200d/g, '')
+
+      //Check if we've searched for this term before
+      const cachedRes = this.$store.getters['search/getTitleCache'](query)
+      if (cachedRes) {
+        this.results = cachedRes
+        console.log(`title search '${query}' found in cache ${cachedRes.length} results`);
+        return
+      }
+      
+      // Search all singlish_combinations of translations from roman to sinhala
+      let words = isSinglishQuery(query) ? getPossibleMatches(query) : []
+      if (!words.length) words = [query]; // if not singlish or no possible matches found
+      // TODO: improve this code to ignore na na la la sha sha variations at the comparison
+      const results = []
+      const queryReg = new RegExp(words.join('|'), "i");
+      // searching in the order of VP, SP and AP so the results will be in that order too
+      for (let i = 0; i < this.orderedKeys.length && results.length < this.maxResults; i++) {
+        const { key, pali, sinh } = this.$store.state.tree.index[this.orderedKeys[i]]
+
+        const matchPali = queryReg.test(pali) && this.filterTitle.columns.indexOf(0) >= 0
+        const match = matchPali || (queryReg.test(sinh) && this.filterTitle.columns.indexOf(1) >= 0)
+        if (match && inFilter(key, this.filterTitle.keys)) {  
+          const lang = matchPali ? 'pali' : 'sinh'
+          results.push({ key, lang })
+        }
+      }
+
+      console.log(`title search '${query}' full search ${results.length} results`);
+      this.$store.commit('search/setTitleCache', { query, results })
+      this.results = results
     },
+
     updatePage() {
       if (this.$route.params.term != this.searchInput) {
         // prevent duplicated navigation at the beginning

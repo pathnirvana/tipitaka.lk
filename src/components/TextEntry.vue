@@ -121,7 +121,7 @@ export default {
       return ff ? ff.text : []
     },
     onCopyLink() {
-      const message = 'link copied'
+      const message = 'ලින්ක් එකක් copy කර ගත්තා. අදාළ තැන paste කරන්න.'
       this.$store.commit('setSnackbar', {message, timeout: 1000})
     },
     toggleOptions() {
