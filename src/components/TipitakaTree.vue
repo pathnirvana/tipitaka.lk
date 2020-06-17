@@ -8,7 +8,7 @@
       :active.sync="activeKeyAr"
       item-key="key"
       :item-text="$store.state.treeLanguage"
-      dense shaped
+      dense shaped class="tipitaka-tree"
     >
       <template v-slot:prepend="{ item, open }">
         <v-icon v-if="item.children">
@@ -42,8 +42,8 @@
   </v-sheet>
 </template>
 
-<style scoped>
-span.tree-label { cursor: pointer; }
+<style >
+.tipitaka-tree .v-treeview-node__label { cursor: pointer; }
 </style>
 
 <script>

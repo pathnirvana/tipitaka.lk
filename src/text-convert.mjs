@@ -25,7 +25,7 @@ const paliConjuncts = [ // pali conjuncts with special ligratures
 function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }
-export function addBandiLetters(text) {
+function addBandiLetters(text) {
     text = text.replace(/\u200C/g, ''); // remove 200c char that appears in tipitaka.org text
     text = text.replace(/([ක-ෆ])\u0DCA([ක-ෆ])/g, '$1\u200D\u0DCA$2'); // adding a zwj between consos
     text = text.replace(/([ක-ෆ])\u0DCA([ක-ෆ])/g, '$1\u200D\u0DCA$2'); // do twice to handle consecutive hal ගන්ත්වා
@@ -36,7 +36,7 @@ export function addBandiLetters(text) {
 
     return text;
 }
-export function addSpecialLetters(text) {
+function addSpecialLetters(text) {
     paliConjuncts.forEach(pair => {
         const re = new RegExp(pair[0] + "\u0DCA" + pair[1], "g") // TODO precompute these
         text = text.replace(re, pair[0] + "\u0DCA\u200D" + pair[1]);
@@ -44,7 +44,7 @@ export function addSpecialLetters(text) {
     return text
 }
 
-export function beautifySinh(text) {
+function beautifySinh(text) {
     // adding the rakar & repaya
     // change joiners before U+0DBA Yayanna and U+0DBB Rayanna to Virama + ZWJ
     text = text.replace(/\u0DCA([\u0DBA\u0DBB])/g, '\u0DCA\u200D$1');
@@ -59,6 +59,7 @@ export function beautifySinh(text) {
 
 // add rakar and common conjuncts
 export function beautifyText(text, lang, {bandiLetters, specialLetters}) {
+    if (lang == 'sinh') return text // issue pointed out by Vincent - උස්යහනින්/අඳුන්දිවිසමින්
     text = beautifySinh(text)
     if (lang == 'pali') {
         if (specialLetters) text = addSpecialLetters(text)

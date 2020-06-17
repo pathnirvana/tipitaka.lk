@@ -6,30 +6,6 @@
 
       <v-spacer></v-spacer>
 
-      <!--<v-btn icon @click="searchIconPressed = !searchIconPressed" :dark="searchIconPressed">
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-autocomplete ref="searchbar" :menu-props="{ maxHeight: 400, closeOnClick: true }"
-        :items="searchSuggestions" item-text="name" item-value="path" single-line
-        placeholder="සෙවුම් පදය මෙතැන යොදන්න" hide-details no-filter hide-no-data
-        :search-input.sync="searchInput" no-data-text="සෙවුම සඳහා ගැළපෙන වචන කිසිවක් හමුවුයේ නැත"
-        @update:search-input="runSearch">
-        <template v-slot:item="{ item }">
-          <v-list-item-content @click.stop="searchResultClick(item)">
-            <v-list-item-title v-text="item.name"></v-list-item-title>
-            <v-list-item-subtitle v-if="!item.disabled">
-              <TipitakaLink v-if="item.keys.length == 1" :itemKey="item.keys[0]" short/>
-              <span v-else>{{ `සූත්‍ර ${item.keys.length} ක මේ පදය අඩංගුයි` }}</span>
-            </v-list-item-subtitle>
-          </v-list-item-content>
-          <v-list-item-action>
-            <v-btn icon x-small @click.stop="searchBarAction(item)" :color="item.disabled ? 'error' : 'accent'">
-              <v-icon>{{ item.disabled ? 'mdi-alert-circle' : 'mdi-content-copy' }}</v-icon>
-            </v-btn>
-          </v-list-item-action>
-        </template>
-      </v-autocomplete>-->
-
       <v-menu offset-y> <!-- search type selector -->
         <template v-slot:activator="{ on }">
           <v-btn v-if="isBigScreen" tile outlined v-on="on"  class="mr-2">
@@ -42,14 +18,28 @@
         </template>
         <v-list dense rounded>
           <v-list-item @click="searchType = 'title'">
-            <!--<v-list-item-icon><v-icon>mdi-format-title</v-icon></v-list-item-icon>-->
+            <v-list-item-icon><v-icon>mdi-format-title</v-icon></v-list-item-icon>
             <v-list-item-title>සූත්‍ර නම් සෙවීම</v-list-item-title>
             <v-list-item-icon><v-icon color="success">{{ searchType == 'title' ? 'mdi-check' : ''}}</v-icon></v-list-item-icon>
           </v-list-item>
-          <v-list-item @click="searchType = 'fts'" color="primary">
-            <!--<v-list-item-icon ><v-icon>mdi-text</v-icon></v-list-item-icon>-->
+          <v-list-item @click="searchType = 'fts'">
+            <v-list-item-icon ><v-icon>mdi-text</v-icon></v-list-item-icon>
             <v-list-item-title>සූත්‍ර අන්තර්ගතය සෙවීම</v-list-item-title>
             <v-list-item-icon><v-icon color="success">{{ searchType == 'fts' ? 'mdi-check' : ''}}</v-icon></v-list-item-icon>
+          </v-list-item>
+          <v-list-item @click="searchType = 'fts'" disabled>
+            <v-list-item-icon ><v-icon>mdi-book-open-page-variant</v-icon></v-list-item-icon>
+            <v-list-item-title>පාලි ශබ්දකෝෂ සෙවීම</v-list-item-title>
+            <v-list-item-icon><v-icon color="success">{{ searchType == 'dict' ? 'mdi-check' : ''}}</v-icon></v-list-item-icon>
+          </v-list-item>
+          <v-divider inset></v-divider>
+          <v-list-item @click="searchType = 'fts'" disabled>
+            <v-list-item-icon ><v-icon>mdi-compass</v-icon></v-list-item-icon>
+            <v-list-item-title>වචන ගවේෂකය</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="searchType = 'fts'" disabled>
+            <v-list-item-icon ><v-icon>mdi-star</v-icon></v-list-item-icon>
+            <v-list-item-title>තරු යෙදූ සූත්‍ර</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -72,7 +62,6 @@
           <v-icon>mdi-skip-next</v-icon>
         </v-btn>
       </template>
-      <!--<v-toolbar-title v-if="!showNavigateButtons && !showSearchBar" id="title-bar-text">{{ 'බුද්ධ ජයන්ති ත්‍රිපිටකය' }}</v-toolbar-title>-->
       
       <v-spacer></v-spacer>
 
@@ -92,8 +81,9 @@
       <router-view></router-view>
     </v-main>
 
-    <v-snackbar v-model="$store.state.snackbar.model" bottom :timeout="$store.state.snackbar.timeout" class="snack">
-      <v-spacer></v-spacer><span>{{ $store.state.snackbar.message }}</span><v-spacer></v-spacer>
+    <v-snackbar v-model="$store.state.snackbar.model" bottom
+      :timeout="$store.state.snackbar.timeout" >
+      <div style="text-align: center;"><span>{{ $store.state.snackbar.message }}</span></div>
     </v-snackbar>
 
   </v-app>
