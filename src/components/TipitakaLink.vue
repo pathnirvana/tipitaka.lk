@@ -1,5 +1,5 @@
 <template>
-  <div class="root py-2" @click="$router.push(routeLink)">
+  <div class="root py-2" @click="$router.push(routeLink)" :style="$store.getters['styles']">
     <span class="pitaka-icon mr-2 pa-1">{{ items[0].text }}</span>
     
     <span class="sutta-name mr-2">

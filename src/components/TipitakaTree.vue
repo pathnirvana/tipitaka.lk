@@ -1,10 +1,10 @@
 <template>
-  <v-sheet>
+  <v-sheet :style="$store.getters['styles']">
     <v-treeview v-if="$store.state.tree.isLoaded"
       v-model="selected"
       :open.sync="openedBranches"
       :items="treeView"
-      activatable
+      activatable hoverable
       :active.sync="activeKeyAr"
       item-key="key"
       :item-text="$store.state.treeLanguage"

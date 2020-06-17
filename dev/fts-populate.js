@@ -10,7 +10,8 @@ CREATE VIRTUAL TABLE tipitaka USING fts5(filename, eind, language, type, level, 
     tokenize = "unicode61 tokenchars '' seperators '()[]:'");
 SELECT filename, eind, language, highlight(tipitaka, 5, '<b>', '</b>') AS htext FROM tipitaka 
     WHERE text MATCH 'NEAR(අභික්කන්තවණ්ණා තෙනුපසඞ්කමි, 10)';
-    WHERE tipitaka MATCH 'text:NEAR(අභික්කන්තවණ්ණා තෙනුපසඞ්කමි, 10) AND (filename:"an-6" OR "sn-1")' ;
+    WHERE tipitaka MATCH '(text:NEAR(අභික්කන්තවණ්ණා තෙනුපසඞ්කමි, 10)) AND (filename:"an-6" OR "sn-1")' ;
+optionally (filename LIKE 'an-6%' OR filename LIKE 'sn-1%') would also work - this seems faster
 */
 // for some reason these statements do not succeed when running from js
 /*const sinhalaRange = [] // use as tokenchars

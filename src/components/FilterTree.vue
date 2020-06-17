@@ -19,7 +19,7 @@
         </v-treeview>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="filterKeys = allKeys" text>
+        <v-btn @click="filterKeys = [...allKeys]" text>
           <v-icon color="accent" class="mr-1">mdi-checkbox-marked</v-icon>සියල්ල තෝරන්න
         </v-btn>
         <v-spacer></v-spacer>
@@ -36,6 +36,7 @@
 </style>
 
 <script>
+import { allFilterKeys, allFilterLength } from '@/constants.js'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -46,7 +47,7 @@ export default {
   data() {
     return {
       dialog: false,
-      allKeys: ['vp', 'sp', 'ap'],
+      allKeys: allFilterKeys,
     }
   },
   computed: {
@@ -63,7 +64,7 @@ export default {
       get() { return this.$store.getters['search/getFilter'](this.searchType, 'columns') },
       set(value) { this.$store.commit('search/setFilter', { type: this.searchType, param: 'columns', value }) }
     },
-    isLimited() { return this.filterKeys.length < 48 },
+    isLimited() { return this.filterKeys.length < allFilterLength || this.filterColumns.length < 2 },
   },
 
   methods: {

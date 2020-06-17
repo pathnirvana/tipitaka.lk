@@ -68,7 +68,7 @@ export default {
     },
     getKeyForEInd: (state) => (filename, eind) => {
       let i = state.orderedKeys.length - 1
-      for (; i >= 0; i--) {
+      for (; i >= 0; i--) { // loop in reverse order
         const item = state.index[state.orderedKeys[i]]
         if (item.filename == filename && isEIndLessEqual(item.eind, eind)) break
       }

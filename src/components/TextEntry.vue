@@ -1,5 +1,5 @@
 <template>
-  <td class="entry py-2" :lang="entry.language" :style="{ fontSize }" @click="toggleOptions">
+  <td class="entry pa-2" :lang="entry.language" :style="$store.getters['styles']" @click="toggleOptions">
     <!--<span v-if="$parent.showTypeInfo" class="type-info">{{ entry.type + '.' + entry.level }}</span>-->
     <div class="text html" :class="entry.type" :level="entry.level">
       <template v-for="(se, i) in entry.text">
@@ -103,7 +103,6 @@ export default {
   
   computed: {
     ...mapState(['footnoteMethod']),
-    fontSize() { return 16 + this.$store.state.fontSize + 'px' },
     entryColor() {
       if (this.entry.type == 'heading') return 'primary'
       return ''

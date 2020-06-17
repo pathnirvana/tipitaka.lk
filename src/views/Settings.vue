@@ -5,7 +5,7 @@
         <v-card>
           <v-card-title v-if="!darkMode">රාත්‍රී අඳුරු තිරය</v-card-title>
           <v-card-title v-else>දහවල් ආලෝකමත් තිරය</v-card-title>
-          <v-card-subtitle>රාත්‍රී අඳුරු තිරය සහ දහවල් ආලෝකමත් තිරය අතර මාරු වෙන්න. අඳුරු තිරය රාත්‍රියේදී ඇසට පහසුය.</v-card-subtitle>
+          <v-card-text>රාත්‍රී අඳුරු තිරය සහ දහවල් ආලෝකමත් තිරය අතර මාරු වෙන්න. අඳුරු තිරය රාත්‍රියේදී ඇසට පහසුය.</v-card-text>
           <v-card-actions>
             <v-btn @click="darkMode = !darkMode" color="primary" outlined>
               <v-icon class="mr-2">{{ 'mdi-brightness-' + (darkMode ? '4' : '7') }}</v-icon>
@@ -30,7 +30,7 @@
       <v-col cols="12" sm="6" xl="4">
         <v-card>  
           <v-card-title>අධෝලිපි (Footnotes)</v-card-title>
-          <v-card-subtitle>අධෝලිපි යනු බුද්ධ ජයන්ති ත්‍රිපිටකය අනෙක් ත්‍රිපිටක ග්‍රන්ථ මාලා වලින් වෙනස් වන ස්ථාන පෙන්වීම පිණිස සෑම පිටුවකම යටින් සටහන් කර ඇති කොටසය.</v-card-subtitle>
+          <v-card-text>අධෝලිපි යනු බුද්ධ ජයන්ති ත්‍රිපිටකය අනෙක් ත්‍රිපිටක ග්‍රන්ථ මාලා වලින් වෙනස් වන ස්ථාන පෙන්වීම පිණිස සෑම පිටුවකම යටින් සටහන් කර ඇති කොටසය.</v-card-text>
           <v-card-actions>
             <v-radio-group v-model="footnoteMethod">
               <v-radio label="නොපෙන්වන්න" value="hidden"></v-radio>
@@ -62,7 +62,7 @@
           </v-card-text>
           <v-card-actions>
             <v-slider v-model="fontSize" step="1" ticks="always" :thumb-size="24"
-          thumb-label="always" :min="-5" :max="5"></v-slider>
+              thumb-label="always" :min="-5" :max="5"></v-slider>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -70,7 +70,7 @@
       <v-col cols="12" sm="6" xl="4">
         <v-card>  
           <v-card-title>පාළි සිංහල තීරු තෝරන්න</v-card-title> 
-          <v-card-subtitle>අලුතෙන් සූත්‍රයක් ඇරීමේදී පෙන්වන්නේ පාළි, සිංහල හෝ ඒ තීරු දෙකමද යන්න.</v-card-subtitle>
+          <v-card-text>අලුතෙන් සූත්‍රයක් ඇරීමේදී පෙන්වන්නේ පාළි, සිංහල හෝ ඒ තීරු දෙකමද යන්න.</v-card-text>
           <v-card-actions>
             <v-btn-toggle v-model="defaultColumns" dense multiple mandatory shaped color="primary">
               <v-btn :value="0" text>පාළි</v-btn>
