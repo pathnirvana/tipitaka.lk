@@ -32,6 +32,7 @@ import _ from 'lodash'
 const searchBarRules = [
   v => !!v || 'සෙවීම සඳහා සූත්‍ර නමේ කොටසක් ඇතුළු කරන්න.',
   v => v.length >= 2 || 'අඩුම තරමේ අකුරු 2 ක් වත් ඇතුළු කරන්න.',
+  v => !/\s/.test(v) || 'හිස් තැන් රහිතව එක් පදයක් පමණක් යොදන්න.',
   v => (!isSinglishQuery(v) || v.length <= 10) || 'සිංග්ලිෂ් වලින් සෙවීමේ දී උපරිමය අකුරු 10 කට සීමා කර ඇත.',
   v => v.length <= 25 || 'උපරිම දිග අකුරු 25',
   v => !(/[^A-Za-z\u0D80-\u0DFF\u200D]/.test(v)) || 'සෙවුම් පදය සඳහා ඉංග්‍රීසි සහ සිංහල අකුරු පමණක් යොදන්න.',
@@ -109,7 +110,7 @@ export default {
       this.updatePage() // update route too
     }
   },
-  
+
   created() {
     this.debouncedGetResults = _.debounce(this.getSearchResults, 200)
     const { term } = this.$route.params

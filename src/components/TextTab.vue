@@ -10,6 +10,9 @@
     <v-skeleton-loader v-else-if="!isLoaded" type="paragraph"></v-skeleton-loader>
     
     <div v-else v-touch="{ left: () => touchSwipe('L'), right: () => touchSwipe('R') }">
+      <v-btn absolute rounded small top right @click="loadPrevSection">
+        <v-icon>mdi-chevron-up</v-icon>
+      </v-btn>
 
       <v-simple-table v-for="({rows, footnotes, pageNum }, pi) in visiblePages" :key="pi" dense style="table-layout: fixed">
         <tr v-if="$store.state.showPageNumbers">
@@ -75,7 +78,7 @@ export default {
       isLoaded: false,
       pages: null,
       pageStart: 0, pageEnd: 0, 
-      eind: null, // from link params or from sutta heading
+      entryStart: 0, // from link params or from sutta heading
 
       showScanPage: false, clickedPageNum: 0,
       scrollTop: null,
@@ -94,9 +97,9 @@ export default {
     },
     visiblePages() {
       return this.pages.slice(this.pageStart, this.pageEnd).map((page, i) => {
-        const rows = [], footnotes = { pali: [], sinh: [] }, pi = i + this.pageStart
+        const rows = [], footnotes = { pali: [], sinh: [] }//, pi = i + this.pageStart
         page.pali.entries.forEach((paliEntry, ei) => {
-          if (pi <= this.eind[0] && ei < this.eind[1]) return;
+          if (i == 0 && ei < this.entryStart) return;
           const pair = { pali: this.processEntry(paliEntry), 
                          sinh: !this.paliOnly ? this.processEntry(page.sinh.entries[ei]) : null }
           rows.push(pair)
@@ -128,11 +131,19 @@ export default {
       this.$store.commit('tree/setTabColumns', swappedCols)
       this.$store.commit('setSnackbar', {message, timeout: 1000})
     },
-    loadNextSection (entries, observer) {
+    loadNextSection(entries, observer) {
         if (entries[0].isIntersecting) {
           this.incPageEnd()
         }
     },
+    loadPrevSection() {
+      if (this.entryStart > 0) { // go to the beginning of the current page first
+        this.entryStart = 0
+      } else {
+        this.pageStart = Math.max(0, this.pageStart - 1)
+      }
+    },
+
     processEntry(entry) {
       return {...entry, text: this.textParts(entry.text, entry.language) }
     },
@@ -144,7 +155,6 @@ export default {
     textParts(text, language) {
       const {bandiLetters, specialLetters, footnoteMethod} = this.$store.state
       text = text.replace(/\{(.+?)\}/g, footnoteMethod == 'hidden' ? '' : '|$1℗fn-pointer|');
-      //text = text.replace(new RegExp(footnoteRegEx, 'g'), footnoteMethod == 'hidden' ? '' : fnPointText);
       text = beautifySinh(text)
       if (language == 'pali') {
           if (specialLetters) text = addSpecialLetters(text)
@@ -205,11 +215,12 @@ export default {
         this.pageOffset = data.pageOffset
         // add computed entries
         this.addEntryFields()
-        this.eind = this.$store.getters['tree/getTabEInd'] || this.item.eind
-        this.pageStart = this.pageEnd = this.eind[0] // pageInd
+        const eind = this.$store.getters['tree/getTabEInd'] || this.item.eind
+        this.entryStart = eind[1]
+        this.pageEnd = this.pageStart = eind[0]
         this.incPageEnd(2)
         this.isLoaded = true
-        console.log(`loaded from file key:${this.item.key} eind:${this.eind.join('-')}`)
+        console.log(`loaded from file key:${this.item.key} eind:${this.pageStart}-${this.entryStart}`)
       }).catch(error => {
         this.errorMessage = error
         console.log(error);

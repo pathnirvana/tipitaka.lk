@@ -2,6 +2,10 @@
  * server for handling fts and other db queries
  * keep the logic here to a minimum since any logic here may need to be implemented in Java for android
  * also serve static files for offline apps
+ * 
+ * prod run as follows (ubuntu)
+ * pm2 start server.js --name tipitaka-lk-server
+ * pm2 save (save after changing any process parameters)
  */
 const path = require('path')
 const fastify = require('fastify')({
@@ -14,14 +18,6 @@ const SqliteDB = require('./sql-query.js')
 const ftsDbFilename = path.join(__dirname, 'fts.db')
 const ftsDb = new SqliteDB(ftsDbFilename, true)
 
-const ftsOpts = {
-    schema: {
-      body: {
-        type: 'string',
-        sql: 'string'
-      }
-    }
-  }
 fastify.post('/tipitaka-query/fts', async (request, reply) => {
     reply.type('application/json').code(200)
     console.log(request.body)
@@ -29,6 +25,8 @@ fastify.post('/tipitaka-query/fts', async (request, reply) => {
     return rows
 })
 
+// in dev environment 0.0.0.0 listens to requests from all LAN devices
+// in prod proxy-pass is used - so 127.0.0.1 would be sufficient
 fastify.listen(5555, '0.0.0.0', (err, address) => {
     if (err) throw err
     fastify.log.info(`server listening on ${address}`)

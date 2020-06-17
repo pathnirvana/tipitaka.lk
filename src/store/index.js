@@ -4,9 +4,10 @@ import Vuetify from '@/plugins/vuetify'
 
 import tree from './tree.js'
 import search from './search.js'
+import { settingsKey } from '@/constants.js'
+
 Vue.use(Vuex)
 
-const settingsVersion = '1', settingsKey = `tipitaka.lk-settings-${settingsVersion}`
 const storedSettings = ['darkMode', 'defaultColumns', 'treeLanguage', 
   'footnoteMethod', 'bandiLetters', 'specialLetters', 'showPageNumbers', 'fontSize']
 function saveSettings(state) {
@@ -38,6 +39,9 @@ export default new Vuex.Store({
     isLoaded: (state) => {
       return state.isLoaded && state.tree.isLoaded
     },
+    styles: (state) => { 
+      return { fontSize: 16 + state.fontSize + 'px' }
+    },
   },
   
   mutations: {
@@ -53,7 +57,6 @@ export default new Vuex.Store({
         Object.assign(state, storedSettings)
         console.log(`settings loaded from storage key ${settingsKey}`)
       }
-      Vuetify.framework.theme.dark = !!state.darkMode // set the dark mode
       state.isLoaded = true
     },
     setSnackbar(state, {timeout, message}) {

@@ -37,7 +37,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.html .fn-number { color: blue; padding-right: 0.3rem; }
+.html .fn-number { color: var(--v-info-base); padding-right: 0.3rem; }
 
 .footnotes-list { display: flex; flex-direction: row; flex-wrap:wrap; text-align: left; font-size: 0.9em; }
 .footnotes-list > div { flex: 1 1 auto; padding: 0.1rem 1rem; }

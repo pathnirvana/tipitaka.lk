@@ -39,7 +39,7 @@
         <tr v-for="(res, i) in results" :key="i" >
           <td class="pb-2">
             <TipitakaLink v-if="res.itemKey" :itemKey="res.itemKey" :eInd="res.eind" :language="res.language"/>
-            <div class="highlighted-text" v-html="res.htext"></div>
+            <div class="highlighted-text" v-html="res.htext" :style="$store.getters['styles']"></div>
           </td>
         </tr>
       </tbody>
@@ -51,12 +51,13 @@
 <style scoped>
 /*.results-table tr:nth-child(even) { background-color: lightgray; }*/
 .highlighted-text { font-size: 1.1em; }
-.highlighted-text >>> sr { background-color: yellow; }
+.highlighted-text >>> sr { background-color: var(--v-highlight-base); }
 </style>
 
 <script>
 //
 import { beautifyText } from '@/text-convert.mjs'
+import { allFilterLength } from '@/constants.js'
 import TipitakaLink from '@/components/TipitakaLink'
 import FilterTree from '@/components/FilterTree'
 import { mapState, mapGetters } from 'vuex'
@@ -65,7 +66,7 @@ import _ from 'lodash'
 
 const searchBarRules = [
   v => !!v || 'සෙවීම සඳහා වචන ඇතුළු කරන්න.',
-  //v => !(!/[a-z]/i.test(v) && /AND|OR|NOT/.test(v)) || 'අන්තර්ගතය සෙවීමේදී සිංහල අකුරු පමණක් භාවිතා කරන්න.',
+  v => !(/[a-z]/i.test(v) && !/AND|OR|NOT/.test(v)) || 'අන්තර්ගතය සෙවීමේදී සිංහල අකුරු පමණක් භාවිතා කරන්න.',
   v => !/[^a-z\u0D80-\u0DFF\u200D\*\^\(\) ]/i.test(v) || 'සෙවුම් පදය සඳහා ඉංග්‍රීසි සහ සිංහල අකුරු පමණක් යොදන්න.',
 ]
 
@@ -128,15 +129,28 @@ export default {
       }
       return clause
     },
+    filterClause() { // (filename LIKE 'an-6%' OR filename LIKE 'sn-1%')
+      const clauses = []
+      if (this.filterFTS.keys.length < allFilterLength) {
+        clauses.push('(' + this.filterFTS.keys.map(key => `filename LIKE '${key}%'`).join(' OR ') + ')')
+      }
+      if (this.filterFTS.columns.length < 2) {
+        clauses.push(`language = '${this.filterFTS.columns[0] == 1 ? 'sinh' : 'pali'}'`)
+      }
+      return clauses.join(' AND ')
+    },
     filterFTS() { return this.$store.state.search.filter.fts  }, // just for watching 
   },
   methods: {
     async getSearchResults() {
       if (this.inputError) return
       const sql = `SELECT filename, eind, language, highlight(tipitaka, 5, '<sr>', '</sr>') AS htext FROM tipitaka 
-          WHERE text MATCH '${this.ftsMatchClause}' ORDER BY rank LIMIT 100;`
+          WHERE text MATCH '${this.ftsMatchClause}' ${this.filterClause ? (' AND ' + this.filterClause) : ''} 
+          ORDER BY rank LIMIT 100;`
       try {
-        const response = await axios.post('http://192.168.1.107:5555/tipitaka-query/fts', { type: 'fts', sql })
+        const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''
+        //const baseUrl = 'https://tipitaka.lk' // force prod server
+        const response = await axios.post(baseUrl + '/tipitaka-query/fts', { type: 'fts', sql })
         console.log(`received fts response with ${response.data.length} rows for query ${this.ftsMatchClause}`)
         response.data.forEach(res => {
           res.eind = res.eind.split('-').map(i => parseInt(i))
