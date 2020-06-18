@@ -4,6 +4,7 @@ import Vuetify from '@/plugins/vuetify'
 
 import tree from './tree.js'
 import search from './search.js'
+import tabs from './tabs.js'
 import { settingsKey } from '@/constants.js'
 
 Vue.use(Vuex)
@@ -20,6 +21,7 @@ export default new Vuex.Store({
   modules: {
     tree,
     search,
+    tabs,
   },
 
   state: {

@@ -6,9 +6,9 @@
 
     <v-simple-table v-if="$store.getters.isLoaded">
       <tbody>
-        <tr v-for="({key, lang}, i) in results" :key="i">
+        <tr v-for="({key, language}, i) in results" :key="i">
           <td>
-            <TipitakaLink :itemKey="key" :language="lang" />
+            <TipitakaLink :itemKey="key" :params="{ language }" />
           </td>
         </tr>
       </tbody>
@@ -105,8 +105,8 @@ export default {
         const matchPali = queryReg.test(pali) && this.filterTitle.columns.indexOf(0) >= 0
         const match = matchPali || (queryReg.test(sinh) && this.filterTitle.columns.indexOf(1) >= 0)
         if (match && inFilter(key, this.filterTitle.keys)) {  
-          const lang = matchPali ? 'pali' : 'sinh'
-          results.push({ key, lang })
+          const language = matchPali ? 'pali' : 'sinh'
+          results.push({ key, language })
         }
       }
 

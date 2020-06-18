@@ -5,11 +5,11 @@
       <v-btn v-if="smAndUp" icon tile @click="scrollLeft"><v-icon>mdi-chevron-left</v-icon></v-btn>
       <v-sheet dense flat id="tabs-bar" :class="'d-flex overflow-x-' + (smAndUp ? 'hidden' : 'auto')">
         
-        <div v-for="item in tabItems" :key="item.key"
-          :class="'tab pa-0' + (item.active ? ' active' : '')">
-          <v-btn text @click="tabClicked(item.key)" :color="item.active ? 'primary' : 'secondary'">
-            {{ item.name }}
-            <v-btn icon x-small fab color="error" class="ml-1 mr-n2" @click.stop="closeTab(item.key)">
+        <div v-for="(tab, ind) in tabList" :key="ind"
+          :class="'tab pa-0' + (ind == activeInd ? ' active' : '')">
+          <v-btn text @click="tabClicked(ind)" :color="ind == activeInd ? 'primary' : 'secondary'">
+            {{ getName(tab.key) }}
+            <v-btn icon x-small fab color="error" class="ml-1 mr-n2" @click.stop="closeTab(ind)">
               <v-icon>mdi-close</v-icon>
             </v-btn>
           </v-btn>
@@ -20,7 +20,7 @@
     </v-sheet>
 
     <div class="tab-items">
-        <TextTab v-for="item in tabItems" :key="item.key" :itemKey="item.key" v-show="item.active"/>
+        <TextTab v-for="(tab, ind) in tabList" :key="ind" :itemKey="tab.key" v-show="ind == activeInd"/>
     </div>
     
     <v-btn fab small color="primary" fixed bottom right @click="$vuetify.goTo(0)">
@@ -48,24 +48,20 @@ export default {
     
   }),
   computed: {
-    ...mapState('tree', ['activeKey', 'openKeys', 'getName']),
+    ...mapState('tabs', ['activeInd', 'tabList']),
     ...mapGetters('tree', ['getName']),
-    tabItems() {
-      return this.openKeys.map(key => ({key, name: this.getName(key), active: this.isActiveTab(key)}))
-    },
     smAndUp() { return this.$vuetify.breakpoint.smAndUp },
     pageTitle() {
-      return this.getName(this.activeKey)
+      return this.getName(this.$store.getters['tabs/getActiveKey'])
     },
   },
   methods: {
-    isActiveTab(key) { return key == this.activeKey },
-    tabClicked(key) {
-      console.log(`change route from tabs to ${key}`)
-      this.$store.commit('tree/setActiveKey', key)
+    tabClicked(ind) {
+      console.log(`change route from tabs to ind:${ind} key:${this.tabList[ind].key}`)
+      this.$store.commit('tabs/setActiveInd', ind)
     },
-    closeTab(key) {
-      this.$store.commit('tree/closeTab', key)
+    closeTab(ind) {
+      this.$store.commit('tabs/closeTab', ind)
     },
     scrollLeft() {
       document.getElementById('tabs-bar').scrollLeft -= 100
@@ -74,11 +70,9 @@ export default {
       document.getElementById('tabs-bar').scrollLeft += 100
     }
   },
+
   watch: {
-    /*activeKey() {
-      const left = document.getElementsByClassName('tab active')[0].offsetLeft
-      document.getElementById('tabs-bar').scrollLeft = left
-    },*/
+
   },
   created() {
     

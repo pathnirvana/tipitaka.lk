@@ -38,8 +38,8 @@
       <tbody>
         <tr v-for="(res, i) in results" :key="i" >
           <td class="pb-2">
-            <TipitakaLink v-if="res.itemKey" :itemKey="res.itemKey" :eInd="res.eind" :language="res.language"/>
-            <div class="highlighted-text" v-html="res.htext" :style="$store.getters['styles']"></div>
+            <TipitakaLink v-if="res.key" :itemKey="res.key" :params="res"/>
+            <div class="highlighted-text" v-html="res.hText" :style="$store.getters['styles']"></div>
           </td>
         </tr>
       </tbody>
@@ -158,19 +158,26 @@ export default {
         //const baseUrl = 'https://tipitaka.lk' // force prod server
         const response = await axios.post(baseUrl + '/tipitaka-query/fts', { type: 'fts', sql })
         console.log(`received fts response with ${response.data.length} rows for query ${this.ftsMatchClause}`)
-        response.data.forEach(res => {
-          res.eind = res.eind.split('-').map(i => parseInt(i))
-          res.itemKey = this.getKeyForEInd(res.filename, res.eind)
-          res.htext = beautifyText(res.htext, res.language, this.$store.state)
+        this.results = response.data.map(res => {
+          const eInd = res.eind.split('-').map(i => parseInt(i))
+          const hText = beautifyText(res.htext, res.language, this.$store.state)
+          return { eInd, hText, 
+            key: this.getKeyForEInd(res.filename, eInd),
+            hWords: this.getHighlightWords(hText),
+            language: res.language
+          }
         })
-        this.results = response.data
         this.resultsInput = this.searchInput
         this.$store.commit('search/setFtsCache', { sql, results: this.results })
       } catch (e) {
         this.errorMessage = e.message
       }
     },
-
+    getHighlightWords(hText) {
+      const words = [] // extract content within <sr> tags
+      hText.replace(/<sr>(.*?)<\/sr>/g, (_1, g1) => words.push(g1));
+      return words
+    },
     updatePage() {
       const options = [this.exactWord, this.matchPhrase, this.wordDistance].join('-')
       if (this.$route.params.words != this.searchInput || this.$route.params.options != options) {

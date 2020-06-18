@@ -30,7 +30,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "FTS" */ '../views/FTS.vue'),
   },
   {
-    path: '/:key/:eindStr([0-9\-]+)?/:language([a-z]{4})?',
+    path: '/:key/:eIndStr([0-9\-]+)?/:language([a-z]{4})?',
     name: 'Home',
     component: Home,
   },

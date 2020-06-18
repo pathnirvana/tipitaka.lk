@@ -1,5 +1,5 @@
 <template>
-  <div class="root py-2" @click="$router.push(routeLink)" :style="$store.getters['styles']">
+  <div class="root py-2" @click="openSutta" :style="$store.getters['styles']">
     <span class="pitaka-icon mr-2 pa-1">{{ items[0].text }}</span>
     
     <span class="sutta-name mr-2">
@@ -29,8 +29,7 @@ export default {
   name: 'TipitakaLink',
   props: {
     itemKey: String,
-    eInd: Array,
-    language: String,
+    params: Object,
   },
   data() {
     return {
@@ -49,19 +48,20 @@ export default {
       }
       return items.reverse().map(item => ({
         text: this.getLinkText(item),
-        to: '/' + item.key, // router link
+        key: item.key, // router link
         disabled: !item.filename, // empty filename means disabled
       }))
     },
     suttaNameItem() { return this.items.slice(-1)[0] },
-    routeLink() { 
-      if (!this.eInd) return this.suttaNameItem.to
-      return `${this.suttaNameItem.to}/${this.eInd.join('-')}/${this.language}` 
-    },
   },
   methods: {
+    openSutta() {
+      const columns = this.params.language == 'pali' ? [0] : [1]
+      const params = { key: this.itemKey, ...this.params, columns }
+      this.$store.dispatch('tabs/openAndSetActive', params)
+    },
     getLinkText(item) {
-      return this.keyToText[item.key] || this.getName(item.key, this.language)
+      return this.keyToText[item.key] || this.getName(item.key, this.params.language)
     }
   },
 
