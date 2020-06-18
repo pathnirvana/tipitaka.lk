@@ -5,17 +5,21 @@
       :open.sync="openedBranches"
       :items="treeView"
       activatable hoverable
-      :active.sync="activeKeyAr"
+      :active="[this.getActiveKey]"
       item-key="key"
-      :item-text="$store.state.treeLanguage"
       dense shaped class="tipitaka-tree"
     >
       <template v-slot:prepend="{ item, open }">
-        <v-icon v-if="item.children">
-          {{ open ? 'mdi-folder-open' : 'mdi-folder' }}
-        </v-icon>
-        <v-icon v-else>mdi-file-document-outline</v-icon>
-        <span v-if="item.key == activeKey" id="activelabel"></span>
+        <span @click.stop="">
+          <v-icon v-if="item.children">{{ open ? 'mdi-folder-open' : 'mdi-folder' }}</v-icon>
+          <v-icon v-else>mdi-file-document-outline</v-icon>
+        </span>
+      </template>
+
+      <template v-slot:label="{ item }">
+        <span @click.stop="openNewTab(item.key)" :id="item.key == getActiveKey ? 'activelabel' : ''">
+          {{ item[$store.state.treeLanguage] }}
+        </span>
       </template>
     </v-treeview>
 
@@ -47,12 +51,11 @@
 </style>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'TipitakaTree',
-  props: {
-  },
+  props: {  },
   data() {
     return {
       speedDial: false, // speed dial with options
@@ -60,53 +63,56 @@ export default {
     }
   },
   computed: {
-    ...mapState('tree', ['activeKey', 'treeView', 'openBranches']),
-    activeKeyAr: {
-      get () { return [this.activeKey]  },
-      set ([key]) {
-        if (!key) return; // if user deselects
-        console.log(`change route from treeview to ${key}`)
-        this.$store.dispatch('tree/openAndSetActive', {key})
-      }
-    },
+    ...mapState('tree', ['treeView', 'openBranches']),
+    ...mapState(['defaultColumns']),
+    ...mapState('tabs', ['activeInd']),
+    ...mapGetters('tabs', ['getActiveKey']),
     openedBranches: {
       get() { return this.openBranches },
       set(open) { this.$store.commit('tree/setOpenBranches', open) }
     }
   },
+
   methods: {
+    openNewTab(key) {
+      this.$store.dispatch('tabs/openAndSetActive', { key, columns: [...this.defaultColumns] })
+    },
     syncBranches() {
-      this.$store.commit('tree/syncOpenBranches', this.activeKey)
+      this.$store.commit('tree/syncOpenBranches', this.getActiveKey)
       this.$nextTick(function() {
         const container = document.getElementsByClassName('v-navigation-drawer__content')[0]
         container.scrollTop = document.getElementById('activelabel').offsetParent.offsetTop
-        //this.$vuetify.goTo(1000, { offset: 100 })//'#activelabel'
       })
     },
+    parseParams(params) { // parse route params
+      const columns = !params.language ? [...this.defaultColumns] : (params.language == 'pali' ? [0] : [1])
+      const parseEInd = (str) => (str && str.split('-').length == 2) ? str.split('-').map(i => parseInt(i) || 0) : null
+      const eInd = parseEInd(params.eIndStr)
+      return {...params, eInd, columns }
+    }
 
   },
   async created() {
     // init done here so can open tree afterwards
-    await this.$store.dispatch('tree/initialize')
+    await this.$store.dispatch('tree/initialize') // TODO can we open initial page before tree init completed - good for SEO
 
-    const key = this.$route.params.key //pathMatch
-    console.log(this.$route.params)
-    if (key) {
-      console.log(`opening initial key ${key} with router`)
-      this.$store.dispatch('tree/openAndSetActive', this.$route.params)
+    const params = this.$route.params
+    if (params.key) {
+      console.log(`opening initial page ${JSON.stringify(params)}`)
+      this.$store.dispatch('tabs/openAndSetActive', this.parseParams(params))
     }
   },
   watch: {
     $route(to, from) { // react to route changes...
       const key = to.params.key //pathMatch
-      if (key && key != this.activeKey) { // when user uses back/forward browser buttons
-        console.log(`route change from ${this.activeKey} to ${key}`)
+      if (key && key != this.getActiveKey) { // when user uses back/forward browser buttons
+        // TODO possiblely check if other params change too
+        console.log(`route change from ${this.getActiveKey} to ${key}`)
         //this.$vuetify.goTo(0) // get to top when setting new content
-        if (this.activeKey) {
-          this.$store.commit('tree/replaceTab', {oldKey: this.activeKey, ...to.params})
-          this.$store.commit('tree/setActiveKey', key) // do not open a new tab
+        if (this.getActiveKey) {
+          this.$store.dispatch('tabs/replaceAndSetActive', this.parseParams(to.params))
         } else {
-          this.$store.dispatch('tree/openAndSetActive', to.params)
+          this.$store.dispatch('tabs/openAndSetActive', this.parseParams(to.params))
         }
       }
     }

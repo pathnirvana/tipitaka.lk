@@ -88,7 +88,7 @@ export default {
   computed: {
     ...mapState('tree', ['orderedKeys']),
     columns() {
-      const columns = this.$store.getters['tree/getTabColumns']
+      const columns = this.$store.getters['tabs/getTabColumns']
       //if (!columns) return [true, true]
       return { pali: columns.indexOf(0) >= 0, sinh: columns.indexOf(1) >= 0 }
     },
@@ -128,7 +128,7 @@ export default {
 
       const swappedCols = this.columns.pali ? [1] : [0]
       const message = this.columns.pali ? 'සිංහල' : 'පාළි'
-      this.$store.commit('tree/setTabColumns', swappedCols)
+      this.$store.commit('tabs/setTabColumns', swappedCols)
       this.$store.commit('setSnackbar', {message, timeout: 1000})
     },
     loadNextSection(entries, observer) {
@@ -186,12 +186,12 @@ export default {
           }
           
           paliEntry.key = curKey
-          paliEntry.eind = [pi, ei]
+          paliEntry.eInd = [pi, ei]
           paliEntry.language = 'pali'
           if (!this.paliOnly) {
             const sinhEntry = page.sinh.entries[ei]
             sinhEntry.key = paliEntry.key
-            sinhEntry.eind = paliEntry.eind
+            sinhEntry.eInd = paliEntry.eInd
             sinhEntry.language = 'sinh'
           }
         })
@@ -216,12 +216,12 @@ export default {
         this.pageOffset = data.pageOffset
         // add computed entries
         this.addEntryFields()
-        const eind = this.$store.getters['tree/getTabEInd'] || this.item.eind
-        this.entryStart = eind[1]
-        this.pageEnd = this.pageStart = eind[0]
+        const eInd = this.$store.getters['tabs/getActiveTab'].eInd || this.item.eInd
+        this.entryStart = eInd[1]
+        this.pageEnd = this.pageStart = eInd[0]
         this.incPageEnd(2)
         this.isLoaded = true
-        console.log(`loaded from file key:${this.item.key} eind:${this.pageStart}-${this.entryStart}`)
+        console.log(`loaded from file key:${this.item.key} eInd:${this.pageStart}-${this.entryStart}`)
       }).catch(error => {
         this.errorMessage = error
         console.log(error);

@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import router from '@/router'
-import Vuetify from '@/plugins/vuetify'
+//import Vue from 'vue'
+// import router from '@/router'
+// import Vuetify from '@/plugins/vuetify'
 import axios from 'axios'
 import { beautifyText } from '@/text-convert.mjs'
 
@@ -30,7 +30,9 @@ function addOrder(treeItem, list) {
 }
 
 const isEIndLessEqual = (a, b) => a[0] < b[0] || (a[0] == b[0] && a[1] <= b[1])
-const parseEInd = (str) =>  (str && str.split('-').length == 2) ? str.split('-').map(i => parseInt(i) || 0) : null
+// const checkParams = (params) => {
+//   if (!params.key) console.error(`supplied tab params ${params} is missing the key prop`)
+// }
 
 export default {
   namespaced: true,
@@ -39,9 +41,9 @@ export default {
     treeView: [], // for the tree-view
     filterTree: [], // used for the search filter tree
     orderedKeys: [], // for prev/next sutta/key
-    activeKey: null, // sync between treeview and tabs
-    openKeys: [], // open tabs
-    tabInfo: [], // info about each open tab (columns and eind)
+    
+    // activeInd: -1,
+    // tabList: [],
     openBranches: ['sp'], // open in treeview
     isLoaded: false,
   },
@@ -54,23 +56,19 @@ export default {
       const rawName = state.index[key] ? state.index[key][lang] : 'key error' // or sinh
       return beautifyText(rawName, lang, rState)
     },
-    getTabColumns: (state, getters, rState) => {
-      const activeInd = state.openKeys.indexOf(state.activeKey)
-      const cols = activeInd < 0 ? rState.defaultColumns : state.tabInfo[activeInd].columns // error check
-      if (Vuetify.framework.breakpoint.smAndUp) return cols // if big screen
-      if (cols.length == 1) return cols
-      if (rState.defaultColumns == 1) return rState.defaultColumns
-      return rState.treeLanguage == 'pali' ? [0] : [1] // use the tree language to determine default column (last resort)
-    },
-    getTabEInd: (state) => {
-      const activeInd = state.openKeys.indexOf(state.activeKey)
-      return state.tabInfo[activeInd].eind
-    },
-    getKeyForEInd: (state) => (filename, eind) => {
+    // getActiveTab: (state) => state.tabList[state.activeInd],
+    // getActiveKey: (state) => state.activeInd >= 0 ? state.tabList[state.activeInd].key : '',
+    // getTabColumns: (state, getters, rState) => {
+    //   const cols = state.activeInd < 0 ? rState.defaultColumns : getters['getActiveTab'].columns // error check
+    //   if (cols.length == 1 || Vuetify.framework.breakpoint.smAndUp) return cols // if big screen
+    //   if (rState.defaultColumns.length == 1) return rState.defaultColumns
+    //   return rState.treeLanguage == 'pali' ? [0] : [1] // use the tree language to determine default column (last resort)
+    // },
+    getKeyForEInd: (state) => (filename, eInd) => {
       let i = state.orderedKeys.length - 1
       for (; i >= 0; i--) { // loop in reverse order
         const item = state.index[state.orderedKeys[i]]
-        if (item.filename == filename && isEIndLessEqual(item.eind, eind)) break
+        if (item.filename == filename && isEIndLessEqual(item.eInd, eInd)) break
       }
       return i >= 0 ? state.orderedKeys[i] : ''
     },
@@ -79,8 +77,8 @@ export default {
     setIndex(state, jTree) {
       const index = { 'root': {children: []} }
       Object.keys(jTree).forEach(key => {
-        let [ pali, sinh, level, eind, parent, filename ] = jTree[key]
-        index[key] = { pali, sinh, level, eind, parent, filename, key, children: [] }
+        let [ pali, sinh, level, eInd, parent, filename ] = jTree[key]
+        index[key] = { pali, sinh, level, eInd, parent, filename, key, children: [] }
         index[parent].children.push(key) 
       })
       Object.preventExtensions(index) // read-only not reactive - this improves perf
@@ -100,37 +98,30 @@ export default {
       state.isLoaded = true
     },
 
-    // make existing tab active
-    setActiveKey(state, key) {
-      state.activeKey = key
-      if (router.currentRoute.params.key != key) { //pathMatch
-        router.push('/' + key)
-      }
-    },
+    // // make an existing tab active
+    // setActiveInd(state, newInd) {
+    //   state.activeInd = newInd
+    //   const newKey = state.tabList[state.activeInd].key
+    //   if (router.currentRoute.params.key != newKey) { //pathMatch
+    //     router.push('/' + newKey) // TODO set columns (and eInd? - might cause issues)
+    //   }
+    // },
 
-    openTab(state, {key, columns, eind}) {
-      if (state.openKeys.indexOf(key) < 0) {
-        state.openKeys.push(key)
-        state.tabInfo.push({columns, eind}) 
-      }
-    },
-    closeTab(state, key) {
-      const closeInd = state.openKeys.indexOf(key)
-      state.openKeys.splice(closeInd, 1)
-      state.tabInfo.splice(closeInd, 1)
-      // if activeKey is closed go to the first tab
-      if (state.openKeys.indexOf(state.activeKey) < 0) state.activeKey = state.openKeys[0]
-      // if all tabs closed - go to welcome page
-      if (!state.openKeys.length) router.replace('/') 
-    },
-    replaceTab(state, {oldKey, key, language, eindStr}) {
-      if (state.openKeys.indexOf(key) >= 0) return; // the newkey already exists
-      const ind = state.openKeys.indexOf(oldKey)
-      Vue.set(state.openKeys, ind, key)
-      const colInd = ['pali', 'sinh'].indexOf(language) // set only if specified
-      if (colInd >= 0) Vue.set(state.tabInfo[ind], 'columns', [colInd])
-      Vue.set(state.tabInfo[ind], 'eind', parseEInd(eindStr)) // reset eind to 0
-    },
+    // openTab(state, params) {
+    //   checkParams(params)
+    //   state.tabList.push(params)
+    // },
+    // replaceActiveTab(state, params) {
+    //   checkParams(params)
+    //   Vue.set(state.tabList, state.activeInd, params)
+    // },
+    // closeTab(state, closeInd) {
+    //   state.tabList.splice(closeInd, 1)
+    //   // if activeInd or lower is closed decrement activeInd
+    //   if (state.activeInd >= closeInd) state.activeInd-- // TODO check if route is updated
+    //   // if all tabs closed - go to welcome page
+    //   if (!state.tabList.length) router.replace('/') 
+    // },
 
     setOpenBranches(state, ar) {
       state.openBranches = ar
@@ -146,34 +137,33 @@ export default {
       state.openBranches = parents
     },
 
-    setTabColumns(state, cols) {
-      const activeInd = state.openKeys.indexOf(state.activeKey)
-      // last element in cols is the last added col - choose that (todo use defaultColumns?)
-      cols = Vuetify.framework.breakpoint.xsOnly && cols.length > 1 ? cols.slice(-1) : cols
-      Vue.set(state.tabInfo[activeInd], 'columns', cols)
-    },
+    // setTabColumns(state, cols) {
+    //   Vue.set(state.tabList[state.activeInd], 'columns', cols)
+    // },
   },
   actions: {
-    // made this an action since need rootState
-    openAndSetActive({rootState, commit}, {key, language, eindStr}) {
-      // if no lang passed in use default columns - make a copy
-      const columns = !language ? [...rootState.defaultColumns] : (language == 'pali' ? [0] : [1])
-      const eind = parseEInd(eindStr)
-      commit('openTab', {key, columns, eind}) // open if not existing
-      commit('setActiveKey', key)
-    },
+    // // made this an action since need rootState
+    // openAndSetActive({state, commit}, params) {
+    //   commit('openTab', params)
+    //   commit('setActiveInd', state.tabList.length - 1) // TODO should remove
+    // },
 
-    // replace the active tab with prev/next sutta
-    navigateTabTo({state, commit}, direction) {
-      const newOrderInd = state.orderedKeys.indexOf(state.activeKey) + direction
-      if (newOrderInd < 0 || newOrderInd >= state.orderedKeys.length) return;
-      const key = state.orderedKeys[newOrderInd]
-      if (!state.index[key].filename) return; // can not be opened
-      console.log(`replace key ${state.activeKey} -> ${key}`)
+    // replaceAndSetActive({state, commit}, params) {
+    //   commit('replaceActiveTab', params)
+    // },
 
-      commit('replaceTab', {oldKey: state.activeKey, key})
-      commit('setActiveKey', key)
-    },
+    // // replace the active tab with prev/next sutta
+    // navigateTabTo({state, commit}, direction) {
+    //   const oldKey = state.tabList[state.activeInd].key
+    //   const newOrderInd = state.orderedKeys.indexOf(oldKey) + direction
+    //   if (newOrderInd < 0 || newOrderInd >= state.orderedKeys.length) return
+    //   const key = state.orderedKeys[newOrderInd]
+    //   if (!state.index[key].filename) return // can not be opened
+    //   console.log(`replace key ${oldKey} -> ${key}`)
+      
+    //   const oldParams = state.tabList[state.activeInd]
+    //   commit('replaceActiveTab', {...oldParams, key, eInd: null })
+    // },
 
     async initialize({commit, rootState}) {
       const response = await axios.get('/static/data/tree.json')

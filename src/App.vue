@@ -127,11 +127,11 @@ export default {
   computed: {
     showColumnButtons() {
       return this.$vuetify.breakpoint.smAndUp && this.$route.name == 'Home' 
-        && this.$store.state.tree.activeKey // not render at the startup until things are loaded
+        && this.$store.state.tabs.activeInd >= 0 // not render at the startup until things are loaded
     },
     tabColumns: { // columns for the active tab
-      get() { return this.$store.getters['tree/getTabColumns'] },
-      set(cols) { this.$store.commit('tree/setTabColumns', cols) }
+      get() { return this.$store.getters['tabs/getTabColumns'] },
+      set(cols) { this.$store.commit('tabs/setTabColumns', cols) }
     },
     searchInput: {
       get() { return this.$store.getters['search/getSearchInput'] },
@@ -156,7 +156,6 @@ export default {
   created() {
     this.$store.dispatch('initialize')
     //this.$store.dispatch('search/initialize')
-    //this.$vuetify.theme.dark = true
   }
 };
 </script>
