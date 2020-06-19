@@ -170,6 +170,7 @@ export default {
         this.resultsInput = this.searchInput
         this.$store.commit('search/setFtsCache', { sql, results: this.results })
       } catch (e) {
+        console.error(e)
         this.errorMessage = e.message
       }
     },
