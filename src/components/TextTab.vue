@@ -1,13 +1,13 @@
 <template>
-<v-scale-transition hide-on-leave>
+<!-- <v-scale-transition hide-on-leave> -->
   <v-sheet class="my-4">
     <!--<div v-scroll:window="handleScroll">{{ scrollTop }}</div>-->
-    <v-card v-if="errorMessage" color="error">
+    <v-card v-if="tab.errorMessage" color="error">
       <v-card-title>සූත්‍රය ලබාගැනීමේදී වරදක් සිදුවිය</v-card-title>
-      <v-card-text>{{ errorMessage }}</v-card-text>
+      <v-card-text>{{ tab.errorMessage }}</v-card-text>
     </v-card>
     
-    <v-skeleton-loader v-else-if="!isLoaded" type="paragraph"></v-skeleton-loader>
+    <v-skeleton-loader v-else-if="!tab.isLoaded" type="paragraph"></v-skeleton-loader>
     
     <div v-else v-touch="{ left: () => touchSwipe('L'), right: () => touchSwipe('R') }">
       <v-btn absolute rounded small top right @click="loadPrevSection">
@@ -33,13 +33,13 @@
         </tr>
       </v-simple-table>
 
-      <v-card v-if="pageEnd < pages.length" class="text-center" @click="incPageEnd"
+      <v-card v-if="tab.pageEnd < tab.data.pages.length" class="text-center" @click="loadNextSection"
         v-intersect="{ handler: loadNextSection, options: {threshold: [0.5]} }">
         <v-card-text>ඊළඟ කොටස පෙන්වන්න.</v-card-text>
       </v-card>
     </div>
 
-    <v-dialog v-model="showScanPage" max-width="500">
+    <v-dialog v-if="tab.isLoaded" v-model="showScanPage" max-width="500">
       <v-card outlined >
         <v-img :src="bjtImgSrc"></v-img>
         <v-btn icon small top right absolute @click="showScanPage = false" color="accent"><v-icon>mdi-close</v-icon></v-btn>
@@ -47,7 +47,7 @@
     </v-dialog>
 
   </v-sheet>
-</v-scale-transition>
+<!-- </v-scale-transition> -->
 </template>
 
 <style scoped>
@@ -59,7 +59,7 @@
 import TextEntry from '@/components/TextEntry.vue'
 import Footnotes from '@/components/Footnotes.vue'
 import { beautifyText } from '@/text-convert.mjs'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import axios from 'axios'
 
 export default {
@@ -69,16 +69,16 @@ export default {
     Footnotes,
   },
   props: {
-    itemKey: String,
+    tabIndex: Number,
   },
 
   data() {
     return {
-      errorMessage: null,
-      isLoaded: false,
-      pages: null,
-      pageStart: 0, pageEnd: 0, 
-      entryStart: 0, // from link params or from sutta heading
+      // errorMessage: null,
+      // isLoaded: false,
+      // pages: null,
+      // pageStart: 0, pageEnd: 0, 
+      // entryStart: 0, // from link params or from sutta heading
 
       showScanPage: false, clickedPageNum: 0,
       scrollTop: null,
@@ -87,19 +87,19 @@ export default {
 
   computed: {
     ...mapState('tree', ['orderedKeys']),
+    ...mapState('tabs', ['tabList']),
+    ...mapGetters('tabs', ['getVisiblePages']),
     columns() {
       const columns = this.$store.getters['tabs/getTabColumns']
-      //if (!columns) return [true, true]
       return { pali: columns.indexOf(0) >= 0, sinh: columns.indexOf(1) >= 0 }
     },
-    item() {
-      return this.$store.getters['tree/getKey'](this.itemKey)
-    },
+    tab() { return this.tabList[this.tabIndex] },
+    //errorMessage() { return this.tab.errorMessage },
+    filename() { return this.tab.keyProp.filename }, // or from data
     visiblePages() {
-      return this.pages.slice(this.pageStart, this.pageEnd).map((page, i) => {
-        const rows = [], footnotes = { pali: [], sinh: [] }//, pi = i + this.pageStart
+      return this.getVisiblePages(this.tabIndex).map((page, i) => {
+        const rows = [], footnotes = { pali: [], sinh: [] }
         page.pali.entries.forEach((paliEntry, ei) => {
-          if (i == 0 && ei < this.entryStart) return;
           const pair = { pali: this.processEntry(paliEntry), 
                          sinh: !this.paliOnly ? this.processEntry(page.sinh.entries[ei]) : null }
           rows.push(pair)
@@ -109,11 +109,11 @@ export default {
         return ({ rows, footnotes, pageNum: parseInt(page.pageNum) })
       })
     },
-    paliOnly() { return this.item.filename.startsWith('ap-pat') },
+    paliOnly() { return this.filename.startsWith('ap-pat') },
     bjtImgSrc() {
-      const pageNum = parseInt(this.clickedPageNum) + parseInt(this.pageOffset)
+      const pageNum = parseInt(this.clickedPageNum) + parseInt(this.tab.data.pageOffset)
       // getBJTImageSrc is imported from https://pitaka.lk/bjt/scripts/books.js
-      return 'https://pitaka.lk/bjt/' + getBJTImageSrc(this.bookId, pageNum)
+      return 'https://pitaka.lk/bjt/' + getBJTImageSrc(this.tab.data.bookId, pageNum)
     },
   },
 
@@ -133,15 +133,11 @@ export default {
     },
     loadNextSection(entries, observer) {
         if (entries[0].isIntersecting) {
-          this.incPageEnd()
+          this.$store.commit('tabs/loadNextPage', this.tabIndex)
         }
     },
     loadPrevSection() {
-      if (this.entryStart > 0) { // go to the beginning of the current page first
-        this.entryStart = 0
-      } else {
-        this.pageStart = Math.max(0, this.pageStart - 1)
-      }
+      this.$store.commit('tabs/loadPrevPage', this.tabIndex)
     },
 
     processEntry(entry) {
@@ -155,11 +151,6 @@ export default {
     textParts(text, language) {
       text = text.replace(/\{(.+?)\}/g, this.$store.state.footnoteMethod == 'hidden' ? '' : '|$1℗fn-pointer|');
       text = beautifyText(text, language, this.$store.state)
-      // text = beautifySinh(text)
-      // if (language == 'pali') {
-      //     if (specialLetters) text = addSpecialLetters(text)
-      //     if (bandiLetters) text = addBandiLetters(text)
-      // }
 
       text = text.replace(/\*\*(.*?)\*\*/g, '|$1℗bold|') // using the markdown styles
       text = text.replace(/__(.*?)__/g, '|$1℗underline|') // underline
@@ -169,63 +160,62 @@ export default {
       return text.split('|').filter(t => t.length).map(t => t.split('℗'))
     },
 
-    incPageEnd(by = 1) {
-      this.pageEnd = Math.min(this.pages.length, this.pageEnd + by)
-    },
+    // incPageEnd(by = 1) {
+    //   this.pageEnd = Math.min(this.pages.length, this.pageEnd + by)
+    // },
 
-    addEntryFields() {
-      let curKey = ''
-      this.pages.forEach((page, pi) => {
-        page.pali.entries.forEach((paliEntry, ei) => {
-          if (paliEntry.type == 'heading') {
-            if (curKey) {
-              curKey = this.orderedKeys[this.orderedKeys.indexOf(curKey) + 1] // get next key
-            } else {
-              curKey = this.item.filename
-            }
-          }
+    // addEntryFields() { // move to vuex
+    //   let curKey = ''
+    //   this.pages.forEach((page, pi) => {
+    //     page.pali.entries.forEach((paliEntry, ei) => {
+    //       if (paliEntry.type == 'heading') {
+    //         if (curKey) {
+    //           curKey = this.orderedKeys[this.orderedKeys.indexOf(curKey) + 1] // get next key
+    //         } else {
+    //           curKey = this.filename
+    //         }
+    //       }
           
-          paliEntry.key = curKey
-          paliEntry.eInd = [pi, ei]
-          paliEntry.language = 'pali'
-          if (!this.paliOnly) {
-            const sinhEntry = page.sinh.entries[ei]
-            sinhEntry.key = paliEntry.key
-            sinhEntry.eInd = paliEntry.eInd
-            sinhEntry.language = 'sinh'
-          }
-        })
-      })
-    },
+    //       const addProps = { key: curKey, eInd: [pi, ei], active: pi == 0 && ei == this.entryStart }
+    //       Object.assign(paliEntry, addProps)
+    //       paliEntry.language = 'pali'
+    //       if (!this.paliOnly) {
+    //         const sinhEntry = page.sinh.entries[ei]
+    //         Object.assign(sinhEntry, addProps)
+    //         sinhEntry.language = 'sinh'
+    //       }
+    //     })
+    //   })
+    // },
   },
 
   created() {
-    if (!this.item || !this.item.filename) { // error in link params
-      this.errorMessage = `${this.itemKey} non existant or loading failed`
-      return
-    }
-    axios.get(`/static/text/${this.item.filename}.json`)
-      .then(({ data }) => {
-        if (!data.pages || !data.pages.length) {
-          this.isError = true
-          return
-        }
-        // copy over data fields
-        this.pages = data.pages
-        this.bookId = data.bookId
-        this.pageOffset = data.pageOffset
-        // add computed entries
-        this.addEntryFields()
-        const eInd = this.$store.getters['tabs/getActiveTab'].eInd || this.item.eInd
-        this.entryStart = eInd[1]
-        this.pageEnd = this.pageStart = eInd[0]
-        this.incPageEnd(2)
-        this.isLoaded = true
-        console.log(`loaded from file key:${this.item.key} eInd:${this.pageStart}-${this.entryStart}`)
-      }).catch(error => {
-        this.errorMessage = error
-        console.log(error);
-      })
+    // if (!this.tab || !this.filename) { // error in link params
+    //   this.errorMessage = `${this.tab.key} non existant or loading failed`
+    //   return
+    // }
+    // axios.get(`/static/text/${this.filename}.json`)
+    //   .then(({ data }) => {
+    //     if (!data.pages || !data.pages.length) {
+    //       this.isError = true
+    //       return
+    //     }
+    //     // copy over data fields
+    //     this.pages = data.pages
+    //     this.bookId = data.bookId
+    //     this.pageOffset = data.pageOffset
+    //     // add computed entries
+    //     this.addEntryFields()
+    //     const eInd = this.tab.eInd
+    //     this.entryStart = eInd[1]
+    //     this.pageEnd = this.pageStart = eInd[0]
+    //     this.incPageEnd(2)
+    //     this.isLoaded = true
+    //     console.log(`loaded from file key:${this.tab.key} eInd:${this.pageStart}-${this.entryStart}`)
+    //   }).catch(error => {
+    //     this.errorMessage = error
+    //     console.log(error);
+    //   })
   },
 
 }

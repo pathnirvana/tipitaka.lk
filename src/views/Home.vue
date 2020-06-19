@@ -20,7 +20,7 @@
     </v-sheet>
 
     <div class="tab-items">
-        <TextTab v-for="(tab, ind) in tabList" :key="ind" :itemKey="tab.key" v-show="ind == activeInd"/>
+        <TextTab v-for="(tab, ind) in tabList" :key="ind" :tabIndex="ind" v-show="ind == activeInd"/>
     </div>
     
     <v-btn fab small color="primary" fixed bottom right @click="$vuetify.goTo(0)">

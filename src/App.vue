@@ -51,14 +51,14 @@
       <v-spacer></v-spacer>
 
       <template v-if="showColumnButtons"><!--show only in bigger screens - swipe for xs-->
-        <v-btn icon @click="$store.dispatch('tree/navigateTabTo', -1)">
+        <v-btn icon @click="$store.dispatch('tabs/navigateTabTo', -1)">
           <v-icon>mdi-skip-previous</v-icon>
         </v-btn>
         <v-btn-toggle v-model="tabColumns" dense multiple mandatory shaped color="primary">
           <v-btn :value="0" text>පාළි</v-btn>
           <v-btn :value="1" text>සිංහල</v-btn>
         </v-btn-toggle>
-        <v-btn icon @click="$store.dispatch('tree/navigateTabTo', 1)">
+        <v-btn icon @click="$store.dispatch('tabs/navigateTabTo', 1)">
           <v-icon>mdi-skip-next</v-icon>
         </v-btn>
       </template>
@@ -97,7 +97,6 @@
 #app {
   font-family: 'sinhala';
 }
-/*-#title-bar-text { font-family: 'styled'; font-size: 1.8rem; }*/
 
 .v-navigation-drawer__content { overflow-x: auto !important; } /** Need to be outside the scope */
 .v-sheet.d-inline-flex { min-width: 100%; min-height: 100%; } /** Needed to fill the drawer */

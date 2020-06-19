@@ -125,7 +125,7 @@ export default {
       this.$store.commit('setSnackbar', {message, timeout: 1000})
     },
     toggleOptions() {
-      if (optionsAllowedTypes.indexOf(this.entry.type) < 0) return
+      if (optionsAllowedTypes.indexOf(this.entry.type) < 0 || !this.entry.key) return
       this.showOptions = !this.showOptions
     },
   },
