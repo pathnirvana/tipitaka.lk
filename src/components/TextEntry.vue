@@ -1,7 +1,7 @@
 <template>
   <td class="entry pa-2" :lang="entry.language" :style="$store.getters['styles']" @click="toggleOptions">
     <!--<span v-if="$parent.showTypeInfo" class="type-info">{{ entry.type + '.' + entry.level }}</span>-->
-    <div class="text html" :class="entry.type" :level="entry.level">
+    <div :class="cssClasses" :level="entry.level">
       <template v-for="(se, i) in entry.text">
 
         <v-tooltip v-if="se[1] == 'fn-pointer' && footnoteMethod != 'end-page'" :key="i" bottom
@@ -78,6 +78,7 @@ td.entry { width: 50%; vertical-align: top; }
 .html .underline { text-decoration: underline; text-decoration-color: var(--v-error-base); }
 .html .strike { text-decoration: line-through; text-decoration-color: var(--v-accent-base); }
 .html .bold { color: var(--v-info-base); }
+.html .highlight { background-color: var(--v-highlight-base); } /* fts */
 
 td.entry { position: relative; }
 .type-info { position: absolute; top: 0; left: 0; font-size: 0.8em; opacity: 0.5; color: gray; }
@@ -103,6 +104,7 @@ export default {
   
   computed: {
     ...mapState(['footnoteMethod']),
+    cssClasses() { return `text html ${this.entry.type}`},
     entryColor() {
       if (this.entry.type == 'heading') return 'primary'
       return ''

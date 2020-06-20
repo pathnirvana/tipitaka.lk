@@ -104,6 +104,7 @@ export default {
   },
   watch: {
     $route(to, from) { // react to route changes...
+      return
       const key = to.params.key //pathMatch
       if (key && key != this.getActiveKey) { // when user uses back/forward browser buttons
         // TODO possiblely check if other params change too

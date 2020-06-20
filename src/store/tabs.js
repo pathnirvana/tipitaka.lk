@@ -27,6 +27,12 @@ function addEntryFields(pages, orderedKeys, filename) { // move to vuex
   })
 }
 
+const updateRoute = (newKey) => {
+  if (router.currentRoute.params.key != newKey) { //pathMatch
+    router.push('/' + newKey) // TODO set columns (and eInd? - might cause issues)
+  }
+}
+
 export default {
   namespaced: true,
   state: {
@@ -52,27 +58,27 @@ export default {
   },
 
   mutations: {
-    // make an existing tab active
-    setActiveInd(state, newInd) {
-      state.activeInd = newInd
-      const newKey = state.tabList[state.activeInd].key
-      if (router.currentRoute.params.key != newKey) { //pathMatch
-        router.push('/' + newKey) // TODO set columns (and eInd? - might cause issues)
-      }
-    },
-
     openTab(state, params) {
       state.tabList.push(params)
     },
     replaceActiveTab(state, params) {
       Vue.set(state.tabList, state.activeInd, params)
+      updateRoute(params.key)
     },
     closeTab(state, closeInd) {
       state.tabList.splice(closeInd, 1)
       // if activeInd or lower is closed decrement activeInd
-      if (state.activeInd >= closeInd) state.activeInd-- // TODO check if route is updated
-      // if all tabs closed - go to welcome page
-      if (!state.tabList.length) router.replace('/') 
+      if (state.activeInd >= closeInd) state.activeInd--
+      if (!state.tabList.length) { 
+        router.replace('/') // if all tabs closed - go to welcome page
+      } else {
+        updateRoute(state.tabList[state.activeInd].key)
+      }
+    },
+    // make an existing tab active
+    setActiveInd(state, newInd) {
+      state.activeInd = newInd
+      updateRoute(state.tabList[state.activeInd].key)
     },
 
     setTabColumns(state, cols) {
@@ -84,14 +90,17 @@ export default {
     setTabInfo(state, {tabIndex, type, value}) {
       Vue.set(state.tabList[tabIndex], type, value)
     },
-    loadNextPage(state, ind) {
-      const tab = state.tabList[ind]
-      Vue.set(tab, 'pageEnd', Math.min(tab.pageEnd + 1, tab.data.pages.length))
+    loadPrevPage(state, tabIndex) {
+      const tab = state.tabList[tabIndex]
+      if (tab.entryStart > 0) {
+        Vue.set(tab, 'entryStart', 0) // reset it
+      } else {
+        Vue.set(tab, 'pageStart', Math.max(0, tab.pageStart - 1))
+      }
     },
-    loadPrevPage(state, ind) {
-      const tab = state.tabList[ind]
-      Vue.set(tab, 'entryStart', -1) // reset it
-      Vue.set(tab, 'pageStart', Math.max(0, tab.pageStart - 1))
+    loadNextPage(state, { tabIndex, by }) {
+      const tab = state.tabList[tabIndex]
+      Vue.set(tab, 'pageEnd', Math.min(tab.pageEnd + by, tab.data.pages.length))
     },
   },
   actions: {
@@ -106,9 +115,9 @@ export default {
         params.errorMessage = `supplied tab params ${params} is missing key props`
         return
       }
-      if (!params.eInd) params.eInd = [...params.keyProp.eInd]
-      params.entryStart = params.eInd[1]
-      params.pageEnd = params.pageStart = params.eInd[0]
+      const eInd = params.ftsEInd || params.eInd || params.keyProp.eInd // fts, eIndStr or from key
+      params.entryStart = eInd[1]
+      params.pageEnd = params.pageStart = eInd[0]
       params.isLoaded = false
     },
     
@@ -136,15 +145,14 @@ export default {
             return commit('setError', `pages are missing in loaded data from ${newFilename}`)
           }
           addEntryFields(data.pages, rootState.tree.orderedKeys, newFilename) // add computed entries - modifies data
-          Object.preventExtensions(data) // no more modification to data after this
+          Object.preventExtensions(data) // no more modification to data/entries after this
           commit('setTabInfo', { tabIndex, type: 'data', value: data })
         } catch(e) {
           return commit('setError', `Failed to load the file ${newFilename} with error "${e.message}"`)
         }
-
-        commit('loadNextPage', tabIndex)
         console.log(`loaded from file key:${tabInfo.key} eInd:${tabInfo.pageStart}-${tabInfo.entryStart}`)
       }
+      commit('loadNextPage', { tabIndex, by: 2 })
       commit('setTabInfo', { tabIndex, type: 'isLoaded', value: true })
     },
 
@@ -158,7 +166,7 @@ export default {
       console.log(`replace key ${oldKey} -> ${key}`)
       
       const oldParams = state.tabList[state.activeInd]
-      dispatch('replaceAndSetActive', {...oldParams, key, eInd: null })
+      dispatch('replaceAndSetActive', {...oldParams, key, ftsEInd: null })
     },
 
   }
