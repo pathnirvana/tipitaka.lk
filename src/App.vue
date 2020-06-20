@@ -45,7 +45,7 @@
       </v-menu>
 
       <v-text-field v-model="searchInput" hide-details placeholder="සෙවුම් පද මෙතැන යොදන්න"
-        @focus="$store.commit('search/routeToSearch')">
+        @focus="$store.commit('search/routeToSearch')" clearable>
       </v-text-field> <!-- search bar -->
 
       <v-spacer></v-spacer>
@@ -134,7 +134,7 @@ export default {
     },
     searchInput: {
       get() { return this.$store.getters['search/getSearchInput'] },
-      set(input) { this.$store.commit('search/setSearchInput', input.trim()) }
+      set(input) { this.$store.commit('search/setSearchInput', input ? input.trim() : '') }
     },
     searchType: {
       get() { return this.$store.getters['search/getSearchType'] },

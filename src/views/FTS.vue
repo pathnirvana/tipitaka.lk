@@ -159,10 +159,10 @@ export default {
         const response = await axios.post(baseUrl + '/tipitaka-query/fts', { type: 'fts', sql })
         console.log(`received fts response with ${response.data.length} rows for query ${this.ftsMatchClause}`)
         this.results = response.data.map(res => {
-          const eInd = res.eind.split('-').map(i => parseInt(i))
+          const ftsEInd = res.eind.split('-').map(i => parseInt(i))
           const hText = beautifyText(res.htext, res.language, this.$store.state)
-          return { eInd, hText, 
-            key: this.getKeyForEInd(res.filename, eInd),
+          return { ftsEInd, hText, 
+            key: this.getKeyForEInd(res.filename, ftsEInd),
             hWords: this.getHighlightWords(hText),
             language: res.language
           }
@@ -175,9 +175,9 @@ export default {
       }
     },
     getHighlightWords(hText) {
-      const words = [] // extract content within <sr> tags
-      hText.replace(/<sr>(.*?)<\/sr>/g, (_1, g1) => words.push(g1));
-      return words
+      const words = {} // extract content within <sr> tags
+      hText.replace(/<sr>(.*?)<\/sr>/g, (_1, g1) => words[g1] = 1);
+      return Object.keys(words) // de-dup
     },
     updatePage() {
       const options = [this.exactWord, this.matchPhrase, this.wordDistance].join('-')

@@ -10,7 +10,7 @@
     <v-skeleton-loader v-else-if="!tab.isLoaded" type="paragraph"></v-skeleton-loader>
     
     <div v-else v-touch="{ left: () => touchSwipe('L'), right: () => touchSwipe('R') }">
-      <v-btn absolute rounded small top right @click="loadPrevSection">
+      <v-btn absolute rounded small top right @click="loadPrevPage(tabIndex)">
         <v-icon>mdi-chevron-up</v-icon>
       </v-btn>
 
@@ -33,7 +33,7 @@
         </tr>
       </v-simple-table>
 
-      <v-card v-if="tab.pageEnd < tab.data.pages.length" class="text-center" @click="loadNextSection"
+      <v-card v-if="tab.pageEnd < tab.data.pages.length" class="text-center" @click="loadNextPage({ tabIndex, by: 1 })"
         v-intersect="{ handler: loadNextSection, options: {threshold: [0.5]} }">
         <v-card-text>ඊළඟ කොටස පෙන්වන්න.</v-card-text>
       </v-card>
@@ -59,8 +59,14 @@
 import TextEntry from '@/components/TextEntry.vue'
 import Footnotes from '@/components/Footnotes.vue'
 import { beautifyText } from '@/text-convert.mjs'
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 import axios from 'axios'
+
+const eIndEquals = (a, b) => a[0] == b[0] && a[1] == b[1]
+const highlightWords = (text, words) => {
+  const re = new RegExp(words.join('|'), 'g')
+  return text.replace(re, '##$&##')
+}
 
 export default {
   name: 'TextTab',
@@ -74,12 +80,6 @@ export default {
 
   data() {
     return {
-      // errorMessage: null,
-      // isLoaded: false,
-      // pages: null,
-      // pageStart: 0, pageEnd: 0, 
-      // entryStart: 0, // from link params or from sutta heading
-
       showScanPage: false, clickedPageNum: 0,
       scrollTop: null,
     }
@@ -100,6 +100,7 @@ export default {
       return this.getVisiblePages(this.tabIndex).map((page, i) => {
         const rows = [], footnotes = { pali: [], sinh: [] }
         page.pali.entries.forEach((paliEntry, ei) => {
+          if (i == 0 && ei < this.tab.entryStart) return
           const pair = { pali: this.processEntry(paliEntry), 
                          sinh: !this.paliOnly ? this.processEntry(page.sinh.entries[ei]) : null }
           rows.push(pair)
@@ -118,6 +119,7 @@ export default {
   },
 
   methods: {
+    ...mapMutations('tabs', ['loadNextPage', 'loadPrevPage']),
     displayScanned(num) {
       this.clickedPageNum = num
       this.showScanPage = true
@@ -129,29 +131,31 @@ export default {
       const swappedCols = this.columns.pali ? [1] : [0]
       const message = this.columns.pali ? 'සිංහල' : 'පාළි'
       this.$store.commit('tabs/setTabColumns', swappedCols)
-      this.$store.commit('setSnackbar', {message, timeout: 1000})
+      this.$store.commit('setSnackbar', { message, timeout: 1000 })
     },
     loadNextSection(entries, observer) {
         if (entries[0].isIntersecting) {
-          this.$store.commit('tabs/loadNextPage', this.tabIndex)
+          this.loadNextPage({ tabIndex: this.tabIndex, by: 1 })
         }
-    },
-    loadPrevSection() {
-      this.$store.commit('tabs/loadPrevPage', this.tabIndex)
     },
 
     processEntry(entry) {
-      return {...entry, text: this.textParts(entry.text, entry.language) }
+      // do not change entry fields - instead make a copy
+      let text = beautifyText(entry.text, entry.language, this.$store.state) 
+      if (this.tab.ftsEInd && eIndEquals(this.tab.ftsEInd, entry.eInd)) {
+        text = highlightWords(text, this.tab.hWords) 
+      }
+      return {...entry, text: this.textParts(text) }
     },
     processFootnote(entry, language) {
       const m = /^([^\s\.\{\}]+)[\.\s]([\s\S]+)$/.exec(entry.text)
       if (!m) return {...entry, text: this.textParts(entry.text, language) }
       return {...entry, number: m[1], text: this.textParts(m[2], language) }
     },
-    textParts(text, language) {
+    textParts(text) {
       text = text.replace(/\{(.+?)\}/g, this.$store.state.footnoteMethod == 'hidden' ? '' : '|$1℗fn-pointer|');
-      text = beautifyText(text, language, this.$store.state)
-
+      // TODO do something about overlapping tags
+      text = text.replace(/##(.*?)##/g, '|$1℗highlight|') // fts highlight
       text = text.replace(/\*\*(.*?)\*\*/g, '|$1℗bold|') // using the markdown styles
       text = text.replace(/__(.*?)__/g, '|$1℗underline|') // underline
       text = text.replace(/~~(.*?)~~/g, '|$1℗strike|') // strike through
@@ -159,63 +163,9 @@ export default {
       if (!text) text = '' //|Empty - තීරුව හිස් !℗strike|' // if left empty it is not clickable
       return text.split('|').filter(t => t.length).map(t => t.split('℗'))
     },
-
-    // incPageEnd(by = 1) {
-    //   this.pageEnd = Math.min(this.pages.length, this.pageEnd + by)
-    // },
-
-    // addEntryFields() { // move to vuex
-    //   let curKey = ''
-    //   this.pages.forEach((page, pi) => {
-    //     page.pali.entries.forEach((paliEntry, ei) => {
-    //       if (paliEntry.type == 'heading') {
-    //         if (curKey) {
-    //           curKey = this.orderedKeys[this.orderedKeys.indexOf(curKey) + 1] // get next key
-    //         } else {
-    //           curKey = this.filename
-    //         }
-    //       }
-          
-    //       const addProps = { key: curKey, eInd: [pi, ei], active: pi == 0 && ei == this.entryStart }
-    //       Object.assign(paliEntry, addProps)
-    //       paliEntry.language = 'pali'
-    //       if (!this.paliOnly) {
-    //         const sinhEntry = page.sinh.entries[ei]
-    //         Object.assign(sinhEntry, addProps)
-    //         sinhEntry.language = 'sinh'
-    //       }
-    //     })
-    //   })
-    // },
   },
 
   created() {
-    // if (!this.tab || !this.filename) { // error in link params
-    //   this.errorMessage = `${this.tab.key} non existant or loading failed`
-    //   return
-    // }
-    // axios.get(`/static/text/${this.filename}.json`)
-    //   .then(({ data }) => {
-    //     if (!data.pages || !data.pages.length) {
-    //       this.isError = true
-    //       return
-    //     }
-    //     // copy over data fields
-    //     this.pages = data.pages
-    //     this.bookId = data.bookId
-    //     this.pageOffset = data.pageOffset
-    //     // add computed entries
-    //     this.addEntryFields()
-    //     const eInd = this.tab.eInd
-    //     this.entryStart = eInd[1]
-    //     this.pageEnd = this.pageStart = eInd[0]
-    //     this.incPageEnd(2)
-    //     this.isLoaded = true
-    //     console.log(`loaded from file key:${this.tab.key} eInd:${this.pageStart}-${this.entryStart}`)
-    //   }).catch(error => {
-    //     this.errorMessage = error
-    //     console.log(error);
-    //   })
   },
 
 }
