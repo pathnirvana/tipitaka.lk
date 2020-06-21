@@ -87,12 +87,25 @@ class SqliteDB {
             });
         });
     }
+    async runAsync(sql) {
+        return new Promise((resolve, reject) => {
+            this.db.run(sql, function (err, row) {
+                if (err) {
+                    console.error(`Sqlite Run Failed ${sql}. ${err.message}`);
+                    reject(err);
+                } else {
+                    resolve(row);
+                }
+            });
+        });
+    }
     run(sql, params) {
         this.db.run(sql, params, err => {
             if (err) {
                 console.error(`Executing sql ${sql} on db ${this.file} failed ${err.message}`);
             }
         })
+        return this // allows chaining
     }
     close() {
         this.db.close((err) => {
