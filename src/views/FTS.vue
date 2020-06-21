@@ -45,6 +45,8 @@
       </tbody>
     </v-simple-table>
 
+    <v-skeleton-loader v-if="queryRunning" type="table"></v-skeleton-loader>
+
   </v-sheet>
 </template>
 
@@ -82,6 +84,7 @@ export default {
     results: [],
     resultsInput: '',
     errorMessage: '',
+    queryRunning: false,
     
     exactWord: 1,
     matchPhrase: 0, 
@@ -146,13 +149,14 @@ export default {
       const sql = `SELECT filename, eind, language, highlight(tipitaka, 5, '<sr>', '</sr>') AS htext FROM tipitaka 
           WHERE text MATCH '${this.ftsMatchClause}' ${this.filterClause ? (' AND ' + this.filterClause) : ''} 
           ORDER BY rank LIMIT ${this.$store.state.search.maxResults};`
-      const cachedRes = this.$store.getters['search/getFtsCache'](sql)
+      const cachedRes = this.$store.getters['search/getMd5Cache']('fts', sql)
       if (cachedRes) {
         this.results = cachedRes
         console.log(`received fts results with ${this.results.length} from fts cache`)
         return
       }
 
+      this.queryRunning = true
       try {
         const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''
         //const baseUrl = 'https://tipitaka.lk' // force prod server
@@ -168,11 +172,12 @@ export default {
           }
         })
         this.resultsInput = this.searchInput
-        this.$store.commit('search/setFtsCache', { sql, results: this.results })
+        this.$store.commit('search/setMd5Cache', { type: 'fts', sql, results: this.results })
       } catch (e) {
         console.error(e)
         this.errorMessage = e.message
       }
+      this.queryRunning = false
     },
     getHighlightWords(hText) {
       const words = {} // extract content within <sr> tags

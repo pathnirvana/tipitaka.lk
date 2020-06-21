@@ -8,3 +8,20 @@ export const allFilterKeys = ["vp-prj","vp-pct","vp-mv","dn-1","dn-2","dn-3","mn
 "ap-dhk","ap-pug","ap-yam","ap-pat"]
 
 export const allFilterLength = allFilterKeys.length
+
+export const Language = Object.freeze({
+    SI: 'si',
+    EN: 'en',
+})
+
+export const dictionaryInfo = {
+    'පොල්වත්තේ බුද්ධදත්ත': [Language.SI, 'BUS', 'si-buddhadatta', {d: 'පොල්වත්තේ බුද්ධදත්ත හිමි, පාලි-සිංහල අකාරාදිය', g: true}],
+    'මඩිතියවෙල සුමඞ්ගල': [Language.SI, 'MS', 'si-sumangala', {d: 'මඩිතියවෙල සිරි සුමඞ්ගල හිමි, පාලි-සිංහල ශබ්දකෝෂය', g: true}],
+
+    'Buddhadatta Concise': [Language.EN, 'BUE', 'en-buddhadatta', {d: 'Pali Dictionary by Polwatte Buddhadatta Mahathera', o: 'Projector', n: 20970, g: true}],
+    'Nyanatiloka Buddhist': [Language.EN, 'ND', 'en-nyanatiloka', {d: 'Buddhist Dictionary by Ven Nyanatiloka', o: 'pced stardict', g: true}],
+    'Pali Text Society': [Language.EN, 'PTS', 'en-pts', {d: 'Pali Text Society Dictionary', o: 'dpr', g: true}],
+    'Proper Names': [Language.EN, 'PN', 'en-dppn', {d: 'Pali Proper Names by G P Malalasekera', o: 'dpr', g: true}],
+    'VRI English': [Language.EN, 'VRI', 'en-vri', {d: 'Dictionary distributed with VRI Chatta Sangayana Software', g: true, n: 13508}],
+    'Critical PD': [Language.EN, 'CR', 'en-critical', {d: 'Critical Pali Dictionary - limited number of words', o: 'extracted from https://cpd.uni-koeln.de/', n: 29669, g: true}],
+}

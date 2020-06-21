@@ -25,6 +25,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "title" */ '../views/TSearch.vue'),
   },
   {
+    path: '/dict/:term?',
+    name: 'dict',
+    component: () => import(/* webpackChunkName: "dict" */ '../views/Dictionary.vue'),
+  },
+  {
     path: '/fts/:words?/:options?',
     name: 'fts',
     component: () => import(/* webpackChunkName: "FTS" */ '../views/FTS.vue'),

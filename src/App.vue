@@ -9,11 +9,11 @@
       <v-menu offset-y> <!-- search type selector -->
         <template v-slot:activator="{ on }">
           <v-btn v-if="isBigScreen" tile outlined v-on="on"  class="mr-2">
-            <v-icon color="primary">{{ searchTypeIcon }}</v-icon>
-            <span class="ml-1">{{ searchTypeDesc }}</span>
+            <v-icon color="primary">{{ searchTypeInfo[searchType][1] }}</v-icon>
+            <span class="ml-1">{{ searchTypeInfo[searchType][0] }}</span>
           </v-btn>
           <v-btn v-else icon tile v-on="on" class="mr-1">
-            <v-icon color="primary">{{ searchTypeIcon }}</v-icon>
+            <v-icon color="primary">{{ searchTypeInfo[searchType][1] }}</v-icon>
           </v-btn>
         </template>
         <v-list dense rounded>
@@ -27,7 +27,7 @@
             <v-list-item-title>සූත්‍ර අන්තර්ගතය සෙවීම</v-list-item-title>
             <v-list-item-icon><v-icon color="success">{{ searchType == 'fts' ? 'mdi-check' : ''}}</v-icon></v-list-item-icon>
           </v-list-item>
-          <v-list-item @click="searchType = 'fts'" disabled>
+          <v-list-item @click="searchType = 'dict'">
             <v-list-item-icon ><v-icon>mdi-book-open-page-variant</v-icon></v-list-item-icon>
             <v-list-item-title>පාලි ශබ්දකෝෂ සෙවීම</v-list-item-title>
             <v-list-item-icon><v-icon color="success">{{ searchType == 'dict' ? 'mdi-check' : ''}}</v-icon></v-list-item-icon>
@@ -121,6 +121,11 @@ export default {
   data() {
     return {
       showTree: null,
+      searchTypeInfo: {
+        'title': ['සූත්‍ර නම්', 'mdi-format-title'],
+        'fts': ['සූත්‍ර අන්තර්ගතය', 'mdi-text'], 
+        'dict': ['පාලි ශබ්දකෝෂ', 'mdi-book-open-page-variant'], 
+      }
     }
   },
   computed: {
@@ -140,9 +145,9 @@ export default {
       get() { return this.$store.getters['search/getSearchType'] },
       set(type) { this.$store.commit('search/setSearchType', type) }
     },
-    searchTypeIcon() { return this.searchType == 'fts' ? 'mdi-text' : 'mdi-format-title' },
+    //searchTypeIcon() { return this.searchType == 'fts' ? 'mdi-text' : 'mdi-format-title' },
     isBigScreen() { return this.$vuetify.breakpoint.smAndUp },
-    searchTypeDesc() { return this.searchType == 'fts' ? 'සූත්‍ර අන්තර්ගතය' : 'සූත්‍ර නම්' },
+    //searchTypeDesc() { return this.searchType == 'fts' ? 'සූත්‍ර අන්තර්ගතය' : 'සූත්‍ර නම්' },
     isSettingsView() { return this.$route.path == '/settings' }
   },
   methods: {
