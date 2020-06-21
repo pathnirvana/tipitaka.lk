@@ -15,13 +15,20 @@ fastify.register(require('fastify-cors'), {
     origin: true, 
 })
 const SqliteDB = require('./sql-query.js')
-const ftsDbFilename = path.join(__dirname, 'fts.db')
-const ftsDb = new SqliteDB(ftsDbFilename, true)
+const ftsDb = new SqliteDB(path.join(__dirname, 'fts.db'), false)
+const dictDb = new SqliteDB(path.join(__dirname, 'dict-all.db'), false)
 
-fastify.post('/tipitaka-query/fts', async (request, reply) => {
+fastify.post('/tipitaka-query/fts', async (request, reply) => { // hit fts db
     reply.type('application/json').code(200)
     console.log(request.body)
     const rows = await ftsDb.loadAll(request.body.sql)
+    return rows
+})
+
+fastify.post('/tipitaka-query/dict', async (request, reply) => { // hit dict db
+    reply.type('application/json').code(200)
+    console.log(request.body)
+    const rows = await dictDb.loadAll(request.body.sql)
     return rows
 })
 

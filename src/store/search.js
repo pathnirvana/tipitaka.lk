@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import router from '@/router'
-import { allFilterKeys } from '@/constants.js'
+import { allFilterKeys, dictionaryInfo } from '@/constants.js'
 import md5 from 'md5'
 
 const routeToSearchPage = (input, type) => {
   if (!input) return
-  if (['title', 'fts'].indexOf(router.currentRoute.name) < 0) {
+  if (['title', 'fts', 'dict'].indexOf(router.currentRoute.name) < 0) {
     router.push({ name: type })
   } else if (router.currentRoute.name != type) {
     router.replace({ name: type })
@@ -23,9 +23,10 @@ export default {
       'fts': { 'keys': [...allFilterKeys], 'columns': [0, 1] },
     },
     filterTreeOpenKeys: ['sp'],
+    selectedDictionaries: Object.keys(dictionaryInfo), // short names of all dictionaries
 
     titleSearchCache: {},
-    ftsSearchCache: {},
+    md5SearchCache: { 'fts': {}, 'dict': {} },
     maxResults: 100,  // search stopped after getting this many matches
   },
   getters: {
@@ -34,7 +35,7 @@ export default {
     getFilter: (state) => (type, param) => state.filter[type][param],
     getFilterTreeOpenKeys: (state) => state.filterTreeOpenKeys,
 
-    getFtsCache: (state) => (sql) => state.ftsSearchCache[md5(sql)],
+    getMd5Cache: (state) => (type, sql) => state.md5SearchCache[type][md5(sql)],
     getTitleCache: (state) => (query) => state.titleSearchCache[query]
   },
 
@@ -54,14 +55,17 @@ export default {
     },
     setFilterTreeOpenKeys(state, keys) { state.filterTreeOpenKeys = keys },
 
-    setFtsCache(state, {results, sql}) {
+    setMd5Cache(state, { type, results, sql }) {
       // if cache size gets too big - nuke it
-      if (Object.keys(state.ftsSearchCache).length > 300) state.ftsSearchCache = {}
-      state.ftsSearchCache[md5(sql)] = results
+      if (Object.keys(state.md5SearchCache[type]).length > 300) state.md5SearchCache[type] = {}
+      state.md5SearchCache[type][md5(sql)] = results // no need to Vue.set??
     },
-    setTitleCache(state, {results, query}) {
+    setTitleCache(state, { results, query }) {
       if (Object.keys(state.titleSearchCache).length > 300) state.titleSearchCache = {}
       state.titleSearchCache[query] = results
+    },
+    setSelectedDicts(state, newList) {
+      state.selectedDictionaries = newList
     },
   },
 
