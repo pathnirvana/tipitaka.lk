@@ -6,9 +6,9 @@ import md5 from 'md5'
 const routeToSearchPage = (input, type) => {
   if (!input) return
   if (['title', 'fts', 'dict'].indexOf(router.currentRoute.name) < 0) {
-    router.push({ name: type })
+    router.push(`/${type}/${input}`)
   } else if (router.currentRoute.name != type) {
-    router.replace({ name: type })
+    router.replace(`/${type}/${input}`)
   }
 }
 
