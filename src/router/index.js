@@ -25,7 +25,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "title" */ '../views/TSearch.vue'),
   },
   {
-    path: '/dict/:term?',
+    path: '/dict/:word?',
     name: 'dict',
     component: () => import(/* webpackChunkName: "dict" */ '../views/Dictionary.vue'),
   },
