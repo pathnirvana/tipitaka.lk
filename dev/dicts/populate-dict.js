@@ -30,6 +30,7 @@ inputFiles.forEach(dictName => {
     const shortName = dictionaryList.get(dictName)
     data.forEach(([word, meaning]) => {
         if (shortName == 'CR') meaning = removeBRTags(meaning)
+        word = word.replace(/\d$/, '') // some words have ending numbers
         allWords.push([word, shortName, meaning])
     })
     meaningsProcessed += data.length
@@ -40,7 +41,7 @@ const breakupsAr = JSON.parse(fs.readFileSync(path.join(__dirname, 'breakups.jso
 breakupsAr.forEach(([word, type, origin, breakups]) => {
     breakups.forEach(br => {
         if (!br[0]) console.log(breakups)
-        allWords.push([word, 'BR', br[0]])
+        allWords.push([word, 'BR', type + '|' +br[0]]) // add type to meaning so that it can be extracted
     })
 })
 meaningsProcessed += breakupsAr.length
@@ -57,9 +58,9 @@ writeToSqlite().then(() => console.log(`wrote to sqlite db ${dbFilebase}`))
 async function writeToSqlite() {
     const dictDb = new SqliteDB(dbFilePath, true).run('BEGIN');
     await dictDb.runAsync('DROP TABLE IF EXISTS dictionary;');
-    await dictDb.runAsync('DROP INDEX IF EXISTS word;');
+    await dictDb.runAsync('DROP INDEX IF EXISTS worddict;');
     await dictDb.runAsync('CREATE TABLE dictionary (word TEXT NOT NULL, dict TEXT NOT NULL, meaning TEXT NOT NULL);');
-    await dictDb.runAsync('CREATE INDEX word ON dictionary(word);');
+    await dictDb.runAsync('CREATE INDEX worddict ON dictionary(word, dict);');
     allWords.forEach(([word, dict, meaning]) => {
         dictDb.run('INSERT INTO dictionary (word, dict, meaning) VALUES (?, ?, ?)', [word, dict, meaning]);
     });

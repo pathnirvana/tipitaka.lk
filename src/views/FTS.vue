@@ -86,7 +86,7 @@ export default {
     errorMessage: '',
     queryRunning: false,
     
-    exactWord: 1,
+    exactWord: 0,
     matchPhrase: 0, 
     wordDistance: 10,
   }),
