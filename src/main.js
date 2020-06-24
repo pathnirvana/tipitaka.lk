@@ -4,10 +4,12 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import VueMeta from 'vue-meta'
+import ShareLinkIcon from '@/components/ShareLinkIcon'
 
 Vue.use(VueMeta)
 
 Vue.config.productionTip = false
+Vue.component('ShareLinkIcon', ShareLinkIcon) // register globally
 
 new Vue({
   router,
