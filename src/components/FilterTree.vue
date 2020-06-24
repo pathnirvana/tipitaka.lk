@@ -40,7 +40,7 @@ import { allFilterKeys, allFilterLength } from '@/constants.js'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'TipitakaLink',
+  name: 'FilterTree',
   props: {
     searchType: String,
   },

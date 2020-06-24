@@ -2,7 +2,7 @@
   <v-sheet>
     <v-banner v-if="!!inputError" color="error">{{ inputError }}</v-banner>
     
-    <v-select v-model="selectedDictionaries" :items="Object.keys(dictionaryInfo)" 
+    <!-- <v-select v-model="selectedDictionaries" :items="Object.keys(dictionaryInfo)" 
        chips label="ශබ්දකෝෂ තෝරන්න" multiple class="mt-4 mx-4 mb-n4" outlined>
       <template v-slot:selection="{ item, index }">
         <v-chip small close :color="dictionaryInfo[item][0] == 'en' ? 'success' : 'info'" 
@@ -10,12 +10,14 @@
           {{ dictionaryInfo[item][1] }}
         </v-chip>
       </template>
-    </v-select>
+    </v-select> -->
 
     <v-banner v-if="!inputError && !!searchMessage" shaped>
       {{ searchMessage }}
       <ShareLinkIcon :link="linkToPage" />
     </v-banner>
+
+    <DictionaryFilter />
 
     <v-skeleton-loader v-if="queryRunning" type="table"></v-skeleton-loader>
 
@@ -59,7 +61,7 @@
 import { dictionaryInfo, Language } from '@/constants.js'
 import { isSinglishQuery, getPossibleMatches } from '@/singlish.js'
 import { mapState, mapGetters, mapMutations } from 'vuex'
-//import ShareLinkIcon from '@/components/common.vue'
+import DictionaryFilter from '@/components/DictionaryFilter'
 import axios from 'axios'
 import _ from 'lodash'
 
@@ -75,7 +77,7 @@ const searchBarRules = [
 export default {
   name: 'Dictionary',
   metaInfo: { title: 'ශබ්දකෝෂ සෙවුම' },
-  components: { },
+  components: { DictionaryFilter },
 
   data: () => ({
     results: [],
