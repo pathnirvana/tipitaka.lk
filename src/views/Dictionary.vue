@@ -12,7 +12,10 @@
       </template>
     </v-select>
 
-    <v-banner v-if="!inputError && !!searchMessage">{{ searchMessage }}</v-banner>
+    <v-banner v-if="!inputError && !!searchMessage" shaped>
+      {{ searchMessage }}
+      <ShareLinkIcon :link="linkToPage" />
+    </v-banner>
 
     <v-skeleton-loader v-if="queryRunning" type="table"></v-skeleton-loader>
 
@@ -37,7 +40,7 @@
     </v-simple-table>
 
     <v-card v-if="prefixWords.length">
-      <v-card-subtitle>මෙම අකුරු වලින් ඇරඹෙන වෙනත් වචන</v-card-subtitle>
+      <v-card-subtitle>ශබ්දකෝෂ වල ඇති මෙම අකුරු වලින් ඇරඹෙන වෙනත් වචන</v-card-subtitle>
       <v-card-text>
         <v-chip v-for="({ word }, i) in prefixWords" :key="i" class="ma-1"
           @click="$router.push({ name: 'dict', params: { word } })">{{ word }}</v-chip>
@@ -56,6 +59,7 @@
 import { dictionaryInfo, Language } from '@/constants.js'
 import { isSinglishQuery, getPossibleMatches } from '@/singlish.js'
 import { mapState, mapGetters, mapMutations } from 'vuex'
+//import ShareLinkIcon from '@/components/common.vue'
 import axios from 'axios'
 import _ from 'lodash'
 
@@ -71,7 +75,7 @@ const searchBarRules = [
 export default {
   name: 'Dictionary',
   metaInfo: { title: 'ශබ්දකෝෂ සෙවුම' },
-  components: {  },
+  components: { },
 
   data: () => ({
     results: [],
@@ -139,6 +143,7 @@ export default {
       return this.results.filter(r => r.meaning == 'like' && matchedWords.indexOf(r.word) < 0)
         .sort((a, b) => a.dict > b.dict)
     },
+    linkToPage() { return '/dict/' + this.searchInput },
   },
 
   methods: {
@@ -173,8 +178,8 @@ export default {
     },
 
     updatePage() {
-      if (this.$route.params.word != this.searchInput) { // prevent duplicated navigation at the beginning
-        this.$router.push({ name: 'dict', params: { word: this.searchInput } })
+      if (this.$route.path != this.linkToPage) { // prevent duplicated navigation at the beginning
+        this.$router.push(this.linkToPage)
       }
       this.debouncedGetResults()
     },

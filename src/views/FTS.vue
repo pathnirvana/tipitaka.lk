@@ -21,7 +21,10 @@
           </v-col>
         </template>
         <v-col cols="12" sm="6" md="8">
-          <v-banner v-if="!!searchMessage">{{ searchMessage }}</v-banner>
+          <v-banner v-if="!!searchMessage">
+            {{ searchMessage }}
+            <ShareLinkIcon :link="linkToPage" />
+          </v-banner>
         </v-col>
         <v-col cols="12" sm="6" md="4">
           <FilterTree searchType="fts" />
@@ -139,6 +142,10 @@ export default {
       return clauses.join(' AND ')
     },
     filterFTS() { return this.$store.state.search.filter.fts  },
+    linkToPage() {
+      const options = [this.exactWord, this.matchPhrase, this.wordDistance].join('-')
+      return `/fts/${this.searchInput}/${options}`
+    }
   },
 
   methods: {
@@ -185,10 +192,9 @@ export default {
       return Object.keys(words) // de-dup
     },
     updatePage() {
-      const options = [this.exactWord, this.matchPhrase, this.wordDistance].join('-')
-      if (this.$route.params.words != this.searchInput || this.$route.params.options != options) {
-        // prevent duplicated navigation
-        this.$router.replace({ name: 'fts', params: { words: this.searchInput, options } })
+      //const options = [this.exactWord, this.matchPhrase, this.wordDistance].join('-')
+      if (this.$route.path != this.linkToPage) { // prevent duplicated navigation
+        this.$router.replace(this.linkToPage)
       }
       this.debouncedGetResults()
     },
