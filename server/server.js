@@ -8,6 +8,7 @@
  * pm2 save (save after changing any process parameters)
  */
 const path = require('path')
+const fs = require('fs')
 const fastify = require('fastify')({
     logger: true
 })
@@ -30,6 +31,17 @@ fastify.post('/tipitaka-query/dict', async (request, reply) => { // hit dict db
     console.log(request.body)
     const rows = await dictDb.loadAll(request.body.sql)
     return rows
+})
+
+fastify.register(require('fastify-static'), {
+    root: path.join(__dirname, '../dist'),
+    //prefix: '/public/', // optional: default '/'
+})
+
+// needed to serve index.html when url is not found (same as nginx try_files)
+fastify.setNotFoundHandler(async (request, reply) => { 
+    const bufferIndexHtml = fs.readFileSync(path.join(__dirname, '../dist/index.html'))
+    reply.type('text/html').code(200).send(bufferIndexHtml)
 })
 
 // in dev environment 0.0.0.0 listens to requests from all LAN devices

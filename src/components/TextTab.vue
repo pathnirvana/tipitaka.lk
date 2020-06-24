@@ -147,10 +147,11 @@ export default {
       }
       return {...entry, text: this.textParts(text) }
     },
-    processFootnote(entry, language) {
-      const m = /^([^\s\.\{\}]+)[\.\s]([\s\S]+)$/.exec(entry.text)
-      if (!m) return {...entry, text: this.textParts(entry.text, language) }
-      return {...entry, number: m[1], text: this.textParts(m[2], language) }
+    processFootnote(fnote, language) {
+      let _0, number, text = beautifyText(fnote.text, language, this.$store.state)
+      const m = /^([^\s\.\{\}]+)[\.\s]([\s\S]+)$/.exec(text) // [\s\S]+ needed for matching new lines
+      if (m) [_0, number, text] = m
+      return {...fnote, number, text: this.textParts(text, language) }
     },
     textParts(text) {
       text = text.replace(/\{(.+?)\}/g, this.$store.state.footnoteMethod == 'hidden' ? '' : '|$1℗fn-pointer|');
