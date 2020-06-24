@@ -1,7 +1,7 @@
 <template>
   <v-sheet>
     <v-banner v-if="!!inputError" color="error">{{ inputError }}</v-banner>
-    <v-banner v-else-if="!!searchMessage">{{ searchMessage }}</v-banner>
+    <v-banner v-else-if="!!searchMessage">{{ searchMessage }}<ShareLinkIcon :link="linkToPage" /></v-banner>
     <FilterTree searchType="title" />
 
     <v-simple-table v-if="$store.getters.isLoaded">
@@ -75,6 +75,7 @@ export default {
       }
       return ''
     },
+    linkToPage() { return '/title/' + this.searchInput },
   },
 
   methods: {
@@ -116,9 +117,8 @@ export default {
     },
 
     updatePage() {
-      if (this.$route.params.term != this.searchInput) {
-        // prevent duplicated navigation at the beginning
-        this.$router.replace({ name: 'title', params: { term: this.searchInput } })
+      if (this.$route.path != this.linkToPage) { // prevent duplicated navigation at the beginning
+        this.$router.replace(this.linkToPage)
       }
       this.debouncedGetResults()
     },
@@ -139,13 +139,13 @@ export default {
     },
   },
 
-  mounted() {
+  mounted() { // coming from a different view
     if (this.searchInput != this.resultsInput) {
       this.updatePage() // update route too
     }
   },
 
-  created() {
+  created() { // initial load from a url
     this.debouncedGetResults = _.debounce(this.getSearchResults, 200)
     const { term } = this.$route.params
     this.$store.commit('search/setSearchType', 'title')

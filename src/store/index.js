@@ -17,6 +17,10 @@ function saveSettings(state) {
   localStorage.setItem(settingsKey, JSON.stringify(obj))
 }
 
+const snackbarTypeToMsg = {
+  'link-copied': 'ලින්ක් එකක් copy කර ගත්තා. අදාළ තැන paste කරන්න.',
+}
+
 export default new Vuex.Store({
   modules: {
     tree,
@@ -61,7 +65,8 @@ export default new Vuex.Store({
       }
       state.isLoaded = true
     },
-    setSnackbar(state, {timeout, message}) {
+    setSnackbar(state, { timeout, message, type }) {
+      if (!message && type) message = snackbarTypeToMsg[type]
       if (message) {
         state.snackbar = { model: true, timeout: timeout || 2000, message }
       }

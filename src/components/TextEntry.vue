@@ -15,10 +15,7 @@
         <span v-else :class="se[1] || false" :key="i">{{ se[0] }}</span>
 
       </template>
-      <v-btn v-if="entry.type == 'heading'" icon x-small color="info"
-        v-clipboard:copy="linkToEntry" v-clipboard:success="onCopyLink">
-        <v-icon small>mdi-share-variant</v-icon>
-      </v-btn>
+      <ShareLinkIcon v-if="entry.type == 'heading'" :link="linkToEntry" />
     </div>
 
     <v-menu v-if="showOptions" offset-y>
@@ -28,7 +25,7 @@
         </v-btn>
       </template>
       <v-list dense>
-        <v-list-item v-clipboard:copy="linkToEntry" v-clipboard:success="onCopyLink">
+        <v-list-item v-clipboard:copy="'https://tipitaka.lk' + linkToEntry" v-clipboard:success="onCopyLink">
           <v-list-item-icon><v-icon dense>mdi-share-variant</v-icon></v-list-item-icon>
           <v-list-item-title>link එකක් ලබාගන්න</v-list-item-title>
         </v-list-item>
@@ -111,9 +108,9 @@ export default {
     },
     linkToEntry() {
       if (this.entry.type == 'heading') {
-        return `https://tipitaka.lk/${this.entry.key}/${this.entry.language}`
+        return `/${this.entry.key}/${this.entry.language}`
       }
-      return `https://tipitaka.lk/${this.entry.key}/${this.entry.eInd.join('-')}/${this.entry.language}`
+      return `/${this.entry.key}/${this.entry.eInd.join('-')}/${this.entry.language}`
     },
   },
 
@@ -123,8 +120,7 @@ export default {
       return ff ? ff.text : []
     },
     onCopyLink() {
-      const message = 'ලින්ක් එකක් copy කර ගත්තා. අදාළ තැන paste කරන්න.'
-      this.$store.commit('setSnackbar', {message, timeout: 1000})
+      this.$store.commit('setSnackbar', { type: 'link-copied' })
     },
     toggleOptions() {
       if (optionsAllowedTypes.indexOf(this.entry.type) < 0 || !this.entry.key) return
