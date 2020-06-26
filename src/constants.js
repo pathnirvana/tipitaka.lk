@@ -1,5 +1,5 @@
 /** special flags and constants */
-const settingsVersion = '1'
+const settingsVersion = '2'
 export const settingsKey = `tipitaka.lk-settings-${settingsVersion}`
 
 export const allFilterKeys = ["vp-prj","vp-pct","vp-mv","dn-1","dn-2","dn-3","mn-1","mn-2","mn-3","sn-1","sn-2","sn-3","sn-4","sn-5",

@@ -72,10 +72,7 @@
           <v-card-title>පාළි සිංහල තීරු තෝරන්න</v-card-title> 
           <v-card-text>අලුතෙන් සූත්‍රයක් ඇරීමේදී පෙන්වන්නේ පාළි, සිංහල හෝ ඒ තීරු දෙකමද යන්න.</v-card-text>
           <v-card-actions>
-            <v-btn-toggle v-model="defaultColumns" dense multiple mandatory shaped color="primary">
-              <v-btn :value="0" text>පාළි</v-btn>
-              <v-btn :value="1" text>සිංහල</v-btn>
-            </v-btn-toggle>
+            <TabColumnSelector :iconType="false" varName="defaultColumns" />
             <span class="ml-3">{{ columnSelectionText }}</span>
           </v-card-actions>
         </v-card>
@@ -86,12 +83,15 @@
 </template>
 
 <script>
+import TabColumnSelector from '@/components/TabColumnSelector'
 import { mapState } from 'vuex'
 
 export default {
   name: 'Settings',
   metaInfo: {  title: 'සැකසුම්' },
-  components: { },
+  components: { 
+    TabColumnSelector,
+  },
 
   data: () => ({
   }),
@@ -100,10 +100,6 @@ export default {
     darkMode: {
       get() { return this.$store.state.darkMode },
       set(value) { this.$store.commit('set', { name: 'darkMode', value }) },
-    },
-    defaultColumns: {
-      get() { return this.$store.state.defaultColumns },
-      set(value) { this.$store.commit('set', { name: 'defaultColumns', value }) },
     },
     treeLanguage: {
       get() { return this.$store.state.treeLanguage },
@@ -130,8 +126,11 @@ export default {
       set(value) { this.$store.commit('set', { name: 'fontSize', value }) },
     },
     columnSelectionText() {
-      if (this.defaultColumns.length == 2) return 'පාළි සිංහල දෙකම'
-      return (this.defaultColumns[0] == 0 ? 'පාළි' : 'සිංහල') + ' පමණයි'
+      switch(this.$store.state.defaultColumns) {
+        case 2: return 'පාළි සිංහල දෙකම.'
+        case 1: return 'පාළි පමණයි.'
+        default: return 'සිංහල පමණයි.'
+      }
     },
   },
   watch: {

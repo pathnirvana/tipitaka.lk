@@ -45,11 +45,12 @@ export default {
     getActiveKey: (state) => state.activeInd >= 0 ? state.tabList[state.activeInd].key : '',
     getTabColumns: (state, getters, rState) => {
       const cols = state.activeInd < 0 ? rState.defaultColumns : getters['getActiveTab'].columns // error check
-      if (cols.length == 1 || Vuetify.framework.breakpoint.smAndUp) return cols // if big screen
-      if (rState.defaultColumns.length == 1) return rState.defaultColumns
-      return rState.treeLanguage == 'pali' ? [0] : [1] // use the tree language to determine default column (last resort)
+      if (cols != 2 || Vuetify.framework.breakpoint.smAndUp) return cols // if big screen
+      if (rState.defaultColumns != 2) return rState.defaultColumns
+      return rState.treeLanguage == 'pali' ? 0 : 1 // use the tree language to determine default column (last resort)
     },
-    getTabInfo: (state) => (ind, prop) => state.tabList[ind][prop],
+    getShowScanPage: (state) => state.tabList[state.activeInd].showScanPage,
+    getActiveTabInfo: (state) => (ind, prop) => state.tabList[ind][prop],
     getVisiblePages: (state) => (ind) => {
       const tab = state.tabList[ind]
       if (!tab.isLoaded) return []
@@ -102,6 +103,9 @@ export default {
       const tab = state.tabList[tabIndex]
       Vue.set(tab, 'pageEnd', Math.min(tab.pageEnd + by, tab.data.pages.length))
     },
+    setShowScanPage(state, val) {
+      Vue.set(state.tabList[state.activeInd], 'showScanPage', val)
+    },
   },
   actions: {
     normalizeParams({ rootGetters }, params) {
@@ -121,7 +125,9 @@ export default {
       params.isLoaded = false
     },
     
-    openAndSetActive({state, commit, dispatch}, params) {
+    openAndSetActive({state, commit, dispatch, rootState}, params) {
+      params.showScanPage = false // set initial values
+      params.columns = !params.language ? rootState.defaultColumns : Number(params.language == 'sinh')
       dispatch('normalizeParams', params)
       commit('openTab', params) // add params to state
       commit('setActiveInd', state.tabList.length - 1)
