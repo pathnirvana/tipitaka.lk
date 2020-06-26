@@ -56,8 +56,7 @@ export default {
   },
   methods: {
     openSutta() {
-      const columns = this.params.language == 'pali' ? [0] : [1]
-      const params = { key: this.itemKey, ...this.params, columns }
+      const params = { key: this.itemKey, ...this.params }
       this.$store.dispatch('tabs/openAndSetActive', params)
     },
     getLinkText(item) {

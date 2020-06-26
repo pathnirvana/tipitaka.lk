@@ -30,7 +30,7 @@ export default new Vuex.Store({
 
   state: {
     darkMode: false,
-    defaultColumns: [0, 1],
+    defaultColumns: 2,
     treeLanguage: 'pali',
     footnoteMethod: Vuetify.framework.breakpoint.smAndDown ? 'click' : 'hover',
     bandiLetters: true,

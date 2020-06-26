@@ -18,7 +18,9 @@ function getTitle(url) {
         const keyRoot = m[1].split('-')[0]
         const rootName = (keyRoot != m[1]) ? ' < ' + titleIndex[keyRoot][lang] : ''
         return item[lang] + rootName
-    } else if (m[1] == 'fts') {
+    }
+    m[2] = decodeURI(m[2])
+    if (m[1] == 'fts') {
         return m[2] ? `“${m[2]}” යන අන්තර්ගත සෙවුම සඳහා ලැබුණු ප්‍රතිඵල` : 'සූත්‍ර අන්තර්ගතය සෙවීම' 
     } else if (m[1] == 'dict') {
         return m[2] ? `“${m[2]}” යන ශබ්දකෝෂ සෙවුම සඳහා ලැබුණු ප්‍රතිඵල` : 'පාළි ශබ්දකෝෂ සෙවීම'
@@ -39,6 +41,7 @@ function runTests() {
     printTitle('/mn-3-3-3/pali')
     printTitle('/fts/ජන/0-0-10')
     printTitle('/fts/ජන්තාඝරපීඨං/')
+    printTitle('/fts/%E0%B6%B8%E0%B7%8F%E0%B6%BB%E0%B6%BA%E0%B7%8F/')
     printTitle('/dict/ජන්තාඝරපීඨං')
     printTitle('/dict/')
     printTitle('/title/janaka')

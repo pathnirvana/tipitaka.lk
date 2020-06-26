@@ -15,22 +15,31 @@
       </v-btn>
 
       <v-simple-table v-for="({rows, footnotes, pageNum }, pi) in visiblePages" :key="pi" dense style="table-layout: fixed">
-        <tr v-if="$store.state.showPageNumbers">
-          <td v-if="columns.pali" class="page-number">
-            <v-btn text small color="info" @click.stop="displayScanned(pageNum)">{{ pageNum }}</v-btn>
-          </td>
-          <td v-if="columns.sinh && !paliOnly" class="page-number">
-            <v-btn text small color="info" @click.stop="displayScanned(pageNum + 1)">{{ pageNum + 1 }}</v-btn>
-          </td>
-        </tr>
-        <tr v-for="(row, ei) in rows" :key="ei">
-          <TextEntry v-if="columns.pali" :entry="row.pali" :footnotes="footnotes.pali"></TextEntry>
-          <TextEntry v-if="columns.sinh && !paliOnly" :entry="row.sinh" :footnotes="footnotes.sinh"></TextEntry>
-        </tr>
-        <tr>
-          <Footnotes v-if="columns.pali" language="pali" :footnotes="footnotes.pali"></Footnotes>
-          <Footnotes v-if="columns.sinh && !paliOnly" language="sinh" :footnotes="footnotes.sinh"></Footnotes>
-        </tr>
+        <template v-if="!tab.showScanPage">
+          <tr v-if="$store.state.showPageNumbers">
+            <td v-if="columns.pali" class="page-number">
+              <v-btn text small color="info" @click.stop="displayScanned(pageNum)">{{ pageNum }}</v-btn>
+            </td>
+            <td v-if="columns.sinh && !paliOnly" class="page-number">
+              <v-btn text small color="info" @click.stop="displayScanned(pageNum + 1)">{{ pageNum + 1 }}</v-btn>
+            </td>
+          </tr>
+          <tr v-for="(row, ei) in rows" :key="ei">
+            <TextEntry v-if="columns.pali" :entry="row.pali" :footnotes="footnotes.pali"></TextEntry>
+            <TextEntry v-if="columns.sinh && !paliOnly" :entry="row.sinh" :footnotes="footnotes.sinh"></TextEntry>
+          </tr>
+          <tr>
+            <Footnotes v-if="columns.pali" language="pali" :footnotes="footnotes.pali"></Footnotes>
+            <Footnotes v-if="columns.sinh && !paliOnly" language="sinh" :footnotes="footnotes.sinh"></Footnotes>
+          </tr>
+        </template>
+
+        <template v-else>
+          <tr>
+            <td v-if="columns.pali" class="img-holder"><img :src="getScanImgSrc(pageNum, 'pali')" /></td>
+            <td v-if="columns.sinh" class="img-holder"><img :src="getScanImgSrc(pageNum, 'sinh')" /></td>
+          </tr>
+        </template>
       </v-simple-table>
 
       <v-card v-if="tab.pageEnd < tab.data.pages.length" class="text-center" @click="loadNextPage({ tabIndex, by: 1 })"
@@ -39,13 +48,6 @@
       </v-card>
     </div>
 
-    <v-dialog v-if="tab.isLoaded" v-model="showScanPage" max-width="500">
-      <v-card outlined >
-        <v-img :src="bjtImgSrc"></v-img>
-        <v-btn icon small top right absolute @click="showScanPage = false" color="accent"><v-icon>mdi-close</v-icon></v-btn>
-      </v-card>
-    </v-dialog>
-
   </v-sheet>
 <!-- </v-scale-transition> -->
 </template>
@@ -53,6 +55,8 @@
 <style scoped>
 .snack { opacity: 0.85; font-size: 1.1rem; max-width: 100px; }
 .page-number { text-align: center; color: var(--v-info-base); }
+.img-holder { text-align: center; }
+.img-holder img { width: 100%; max-width: 750px;}
 </style>
 
 <script>
@@ -80,7 +84,7 @@ export default {
 
   data() {
     return {
-      showScanPage: false, clickedPageNum: 0,
+      clickedPageNum: 0,
       scrollTop: null,
     }
   },
@@ -91,7 +95,7 @@ export default {
     ...mapGetters('tabs', ['getVisiblePages']),
     columns() {
       const columns = this.$store.getters['tabs/getTabColumns']
-      return { pali: columns.indexOf(0) >= 0, sinh: columns.indexOf(1) >= 0 }
+      return { pali: [0, 2].indexOf(columns) >= 0, sinh: [1, 2].indexOf(columns) >= 0 }
     },
     tab() { return this.tabList[this.tabIndex] },
     //errorMessage() { return this.tab.errorMessage },
@@ -111,24 +115,19 @@ export default {
       })
     },
     paliOnly() { return this.filename.startsWith('ap-pat') },
-    bjtImgSrc() {
-      const pageNum = parseInt(this.clickedPageNum) + parseInt(this.tab.data.pageOffset)
-      // getBJTImageSrc is imported from https://pitaka.lk/bjt/scripts/books.js
-      return 'https://pitaka.lk/bjt/' + getBJTImageSrc(this.tab.data.bookId, pageNum)
-    },
   },
 
   methods: {
-    ...mapMutations('tabs', ['loadNextPage', 'loadPrevPage']),
+    ...mapMutations('tabs', ['loadNextPage', 'loadPrevPage', 'setShowScanPage']),
     displayScanned(num) {
       this.clickedPageNum = num
-      this.showScanPage = true
+      this.setShowScanPage(true)
     },
     touchSwipe(direction) {
       console.log('swipe ' + direction)
-      if (this.columns.sinh == this.columns.pali) return // both columns visible
+      if (this.columns.sinh == this.columns.pali) return // both columns visible (dont check tabs/getTabColumns directly)
 
-      const swappedCols = this.columns.pali ? [1] : [0]
+      const swappedCols = this.columns.pali ? 1 : 0
       const message = this.columns.pali ? 'සිංහල' : 'පාළි'
       this.$store.commit('tabs/setTabColumns', swappedCols)
       this.$store.commit('setSnackbar', { message, timeout: 1000 })
@@ -164,6 +163,11 @@ export default {
       if (!text) text = '' //|Empty - තීරුව හිස් !℗strike|' // if left empty it is not clickable
       return text.split('|').filter(t => t.length).map(t => t.split('℗'))
     },
+    getScanImgSrc(pageNum, lang) {
+      pageNum += this.tab.data.pageOffset + (lang == 'sinh' ? 1 : 0)
+      // getBJTImageSrc is imported from https://pitaka.lk/bjt/scripts/books.js
+      return 'https://pitaka.lk/bjt/' + getBJTImageSrc(this.tab.data.bookId, pageNum)
+    }
   },
 
   created() {

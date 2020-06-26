@@ -64,7 +64,6 @@ export default {
   },
   computed: {
     ...mapState('tree', ['treeView', 'openBranches']),
-    ...mapState(['defaultColumns']),
     ...mapState('tabs', ['activeInd']),
     ...mapGetters('tabs', ['getActiveKey']),
     openedBranches: {
@@ -75,7 +74,7 @@ export default {
 
   methods: {
     openNewTab(key) {
-      this.$store.dispatch('tabs/openAndSetActive', { key, columns: [...this.defaultColumns] })
+      this.$store.dispatch('tabs/openAndSetActive', { key })
     },
     syncBranches() {
       this.$store.commit('tree/syncOpenBranches', this.getActiveKey)
@@ -84,11 +83,10 @@ export default {
         container.scrollTop = document.getElementById('activelabel').offsetParent.offsetTop
       })
     },
-    parseParams(params) { // parse route params
-      const columns = !params.language ? [...this.defaultColumns] : (params.language == 'pali' ? [0] : [1])
+    parseParams(params) { // parse route params - columns will be added later
       const parseEInd = (str) => (str && str.split('-').length == 2) ? str.split('-').map(i => parseInt(i) || 0) : null
       const eInd = parseEInd(params.eIndStr)
-      return {...params, eInd, columns }
+      return {...params, eInd }
     }
 
   },
