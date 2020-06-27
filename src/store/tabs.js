@@ -125,13 +125,14 @@ export default {
       params.isLoaded = false
     },
     
-    openAndSetActive({state, commit, dispatch, rootState}, params) {
+    openAndSetActive({ state, commit, dispatch, rootState }, params) {
       params.showScanPage = false // set initial values
       params.columns = !params.language ? rootState.defaultColumns : Number(params.language == 'sinh')
       dispatch('normalizeParams', params)
       commit('openTab', params) // add params to state
       commit('setActiveInd', state.tabList.length - 1)
       dispatch('loadTextData', state.tabList.length - 1)
+      dispatch('tree/syncOpenBranches', false, { root: true })
     },
 
     replaceAndSetActive({state, commit, dispatch}, params) {
@@ -140,7 +141,7 @@ export default {
       dispatch('loadTextData', state.activeInd)
     },
 
-    async loadTextData({ state, commit, rootState, getters }, tabIndex) {
+    async loadTextData({ state, commit, rootState }, tabIndex) {
       const tabInfo = state.tabList[tabIndex]
       const newFilename = tabInfo.keyProp.filename
       if (!tabInfo.data || newFilename != tabInfo.data.filename) { // loaded file is not what is needed

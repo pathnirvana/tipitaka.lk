@@ -9,8 +9,8 @@ import { settingsKey } from '@/constants.js'
 
 Vue.use(Vuex)
 
-const storedSettings = ['darkMode', 'defaultColumns', 'treeLanguage', 
-  'footnoteMethod', 'bandiLetters', 'specialLetters', 'showPageNumbers', 'fontSize']
+const storedSettings = ['darkMode', 'defaultColumns', 'treeLanguage', 'footnoteMethod', 
+  'bandiLetters', 'specialLetters', 'showPageNumbers', 'fontSize', 'syncTree']
 function saveSettings(state) {
   const obj = {}
   storedSettings.forEach(s => obj[s] = state[s])
@@ -37,6 +37,7 @@ export default new Vuex.Store({
     specialLetters: false,
     showPageNumbers: true,
     fontSize: 0,
+    syncTree: true,
     isLoaded: false,
     snackbar: {model: false, timeout: 2000, message: ''},
   },

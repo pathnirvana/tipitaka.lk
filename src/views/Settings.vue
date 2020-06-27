@@ -50,6 +50,7 @@
             <v-switch v-model="bandiLetters" class="mx-2" label="පාළි බැඳි අකුරු භාවිතා කරන්න"></v-switch>
             <v-switch v-model="specialLetters" class="mx-2" label="විශේෂ පාළි අකුරු භාවිතා කරන්න"></v-switch>
             <v-switch v-model="showPageNumbers" class="mx-2" label="පොතේ පිටු අංක පෙන්වන්න"></v-switch>
+            <v-switch v-model="syncTree" class="mx-2" label="කියවන සූත්‍රය හා නාමාවලිය සමමුහු (Sync) කරන්න"></v-switch>
           </v-card-text>
         </v-card>
       </v-col>
@@ -86,6 +87,15 @@
 import TabColumnSelector from '@/components/TabColumnSelector'
 import { mapState } from 'vuex'
 
+function getVuexBindings(props) {
+  const bindings = {}
+  props.forEach(prop => bindings[prop] = {
+    get() { return this.$store.state[prop] },
+    set(value) { this.$store.commit('set', { name: prop, value }) },
+  })
+  return bindings
+}
+
 export default {
   name: 'Settings',
   metaInfo: {  title: 'සැකසුම්' },
@@ -97,34 +107,10 @@ export default {
   }),
   computed: {
     ...mapState(['bandiLetters', 'specialLetters']),
-    darkMode: {
-      get() { return this.$store.state.darkMode },
-      set(value) { this.$store.commit('set', { name: 'darkMode', value }) },
-    },
-    treeLanguage: {
-      get() { return this.$store.state.treeLanguage },
-      set(value) { this.$store.commit('set', { name: 'treeLanguage', value }) },
-    },
-    footnoteMethod: {
-      get() { return this.$store.state.footnoteMethod },
-      set(value) { this.$store.commit('set', { name: 'footnoteMethod', value }) },
-    },
-    bandiLetters: {
-      get() { return this.$store.state.bandiLetters },
-      set(value) { this.$store.commit('set', { name: 'bandiLetters', value }) },
-    },
-    specialLetters: {
-      get() { return this.$store.state.specialLetters },
-      set(value) { this.$store.commit('set', { name: 'specialLetters', value }) },
-    },
-    showPageNumbers: {
-      get() { return this.$store.state.showPageNumbers },
-      set(value) { this.$store.commit('set', { name: 'showPageNumbers', value }) },
-    },
-    fontSize: {
-      get() { return this.$store.state.fontSize },
-      set(value) { this.$store.commit('set', { name: 'fontSize', value }) },
-    },
+
+    ...getVuexBindings(['darkMode', 'treeLanguage', 'footnoteMethod', 
+      'bandiLetters', 'specialLetters', 'showPageNumbers', 'fontSize', 'syncTree']),
+    
     columnSelectionText() {
       switch(this.$store.state.defaultColumns) {
         case 2: return 'පාළි සිංහල දෙකම.'
@@ -133,6 +119,7 @@ export default {
       }
     },
   },
+
   watch: {
     bandiLetters() { this.$store.commit('tree/recomputeTree', this.$store.state) },
     specialLetters() { this.$store.commit('tree/recomputeTree', this.$store.state) }

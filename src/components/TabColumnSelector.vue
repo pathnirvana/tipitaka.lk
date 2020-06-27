@@ -1,5 +1,5 @@
 <template>
-  <v-btn-toggle v-model="modelValue" dense mandatory shaped color="primary">
+  <v-btn-toggle v-model="modelValue" dense mandatory rounded color="primary">
     <v-btn :value="0" :icon="iconType">පාළි</v-btn>
     <v-btn :value="2" :icon="iconType" v-if="smAndUp"><v-icon>mdi-view-column</v-icon></v-btn>
     <v-btn :value="1" :icon="iconType">සිංහල</v-btn>
