@@ -1,6 +1,6 @@
 <template>
 <!-- <v-scale-transition hide-on-leave> -->
-  <v-sheet class="my-4">
+  <v-sheet class="my-2">
     <!--<div v-scroll:window="handleScroll">{{ scrollTop }}</div>-->
     <v-card v-if="tab.errorMessage" color="error">
       <v-card-title>සූත්‍රය ලබාගැනීමේදී වරදක් සිදුවිය</v-card-title>
@@ -53,10 +53,11 @@
 </template>
 
 <style scoped>
-.snack { opacity: 0.85; font-size: 1.1rem; max-width: 100px; }
+/* .snack { opacity: 0.85; font-size: 1.1rem; max-width: 100px; } */
 .page-number { text-align: center; color: var(--v-info-base); }
 .img-holder { text-align: center; }
 .img-holder img { width: 100%; max-width: 750px;}
+.load-prev-page { top: 60px; }
 </style>
 
 <script>

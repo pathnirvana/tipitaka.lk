@@ -77,11 +77,7 @@ export default {
       this.$store.dispatch('tabs/openAndSetActive', { key })
     },
     syncBranches() {
-      this.$store.commit('tree/syncOpenBranches', this.getActiveKey)
-      this.$nextTick(function() {
-        const container = document.getElementsByClassName('v-navigation-drawer__content')[0]
-        container.scrollTop = document.getElementById('activelabel').offsetParent.offsetTop
-      })
+      this.$store.dispatch('tree/syncOpenBranches', true) // force sync
     },
     parseParams(params) { // parse route params - columns will be added later
       const parseEInd = (str) => (str && str.split('-').length == 2) ? str.split('-').map(i => parseInt(i) || 0) : null

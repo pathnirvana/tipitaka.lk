@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { beautifyText } from '@/text-convert.mjs'
+import Vue from 'vue'
 
 // since the json tree is an object the sort order is not maintained
 // need to sort the children in the correct order for the treeview
@@ -89,20 +90,27 @@ export default {
     closeAllBranches(state) {
       state.openBranches = []
     },
-    syncOpenBranches(state, key) { // open branches to key - show key in treeview
-      let p = key, parents = []
-      while((p = state.index[p].parent) != 'root') {
-        parents.push(p)
-      }
-      state.openBranches = parents
-    },
   },
+
   actions: {
     async initialize({commit, rootState}) {
       const response = await axios.get('/static/data/tree.json')
       const index = response.data
       commit('setIndex', index)
       commit('recomputeTree', rootState)
-    }
+    },
+
+    syncOpenBranches({ state, commit, rootState, rootGetters }, force) { // open branches to key - show key in treeview
+      if (!force && !rootState.syncTree) return
+      let p = rootGetters['tabs/getActiveKey'], parents = []
+      while((p = state.index[p].parent) != 'root') {
+        parents.push(p)
+      }
+      commit('setOpenBranches', parents)
+      Vue.nextTick(function() {
+        const container = document.getElementsByClassName('v-navigation-drawer__content')[0]
+        container.scrollTop = document.getElementById('activelabel').offsetParent.offsetTop - 100
+      })
+    },
   }
 }

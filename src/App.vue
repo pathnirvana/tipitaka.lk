@@ -1,7 +1,7 @@
 <template>
   <v-app>
     
-    <v-app-bar app dense clipped-left :hide-on-scroll="$vuetify.breakpoint.smAndDown">
+    <v-app-bar app dense clipped-left :hide-on-scroll="appBarHide" :extension-height="tabsHeight">
       <v-app-bar-nav-icon @click="showTree = !showTree" :color="showTree ? 'primary' : ''"></v-app-bar-nav-icon>
 
       <v-spacer></v-spacer>
@@ -63,7 +63,7 @@
           </v-btn>
           <TabColumnSelector :iconType="true" varName="tabColumns" />
           <v-divider vertical></v-divider>
-          <v-btn-toggle v-model="showScanPage" dense mandatory shaped color="primary">
+          <v-btn-toggle v-model="showScanPage" dense mandatory rounded color="primary">
             <v-btn :value="false" icon><v-icon>mdi-text-box</v-icon></v-btn>
             <v-btn :value="true" icon><v-icon>mdi-scanner</v-icon></v-btn>
           </v-btn-toggle>
@@ -84,12 +84,12 @@
             </v-list-item>
             <v-divider inset></v-divider>
             <v-list-item @click="$store.dispatch('tabs/navigateTabTo', -1)">
-              <v-list-item-icon ><v-icon>mdi-skip-previous</v-icon></v-list-item-icon>
+              <v-list-item-icon><v-icon>mdi-skip-previous</v-icon></v-list-item-icon>
               <v-list-item-title>කලින් සූත්‍රයට</v-list-item-title>
               <v-list-item-icon><v-icon color="success">{{ searchType == 'dict' ? 'mdi-check' : ''}}</v-icon></v-list-item-icon>
             </v-list-item>
             <v-list-item @click="$store.dispatch('tabs/navigateTabTo', 1)">
-              <v-list-item-icon ><v-icon>mdi-skip-next</v-icon></v-list-item-icon>
+              <v-list-item-icon><v-icon>mdi-skip-next</v-icon></v-list-item-icon>
               <v-list-item-title>ඊළඟ සුත්‍රයට</v-list-item-title>
             </v-list-item>
             <v-divider inset></v-divider>
@@ -101,16 +101,27 @@
         </v-menu>
     
       </template>
-      <template v-else-if="$store.state.tabs.activeInd >= 0"> <!-- not textTab but has tabs opened -->
+      <template v-else-if="activeTabInd >= 0"> <!-- not textTab but has tabs opened -->
         <v-spacer></v-spacer>
         <v-btn icon @click="$router.push({name: 'Home'})" color="success">
           <v-icon>mdi-text-box</v-icon>
         </v-btn>
       </template>
 
+      <template v-slot:extension v-if="isTextTab">
+        <v-tabs center-active centered show-arrows="mobile" v-model="activeTabInd" :height="tabsHeight">
+          <v-tab v-for="(tab, ind) in tabList" :key="ind">
+              {{ getName(tab.key) }}
+              <v-btn icon x-small fab color="error" class="ml-1 mr-n2" @click.stop="$store.commit('tabs/closeTab', ind)">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+          </v-tab>
+        </v-tabs>
+      </template>
+
     </v-app-bar>
 
-    <v-navigation-drawer app clipped v-model="showTree" mobile-breakpoint="1000" 
+    <v-navigation-drawer app clipped v-model="showTree" mobile-breakpoint="1000"
       :width="Math.min(350, $vuetify.breakpoint.width)" >
       <v-sheet class="d-inline-flex">
         <TipitakaTree @closeTree="showTree = false"/>
@@ -118,13 +129,26 @@
     </v-navigation-drawer>
     
     <v-main>
-      <router-view></router-view>
+      <!-- <v-container fluid> adds too much padding -->
+        <router-view></router-view>
+      <!-- </v-container> -->
     </v-main>
 
-    <v-snackbar v-model="$store.state.snackbar.model" bottom
+    <v-snackbar app v-model="$store.state.snackbar.model" top rounded="pill" color="info"
       :timeout="$store.state.snackbar.timeout" >
       <div style="text-align: center;"><span>{{ $store.state.snackbar.message }}</span></div>
     </v-snackbar>
+
+    <!-- <v-bottom-navigation app
+      hide-on-scroll
+      fixed
+      horizontal
+    >
+      <v-btn text color="deep-purple accent-4">
+        <span>Recents</span>
+        <v-icon>mdi-history</v-icon>
+      </v-btn>
+    </v-bottom-navigation> -->
 
   </v-app>
 </template>
@@ -138,7 +162,7 @@
   font-family: 'sinhala';
 }
 
-.v-navigation-drawer__content { overflow-x: auto !important; } /** Need to be outside the scope */
+.v-navigation-drawer__content { overflow-x: auto !important; } /* Need to be outside the scope */
 .v-sheet.d-inline-flex { min-width: 100%; min-height: 100%; } /** Needed to fill the drawer */
 </style>
 
@@ -146,6 +170,7 @@
 import TipitakaTree from '@/components/TipitakaTree'
 import TipitakaLink from '@/components/TipitakaLink'
 import TabColumnSelector from '@/components/TabColumnSelector'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'App',
@@ -167,12 +192,15 @@ export default {
         'title': ['සූත්‍ර නම්', 'mdi-format-title'],
         'fts': ['සූත්‍ර අන්තර්ගතය', 'mdi-text'], 
         'dict': ['පාලි ශබ්දකෝෂ', 'mdi-book-open-page-variant'], 
-      }
+      },
+      tabsHeight: '40px',
     }
   },
   computed: {
+    ...mapState('tabs', ['tabList']),
+    ...mapGetters('tree', ['getName']),
     isTextTab() { // not render at the startup until things are loaded
-      return this.$route.name == 'Home' && this.$store.state.tabs.activeInd >= 0 
+      return this.$route.name == 'Home' && this.activeTabInd >= 0 
     },
     searchInput: {
       get() { return this.$store.getters['search/getSearchInput'] },
@@ -188,7 +216,17 @@ export default {
     },
     mdAndUp() { return this.$vuetify.breakpoint.mdAndUp },
     smAndUp() { return this.$vuetify.breakpoint.smAndUp },
-    isSettingsView() { return this.$route.path == '/settings' }
+    isSettingsView() { return this.$route.path == '/settings' },
+    activeTabInd: {
+      get() { return this.$store.state.tabs.activeInd },
+      set(ind) {  
+        this.$store.commit('tabs/setActiveInd', ind)
+        this.$store.dispatch('tree/syncOpenBranches', false)
+      },
+    },
+    appBarHide() {
+      return this.$vuetify.breakpoint.height < 700 || !this.smAndUp
+    }
   },
   methods: {
     toggleSettings() {
