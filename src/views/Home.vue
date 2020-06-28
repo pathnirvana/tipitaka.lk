@@ -46,10 +46,10 @@
 // @ is an alias to /src
 import { mapState, mapGetters } from 'vuex'
 import TextTab from '@/components/TextTab.vue'
+import { copyMetaTitle } from '@/constants.js'
 
 export default {
   name: 'Home',
-  metaInfo() { return {  title: this.pageTitle } },
   components: {
     TextTab,
   },
@@ -60,14 +60,22 @@ export default {
     ...mapState('tabs', ['activeInd', 'tabList']),
     ...mapGetters('tree', ['getName']),
     // smAndUp() { return this.$vuetify.breakpoint.smAndUp },
-    pageTitle() {
-      return this.getName(this.$store.getters['tabs/getActiveKey'])
-    },
     activeTabInd: {
       get() { return this.activeInd },
       set(ind) {  this.$store.commit('tabs/setActiveInd', ind) },
     },
   },
+
+  metaInfo() { // create page title by joining keyName and rootName 
+    let tab = this.$store.getters['tabs/getActiveTab'], title = 'Home'
+    if (!tab) return { title }
+    title = this.getName(tab.key, tab.language)
+    const keyRoot = tab.key.split('-')[0]
+    if (keyRoot != tab.key) title += (' < ' + this.getName(keyRoot, tab.language))
+    title = title.replace(/([ක-ෆ])\u200D\u0DCA([ක-ෆ])/g, '$1\u0DCA$2') // remove bandi
+    return copyMetaTitle(title) 
+  },
+
   methods: {
     // tabClicked(ind) {
     //   console.log(`change route from tabs to ind:${ind} key:${this.tabList[ind].key}`)

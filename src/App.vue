@@ -34,8 +34,8 @@
           </v-list-item>
           <v-divider inset></v-divider>
           <v-list-item @click="toggleSettings">
-            <v-list-item-icon><v-icon>{{ isSettingsView ? 'mdi-exit-to-app' : 'mdi-cog' }}</v-icon></v-list-item-icon>
-            <v-list-item-title>{{ isSettingsView ? 'පිටවෙන්න' : 'සැකසුම් / Settings' }}</v-list-item-title>
+            <v-list-item-icon><v-icon>mdi-cog</v-icon></v-list-item-icon>
+            <v-list-item-title>{{ isSettingsView ? 'සැකසුමෙන් පිටවෙන්න' : 'සැකසුම් / Settings' }}</v-list-item-title>
           </v-list-item>
           <v-list-item @click="searchType = 'fts'" disabled>
             <v-list-item-icon><v-icon>mdi-compass</v-icon></v-list-item-icon>
@@ -104,7 +104,7 @@
       <template v-else-if="activeTabInd >= 0"> <!-- not textTab but has tabs opened -->
         <v-spacer></v-spacer>
         <v-btn icon @click="$router.push({name: 'Home'})" color="success">
-          <v-icon>mdi-text-box</v-icon>
+          <v-icon>mdi-exit-to-app</v-icon>
         </v-btn>
       </template>
 
@@ -176,7 +176,10 @@ export default {
   name: 'App',
   metaInfo: {
     title: 'Home',  
-    titleTemplate: '%s | බුද්ධ ජයන්ති ත්‍රිපිටකය' // all titles will be injected into this template
+    titleTemplate: '%s | බුද්ධ ජයන්ති ත්‍රිපිටකය', // all titles will be injected into this template
+    meta: [ // remove from index.html and add here - otherwise duplicate tags will be created
+      { property: 'og:title', content: 'බුද්ධ ජයන්ති ත්‍රිපිටකය', vmid: 'og:title' },
+    ],
   },
 
   components: {

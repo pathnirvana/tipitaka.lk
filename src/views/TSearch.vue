@@ -26,6 +26,7 @@
 import TipitakaLink from '@/components/TipitakaLink'
 import FilterTree from '@/components/FilterTree'
 import { isSinglishQuery, getPossibleMatches } from '@/singlish.js'
+import { copyMetaTitle } from '@/constants.js'
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import _ from 'lodash'
 
@@ -42,7 +43,6 @@ const inFilter = (key, filterKeys) => filterKeys.some(fKey => key.startsWith(fKe
 
 export default {
   name: 'TSearch',
-  metaInfo: { title: 'සූත්‍ර සෙවුම' },
   components: {
     TipitakaLink,
     FilterTree,
@@ -76,6 +76,10 @@ export default {
       return ''
     },
     linkToPage() { return '/title/' + this.searchInput },
+  },
+
+  metaInfo() {  
+    return copyMetaTitle(this.searchInput ? `“${this.searchInput}” යන සූත්‍ර නම් සෙවීම සඳහා ලැබුණු ප්‍රතිඵල` : 'සූත්‍ර නම් සෙවීම')
   },
 
   methods: {

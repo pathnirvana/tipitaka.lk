@@ -58,7 +58,7 @@
 </style>
 
 <script>
-import { dictionaryInfo, Language } from '@/constants.js'
+import { dictionaryInfo, Language, copyMetaTitle } from '@/constants.js'
 import { isSinglishQuery, getPossibleMatches } from '@/singlish.js'
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import DictionaryFilter from '@/components/DictionaryFilter'
@@ -76,7 +76,6 @@ const searchBarRules = [
 
 export default {
   name: 'Dictionary',
-  metaInfo: { title: 'ශබ්දකෝෂ සෙවුම' },
   components: { DictionaryFilter },
 
   data: () => ({
@@ -146,6 +145,10 @@ export default {
         .sort((a, b) => a.dict > b.dict)
     },
     linkToPage() { return '/dict/' + this.searchInput },
+  },
+
+  metaInfo() {  
+    return copyMetaTitle(this.searchInput ? `“${this.searchInput}” යන ශබ්දකෝෂ සෙවුම සඳහා ලැබුණු ප්‍රතිඵල` : 'පාළි ශබ්දකෝෂ සෙවීම')
   },
 
   methods: {
