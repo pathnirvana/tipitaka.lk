@@ -96,7 +96,7 @@
 <script>
 export default {
   metaInfo: {
-    title: 'Welcome',
+    title: 'Welcome / පිළිගනිමු',
   },
 }
 </script>

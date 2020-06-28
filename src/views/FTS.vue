@@ -62,7 +62,7 @@
 <script>
 //
 import { beautifyText } from '@/text-convert.mjs'
-import { allFilterLength } from '@/constants.js'
+import { allFilterLength, copyMetaTitle } from '@/constants.js'
 import TipitakaLink from '@/components/TipitakaLink'
 import FilterTree from '@/components/FilterTree'
 import { mapState, mapGetters } from 'vuex'
@@ -77,7 +77,6 @@ const searchBarRules = [
 
 export default {
   name: 'FTS',
-  metaInfo: {  title: 'අන්තර්ගත සෙවුම' },
   components: {
     TipitakaLink,
     FilterTree,
@@ -145,7 +144,11 @@ export default {
     linkToPage() {
       const options = [this.exactWord, this.matchPhrase, this.wordDistance].join('-')
       return `/fts/${this.searchInput}/${options}`
-    }
+    },
+  },
+
+  metaInfo() {  
+    return copyMetaTitle(this.searchInput ? `“${this.searchInput}” යන අන්තර්ගත සෙවුම සඳහා ලැබුණු ප්‍රතිඵල` : 'සූත්‍ර අන්තර්ගතය සෙවීම')
   },
 
   methods: {

@@ -9,13 +9,17 @@
  */
 const path = require('path')
 const fs = require('fs')
-const getTitle = require('./title-creator.js')
+//const getTitle = require('./title-creator.js')
 const fastify = require('fastify')({
     logger: false
 })
 fastify.register(require('fastify-cors'), { 
     origin: true, 
 })
+fastify.use(require('prerender-node')
+    .set('prerenderServiceUrl', 'http://localhost:3000/')
+    .set('prerenderToken', 'YOUR_TOKEN')
+    .blacklisted('^/tipitaka-query'))
 
 const titleStr = '<title>Buddha Jayanthi Tripitaka</title>' // replace this
 const ogTitleStr = '<meta property=og:title content="බුද්ධ ජයන්ති ත්‍රිපිටකය">'
@@ -45,13 +49,14 @@ fastify.register(require('fastify-static'), {
 // needed to serve index.html when url is not found (same as nginx try_files)
 fastify.setNotFoundHandler(async (request, reply) => {
     let indexHtml = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'utf-8')
+    // TODO title filling is no longer needed since using pre-render
     // fill in a title for Facebook links
-    const newTitle = getTitle(request.raw.url)
-    if (newTitle) {
-        console.log(`${request.raw.url} => ${newTitle}`)
-        indexHtml = indexHtml.replace(titleStr, `<title>${newTitle}</title>`)
-        indexHtml = indexHtml.replace(ogTitleStr, `<meta property=og:title content="${newTitle}">`)
-    }
+    // const newTitle = getTitle(request.raw.url)
+    // if (newTitle) {
+    //     console.log(`${request.raw.url} => ${newTitle}`)
+    //     indexHtml = indexHtml.replace(titleStr, `<title>${newTitle}</title>`)
+    //     indexHtml = indexHtml.replace(ogTitleStr, `<meta property=og:title content="${newTitle}">`)
+    // }
     reply.type('text/html').code(200).send(indexHtml)
 })
 

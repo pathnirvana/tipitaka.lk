@@ -98,7 +98,7 @@ function getVuexBindings(props) {
 
 export default {
   name: 'Settings',
-  metaInfo: {  title: 'සැකසුම්' },
+  metaInfo: {  title: 'සැකසුම් / Settings' },
   components: { 
     TabColumnSelector,
   },
