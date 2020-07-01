@@ -2,6 +2,8 @@ import Vue from 'vue'
 import router from '@/router'
 import { allFilterKeys, dictionaryInfo } from '@/constants.js'
 import md5 from 'md5'
+import { dictWordList } from '../singlish'
+import axios from 'axios'
 
 const routeToSearchPage = (input, type) => {
   if (!input) return
@@ -28,6 +30,7 @@ export default {
     titleSearchCache: {},
     md5SearchCache: { 'fts': {}, 'dict': {} },
     maxResults: 100,  // search stopped after getting this many matches
+    bottomSheet: { show: false, wordElem: null, word: '', results: {} }
   },
   getters: {
     getSearchInput: (state) => state.searchInput,
@@ -36,7 +39,8 @@ export default {
     getFilterTreeOpenKeys: (state) => state.filterTreeOpenKeys,
 
     getMd5Cache: (state) => (type, sql) => state.md5SearchCache[type][md5(sql)],
-    getTitleCache: (state) => (query) => state.titleSearchCache[query]
+    getTitleCache: (state) => (query) => state.titleSearchCache[query],
+    getShortDicts: (state) => state.selectedDictionaries.map(dict => dictionaryInfo[dict][1]),
   },
 
   mutations: {
@@ -67,6 +71,16 @@ export default {
     setSelectedDicts(state, newList) {
       state.selectedDictionaries = newList
     },
+    setBottomSheet(state, { prop, value }) {
+      if (prop == 'show' && !value && state.bottomSheet.wordElem) {
+        state.bottomSheet.wordElem.classList.remove('bottom-open')
+      }
+      if (prop == 'wordElem' && value) {
+        if (state.bottomSheet.wordElem) state.bottomSheet.wordElem.classList.remove('bottom-open')
+        value.classList.add('bottom-open')
+      }
+      Vue.set(state.bottomSheet, prop, value)
+    },
   },
 
   actions: {
@@ -75,5 +89,57 @@ export default {
     //   const searchIndex = response.data
     //   commit('setSearchIndex', searchIndex)
     // },
+    async openBottomSheet({ commit, dispatch }, target) {
+      commit('setBottomSheet', { prop: 'show', value: true })
+      commit('setBottomSheet', { prop: 'wordElem', value: target })
+      const word = target.innerText.replace(/[\.,:\?\(\)“”‘’]/g, '')
+      commit('setBottomSheet', { prop: 'word', value: word })
+      return dispatch('runBottomWordQuery')
+    },
+
+    async runBottomWordQuery({ commit, dispatch, getters, state }) {
+      commit('setBottomSheet', { prop: 'queryRunning', value: true })
+      const word = state.bottomSheet.word
+      const dictList = getters['getShortDicts']
+      const sql = `SELECT word, dict, meaning FROM dictionary 
+        WHERE word IN ('${dictWordList(word).join("','")}') AND dict IN ('${[...dictList, 'BR'].join("','")}')
+        ORDER BY word LIMIT 50;`
+      try {
+        const results = await dispatch('runDictQuery', { sql, 'input': word })
+        commit('setBottomSheet', { prop: 'results', value: results })
+      } catch (e) {
+        commit('setBottomSheet', { prop: 'errorMessage', value: e.message })
+      }
+      commit('setBottomSheet', { prop: 'queryRunning', value: false })
+    },
+
+    // no error checking - callers must call within a try-catch
+    async runDictQuery({ state, commit, getters }, { sql, input }) {
+      // check if we've searched for this word before
+      const cachedRes = getters['getMd5Cache']('dict', sql)
+      if (cachedRes) {
+        console.log(`dict search '${input}' found in cache ${cachedRes.matches.length} matches.`);
+        return cachedRes
+      }
+
+      const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''
+      const response = await axios.post(baseUrl + '/tipitaka-query/dict', { type: 'dict', sql })
+      console.log(`received dict response with ${response.data.length} rows for query ${input}`)
+      const results = processDictRows(response.data)
+      commit('setMd5Cache', { type: 'dict', sql, results })
+      return results
+    }
   }
+}
+
+function processDictRows(rows) {
+  const matches = rows.filter(({ dict, meaning }) => dict != 'BR' && meaning != 'like')
+  const breakups = rows.filter(({ dict }) => dict == 'BR').map(({ word, meaning }) => {
+    const [type, breakup] = meaning.split('|')
+    return { word, type, breakup }
+  })
+  const matchedWords = matches.map(r => r.word)
+  const prefixWords = rows.filter(r => r.meaning == 'like' && matchedWords.indexOf(r.word) < 0)
+        .sort((a, b) => a.dict > b.dict)
+  return { breakups, matches, prefixWords }
 }
