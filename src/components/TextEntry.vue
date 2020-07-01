@@ -1,7 +1,8 @@
 <template>
-  <td class="entry pa-2" :lang="entry.language" :style="$store.getters['styles']" @click="toggleOptions">
+  <td class="entry pa-2" :lang="entry.language" :style="$store.getters['styles']" 
+    @mouseover="showEntryOptions" @mouseleave="entryOptions = false">
     <!--<span v-if="$parent.showTypeInfo" class="type-info">{{ entry.type + '.' + entry.level }}</span>-->
-    <div :class="cssClasses" :level="entry.level">
+    <div :class="cssClasses" :level="entry.level" @click="showWordOptions">
       <template v-for="(se, i) in entry.text">
 
         <v-tooltip v-if="se[1] == 'fn-pointer' && footnoteMethod != 'end-page'" :key="i" bottom
@@ -12,20 +13,20 @@
           <span v-for="(ne, j) in matchingNoteText(se[0])" :key="j" :class="ne[1] || false">{{ ne[0] }}</span>
         </v-tooltip>
 
-        <span v-else :class="se[1] || false" :key="i">{{ se[0] }}</span>
+        <span v-else :class="se[1] || false" :key="i" v-html="genWords(se[0])"></span>
 
       </template>
       <ShareLinkIcon v-if="entry.type == 'heading'" :link="linkToEntry" />
     </div>
 
-    <v-menu v-if="showOptions" offset-y>
+    <v-menu v-if="entryOptions || menuOpen" v-model="menuOpen" offset-y class="options-menu">
       <template v-slot:activator="{ on }">
         <v-btn color="info" rounded icon absolute top left small class="ma-n2 pa-0"  v-on="on">
           <v-icon>mdi-dots-horizontal</v-icon>
         </v-btn>
       </template>
       <v-list dense>
-        <v-list-item v-clipboard:copy="'https://tipitaka.lk' + linkToEntry" v-clipboard:success="onCopyLink">
+        <v-list-item v-clipboard:copy="'https://tipitaka.lk' + linkToEntry" v-clipboard:success="onCopyLink" class="cursor-pointer">
           <v-list-item-icon><v-icon dense>mdi-share-variant</v-icon></v-list-item-icon>
           <v-list-item-title>link එකක් ලබාගන්න</v-list-item-title>
         </v-list-item>
@@ -78,7 +79,9 @@ td.entry { width: 50%; vertical-align: top; }
 .html .highlight { background-color: var(--v-highlight-base); } /* fts */
 
 td.entry { position: relative; }
-.type-info { position: absolute; top: 0; left: 0; font-size: 0.8em; opacity: 0.5; color: gray; }
+/* .type-info { position: absolute; top: 0; left: 0; font-size: 0.8em; opacity: 0.5; color: gray; } */
+.cursor-pointer { cursor: pointer; } /* cursor is not set properly in some menu items */
+.html >>> w.bottom-open { background-color: var(--v-highlight-base); }
 </style>
 
 <script>
@@ -96,6 +99,8 @@ export default {
   data() {
     return {
       showOptions: false,
+      entryOptions: false,
+      menuOpen: false,
     }
   },
   
@@ -115,6 +120,11 @@ export default {
   },
 
   methods: {
+    genWords(text) {
+      if (this.entry.language == 'sinh') return text // for now only for pali
+      return '<w>' + text.replace(/(\s)/g, '</w>$1<w>') + '</w>' // need to handle \n in gatha
+      //return text.split(' ').map(w => `<w>${w}</w>`).join(' ')
+    },
     matchingNoteText(number) {
       const ff = this.footnotes.find(note => note.number == number)
       return ff ? ff.text : []
@@ -122,9 +132,14 @@ export default {
     onCopyLink() {
       this.$store.commit('setSnackbar', { type: 'link-copied' })
     },
-    toggleOptions() {
-      if (optionsAllowedTypes.indexOf(this.entry.type) < 0 || !this.entry.key) return
-      this.showOptions = !this.showOptions
+    showEntryOptions() {
+      this.entryOptions = optionsAllowedTypes.indexOf(this.entry.type) >= 0 && this.entry.key
+    },
+    showWordOptions(e) {
+      if (e.target.matches('w')) {
+        console.log(e.target.innerText)
+        this.$store.dispatch('search/openBottomSheet', e.target)
+      }
     },
   },
 

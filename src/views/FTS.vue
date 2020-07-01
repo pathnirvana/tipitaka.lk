@@ -143,7 +143,8 @@ export default {
     filterFTS() { return this.$store.state.search.filter.fts  },
     linkToPage() {
       const options = [this.exactWord, this.matchPhrase, this.wordDistance].join('-')
-      return `/fts/${this.searchInput}/${options}`
+      const inputUrl = this.searchInput.replace(/\s/g, '%20') 
+      return `/fts/${inputUrl}/${options}`
     },
   },
 
