@@ -51,7 +51,7 @@ export default {
   computed: {
     ...mapState('search', ['maxResults', 'searchInput', 'searchType']),
     searchMessage() {
-      if (!this.searchInput || this.isEmptyResults) return ''
+      if (!this.searchInput || _.isEmpty(this.results)) return ''
       const matchedMessage = !this.results.matches.length ?
         `“${this.searchInput}” යන සෙවුම සඳහා ගැළපෙන වචන ශබ්දකෝෂ වල හමුවුයේ නැත. ` :
         `“${this.searchInput}” යන සෙවුම සඳහා ගැළපෙන වචන ${this.results.matches.length} ක් හමුවුනා. `

@@ -23,9 +23,13 @@ export default new Vuetify({
                 primary: '#C63100',
                 accent: '#EF5100',
                 highlight: '#FFF176', // yellow lighten-2
+                star: '#F9A825', // yellow darken 3
             },
             dark: {
+                primary: '#FF8A65', // deeporange lighten 2
+                info: '#4FC3F7', // lightblue ligten 2
                 highlight: '#4527A0', // deep-purple darken-3 (green/red/purple colors are good)
+                star: '#FFD600', // yellow accent 4
             },
         },
         dark: darkMode, // from localStorage

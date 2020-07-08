@@ -6,9 +6,9 @@
 
     <v-simple-table v-if="$store.getters.isLoaded">
       <tbody>
-        <tr v-for="({key, language}, i) in results" :key="i">
+        <tr v-for="result in results" :key="result.key">
           <td>
-            <TipitakaLink :itemKey="key" :params="{ language }" />
+            <TipitakaLink :itemKey="result.key" :params="result" />
           </td>
         </tr>
       </tbody>
@@ -105,13 +105,13 @@ export default {
       const queryReg = new RegExp(words.join('|'), "i");
       // searching in the order of VP, SP and AP so the results will be in that order too
       for (let i = 0; i < this.orderedKeys.length && results.length < this.maxResults; i++) {
-        const { key, pali, sinh } = this.$store.state.tree.index[this.orderedKeys[i]]
+        const { key, pali, sinh, eInd, type } = this.$store.state.tree.index[this.orderedKeys[i]]
 
         const matchPali = queryReg.test(pali) && this.filterTitle.columns.indexOf(0) >= 0
         const match = matchPali || (queryReg.test(sinh) && this.filterTitle.columns.indexOf(1) >= 0)
         if (match && inFilter(key, this.filterTitle.keys)) {  
           const language = matchPali ? 'pali' : 'sinh'
-          results.push({ key, language })
+          results.push({ key, language, eInd, type })
         }
       }
 

@@ -42,7 +42,7 @@
         <tr v-for="(res, i) in results" :key="i" >
           <td class="pb-2">
             <TipitakaLink v-if="res.key" :itemKey="res.key" :params="res"/>
-            <div class="highlighted-text" v-html="res.hText" :style="$store.getters['styles']"></div>
+            <div class="html" v-html="res.hText" :style="$store.getters['styles']"></div>
           </td>
         </tr>
       </tbody>
@@ -55,8 +55,8 @@
 
 <style scoped>
 /*.results-table tr:nth-child(even) { background-color: lightgray; }*/
-.highlighted-text { font-size: 1.1em; }
-.highlighted-text >>> sr { background-color: var(--v-highlight-base); }
+.html { font-size: 1.1em; }
+.html >>> sr { background-color: var(--v-highlight-base); }
 </style>
 
 <script>
@@ -156,34 +156,24 @@ export default {
     async getSearchResults() {
       if (this.inputError) return
       this.errorMessage = ''
+      this.resultsInput = this.searchInput
+      this.queryRunning = true
 
-      const sql = `SELECT filename, eind, language, highlight(tipitaka, 5, '<sr>', '</sr>') AS htext FROM tipitaka 
+      const sql = `SELECT filename, eind, language, type, highlight(tipitaka, 5, '<sr>', '</sr>') AS htext FROM tipitaka 
           WHERE text MATCH '${this.ftsMatchClause}' ${this.filterClause ? (' AND ' + this.filterClause) : ''} 
           ORDER BY rank LIMIT ${this.$store.state.search.maxResults};`
-      const cachedRes = this.$store.getters['search/getMd5Cache']('fts', sql)
-      if (cachedRes) {
-        this.results = cachedRes
-        console.log(`received fts results with ${this.results.length} from fts cache`)
-        return
-      }
 
-      this.queryRunning = true
       try {
-        const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''
-        //const baseUrl = 'https://tipitaka.lk' // force prod server
-        const response = await axios.post(baseUrl + '/tipitaka-query/fts', { type: 'fts', sql })
-        console.log(`received fts response with ${response.data.length} rows for query ${this.ftsMatchClause}`)
-        this.results = response.data.map(res => {
-          const ftsEInd = res.eind.split('-').map(i => parseInt(i))
+        const data = await this.$store.dispatch('search/runFTSQuery', { sql, 'input': this.searchInput })
+        this.results = data.map(res => {
+          const eInd = res.eind.split('-').map(i => parseInt(i))
           const hText = beautifyText(res.htext, res.language, this.$store.state)
-          return { ftsEInd, hText, 
-            key: this.getKeyForEInd(res.filename, ftsEInd),
+          return { eInd, hText, 
+            key: this.getKeyForEInd(res.filename, eInd),
             hWords: this.getHighlightWords(hText),
             language: res.language
           }
         })
-        this.resultsInput = this.searchInput
-        this.$store.commit('search/setMd5Cache', { type: 'fts', sql, results: this.results })
       } catch (e) {
         console.error(e)
         this.errorMessage = e.message
