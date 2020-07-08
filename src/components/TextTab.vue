@@ -142,7 +142,7 @@ export default {
     processEntry(entry) {
       // do not change entry fields - instead make a copy
       let text = beautifyText(entry.text, entry.language, this.$store.state) 
-      if (this.tab.ftsEInd && eIndEquals(this.tab.ftsEInd, entry.eInd)) {
+      if (this.tab.hWords && eIndEquals(this.tab.eInd, entry.eInd)) {
         text = highlightWords(text, this.tab.hWords) 
       }
       return {...entry, text: this.textParts(text) }

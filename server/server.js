@@ -21,8 +21,8 @@ fastify.use(require('prerender-node')
     .set('prerenderToken', 'YOUR_TOKEN')
     .blacklisted('^/tipitaka-query'))
 
-const titleStr = '<title>Buddha Jayanthi Tripitaka</title>' // replace this
-const ogTitleStr = '<meta property=og:title content="බුද්ධ ජයන්ති ත්‍රිපිටකය">'
+//const titleStr = '<title>Buddha Jayanthi Tripitaka</title>' // replace this
+//const ogTitleStr = '<meta property=og:title content="බුද්ධ ජයන්ති ත්‍රිපිටකය">'
 
 const SqliteDB = require('./sql-query.js')
 const ftsDb = new SqliteDB(path.join(__dirname, 'fts.db'), false)
@@ -62,7 +62,9 @@ fastify.setNotFoundHandler(async (request, reply) => {
 
 // in dev environment 0.0.0.0 listens to requests from all LAN devices
 // in prod proxy-pass is used - so 127.0.0.1 would be sufficient
-fastify.listen(5555, '0.0.0.0', (err, address) => {
+const host = '0.0.0.0', port = 5555
+console.log(`server running on port ${host}:${port}`)
+fastify.listen(port, host, (err, address) => {
     if (err) throw err
     fastify.log.info(`server listening on ${address}`)
 })

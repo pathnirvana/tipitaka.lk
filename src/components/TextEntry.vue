@@ -17,6 +17,7 @@
 
       </template>
       <ShareLinkIcon v-if="entry.type == 'heading'" :link="linkToEntry" />
+      <BookmarkIcon v-if="entry.type == 'heading'" :entry="entry" />
     </div>
 
     <v-menu v-if="entryOptions || menuOpen" v-model="menuOpen" offset-y class="options-menu">
@@ -30,14 +31,11 @@
           <v-list-item-icon><v-icon dense>mdi-share-variant</v-icon></v-list-item-icon>
           <v-list-item-title>link එකක් ලබාගන්න</v-list-item-title>
         </v-list-item>
-        <v-list-item @click="2">
+        <v-list-item @click="2" disabled>
           <v-list-item-icon><v-icon dense>mdi-redo</v-icon></v-list-item-icon>
           <v-list-item-title>අටුවාව වෙත</v-list-item-title>
         </v-list-item>
-        <v-list-item @click="2">
-          <v-list-item-icon><v-icon dense>mdi-star-outline</v-icon></v-list-item-icon>
-          <v-list-item-title>තරුවක් යොදන්න</v-list-item-title>
-        </v-list-item>
+        <BookmarkIcon :entry="entry" :isListItem="true" />
       </v-list>
     </v-menu>
 

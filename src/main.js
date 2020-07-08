@@ -5,11 +5,13 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 import VueMeta from 'vue-meta'
 import ShareLinkIcon from '@/components/ShareLinkIcon'
+import BookmarkIcon from '@/components/BookmarkIcon'
 
 Vue.use(VueMeta)
 
 Vue.config.productionTip = false
 Vue.component('ShareLinkIcon', ShareLinkIcon) // register globally
+Vue.component('BookmarkIcon', BookmarkIcon)
 
 new Vue({
   router,

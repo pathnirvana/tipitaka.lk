@@ -15,9 +15,14 @@ const routes = [
     path: '/settings',
     name: 'Settings',
     // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
+    // this generates a separate chunk (Settings.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Settings.vue'),
+    component: () => import(/* webpackChunkName: "Settings" */ '../views/Settings.vue'),
+  },
+  {
+    path: '/bookmarks',
+    name: 'Bookmarks',
+    component: () => import(/* webpackChunkName: "Bookmarks" */ '../views/Bookmarks.vue'),
   },
   {
     path: '/title/:term?',
