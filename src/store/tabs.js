@@ -68,8 +68,8 @@ export default {
     },
     closeTab(state, closeInd) {
       state.tabList.splice(closeInd, 1)
-      // if activeInd or lower is closed decrement activeInd
-      if (state.activeInd >= closeInd) state.activeInd--
+      // if activeEnd or lower is closed decrement activeInd
+      if (closeInd <= state.activeInd) state.activeInd = Math.max(0, state.activeInd - 1)
       if (!state.tabList.length) { 
         router.replace('/') // if all tabs closed - go to welcome page
       } else {
@@ -119,7 +119,7 @@ export default {
         params.errorMessage = `supplied tab params ${params} is missing key props`
         return
       }
-      const eInd = params.ftsEInd || params.eInd || params.keyProp.eInd // fts, eIndStr or from key
+      const eInd = params.eInd || params.keyProp.eInd // TipitakaLink, eIndStr or from key
       params.entryStart = eInd[1]
       params.pageEnd = params.pageStart = eInd[0]
       params.isLoaded = false
@@ -173,7 +173,7 @@ export default {
       console.log(`replace key ${oldKey} -> ${key}`)
       
       const oldParams = state.tabList[state.activeInd]
-      dispatch('replaceAndSetActive', {...oldParams, key, ftsEInd: null })
+      dispatch('replaceAndSetActive', {...oldParams, key, hWords: null })
     },
 
   }

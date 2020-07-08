@@ -33,17 +33,21 @@
             <v-list-item-icon><v-icon color="success">{{ searchType == 'dict' ? 'mdi-check' : ''}}</v-icon></v-list-item-icon>
           </v-list-item>
           <v-divider inset></v-divider>
-          <v-list-item @click="toggleSettings">
+          <v-list-item @click="toggleView('Settings')" :input-value="isView('Settings')">
             <v-list-item-icon><v-icon>mdi-cog</v-icon></v-list-item-icon>
-            <v-list-item-title>{{ isSettingsView ? 'සැකසුමෙන් පිටවෙන්න' : 'සැකසුම් / Settings' }}</v-list-item-title>
+            <v-list-item-title>{{ isView('Settings') ? 'සැකසුමෙන් පිටවෙන්න' : 'සැකසුම් / Settings' }}</v-list-item-title>
           </v-list-item>
-          <v-list-item @click="searchType = 'fts'" disabled>
-            <v-list-item-icon><v-icon>mdi-compass</v-icon></v-list-item-icon>
-            <v-list-item-title>වචන ගවේෂකය</v-list-item-title>
+          <v-list-item @click="toggleView('Bookmarks')" :input-value="isView('Bookmarks')">
+            <v-list-item-icon><v-icon color="star">mdi-star</v-icon></v-list-item-icon>
+            <v-list-item-title>{{ isView('Bookmarks') ? 'තරු යෙදුමෙන් පිටවෙන්න' : 'තරු යෙදූ සූත්‍ර / Bookmarks' }}</v-list-item-title>
           </v-list-item>
-          <v-list-item @click="searchType = 'fts'" disabled>
-            <v-list-item-icon><v-icon>mdi-star</v-icon></v-list-item-icon>
-            <v-list-item-title>තරු යෙදූ සූත්‍ර</v-list-item-title>
+          <v-list-item to="Help" disabled>
+            <v-list-item-icon><v-icon>mdi-help-circle</v-icon></v-list-item-icon>
+            <v-list-item-title>උදව් / උපදෙස්</v-list-item-title>
+          </v-list-item>
+          <v-list-item to="About" disabled>
+            <v-list-item-icon><v-icon>mdi-information</v-icon></v-list-item-icon>
+            <v-list-item-title>අප ගැන</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -103,7 +107,7 @@
       </template>
       <template v-else-if="activeTabInd >= 0"> <!-- not textTab but has tabs opened -->
         <v-spacer></v-spacer>
-        <v-btn icon @click="$router.push({name: 'Home'})" color="success">
+        <v-btn icon @click="$router.push({ name: 'Home' })" color="success">
           <v-icon>mdi-exit-to-app</v-icon>
         </v-btn>
       </template>
@@ -219,7 +223,7 @@ export default {
     },
     mdAndUp() { return this.$vuetify.breakpoint.mdAndUp },
     smAndUp() { return this.$vuetify.breakpoint.smAndUp },
-    isSettingsView() { return this.$route.path == '/settings' },
+    //isSettingsView() { return this.$route.path == '/settings' },
     activeTabInd: {
       get() { return this.$store.state.tabs.activeInd },
       set(ind) {  
@@ -232,15 +236,20 @@ export default {
     }
   },
   methods: {
-    toggleSettings() {
-      if (this.isSettingsView) this.$router.go(-1) // go back
-      else this.$router.push('/settings')
+    // toggleSettings() {
+    //   if (this.isSettingsView) this.$router.go(-1) // go back
+    //   else this.$router.push('/settings')
+    // },
+    isView(name) { return this.$route.name == name },
+    toggleView(name) {
+      if (this.isView(name)) this.$router.go(-1) // go back
+      else this.$router.push({ name })
     },
   },
 
   created() {
     this.$store.dispatch('initialize')
-    //this.$store.dispatch('search/initialize')
+    this.$store.dispatch('search/initialize')
   }
 };
 </script>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import router from '@/router'
-import { allFilterKeys, dictionaryInfo } from '@/constants.js'
+import { allFilterKeys, dictionaryInfo, bookmarksStorageKey } from '@/constants.js'
 import md5 from 'md5'
 import { dictWordList } from '../singlish'
 import axios from 'axios'
@@ -30,8 +30,11 @@ export default {
     titleSearchCache: {},
     md5SearchCache: { 'fts': {}, 'dict': {} },
     maxResults: 100,  // search stopped after getting this many matches
-    bottomSheet: { show: false, wordElem: null, word: '', results: {} }
+    bottomSheet: { show: false, wordElem: null, word: '', results: {} },
+
+    bookmarks: {}, // loaded from localStorage
   },
+
   getters: {
     getSearchInput: (state) => state.searchInput,
     getSearchType: (state) => state.searchType,
@@ -81,14 +84,29 @@ export default {
       }
       Vue.set(state.bottomSheet, prop, value)
     },
+
+    loadBookmarks(state) {
+      const json = localStorage.getItem(bookmarksStorageKey)
+      if (json) {
+        state.bookmarks = JSON.parse(json)
+        console.log(`loaded ${Object.keys(state.bookmarks).length} bookmarks from storage key ${bookmarksStorageKey}`)
+      }
+    },
+    toggleBookmark(state, { key, obj }) {
+      if (state.bookmarks[key]) {
+        Vue.delete(state.bookmarks, key)
+      } else {
+        Vue.set(state.bookmarks, key, obj)
+      }
+      localStorage.setItem(bookmarksStorageKey, JSON.stringify(state.bookmarks))
+    },
   },
 
   actions: {
-    // async initialize({state, rootState, commit}) {
-    //   const response = await axios.get('/static/data/searchIndex.json')
-    //   const searchIndex = response.data
-    //   commit('setSearchIndex', searchIndex)
-    // },
+    async initialize({state, rootState, commit}) {
+      commit('loadBookmarks')
+    },
+
     async openBottomSheet({ commit, dispatch }, target) {
       commit('setBottomSheet', { prop: 'show', value: true })
       commit('setBottomSheet', { prop: 'wordElem', value: target })
@@ -114,7 +132,7 @@ export default {
     },
 
     // no error checking - callers must call within a try-catch
-    async runDictQuery({ state, commit, getters }, { sql, input }) {
+    async runDictQuery({ commit, getters }, { sql, input }) {
       // check if we've searched for this word before
       const cachedRes = getters['getMd5Cache']('dict', sql)
       if (cachedRes) {
@@ -122,14 +140,36 @@ export default {
         return cachedRes
       }
 
-      const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''
-      const response = await axios.post(baseUrl + '/tipitaka-query/dict', { type: 'dict', sql })
-      console.log(`received dict response with ${response.data.length} rows for query ${input}`)
-      const results = processDictRows(response.data)
+      const data = await sendSearchQuery('dict', sql)
+      console.log(`received dict response with ${data.length} rows for query ${input}`)
+      const results = processDictRows(data)
       commit('setMd5Cache', { type: 'dict', sql, results })
       return results
-    }
+    },
+
+    async runFTSQuery({ getters, commit }, { sql, input }) {
+      const cachedRes = getters['getMd5Cache']('fts', sql)
+      if (cachedRes) {
+        console.log(`received fts results with ${cachedRes.length} from fts cache`)
+        return cachedRes
+      }
+
+      const data = await sendSearchQuery('fts', sql)
+      console.log(`received fts response with ${data.length} rows for query ${input}`)
+      commit('setMd5Cache', { type: 'fts', sql, results: data })
+      return data
+    },
   }
+}
+
+async function sendSearchQuery(type, sql) {
+  if (typeof Android !== 'undefined') {
+    return Android.runSqliteQuery(type, sql)
+  }
+  const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''
+  //const baseUrl = 'https://tipitaka.lk' // force prod server
+  const response = await axios.post(baseUrl + '/tipitaka-query/' + type, { type, sql })
+  return response.data
 }
 
 function processDictRows(rows) {

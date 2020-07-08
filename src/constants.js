@@ -1,6 +1,8 @@
 /** special flags and constants */
 const settingsVersion = '2'
 export const settingsKey = `tipitaka.lk-settings-${settingsVersion}`
+const bookmarksVersion = '1'
+export const bookmarksStorageKey = `tipitaka.lk-bookmarks-${bookmarksVersion}`
 
 export const allFilterKeys = ["vp-prj","vp-pct","vp-mv","dn-1","dn-2","dn-3","mn-1","mn-2","mn-3","sn-1","sn-2","sn-3","sn-4","sn-5",
 "an-1","an-2","an-3","an-4","an-5","an-6","an-7","an-8","an-9","an-10","an-11","kn-khp","kn-dhp","kn-ud","kn-iti","kn-snp",

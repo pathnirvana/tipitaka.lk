@@ -1,15 +1,19 @@
 <template>
-  <div class="root py-2" @click="openSutta" :style="$store.getters['styles']">
-    <span class="pitaka-icon mr-2 pa-1">{{ items[0].text }}</span>
-    
-    <span class="sutta-name mr-2">
-      {{ suttaNameItem.text.replace(/[\(\)\[\]]/g, '') }}
-    </span>
+  <div>
+    <span class="root py-2" @click="openSutta" :style="$store.getters['styles']">
+      <span class="pitaka-icon mr-2 pa-1">{{ items[0].text }}</span>
+      
+      <span class="sutta-name mr-2">
+        {{ suttaNameItem.text.replace(/[\(\)\[\]]/g, '') }}
+      </span>
 
-    <span v-for="(item, i) in items.slice(1, -1)" :key="item.key" class="parents">
-      <v-icon v-if="i > 0">mdi-chevron-right</v-icon>
-      <span>{{ item.text }}</span>
+      <span v-for="(item, i) in items.slice(1, -1)" :key="item.key" class="parents">
+        <v-icon v-if="i > 0">mdi-chevron-right</v-icon>
+        <span>{{ item.text }}</span>
+      </span>    
     </span>
+    
+    <BookmarkIcon :entry="params" class="ml-1" />
   </div>
 </template>
 
