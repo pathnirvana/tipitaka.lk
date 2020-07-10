@@ -35,3 +35,21 @@ export const copyMetaTitle = (title) => ({
         { property: 'og:title', content: title, vmid: 'og:title' },
     ]
 })
+
+// fetch api on chrome does not support file:// access (which is needed in android to access files from within webview)
+// so instead of using axios/fetch use XHR
+export function getJson(fileUrl) {
+    return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest
+        xhr.onload = function() {
+            resolve(JSON.parse(xhr.responseText))
+            //resolve(new Response(xhr.responseText, {status: xhr.status}))
+        }
+        xhr.onerror = function() {
+            reject(new TypeError(`Request to file ${fileUrl} failed`))
+        }
+        if (typeof Android !== 'undefined') fileUrl = '/android_asset' + fileUrl
+        xhr.open('GET', fileUrl)
+        xhr.send(null)
+    })
+}

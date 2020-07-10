@@ -50,7 +50,7 @@ allWords = allWords.sort((a, b) => a[0] > b[0]).filter(row => row.every(col => c
 console.log(`total words ${allWords.length} - total meanings ${meaningsProcessed}`)
 fs.writeFileSync(path.join(__dirname, 'all-words.json'), vkb.json(JSON.stringify(allWords)), 'utf-8')
 
-const dbFilebase = 'dict-all.db'
+const dbFilebase = 'dict.db'
 const dbFilePath = path.join(__dirname, '../../server/', dbFilebase)
 writeToSqlite().then(() => console.log(`wrote to sqlite db ${dbFilebase}`))
 
