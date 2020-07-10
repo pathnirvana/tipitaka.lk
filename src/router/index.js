@@ -49,7 +49,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: (typeof Android !== 'undefined') ? 'hash' : 'history', // history mode not working in webview
   base: process.env.BASE_URL,
   routes
 })

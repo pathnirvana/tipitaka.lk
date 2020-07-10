@@ -13,9 +13,10 @@ const fs = require('fs')
 const fastify = require('fastify')({
     logger: false
 })
-fastify.register(require('fastify-cors'), { 
-    origin: true, 
-})
+// cors not needed with devServer.proxy setting in vue.config.js
+// fastify.register(require('fastify-cors'), {
+//     origin: true, 
+// })
 fastify.use(require('prerender-node')
     .set('prerenderServiceUrl', 'http://localhost:3000/')
     .set('prerenderToken', 'YOUR_TOKEN')
@@ -26,7 +27,7 @@ fastify.use(require('prerender-node')
 
 const SqliteDB = require('./sql-query.js')
 const ftsDb = new SqliteDB(path.join(__dirname, 'fts.db'), false)
-const dictDb = new SqliteDB(path.join(__dirname, 'dict-all.db'), false)
+const dictDb = new SqliteDB(path.join(__dirname, 'dict.db'), false)
 
 fastify.post('/tipitaka-query/fts', async (request, reply) => { // hit fts db
     reply.type('application/json').code(200)

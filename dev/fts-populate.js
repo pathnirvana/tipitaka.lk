@@ -6,20 +6,26 @@ const SqliteDB = require('../server/sql-query.js');
 
 /*
 DROP TABLE IF EXISTS tipitaka;
-CREATE VIRTUAL TABLE tipitaka USING fts5(filename, eind, language, type, level, text, 
+FTS 5 - not available in android
+CREATE VIRTUAL TABLE tipitaka USING fts4(filename, eind, language, type, level, text, 
     tokenize = "unicode61 tokenchars '' seperators '()[]:'");
 SELECT filename, eind, language, highlight(tipitaka, 5, '<b>', '</b>') AS htext FROM tipitaka 
-    WHERE text MATCH 'NEAR(අභික්කන්තවණ්ණා තෙනුපසඞ්කමි, 10)';
-    WHERE tipitaka MATCH '(text:NEAR(අභික්කන්තවණ්ණා තෙනුපසඞ්කමි, 10)) AND (filename:"an-6" OR "sn-1")' ;
-optionally (filename LIKE 'an-6%' OR filename LIKE 'sn-1%') would also work - this seems faster
+    WHERE text MATCH 'NEAR(අභික්කන්තවණ්ණා තෙනුපසඞ්කමි, 10)' AND (filename LIKE 'an-6%' OR filename LIKE 'sn-1%');
+
+FTS 4
+CREATE VIRTUAL TABLE tipitaka USING fts4(filename, eind, language, type, level, text, 
+    tokenize = unicode61 "tokenchars=" "seperators=()[]:");
+SELECT filename, eind, language, snippet(tipitaka, '<b>', '</b>', '...', 5) AS htext FROM tipitaka 
+    WHERE text MATCH 'අභික්කන්තවණ්ණා NEAR තෙනුපසඞ්කමි' AND filename LIKE 'an-%';
 */
 // for some reason these statements do not succeed when running from js
-/*const sinhalaRange = [] // use as tokenchars
-for (let i = 0x0d80; i < 0x0dff; i++) sinhalaRange.push(String.fromCharCode(i))
-console.log(`DROP TABLE IF EXISTS tipitaka;`)
-console.log(`CREATE VIRTUAL TABLE tipitaka USING fts5(filename, eind, language, type, level, text, 
-        tokenize = "unicode61 tokenchars '${sinhalaRange.join('')}' separators '()[]:'");`)
-process.exit(0)*/
+// so have to run from "DB Browser for SqlLite"
+// const sinhalaRange = [] // use as tokenchars
+// for (let i = 0x0d80; i < 0x0dff; i++) sinhalaRange.push(String.fromCharCode(i))
+// console.log(`DROP TABLE IF EXISTS tipitaka;`)
+// console.log(`CREATE VIRTUAL TABLE tipitaka USING fts4(filename, eind, language, type, level, text, 
+//         tokenize = unicode61 "tokenchars=${sinhalaRange.join('')}" "separators=()[]:");`)
+// process.exit(0)
 
 function writeEntry(e, eind, lang, fileKey) {
     let text = e.text.replace(/\*|_|~|\$|\{\d\}|\u200d/g, '') // zwj and footnote pointers
@@ -46,7 +52,7 @@ function writeEntry(e, eind, lang, fileKey) {
 const writeFtsDb = true, writeSuggestedWords = false
 const wordListPali = [], wordListSinh = []
 const dataInputFolder = path.join(__dirname, '../public/static/text/')
-const ftsDictFile = path.join(__dirname, '../server/fts.db')
+const ftsDictFile = path.join(__dirname, '../server/fts4.db')
 const ftsDb = new SqliteDB(ftsDictFile, true)
 if (writeFtsDb) {
     ftsDb.db.run('BEGIN')

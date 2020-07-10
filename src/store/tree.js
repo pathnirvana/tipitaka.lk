@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { getJson } from '@/constants.js'
 import { beautifyText } from '@/text-convert.mjs'
 import Vue from 'vue'
 
@@ -94,8 +94,8 @@ export default {
 
   actions: {
     async initialize({commit, rootState}) {
-      const response = await axios.get('/static/data/tree.json')
-      const index = response.data
+      //const response = await axios.get('/static/data/tree.json')
+      const index = await getJson('/static/data/tree.json') //response.data
       commit('setIndex', index)
       commit('recomputeTree', rootState)
     },

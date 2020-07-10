@@ -66,7 +66,6 @@ import { allFilterLength, copyMetaTitle } from '@/constants.js'
 import TipitakaLink from '@/components/TipitakaLink'
 import FilterTree from '@/components/FilterTree'
 import { mapState, mapGetters } from 'vuex'
-import axios from 'axios'
 import _ from 'lodash'
 
 const searchBarRules = [
@@ -120,13 +119,14 @@ export default {
     },
     isAdvancedMode() { return /AND|OR|NOT|[\*\^\(\)]/.test(this.searchInput) },
     ftsMatchClause() {
-      // check sqlite fts spec here https://www.sqlite.org/fts5.html
+      // check sqlite fts4 spec here https://www.sqlite.org/fts3.html
       if (this.isAdvancedMode) return this.searchInput // adding boolean AND OR NOT queries
       let words  = this.searchInput.split(' ')
       if (!this.exactWord) words = words.map(w => w + '*')
       let clause = words[0]
       if (words.length > 1) {
-        clause = this.matchPhrase ? words.join('+') : `NEAR(${words.join(' ')}, ${this.wordDistance})`
+        clause = this.matchPhrase ? `"${words.join(' ')}"` : words.join(` NEAR/${this.wordDistance} `) // fts4
+        // clause = this.matchPhrase ? words.join('+') : `NEAR(${words.join(' ')}, ${this.wordDistance})` // fts5
       }
       return clause
     },
@@ -148,7 +148,7 @@ export default {
     },
   },
 
-  metaInfo() {  
+  metaInfo() {
     return copyMetaTitle(this.searchInput ? `“${this.searchInput}” යන අන්තර්ගත සෙවුම සඳහා ලැබුණු ප්‍රතිඵල` : 'සූත්‍ර අන්තර්ගතය සෙවීම')
   },
 
@@ -159,9 +159,10 @@ export default {
       this.resultsInput = this.searchInput
       this.queryRunning = true
 
-      const sql = `SELECT filename, eind, language, type, highlight(tipitaka, 5, '<sr>', '</sr>') AS htext FROM tipitaka 
+      const highlightFunc = "snippet(tipitaka, '<sr>', '</sr>', '...', 5, 64)" // highlight(tipitaka, 5, '<sr>', '</sr>')
+      const sql = `SELECT filename, eind, language, type, ${highlightFunc} AS htext FROM tipitaka 
           WHERE text MATCH '${this.ftsMatchClause}' ${this.filterClause ? (' AND ' + this.filterClause) : ''} 
-          ORDER BY rank LIMIT ${this.$store.state.search.maxResults};`
+          ORDER BY length(offsets(tipitaka)) DESC LIMIT ${this.$store.state.search.maxResults};` // ORDER BY rank fts5
 
       try {
         const data = await this.$store.dispatch('search/runFTSQuery', { sql, 'input': this.searchInput })
