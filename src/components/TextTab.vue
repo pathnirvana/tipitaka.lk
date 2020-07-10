@@ -64,8 +64,8 @@
 import TextEntry from '@/components/TextEntry.vue'
 import Footnotes from '@/components/Footnotes.vue'
 import { beautifyText } from '@/text-convert.mjs'
+import { getBJTImageSrc } from '@/scanned-pages.js'
 import { mapState, mapGetters, mapMutations } from 'vuex'
-import axios from 'axios'
 
 const eIndEquals = (a, b) => a[0] == b[0] && a[1] == b[1]
 const highlightWords = (text, words) => {
@@ -166,13 +166,11 @@ export default {
     },
     getScanImgSrc(pageNum, lang) {
       pageNum += this.tab.data.pageOffset + (lang == 'sinh' ? 1 : 0)
-      // getBJTImageSrc is imported from https://pitaka.lk/bjt/scripts/books.js
-      return 'https://pitaka.lk/bjt/' + getBJTImageSrc(this.tab.data.bookId, pageNum)
+      return getBJTImageSrc(this.tab.data.bookId, pageNum)
     }
   },
 
-  created() {
-  },
+  created() {  },
 
 }
 </script>

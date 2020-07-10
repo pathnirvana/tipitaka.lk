@@ -69,7 +69,12 @@ export default new Vuex.Store({
     setSnackbar(state, { timeout, message, type }) {
       if (!message && type) message = snackbarTypeToMsg[type]
       if (message) {
-        state.snackbar = { model: true, timeout: timeout || 2000, message }
+        // android toast is ugly commenting it out
+        // if (typeof Android !== 'undefined') { // use the android toast if available
+        //   Android.showToast(message)
+        // } else {
+          state.snackbar = { model: true, timeout: timeout || 2000, message }
+        // }
       }
     },
   },

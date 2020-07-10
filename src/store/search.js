@@ -14,6 +14,11 @@ const routeToSearchPage = (input, type) => {
   }
 }
 
+const dbVersions = { // updated dbs need to be marked here for update in android app
+  'dict': 1,
+  'fts': 1
+}
+
 export default {
   namespaced: true,
   state: {
@@ -105,6 +110,9 @@ export default {
   actions: {
     async initialize({state, rootState, commit}) {
       commit('loadBookmarks')
+      if (typeof Android !== 'undefined') {
+        Android.openDbs(JSON.stringify(dbVersions)); // opens all dbs copying from assets if necessary
+      }
     },
 
     async openBottomSheet({ commit, dispatch }, target) {
@@ -164,11 +172,13 @@ export default {
 
 async function sendSearchQuery(type, sql) {
   if (typeof Android !== 'undefined') {
-    return Android.runSqliteQuery(type, sql)
+    const jsonStr = Android.runSqliteQuery(type, sql)
+    return JSON.parse(jsonStr)
   }
-  const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''
+  //const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''
   //const baseUrl = 'https://tipitaka.lk' // force prod server
-  const response = await axios.post(baseUrl + '/tipitaka-query/' + type, { type, sql })
+  // check devServer.proxy setting in vue.config.js
+  const response = await axios.post('/tipitaka-query/' + type, { type, sql })
   return response.data
 }
 

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import router from '@/router'
 import Vuetify from '@/plugins/vuetify'
-import axios from 'axios'
+import { getJson } from '@/constants.js'
 
 function addEntryFields(pages, orderedKeys, filename) { // move to vuex
   let curKey = ''
@@ -146,8 +146,8 @@ export default {
       const newFilename = tabInfo.keyProp.filename
       if (!tabInfo.data || newFilename != tabInfo.data.filename) { // loaded file is not what is needed
         try {
-          const response = await axios.get(`/static/text/${newFilename}.json`)
-          const data = response.data
+          //const response = await axios.get(`/static/text/${newFilename}.json`)
+          const data = await getJson(`/static/text/${newFilename}.json`) //response.data
           if (!data.pages || !data.pages.length) {
             return commit('setError', `pages are missing in loaded data from ${newFilename}`)
           }
