@@ -105,7 +105,7 @@
         </v-menu>
     
       </template>
-      <template v-else-if="activeTabInd >= 0"> <!-- not textTab but has tabs opened -->
+      <template v-else-if="tabList.length > 0"> <!-- not textTab but has tabs -->
         <v-spacer></v-spacer>
         <v-btn icon @click="$router.push({ name: 'Home' })" color="success">
           <v-icon>mdi-exit-to-app</v-icon>

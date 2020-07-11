@@ -40,6 +40,7 @@ export default new Vuex.Store({
     syncTree: true,
     isLoaded: false,
     snackbar: {model: false, timeout: 2000, message: ''},
+    androidBusy: false, // only used in android app
   },
 
   getters: {
