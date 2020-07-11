@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import router from '@/router'
-import { allFilterKeys, dictionaryInfo, bookmarksStorageKey } from '@/constants.js'
+import { allFilterKeys, dictionaryInfo, bookmarksStorageKey, callAndroidAsync } from '@/constants.js'
 import md5 from 'md5'
 import { dictWordList } from '../singlish'
 import axios from 'axios'
@@ -111,7 +111,10 @@ export default {
     async initialize({state, rootState, commit}) {
       commit('loadBookmarks')
       if (typeof Android !== 'undefined') {
-        Android.openDbs(JSON.stringify(dbVersions)); // opens all dbs copying from assets if necessary
+        //Android.openDbs(JSON.stringify(dbVersions)); // opens all dbs copying from assets if necessary
+        commit('set', { name: 'androidBusy', value: true }, { root: true })
+        await callAndroidAsync('openDbs', dbVersions)
+        commit('set', { name: 'androidBusy', value: false }, { root: true })
       }
     },
 
@@ -125,6 +128,7 @@ export default {
 
     async runBottomWordQuery({ commit, dispatch, getters, state }) {
       commit('setBottomSheet', { prop: 'queryRunning', value: true })
+      commit('setBottomSheet', { prop: 'errorMessage', value: '' })
       const word = state.bottomSheet.word
       const dictList = getters['getShortDicts']
       const sql = `SELECT word, dict, meaning FROM dictionary 
@@ -172,7 +176,8 @@ export default {
 
 async function sendSearchQuery(type, sql) {
   if (typeof Android !== 'undefined') {
-    const jsonStr = Android.runSqliteQuery(type, sql)
+    const jsonStr = await callAndroidAsync('runSqliteQuery', { type, sql })
+    //const jsonStr = Android.runSqliteQuery(type, sql)
     return JSON.parse(jsonStr)
   }
   //const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''

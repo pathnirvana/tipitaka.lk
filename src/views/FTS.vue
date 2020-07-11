@@ -70,6 +70,7 @@ import _ from 'lodash'
 
 const searchBarRules = [
   v => !!v || 'සෙවීම සඳහා වචන ඇතුළු කරන්න.',
+  v => v.length >= 2 || 'අඩුම තරමේ අකුරු 2 ක් වත් ඇතුළු කරන්න.',  // very slow in android
   v => !(/[a-z]/i.test(v) && !/AND|OR|NOT/.test(v)) || 'අන්තර්ගතය සෙවීමේදී සිංහල අකුරු පමණක් භාවිතා කරන්න.',
   v => !/[^a-z\u0D80-\u0DFF\u200D\*\^\(\) ]/i.test(v) || 'සෙවුම් පදය සඳහා ඉංග්‍රීසි සහ සිංහල අකුරු පමණක් යොදන්න.',
 ]
@@ -159,10 +160,10 @@ export default {
       this.resultsInput = this.searchInput
       this.queryRunning = true
 
-      const highlightFunc = "snippet(tipitaka, '<sr>', '</sr>', '...', 5, 64)" // highlight(tipitaka, 5, '<sr>', '</sr>')
+      const highlightFunc = "snippet(tipitaka, '<sr>', '</sr>', '...', 5, 50)" // max-64 for last param. fts5 - highlight(tipitaka, 5, '<sr>', '</sr>')
       const sql = `SELECT filename, eind, language, type, ${highlightFunc} AS htext FROM tipitaka 
           WHERE text MATCH '${this.ftsMatchClause}' ${this.filterClause ? (' AND ' + this.filterClause) : ''} 
-          ORDER BY length(offsets(tipitaka)) DESC LIMIT ${this.$store.state.search.maxResults};` // ORDER BY rank fts5
+          ORDER BY length(offsets(tipitaka)) DESC LIMIT ${this.$store.state.search.maxResults};` // fts5 - ORDER BY rank
 
       try {
         const data = await this.$store.dispatch('search/runFTSQuery', { sql, 'input': this.searchInput })

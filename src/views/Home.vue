@@ -51,9 +51,10 @@
       </v-toolbar>
 
       <v-sheet max-height="200px" style="overflow-y: auto">
-        <DictionaryResults :results="$store.state.search.bottomSheet.results" />
+        <DictionaryResults :results="bottomSheet.results" />
     
-        <v-skeleton-loader v-if="$store.state.search.bottomSheet.queryRunning" type="table"></v-skeleton-loader>
+        <v-skeleton-loader v-if="bottomSheet.queryRunning" type="table"></v-skeleton-loader>
+        <v-banner v-else-if="!!bottomSheet.errorMessage" color="error">{{ bottomSheet.errorMessage }}</v-banner>
         <div v-else-if="!dictResults.matches || !dictResults.matches.length" class="mx-3 search-message text-center">
           {{ `මෙම වචනය ශබ්දකෝෂ වල හමුවූයේ නැත. අකුරු කිහිපයක් අඩු කර උත්සාහ කරන්න.` }}
         </div>
@@ -90,6 +91,7 @@ export default {
   }),
   computed: {
     ...mapState('tabs', ['activeInd', 'tabList']),
+    ...mapState('search', ['bottomSheet']),
     ...mapGetters('tree', ['getName']),
     smAndUp() { return this.$vuetify.breakpoint.smAndUp },
     activeTabInd: {
@@ -97,12 +99,12 @@ export default {
       set(ind) {  this.$store.commit('tabs/setActiveInd', ind) },
     },
     showBottomSheet: {
-      get() { return this.$store.state.search.bottomSheet.show },
+      get() { return this.bottomSheet.show },
       set(value) { this.$store.commit('search/setBottomSheet', { prop: 'show', value }) }
     },
-    dictResults() { return this.$store.state.search.bottomSheet.results },
+    dictResults() { return this.bottomSheet.results },
     bottomWord: {
-      get() { return this.$store.state.search.bottomSheet.word },
+      get() { return this.bottomSheet.word },
       set(value) { 
         this.$store.commit('search/setBottomSheet', { prop: 'word', value })
         this.debouncedWordQuery()
