@@ -111,9 +111,8 @@ export default {
     async initialize({state, rootState, commit}) {
       commit('loadBookmarks')
       if (typeof Android !== 'undefined') {
-        //Android.openDbs(JSON.stringify(dbVersions)); // opens all dbs copying from assets if necessary
         commit('set', { name: 'androidBusy', value: true }, { root: true })
-        await callAndroidAsync('openDbs', dbVersions)
+        await callAndroidAsync('openDbs', dbVersions) // opens all dbs copying from assets if necessary
         commit('set', { name: 'androidBusy', value: false }, { root: true })
       }
     },
@@ -177,7 +176,6 @@ export default {
 async function sendSearchQuery(type, sql) {
   if (typeof Android !== 'undefined') {
     const jsonStr = await callAndroidAsync('runSqliteQuery', { type, sql })
-    //const jsonStr = Android.runSqliteQuery(type, sql)
     return JSON.parse(jsonStr)
   }
   //const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''
