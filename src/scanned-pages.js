@@ -425,17 +425,3 @@ export function getBJTImageSrc(bookId, pageNum) {
         (bookInfo.folder || bookId) + '/' +
         bookInfo.imagePrefix + paddedPage + '.' + bjtImageExt;
 }
-
-
-// var imageFileExt = getParameterByName('image_extension', 'jpg'); // if old books, change this to png
-// var loadFromRemote = getParameterByName('load_books_remote', 0);
-// var booksFolder = getParameterByName('books_folder', '');
-// function getPageImageSrc(pageId) {
-//     return imgURLPrefix + '/' +
-//         getDef(curBook, 'folder', curBookId) + '/' +
-//         getDef(curBook, 'imagePrefix', defaultImgPrefix) +
-//         padZeros(pageId, 3) +
-//         '.' + imageFileExt;
-// }
-
-//console.log(getBJTImageSrc(10,100))
