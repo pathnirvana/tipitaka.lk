@@ -82,7 +82,7 @@ const writeWordList = (wordList, filePath) =>
     Object.keys(wordList).map(w => [w, wordList[w]]).sort((a, b) => b[1] - a[1]).map(ar => ar.join(','))
     .join('\n'), 'utf-8')
 if (writeSuggestedWords) {
-    writeWordList(wordListPali, '../server/word-list-pali.csv')
-    writeWordList(wordListSinh, '../server/word-list-sinh.csv')
+    writeWordList(wordListPali, 'word-list-pali.csv')
+    writeWordList(wordListSinh, 'word-list-sinh.csv')
     console.log(`wrote ${numEntries} entries from ${numFiles} to word list`)
 }

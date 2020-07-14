@@ -45,7 +45,7 @@
 
       <v-col cols="12" sm="6" xl="4">
         <v-card>  
-          <v-card-title>වෙනත් සැකසුම්</v-card-title> <!-- bandi akuru, text size, show page numbers-->
+          <v-card-title>{{ 'වෙනත් සැකසුම් - ' + version }}</v-card-title> <!-- bandi akuru, text size, show page numbers-->
           <v-card-text>
             <v-switch v-model="bandiLetters" class="mx-2" label="පාළි බැඳි අකුරු භාවිතා කරන්න"></v-switch>
             <v-switch v-model="specialLetters" class="mx-2" label="විශේෂ පාළි අකුරු භාවිතා කරන්න"></v-switch>
@@ -104,6 +104,7 @@ export default {
   },
 
   data: () => ({
+    version: process.env.VUE_APP_VERSION,
   }),
   computed: {
     ...mapState(['bandiLetters', 'specialLetters']),
