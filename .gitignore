@@ -23,3 +23,5 @@ yarn-error.log*
 
 fts.db
 fts5.db
+node_sqlite3.node
+tipitaka-lk.exe
