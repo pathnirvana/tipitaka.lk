@@ -3,13 +3,23 @@
  * keep the logic here to a minimum since any logic here may need to be implemented in Java for android
  * also serve static files for offline apps
  * 
- * prod run as follows (ubuntu)
+ * tipitaka.lk server - prod run as follows (ubuntu)
  * pm2 start server.js --name tipitaka-lk-server
  * pm2 save (save after changing any process parameters)
+ * 
+ * run on offline desktop apps - compile to executable
+ * rm tipitaka-lk.exe; npx pkg -t win --output tipitaka-lk.exe server/server.js
+ * npx pkg -t macos --output tipitaka-lk-mac server/server.js
+ * npx pkg -t linux --output tipitaka-lk-linux server/server.js
+ * 
+ * get a copy of the required pre built native modules - sqlite3
+ * ./node_modules/.bin/node-pre-gyp install --directory=./node_modules/sqlite3 --target_platform=linux win32 or darwin
+ * downloaded to ./node_modules/sqlite3/lib/binding
  */
+
 const path = require('path')
 const fs = require('fs')
-//const getTitle = require('./title-creator.js')
+const colors = require('colors');
 const fastify = require('fastify')({
     logger: false
 })
@@ -17,17 +27,28 @@ const fastify = require('fastify')({
 // fastify.register(require('fastify-cors'), {
 //     origin: true, 
 // })
+// TODO prerender is not needed for the desktop app
 fastify.use(require('prerender-node')
     .set('prerenderServiceUrl', 'http://localhost:3000/')
     .set('prerenderToken', 'YOUR_TOKEN')
     .blacklisted('^/tipitaka-query'))
 
-//const titleStr = '<title>Buddha Jayanthi Tripitaka</title>' // replace this
-//const ogTitleStr = '<meta property=og:title content="බුද්ධ ජයන්ති ත්‍රිපිටකය">'
+// we need to find the dist and server directories
+const checkDirList = [process.cwd(), path.dirname(process.execPath), path.dirname(process.argv[1]), __dirname]
+function checkDir(dir, ind) {
+    console.log(`Testing directory ${ind}:${dir}`);
+    if (fs.existsSync(path.join(dir, 'dist/index.html'))) {
+        console.log(`Found dist/index.html in ${ind}:${dir}`);
+        return true;
+    }
+    return false;
+}
+const dirname = checkDirList.find(checkDir);
+console.log(colors.yellow(`Serving static files from ${dirname}`));
 
 const SqliteDB = require('./sql-query.js')
-const ftsDb = new SqliteDB(path.join(__dirname, 'fts.db'), false)
-const dictDb = new SqliteDB(path.join(__dirname, 'dict.db'), false)
+const ftsDb = new SqliteDB(path.join(dirname, 'server/fts.db'), false)
+const dictDb = new SqliteDB(path.join(dirname, 'server/dict.db'), false)
 
 fastify.post('/tipitaka-query/fts', async (request, reply) => { // hit fts db
     reply.type('application/json').code(200)
@@ -43,29 +64,41 @@ fastify.post('/tipitaka-query/dict', async (request, reply) => { // hit dict db
     return rows
 })
 
-fastify.register(require('fastify-static'), {
-    root: path.join(__dirname, '../dist'),
-})
+// const isElectron = process.argv[2] == 'electron' // pass this in from the background.js in electron
+// if (isElectron) {
+//     console.log(`server running in electron mode only tipitaka-queries are handled`)
+// } else {
+    fastify.register(require('fastify-static'), {
+        root: path.join(dirname, 'dist'),
+    })
 
-// needed to serve index.html when url is not found (same as nginx try_files)
-fastify.setNotFoundHandler(async (request, reply) => {
-    let indexHtml = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'utf-8')
-    // TODO title filling is no longer needed since using pre-render
-    // fill in a title for Facebook links
-    // const newTitle = getTitle(request.raw.url)
-    // if (newTitle) {
-    //     console.log(`${request.raw.url} => ${newTitle}`)
-    //     indexHtml = indexHtml.replace(titleStr, `<title>${newTitle}</title>`)
-    //     indexHtml = indexHtml.replace(ogTitleStr, `<meta property=og:title content="${newTitle}">`)
-    // }
-    reply.type('text/html').code(200).send(indexHtml)
-})
+    // needed to serve index.html when url is not found (same as nginx try_files)
+    fastify.setNotFoundHandler(async (request, reply) => {
+        let indexHtml = fs.readFileSync(path.join(dirname, 'dist/index.html'), 'utf-8')
+        reply.type('text/html').code(200).send(indexHtml)
+    })
+// }
 
-// in dev environment 0.0.0.0 listens to requests from all LAN devices
-// in prod proxy-pass is used - so 127.0.0.1 would be sufficient
-const host = '0.0.0.0', port = 5555
-console.log(`server running on port ${host}:${port}`)
-fastify.listen(port, host, (err, address) => {
-    if (err) throw err
-    fastify.log.info(`server listening on ${address}`)
-})
+// in prod proxy-pass is used - so localhost would be sufficient
+const host = 'localhost', port = 8400
+const address = `${host}:${port}`
+
+async function startServer() {
+    try {
+        await fastify.listen(port, host)
+        console.log(`server listening on ${address}`)
+    } catch(err) {
+        console.log('Error starting server:', err)
+    }
+
+    // opens the browser with the local url
+    console.log(`Running on OS Platform ${process.platform}`);
+    console.log(colors.green(`Open the following address in your browser (Chrome/Firefox/Edge etc)`))
+    console.log(colors.green(`========================\n http://${address}/ \n========================`))
+    if (process.platform == 'win32' || process.platform == 'darwin') { // in linux this results in an error
+        const open = require('open')
+        await open(`http://${address}/`)  // uncomment when building offline apps
+    }
+}
+
+startServer()
