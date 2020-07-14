@@ -1,6 +1,6 @@
 {
   "name": "tipitaka.lk",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,12 +8,14 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "colors": "^1.4.0",
     "core-js": "^3.6.4",
     "fastify": "^2.14.1",
     "fastify-cors": "^3.0.3",
     "fastify-static": "^2.7.0",
     "lodash": "^4.17.15",
     "md5": "^2.2.1",
+    "open": "^7.0.4",
     "prerender": "^5.6.0",
     "prerender-node": "^3.2.5",
     "vkbeautify": "^0.99.3",
