@@ -7,7 +7,8 @@ module.exports = {
   },
   parallel: 4,
   devServer: {
-    proxy: 'http://localhost:8400',
+    port: 8080, // with hot reloading
+    proxy: 'http://localhost:8400', // server js for tipitaka-queries
   },
   "transpileDependencies": [
     "vuetify"

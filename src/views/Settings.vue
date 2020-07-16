@@ -45,7 +45,7 @@
 
       <v-col cols="12" sm="6" xl="4">
         <v-card>  
-          <v-card-title>{{ 'වෙනත් සැකසුම් - ' + version }}</v-card-title> <!-- bandi akuru, text size, show page numbers-->
+          <v-card-title>වෙනත් සැකසුම්</v-card-title> <!-- bandi akuru, text size, show page numbers-->
           <v-card-text>
             <v-switch v-model="bandiLetters" class="mx-2" label="පාළි බැඳි අකුරු භාවිතා කරන්න"></v-switch>
             <v-switch v-model="specialLetters" class="mx-2" label="විශේෂ පාළි අකුරු භාවිතා කරන්න"></v-switch>
@@ -79,6 +79,21 @@
         </v-card>
       </v-col>
 
+      <v-col cols="12" sm="6" xl="4">
+        <v-card>  
+          <v-card-title>මෘදුකාංගය යාවත්කාලින (update) කිරීම</v-card-title> 
+          <v-card-text>
+            <div>{{ `ඔබ දැන් භාවිතා කරන්නේ version: ${version} වන මෘදුකාංගයයි.` }}</div>
+            <div :class="versionColor">{{ versionText }}</div>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn @click="checkVersion" color="primary" outlined>
+              <v-icon class="mr-2">mdi-update</v-icon>පරික්ෂා කරන්න
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+
     </v-row>
   </v-container>
 </template>
@@ -86,6 +101,8 @@
 <script>
 import TabColumnSelector from '@/components/TabColumnSelector'
 import { mapState } from 'vuex'
+import { tipitakaAppVersion } from '@/constants.js'
+import axios from 'axios'
 
 function getVuexBindings(props) {
   const bindings = {}
@@ -104,7 +121,8 @@ export default {
   },
 
   data: () => ({
-    version: process.env.VUE_APP_VERSION,
+    version: tipitakaAppVersion, //Number(process.env.VUE_APP_VERSION),
+    newVersion: 0,
   }),
   computed: {
     ...mapState(['bandiLetters', 'specialLetters']),
@@ -119,7 +137,36 @@ export default {
         default: return 'සිංහල පමණයි.'
       }
     },
+    versionText() {
+      if (this.newVersion == -1) {
+        return `පරික්ෂා කිරීමේදී දෝෂයක් මතුවිය. ඔබ අන්තර්ජාලයට සම්බන්ධ වී නැවත උත්සාහ කරන්න.`
+      } else if (this.newVersion <= this.version) {
+        return `ඔබ දැනටමත් අලුත්ම version එක භාවිතා කරමින් සිටී.`
+      } else if (this.newVersion) {
+        return `අලුත් version ${this.newVersion} පැමිණ ඇත. ඔබේ මෘදුකාංගය යාවත්කාලින කරගන්න.`
+      }
+      return `පහත බොත්තම ඔබා අලුත් version එකක් තිබේදැයි පරික්ෂා කරන්න.`
+    },
+    versionColor() {
+      if (this.newVersion == -1) return 'error--text'
+      else if (this.newVersion <= this.version) return 'success--text'
+      return 'accent--text'
+    }
   },
+
+  methods: {
+    async checkVersion() {
+      try {
+        const response = await axios.get('https://tipitaka.lk/tipitaka-query/version')
+        this.newVersion = Number(response.data)
+      } catch (err) {
+        console.log(err)
+        this.newVersion = -1
+      }
+    }
+  },
+
+  mounted() { this.checkVersion() },
 
   watch: {
     bandiLetters() { this.$store.commit('tree/recomputeTree', this.$store.state) },

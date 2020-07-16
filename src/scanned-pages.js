@@ -405,17 +405,27 @@ const bjtBooksInfo = {
     }
 }
 
+import axios from 'axios'
 // initialize bjt params
-// put 10/DN1_Page_001.jpg/png in either Pictures/bjt_newbooks or bjt_books for local testing
 let bjtBooksFolder, bjtImageExt
-if (typeof Android != 'undefined') {
-    [bjtBooksFolder, bjtImageExt] = Android.getBjtParams().split('.')
+async function initBjtParams() {
+    let bjtParams = ''
+    if (typeof Android != 'undefined') {
+        // put 10/DN1_Page_001.jpg/png in either Pictures/bjt_newbooks or bjt_books for local testing
+        bjtParams = Android.getBjtParams()
+    } else { // desktop app and website
+        try {
+            const response = await axios.get('/tipitaka-query/bjt-params')
+            bjtParams = response.data
+        } catch (e) { }
+    }
+    if (!bjtParams) { // full path for online version from pitaka.lk
+        bjtParams = 'https://pitaka.lk/bjt/newbooks|jpg'
+    }
+    [bjtBooksFolder, bjtImageExt] = bjtParams.split('|')
+    console.log(`Loading bjt images from: ${bjtBooksFolder} ext: ${bjtImageExt}`)
 }
-if (!bjtBooksFolder) {
-    [bjtBooksFolder, bjtImageExt] = ['https://pitaka.lk/bjt/newbooks', 'jpg'] // full path for android app without pages
-}
-
-console.log(`Loading bjt images from: ${bjtBooksFolder} ext: ${bjtImageExt}`)
+initBjtParams()
 
 export function getBJTImageSrc(bookId, pageNum) {
     const bookInfo = bjtBooksInfo[bookId]
