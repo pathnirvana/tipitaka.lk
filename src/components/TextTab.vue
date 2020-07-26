@@ -56,7 +56,14 @@
 /* .snack { opacity: 0.85; font-size: 1.1rem; max-width: 100px; } */
 .page-number { text-align: center; color: var(--v-info-base); }
 .img-holder { text-align: center; }
-.img-holder img { width: 100%; max-width: 750px;}
+.img-holder img { 
+  width: 100%; 
+  max-width: 750px; 
+  filter: grayscale(100%) contrast(90%) brightness(95%);
+}
+.theme--dark .img-holder > img { filter: invert(100%) contrast(70%) brightness(150%); }
+
+
 .load-prev-page { top: 60px; }
 </style>
 
@@ -161,6 +168,7 @@ export default {
       text = text.replace(/__(.*?)__/g, '|$1℗underline|') // underline
       text = text.replace(/~~(.*?)~~/g, '|$1℗strike|') // strike through
       text = text.replace(/\$\$(.*?)\$\$/g, '$1') // just get rid of $$
+      text = text.replace(/↴/g, '\n') // invisible in pdf - new line
       if (!text) text = '' //|Empty - තීරුව හිස් !℗strike|' // if left empty it is not clickable
       return text.split('|').filter(t => t.length).map(t => t.split('℗'))
     },

@@ -36,19 +36,8 @@ function addBandiLetters(text) {
 
     return text;
 }
-function addSpecialLetters(text) {
-    paliConjuncts.forEach(pair => {
-        const re = new RegExp(pair[0] + "\u0DCA" + pair[1], "g") // TODO precompute these
-        text = text.replace(re, pair[0] + "\u0DCA\u200D" + pair[1]);
-    })
-    return text
-}
 
-function beautifySinh(text) {
-    // adding the rakar & repaya
-    // change joiners before U+0DBA Yayanna and U+0DBB Rayanna to Virama + ZWJ
-    text = text.replace(/\u0DCA([\u0DBA\u0DBB])/g, '\u0DCA\u200D$1');
-
+function addCommonConjuncts(text) {
     // special conjunct cases
     commonConjuncts.forEach(pair => {
         const re = new RegExp(pair[0] + "\u0DCA" + pair[1], "g") // TODO precompute these
@@ -57,13 +46,33 @@ function beautifySinh(text) {
     return text
 }
 
+function addPaliConjuncts(text) {
+    paliConjuncts.forEach(pair => {
+        const re = new RegExp(pair[0] + "\u0DCA" + pair[1], "g") // TODO precompute these
+        text = text.replace(re, pair[0] + "\u0DCA\u200D" + pair[1]);
+    })
+    return text
+}
+
+function addRakarYansa(text) {
+     // adding the rakar & yansa
+    // change joiners before U+0DBA Yayanna and U+0DBB Rayanna to Virama + ZWJ
+    return text.replace(/\u0DCA([\u0DBA\u0DBB])/g, '\u0DCA\u200D$1');
+}
+
 // add rakar and common conjuncts
 export function beautifyText(text, lang, {bandiLetters, specialLetters}) {
     if (lang == 'sinh') return text // issue pointed out by Vincent - උස්යහනින්/අඳුන්දිවිසමින්
-    text = beautifySinh(text)
+    text = addRakarYansa(text)    
+    text = addCommonConjuncts(text)
     if (lang == 'pali') {
-        if (specialLetters) text = addSpecialLetters(text)
+        if (specialLetters) text = addPaliConjuncts(text)
         if (bandiLetters) text = addBandiLetters(text)
     }
     return text
+}
+
+export function beautifyFTSText(text, lang, options) {
+    if (lang != 'sinh') return beautifyText(text, lang, options)
+    return addRakarYansa(text) // even though උස්යහනින් is still a problem this is needed as fts lacks 200d
 }

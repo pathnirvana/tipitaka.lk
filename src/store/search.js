@@ -22,7 +22,7 @@ const dbVersions = { // updated dbs need to be marked here for update in android
 export default {
   namespaced: true,
   state: {
-    searchType: 'title',
+    searchType: '', // init from rootState.lastSearchType
     searchInput: '',  // search bar input
 
     filter: {
@@ -110,6 +110,7 @@ export default {
   actions: {
     async initialize({state, rootState, commit}) {
       commit('loadBookmarks')
+      commit('setSearchType', rootState.lastSearchType) // last user selected value
       if (typeof Android !== 'undefined') {
         commit('set', { name: 'androidBusy', value: true }, { root: true })
         await callAndroidAsync('openDbs', dbVersions) // opens all dbs copying from assets if necessary

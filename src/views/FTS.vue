@@ -37,16 +37,32 @@
       <v-card-text>{{ errorMessage + '. ඔබේ අන්තර්ජාල සම්බන්ධතාවය පරික්ෂා කර බලන්න.' }}</v-card-text>
     </v-card>
 
-    <v-simple-table v-if="results.length" class="results-table">
-      <tbody>
-        <tr v-for="(res, i) in results" :key="i" >
-          <td class="pb-2">
-            <TipitakaLink v-if="res.key" :itemKey="res.key" :params="res"/>
+    <div class="d-flex flex-column" v-if="results.length">
+      <div v-for="group in results" :key="group.key" class="result-group pa-2">
+
+        <div v-if="!group.isOpen" class="result">
+          <TipitakaLink v-if="group.key" :itemKey="group.key" :params="group.items[0]" />
+          <div class="html" v-html="group.items[0].hText" :style="$store.getters['styles']"></div>
+        </div>
+
+        <template v-else>
+          <div v-for="(res, i) in group.items" :key="i" class="result my-2">
+            <TipitakaLink v-if="res.key" :itemKey="res.key" :params="res" />
             <div class="html" v-html="res.hText" :style="$store.getters['styles']"></div>
-          </td>
-        </tr>
-      </tbody>
-    </v-simple-table>
+          </div>
+        </template>
+
+        <v-btn v-if="group.items.length > 1" text @click="toggleGroup(group.key)" :color="group.isOpen ? 'success' : 'info'" >
+          <template v-if="group.isOpen">
+            {{ `මෙම ඡේද ${group.items.length} වසන්න.` }}<v-icon>mdi-unfold-less-horizontal</v-icon>
+          </template>
+          <template v-else>
+            {{ `මෙම සූත්‍රයේම තවත් ඡේද ${group.items.length} ක ඇත. බලන්න.` }}<v-icon>mdi-unfold-more-horizontal</v-icon>
+          </template>
+        </v-btn>
+
+      </div>
+    </div>
 
     <v-skeleton-loader v-if="queryRunning" type="table"></v-skeleton-loader>
 
@@ -57,11 +73,13 @@
 /*.results-table tr:nth-child(even) { background-color: lightgray; }*/
 .html { font-size: 1.1em; }
 .html >>> sr { background-color: var(--v-highlight-base); }
+.expand-group { background-color: var(--v-success-base); cursor: pointer; }
+.result-group { border: 0.5px dotted var(--v-secondary-base) }
 </style>
 
 <script>
 //
-import { beautifyText } from '@/text-convert.mjs'
+import { beautifyFTSText } from '@/text-convert.mjs'
 import { allFilterLength, copyMetaTitle } from '@/constants.js'
 import TipitakaLink from '@/components/TipitakaLink'
 import FilterTree from '@/components/FilterTree'
@@ -74,6 +92,7 @@ const searchBarRules = [
   v => !(/[a-z]/i.test(v) && !/AND|OR|NOT/.test(v)) || 'අන්තර්ගතය සෙවීමේදී සිංහල අකුරු පමණක් භාවිතා කරන්න.',
   v => !/[^a-z\u0D80-\u0DFF\u200D\*\^\(\) ]/i.test(v) || 'සෙවුම් පදය සඳහා ඉංග්‍රීසි සහ සිංහල අකුරු පමණක් යොදන්න.',
 ]
+const rankResult = a => a.numMatches / Math.log2(a.textLength)
 
 export default {
   name: 'FTS',
@@ -83,7 +102,7 @@ export default {
   },
 
   data: () => ({
-    results: [],
+    results: [], // search results grouped by the key/sutta
     resultsInput: '',
     errorMessage: '',
     queryRunning: false,
@@ -103,11 +122,12 @@ export default {
     showMatchPhrase() { return this.searchInput.split(' ').length > 1 },
     searchMessage() {
       if (this.inputError) return ''
-      const terms = beautifyText(this.searchInput, 'sinh', this.$store.state)
-      if (!this.results.length)
+      const terms = beautifyFTSText(this.searchInput, 'sinh', this.$store.state)
+      const numResults = this.results.reduce((acc, grp) => acc += grp.items.length, 0)
+      if (!numResults)
         return `“${terms}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද කිසිවක් හමුවුයේ නැත. වෙනත් සෙවුමක් උත්සාහ කර බලන්න.`
-      else if(this.results.length < this.maxResults)
-        return `“${terms}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද ${this.results.length} ක් හමුවුනා.`
+      else if(numResults < this.maxResults)
+        return `“${terms}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද ${numResults} ක් හමුවුනා.`
       else 
         return `ඔබගේ “${terms}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද ${this.maxResults} කට වඩා හමුවුනා. එයින් මුල් ${this.maxResults} පහත දැක්වේ.`
     },
@@ -133,7 +153,7 @@ export default {
     },
     filterClause() { // (filename LIKE 'an-6%' OR filename LIKE 'sn-1%')
       const clauses = []
-      if (this.filterFTS.keys.length < allFilterLength) {
+      if (this.filterFTS.keys.length && this.filterFTS.keys.length < allFilterLength) {
         clauses.push('(' + this.filterFTS.keys.map(key => `filename LIKE '${key}%'`).join(' OR ') + ')')
       }
       if (this.filterFTS.columns.length < 2) {
@@ -160,32 +180,53 @@ export default {
       this.resultsInput = this.searchInput
       this.queryRunning = true
 
-      const highlightFunc = "snippet(tipitaka, '<sr>', '</sr>', '...', 5, 50)" // max-64 for last param. fts5 - highlight(tipitaka, 5, '<sr>', '</sr>')
-      const sql = `SELECT filename, eind, language, type, ${highlightFunc} AS htext FROM tipitaka 
+      const highlightFunc = "snippet(tipitaka, '<sr>', '</sr>', '<b>…</b>', 5, 64)" // max-64 for last param. fts5 - highlight(tipitaka, 5, '<sr>', '</sr>')
+      const sql = `SELECT filename, eind, language, type, ${highlightFunc} AS htext, 
+          length(text) AS textlength, offsets(tipitaka) as offsets FROM tipitaka 
           WHERE text MATCH '${this.ftsMatchClause}' ${this.filterClause ? (' AND ' + this.filterClause) : ''} 
-          ORDER BY length(offsets(tipitaka)) DESC LIMIT ${this.$store.state.search.maxResults};` // fts5 - ORDER BY rank
+          ORDER BY length(offsets(tipitaka))/length(text) DESC LIMIT ${this.$store.state.search.maxResults};` // fts5 - ORDER BY rank
 
       try {
         const data = await this.$store.dispatch('search/runFTSQuery', { sql, 'input': this.searchInput })
-        this.results = data.map(res => {
-          const eInd = res.eind.split('-').map(i => parseInt(i))
-          const hText = beautifyText(res.htext, res.language, this.$store.state)
-          return { eInd, hText, 
-            key: this.getKeyForEInd(res.filename, eInd),
-            hWords: this.getHighlightWords(hText),
-            language: res.language
-          }
-        })
+        this.results = this.buildResults(data)
       } catch (e) {
         console.error(e)
         this.errorMessage = e.message
       }
       this.queryRunning = false
     },
+
+    buildResults(data) {
+      const groups = {}
+      data.forEach(row => {
+        const eInd = row.eind.split('-').map(i => parseInt(i))
+        const hText = beautifyFTSText(row.htext, row.language, this.$store.state)
+        const key = this.getKeyForEInd(row.filename, eInd)
+        const res = { eInd, hText, key,
+          hWords: this.getHighlightWords(hText),
+          language: row.language,
+          numMatches: row.offsets.split(' ').length / 4,
+          textLength: row.textlength,
+        }
+        if (groups[key]) {
+          groups[key].items.push(res)
+          groups[key].numMatches += res.numMatches
+        } else {
+          groups[key] = { key, items: [res], isOpen: false, numMatches: res.numMatches }
+        }
+      })
+      for (const key in groups) groups[key].items.sort((a, b) => rankResult(b) - rankResult(a)) // sort items
+      return Object.values(groups).sort((a, b) => b.numMatches - a.numMatches) // sort groups
+    },
+
     getHighlightWords(hText) {
       const words = {} // extract content within <sr> tags
       hText.replace(/<sr>(.*?)<\/sr>/g, (_1, g1) => words[g1] = 1);
       return Object.keys(words) // de-dup
+    },
+    toggleGroup(key) {
+      const g = this.results.find(g => g.key == key)
+      this.$set(g, 'isOpen', !g.isOpen)
     },
     updatePage() {
       //const options = [this.exactWord, this.matchPhrase, this.wordDistance].join('-')
