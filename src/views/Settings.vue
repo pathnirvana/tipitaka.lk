@@ -133,7 +133,7 @@ export default {
     columnSelectionText() {
       switch(this.$store.state.defaultColumns) {
         case 2: return 'පාළි සිංහල දෙකම.'
-        case 1: return 'පාළි පමණයි.'
+        case 0: return 'පාළි පමණයි.'
         default: return 'සිංහල පමණයි.'
       }
     },

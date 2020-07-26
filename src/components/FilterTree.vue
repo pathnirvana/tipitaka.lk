@@ -19,8 +19,10 @@
         </v-treeview>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="filterKeys = [...allKeys]" text>
-          <v-icon color="accent" class="mr-1">mdi-checkbox-marked</v-icon>සියල්ල තෝරන්න
+        <v-btn @click="toggleAllSelect" text>
+          <v-icon color="accent" class="mr-1">
+            {{ allSelect ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline' }}
+          </v-icon>සියල්ල {{ allSelect ? 'තෝරන්න' : 'ඉවත්කරන්න' }}
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn @click="dialog = false" text>
@@ -48,6 +50,7 @@ export default {
     return {
       dialog: false,
       allKeys: allFilterKeys,
+      allSelect: true,
     }
   },
   computed: {
@@ -68,6 +71,10 @@ export default {
   },
 
   methods: {
+    toggleAllSelect() {
+      this.filterKeys = this.allSelect ? [...allFilterKeys] : []
+      this.allSelect = !this.allSelect
+    }
   },
 }
 </script>
