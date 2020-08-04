@@ -52,7 +52,7 @@ function writeEntry(e, eind, lang, fileKey) {
 const writeFtsDb = true, writeSuggestedWords = false
 const wordListPali = [], wordListSinh = []
 const dataInputFolder = path.join(__dirname, '../public/static/text/')
-const ftsDictFile = path.join(__dirname, '../server/fts4.db')
+const ftsDictFile = path.join(__dirname, '../server/fts.db')
 const ftsDb = new SqliteDB(ftsDictFile, true)
 if (writeFtsDb) {
     ftsDb.db.run('BEGIN')
@@ -74,7 +74,7 @@ inputFiles.forEach(filename => {
 if (writeFtsDb) {
     ftsDb.run('COMMIT')
     ftsDb.close();
-    console.log(`added ${numEntries} entries from ${numFiles} to ftsDB`)
+    console.log(`added ${numEntries} entries from ${numFiles} files to ftsDB`)
 }
 
 const writeWordList = (wordList, filePath) =>
