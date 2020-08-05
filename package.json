@@ -10,7 +10,7 @@
     "axios": "^0.19.2",
     "colors": "^1.4.0",
     "core-js": "^3.6.4",
-    "fastify": "^2.14.1",
+    "fastify": "^2.15.1",
     "fastify-cors": "^3.0.3",
     "fastify-static": "^2.7.0",
     "lodash": "^4.17.19",
