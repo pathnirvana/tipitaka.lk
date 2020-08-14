@@ -50,12 +50,13 @@ export default {
       return rState.treeLanguage == 'pali' ? 0 : 1 // use the tree language to determine default column (last resort)
     },
     getShowScanPage: (state) => state.tabList[state.activeInd].showScanPage,
+    getIsAtta: (state) => state.tabList[state.activeInd].keyProp.filename.startsWith('atta-'),
     getActiveTabInfo: (state) => (ind, prop) => state.tabList[ind][prop],
     getVisiblePages: (state) => (ind) => {
       const tab = state.tabList[ind]
       if (!tab.isLoaded) return []
       return tab.data.pages.slice(tab.pageStart, tab.pageEnd)
-    }
+    },
   },
 
   mutations: {

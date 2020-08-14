@@ -49,8 +49,8 @@ td.entry { width: 50%; vertical-align: top; }
   word-break: break-word; white-space: pre-wrap; }
 
 .heading { /*font-weight: bold;*/ font-family: 'heading2'; color: var(--v-primary-base); text-align: center; }
-.heading[level="5"] { font-size: 2.0em; } /* sn-2 */
-.heading[level="4"] { font-size: 1.8em; } /* sn-2-1-9 */
+.heading[level="5"] { font-size: 1.8em; } /* sn-2 */
+.heading[level="4"] { font-size: 1.7em; } /* sn-2-1-9 */
 .heading[level="3"] { font-size: 1.6em; }
 .heading[level="2"] { font-size: 1.4em; }
 .heading[level="1"] { font-size: 1.3em; }

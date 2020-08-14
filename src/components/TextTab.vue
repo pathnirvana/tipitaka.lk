@@ -16,7 +16,7 @@
 
       <v-simple-table v-for="({rows, footnotes, pageNum }, pi) in visiblePages" :key="pi" dense style="table-layout: fixed">
         <template v-if="!tab.showScanPage">
-          <tr v-if="$store.state.showPageNumbers">
+          <tr v-if="$store.state.showPageNumbers && !isAtta">
             <td v-if="columns.pali" class="page-number">
               <v-btn text small color="info" @click.stop="displayScanned(pageNum)">{{ pageNum }}</v-btn>
             </td>
@@ -123,6 +123,7 @@ export default {
       })
     },
     paliOnly() { return this.filename.startsWith('ap-pat') },
+    isAtta() { return this.filename.startsWith('atta-') },
   },
 
   methods: {

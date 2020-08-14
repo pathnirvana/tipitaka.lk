@@ -95,7 +95,7 @@ export default {
   actions: {
     async initialize({commit, rootState}) {
       //const response = await axios.get('/static/data/tree.json')
-      const index = await getJson('/static/data/tree.json') //response.data
+      const index = await getJson('/static/data/tree-new.json') //response.data
       commit('setIndex', index)
       commit('recomputeTree', rootState)
     },
