@@ -105,7 +105,8 @@ export default {
     let tab = this.$store.getters['tabs/getActiveTab'], title = 'Home'
     if (!tab) return { title }
     title = this.getName(tab.key, tab.language)
-    const keyRoot = tab.key.split('-')[0]
+    let keyRoot = tab.key.split('-')[0]
+    if (keyRoot == 'atta') keyRoot = 'atta-' + tab.key.split('-')[1] // if atta root key has two parts
     if (keyRoot != tab.key) title += (' < ' + this.getName(keyRoot, tab.language))
     title = title.replace(/([ක-ෆ])\u200D\u0DCA([ක-ෆ])/g, '$1\u0DCA$2') // remove bandi
     return copyMetaTitle(title) 

@@ -67,7 +67,7 @@
           </v-btn>
           <TabColumnSelector :iconType="true" varName="tabColumns" />
           <v-divider vertical></v-divider>
-          <v-btn-toggle v-model="showScanPage" dense mandatory rounded color="primary">
+          <v-btn-toggle v-model="showScanPage" dense mandatory rounded color="primary" v-if="!isAttaActive">
             <v-btn :value="false" icon><v-icon>mdi-text-box</v-icon></v-btn>
             <v-btn :value="true" icon><v-icon>mdi-scanner</v-icon></v-btn>
           </v-btn-toggle>
@@ -97,7 +97,7 @@
               <v-list-item-title>ඊළඟ සුත්‍රයට</v-list-item-title>
             </v-list-item>
             <v-divider inset></v-divider>
-            <v-list-item @click="showScanPage = !showScanPage">
+            <v-list-item @click="showScanPage = !showScanPage" v-if="!isAttaActive">
               <v-list-item-icon><v-icon>{{ showScanPage ? 'mdi-text-box' : 'mdi-scanner' }}</v-icon></v-list-item-icon>
               <v-list-item-title>{{ showScanPage ? 'නව පිටපතට' : 'පැරණි පිටපතට' }}</v-list-item-title>
             </v-list-item>
@@ -224,6 +224,7 @@ export default {
       get() { return this.$store.getters['tabs/getShowScanPage'] },
       set(val) { this.$store.commit('tabs/setShowScanPage', val) }
     },
+    isAttaActive() { return this.$store.getters['tabs/getIsAtta'] },
     mdAndUp() { return this.$vuetify.breakpoint.mdAndUp },
     smAndUp() { return this.$vuetify.breakpoint.smAndUp },
     //isSettingsView() { return this.$route.path == '/settings' },

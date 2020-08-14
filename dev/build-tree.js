@@ -86,14 +86,27 @@ const tree = {
     'vp-pct': [], // vp-pct-2-5 small but needed
     'vp-mv': [],
     // 'vp-cv': [], 'vp-pv': [], // wait
+
+    /** atta tree */
+    //'vp': [ 'විනයපිටක (අට්ඨකථා)', 'විනය පිටකය (අටුවාව)',       7, [0, 0], 'root', 'vp-prj'],
+    'atta-sp': [ 'සුත්තපිටක (අට්ඨකථා)', 'සූත්‍ර පිටකය (අටුවාව)',        7, [0, 0], 'root', 'atta-dn-1-1'],
+    //'ap': [ 'අභිධම්මපිටක (අට්ඨකථා)', 'අභිධර්ම පිටකය (අටුවාව)',   7, [0, 0], 'root', 'ap-dhs'],
+
+    'atta-dn': [ 'දීඝනිකාය (අට්ඨකථා)', 'දික් සඟිය (අටුවාව)',         6, [0, 0], 'atta-sp', 'atta-dn-1-1'],
+    //'mn': [ 'මජ්ඣිමනිකාය', 'මැදුම් සඟිය',     6, [0, 0], 'sp', 'mn-1-1'],
+    'atta-sn': [ 'සංයුත්තනිකායො (අට්ඨකථා)', 'සංයුත්ත නිකාය (අටුවාව)', 6, [0, 0], 'atta-sp', 'atta-sn-1'],
+    //'an': [ 'අඞ්ගුත්තරනිකායො', 'අඞ්ගුත්තර සඟිය', 6, [0, 0], 'sp', 'an-1'],
+    //'kn': [ 'ඛුද්දකනිකායො', 'කුදුගත් සඟිය',      6, [0, 0], 'sp', 'kn-khp'],
+    
+    'atta-dn-2': [ 'මහාවග්ගො', 'මහා වර්ගය',      5, [0, 0], 'atta-dn', 'atta-dn-2-1'], // keep until atta-dn-2 is complete
 }
 const headingAtEndKeys = ['kn-vv', 'kn-pv', 'kn-thag', 'kn-thig', 
         'kn-jat$', 'kn-jat-(5|11|22)', 'ap-dhs', 'ap-vbh', 'ap-yam-(6|7|8|10)'] 
 
 const dataInputFolder = __dirname + '/../public/static/text/'
-const treeOutFilename = __dirname + '/../public/static/data/tree.json'
+const treeOutFilename = __dirname + '/../public/static/data/tree-new.json'
 const searchIndexFilename = __dirname + '/../public/static/data/searchIndex.json'
-const filesFilter = /^dn-|^mn-|^sn-|^an-|^kn-|^ap-|^vp-/ //
+const filesFilter = /^dn-|^mn-|^sn-|^an-|^kn-|^ap-|^vp-|^atta-/
 
 const getName = (text) => {
     text = text.trim()
@@ -121,7 +134,7 @@ const inputFiles = fs.readdirSync(dataInputFolder)
     .filter(name => filesFilter.test(name)).map(name => name.split('.')[0]).sort() // sort needed to get kn-nett before kn-nett-x
 inputFiles.forEach(fileKey => {
     const obj = JSON.parse(fs.readFileSync(path.join(dataInputFolder, fileKey + '.json')))
-    const paliOnly = fileKey.startsWith('ap-pat')
+    const paliOnly = fileKey.startsWith('ap-pat'), isAtta = fileKey.startsWith('atta-')
     if (obj.filename != fileKey) {
         console.error(`filename mismatch ${obj.filename} in ${fileKey}`)
     }
@@ -131,8 +144,8 @@ inputFiles.forEach(fileKey => {
         return;
     }
     const parentKey = fileKey.split('-').slice(0, -1).join('-'); // remove one from key
-    const fileOffset = fileKey.split('-').slice(-1)[0] // last number
-    const parentStack = [[parentKey, fileOffset]] // key and numChildren(can be non numeric e.g. khp)
+    const keyOffset = fileKey.split('-').slice(-1)[0] // last number
+    const parentStack = [[parentKey, keyOffset]] // key and keyOffset(can be non numeric e.g. khp)
 
     const headings = getHeadings(pages, 'pali'), sinhHeadings = getHeadings(pages, 'sinh')
     if (!paliOnly && headings.length != sinhHeadings.length) {
@@ -147,25 +160,26 @@ inputFiles.forEach(fileKey => {
     }
     
     let prevEInd = [0,0] // init to 0 needed for ap-yam-10-3-4 (file starts with a headingAtEnd)
-    const isHeadingAtEnd = headingAtEndKeys.some(k => fileKey.search(k) != -1)
+    const isHeadingAtEnd = headingAtEndKeys.some(k => fileKey.search(k) != -1) && !isAtta
     headings.forEach((he, hei) => {
-        while (tree[parentStack.slice(-1)[0][0]][TFI.Level] <= he.level) {
-            parentStack.pop(); // until a parent with a higher level is found
-        }
-        const parent = parentStack.slice(-1)[0], eInd = [he.pi, he.ei] // page ind and entry index in the page
-        const newKey = `${parent[0]}-${parent[1]}`, level = parseInt(he.level)
-        parent[1] = parseInt(parent[1]) + 1 // increment numChildren (could be NaN)
+        const [newKey, parentKey] = computeNewKey(he, parentStack, isAtta)
+        const level = parseInt(he.level), eInd = [he.pi, he.ei] // page ind and entry index in the page
+        // while (tree[parentStack.slice(-1)[0][0]][TFI.Level] <= he.level) {
+        //     parentStack.pop(); // until a parent with a higher level is found
+        // }
+        // const parent = parentStack.slice(-1)[0]
+        // const newKey = `${parent[0]}-${parent[1]}`
+        // parent[1] = parseInt(parent[1]) + 1 // increment keyOffset (could be NaN)
 
-        const newNode = [ 
+        tree[newKey] = [ 
             getName(he.text),
             getName(!paliOnly ? sinhHeadings[hei].text : ''), // sinh name (can put in a seperate file too)
             level,
             // if prev entry is a centered number include it too
             isHeadingAtEnd && level == 1 ? prevEInd : getPrevIfCenNum(eInd, pages), 
-            parent[0], // parent key
+            parentKey,
             fileKey // filename without ext
         ]
-        tree[newKey] = newNode
         parentStack.push([newKey, 1])
         prevEInd = incrementEInd(eInd, pages) // when using prevEnd for headingAtEnd
     })
@@ -175,6 +189,22 @@ inputFiles.forEach(fileKey => {
 fs.writeFileSync(treeOutFilename, vkb.json(JSON.stringify(tree)), {encoding: 'utf-8'})
 console.log(`wrote tree to ${treeOutFilename} with ${Object.keys(tree).length} nodes`)
 console.log(`Processed ${processedFilesCount} out of ${inputFiles.length}`)
+
+function computeNewKey(he, parentStack, isAtta) { // modifies parentStack
+    while (tree[parentStack.slice(-1)[0][0]][TFI.Level] <= he.level) {
+        parentStack.pop(); // until a parent with a higher level is found
+    }
+    const parent = parentStack.slice(-1)[0]
+    
+    if ('keyOffset' in he) parent[1] = he.keyOffset
+    else if (isAtta && (m = /^(\d+)/.exec(he.text))) parent[1] = m[1] // if atta use the first number as keyoffset if any
+    
+    const newKey = `${parent[0]}-${parent[1]}`
+    if (tree[newKey] && tree[newKey].length) console.error(`duplicate key ${newKey}. make sure keyOffset is increasing`)
+    parent[1] = parseInt(parent[1]) + 1 // increment keyOffset for next sibling
+
+    return [newKey, parent[0]]
+}
 
 
 // building the heading search index
