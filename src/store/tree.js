@@ -1,4 +1,4 @@
-import { getJson } from '@/constants.js'
+import { getJson, filterTreeParents } from '@/constants.js'
 import { beautifyText } from '@/text-convert.mjs'
 import Vue from 'vue'
 
@@ -11,13 +11,13 @@ const childrenSort = (a, b) => {
   return ac - bc
 }
 
-function genTree(key, index, keyLen, letterOpt) {
+function genTree(key, index, addChildren, letterOpt) {
   let { pali, sinh, children } = index[key]
   pali = beautifyText(pali, 'pali', letterOpt) 
   sinh = beautifyText(sinh, 'sinh', letterOpt) 
   const treeItem = { pali, sinh, key }
-  if (children.length && key.split('-').length < keyLen) {
-    treeItem.children = children.map(cKey => genTree(cKey, index, keyLen, letterOpt)).sort(childrenSort)
+  if (children.length && addChildren(key)) { // key.split('-').length < keyLen
+    treeItem.children = children.map(cKey => genTree(cKey, index, addChildren, letterOpt)).sort(childrenSort)
   }
   return treeItem
 }
@@ -76,9 +76,9 @@ export default {
       state.treeView = []
       state.filterTree = []
       state.index['root'].children.forEach(
-        key => state.treeView.push(genTree(key, state.index, 10, letterOpt)))
+        key => state.treeView.push(genTree(key, state.index, () => true, letterOpt))) // add all children
       state.index['root'].children.forEach(
-        key => state.filterTree.push(genTree(key, state.index, 2, letterOpt))) // max two levels
+        key => state.filterTree.push(genTree(key, state.index, (k) => filterTreeParents.indexOf(k) != -1, letterOpt))) // only filter tree
       // gen order list
       state.treeView.forEach(child => addOrder(child, state.orderedKeys))
       state.isLoaded = true
@@ -95,7 +95,7 @@ export default {
   actions: {
     async initialize({commit, rootState}) {
       //const response = await axios.get('/static/data/tree.json')
-      const index = await getJson('/static/data/tree-new.json') //response.data
+      const index = await getJson('/static/data/tree.json') //response.data
       commit('setIndex', index)
       commit('recomputeTree', rootState)
     },
