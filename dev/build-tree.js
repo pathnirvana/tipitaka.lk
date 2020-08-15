@@ -89,12 +89,12 @@ const tree = {
 
     /** atta tree */
     //'vp': [ 'විනයපිටක (අට්ඨකථා)', 'විනය පිටකය (අටුවාව)',       7, [0, 0], 'root', 'vp-prj'],
-    'atta-sp': [ 'සුත්තපිටක (අට්ඨකථා)', 'සූත්‍ර පිටකය (අටුවාව)',        7, [0, 0], 'root', 'atta-dn-1-1'],
+    'atta-sp': [ 'සුත්තපිටක අට්ඨකථා', 'සූත්‍ර පිටකය අටුවාව',        7, [0, 0], 'root', 'atta-dn-1-1'],
     //'ap': [ 'අභිධම්මපිටක (අට්ඨකථා)', 'අභිධර්ම පිටකය (අටුවාව)',   7, [0, 0], 'root', 'ap-dhs'],
 
-    'atta-dn': [ 'දීඝනිකාය (අට්ඨකථා)', 'දික් සඟිය (අටුවාව)',         6, [0, 0], 'atta-sp', 'atta-dn-1-1'],
+    'atta-dn': [ 'දීඝනිකාය අට්ඨකථා', 'දික් සඟිය අටුවාව',         6, [0, 0], 'atta-sp', 'atta-dn-1-1'],
     //'mn': [ 'මජ්ඣිමනිකාය', 'මැදුම් සඟිය',     6, [0, 0], 'sp', 'mn-1-1'],
-    'atta-sn': [ 'සංයුත්තනිකායො (අට්ඨකථා)', 'සංයුත්ත නිකාය (අටුවාව)', 6, [0, 0], 'atta-sp', 'atta-sn-1'],
+    'atta-sn': [ 'සංයුත්තනිකායො අට්ඨකථා', 'සංයුත්ත නිකාය අටුවාව', 6, [0, 0], 'atta-sp', 'atta-sn-1'],
     //'an': [ 'අඞ්ගුත්තරනිකායො', 'අඞ්ගුත්තර සඟිය', 6, [0, 0], 'sp', 'an-1'],
     //'kn': [ 'ඛුද්දකනිකායො', 'කුදුගත් සඟිය',      6, [0, 0], 'sp', 'kn-khp'],
     
@@ -104,7 +104,7 @@ const headingAtEndKeys = ['kn-vv', 'kn-pv', 'kn-thag', 'kn-thig',
         'kn-jat$', 'kn-jat-(5|11|22)', 'ap-dhs', 'ap-vbh', 'ap-yam-(6|7|8|10)'] 
 
 const dataInputFolder = __dirname + '/../public/static/text/'
-const treeOutFilename = __dirname + '/../public/static/data/tree-new.json'
+const treeOutFilename = __dirname + '/../public/static/data/tree.json'
 const searchIndexFilename = __dirname + '/../public/static/data/searchIndex.json'
 const filesFilter = /^dn-|^mn-|^sn-|^an-|^kn-|^ap-|^vp-|^atta-/
 
