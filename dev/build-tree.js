@@ -164,12 +164,6 @@ inputFiles.forEach(fileKey => {
     headings.forEach((he, hei) => {
         const [newKey, parentKey] = computeNewKey(he, parentStack, isAtta)
         const level = parseInt(he.level), eInd = [he.pi, he.ei] // page ind and entry index in the page
-        // while (tree[parentStack.slice(-1)[0][0]][TFI.Level] <= he.level) {
-        //     parentStack.pop(); // until a parent with a higher level is found
-        // }
-        // const parent = parentStack.slice(-1)[0]
-        // const newKey = `${parent[0]}-${parent[1]}`
-        // parent[1] = parseInt(parent[1]) + 1 // increment keyOffset (could be NaN)
 
         tree[newKey] = [ 
             getName(he.text),
@@ -208,25 +202,25 @@ function computeNewKey(he, parentStack, isAtta) { // modifies parentStack
 
 
 // building the heading search index
-const ignoreWordList = fs.readFileSync(path.join(__dirname, 'heading-si-ignore-words.txt'), 'utf-8').split('\r\n')
-const searchIndex = {}
-Object.keys(tree).forEach(key => {
-    [tree[key][0], tree[key][1]].forEach((name, lang) => { // process both pali and sinh names
-        if (!name && !key.startsWith('ap-pat')) console.error(`empty heading in key ${key}`)
+// const ignoreWordList = fs.readFileSync(path.join(__dirname, 'heading-si-ignore-words.txt'), 'utf-8').split('\r\n')
+// const searchIndex = {}
+// Object.keys(tree).forEach(key => {
+//     [tree[key][0], tree[key][1]].forEach((name, lang) => { // process both pali and sinh names
+//         if (!name && !key.startsWith('ap-pat')) console.error(`empty heading in key ${key}`)
 
-        const words = name.replace(/[\(\)\u200d]/g, '') // additional removals for si
-            .split(' ')
-            .filter(w => w.length > 1 && ignoreWordList.indexOf(w) == -1)
-            .filter(w => !numEntryRegEx.test(w))
-        words.forEach(w => {
-            if (!searchIndex[w]) searchIndex[w] = [w, []] // word and list of keys 
-            if (searchIndex[w][1].indexOf(key) < 0) { // dedup before adding
-                searchIndex[w][1].push(key) // (add lang too if needed later)
-            }
-        })
-    })
-})
-const indexAr = Object.values(searchIndex).sort((a, b) => b[1].length - a[1].length)
-//console.log(indexAr.slice(0, 20).map(ar => ar[0] + ' ' + ar[1].length).join('\n')) // log most frequent
-fs.writeFileSync(searchIndexFilename, vkb.json(JSON.stringify(indexAr)), {encoding: 'utf-8'})
-console.log(`wrote searchIndex to ${treeOutFilename} with ${indexAr.length} words`)
+//         const words = name.replace(/[\(\)\u200d]/g, '') // additional removals for si
+//             .split(' ')
+//             .filter(w => w.length > 1 && ignoreWordList.indexOf(w) == -1)
+//             .filter(w => !numEntryRegEx.test(w))
+//         words.forEach(w => {
+//             if (!searchIndex[w]) searchIndex[w] = [w, []] // word and list of keys 
+//             if (searchIndex[w][1].indexOf(key) < 0) { // dedup before adding
+//                 searchIndex[w][1].push(key) // (add lang too if needed later)
+//             }
+//         })
+//     })
+// })
+// const indexAr = Object.values(searchIndex).sort((a, b) => b[1].length - a[1].length)
+// //console.log(indexAr.slice(0, 20).map(ar => ar[0] + ' ' + ar[1].length).join('\n')) // log most frequent
+// fs.writeFileSync(searchIndexFilename, vkb.json(JSON.stringify(indexAr)), {encoding: 'utf-8'})
+// console.log(`wrote searchIndex to ${treeOutFilename} with ${indexAr.length} words`)
