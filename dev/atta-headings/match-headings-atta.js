@@ -1,6 +1,10 @@
 /**
- * find new titles for headings in atta
- * run build-tree again after running this script
+ * find new titles for headings in atta by copying from mula
+ * 1) copy the aligned atta file to public/text folder
+ * 2) run build-tree to generate keys for the new file
+ * 3) run this script and check diff and replace files for errors
+ * 4) copy the output json file to public/text folder
+ * 5) run build-tree again to pickup new headings
  */
 
 const fs = require('fs');
@@ -8,43 +12,58 @@ const vkb = require('vkbeautify')
 const path = require('path');
 const { match } = require('assert');
 
+// following files were not processed - dn-2, dn-3 - headings were already good
+const filename = 'atta-sn-4'
 const tree = JSON.parse(fs.readFileSync(__dirname + '/../../public/static/data/tree.json', { encoding: 'utf-8' }))
-const filename = 'atta-sn-2'
-const keysToProcess = Object.keys(tree).filter(k => tree[k][5] == filename)
-//const dataInputFolder = __dirname + '/../public/static/text/'
+const keysToProcess = Object.keys(tree).filter(k => (tree[k][5] == filename && tree[k][2] <= 4))
 const data = JSON.parse(fs.readFileSync(`${__dirname}/../../public/static/text/${filename}.json`, { encoding: 'utf-8' }))
-//const filesList = ['sn-2', 'sn-3', 'sn-4']
 console.log(`Processing ${keysToProcess.length} keys for file ${filename}`)
 
-const diff = [], replaceMap = [], dryRun = true
+
+const diff = [], replaceMap = [], dryRun = false
 keysToProcess.forEach(akey => {
     if (!akey.startsWith('atta-')) return
     
-    const level = tree[akey][2], aName = tree[akey][0]
+    const level = tree[akey][2], attaH = tree[akey][0]
     const [pi, ei] = tree[akey][3], page = data.pages[pi], pEnt = page.pali.entries[ei]
-    console.assert(pEnt.text.charAt(0) == aName.charAt(0), `name from file(${pEnt.text}) and tree(${aName}) not matching for key ${akey}`)
+    console.assert(pEnt.text.charAt(0) == attaH.charAt(0), 
+        `name from file(${pEnt.text}) and tree(${attaH}) not matching for key ${akey}`)
     
-    if (level > 4) return
     const key = akey.substr(5) // remove atta part
     if (!tree[key]) {
-        diff.push(`no mula,${key},${level},${aName}`)
-        console.error(`no mula for ${key}, ${aName}`)
+        console.error(`no mula for ${key}, ${attaH}`)
+        return
+    } else if (tree[key][2] != level && (level == 1 || tree[key][2] == 1)) {
+        console.error(`level mismatch for ${key}, ${attaH}. ${level} and ${tree[key][2]}`)
+    }
+    const mulaRes = /^([\d\-\. ]*)(.*)$/.exec(tree[key][0]) // remove digits if any
+    const attaRes = /^([\d\-]+)\.\s*(.*)$/.exec(pEnt.text)
+    if (!attaRes) {
+        console.error(`No starting digit in atta heading ${attaH}`)
         return
     }
-    const mName = /^[\d\-\. ]*(.*)$/.exec(tree[key][0]) // remove digits if any
-    const match = /^([\d\-]+)\.\s*(.*)$/.exec(pEnt.text)
-    let code = 'no digit'
-    if (match) {
-        if (!match[2].trim()) code = 'empty'
-        else code = (mName[1].search(match[2].substr(0, 3)) >= 0) ? 'same' : 'not same'
+    if (attaRes[2].trim() && mulaRes[2].search(attaRes[2].substr(0, 3)) == -1) {
+        diff.push(`name mismatch,${key},${level},${attaH},${mulaRes[2]}`)
+    } else if (level == 1 && !mulaRes[2].endsWith('සුත්තං')) {
+        diff.push(`not sutta,${key},${level},${attaH},${mulaRes[2]}`)
+        return // do not replace
     }
-    if (code != 'empty' && code != 'same') diff.push(`${code},${key},${level},${aName},${mName[1]}`)
-    
-    
-    if(!match) return
-    const newName = match[1] + '. ' + mName[1] // todo vannana or suttadivannana for level 1
-    replaceMap.push(`${key}\t\t${pEnt.text}\t->\t${newName}`)
-    pEnt.text = newName
+
+    const newPaliH = attaRes[1] + '. ' + getPaliName(attaRes[1], mulaRes[2], level)
+    if (pEnt.text != newPaliH)
+        replaceMap.push(`${key}\t\tpali\t\t${pEnt.text}\t\t${newPaliH}`)
+    pEnt.text = newPaliH
+
+    // sinhala heading
+    const sEnt = page.sinh.entries[ei]
+    const msinhRes = /^([\d\-\. ]*)(.*)$/.exec(tree[key][1]) // remove digits if any
+    if (level == 1 && !msinhRes[2].endsWith('සූත්‍රය')) {
+        console.error(`sinh side not ending with sutta ${key} ${msinhRes[2]}. can not replace`)
+        return
+    }
+    const newSinhH = attaRes[1] + '. ' + getSinhName(attaRes[1], msinhRes[2], level)
+    sEnt.text = newSinhH
+    //console.log(newSinhH)
 })
 
 if (!dryRun) {
@@ -52,3 +71,17 @@ if (!dryRun) {
 }
 fs.writeFileSync(path.join(__dirname, 'diff', `${filename}-replace.txt`), replaceMap.join('\n'), {encoding: 'utf-8'})
 fs.writeFileSync(path.join(__dirname, 'diff', `${filename}-diff.txt`), diff.join('\n'), {encoding: 'utf-8'})
+
+function getPaliName(attaDigit, mulaName, level) { // vannana or suttadivannana for level 1
+    if (level > 1) return mulaName
+    const ending = attaDigit.indexOf('-') > 0 ? 'සුත්තාදිවණ්ණනා' : 'සුත්තවණ්ණනා'
+    const newHeading = mulaName.replace(/සුත්තං$/, ending)
+    return newHeading.replace(/ආදිසුත්තවණ්ණනා|ආදිසුත්තාදිවණ්ණනා/, 'සුත්තාදිවණ්ණනා')
+}
+
+function getSinhName(attaDigit, mulaName, level) {
+    if (level > 1) return mulaName
+    const ending = attaDigit.indexOf('-') > 0 ? 'ආදි සූත්‍ර වණ්ණනා' : 'සූත්‍ර වණ්ණනාව'
+    const newHeading = mulaName.replace(/සූත්‍රය$/, ending)
+    return newHeading.replace(/ආදි ආදි/, 'ආදි')
+}
