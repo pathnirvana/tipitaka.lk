@@ -112,7 +112,7 @@ const getName = (text) => {
     text = text.trim()
     text = text.replace(/\{.*?\}/g, '') // remove footnotes
     text = text.replace(/[\[\]]/g, '') // remove []
-    text = text.replace(/\$\$/g, '') // remove $$
+    text = text.replace(/\$\$|\*\*/g, '') // remove $$ or **
     return text.replace(/\.$/, '').trim() // remove ending .
 }
 const getHeadings = (pages, lang) => 
