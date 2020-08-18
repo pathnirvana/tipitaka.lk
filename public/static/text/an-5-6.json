@@ -507,7 +507,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "5.6.1.7 - 9",
+                        "text": "5.6.1.7-9",
                         "level": 1
                     },
                     {
@@ -677,7 +677,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "5.6.1.11 - 13",
+                        "text": "5.6.1.11-13",
                         "level": 1
                     },
                     {
@@ -715,7 +715,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "5.6.1.14 - 17",
+                        "text": "5.6.1.14-17",
                         "level": 1
                     },
                     {
@@ -809,7 +809,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "5.6.1.18 - 21",
+                        "text": "5.6.1.18-21",
                         "level": 1
                     },
                     {
