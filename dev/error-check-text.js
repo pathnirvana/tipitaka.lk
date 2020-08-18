@@ -49,7 +49,9 @@ inputFiles.forEach(filename => {
     obj.pages.forEach(p => {
         if (!p.pali.entries.length) console.error(`page ${p.pageNum} in ${fileKey} is empty`)
         if (p.pali.entries.length != p.sinh.entries.length)
-            console.error(`page ${p.pageNum} in ${fileKey} has different pali and sinh entry counts`)
+            console.error(`page ${p.pageNum} in ${fileKey}: different pali and sinh entry counts`)
+        if (p.pali.entries.some(e => e.type != 'heading' && 'keyOffset' in e))
+            console.error(`page ${p.pageNum} in ${fileKey}: some non heading entries has keyOffset defined `)
     })
 })
 console.log(`errors checked in ${inputFiles.length} files in ${dataInputFolder}`)
