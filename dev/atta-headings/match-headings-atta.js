@@ -44,7 +44,7 @@ keysToProcess.forEach(akey => {
     }
     if (attaRes[2].trim() && mulaRes[2].search(attaRes[2].substr(0, 3)) == -1) {
         diff.push(`name mismatch,${key},${level},${attaH},${mulaRes[2]}`)
-    } else if (level == 1 && !mulaRes[2].endsWith('සුත්තං')) {
+    } else if (level == 1 && !/සුත්(තං|තානි)$/.test(mulaRes[2])) { 
         diff.push(`not sutta,${key},${level},${attaH},${mulaRes[2]}`)
         return // do not replace
     }
@@ -57,7 +57,7 @@ keysToProcess.forEach(akey => {
     // sinhala heading
     const sEnt = page.sinh.entries[ei]
     const msinhRes = /^([\d\-\. ]*)(.*)$/.exec(tree[key][1]) // remove digits if any
-    if (level == 1 && !msinhRes[2].endsWith('සූත්‍රය')) {
+    if (level == 1 && !/සූත්‍රය?$/.test(msinhRes[2])) {
         console.error(`sinh side not ending with sutta ${key} ${msinhRes[2]}. can not replace`)
         return
     }
@@ -74,14 +74,20 @@ fs.writeFileSync(path.join(__dirname, 'diff', `${filename}-diff.txt`), diff.join
 
 function getPaliName(attaDigit, mulaName, level) { // vannana or suttadivannana for level 1
     if (level > 1) return mulaName
-    const ending = attaDigit.indexOf('-') > 0 ? 'සුත්තාදිවණ්ණනා' : 'සුත්තවණ්ණනා'
-    const newHeading = mulaName.replace(/සුත්තං$/, ending)
+    let newHeading = mulaName + 'වණ්ණනා' // -සුත්තානිවණ්ණනා
+    if (mulaName.endsWith('සුත්තං')) {
+        const ending = attaDigit.indexOf('-') > 0 ? 'සුත්තාදිවණ්ණනා' : 'සුත්තවණ්ණනා'
+        newHeading = mulaName.replace(/සුත්තං$/, ending)
+    }
     return newHeading.replace(/ආදිසුත්තවණ්ණනා|ආදිසුත්තාදිවණ්ණනා/, 'සුත්තාදිවණ්ණනා')
 }
 
 function getSinhName(attaDigit, mulaName, level) {
     if (level > 1) return mulaName
-    const ending = attaDigit.indexOf('-') > 0 ? 'ආදි සූත්‍ර වණ්ණනා' : 'සූත්‍ර වණ්ණනාව'
-    const newHeading = mulaName.replace(/සූත්‍රය$/, ending)
+    let newHeading = mulaName + 'වණ්ණනා' // -සූත්‍රවණ්ණනා
+    if (mulaName.endsWith('සූත්‍රය')) {
+        const ending = attaDigit.indexOf('-') > 0 ? 'ආදි සූත්‍ර වණ්ණනා' : 'සූත්‍ර වණ්ණනාව'
+        newHeading = mulaName.replace(/සූත්‍රය$/, ending)
+    }
     return newHeading.replace(/ආදි ආදි/, 'ආදි')
 }
