@@ -4340,6 +4340,7 @@
                     {
                         "type": "heading",
                         "text": "උක්කොටනාදිසුත්තානි",
+                        "keyOffset": 7,
                         "level": 1
                     },
                     {
@@ -4447,6 +4448,7 @@
                     {
                         "type": "heading",
                         "text": "ඡෙදනාදිසුත්තානි",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
