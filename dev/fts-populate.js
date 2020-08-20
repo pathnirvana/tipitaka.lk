@@ -49,7 +49,7 @@ function writeEntry(e, eind, lang, fileKey) {
     numEntries++
 }
 
-const writeFtsDb = true, writeSuggestedWords = false
+const writeFtsDb = false, writeSuggestedWords = true
 const wordListPali = [], wordListSinh = []
 const dataInputFolder = path.join(__dirname, '../public/static/text/')
 const ftsDictFile = path.join(__dirname, '../server/fts.db')
@@ -82,7 +82,7 @@ const writeWordList = (wordList, filePath) =>
     Object.keys(wordList).map(w => [w, wordList[w]]).sort((a, b) => b[1] - a[1]).map(ar => ar.join(','))
     .join('\n'), 'utf-8')
 if (writeSuggestedWords) {
-    writeWordList(wordListPali, 'word-list-pali.csv')
-    writeWordList(wordListSinh, 'word-list-sinh.csv')
+    writeWordList(wordListPali, 'obsolete/word-list-pali.csv')
+    writeWordList(wordListSinh, 'obsolete/word-list-sinh.csv')
     console.log(`wrote ${numEntries} entries from ${numFiles} to word list`)
 }
