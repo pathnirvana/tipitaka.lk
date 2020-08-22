@@ -12,7 +12,7 @@ const vkb = require('vkbeautify')
 const path = require('path');
 const { match } = require('assert');
 
-// following files were not processed - dn-2, dn-3 - headings were already good
+// following files were not processed - dn, mn - headings were already good or copied manually
 const filename = 'atta-sn-5'
 const tree = JSON.parse(fs.readFileSync(__dirname + '/../../public/static/data/tree.json', { encoding: 'utf-8' }))
 const keysToProcess = Object.keys(tree).filter(k => (tree[k][5] == filename && tree[k][2] <= 4))
