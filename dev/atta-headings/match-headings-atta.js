@@ -13,7 +13,7 @@ const path = require('path');
 const { match } = require('assert');
 
 // following files were not processed - dn, mn - headings were already good or copied manually
-const filename = 'atta-sn-5'
+const filename = 'atta-mn-1-2'
 const tree = JSON.parse(fs.readFileSync(__dirname + '/../../public/static/data/tree.json', { encoding: 'utf-8' }))
 const keysToProcess = Object.keys(tree).filter(k => (tree[k][5] == filename && tree[k][2] <= 4))
 const data = JSON.parse(fs.readFileSync(`${__dirname}/../../public/static/text/${filename}.json`, { encoding: 'utf-8' }))
@@ -37,9 +37,9 @@ keysToProcess.forEach(akey => {
         console.error(`level mismatch for ${key}, ${attaH}. ${level} and ${tree[key][2]}`)
     }
     const mulaRes = /^([\d\-\. ]*)(.*)$/.exec(tree[key][0]) // remove digits if any
-    const attaRes = /^([\d\-]+)\.\s*(.*)$/.exec(pEnt.text)
+    const attaRes = /^([\d\-\. ]*)(.*)$/.exec(pEnt.text)
     if (!attaRes) {
-        console.error(`No starting digit in atta heading ${attaH}`)
+        console.error(`Malformed atta heading ${attaH}`)
         return
     }
     if (attaRes[2].trim() && mulaRes[2].search(attaRes[2].substr(0, 3)) == -1) {
@@ -49,7 +49,8 @@ keysToProcess.forEach(akey => {
         return // do not replace
     }
 
-    const newPaliH = attaRes[1] + '. ' + getPaliName(attaRes[1], mulaRes[2], level)
+    const attaDigit = attaRes[1], isRange = attaRes[1].indexOf('-') >= 0
+    const newPaliH = attaDigit + getPaliName(isRange, mulaRes[2], level)
     if (pEnt.text != newPaliH)
         replaceMap.push(`${key}\t\tpali\t\t${pEnt.text}\t\t${newPaliH}`)
     pEnt.text = newPaliH
@@ -61,7 +62,7 @@ keysToProcess.forEach(akey => {
         console.error(`sinh side not ending with sutta ${key} ${msinhRes[2]}. can not replace`)
         return
     }
-    const newSinhH = attaRes[1] + '. ' + getSinhName(attaRes[1], msinhRes[2], level)
+    const newSinhH = attaDigit + getSinhName(isRange, msinhRes[2], level)
     sEnt.text = newSinhH
     //console.log(newSinhH)
 })
@@ -72,21 +73,21 @@ if (!dryRun) {
 fs.writeFileSync(path.join(__dirname, 'diff', `${filename}-replace.txt`), replaceMap.join('\n'), {encoding: 'utf-8'})
 fs.writeFileSync(path.join(__dirname, 'diff', `${filename}-diff.txt`), diff.join('\n'), {encoding: 'utf-8'})
 
-function getPaliName(attaDigit, mulaName, level) { // vannana or suttadivannana for level 1
+function getPaliName(isRange, mulaName, level) { // vannana or suttadivannana for level 1
     if (level > 1) return mulaName
     let newHeading = mulaName + 'වණ්ණනා' // -සුත්තානිවණ්ණනා
     if (mulaName.endsWith('සුත්තං')) {
-        const ending = attaDigit.indexOf('-') > 0 ? 'සුත්තාදිවණ්ණනා' : 'සුත්තවණ්ණනා'
+        const ending = isRange ? 'සුත්තාදිවණ්ණනා' : 'සුත්තවණ්ණනා'
         newHeading = mulaName.replace(/සුත්තං$/, ending)
     }
     return newHeading.replace(/ආදිසුත්තවණ්ණනා|ආදිසුත්තාදිවණ්ණනා/, 'සුත්තාදිවණ්ණනා')
 }
 
-function getSinhName(attaDigit, mulaName, level) {
+function getSinhName(isRange, mulaName, level) {
     if (level > 1) return mulaName
     let newHeading = mulaName + 'වණ්ණනා' // -සූත්‍රවණ්ණනා
     if (mulaName.endsWith('සූත්‍රය')) {
-        const ending = attaDigit.indexOf('-') > 0 ? 'ආදි සූත්‍ර වණ්ණනා' : 'සූත්‍ර වණ්ණනාව'
+        const ending = isRange ? 'ආදි සූත්‍ර වණ්ණනා' : 'සූත්‍ර වණ්ණනාව'
         newHeading = mulaName.replace(/සූත්‍රය$/, ending)
     }
     return newHeading.replace(/ආදි ආදි/, 'ආදි')
