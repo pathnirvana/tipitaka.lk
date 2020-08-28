@@ -13,7 +13,7 @@ const path = require('path');
 const { match } = require('assert');
 
 // following files were not processed - dn, mn-1 - headings were already good or copied manually
-const filename = 'atta-mn-2'
+const filename = 'atta-mn-3'
 const tree = JSON.parse(fs.readFileSync(__dirname + '/../../public/static/data/tree.json', { encoding: 'utf-8' }))
 const keysToProcess = Object.keys(tree).filter(k => (tree[k][5] == filename && tree[k][2] <= 4))
 const data = JSON.parse(fs.readFileSync(`${__dirname}/../../public/static/text/${filename}.json`, { encoding: 'utf-8' }))
@@ -85,9 +85,9 @@ function getPaliName(isRange, mulaName, level) { // vannana or suttadivannana fo
 
 function getSinhName(isRange, mulaName, level) {
     if (level > 1) return mulaName
-    let newHeading = mulaName + 'වණ්ණනා' // -සූත්‍රවණ්ණනා
+    let newHeading = mulaName + ' වර්ණනා' // -සූත්‍ර වර්ණනා
     if (mulaName.endsWith('සූත්‍රය')) {
-        const ending = isRange ? 'ආදි සූත්‍ර වණ්ණනා' : 'සූත්‍ර වණ්ණනාව'
+        const ending = isRange ? 'ආදි සූත්‍ර වර්ණනා' : 'සූත්‍ර වර්ණනාව'
         newHeading = mulaName.replace(/සූත්‍රය$/, ending)
     }
     return newHeading.replace(/ආදි ආදි/, 'ආදි')
