@@ -26,7 +26,7 @@ keysToProcess.forEach(akey => {
     
     const level = tree[akey][2], attaH = tree[akey][0]
     const [pi, ei] = tree[akey][3], page = data.pages[pi], pEnt = page.pali.entries[ei]
-    console.assert(pEnt.text.charAt(0) == attaH.charAt(0), 
+    console.assert(pEnt.text.charAt(0) == attaH.charAt(0),
         `name from file(${pEnt.text}) and tree(${attaH}) not matching for key ${akey}`)
     
     const key = akey.substr(5) // remove atta part
