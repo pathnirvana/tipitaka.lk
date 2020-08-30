@@ -13,7 +13,7 @@ const path = require('path');
 const { match } = require('assert');
 
 // following files were not processed - dn, mn-1 - headings were already good or copied manually
-const filename = 'atta-mn-3'
+const filename = 'atta-sn-1'
 const tree = JSON.parse(fs.readFileSync(__dirname + '/../../public/static/data/tree.json', { encoding: 'utf-8' }))
 const keysToProcess = Object.keys(tree).filter(k => (tree[k][5] == filename && tree[k][2] <= 4))
 const data = JSON.parse(fs.readFileSync(`${__dirname}/../../public/static/text/${filename}.json`, { encoding: 'utf-8' }))
