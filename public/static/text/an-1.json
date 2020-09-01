@@ -1,7 +1,5 @@
 {
     "filename": "an-1",
-    "bookId": 22,
-    "pageOffset": 0,
     "pages": [
         {
             "pageNum": 2,
@@ -4093,6 +4091,11 @@
                     },
                     {
                         "type": "heading",
+                        "text": "[ 1. පඨමොවග්ගො. ]",
+                        "level": 2
+                    },
+                    {
+                        "type": "heading",
                         "text": "1. 16. 1. 1.",
                         "level": 1
                     },
@@ -4117,6 +4120,11 @@
                         "type": "centered",
                         "text": "වග්ගො පඨමො.",
                         "level": 1
+                    },
+                    {
+                        "type": "heading",
+                        "text": "[ 2. දුතියොවග්ගො. ]",
+                        "level": 2
                     },
                     {
                         "type": "heading",
@@ -4152,6 +4160,11 @@
                         "level": 3
                     },
                     {
+                        "type": "heading",
+                        "text": "[ 1. පළමු වර්ගය ]",
+                        "level": 2
+                    },
+                    {
                         "text": "1. 16. 1. 1.",
                         "type": "heading",
                         "level": 1
@@ -4177,6 +4190,11 @@
                         "text": "පළමු වග යි.",
                         "type": "centered",
                         "level": 1
+                    },
+                    {
+                        "type": "heading",
+                        "text": "[ 2. දෙවන වර්ගය ]",
+                        "level": 2
                     },
                     {
                         "text": "1. 16. 2. 1.",
@@ -4420,6 +4438,11 @@
                 "entries": [
                     {
                         "type": "heading",
+                        "text": "[ 3. තතියොවග්ගො. ]",
+                        "level": 2
+                    },
+                    {
+                        "type": "heading",
                         "text": "1. 16. 3. 1.",
                         "level": 1
                     },
@@ -4478,8 +4501,13 @@
             "sinh": {
                 "entries": [
                     {
-                        "text": "1. 16. 3. 1.",
+                        "text": "[ 3. තෙවන වර්ගය ]",
                         "type": "heading",
+                        "level": 2
+                    },
+                    {
+                        "type": "heading",
+                        "text": "1. 16. 3. 1.",
                         "level": 1
                     },
                     {
@@ -4703,8 +4731,8 @@
                     },
                     {
                         "type": "heading",
-                        "text": "[ ජම්බුදීපපෙය්යාලො ]",
-                        "level": 3
+                        "text": "[ 4. ජම්බුදීපපෙය්යාලො ]",
+                        "level": 2
                     },
                     {
                         "type": "heading",
@@ -4785,9 +4813,9 @@
                         "level": 1
                     },
                     {
-                        "text": "[ ජම්බුදීපපෙය්‍යාලය ]",
+                        "text": "[ 4. ජම්බුදීපපෙය්‍යාලය ]",
                         "type": "heading",
-                        "level": 3
+                        "level": 2
                     },
                     {
                         "type": "heading",
@@ -5280,6 +5308,11 @@
                 "entries": [
                     {
                         "type": "heading",
+                        "text": "[ 5. සොළසපසාදකරධම්මා ]",
+                        "level": 2
+                    },
+                    {
+                        "type": "heading",
                         "text": "1. 16. 5. 1-16.",
                         "level": 1
                     },
@@ -5299,8 +5332,8 @@
                     },
                     {
                         "type": "heading",
-                        "text": "[ අච්ඡරාසඞ්ඝාතවග්ගො{*} ]",
-                        "level": 3
+                        "text": "[ 6. අච්ඡරාසඞ්ඝාතවග්ගො{*} ]",
+                        "level": 2
                     },
                     {
                         "type": "heading",
@@ -5365,6 +5398,11 @@
                 "entries": [
                     {
                         "type": "heading",
+                        "text": "[ 5. සොළොස්ප්‍රසාදකරධර්‍ම ]",
+                        "level": 2
+                    },
+                    {
+                        "type": "heading",
                         "text": "1. 16. 5. 1-16.",
                         "level": 1
                     },
@@ -5383,9 +5421,9 @@
                         "level": 1
                     },
                     {
-                        "text": "[ අච්ඡරාසඞ්ඝාත වර්ගය ]",
+                        "text": "[ 6. අච්ඡරාසඞ්ඝාත වර්ගය ]",
                         "type": "heading",
-                        "level": 3
+                        "level": 2
                     },
                     {
                         "type": "heading",
@@ -5751,8 +5789,8 @@
                 "entries": [
                     {
                         "type": "heading",
-                        "text": "[ කායගතාසතිවග්ගො ]",
-                        "level": 3
+                        "text": "[ 7. කායගතාසතිවග්ගො ]",
+                        "level": 2
                     },
                     {
                         "type": "heading",
@@ -5818,9 +5856,9 @@
             "sinh": {
                 "entries": [
                     {
-                        "text": "[ කායගතාසති වර්ගය ]",
+                        "text": "[ 7. කායගතාසති වර්ගය ]",
                         "type": "heading",
-                        "level": 3
+                        "level": 2
                     },
                     {
                         "type": "heading",
@@ -5993,8 +6031,8 @@
                     },
                     {
                         "type": "heading",
-                        "text": "[ අමතවග්ගො ]",
-                        "level": 3
+                        "text": "[ 8. අමතවග්ගො ]",
+                        "level": 2
                     },
                     {
                         "type": "heading",
@@ -6066,9 +6104,9 @@
                         "level": 1
                     },
                     {
-                        "text": "[ අමෘත වර්ගය ]",
+                        "text": "[ 8. අමෘත වර්ගය ]",
                         "type": "heading",
-                        "level": 3
+                        "level": 2
                     },
                     {
                         "type": "heading",
@@ -6287,5 +6325,8 @@
                 "footnotes": []
             }
         }
-    ]
+    ],
+    "bookId": 22,
+    "pageOffset": 0,
+    "collection": "mula"
 }
