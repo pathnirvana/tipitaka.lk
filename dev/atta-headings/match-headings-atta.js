@@ -13,7 +13,7 @@ const path = require('path');
 const { match } = require('assert');
 
 // following files were not processed - dn, mn-1 - headings were already good or copied manually
-const filename = 'atta-sn-1'
+const filename = 'atta-an-1'
 const tree = JSON.parse(fs.readFileSync(__dirname + '/../../public/static/data/tree.json', { encoding: 'utf-8' }))
 const keysToProcess = Object.keys(tree).filter(k => (tree[k][5] == filename && tree[k][2] <= 4))
 const data = JSON.parse(fs.readFileSync(`${__dirname}/../../public/static/text/${filename}.json`, { encoding: 'utf-8' }))
@@ -50,21 +50,25 @@ keysToProcess.forEach(akey => {
     }
 
     const attaDigit = attaRes[1], isRange = attaRes[1].indexOf('-') >= 0
-    const newPaliH = attaDigit + getPaliName(isRange, mulaRes[2], level)
-    if (pEnt.text != newPaliH)
-        replaceMap.push(`${key}\t\tpali\t\t${pEnt.text}\t\t${newPaliH}`)
-    pEnt.text = newPaliH
+    if (mulaRes[2].trim()) { // only if mula name is non empty
+        const newPaliH = attaDigit + getPaliName(isRange, mulaRes[2], level)
+        if (pEnt.text != newPaliH)
+            replaceMap.push(`${key}\t\tpali\t\t${pEnt.text}\t\t${newPaliH}`)
+        pEnt.text = newPaliH
+    }
 
     // sinhala heading
-    const sEnt = page.sinh.entries[ei]
     const msinhRes = /^([\d\-\. ]*)(.*)$/.exec(tree[key][1]) // remove digits if any
-    if (level == 1 && !/සූත්‍රය?$/.test(msinhRes[2])) {
-        console.error(`sinh side not ending with sutta ${key} ${msinhRes[2]}. can not replace`)
-        return
+    if (msinhRes[2].trim()) {
+        const sEnt = page.sinh.entries[ei]
+        if (level == 1 && !/සූත්‍රය?$/.test(msinhRes[2])) {
+            console.error(`sinh side not ending with sutta ${key} ${msinhRes[2]}. can not replace`)
+            return
+        }
+        const newSinhH = attaDigit + getSinhName(isRange, msinhRes[2], level)
+        sEnt.text = newSinhH
+        //console.log(newSinhH)
     }
-    const newSinhH = attaDigit + getSinhName(isRange, msinhRes[2], level)
-    sEnt.text = newSinhH
-    //console.log(newSinhH)
 })
 
 if (!dryRun) {
