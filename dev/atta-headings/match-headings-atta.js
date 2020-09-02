@@ -7,13 +7,13 @@
  * 5) run build-tree again to pickup new headings
  */
 
-const fs = require('fs');
+const fs = require('fs')
 const vkb = require('vkbeautify')
-const path = require('path');
-const { match } = require('assert');
+const path = require('path')
 
 // following files were not processed - dn, mn-1 - headings were already good or copied manually
-const filename = 'atta-an-1'
+const filename = 'atta-an-2'
+const isSimpleCopy = true // simply copy the headings without any modification
 const tree = JSON.parse(fs.readFileSync(__dirname + '/../../public/static/data/tree.json', { encoding: 'utf-8' }))
 const keysToProcess = Object.keys(tree).filter(k => (tree[k][5] == filename && tree[k][2] <= 4))
 const data = JSON.parse(fs.readFileSync(`${__dirname}/../../public/static/text/${filename}.json`, { encoding: 'utf-8' }))
@@ -25,7 +25,7 @@ keysToProcess.forEach(akey => {
     if (!akey.startsWith('atta-')) return
     
     const level = tree[akey][2], attaH = tree[akey][0]
-    const [pi, ei] = tree[akey][3], page = data.pages[pi], pEnt = page.pali.entries[ei]
+    const [pi, ei] = tree[akey][3], page = data.pages[pi], pEnt = page.pali.entries[ei], sEnt = page.sinh.entries[ei]
     console.assert(pEnt.text.charAt(0) == attaH.charAt(0),
         `name from file(${pEnt.text}) and tree(${attaH}) not matching for key ${akey}`)
     
@@ -44,13 +44,16 @@ keysToProcess.forEach(akey => {
     }
     if (attaRes[2].trim() && mulaRes[2].search(attaRes[2].substr(0, 3)) == -1) {
         diff.push(`name mismatch,${key},${level},${attaH},${mulaRes[2]}`)
-    } else if (level == 1 && !/සුත්(තං|තානි)$/.test(mulaRes[2])) { 
-        diff.push(`not sutta,${key},${level},${attaH},${mulaRes[2]}`)
-        return // do not replace
     }
 
+    // attaDigit used in build-tree as keyOffset
     const attaDigit = attaRes[1], isRange = attaRes[1].indexOf('-') >= 0
-    if (mulaRes[2].trim()) { // only if mula name is non empty
+    if (isSimpleCopy) pEnt.text = tree[key][0]
+    else if (mulaRes[2].trim()) { // only if mula name is non empty
+        if (level == 1 && !/සුත්(තං|තානි)$/.test(mulaRes[2])) { 
+            diff.push(`pali not sutta,${key},${level},${attaH},${mulaRes[2]}`)
+            return // do not replace
+        }
         const newPaliH = attaDigit + getPaliName(isRange, mulaRes[2], level)
         if (pEnt.text != newPaliH)
             replaceMap.push(`${key}\t\tpali\t\t${pEnt.text}\t\t${newPaliH}`)
@@ -59,10 +62,10 @@ keysToProcess.forEach(akey => {
 
     // sinhala heading
     const msinhRes = /^([\d\-\. ]*)(.*)$/.exec(tree[key][1]) // remove digits if any
-    if (msinhRes[2].trim()) {
-        const sEnt = page.sinh.entries[ei]
+    if (isSimpleCopy) sEnt.text = tree[key][1]
+    else if (msinhRes[2].trim()) {
         if (level == 1 && !/සූත්‍රය?$/.test(msinhRes[2])) {
-            console.error(`sinh side not ending with sutta ${key} ${msinhRes[2]}. can not replace`)
+            diff.push(`sinh not suttra,${key},${level},${tree[akey][1]},${msinhRes[2]}`)
             return
         }
         const newSinhH = attaDigit + getSinhName(isRange, msinhRes[2], level)
