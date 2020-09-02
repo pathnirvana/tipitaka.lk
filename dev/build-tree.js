@@ -129,7 +129,7 @@ const getPrevIfCenNum = ([pi, ei], pages) => {
     return [pi, ei]
 }
 
-let processedFilesCount = 0
+let processedFilesCount = 0, keyoffs = []
 const inputFiles = fs.readdirSync(dataInputFolder)
     .filter(name => filesFilter.test(name)).map(name => name.split('.')[0]).sort() // sort needed to get kn-nett before kn-nett-x
 inputFiles.forEach(fileKey => {
@@ -162,7 +162,7 @@ inputFiles.forEach(fileKey => {
     let prevEInd = [0,0] // init to 0 needed for ap-yam-10-3-4 (file starts with a headingAtEnd)
     const isHeadingAtEnd = headingAtEndKeys.some(k => fileKey.search(k) != -1) && !isAtta
     headings.forEach((he, hei) => {
-        const [newKey, parentKey] = computeNewKey(he, parentStack, isAtta)
+        const [newKey, parentKey] = computeNewKey(he, parentStack, isAtta, he.text)
         const level = parseInt(he.level), eInd = [he.pi, he.ei] // page ind and entry index in the page
 
         tree[newKey] = [ 
@@ -178,20 +178,25 @@ inputFiles.forEach(fileKey => {
         prevEInd = incrementEInd(eInd, pages) // when using prevEnd for headingAtEnd
     })
     processedFilesCount++
+    //if(keyoffs.length) {console.log(keyoffs.join('|')); keyoffs = [];}
 });
 
 fs.writeFileSync(treeOutFilename, vkb.json(JSON.stringify(tree)), {encoding: 'utf-8'})
 console.log(`wrote tree to ${treeOutFilename} with ${Object.keys(tree).length} nodes`)
 console.log(`Processed ${processedFilesCount} out of ${inputFiles.length}`)
 
-function computeNewKey(he, parentStack, isAtta) { // modifies parentStack
+function computeNewKey(he, parentStack, isAtta, nameText) { // modifies parentStack
     while (tree[parentStack.slice(-1)[0][0]][TFI.Level] <= he.level) {
         parentStack.pop(); // until a parent with a higher level is found
     }
     const parent = parentStack.slice(-1)[0]
     
     if ('keyOffset' in he) parent[1] = he.keyOffset
-    else if (isAtta && (m = /^(\d+)/.exec(he.text))) parent[1] = m[1] // if atta use the first number as keyoffset if any
+    // else if (isAtta && (m = /^(\d+)/.exec(he.text))) {
+    //     if (parent[1] != m[1]) { keyoffs.push(nameText);} //console.log(`${nameText} ${parent[0]}-${parent[1]}`);
+    //     parent[1] = m[1] // if atta use the first number as keyoffset if any
+    // }
+        
     
     const newKey = `${parent[0]}-${parent[1]}`
     if (tree[newKey] && tree[newKey].length) console.error(`duplicate key ${newKey}. make sure keyOffset is increasing`)

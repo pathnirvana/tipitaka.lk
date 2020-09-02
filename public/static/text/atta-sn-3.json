@@ -1019,6 +1019,7 @@
                     {
                         "type": "heading",
                         "text": "10. අඝමූල සුත්තවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
@@ -2419,6 +2420,7 @@
                     {
                         "type": "heading",
                         "text": "7. අනත්තනිය සුත්තවණ්ණනා",
+                        "keyOffset": 7,
                         "level": 1
                     },
                     {
@@ -2485,6 +2487,7 @@
                     {
                         "type": "heading",
                         "text": "4. පඨම අරහන්ත සුත්තවණ්ණනා",
+                        "keyOffset": 4,
                         "level": 1
                     },
                     {
@@ -5106,6 +5109,7 @@
                     {
                         "type": "heading",
                         "text": "3. පඨම ධම්මකථිකසුත්තවණ්ණනා",
+                        "keyOffset": 3,
                         "level": 1
                     },
                     {
@@ -5138,6 +5142,7 @@
                     {
                         "type": "heading",
                         "text": "10. සීල සුත්තවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
@@ -5360,6 +5365,7 @@
                     {
                         "type": "heading",
                         "text": "10. ආනන්ද සුත්තවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
@@ -5786,6 +5792,7 @@
                     {
                         "type": "heading",
                         "text": "5. නත්ථිදින්නසුත්තවණ්ණනා",
+                        "keyOffset": 5,
                         "level": 1
                     },
                     {
@@ -6053,6 +6060,7 @@
                     {
                         "type": "heading",
                         "text": "11-18. අන්තවා සුත්තාදිවණ්ණනා",
+                        "keyOffset": 11,
                         "level": 1
                     },
                     {
@@ -6355,6 +6363,7 @@
                     {
                         "type": "heading",
                         "text": "10. සූචිමුඛී සුත්තවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {

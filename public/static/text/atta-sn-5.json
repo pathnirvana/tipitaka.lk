@@ -121,6 +121,7 @@
                     {
                         "type": "heading",
                         "text": "3. සාරිපුත්තසුත්තවණ්ණනා",
+                        "keyOffset": 3,
                         "level": 1
                     },
                     {
@@ -306,6 +307,7 @@
                     {
                         "type": "heading",
                         "text": "7. දුතිය භික්ඛුසුත්තවණ්ණනා",
+                        "keyOffset": 7,
                         "level": 1
                     },
                     {
@@ -499,6 +501,7 @@
                     {
                         "type": "heading",
                         "text": "10. නන්දියසුත්තවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
@@ -673,6 +676,7 @@
                     {
                         "type": "heading",
                         "text": "7. දුතියපරිසුද්ධසුත්තවණ්ණනා",
+                        "keyOffset": 7,
                         "level": 1
                     },
                     {
@@ -867,6 +871,7 @@
                     {
                         "type": "heading",
                         "text": "13. අප්පමාදවග්ගො",
+                        "keyOffset": 13,
                         "level": 2
                     },
                     {
@@ -969,6 +974,7 @@
                     {
                         "type": "heading",
                         "text": "5-8. පදසුත්තානිවණ්ණනා",
+                        "keyOffset": 5,
                         "level": 1
                     },
                     {
@@ -978,6 +984,7 @@
                     {
                         "type": "heading",
                         "text": "9-40. කූටසුත්තානිවණ්ණනා",
+                        "keyOffset": 9,
                         "level": 1
                     },
                     {
@@ -1006,6 +1013,7 @@
                     {
                         "type": "heading",
                         "text": "5. බීජසුත්තානිවණ්ණනා",
+                        "keyOffset": 5,
                         "level": 1
                     },
                     {
@@ -1015,6 +1023,7 @@
                     {
                         "type": "heading",
                         "text": "9. නාගසුත්තානිවණ්ණනා",
+                        "keyOffset": 9,
                         "level": 1
                     },
                     {
@@ -1100,6 +1109,7 @@
                     {
                         "type": "heading",
                         "text": "17. කුම්භසුත්තානිවණ්ණනා",
+                        "keyOffset": 17,
                         "level": 1
                     },
                     {
@@ -1109,6 +1119,7 @@
                     {
                         "type": "heading",
                         "text": "25. ආකාස සුත්තානිවණ්ණනා",
+                        "keyOffset": 25,
                         "level": 1
                     },
                     {
@@ -1118,6 +1129,7 @@
                     {
                         "type": "heading",
                         "text": "29. මෙඝසුත්තානිවණ්ණනා",
+                        "keyOffset": 29,
                         "level": 1
                     },
                     {
@@ -1127,6 +1139,7 @@
                     {
                         "type": "heading",
                         "text": "37. නාවාසුත්තානිවණ්ණනා",
+                        "keyOffset": 37,
                         "level": 1
                     },
                     {
@@ -1136,6 +1149,7 @@
                     {
                         "type": "heading",
                         "text": "41. ආගන්තුකසුත්තානිවණ්ණනා",
+                        "keyOffset": 41,
                         "level": 1
                     },
                     {
@@ -1230,6 +1244,7 @@
                     {
                         "type": "heading",
                         "text": "17-32. විධාසුත්තානිවණ්ණනා",
+                        "keyOffset": 17,
                         "level": 1
                     },
                     {
@@ -1258,6 +1273,7 @@
                     {
                         "type": "heading",
                         "text": "33. උපාදානසුත්තානිවණ්ණනා",
+                        "keyOffset": 33,
                         "level": 1
                     },
                     {
@@ -1267,6 +1283,7 @@
                     {
                         "type": "heading",
                         "text": "65. අනුසයසුත්තානිවණ්ණනා",
+                        "keyOffset": 65,
                         "level": 1
                     },
                     {
@@ -1749,6 +1766,7 @@
                     {
                         "type": "heading",
                         "text": "7. කූටාගාරසුත්තවණ්ණනා",
+                        "keyOffset": 7,
                         "level": 1
                     },
                     {
@@ -1888,6 +1906,7 @@
                     {
                         "type": "heading",
                         "text": "4-10. ගිලානසුත්තාදිවණ්ණනා",
+                        "keyOffset": 4,
                         "level": 1
                     },
                     {
@@ -1920,6 +1939,7 @@
                     {
                         "type": "heading",
                         "text": "3-5. ඨානසුත්තාදිවණ්ණනා",
+                        "keyOffset": 3,
                         "level": 1
                     },
                     {
@@ -1929,6 +1949,7 @@
                     {
                         "type": "heading",
                         "text": "6-7. ඛයසුත්තාදිවණ්ණනා",
+                        "keyOffset": 6,
                         "level": 1
                     },
                     {
@@ -2038,6 +2059,7 @@
                     {
                         "type": "heading",
                         "text": "8. නිබ්බෙධසුත්තවණ්ණනා",
+                        "keyOffset": 8,
                         "level": 1
                     },
                     {
@@ -2075,6 +2097,7 @@
                     {
                         "type": "heading",
                         "text": "3. කිලෙසසුත්තවණ්ණනා",
+                        "keyOffset": 3,
                         "level": 1
                     },
                     {
@@ -2084,6 +2107,7 @@
                     {
                         "type": "heading",
                         "text": "7. ආවරණසුත්තවණ්ණනා",
+                        "keyOffset": 7,
                         "level": 1
                     },
                     {
@@ -2396,6 +2420,7 @@
                     {
                         "type": "heading",
                         "text": "4-10. දුප්පඤ්ඤසුත්තාදිවණ්ණනා",
+                        "keyOffset": 4,
                         "level": 1
                     },
                     {
@@ -3262,6 +3287,7 @@
                     {
                         "type": "heading",
                         "text": "7-12. පුළවකසුත්තානිවණ්ණනා",
+                        "keyOffset": 7,
                         "level": 1
                     },
                     {
@@ -4256,6 +4282,7 @@
                     {
                         "type": "heading",
                         "text": "6. සකුණග්ඝිසුත්තවණ්ණනා",
+                        "keyOffset": 6,
                         "level": 1
                     },
                     {
@@ -4580,6 +4607,7 @@
                     {
                         "type": "heading",
                         "text": "2. නාලන්දාසුත්තවණ්ණනා",
+                        "keyOffset": 2,
                         "level": 1
                     },
                     {
@@ -5417,6 +5445,7 @@
                     {
                         "type": "heading",
                         "text": "6. උත්තියසුත්තවණ්ණනා",
+                        "keyOffset": 6,
                         "level": 1
                     },
                     {
@@ -5426,6 +5455,7 @@
                     {
                         "type": "heading",
                         "text": "8. බ්රහ්මසුත්තවණ්ණනා",
+                        "keyOffset": 8,
                         "level": 1
                     },
                     {
@@ -5585,6 +5615,7 @@
                     {
                         "type": "heading",
                         "text": "3-5. පරිහානසුත්තාදිවණ්ණනා",
+                        "keyOffset": 3,
                         "level": 1
                     },
                     {
@@ -5594,6 +5625,7 @@
                     {
                         "type": "heading",
                         "text": "6. පදෙසසුත්තවණ්ණනා",
+                        "keyOffset": 6,
                         "level": 1
                     },
                     {
@@ -5631,6 +5663,7 @@
                     {
                         "type": "heading",
                         "text": "5. සතොසුත්තවණ්ණනා",
+                        "keyOffset": 5,
                         "level": 1
                     },
                     {
@@ -5650,6 +5683,7 @@
                     {
                         "type": "heading",
                         "text": "2. සමුදයසුත්තවණ්ණනා",
+                        "keyOffset": 2,
                         "level": 1
                     },
                     {
@@ -5659,6 +5693,7 @@
                     {
                         "type": "heading",
                         "text": "4. සතොසුත්තවණ්ණනා",
+                        "keyOffset": 4,
                         "level": 1
                     },
                     {
@@ -5668,6 +5703,7 @@
                     {
                         "type": "heading",
                         "text": "6. පාතිමොක්ඛසුත්තවණ්ණනා",
+                        "keyOffset": 6,
                         "level": 1
                     },
                     {
@@ -5824,6 +5860,7 @@
                     {
                         "type": "heading",
                         "text": "7. දුතිය සමණසුත්තවණ්ණනා",
+                        "keyOffset": 7,
                         "level": 1
                     },
                     {
@@ -6138,6 +6175,7 @@
                     {
                         "type": "heading",
                         "text": "8. පටිපන්නසුත්තවණ්ණනා",
+                        "keyOffset": 8,
                         "level": 1
                     },
                     {
@@ -6166,6 +6204,7 @@
                     {
                         "type": "heading",
                         "text": "2. ජීවිතින්ද්රියසුත්තවණ්ණනා",
+                        "keyOffset": 2,
                         "level": 1
                     },
                     {
@@ -6395,6 +6434,7 @@
                     {
                         "type": "heading",
                         "text": "6-8. විභඞ්ගසුත්තාදිවණ්ණනා",
+                        "keyOffset": 6,
                         "level": 1
                     },
                     {
@@ -6404,6 +6444,7 @@
                     {
                         "type": "heading",
                         "text": "9. කට්ඨොපමසුත්තවණ්ණනා",
+                        "keyOffset": 9,
                         "level": 1
                     },
                     {
@@ -6738,6 +6779,7 @@
                     {
                         "type": "heading",
                         "text": "10. ආපණසුත්තවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
@@ -6879,6 +6921,7 @@
                     {
                         "type": "heading",
                         "text": "7. බ්රහ්මසුත්තවණ්ණනා",
+                        "keyOffset": 7,
                         "level": 1
                     },
                     {
@@ -7070,6 +7113,7 @@
                     {
                         "type": "heading",
                         "text": "5. පදෙසසුත්තවණ්ණනා",
+                        "keyOffset": 5,
                         "level": 1
                     },
                     {
@@ -7088,6 +7132,7 @@
                     {
                         "type": "heading",
                         "text": "10. චෙතිය සුත්තවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
@@ -7270,6 +7315,7 @@
                     {
                         "type": "heading",
                         "text": "3. ඡන්දසුත්තවණ්ණනා",
+                        "keyOffset": 3,
                         "level": 1
                     },
                     {
@@ -7424,6 +7470,7 @@
                     {
                         "type": "heading",
                         "text": "9. භාවනාසුත්තවණ්ණනා",
+                        "keyOffset": 9,
                         "level": 1
                     },
                     {
@@ -7553,6 +7600,7 @@
                     {
                         "type": "heading",
                         "text": "2. අයොගුළසුත්තවණ්ණනා",
+                        "keyOffset": 2,
                         "level": 1
                     },
                     {
@@ -7575,6 +7623,7 @@
                     {
                         "type": "heading",
                         "text": "11-12. මොග්ගල්ලානසුත්තාදිවණ්ණනා",
+                        "keyOffset": 11,
                         "level": 1
                     },
                     {
@@ -7608,6 +7657,7 @@
                     {
                         "type": "heading",
                         "text": "3-4. සුතනුසුත්තාදිවණ්ණනා",
+                        "keyOffset": 3,
                         "level": 1
                     },
                     {
@@ -7721,6 +7771,7 @@
                     {
                         "type": "heading",
                         "text": "6-7. තතිය කණ්ටකීසුත්තාදිවණ්ණනා",
+                        "keyOffset": 6,
                         "level": 1
                     },
                     {
@@ -7730,6 +7781,7 @@
                     {
                         "type": "heading",
                         "text": "8. සලලාගාරසුත්තවණ්ණනා",
+                        "keyOffset": 8,
                         "level": 1
                     },
                     {
@@ -7758,6 +7810,7 @@
                     {
                         "type": "heading",
                         "text": "5. ඨානසුත්තවණ්ණනා",
+                        "keyOffset": 5,
                         "level": 1
                     },
                     {
@@ -7805,6 +7858,7 @@
                     {
                         "type": "heading",
                         "text": "6. අරිට්ඨසුත්තවණ්ණනා",
+                        "keyOffset": 6,
                         "level": 1
                     },
                     {
@@ -8270,6 +8324,7 @@
                     {
                         "type": "heading",
                         "text": "3-10. ආනන්දසුත්තාදිවණ්ණනා",
+                        "keyOffset": 3,
                         "level": 1
                     },
                     {
@@ -8422,6 +8477,7 @@
                     {
                         "type": "heading",
                         "text": "4. සාරිපුත්තසුත්තවණ්ණනා",
+                        "keyOffset": 4,
                         "level": 1
                     },
                     {
@@ -8628,6 +8684,7 @@
                     {
                         "type": "heading",
                         "text": "10. තතිය ගිඤ්ජකාවසථසුත්තවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
@@ -8822,6 +8879,7 @@
                     {
                         "type": "heading",
                         "text": "4. දුග්ගතිසුත්තවණ්ණනා",
+                        "keyOffset": 4,
                         "level": 1
                     },
                     {
@@ -8958,6 +9016,7 @@
                     {
                         "type": "heading",
                         "text": "3. තතිය මහානාම සුත්තවණ්ණනා",
+                        "keyOffset": 3,
                         "level": 1
                     },
                     {
@@ -9075,6 +9134,7 @@
                     {
                         "type": "heading",
                         "text": "4. දෙවපදසුත්තවණ්ණනා",
+                        "keyOffset": 4,
                         "level": 1
                     },
                     {
@@ -9084,6 +9144,7 @@
                     {
                         "type": "heading",
                         "text": "8. වස්සසුත්තවණ්ණනා",
+                        "keyOffset": 8,
                         "level": 1
                     },
                     {
@@ -9093,6 +9154,7 @@
                     {
                         "type": "heading",
                         "text": "10. නන්දියසුත්තවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
@@ -9263,6 +9325,7 @@
                     {
                         "type": "heading",
                         "text": "2. වස්සංවුත්ථ සුත්තවණ්ණනා",
+                        "keyOffset": 2,
                         "level": 1
                     },
                     {
@@ -9366,6 +9429,7 @@
                     {
                         "type": "heading",
                         "text": "9. පටිලාභසුත්තවණ්ණනා",
+                        "keyOffset": 9,
                         "level": 1
                     },
                     {
@@ -9520,6 +9584,7 @@
                     {
                         "type": "heading",
                         "text": "6. දුතිය සමණබ්රාහ්මණසුත්තවණ්ණනා",
+                        "keyOffset": 6,
                         "level": 1
                     },
                     {
@@ -9529,6 +9594,7 @@
                     {
                         "type": "heading",
                         "text": "10. තිරච්ඡාන කථාසුත්තවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
@@ -9723,6 +9789,7 @@
                     {
                         "type": "heading",
                         "text": "9. සඞ්කාසනසුත්තවණ්ණනා",
+                        "keyOffset": 9,
                         "level": 1
                     },
                     {
@@ -9816,6 +9883,7 @@
                     {
                         "type": "heading",
                         "text": "7. තථසුත්තවණ්ණනා",
+                        "keyOffset": 7,
                         "level": 1
                     },
                     {
@@ -9834,6 +9902,7 @@
                     {
                         "type": "heading",
                         "text": "10. ගවම්පතිසුත්තවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
@@ -9880,6 +9949,7 @@
                     {
                         "type": "heading",
                         "text": "5. සත්තිසතසුත්තවණ්ණනා",
+                        "keyOffset": 5,
                         "level": 1
                     },
                     {
@@ -9889,6 +9959,7 @@
                     {
                         "type": "heading",
                         "text": "9. ඉන්දඛීලසුත්තවණ්ණනා",
+                        "keyOffset": 9,
                         "level": 1
                     },
                     {
@@ -10090,6 +10161,7 @@
                     {
                         "type": "heading",
                         "text": "4. කූටාගාරසුත්තවණ්ණනා",
+                        "keyOffset": 4,
                         "level": 1
                     },
                     {
@@ -10108,6 +10180,7 @@
                     {
                         "type": "heading",
                         "text": "7. ඡිග්ගලයුගසුත්තවණ්ණනා",
+                        "keyOffset": 7,
                         "level": 1
                     },
                     {
@@ -10215,6 +10288,7 @@
                     {
                         "type": "heading",
                         "text": "3. පඤ්ඤාසුත්තවණ්ණනා",
+                        "keyOffset": 3,
                         "level": 1
                     },
                     {
@@ -10233,6 +10307,7 @@
                     {
                         "type": "heading",
                         "text": "6-7. මත්තෙය්යසුත්තාදිවණ්ණනා",
+                        "keyOffset": 6,
                         "level": 1
                     },
                     {
@@ -10242,6 +10317,7 @@
                     {
                         "type": "heading",
                         "text": "8-9. සාමඤ්ඤසුත්තාදිවණ්ණනා",
+                        "keyOffset": 8,
                         "level": 1
                     },
                     {
@@ -10251,6 +10327,7 @@
                     {
                         "type": "heading",
                         "text": "10. අපචායීසුත්තවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
@@ -10265,6 +10342,7 @@
                     {
                         "type": "heading",
                         "text": "8. බීජගාමසුත්තවණ්ණනා",
+                        "keyOffset": 8,
                         "level": 1
                     },
                     {
@@ -10506,6 +10584,7 @@
                     {
                         "type": "heading",
                         "text": "4-6. තුලාකූටාදිසුත්තානිවණ්ණනා",
+                        "keyOffset": 4,
                         "level": 1
                     },
                     {
@@ -10622,6 +10701,7 @@
                     {
                         "type": "heading",
                         "text": "7-9. උක්කොටනාදිසුත්තානිවණ්ණනා",
+                        "keyOffset": 7,
                         "level": 1
                     },
                     {
@@ -10677,6 +10757,7 @@
                     {
                         "type": "heading",
                         "text": "10-15. ඡෙදනාදිසුත්තානිවණ්ණනා",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {

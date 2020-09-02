@@ -2719,6 +2719,7 @@
                     {
                         "type": "heading",
                         "text": "[ 6. පුග්ගලවග්ගො ]",
+                        "keyOffset": 6,
                         "level": 2
                     },
                     {
@@ -4345,6 +4346,7 @@
                     {
                         "type": "heading",
                         "text": "[ 11. ආසාවග්ගො ]",
+                        "keyOffset": 11,
                         "level": 2
                     },
                     {
@@ -5899,6 +5901,7 @@
                     {
                         "type": "heading",
                         "text": "[ 16. කොධවග්ගො ]",
+                        "keyOffset": 16,
                         "level": 3
                     },
                     {
