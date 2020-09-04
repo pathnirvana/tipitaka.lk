@@ -4423,7 +4423,8 @@
                     {
                         "type": "heading",
                         "text": "[6. පටිපදාවග්ගො]",
-                        "level": 2
+                        "keyOffset": 6,
+                        "level": 3
                     },
                     {
                         "type": "heading",
@@ -4526,7 +4527,7 @@
                     {
                         "text": "[6. පටිපදා වර්ගය]",
                         "type": "heading",
-                        "level": 2
+                        "level": 3
                     },
                     {
                         "type": "heading",
@@ -4838,7 +4839,7 @@
                     {
                         "type": "heading",
                         "text": "[7. කම්මපථ පෙය්යාලං]",
-                        "level": 2
+                        "level": 3
                     },
                     {
                         "type": "heading",
@@ -4926,7 +4927,7 @@
                     {
                         "text": "[7. කම්මපථ පෙය්‍යාලය]",
                         "type": "heading",
-                        "level": 2
+                        "level": 3
                     },
                     {
                         "type": "heading",
@@ -5453,7 +5454,7 @@
                     {
                         "type": "heading",
                         "text": "[8. රාග පෙය්යාලං]",
-                        "level": 2
+                        "level": 3
                     },
                     {
                         "type": "heading",
@@ -5546,7 +5547,7 @@
                     {
                         "text": "[8. රාගපෙය්‍යාලය]",
                         "type": "heading",
-                        "level": 2
+                        "level": 3
                     },
                     {
                         "type": "heading",
