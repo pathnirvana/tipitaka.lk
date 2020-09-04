@@ -111,7 +111,7 @@ const filesFilter = /^dn-|^mn-|^sn-|^an-|^kn-|^ap-|^vp-|^atta-/
 const getName = (text) => {
     text = text.trim()
     text = text.replace(/\{.*?\}/g, '') // remove footnotes
-    text = text.replace(/[\[\]]/g, '') // remove []
+    text = text.replace(/[\[\]\(\)]/g, '') // remove [] ()
     text = text.replace(/\$\$|\*\*/g, '') // remove $$ or **
     return text.replace(/\.$/, '').trim() // remove ending .
 }
