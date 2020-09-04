@@ -3892,7 +3892,7 @@
                     {
                         "type": "heading",
                         "text": "1. අකුශල පෙය්‍යාලය",
-                        "level": 2
+                        "level": 1
                     },
                     {
                         "type": "paragraph",
@@ -3937,7 +3937,7 @@
                     {
                         "type": "heading",
                         "text": "2. විනය පෙය්‍යාලය",
-                        "level": 2
+                        "level": 1
                     },
                     {
                         "type": "paragraph",
@@ -3994,7 +3994,7 @@
                     {
                         "type": "heading",
                         "text": "රාගපෙය්‍යාලය",
-                        "level": 2
+                        "level": 1
                     },
                     {
                         "type": "paragraph",

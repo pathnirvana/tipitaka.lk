@@ -12,7 +12,7 @@ const vkb = require('vkbeautify')
 const path = require('path')
 
 // following files were not processed - dn, mn-1 - headings were already good or copied manually
-const filename = 'atta-an-2'
+const filename = 'atta-an-3'
 const isSimpleCopy = true // simply copy the headings without any modification
 const tree = JSON.parse(fs.readFileSync(__dirname + '/../../public/static/data/tree.json', { encoding: 'utf-8' }))
 const keysToProcess = Object.keys(tree).filter(k => (tree[k][5] == filename && tree[k][2] <= 4))
@@ -42,13 +42,13 @@ keysToProcess.forEach(akey => {
         console.error(`Malformed atta heading ${attaH}`)
         return
     }
-    if (attaRes[2].trim() && mulaRes[2].search(attaRes[2].substr(0, 3)) == -1) {
-        diff.push(`name mismatch,${key},${level},${attaH},${mulaRes[2]}`)
-    }
+    //if (attaRes[2].trim() && mulaRes[2].search(attaRes[2].substr(0, 3)) == -1) {
+    //    diff.push(`name mismatch,${key},${level},${attaH},${mulaRes[2]}`)
+    //}
 
     // attaDigit used in build-tree as keyOffset
     const attaDigit = attaRes[1], isRange = attaRes[1].indexOf('-') >= 0
-    if (isSimpleCopy) pEnt.text = tree[key][0]
+    if (isSimpleCopy) { if (level > 1) pEnt.text = tree[key][0] }
     else if (mulaRes[2].trim()) { // only if mula name is non empty
         if (level == 1 && !/සුත්(තං|තානි)$/.test(mulaRes[2])) { 
             diff.push(`pali not sutta,${key},${level},${attaH},${mulaRes[2]}`)
