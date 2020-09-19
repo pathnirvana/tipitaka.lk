@@ -98,7 +98,6 @@ const tree = {
     'atta-an': [ 'අඞ්ගුත්තරනිකායො අට්ඨකථා', 'අඞ්ගුත්තර නිකාය අටුවාව', 6, [0, 0], 'atta-sp', 'atta-an-1'],
     'atta-kn': [ 'ඛුද්දකනිකායො අට්ඨකථා', 'කුදුගත් සඟිය අටුවාව',      6, [0, 0], 'atta-sp', 'atta-kn-khp'],
     
-    'atta-dn-2': [ 'මහාවග්ගො', 'මහා වර්ගය',      5, [0, 0], 'atta-dn', 'atta-dn-2-1'], // keep until atta-dn-2 is complete
     'atta-kn-khp': [], 'atta-kn-dhp': [], // order
 }
 const headingAtEndKeys = ['kn-vv', 'kn-pv', 'kn-thag', 'kn-thig', 
