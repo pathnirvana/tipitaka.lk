@@ -10,8 +10,8 @@ const sourceDir = path.join(__dirname, '../public/static/text')
 const outputDir = path.join(sourceDir, 'corrected')
 let processedFilesCount = 0
 
-const fileFilter = /sn/g
-const operation = 'format'
+const fileFilter = /ap/g
+const operation = 'multipleSpaces'
 
 const operationsList = {
     format: (data) => {
@@ -38,7 +38,27 @@ const operationsList = {
             }
         })
         return modCount
-    }
+    },
+
+    multipleSpaces: (data) => {
+        let modCount = 0
+        const trimSpaces = (e) => {
+            let newText = e.text.trim()
+            newText = newText.replace(/ +/g, ' ')
+            if (newText != e.text) {
+                const lenDiff = e.text.length - newText.length
+                e.text = newText
+                return lenDiff
+            }
+            return 0
+        }
+        data.pages.forEach(p => {
+            p.pali.entries.forEach(e => modCount += trimSpaces(e))
+            p.sinh.entries.forEach(e => modCount += trimSpaces(e))
+        })
+        return modCount
+    },
+
 }
 
 function extractFootnotes(entry, footnotes, dedupFootnotes) {
