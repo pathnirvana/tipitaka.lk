@@ -3,6 +3,7 @@
     @mouseover="showEntryOptions" @mouseleave="entryOptions = false">
     <!--<span v-if="$parent.showTypeInfo" class="type-info">{{ entry.type + '.' + entry.level }}</span>-->
     <div :class="cssClasses" :level="entry.level" @click="showWordOptions">
+      <AtuwaLinkIcon v-if="entry.type == 'heading'" :entry="entry" />
       <template v-for="(se, i) in entry.text">
 
         <v-tooltip v-if="se[1] == 'fn-pointer' && footnoteMethod != 'end-page'" :key="i" bottom
@@ -31,10 +32,7 @@
           <v-list-item-icon><v-icon dense>mdi-share-variant</v-icon></v-list-item-icon>
           <v-list-item-title>link එකක් ලබාගන්න</v-list-item-title>
         </v-list-item>
-        <v-list-item @click="2" disabled>
-          <v-list-item-icon><v-icon dense>mdi-redo</v-icon></v-list-item-icon>
-          <v-list-item-title>අටුවාව වෙත</v-list-item-title>
-        </v-list-item>
+        <AtuwaLinkIcon :entry="entry" :isListItem="true" />
         <BookmarkIcon :entry="entry" :isListItem="true" />
       </v-list>
     </v-menu>
@@ -84,11 +82,12 @@ td.entry { position: relative; }
 
 <script>
 import { mapState } from 'vuex'
-
-const optionsAllowedTypes = ['heading', 'gatha', 'paragraph']
+import AtuwaLinkIcon from '@/components/AtuwaLinkIcon.vue'
+const optionsAllowedTypes = ['unindented', 'gatha', 'paragraph']
 
 export default {
   name: 'TextEntry',
+  components: { AtuwaLinkIcon },
   props: {
     entry: Object,
     footnotes: Array,
