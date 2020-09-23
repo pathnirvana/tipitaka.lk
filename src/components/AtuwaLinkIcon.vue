@@ -6,7 +6,7 @@
         </v-list-item>
 
         <v-btn v-else icon x-small @click="openTarget" class="mr-2">
-            <v-icon v-if="isAtuwa" color="info">mdi-white-balance-auto</v-icon>
+            <v-icon v-if="isAtuwa">mdi-white-balance-auto</v-icon>
             <v-icon v-else small>mdi-format-title</v-icon>
         </v-btn>
     </span>
