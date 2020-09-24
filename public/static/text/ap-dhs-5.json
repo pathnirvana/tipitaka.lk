@@ -4732,7 +4732,7 @@
                 "footnotes": [
                     {
                         "type": "footnote",
-                        "text": "1. අසරණා PTS,"
+                        "text": "1. අසරණා - PTS"
                     },
                     {
                         "type": "footnote",
@@ -4803,5 +4803,6 @@
         }
     ],
     "bookId": 45,
-    "pageOffset": 0
+    "pageOffset": 0,
+    "collection": "mula"
 }
