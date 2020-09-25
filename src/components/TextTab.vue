@@ -10,7 +10,7 @@
     <v-skeleton-loader v-else-if="!tab.isLoaded" type="paragraph"></v-skeleton-loader>
     
     <div v-else v-touch="{ left: () => touchSwipe('L'), right: () => touchSwipe('R') }">
-      <v-btn absolute rounded small top right @click="loadPrevPage(tabIndex)">
+      <v-btn absolute rounded small top right @click="loadPrevPage(tabIndex)" class="load-prev-page">
         <v-icon>mdi-chevron-up</v-icon>
       </v-btn>
 
@@ -62,9 +62,7 @@
   filter: grayscale(100%) contrast(90%) brightness(95%);
 }
 .theme--dark .img-holder > img { filter: invert(100%) contrast(70%) brightness(150%); }
-
-
-.load-prev-page { top: 60px; }
+.load-prev-page { z-index: 2; /* top: 60px; */ }
 </style>
 
 <script>

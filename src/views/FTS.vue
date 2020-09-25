@@ -54,10 +54,10 @@
 
         <v-btn v-if="group.items.length > 1" text @click="toggleGroup(group.key)" :color="group.isOpen ? 'success' : 'info'" >
           <template v-if="group.isOpen">
-            {{ `මෙම ඡේද ${group.items.length} වසන්න.` }}<v-icon>mdi-unfold-less-horizontal</v-icon>
+            {{ `මෙම ${groupCountText(group)} වසන්න.` }}<v-icon>mdi-unfold-less-horizontal</v-icon>
           </template>
           <template v-else>
-            {{ `මෙම සූත්‍රයේම තවත් ඡේද ${group.items.length} ක ඇත. බලන්න.` }}<v-icon>mdi-unfold-more-horizontal</v-icon>
+            {{ `මෙම සූත්‍රයේම තවත් ${groupCountText(group)}ක ඇත. බලන්න.` }}<v-icon>mdi-unfold-more-horizontal</v-icon>
           </template>
         </v-btn>
 
@@ -227,6 +227,9 @@ export default {
     toggleGroup(key) {
       const g = this.results.find(g => g.key == key)
       this.$set(g, 'isOpen', !g.isOpen)
+    },
+    groupCountText(group) {
+      return group.items.length == 2 ? 'ඡේදය' : `ඡේද ${group.items.length - 1} `
     },
     updatePage() {
       //const options = [this.exactWord, this.matchPhrase, this.wordDistance].join('-')

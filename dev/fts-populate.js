@@ -49,7 +49,7 @@ function writeEntry(e, eind, lang, fileKey) {
     numEntries++
 }
 
-const writeFtsDb = false, writeSuggestedWords = true
+const writeFtsDb = true, writeSuggestedWords = false
 const wordListPali = [], wordListSinh = []
 const dataInputFolder = path.join(__dirname, '../public/static/text/')
 const ftsDictFile = path.join(__dirname, '../server/fts.db')
