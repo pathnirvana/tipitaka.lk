@@ -119,8 +119,11 @@ export default {
   methods: {
     genWords(text) {
       if (this.entry.language == 'sinh') return text // for now only for pali
-      return '<w>' + text.replace(/(\s)/g, '</w>$1<w>') + '</w>' // need to handle \n in gatha
+      //return '<w>' + text.replace(/(\s)/g, '</w>$1<w>') + '</w>' // need to handle \n in gatha
       //return text.split(' ').map(w => `<w>${w}</w>`).join(' ')
+      //text = text.replace(/([\s>])(\S+?)([\s<])/g, '$1<w>$2</w>$3')
+      //return text.replace(/([\s>‘“])([\u0d80-\u0dff\u200d]+)/g, '$1<w>$2</w>')
+      return text.replace(/([\u0d80-\u0dff\u200d]+)/g, '<w>$1</w>')
     },
     matchingNoteText(number) {
       const ff = this.footnotes.find(note => note.number == number)
