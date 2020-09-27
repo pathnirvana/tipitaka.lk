@@ -26,20 +26,20 @@ export default {
         ...mapGetters('tree', ['getKey']),
         hasTarget() {
             // if (!this.isAtuwa)
-            return !!this.getKey(this.target)
+            return !!this.getKey(this.targetKey)
             // todo if atuwa need to check starting digits
         },
         isAtuwa() { // is navigate to atta
             return !this.entry.key.startsWith('atta-') 
         },
-        target() { // add or remove 'atta-' from key
+        targetKey() { // add or remove 'atta-' from key
             return (this.isAtuwa) ? 'atta-' + this.entry.key : this.entry.key.slice(5)
         },
     },
 
     methods: {
         openTarget() {
-            this.$store.dispatch('tabs/openAndSetActive', { key: this.target })
+            this.$store.dispatch('tabs/openAndSetActive', { key: this.targetKey, language: this.entry.language })
         }
     },
 }
