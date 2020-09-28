@@ -105,7 +105,6 @@ const headingAtEndKeys = ['kn-vv', 'kn-pv', 'kn-thag', 'kn-thig',
 
 const dataInputFolder = __dirname + '/../public/static/text/'
 const treeOutFilename = __dirname + '/../public/static/data/tree.json'
-const searchIndexFilename = __dirname + '/../public/static/data/searchIndex.json'
 const filesFilter = /^dn-|^mn-|^sn-|^an-|^kn-|^ap-|^vp-|^atta-/
 
 const getName = (text) => {
@@ -207,6 +206,7 @@ function computeNewKey(he, parentStack, isAtta, nameText) { // modifies parentSt
 
 
 // building the heading search index
+// const searchIndexFilename = __dirname + '/../public/static/data/searchIndex.json'
 // const ignoreWordList = fs.readFileSync(path.join(__dirname, 'heading-si-ignore-words.txt'), 'utf-8').split('\r\n')
 // const searchIndex = {}
 // Object.keys(tree).forEach(key => {
