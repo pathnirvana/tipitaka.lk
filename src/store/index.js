@@ -19,6 +19,7 @@ function saveSettings(state) {
 
 const snackbarTypeToMsg = {
   'link-copied': 'ලින්ක් එකක් copy කර ගත්තා. අදාළ තැන paste කරන්න.',
+  'content-copied': 'ඡේදයේ අන්තර්ගතය copy කර ගත්තා. paste කර ගන්න.',
 }
 
 export default new Vuex.Store({

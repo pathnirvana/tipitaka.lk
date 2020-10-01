@@ -9,7 +9,7 @@
     
     <v-skeleton-loader v-else-if="!tab.isLoaded" type="paragraph"></v-skeleton-loader>
     
-    <div v-else v-touch="{ left: () => touchSwipe('L'), right: () => touchSwipe('R') }">
+    <div v-else v-touch="{ left: () => touchSwipe('L') }"> <!-- v-touch="{ left: () => touchSwipe('L'), right: () => touchSwipe('R') }" -->
       <v-btn absolute rounded small top right @click="loadPrevPage(tabIndex)" class="load-prev-page">
         <v-icon>mdi-chevron-up</v-icon>
       </v-btn>
@@ -151,13 +151,13 @@ export default {
       if (this.tab.hWords && eIndEquals(this.tab.eInd, entry.eInd)) {
         text = highlightWords(text, this.tab.hWords) 
       }
-      return {...entry, text: this.textParts(text) }
+      return {...entry, parts: this.textParts(text) }
     },
     processFootnote(fnote, language) {
       let _0, number, text = beautifyText(fnote.text, language, this.$store.state)
       const m = /^([^\s\.\{\}]+)[\.\s]([\s\S]+)$/.exec(text) // [\s\S]+ needed for matching new lines
       if (m) [_0, number, text] = m
-      return {...fnote, number, text: this.textParts(text, language) }
+      return {...fnote, number, parts: this.textParts(text, language) }
     },
     textParts(text) {
       text = text.replace(/\{(.+?)\}/g, this.$store.state.footnoteMethod == 'hidden' ? '' : '|$1℗fn-pointer|');

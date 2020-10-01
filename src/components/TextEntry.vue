@@ -1,17 +1,17 @@
 <template>
-  <td class="entry pa-2" :lang="entry.language" :style="$store.getters['styles']" 
+  <td class="entry pa-2" :style="$store.getters['styles']" 
     @mouseover="showEntryOptions" @mouseleave="entryOptions = false">
     <!--<span v-if="$parent.showTypeInfo" class="type-info">{{ entry.type + '.' + entry.level }}</span>-->
     <div :class="cssClasses" :level="entry.level" @click="showWordOptions">
       <AtuwaLinkIcon v-if="entry.type == 'heading'" :entry="entry" />
-      <template v-for="(se, i) in entry.text">
+      <template v-for="(se, i) in entry.parts">
 
         <v-tooltip v-if="se[1] == 'fn-pointer' && footnoteMethod != 'end-page'" :key="i" bottom
           :open-on-click="footnoteMethod == 'click'" :open-on-hover="footnoteMethod == 'hover'" color="black">
           <template v-slot:activator="{ on }">
             <span v-on="on" class="fn-pointer">{{ se[0] }}</span>
           </template>
-          <span v-for="(ne, j) in matchingNoteText(se[0])" :key="j" :class="ne[1] || false">{{ ne[0] }}</span>
+          <span v-for="(ne, j) in matchingNoteParts(se[0])" :key="j" :class="ne[1] || false">{{ ne[0] }}</span>
         </v-tooltip>
 
         <span v-else :class="se[1] || false" :key="i" v-html="genWords(se[0])"></span>
@@ -28,9 +28,13 @@
         </v-btn>
       </template>
       <v-list dense>
-        <v-list-item v-clipboard:copy="'https://tipitaka.lk' + linkToEntry" v-clipboard:success="onCopyLink" class="cursor-pointer">
+        <v-list-item v-clipboard:copy="linkToEntry" v-clipboard:success="onLinkCopy" class="cursor-pointer">
           <v-list-item-icon><v-icon dense>mdi-share-variant</v-icon></v-list-item-icon>
           <v-list-item-title>link එකක් ලබාගන්න</v-list-item-title>
+        </v-list-item>
+        <v-list-item v-clipboard:copy="contentToCopy" v-clipboard:success="onContentCopy" class="cursor-pointer">
+          <v-list-item-icon><v-icon dense>mdi-content-copy</v-icon></v-list-item-icon>
+          <v-list-item-title>ඡේදය copy කරගන්න</v-list-item-title>
         </v-list-item>
         <AtuwaLinkIcon :entry="entry" :isListItem="true" />
         <BookmarkIcon :entry="entry" :isListItem="true" />
@@ -42,9 +46,8 @@
 
 <style scoped>
 /** Need to use em instead of rem because dynamic font-size is set at td */
-td.entry { width: 50%; vertical-align: top; }
-.text { font-family: 'sinhala'; font-size: 1.1em; line-height: 130%; position: relative; 
-  word-break: break-word; white-space: pre-wrap; }
+td.entry { width: 50%; vertical-align: top; position: relative; text-align: justify; }
+.text { font-family: 'sinhala'; font-size: 1.1em; line-height: 130%; word-break: break-word;  /*white-space: pre-wrap;*/ }
 
 .heading { /*font-weight: bold;*/ font-family: 'heading2'; color: var(--v-primary-base); text-align: center; }
 .heading[level="5"] { font-size: 1.8em; } /* sn-2 */
@@ -53,7 +56,7 @@ td.entry { width: 50%; vertical-align: top; }
 .heading[level="2"] { font-size: 1.4em; }
 .heading[level="1"] { font-size: 1.3em; }
 
-.paragraph { text-indent: 1.4em; padding-left: 0em; text-align: justify; }
+.paragraph { text-indent: 1.4em; padding-left: 0em; }
 
 .gatha { text-indent: 0em; padding-left: 2.4em; text-align: left; }
 .gatha[level="2"] { padding-left: 5em; }
@@ -74,7 +77,6 @@ td.entry { width: 50%; vertical-align: top; }
 .html .bold { color: var(--v-info-base); }
 .html .highlight { background-color: var(--v-highlight-base); } /* fts */
 
-td.entry { position: relative; }
 /* .type-info { position: absolute; top: 0; left: 0; font-size: 0.8em; opacity: 0.5; color: gray; } */
 .cursor-pointer { cursor: pointer; } /* cursor is not set properly in some menu items */
 .html >>> w.bottom-open { background-color: var(--v-highlight-base); }
@@ -82,6 +84,7 @@ td.entry { position: relative; }
 
 <script>
 import { mapState } from 'vuex'
+import { beautifyText } from '@/text-convert.mjs'
 import AtuwaLinkIcon from '@/components/AtuwaLinkIcon.vue'
 const optionsAllowedTypes = ['unindented', 'gatha', 'paragraph']
 
@@ -110,27 +113,34 @@ export default {
     },
     linkToEntry() {
       if (this.entry.type == 'heading') {
-        return `/${this.entry.key}/${this.entry.language}`
+        return `https://tipitaka.lk/${this.entry.key}/${this.entry.language}`
       }
-      return `/${this.entry.key}/${this.entry.eInd.join('-')}/${this.entry.language}`
+      return `https://tipitaka.lk/${this.entry.key}/${this.entry.eInd.join('-')}/${this.entry.language}`
     },
+    contentToCopy() { // remove bold, underline and footnote pointers
+      let text = this.entry.text.replace(/\*\*|__|\{\S+?\}/g, '')
+      return beautifyText(text, this.entry.language, this.$store.state)
+    }
   },
 
   methods: {
-    genWords(text) {
-      if (this.entry.language == 'sinh') return text // for now only for pali
+    genWords(part) {
+      if (this.entry.language == 'sinh') return part // for now only for pali
       //return '<w>' + text.replace(/(\s)/g, '</w>$1<w>') + '</w>' // need to handle \n in gatha
       //return text.split(' ').map(w => `<w>${w}</w>`).join(' ')
       //text = text.replace(/([\s>])(\S+?)([\s<])/g, '$1<w>$2</w>$3')
       //return text.replace(/([\s>‘“])([\u0d80-\u0dff\u200d]+)/g, '$1<w>$2</w>')
-      return text.replace(/([\u0d80-\u0dff\u200d]+)/g, '<w>$1</w>')
+      return part.replace(/([\u0d80-\u0dff\u200d]+)/g, '<w>$1</w>')
     },
-    matchingNoteText(number) {
-      const ff = this.footnotes.find(note => note.number == number)
-      return ff ? ff.text : []
+    matchingNoteParts(number) {
+      const fn = this.footnotes.find(note => note.number == number)
+      return fn ? fn.parts : []
     },
-    onCopyLink() {
+    onLinkCopy() {
       this.$store.commit('setSnackbar', { type: 'link-copied' })
+    },
+    onContentCopy() {
+      this.$store.commit('setSnackbar', { type: 'content-copied' })
     },
     showEntryOptions() {
       this.entryOptions = optionsAllowedTypes.indexOf(this.entry.type) >= 0 && this.entry.key
