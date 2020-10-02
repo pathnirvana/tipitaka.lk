@@ -9,7 +9,7 @@
     
     <v-skeleton-loader v-else-if="!tab.isLoaded" type="paragraph"></v-skeleton-loader>
     
-    <div v-else v-touch="{ left: () => touchSwipe('L') }"> <!-- v-touch="{ left: () => touchSwipe('L'), right: () => touchSwipe('R') }" -->
+    <div v-else v-touch="{ left: touchSwipe }"> <!-- v-touch="{ left: () => touchSwipe('L'), right: () => touchSwipe('R') }" -->
       <v-btn absolute rounded small top right @click="loadPrevPage(tabIndex)" class="load-prev-page">
         <v-icon>mdi-chevron-up</v-icon>
       </v-btn>
@@ -130,8 +130,11 @@ export default {
       this.clickedPageNum = num
       this.setShowScanPage(true)
     },
-    touchSwipe(direction) {
-      console.log('swipe ' + direction)
+    touchSwipe(e) { // e of type TouchWrapper
+      console.log(e)
+      //alert(JSON.stringify(e))
+      // long left swipe without much vertical movement - prevent accidential swipes when selecting
+      if (e.offsetX > -100 || Math.abs(e.offsetY) > 20) return 
       if (this.columns.sinh == this.columns.pali) return // both columns visible (dont check tabs/getTabColumns directly)
 
       const swappedCols = this.columns.pali ? 1 : 0
