@@ -10,8 +10,8 @@ const sourceDir = path.join(__dirname, '../public/static/text')
 const outputDir = path.join(sourceDir, 'corrected')
 let processedFilesCount = 0
 
-const fileFilter = /atta/g
-const operation = 'multipleSpaces'
+const fileFilter = /atta/
+const operation = 'attaFootnotes'
 
 const operationsList = {
     format: (data) => {
@@ -74,7 +74,7 @@ function extractFootnotes(entry, footnotes, dedupFootnotes) {
 
 if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir)
 const filteredFiles = fs.readdirSync(sourceDir).filter(file => path.extname(file) == '.json' && fileFilter.test(file))
-console.log(`selected ${filteredFiles.count} with filter ${fileFilter} and operation ${operation}`)
+console.log(`selected ${filteredFiles.length} with filter ${fileFilter} and operation ${operation}`)
 //console.log(filteredFiles)
 filteredFiles.forEach(file => processFile(file));
 console.log(`processed ${processedFilesCount} files and wrote to ${outputDir}`)
