@@ -10,8 +10,8 @@ const sourceDir = path.join(__dirname, '../public/static/text')
 const outputDir = path.join(sourceDir, 'corrected')
 let processedFilesCount = 0
 
-const fileFilter = /atta/
-const operation = 'attaFootnotes'
+const fileFilter = /./
+const operation = 'multipleSpaces'
 
 const operationsList = {
     format: (data) => {
