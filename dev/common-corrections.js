@@ -10,7 +10,7 @@ const sourceDir = path.join(__dirname, '../public/static/text')
 const outputDir = path.join(sourceDir, 'corrected')
 let processedFilesCount = 0
 
-const fileFilter = /ap/g
+const fileFilter = /atta/g
 const operation = 'multipleSpaces'
 
 const operationsList = {
