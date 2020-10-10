@@ -11,7 +11,7 @@ export default {
     props: ['link'],
     computed: {
         fullLink() {
-            return this.link.startsWith('http') ? this.link : 'https://tipitaka.lk/' + this.link
+            return this.link.startsWith('http') ? this.link : 'https://tipitaka.lk' + this.link
         }
     }
 }

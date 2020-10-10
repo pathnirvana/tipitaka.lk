@@ -171,6 +171,7 @@ export default {
       text = text.replace(/~~(.*?)~~/g, '|$1℗strike|') // strike through
       text = text.replace(/\$\$(.*?)\$\$/g, '$1') // just get rid of $$
       text = text.replace(/↴/g, '\n') // invisible in pdf - new line
+      text = text.replace(/\n/g, '<br>') // if used {white-space: pre-wrap;} css this is not needed
       if (!text) text = '' //|Empty - තීරුව හිස් !℗strike|' // if left empty it is not clickable
       return text.split('|').filter(t => t.length).map(t => t.split('℗'))
     },
