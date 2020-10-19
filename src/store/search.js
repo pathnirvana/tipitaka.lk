@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import router from '@/router'
-import { allFilterKeys, dictionaryInfo, bookmarksStorageKey, callAndroidAsync } from '@/constants.js'
+import { allFilterKeys, dictionaryInfo, searchSettingsKey, 
+  bookmarksStorageKey, callAndroidAsync } from '@/constants.js'
 import md5 from 'md5'
 import { dictWordList } from '../singlish'
 import axios from 'axios'
@@ -19,10 +20,17 @@ const dbVersions = { // updated dbs need to be marked here for update in android
   'fts': 1
 }
 
+const storedSettings = ['filter', 'selectedDictionaries', 'searchType']
+function saveSettings(state) {
+  const obj = {}
+  storedSettings.forEach(s => obj[s] = state[s])
+  localStorage.setItem(searchSettingsKey, JSON.stringify(obj))
+}
+
 export default {
   namespaced: true,
   state: {
-    searchType: '', // init from rootState.lastSearchType
+    searchType: 'title', // init from storage
     searchInput: '',  // search bar input
 
     filter: {
@@ -59,11 +67,13 @@ export default {
     setSearchType(state, type) {
       state.searchType = type
       routeToSearchPage(state.searchInput, type)
+      saveSettings(state)
     },
     routeToSearch(state) { routeToSearchPage(state.searchInput, state.searchType) },
     setFilter(state, { type, param, value }) {
       Vue.set(state.filter[type], param, value)
       if (type == 'title') state.titleSearchCache = {} // since filter is not part of the cache key
+      saveSettings(state)
     },
     setFilterTreeOpenKeys(state, keys) { state.filterTreeOpenKeys = keys },
 
@@ -78,6 +88,7 @@ export default {
     },
     setSelectedDicts(state, newList) {
       state.selectedDictionaries = newList
+      saveSettings(state)
     },
     setBottomSheet(state, { prop, value }) {
       if (prop == 'show' && !value && state.bottomSheet.wordElem) {
@@ -88,6 +99,14 @@ export default {
         value.classList.add('bottom-open')
       }
       Vue.set(state.bottomSheet, prop, value)
+    },
+    loadSearchSettings(state) {
+      const json = localStorage.getItem(searchSettingsKey)
+      if (json) {
+        const storedSettings = JSON.parse(json)
+        Object.assign(state, storedSettings)
+        console.log(`search settings loaded from storage key ${searchSettingsKey}`)
+      }
     },
 
     loadBookmarks(state) {
@@ -109,8 +128,8 @@ export default {
 
   actions: {
     async initialize({state, rootState, commit}) {
+      commit('loadSearchSettings')
       commit('loadBookmarks')
-      commit('setSearchType', rootState.lastSearchType) // last user selected value
       if (typeof Android !== 'undefined') {
         commit('set', { name: 'androidBusy', value: true }, { root: true })
         await callAndroidAsync('openDbs', dbVersions) // opens all dbs copying from assets if necessary
