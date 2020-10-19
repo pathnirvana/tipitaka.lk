@@ -28,7 +28,7 @@ SELECT filename, eind, language, snippet(tipitaka, '<b>', '</b>', '...', 5) AS h
 // process.exit(0)
 
 function writeEntry(e, eind, lang, fileKey) {
-    let text = e.text.replace(/[\*_~\$\u200d]|\{\d\}/g, '') // zwj and footnote pointers
+    let text = e.text.replace(/[\*_~\$\u200d]|\{\d*\}/g, '') // zwj and footnote pointers
     text = text.replace(/\n/g, ' ') // looks like newline prevents matches for words bordering the newline
     if (writeFtsDb) {
         ftsDb.db.run('INSERT INTO tipitaka (filename, eind, language, type, level, text) VALUES (?, ?, ?, ?, ?, ?)', 
