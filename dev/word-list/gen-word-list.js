@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { writeHtml } = require('./common-functions.js')
 
 function addToList(list, word, category) {
     if (list[word]) {
@@ -15,74 +16,58 @@ function addToList(list, word, category) {
 function processEntry(e, eind, lang, fileKey) {
     let text = e.text.replace(/\*|_|~|\$|\{\d\}|\u200d/g, '') // zwj and footnote pointers
     const wordList = (lang == 'pali') ? wordListPali : wordListSinh
-    text = text.replace(/[\.\:\[\]\(\)\{\}\-–,\d'"‘’“”\?\n\t\r]/g, ' ') // replace with spaces
+    text = text.replace(/[\.\:\[\]\(\)\{\}\-–,;\d'"‘’“”\?\n\t\r]/g, ' ') // replace with spaces
     const words = text.split(' ').filter(w => w.length)
+    splitWordsCorpus[lang].push(words) // used for inconsistentSpacing
     words.forEach(word => addToList(wordList, word, 'count'))
-    customWordLists(words, lang)
+    wordsEndingInPI(words, lang)
     numEntries++
 }
 
-function customWordLists(words, lang) {
+function wordsEndingInPI(words, lang) {
     if (lang != 'pali') return
-    const list = wordListCustom
+    const list = wordListPI
     words.forEach((w, i) => {
         if (w.endsWith('පි') && w.length > 2) addToList(list, w, 'no-s') // no space/ one word
         if (w == 'පි' && i > 0) addToList(list, words[i-1] + 'පි', 'q-or-s') // quote or space
     })
 }
-
-function writeWordList(list, filePath) {
-    fs.writeFileSync(path.join(__dirname, filePath), 
-        Object.keys(list).map(w => [w, sumValues(list[w]), JSON.stringify(list[w])])
-            .sort((a, b) => b[1] - a[1]).map(ar => ar.join('\t')).join('\n'), 
-        'utf-8')
-}
-
-function potentialErrors(inputList, filename) {
-    const words = {}, errors = []
-    Object.keys(inputList).forEach(w => words[w] = {freq: sumValues(inputList[w]), length: w.length})
-    Object.keys(words).filter(w => words[w].freq >= 20 && words[w].length > 3)
-        .sort((a, b) => words[b].freq - words[a].freq)
-        .forEach(w => {
-            const perms = genPerms(w).filter(p => words[p] && words[p].freq <= Math.round(words[w].freq/20))
-            if (perms.length) {
-                errors.push(`${w}:${words[w].freq}\t` + perms.map(p => `${p}:${words[p].freq}`).join('\t'))
-            }
-        })
-    fs.writeFileSync(path.join(__dirname, filename), errors.join('\n'), 'utf-8')
-    console.log(`wrote ${errors.length} potential error words to ${filename}`)
-}
-
-const variations = { // visually close pairs
-    'ජ': 'ඡ',
-    'ඡ': 'ජ',
-    'ච': 'ව',
-    'ව': 'ච',
-    'න': 'ත',
-    'ත': 'න',
-    'ි': 'ී',
-    'ී': 'ි',
-    'ු': 'ූ',
-    'ූ': 'ු',
-    '\u0DCA': '',
-}
-const variationsRegex = new RegExp(Object.keys(variations).join('|'), 'g')
-function genPerms(word) {
-    const matches = [...word.matchAll(variationsRegex)], perms = []
-    matches.forEach(m => {
-        perms.push(word.substr(0, m.index) + variations[m[0]] + word.substring(m.index + 1))
-        // const perm = word.slice() // make a copy
-        // perm.splice(m.index, 1, variations[m[0]])
-        // perms.push(perm)
+function inconsistentSpacing(wordList, lang, filePath) {
+    const wList = {}, errors = {}
+    Object.keys(wordList).forEach(w => wList[w] = sumValues(wordList[w]))
+    splitWordsCorpus[lang].forEach(words => {
+        for (let i = 1; i < words.length; i++) {
+            if (['පි', 'න', 'නො', 'ති', 'න්ති'].indexOf(words[i]) >= 0) continue
+            const comb2 = words[i-1] + words[i], comb3 = i > 1 ? words[i-2] + comb2 : ''
+            if (wList[comb2]) addToList(errors, comb2, words[i-1] + ' ' + words[i])
+            if (wList[comb3]) addToList(errors, comb3, words[i-2] + ' ' + words[i-1] + ' ' + words[i])
+        } 
     })
-    return perms
-    // word.replace(/\uDCA0/g, (m, offset) => {
-    //     perms.push()
-    // })
+    
+    const errorAr = Object.keys(errors).map(comb => // 3-d array
+        [[comb, wList[comb]], ...Object.keys(errors[comb]).map(pair => [pair, errors[comb][pair]])]
+            .sort((a, b) => b[1] - a[1])
+    ).sort((a, b) => b[0][1] - a[0][1]) // sort by 2 dimentions
+
+    fs.writeFileSync(path.join(__dirname, filePath),
+        errorAr.map(ar => ar.map(wf => wf.join(':')).join('\t')).join('\n'), 'utf-8')
+    const tbody = errorAr.map(ar => ar.map(([w, f]) => `<a href="https://tipitaka.lk/fts/${w.replace(/ /g, '%20')}/1-1-10">${w}</a>:${f}`).join('\t\t')).join('</td></tr><tr><td>')
+    writeHtml(`<td>${tbody}</td>`, filePath)
+    console.log(`wrote ${errorAr.length} lines ${errorAr.reduce((a, v) => a + v.length, 0)} words to ${filePath}`)
 }
 
-const wordListPali = [], wordListSinh = [], wordListCustom = []
-const sumValues = obj => Object.values(obj).reduce((a, b) => a + b)
+function writeWordList(list, filePath, linkWGen = w => w) {
+    const listAr = Object.keys(list).map(w => [w, sumValues(list[w]), JSON.stringify(list[w])]).sort((a, b) => b[1] - a[1])
+    fs.writeFileSync(path.join(__dirname, filePath), listAr.map(ar => ar.join('\t')).join('\n'), 'utf-8')
+    
+    const tbody = listAr.map(([w, sum, str]) => `<td><a href="https://tipitaka.lk/fts/${linkWGen(w)}/1-1-10">${w}</a></td><td>${sum}</td><td>${str}</td>`).join('</tr><tr>')
+    writeHtml(tbody, filePath)
+    
+    console.log(`wrote ${Object.keys(list).length} words to ${filePath}`)
+}
+
+const wordListPali = {}, wordListSinh = {}, wordListPI = {}, splitWordsCorpus = { pali: [], sinh: [] }
+const sumValues = obj => Object.values(obj).reduce((a, v) => a + v)
 const dataInputFolder = path.join(__dirname, '../../public/static/text/')
 
 // select only mula files
@@ -97,10 +82,12 @@ inputFiles.forEach(filename => {
     })
     numFiles++
 })
+console.log(`processed ${numEntries} entries from ${numFiles} files`)
 
-writeWordList(wordListPali, 'word-list-pali.csv')
-writeWordList(wordListSinh, 'word-list-sinh.csv')
-//Object.keys(wordListCustom).forEach(w => wordListCustom[w]['q-or-s'] || delete wordListCustom[w])
-//writeWordList(wordListCustom, 'word-list-custom2.csv')
-console.log(`wrote ${numEntries} entries from ${numFiles} to word list`)
-potentialErrors(wordListPali, 'word-list-errors-pali.csv')
+writeWordList(wordListPali, 'word-list-pali.txt')
+writeWordList(wordListSinh, 'word-list-sinh.txt')
+Object.keys(wordListPI).forEach(w => wordListPI[w]['q-or-s'] || delete wordListPI[w])
+writeWordList(wordListPI, 'word-list-pi-q-or-s.txt', w => w.replace(/පි$/, '%20පි'))
+//Object.keys(wordListPI).forEach(w => !wordListPI[w]['q-or-s'] || delete wordListPI[w])
+//writeWordList(wordListPI, 'word-list-pi-no-s.txt')
+inconsistentSpacing(wordListPali, 'pali', 'spacing-inconsistencies-pali.txt')
