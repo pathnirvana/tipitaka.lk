@@ -1,9 +1,12 @@
 /** special flags and constants */
 export const tipitakaAppVersion = 1.0 // used to determine if app needs to be updated 
+
 const settingsVersion = '2'
 export const settingsKey = `tipitaka.lk-settings-${settingsVersion}`
 const bookmarksVersion = '1'
 export const bookmarksStorageKey = `tipitaka.lk-bookmarks-${bookmarksVersion}`
+const searchSettingsVersion = '1'
+export const searchSettingsKey = `tipitaka.lk-search-settings-${searchSettingsVersion}`
 
 export const filterTreeParents = ['vp','sp','ap','atta-sp','dn','mn','sn','an','kn']
 export const allFilterKeys = ["vp-prj","vp-pct","vp-mv","dn-1","dn-2","dn-3","mn-1","mn-2","mn-3","sn-1","sn-2","sn-3","sn-4","sn-5",
