@@ -217,7 +217,6 @@ export default {
       get() { return this.$store.getters['search/getSearchType'] },
       set(value) { 
         this.$store.commit('search/setSearchType', value) 
-        this.$store.commit('set', { name: 'lastSearchType', value }) 
       }
     },
     showScanPage: { // null for not selected or 1 if selected
