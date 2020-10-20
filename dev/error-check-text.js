@@ -21,6 +21,7 @@ inputFiles.forEach(filename => {
     }
 
     if (!obj.bookId) console.error(`bookId missing in ${fileKey} ${obj.bookId}`)
+    if (typeof obj.pageOffset != 'number') console.error(`pageOffset is not a number ${fileKey} ${obj.pageOffset}`)
     
     // check page numbers
     const pageNumbers = obj.pages.map(p => parseInt(p.pageNum))
