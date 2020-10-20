@@ -37,7 +37,7 @@
         <template v-else>
           <tr>
             <td v-if="columns.pali" class="img-holder"><img :src="getScanImgSrc(pageNum, 'pali')" /></td>
-            <td v-if="columns.sinh" class="img-holder"><img :src="getScanImgSrc(pageNum, 'sinh')" /></td>
+            <td v-if="columns.sinh && !paliOnly" class="img-holder"><img :src="getScanImgSrc(pageNum, 'sinh')" /></td>
           </tr>
         </template>
       </v-simple-table>
