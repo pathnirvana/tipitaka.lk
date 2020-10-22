@@ -15,23 +15,98 @@ function addToList(list, word, category) {
 
 function processEntry(e, eind, lang, fileKey) {
     let text = e.text.replace(/\*|_|~|\$|\{\d\}|\u200d/g, '') // zwj and footnote pointers
-    const wordList = (lang == 'pali') ? wordListPali : wordListSinh
+    countQuoteWords(text, lang)
     text = text.replace(/[\.\:\[\]\(\)\{\}\-–,;\d'"‘’“”\?\n\t\r]/g, ' ') // replace with spaces
     const words = text.split(' ').filter(w => w.length)
     splitWordsCorpus[lang].push(words) // used for inconsistentSpacing
+    const wordList = (lang == 'pali') ? wordListPali : wordListSinh
     words.forEach(word => addToList(wordList, word, 'count'))
-    wordsEndingInPI(words, lang)
     numEntries++
 }
 
-function wordsEndingInPI(words, lang) {
+const quoteEndings = {}, ignoreEndings = ['ති', 'න්ති'], quoteWords = {}
+function countQuoteWords(text, lang) {
     if (lang != 'pali') return
-    const list = wordListPI
-    words.forEach((w, i) => {
-        if (w.endsWith('පි') && w.length > 2) addToList(list, w, 'no-s') // no space/ one word
-        if (w == 'පි' && i > 0) addToList(list, words[i-1] + 'පි', 'q-or-s') // quote or space
+    const matches = [...text.matchAll(/([\u0D80-\u0DFF]+)’([\u0D80-\u0DFF]+)/g)]
+    matches.forEach(([m, s, e]) => {
+        if (ignoreEndings.indexOf(e) >= 0) return
+        quoteEndings[e] ? quoteEndings[e]++ : quoteEndings[e] = 1
+        const w = s + e
+        addToList(quoteWords, e, w)
+        //quoteWords[w] ? quoteWords[w]++ : quoteWords[w] = 1 
+        //if (w == 'අගාරස්මානගාරියං') console.log(text)
     })
 }
+
+function writeWordList(list, filePath, linkWGen = w => w) {
+    const listAr = Object.keys(list).map(w => [w, sumValues(list[w]), JSON.stringify(list[w])]).sort((a, b) => b[1] - a[1])
+    fs.writeFileSync(path.join(__dirname, filePath), listAr.map(ar => ar.join('\t')).join('\n'), 'utf-8')
+    
+    const tbody = listAr.map(([w, sum, str]) => `<td><a href="https://tipitaka.lk/fts/${linkWGen(w)}/1-1-10">${w}</a></td><td>${sum}</td><td>${str}</td>`).join('</tr><tr>')
+    writeHtml(tbody, filePath)
+    
+    console.log(`wrote ${Object.keys(list).length} words to ${filePath}`)
+}
+
+
+/** count word */
+const wordListPali = {}, wordListSinh = {}, splitWordsCorpus = { pali: [], sinh: [] }
+const sumValues = obj => Object.values(obj).reduce((a, v) => a + v, 0)
+const dataInputFolder = path.join(__dirname, '../../public/static/text/')
+
+// select only mula files
+const inputFiles = fs.readdirSync(dataInputFolder).filter(name => /json$/.test(name)).filter(name => !/^atta/.test(name))
+let numEntries = 0, numFiles = 0
+inputFiles.forEach(filename => {
+    const fileKey = filename.split('.')[0]
+    const obj = JSON.parse(fs.readFileSync(path.join(dataInputFolder, filename)))
+    obj.pages.forEach((p, pi) => {
+        p.pali.entries.forEach((e, ei) => processEntry(e, [pi, ei], 'pali', fileKey))
+        p.sinh.entries.forEach((e, ei) => processEntry(e, [pi, ei], 'sinh', fileKey))
+    })
+    numFiles++
+})
+console.log(`processed ${numEntries} entries from ${numFiles} files`)
+
+writeWordList(wordListPali, 'word-list-pali.txt')
+writeWordList(wordListSinh, 'word-list-sinh.txt')
+
+
+
+/** count the endings with quotes */ 
+function wordsEnding(words, lang, ending) { // add to lists only if a quoteWord
+    if (lang != 'pali') return
+    const list = wordListEnding[ending], qList = quoteWords[ending]
+    words.forEach((w, i) => {
+        if (w.endsWith(ending) && w.length > 2 && qList[w]) addToList(list, w, 'no-s') // no space/ one word
+        if (w == ending && i > 0) {
+            const word = words[i-1] + ending
+            if (qList[word]) addToList(list, word, 'q-or-s') // quote or space
+        }
+    })
+}
+
+const endings = ['පි', 'ව', 'හං', 'ස්ස', 'හමස්මි', 'මෙ', 'දානි', 'කච්චො', 'සි', 'යං'], wordListEnding = {}; 
+endings.forEach(ending => wordListEnding[ending] = {})
+splitWordsCorpus['pali'].forEach(words => {
+    endings.forEach(ending => wordsEnding(words, 'pali', ending))
+})
+
+endings.forEach(ending => {
+    const list = wordListEnding[ending]
+    Object.keys(list).forEach(w => {
+        list[w].q = quoteWords[ending][w]; 
+        list[w].s = list[w]['q-or-s'] - list[w].q; 
+        delete list[w]['q-or-s'];
+    })
+    writeWordList(list, `endings/word-list-${ending}.txt`, w => w.replace(new RegExp(ending + '$'), '%20' + ending))
+})
+fs.writeFileSync(path.join(__dirname, 'endings/quote-endings.txt'),
+    Object.entries(quoteWords).map(([e, words]) => [e, sumValues(words), Object.keys(words).length])
+        .sort((a, b) => b[1] - a[1]).map(wfc => wfc.join('\t')).join('\n'), 'utf-8')
+
+
+/** check for spacing inconsistencies */
 function inconsistentSpacing(wordList, lang, filePath) {
     const wList = {}, errors = {}
     Object.keys(wordList).forEach(w => wList[w] = sumValues(wordList[w]))
@@ -55,39 +130,4 @@ function inconsistentSpacing(wordList, lang, filePath) {
     writeHtml(`<td>${tbody}</td>`, filePath)
     console.log(`wrote ${errorAr.length} lines ${errorAr.reduce((a, v) => a + v.length, 0)} words to ${filePath}`)
 }
-
-function writeWordList(list, filePath, linkWGen = w => w) {
-    const listAr = Object.keys(list).map(w => [w, sumValues(list[w]), JSON.stringify(list[w])]).sort((a, b) => b[1] - a[1])
-    fs.writeFileSync(path.join(__dirname, filePath), listAr.map(ar => ar.join('\t')).join('\n'), 'utf-8')
-    
-    const tbody = listAr.map(([w, sum, str]) => `<td><a href="https://tipitaka.lk/fts/${linkWGen(w)}/1-1-10">${w}</a></td><td>${sum}</td><td>${str}</td>`).join('</tr><tr>')
-    writeHtml(tbody, filePath)
-    
-    console.log(`wrote ${Object.keys(list).length} words to ${filePath}`)
-}
-
-const wordListPali = {}, wordListSinh = {}, wordListPI = {}, splitWordsCorpus = { pali: [], sinh: [] }
-const sumValues = obj => Object.values(obj).reduce((a, v) => a + v)
-const dataInputFolder = path.join(__dirname, '../../public/static/text/')
-
-// select only mula files
-const inputFiles = fs.readdirSync(dataInputFolder).filter(name => /json$/.test(name)).filter(name => !/^atta/.test(name))
-let numEntries = 0, numFiles = 0
-inputFiles.forEach(filename => {
-    const fileKey = filename.split('.')[0]
-    const obj = JSON.parse(fs.readFileSync(path.join(dataInputFolder, filename)))
-    obj.pages.forEach((p, pi) => {
-        p.pali.entries.forEach((e, ei) => processEntry(e, [pi, ei], 'pali', fileKey))
-        p.sinh.entries.forEach((e, ei) => processEntry(e, [pi, ei], 'sinh', fileKey))
-    })
-    numFiles++
-})
-console.log(`processed ${numEntries} entries from ${numFiles} files`)
-
-writeWordList(wordListPali, 'word-list-pali.txt')
-writeWordList(wordListSinh, 'word-list-sinh.txt')
-Object.keys(wordListPI).forEach(w => wordListPI[w]['q-or-s'] || delete wordListPI[w])
-writeWordList(wordListPI, 'word-list-pi-q-or-s.txt', w => w.replace(/පි$/, '%20පි'))
-//Object.keys(wordListPI).forEach(w => !wordListPI[w]['q-or-s'] || delete wordListPI[w])
-//writeWordList(wordListPI, 'word-list-pi-no-s.txt')
 inconsistentSpacing(wordListPali, 'pali', 'spacing-inconsistencies-pali.txt')

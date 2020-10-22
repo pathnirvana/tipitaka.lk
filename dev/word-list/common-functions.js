@@ -11,8 +11,18 @@ function writeHtml(tbody, filePath) {
             td { padding: 5px; }
         </style></head>
         <body style="font-family: 'UN-Abhaya';">
+            <h2>වචනය උඩ click කිරීමෙන් ඒ වචනය ත්‍රිපිටකය තුල යෙදී ඇති ස්ථාන බලන්න</h2>
             <table><tr>${tbody}</tr></table>    
         </body></html>`, 'utf-8')
 }
 
-module.exports = { writeHtml } 
+function readWordList(filename) { // read output from gen-word-list script
+    const words = {}
+    fs.readFileSync(path.join(__dirname, filename), 'utf-8').split('\n').forEach(l => {
+        const entries = l.split('\t'), w = entries[0]
+        words[w] = { word: w, freq: entries[1], length: w.length, info: JSON.parse(entries[2]) }
+    })
+    return words
+}
+
+module.exports = { readWordList, writeHtml } 
