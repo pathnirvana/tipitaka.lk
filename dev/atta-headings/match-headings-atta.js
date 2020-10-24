@@ -12,7 +12,7 @@ const vkb = require('vkbeautify')
 const path = require('path')
 
 // following files were not processed - dn, mn-1 - headings were already good or copied manually
-const filename = 'atta-kn-ud'
+const filename = 'atta-kn-vv'
 const isSimpleCopy = false // simply copy the headings without any modification
 const tree = JSON.parse(fs.readFileSync(__dirname + '/../../public/static/data/tree.json', { encoding: 'utf-8' }))
 const keysToProcess = Object.keys(tree).filter(k => (tree[k][5] == filename && tree[k][2] <= 4))
@@ -50,8 +50,8 @@ keysToProcess.forEach(akey => {
     if (isSimpleCopy) { if (level > 1) pEnt.text = tree[key][0] }
     else if (mulaRes[2].trim()) { // only if mula name is non empty
         if (level == 1 && !/සුත්(තං|තානි)$/.test(mulaRes[2])) { 
-            diff.push(`pali not sutta,${key},${level},${attaH},${mulaRes[2]}`)
-            return // do not replace
+            //diff.push(`pali not sutta,${key},${level},${attaH},${mulaRes[2]}`)
+            //return // do not replace
         }
         const newPaliH = level > 1 ? tree[key][0] : (attaDigit + getPaliVanna(isRange, mulaRes[2], level))
         if (pEnt.text != newPaliH)
@@ -64,8 +64,8 @@ keysToProcess.forEach(akey => {
     if (isSimpleCopy) sEnt.text = tree[key][1]
     else if (msinhRes[2].trim()) {
         if (level == 1 && !/සූත්‍රය|පෘච්ඡා?$/.test(msinhRes[2])) {
-            diff.push(`sinh not suttra,${key},${level},${tree[akey][1]},${msinhRes[2]}`)
-            return
+            //diff.push(`sinh not suttra,${key},${level},${tree[akey][1]},${msinhRes[2]}`)
+            //return
         }
         const newSinhH = level > 1 ? tree[key][1] : (attaDigit + getSinhVanna(isRange, msinhRes[2], level))
         sEnt.text = newSinhH
@@ -81,15 +81,15 @@ fs.writeFileSync(path.join(__dirname, 'diff', `${filename}-diff.txt`), diff.join
 
 function getPaliVanna(isRange, mulaName) { // vannana or suttadivannana for level 1
     let newHeading = mulaName + 'වණ්ණනා' // -සුත්තානිවණ්ණනා
-    if (mulaName.endsWith('සුත්තං')) {
-        const ending = isRange ? 'සුත්තාදිවණ්ණනා' : 'සුත්තවණ්ණනා'
-        newHeading = mulaName.replace(/සුත්තං$/, ending)
+    if (/සුත්තං|විමානං$/.test(mulaName)) {
+        const ending = isRange ? 'ාදිවණ්ණනා' : 'වණ්ණනා'
+        newHeading = mulaName.replace(/ං$/, ending)
     }
     return newHeading.replace(/ආදිසුත්තවණ්ණනා|ආදිසුත්තාදිවණ්ණනා/, 'සුත්තාදිවණ්ණනා')
 }
 
 function getSinhVanna(isRange, mulaName) {
-    let newHeading = mulaName + ' වර්ණනා' // -සූත්‍ර වර්ණනා
+    let newHeading = mulaName.replace(/ යි$/, '') + ' වර්ණනා' // -විමාන යි -> විමාන වර්ණනා
     if (mulaName.endsWith('සූත්‍රය')) {
         const ending = isRange ? 'ආදි සූත්‍ර වර්ණනා' : 'සූත්‍ර වර්ණනාව'
         newHeading = mulaName.replace(/සූත්‍රය$/, ending)
