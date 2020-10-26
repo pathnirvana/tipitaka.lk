@@ -12,7 +12,7 @@ const vkb = require('vkbeautify')
 const path = require('path')
 
 // following files were not processed - dn, mn-1 - headings were already good or copied manually
-const filename = 'atta-kn-vv'
+const filename = 'atta-kn-pv'
 const isSimpleCopy = false // simply copy the headings without any modification
 const tree = JSON.parse(fs.readFileSync(__dirname + '/../../public/static/data/tree.json', { encoding: 'utf-8' }))
 const keysToProcess = Object.keys(tree).filter(k => (tree[k][5] == filename && tree[k][2] <= 4))
@@ -89,7 +89,7 @@ function getPaliVanna(isRange, mulaName) { // vannana or suttadivannana for leve
 }
 
 function getSinhVanna(isRange, mulaName) {
-    let newHeading = mulaName.replace(/ යි$/, '') + ' වර්ණනා' // -විමාන යි -> විමාන වර්ණනා
+    let newHeading = mulaName.replace(/ යි$/, '') + ' වර්ණනාව' // -විමාන යි -> විමාන වර්ණනා
     if (mulaName.endsWith('සූත්‍රය')) {
         const ending = isRange ? 'ආදි සූත්‍ර වර්ණනා' : 'සූත්‍ර වර්ණනාව'
         newHeading = mulaName.replace(/සූත්‍රය$/, ending)
