@@ -24,7 +24,7 @@ function processEntry(e, eind, lang, fileKey) {
     numEntries++
 }
 
-const quoteEndings = {}, ignoreEndings = ['ති', 'න්ති'], quoteWords = {}
+const quoteEndings = {}, ignoreEndings = ['ති', 'න්ති', 'තිස්ස', 'තිපි', 'මීති'], quoteWords = {}
 function countQuoteWords(text, lang) {
     if (lang != 'pali') return
     const matches = [...text.matchAll(/([\u0D80-\u0DFF]+)’([\u0D80-\u0DFF]+)/g)]
@@ -33,19 +33,18 @@ function countQuoteWords(text, lang) {
         quoteEndings[e] ? quoteEndings[e]++ : quoteEndings[e] = 1
         const w = s + e
         addToList(quoteWords, e, w)
-        //quoteWords[w] ? quoteWords[w]++ : quoteWords[w] = 1 
-        //if (w == 'අගාරස්මානගාරියං') console.log(text)
     })
 }
 
 function writeWordList(list, filePath, linkWGen = w => w) {
     const listAr = Object.keys(list).map(w => [w, sumValues(list[w]), JSON.stringify(list[w])]).sort((a, b) => b[1] - a[1])
-    fs.writeFileSync(path.join(__dirname, filePath), listAr.map(ar => ar.join('\t')).join('\n'), 'utf-8')
-    
     const tbody = listAr.map(([w, sum, str]) => `<td><a href="https://tipitaka.lk/fts/${linkWGen(w)}/1-1-10">${w}</a></td><td>${sum}</td><td>${str}</td>`).join('</tr><tr>')
-    writeHtml(tbody, filePath)
-    
-    console.log(`wrote ${Object.keys(list).length} words to ${filePath}`)
+    if (filePath.length) {
+        fs.writeFileSync(path.join(__dirname, filePath), listAr.map(ar => ar.join('\t')).join('\n'), 'utf-8')
+        writeHtml(tbody, filePath)
+        console.log(`wrote ${Object.keys(list).length} words to ${filePath}`)
+    }
+    return tbody
 }
 
 
@@ -86,24 +85,27 @@ function wordsEnding(words, lang, ending) { // add to lists only if a quoteWord
     })
 }
 
-const endings = ['පි', 'ව', 'හං', 'ස්ස', 'හමස්මි', 'මෙ', 'දානි', 'කච්චො', 'සි', 'යං'], wordListEnding = {}; 
+const quoteCounts = Object.entries(quoteWords).map(([e, words]) => [e, sumValues(words), Object.keys(words).length]).sort((a, b) => b[1] - a[1])
+const endings = quoteCounts.map(wfc => wfc[0]), wordListEnding = {}, topEndings = endings.slice(0, 10), smallTables = []
 endings.forEach(ending => wordListEnding[ending] = {})
 splitWordsCorpus['pali'].forEach(words => {
     endings.forEach(ending => wordsEnding(words, 'pali', ending))
 })
 
 endings.forEach(ending => {
-    const list = wordListEnding[ending]
+    const list = wordListEnding[ending], linkWGen = w => w.replace(new RegExp(ending + '$'), '%20' + ending)
     Object.keys(list).forEach(w => {
-        list[w].q = quoteWords[ending][w]; 
-        list[w].s = list[w]['q-or-s'] - list[w].q; 
-        delete list[w]['q-or-s'];
+        list[w].q = quoteWords[ending][w]
+        list[w].s = list[w]['q-or-s'] - list[w].q
+        delete list[w]['q-or-s']
     })
-    writeWordList(list, `endings/word-list-${ending}.txt`, w => w.replace(new RegExp(ending + '$'), '%20' + ending))
+    if (topEndings.indexOf(ending) >= 0)
+        writeWordList(list, `endings/word-list-${ending}.txt`, linkWGen)
+    else 
+        smallTables.push(`<td colspan="3">Ending: ${ending}</td></tr><tr>` + writeWordList(list, '', linkWGen))
 })
-fs.writeFileSync(path.join(__dirname, 'endings/quote-endings.txt'),
-    Object.entries(quoteWords).map(([e, words]) => [e, sumValues(words), Object.keys(words).length])
-        .sort((a, b) => b[1] - a[1]).map(wfc => wfc.join('\t')).join('\n'), 'utf-8')
+writeHtml(smallTables.join('</tr></table><br><table><tr>'), 'endings/word-list-other-endings.txt')
+fs.writeFileSync(path.join(__dirname, 'endings/quote-endings.txt'), quoteCounts.map(wfc => wfc.join('\t')).join('\n'), 'utf-8')
 
 
 /** check for spacing inconsistencies */
