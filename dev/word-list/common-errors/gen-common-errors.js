@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { readWordList, writeHtml } = require('./common-functions.js')
+const { readWordList, writeHtml } = require('../common-functions.js')
 
 const propArAdd = (obj, prop, v) => {
     if (obj[prop]) obj[prop].push(v)
@@ -24,13 +24,13 @@ function genPerms(word) {
     return perms
 }
 const link = (w, words) => `<a href="https://tipitaka.lk/fts/${w}/1-1-10">${w}</a>/${words[w].freq}`
-function potentialErrors(inputFilename, outFilename) {
+function potentialErrors(inputFilename, outFilename, ignoreWords = {}) {
     const words = readWordList(inputFilename), errors = []; let permCount = 0
     
     Object.keys(words).filter(w => words[w].freq >= mainWordThres && words[w].length >= lengthThres)
         .sort((a, b) => words[b].freq - words[a].freq)
         .forEach(w => {
-            const perms = genPerms(w).filter(p => words[p] 
+            const perms = genPerms(w).filter(p => words[p] && !ignoreWords[p]
                 && words[p].freq <= words[w].freq/freqRatio && words[p].freq < errorWordThres //&& words[p].freq > words[w].freq/10
                 && !p.endsWith('තී')) // not ends with thii - since normally those words are correct
             if (perms.length) {
@@ -55,8 +55,9 @@ addPairs(visualV, variations)
 addPairs(indeptVV, variations)
 addPairs(extraV, variations)
 let variationsRegex = new RegExp(Object.keys(variations).join('|'), 'g')
-//potentialErrors('word-list-pali.txt', 'common-errors-pali.txt') // dont run again since the list already modified 20, 40, 10, 4
-potentialErrors('word-list-pali.txt', 'common-errors-pali-10-23.txt') // 20, 400, 2, 4
+const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, 'pali-ignore.json'), 'utf-8'))
+//potentialErrors('word-list-pali.txt', '1-common-errors-pali.txt', ignoreWords) // dont run again since the list already modified 20, 40, 10, 4
+potentialErrors('word-list-pali.txt', 'common-errors-pali-10-23.txt', ignoreWords) // 20, 400, 2, 4
 //potentialErrors('word-list-sinh.txt', 'common-errors-sinh.txt')
 
 
