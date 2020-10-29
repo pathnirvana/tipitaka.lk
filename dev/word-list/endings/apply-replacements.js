@@ -1,16 +1,12 @@
 /**
- * makes corections to the json text files that are hard to do via find-replace
+ * makes ending corections to the json text files 
+ * that are hard to do via find-replace
  */
 "use strict"
 
 const fs = require('fs');
 const path = require('path');
-const vkb = require('vkbeautify')
-const { readWordList } = require('./common-functions.js')
-
-const sourceDir = path.join(__dirname, '../../public/static/text') 
-const outputDir = path.join(sourceDir, 'corrected')
-let processedFilesCount = 0
+const { readWordList, processTextFiles } = require('../common-functions.js')
 
 const operation = 'piWordsReplace'
 const piList = readWordList('word-list-pi-q-or-s.txt')
@@ -43,23 +39,8 @@ const operationsList = {
 
 }
 
-function processFile(fullName) {
-    const data = JSON.parse(fs.readFileSync(path.join(sourceDir, fullName), 'utf-8'))
-    const modCount = operationsList[operation](data)
-    if (modCount > 0) {
-        //console.log(`processed file ${fullName} with ${modCount} changes with ${operation}`)
-        fs.writeFileSync(path.join(outputDir, fullName), vkb.json(JSON.stringify(data)), 'utf-8')
-        processedFilesCount++
-    }
-}
-
-if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir)
-const filteredFiles = fs.readdirSync(sourceDir)
-    .filter(file => path.extname(file) == '.json' && !/^atta/.test(file))
-console.log(`selected ${filteredFiles.length} files for operation ${operation}`)
-//console.log(filteredFiles)
-filteredFiles.forEach(file => processFile(file));
-console.log(`processed ${processedFilesCount} files and wrote to ${outputDir}`)
+const modCounts = processTextFiles(file => !/^atta/.test(file), (data, file) => operationsList.piWordsReplace(data))
+console.log(`processed ${modCounts} files`)
 
 Object.values(piList).forEach(v => {
     if (v.replacements != v.info['q-or-s']) console.log(`desired: ${v.info['q-or-s']}, actual: ${v.replacements} for ${v.word}`)

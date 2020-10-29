@@ -1,6 +1,7 @@
 "use strict"
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs')
+const path = require('path')
+const vkb = require('vkbeautify')
 
 function writeHtml(tbody, filePath) {
     fs.writeFileSync(path.join(__dirname, filePath + '.html'), 
@@ -30,4 +31,29 @@ function readWordList(filename) { // read output from gen-word-list script
     return words
 }
 
-module.exports = { readWordList, writeHtml } 
+/**
+ * process all text files and write to corrected folder
+ * operationFunc should modify the data object passed and return the count of modifications
+ */
+function processTextFiles(filterFunc, operationFunc, dryRun = false) {
+    const sourceDir = path.join(__dirname, '../../public/static/text') 
+    const outputDir = path.join(sourceDir, 'corrected'), modCounts = {}
+
+    if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir)
+    const filteredFiles = fs.readdirSync(sourceDir)
+        .filter(file => path.extname(file) == '.json' && filterFunc(file))
+    //console.log(`selected ${filteredFiles.length} files for operation ${operationFunc}`)
+    //console.log(filteredFiles)
+    filteredFiles.forEach(file => {
+        const data = JSON.parse(fs.readFileSync(path.join(sourceDir, file), 'utf-8'))
+        const modCount = operationFunc(data, file)
+        if (modCount > 0) {
+            //console.log(`processed file ${fullName} with ${modCount} changes with ${operation}`)
+            if (!dryRun) fs.writeFileSync(path.join(outputDir, file), vkb.json(JSON.stringify(data)), 'utf-8')
+        }
+        modCounts[file] = modCount
+    })
+    return modCounts
+}
+
+module.exports = { readWordList, writeHtml, processTextFiles } 
