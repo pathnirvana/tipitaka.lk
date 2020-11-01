@@ -16,7 +16,7 @@ function writeHtml(tbody, filePath) {
                 <meta charset="utf-8"/>
             </head>
             <body style="font-family: 'UN-Abhaya';">
-                <h2>වචනය උඩ click කිරීමෙන් ඒ වචනය ත්‍රිපිටකය තුල යෙදී ඇති ස්ථාන බලන්න</h2>
+                <div>වචනය උඩ click කිරීමෙන් ඒ වචනය ත්‍රිපිටකය තුල යෙදී ඇති ස්ථාන බලන්න</div>
                 <table><tr>${tbody}</tr></table>    
             </body>
         </html>`, 'utf-8')
