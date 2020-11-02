@@ -9,8 +9,8 @@
 const fs = require('fs')
 const path = require('path')
 const vkb = require('vkbeautify'), perf = require('perf_hooks').performance
-const { readWordList, processTextFiles } = require('../common-functions.js')
-const checkedFilename = 'pali-checked-1.txt'
+const { processTextFiles } = require('../common-functions.js')
+const checkedFilename = '2-pali-checked.txt'
 const ignoreFilename = 'pali-ignore.json', newIgnoreFilename = 'pali-ignore-new.json'
 
 const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, ignoreFilename), 'utf-8')), replacements = {}
