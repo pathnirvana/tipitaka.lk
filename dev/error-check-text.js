@@ -10,6 +10,7 @@ const getHeadings = (pages, lang) =>
     ).flat();
 
 const dataInputFolder = path.join(__dirname, '../public/static/text/') //data
+const paliOnly = filename => /^(ap-pat|vp-cv-5)/.test(filename)
 
 const inputFiles = fs.readdirSync(dataInputFolder).filter(name => /json$/.test(name))
 inputFiles.forEach(filename => {
@@ -32,7 +33,7 @@ inputFiles.forEach(filename => {
             console.error(`page numbers ${pageNumbers[i]}:${pageNumbers[i+1]} not in order in ${fileKey}`)
     }
 
-    if (pageIncrement == 1) return; // cant check conditions below if only have pali
+    if (paliOnly(filename)) return; // cant check conditions below if only have pali
 
     const headings = getHeadings(obj.pages, 'pali'), sinhHeadings = getHeadings(obj.pages, 'sinh')
 

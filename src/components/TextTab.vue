@@ -120,7 +120,7 @@ export default {
         return ({ rows, footnotes, pageNum: parseInt(page.pageNum) })
       })
     },
-    paliOnly() { return this.filename.startsWith('ap-pat') },
+    paliOnly() { return /^(ap-pat|vp-cv-5)/.test(this.filename) }, // TODO change to .startsWith('ap-pat') after all sinhala is added
     isAtta() { return this.filename.startsWith('atta-') },
   },
 

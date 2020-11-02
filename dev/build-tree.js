@@ -101,7 +101,7 @@ const tree = {
     'atta-kn-khp': [], 'atta-kn-dhp': [], 'atta-kn-ud':  [], 'atta-kn-iti': [], 'atta-kn-snp': [], 'atta-kn-vv': [], 'atta-kn-pv': []// order
 }
 const headingAtEndKeys = ['kn-vv', 'kn-pv', 'kn-thag', 'kn-thig', 
-        'kn-jat$', 'kn-jat-(5|11|22)', 'ap-dhs', 'ap-vbh', 'ap-yam-(6|7|8|10)'] // vp-pv-1
+        'kn-jat$', 'kn-jat-(5|11|22)', 'ap-dhs', 'ap-vbh', 'ap-yam-(6|7|8|10)', 'vp-pv(-2)?$'] 
 
 const dataInputFolder = __dirname + '/../public/static/text/'
 const treeOutFilename = __dirname + '/../public/static/data/tree.json'
@@ -128,12 +128,12 @@ const getPrevIfCenNum = ([pi, ei], pages) => {
     return [pi, ei]
 }
 
-let processedFilesCount = 0, keyoffs = []
+let processedFilesCount = 0
 const inputFiles = fs.readdirSync(dataInputFolder)
     .filter(name => filesFilter.test(name)).map(name => name.split('.')[0]).sort() // sort needed to get kn-nett before kn-nett-x
 inputFiles.forEach(fileKey => {
     const obj = JSON.parse(fs.readFileSync(path.join(dataInputFolder, fileKey + '.json')))
-    const paliOnly = fileKey.startsWith('ap-pat'), isAtta = fileKey.startsWith('atta-')
+    const paliOnly = /^(ap-pat|vp-cv-5)/.test(fileKey), isAtta = fileKey.startsWith('atta-')
     if (obj.filename != fileKey) {
         console.error(`filename mismatch ${obj.filename} in ${fileKey}`)
     }
