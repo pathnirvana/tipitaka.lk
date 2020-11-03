@@ -61,7 +61,7 @@ const tree = {
     'kn-vv': [], 'kn-pv': [],
     'kn-thag': [], //'ථෙරගාථාපාළි', 'ථෙරගාථා', 5, [0,0], 'kn', 'kn-thag-1'], // broken to two files
     'kn-thig': [], // single file
-    // 'kn-mn': [], 'kn-nc': [], // wait
+    'kn-mn': [], //'kn-nc': [], // wait
     'kn-jat': [], // 'ජාතකපාළි', 'ජාතකපාළි', 5, [0,0], 'kn', 'kn-jat-1'],
     //'kn-jat-22': [ 'මහානිපාතො', 'මහා නිපාතය', 4, [0,4], 'kn-jat', 'kn-jat-22-1'], // broken to 3 files
     'kn-ps': [], // 'පටිසම්භිදාමග්ගො', 'පටිසම්භිදාමාර්‍ගය', 5, [0,0], 'kn', 'kn-ps-1-1'],
@@ -85,7 +85,7 @@ const tree = {
     'vp-prj': [],
     'vp-pct': [], // vp-pct-2-5 small but needed
     'vp-mv': [],
-    // 'vp-cv': [], 'vp-pv': [], // wait
+    'vp-cv': [], 'vp-pv': [], // wait
 
     /** atta tree */
     //'vp': [ 'විනයපිටක (අට්ඨකථා)', 'විනය පිටකය (අටුවාව)',       7, [0, 0], 'root', 'vp-prj'],
@@ -133,7 +133,7 @@ const inputFiles = fs.readdirSync(dataInputFolder)
     .filter(name => filesFilter.test(name)).map(name => name.split('.')[0]).sort() // sort needed to get kn-nett before kn-nett-x
 inputFiles.forEach(fileKey => {
     const obj = JSON.parse(fs.readFileSync(path.join(dataInputFolder, fileKey + '.json')))
-    const paliOnly = /^(ap-pat|vp-cv-5)/.test(fileKey), isAtta = fileKey.startsWith('atta-')
+    const paliOnly = /^(ap-pat|vp-cv-5|kn-mn|kn-nc)/.test(fileKey), isAtta = fileKey.startsWith('atta-')
     if (obj.filename != fileKey) {
         console.error(`filename mismatch ${obj.filename} in ${fileKey}`)
     }
