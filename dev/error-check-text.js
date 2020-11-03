@@ -10,7 +10,7 @@ const getHeadings = (pages, lang) =>
     ).flat();
 
 const dataInputFolder = path.join(__dirname, '../public/static/text/') //data
-const paliOnly = filename => /^(ap-pat|vp-cv-5)/.test(filename)
+const paliOnly = filename => /^(ap-pat|vp-cv-5|kn-mn|kn-nc)/.test(filename)
 
 const inputFiles = fs.readdirSync(dataInputFolder).filter(name => /json$/.test(name))
 inputFiles.forEach(filename => {
