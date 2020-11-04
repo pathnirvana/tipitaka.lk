@@ -11,7 +11,7 @@ const outputDir = path.join(sourceDir, 'corrected')
 let processedFilesCount = 0
 
 const fileFilter = /./
-const operation = 'multipleSpaces'
+const operation = 'attaFootnotes'
 
 const operationsList = {
     format: (data) => {
