@@ -16,7 +16,7 @@ function writeHtml(tbody, filePath) {
                 <meta charset="utf-8"/>
             </head>
             <body style="font-family: 'UN-Abhaya';">
-                <div>වචනය උඩ click කිරීමෙන් ඒ වචනය ත්‍රිපිටකය තුල යෙදී ඇති ස්ථාන බලන්න</div>
+                <!--<div>වචනය උඩ click කිරීමෙන් ඒ වචනය ත්‍රිපිටකය තුල යෙදී ඇති ස්ථාන බලන්න</div>-->
                 <table><tr>${tbody}</tr></table>    
             </body>
         </html>`, 'utf-8')
@@ -56,4 +56,14 @@ function processTextFiles(filterFunc, operationFunc, dryRun = false) {
     return modCounts
 }
 
-module.exports = { readWordList, writeHtml, processTextFiles } 
+function getCstWordList() {
+    const cstPath = 'C:/Users/Janaka/Documents/node/cst/dev/pali/freq-totals-mul.txt'
+    const cstWords = []
+    fs.readFileSync(cstPath, 'utf-8').split('\n').forEach(line => {
+        const [w, freq, length, files] = line.trim().split(',')
+        cstWords[w] = { freq, length, files }
+    })
+    return cstWords
+}
+
+module.exports = { readWordList, writeHtml, processTextFiles, getCstWordList } 

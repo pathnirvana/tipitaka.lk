@@ -2,7 +2,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const { readWordList, writeHtml } = require('../common-functions.js')
+const { readWordList, writeHtml, getCstWordList } = require('../common-functions.js')
+const cstWords = getCstWordList(), cst = (w) => cstWords[w] ? cstWords[w].freq : 0
+//console.log(cstWords)
 
 const propArAdd = (obj, prop, v) => {
     if (obj[prop]) obj[prop].push(v)
@@ -23,14 +25,14 @@ function genPerms(word) {
     })
     return perms
 }
-const link = (w, words) => `<a href="https://tipitaka.lk/fts/${w}/1-1-10">${w}</a>/${words[w].freq}`
+const link = (w, words) => `<a href="https://tipitaka.lk/fts/${w}/1-1-10">${w}</a>/${words[w].freq}/${cst(w)}`
 function potentialErrors(inputFilename, outFilename, ignoreWords = {}) {
     const words = readWordList(inputFilename), errors = []; let permCount = 0
     
     Object.keys(words).filter(w => words[w].freq >= mainWordThres && words[w].length >= lengthThres)
         .sort((a, b) => words[b].freq - words[a].freq)
         .forEach(w => {
-            const perms = genPerms(w).filter(p => words[p] && !ignoreWords[p]
+            const perms = genPerms(w).filter(p => words[p] && (!ignoreWords[p] || ignoreWords[p] == 'm') // TODO added back m
                 && words[p].freq <= words[w].freq/freqRatio && words[p].freq < errorWordThres //&& words[p].freq > words[w].freq/10
                 && !p.endsWith('තී')) // not ends with thii - since normally those words are correct
             if (perms.length) {
@@ -39,15 +41,16 @@ function potentialErrors(inputFilename, outFilename, ignoreWords = {}) {
             }
         })
     fs.writeFileSync(path.join(__dirname, outFilename), 
-        errors.map(([w, perms]) => `${w}/${words[w].freq}\t` + perms.map(p => `${p}/${words[p].freq}`).join('\t')).join('\n'),
+        errors.map(([w, perms]) => `${w}/${words[w].freq}\t` + perms.map(p => `${p}/${words[p].freq}/${cst(w)}`).join('\t')).join('\n'),
         'utf-8')
     const tbody = errors.map(([w, perms], i) => `<td>${i}</td><td>` + [w, ...perms].map(w => link(w, words)).join('</td><td>') + '</td>').join('</tr><tr>')
-    writeHtml(tbody, outFilename)
+    writeHtml(tbody, 'common-errors/' + outFilename)
     console.log(`potential visual errors: ${errors.length} words, ${permCount} error-words to ${outFilename}`)
 }
 
 let mainWordThres = 20, errorWordThres = 400, freqRatio = 2, lengthThres = 4 // for errors 
-let variations = { '\u0DCA': [''], }
+let variations = {}
+;['\u0dcF', '\u0dcF', '\u0dd2', '\u0dd3', '\u0dd4', '\u0dd6', '\u0dd9'].forEach(dv => variations[dv] = ['']) // delete dept vowel
 const visualV = 'ජ:ඡ, ච:ව, න:ත, එ:ඵ, එ:ළු, ළු:ඵ, බ:ඛ, ධ:ඨ, ඨ:ඪ, ඊ:ර' // visually close pairs
 const indeptVV = '\u0dd0:\u0dd1,\u0dd2:\u0dd3,\u0dd4:\u0dd6,\u0dd9:\u0dda,\u0ddc:\u0ddd'
 const extraV = 'එ:ඒ,ඔ:ඕ,ක:ඛ,ග:ඝ,ච:ඡ,ජ:ඣ,ට:ඨ,ඩ:ඪ,ත:ථ,න:ණ,ද:ධ,ප:ඵ,බ:භ,ල:ළ,ශ:ෂ,ස:ඝ,හ:භ,ඤ:ඥ,ද:ඳ,ඩ:ඬ,ඞ:ඩ,ඞ:ඬ' // බ:ව removed
@@ -56,8 +59,9 @@ addPairs(indeptVV, variations)
 addPairs(extraV, variations)
 let variationsRegex = new RegExp(Object.keys(variations).join('|'), 'g')
 const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, 'pali-ignore.json'), 'utf-8'))
-//potentialErrors('word-list-pali.txt', '1-common-errors-pali.txt', ignoreWords) // dont run again since the list already modified 20, 40, 10, 4
-potentialErrors('word-list-pali.txt', 'common-errors-pali-10-23.txt', ignoreWords) // 20, 400, 2, 4
+//potentialErrors('word-list-pali.txt', '1-common-errors-pali.txt') // dont run again since the list already modified 20, 40, 10, 4
+//potentialErrors('word-list-pali.txt', '2-common-errors-pali-10-23.txt') // 20, 400, 2, 4
+potentialErrors('word-list-pali.txt', '3-common-errors-11-04.txt', ignoreWords) // 20, 400, 2, 4
 //potentialErrors('word-list-sinh.txt', 'common-errors-sinh.txt')
 
 
