@@ -70,7 +70,7 @@ console.log(`processed ${numEntries} entries from ${numFiles} files`)
 writeWordList(wordListPali, 'word-list-pali.txt')
 writeWordList(wordListSinh, 'word-list-sinh.txt')
 
-
+process.exit(0)
 
 /** count the endings with quotes */ 
 function wordsEnding(words, lang, ending) { // add to lists only if a quoteWord
