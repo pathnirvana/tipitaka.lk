@@ -1,4 +1,4 @@
-/** error check files - TODO move this to main tipitaka.lk repo*/
+/** error check files */
 "use strict"
 
 const fs = require('fs');
