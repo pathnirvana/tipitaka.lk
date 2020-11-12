@@ -50,7 +50,7 @@ function potentialErrors(inputFilename, outFilename, ignoreWords = {}) {
 
 let mainWordThres = 20, errorWordThres = 400, freqRatio = 2, lengthThres = 4 // for errors 
 let variations = {}
-;['\u0dcF', '\u0dcF', '\u0dd2', '\u0dd3', '\u0dd4', '\u0dd6', '\u0dd9'].forEach(dv => variations[dv] = ['']) // delete dept vowel
+;['\u0dca', '\u0dcf', '\u0dd2', '\u0dd3', '\u0dd4', '\u0dd6', '\u0dd9'].forEach(dv => variations[dv] = ['']) // delete dept vowel
 const visualV = 'ජ:ඡ, ච:ව, න:ත, එ:ඵ, එ:ළු, ළු:ඵ, බ:ඛ, ධ:ඨ, ඨ:ඪ, ඊ:ර' // visually close pairs
 const indeptVV = '\u0dd0:\u0dd1,\u0dd2:\u0dd3,\u0dd4:\u0dd6,\u0dd9:\u0dda,\u0ddc:\u0ddd'
 const extraV = 'එ:ඒ,ඔ:ඕ,ක:ඛ,ග:ඝ,ච:ඡ,ජ:ඣ,ට:ඨ,ඩ:ඪ,ත:ථ,න:ණ,ද:ධ,ප:ඵ,බ:භ,ල:ළ,ශ:ෂ,ස:ඝ,හ:භ,ඤ:ඥ,ද:ඳ,ඩ:ඬ,ඞ:ඩ,ඞ:ඬ' // බ:ව removed
@@ -61,7 +61,8 @@ let variationsRegex = new RegExp(Object.keys(variations).join('|'), 'g')
 const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, 'pali-ignore.json'), 'utf-8'))
 //potentialErrors('word-list-pali.txt', '1-common-errors-pali.txt') // dont run again since the list already modified 20, 40, 10, 4
 //potentialErrors('word-list-pali.txt', '2-common-errors-pali-10-23.txt') // 20, 400, 2, 4
-potentialErrors('word-list-pali.txt', '3-common-errors-11-04.txt', ignoreWords) // 20, 400, 2, 4
+//potentialErrors('word-list-pali.txt', '3-common-errors-11-04.txt', ignoreWords) // 20, 400, 2, 4
+potentialErrors('word-list-pali.txt', '4-common-errors-11-12.txt', ignoreWords) // 20, 400, 2, 4 - only contained the missing hal from 3
 //potentialErrors('word-list-sinh.txt', 'common-errors-sinh.txt')
 
 
