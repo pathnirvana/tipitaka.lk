@@ -10,16 +10,18 @@ const fs = require('fs')
 const path = require('path')
 const vkb = require('vkbeautify'), perf = require('perf_hooks').performance
 const { processTextFiles } = require('../common-functions.js')
-const checkedFilename = '2-pali-checked.txt'
+const checkedFilename = '4-pali-checked.txt'
 const ignoreFilename = 'pali-ignore.json', newIgnoreFilename = 'pali-ignore-new.json'
+const dryRun = false
 
 const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, ignoreFilename), 'utf-8')), replacements = {}
-const input = fs.readFileSync(path.join(__dirname, checkedFilename), 'utf-8').split('\n').forEach(line => {
-    const cells = line.split('\t').filter(c => c.trim()).map(cell => cell.match(/([\u0D80-\u0DFF]+)\/(\d+)([mcdx]?)/))
+const input = fs.readFileSync(path.join(__dirname, checkedFilename), 'utf-8').split('\n').forEach((line, lineNum) => {
+    const cells = line.split('\t').filter(c => c.trim()).map(cell => cell.match(/([\u0D80-\u0DFF]+)\/(\d+)\/(\d+)([mcdx]?)/))
     //console.log(cells)
-    if (cells.some(m => !m)) console.error(`malformed line in ${checkedFilename} ${line}`)
+    if (cells.some(m => !m) || !cells[0] || !cells.slice(1)) console.error(`malformed line in ${checkedFilename} ${line} at line ${lineNum}`)
     const mainWord = cells[0][1]
-    cells.slice(1).forEach(([_1, word, freq, action]) => {
+    //if (!cells.slice(1)) console.log(cells)
+    cells.slice(1).forEach(([_1, word, freq, _2, action]) => {
         if (['c', 'm', 'd'].indexOf(action) >= 0) ignoreWords[word] = action
         else if (['x'].indexOf(action) >= 0) {
             if (replacements[word] && replacements[word].mainWord != mainWord) 
@@ -28,7 +30,8 @@ const input = fs.readFileSync(path.join(__dirname, checkedFilename), 'utf-8').sp
         }
     })    
 })
-fs.writeFileSync(path.join(__dirname, newIgnoreFilename), vkb.json(JSON.stringify(ignoreWords)), 'utf-8')
+if (!dryRun)
+    fs.writeFileSync(path.join(__dirname, newIgnoreFilename), vkb.json(JSON.stringify(ignoreWords)), 'utf-8')
 console.log(`wrote new ignore list with ${Object.keys(ignoreWords).length} words to ${newIgnoreFilename}`)
 
 console.log(`needs to do ${Object.keys(replacements).length} replacements`)
@@ -54,9 +57,10 @@ function makeReplacements(data) {
 }
 
 const perf1 = perf.now()
-const modCounts = processTextFiles(file => !/^atta/.test(file), (data, file) => makeReplacements(data), false)
+const modCounts = processTextFiles(file => !/^atta/.test(file), (data, file) => makeReplacements(data), dryRun)
 const considered = Object.keys(modCounts).length, changed = Object.values(modCounts).filter(v => v).length
 console.log(`changed ${changed} files out of ${considered} files, in ${perf.now() - perf1} mills`)
 
 Object.entries(replacements).filter(([w, info]) => info.done != info.freq).forEach(([w, info]) => console.log(`${w} freq ${info.freq}, but found ${info.done} places to replace`))
-fs.writeFileSync(path.join(__dirname, 'done-replacements.json'), vkb.json(JSON.stringify(replacements)), 'utf-8')
+if (!dryRun)
+    fs.writeFileSync(path.join(__dirname, 'done-replacements.json'), vkb.json(JSON.stringify(replacements)), 'utf-8')
