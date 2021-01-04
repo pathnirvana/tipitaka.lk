@@ -31,7 +31,7 @@ const linkPali = (w, words) => linkSinh(w, words) +`/${cst(w)}`
 function potentialErrors(inputFilename, outFilename, ignoreWords = {}, getLink = linkPali) {
     const words = readWordList(inputFilename), errors = []; let permCount = 0
     
-    Object.keys(words).filter(w => words[w].freq >= mainWordThres && words[w].freq < 20 && words[w].length >= lengthThres) // 
+    Object.keys(words).filter(w => words[w].freq >= mainWordThres && words[w].length >= lengthThres) // && words[w].freq < 20
         .sort((a, b) => words[b].freq - words[a].freq)
         .forEach(w => {
             const perms = genPerms(w).filter(p => words[p] && !ignoreWords[p] 
@@ -65,7 +65,8 @@ const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, 'pali-ignore
 //potentialErrors('word-list-pali.txt', '2-common-errors-pali-10-23.txt') // 20, 400, 2, 4
 //potentialErrors('word-list-pali.txt', '3-common-errors-11-04.txt', ignoreWords) // 20, 400, 2, 4
 //potentialErrors('word-list-pali.txt', '4-common-errors-11-12.txt', ignoreWords) // 20, 400, 2, 4 - only contained the missing hal from 3
-potentialErrors('word-list-pali.txt', '6-common-errors-11-27.txt', ignoreWords) // 19-2, 400, 2, 4 - 
+//potentialErrors('word-list-pali.txt', '6-common-errors-11-27.txt', ignoreWords) // 19-2, 400, 2, 4 - 
+potentialErrors('word-list-pali.txt', '7-common-errors-01-04.txt', ignoreWords) // 2, 400, 2, 4 - 
 
 //potentialErrors('word-list-sinh.txt', '5-common-errors-sinh.txt', {}, linkSinh) // 5, 400, 5, 4
 
