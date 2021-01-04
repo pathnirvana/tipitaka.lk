@@ -13,10 +13,12 @@ function addToList(list, word, category) {
     }
 }
 
+
 function processEntry(e, eind, lang, fileKey) {
-    let text = e.text.replace(/\*|_|~|\$|\{\d\}|\u200d/g, '') // zwj and footnote pointers
+    let text = e.text.replace(/[\*_~\$]|\{\d\}/g, '') // bold, underline, strike, footnote pointers
+    if (lang == 'pali') text = text.replace(/\u200d/g, '') // for pali zwj too (ideally pali text should not contain zwj - but since we did this before, continue to do so)
     countQuoteWords(text, lang)
-    text = text.replace(/[\.\:\[\]\(\)\{\}\-–,;\d'"‘’“”\?\n\t\r]/g, ' ') // replace with spaces
+    text = text.replace(/[\.\:\[\]\(\)\{\}\-–,;\d'"‘’“”\?\n\t\r…=]/g, ' ') // replace with spaces
     const words = text.split(' ').filter(w => w.length)
     splitWordsCorpus[lang].push(words) // used for inconsistentSpacing
     const wordList = (lang == 'pali') ? wordListPali : wordListSinh

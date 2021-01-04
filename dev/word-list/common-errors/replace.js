@@ -10,7 +10,7 @@ const fs = require('fs')
 const path = require('path')
 const vkb = require('vkbeautify'), perf = require('perf_hooks').performance
 const { processTextFiles } = require('../common-functions.js')
-const checkedFilename = '4-pali-checked.txt'
+const checkedFilename = '6-pali-checked.txt'
 const ignoreFilename = 'pali-ignore.json', newIgnoreFilename = 'pali-ignore-new.json'
 const dryRun = false
 
