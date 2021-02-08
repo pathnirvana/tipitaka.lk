@@ -10,18 +10,18 @@ const fs = require('fs')
 const path = require('path')
 const vkb = require('vkbeautify'), perf = require('perf_hooks').performance
 const { processTextFiles } = require('../common-functions.js')
-const checkedFilename = '6-pali-checked.txt'
-const ignoreFilename = 'pali-ignore.json', newIgnoreFilename = 'pali-ignore-new.json'
+const checkedFilename = '5-sinh-checked.txt'
+const ignoreFilename = 'sinh-ignore.json', newIgnoreFilename = 'sinh-ignore-new.json'
 const dryRun = false
 
 const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, ignoreFilename), 'utf-8')), replacements = {}
 const input = fs.readFileSync(path.join(__dirname, checkedFilename), 'utf-8').split('\n').forEach((line, lineNum) => {
-    const cells = line.split('\t').filter(c => c.trim()).map(cell => cell.match(/([\u0D80-\u0DFF]+)\/(\d+)\/(\d+)([mcdx]?)/))
+    const cells = line.split('\t').filter(c => c.trim()).map(cell => cell.match(/([\u0D80-\u0DFF\u200d]+)\/(\d+)([mcdx]?)/)) // for pali need extra \/\d+
     //console.log(cells)
     if (cells.some(m => !m) || !cells[0] || !cells.slice(1)) console.error(`malformed line in ${checkedFilename} ${line} at line ${lineNum}`)
     const mainWord = cells[0][1]
     //if (!cells.slice(1)) console.log(cells)
-    cells.slice(1).forEach(([_1, word, freq, _2, action]) => {
+    cells.slice(1).forEach(([_1, word, freq, action]) => {
         if (['c', 'm', 'd'].indexOf(action) >= 0) ignoreWords[word] = action
         else if (['x'].indexOf(action) >= 0) {
             if (replacements[word] && replacements[word].mainWord != mainWord) 
@@ -39,7 +39,7 @@ console.log(`needs to do ${Object.keys(replacements).length} replacements`)
 function makeReplacements(data) {
     let modCount = 0
     const replaceFunc = (e) => {
-        e.text = e.text.replace(/[\u0D80-\u0DFF]+/g, (m) => {
+        e.text = e.text.replace(/[\u0D80-\u0DFF\u200d]+/g, (m) => {
             const info = replacements[m]
             if (info) {
                 info.done++
@@ -50,8 +50,8 @@ function makeReplacements(data) {
         })
     }
     data.pages.forEach(p => {
-        p.pali.entries.forEach(e => replaceFunc(e))
-        //p.sinh.entries.forEach(e => replaceFunc(e))
+        //p.pali.entries.forEach(e => replaceFunc(e))
+        p.sinh.entries.forEach(e => replaceFunc(e))
     })
     return modCount
 }
@@ -63,4 +63,4 @@ console.log(`changed ${changed} files out of ${considered} files, in ${perf.now(
 
 Object.entries(replacements).filter(([w, info]) => info.done != info.freq).forEach(([w, info]) => console.log(`${w} freq ${info.freq}, but found ${info.done} places to replace`))
 if (!dryRun)
-    fs.writeFileSync(path.join(__dirname, 'done-replacements.json'), vkb.json(JSON.stringify(replacements)), 'utf-8')
+    fs.writeFileSync(path.join(__dirname, '5-done-replacements.json'), vkb.json(JSON.stringify(replacements)), 'utf-8')
