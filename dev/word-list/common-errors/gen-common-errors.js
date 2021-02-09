@@ -26,7 +26,7 @@ function genPerms(word) {
     return perms
 }
 
-const linkSinh = (w, words) => `<a href="https://tipitaka.lk/fts/${w}/1-1-10">${w}</a>/${words[w].freq}`
+const linkSinh = (w, words) => `<a href="https://tipitaka.lk/fts/${w}/1-1-10">${w}</a>/${words[w] ? words[w].freq : 0}`
 const linkPali = (w, words) => linkSinh(w, words) +`/${cst(w)}`
 function potentialErrors(inputFilename, outFilename, ignoreWords = {}, getLink = linkPali) {
     const words = readWordList(inputFilename), errors = []; let permCount = 0
@@ -66,7 +66,7 @@ const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, 'pali-ignore
 //potentialErrors('word-list-pali.txt', '3-common-errors-11-04.txt', ignoreWords) // 20, 400, 2, 4
 //potentialErrors('word-list-pali.txt', '4-common-errors-11-12.txt', ignoreWords) // 20, 400, 2, 4 - only contained the missing hal from 3
 //potentialErrors('word-list-pali.txt', '6-common-errors-11-27.txt', ignoreWords) // 19-2, 400, 2, 4 - 
-potentialErrors('word-list-pali.txt', '7-common-errors-01-04.txt', ignoreWords) // 2, 400, 2, 4 - 
+//potentialErrors('word-list-pali.txt', '7-common-errors-01-04.txt', ignoreWords) // 2, 400, 2, 4 - 
 
 //potentialErrors('word-list-sinh.txt', '5-common-errors-sinh.txt', {}, linkSinh) // 5, 400, 5, 4
 
@@ -76,3 +76,46 @@ const niggahithaV = 'ඞ්:ං, ඤ්:ං, ම්:ං, න්:ං, ඞ්:ඤ�
 variations = {}; addPairs(niggahithaV, variations) // for inconsistencies
 variationsRegex = new RegExp(Object.keys(variations).join('|'), 'g')
 //potentialErrors('word-list-pali.txt', 'niggahitha-inconsistencies-pali.txt')
+
+
+function getSinhOEInconsistencies() {
+    const words = readWordList('word-list-sinh.txt'), outFilename = 'sinh-inconsistencies-ooee.txt', errors = []
+    Object.keys(words).filter(w => /[ඔඑ\u0dd9\u0ddc]/.test(w)).forEach(w => {
+        w.replace(/[ඔඑ\u0dd9\u0ddc]/g, (m, i) => {
+            const p = w.substr(0, i) + String.fromCharCode(m.charCodeAt(0) + 1) + w.substr(i + 1)
+            if (words[p]) errors.push([w, p])
+        })
+    })
+    const tbody = errors.map((pair, i) => `<td>${i}</td><td>` + pair.map(w => linkSinh(w, words)).join('</td><td>') + '</td>').join('</tr><tr>')
+    writeHtml(tbody, 'common-errors/' + outFilename)
+    console.log(`potential oe inconsistencies: ${errors.length} to ${outFilename}`)
+}
+//getSinhOEInconsistencies()
+
+
+function getRephInconsistencies() {
+    const words = readWordList('word-list-sinh.txt'), outFilename = 'sinh-inconsistencies-reph.txt', errors = []
+    Object.keys(words).filter(w => /ර\u0dca[ක-ෆ]/.test(w)).forEach(w => {
+        const withReph = w.replace(/ර\u0dca([ක-ෆ])/g, 'ර\u0dca\u200d$1')
+        errors.push([withReph, w])
+    })
+    const tbody = errors.sort((a, b) => a[1] > b[1] ? 1 : -1) // alphabetic order
+        .map((pair, i) => `<td>${i}</td><td>` + pair.map(w => linkSinh(w, words)).join('</td><td>') + '</td>').join('</tr><tr>')
+    writeHtml(tbody, 'common-errors/' + outFilename)
+    console.log(`potential reph inconsistencies: ${errors.length} to ${outFilename}`)
+}
+getRephInconsistencies()
+
+function getRephYansaInconsistencies() {
+    const lowerMap = { '\u0dda': '\u0dd9', '\u0ddd': '\u0ddc' }
+    const words = readWordList('word-list-sinh.txt'), outFilename = 'sinh-inconsistencies-reph-yansa.txt', errors = []
+    Object.keys(words).filter(w => /ර\u0dcaය([^\u0dca])/.test(w)).forEach(w => {
+        const withReph = w.replace(/ර\u0dcaය([^\u0dca])/g, (m, p1) => 'ර\u0dca\u200dය\u0dca\u200dය' + (lowerMap[p1] || p1))
+        errors.push([withReph, w])
+    })
+    const tbody = errors.sort((a, b) => a[1] > b[1] ? 1 : -1) // alphabetic order
+        .map((pair, i) => `<td>${i}</td><td>` + pair.map(w => linkSinh(w, words)).join('</td><td>') + '</td>').join('</tr><tr>')
+    writeHtml(tbody, 'common-errors/' + outFilename)
+    console.log(`potential reph-yansa inconsistencies: ${errors.length} to ${outFilename}`)
+}
+getRephYansaInconsistencies()

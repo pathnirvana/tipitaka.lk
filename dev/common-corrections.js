@@ -11,7 +11,17 @@ const outputDir = path.join(sourceDir, 'corrected')
 let processedFilesCount = 0
 
 const fileFilter = /./
-const operation = 'attaFootnotes'
+const operation = 'extraZWJRemove'
+
+const replaceHelper = (e, replaceFunc) => {
+    const newText = replaceFunc(e.text)
+    if (newText != e.text) {
+        const lenDiff = e.text.length - newText.length
+        e.text = newText
+        return lenDiff
+    }
+    return 0
+}
 
 const operationsList = {
     format: (data) => {
@@ -42,16 +52,9 @@ const operationsList = {
 
     multipleSpaces: (data) => {
         let modCount = 0
-        const trimSpaces = (e) => {
-            let newText = e.text.trim()
-            newText = newText.replace(/ +/g, ' ')
-            if (newText != e.text) {
-                const lenDiff = e.text.length - newText.length
-                e.text = newText
-                return lenDiff
-            }
-            return 0
-        }
+        const trimSpaces = (e) => replaceHelper(e, (text) => {
+            return text.trim().replace(/ +/g, ' ')
+        })
         data.pages.forEach(p => {
             p.pali.entries.forEach(e => modCount += trimSpaces(e))
             p.sinh.entries.forEach(e => modCount += trimSpaces(e))
@@ -59,6 +62,19 @@ const operationsList = {
         return modCount
     },
 
+    extraZWJRemove: (data) => {
+        let modCount = 0
+        const allZWJ = (e) => replaceHelper(e, (text) => text.replace(/\u200d/g, ''))
+        const extraZWJ = (e) => replaceHelper(e, (text) => {
+            let t = text.replace(/([^\u0dca])\u200d([^\u0dca])/g, '$1$2')
+            return text.replace(/^\u200d/g, '').replace(/\u200d$/g, '')
+        })
+        data.pages.forEach(p => {
+            p.pali.entries.forEach(e => modCount += allZWJ(e))
+            p.sinh.entries.forEach(e => modCount += extraZWJ(e))
+        })
+        return modCount
+    },
 }
 
 function extractFootnotes(entry, footnotes, dedupFootnotes) {
