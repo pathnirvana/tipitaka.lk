@@ -93,29 +93,68 @@ function getSinhOEInconsistencies() {
 //getSinhOEInconsistencies()
 
 
-function getRephInconsistencies() {
-    const words = readWordList('word-list-sinh.txt'), outFilename = 'sinh-inconsistencies-reph.txt', errors = []
-    Object.keys(words).filter(w => /ර\u0dca[ක-ෆ]/.test(w)).forEach(w => {
-        const withReph = w.replace(/ර\u0dca([ක-ෆ])/g, 'ර\u0dca\u200d$1')
-        errors.push([withReph, w])
-    })
-    const tbody = errors.sort((a, b) => a[1] > b[1] ? 1 : -1) // alphabetic order
-        .map((pair, i) => `<td>${i}</td><td>` + pair.map(w => linkSinh(w, words)).join('</td><td>') + '</td>').join('</tr><tr>')
-    writeHtml(tbody, 'common-errors/' + outFilename)
-    console.log(`potential reph inconsistencies: ${errors.length} to ${outFilename}`)
-}
-getRephInconsistencies()
+// function getRephInconsistencies() {
+//     const lowerMap = { '\u0dda': '\u0dd9', '\u0ddd': '\u0ddc' }
+//     const words = readWordList('word-list-sinh.txt'), outFilename = 'sinh-inconsistencies-reph.txt', errors = []
+//     Object.keys(words).filter(w => /ර\u0dca[ක-ෆ]/.test(w)).forEach(w => {
+//         const withReph = w.replace(/ර\u0dca([ක-ෆ])(.?)/g, (m, p1, p2) => 'ර\u0dca\u200d' + p1 + (lowerMap[p2] || p2))
+//         errors.push([withReph, w])
+//     })
+//     const tbody = errors.sort((a, b) => a[1] > b[1] ? 1 : -1) // alphabetic order
+//         .map((pair, i) => `<td>${i}</td><td>` + pair.map(w => linkSinh(w, words)).join('</td><td>') + '</td>').join('</tr><tr>')
+//     writeHtml(tbody, 'common-errors/' + outFilename)
+//     console.log(`potential reph inconsistencies: ${errors.length} to ${outFilename}`)
+// }
+//getRephInconsistencies()
 
-function getRephYansaInconsistencies() {
-    const lowerMap = { '\u0dda': '\u0dd9', '\u0ddd': '\u0ddc' }
-    const words = readWordList('word-list-sinh.txt'), outFilename = 'sinh-inconsistencies-reph-yansa.txt', errors = []
-    Object.keys(words).filter(w => /ර\u0dcaය([^\u0dca])/.test(w)).forEach(w => {
-        const withReph = w.replace(/ර\u0dcaය([^\u0dca])/g, (m, p1) => 'ර\u0dca\u200dය\u0dca\u200dය' + (lowerMap[p1] || p1))
-        errors.push([withReph, w])
+// function getRephYansaInconsistencies() {
+//     const words = readWordList('word-list-sinh.txt'), outFilename = 'sinh-inconsistencies-reph-yansa.txt', errors = []
+//     Object.keys(words).filter(w => /ර\u0dcaය([^\u0dca])/.test(w)).forEach(w => {
+//         const withReph = w.replace(/ර\u0dcaය([^\u0dca])/g, (m, p1) => 'ර\u0dca\u200dය\u0dca\u200dය' + (lowerMap[p1] || p1))
+//         errors.push([withReph, w])
+//     })
+//     const tbody = errors.sort((a, b) => a[1] > b[1] ? 1 : -1) // alphabetic order
+//         .map((pair, i) => `<td>${i}</td><td>` + pair.map(w => linkSinh(w, words)).join('</td><td>') + '</td>').join('</tr><tr>')
+//     writeHtml(tbody, 'common-errors/' + outFilename)
+//     console.log(`potential reph-yansa inconsistencies: ${errors.length} to ${outFilename}`)
+// }
+//getRephYansaInconsistencies()
+
+function getSinhInconsistencies(name, pattern, replaceFunc) {
+    const words = readWordList('word-list-sinh.txt'), outFilename = `sinh-inconsistencies-${name}.txt`,
+        gPattern = new RegExp(pattern.source, 'g'), errors = []  // replace needs a global pattern while test needs a non-global one
+    Object.keys(words).filter(w => pattern.test(w)).forEach(w => {
+        const fixed = w.replace(gPattern, replaceFunc)
+        if (fixed && fixed != w) errors.push([fixed, w])
     })
     const tbody = errors.sort((a, b) => a[1] > b[1] ? 1 : -1) // alphabetic order
         .map((pair, i) => `<td>${i}</td><td>` + pair.map(w => linkSinh(w, words)).join('</td><td>') + '</td>').join('</tr><tr>')
     writeHtml(tbody, 'common-errors/' + outFilename)
-    console.log(`potential reph-yansa inconsistencies: ${errors.length} to ${outFilename}`)
+    console.log(`potential ${name} inconsistencies: ${errors.length} to ${outFilename}`)
 }
-getRephYansaInconsistencies()
+
+const lowerMap = { '\u0dda': '\u0dd9', '\u0ddd': '\u0ddc' }
+//getSinhInconsistencies('reph-yansa', /ර\u0dcaය([^\u0dca])/, (m, p1) => 'ර\u0dca\u200dය\u0dca\u200dය' + (lowerMap[p1] || p1)) // done
+getSinhInconsistencies('reph-ththa', /ර\u0dca\u200d?(ත?\u0dca?\u200d?ථ)$/, (m, p1) => 'ර\u0dca\u200dත\u0dca\u200dථ') // |ත\u0dca?\u200d?ථ? // done
+getSinhInconsistencies('joined', /([නතක])\u0dca([දධවථෂ])/, (m, p1, p2) => p1 + '\u0dca\u200d' + p2)
+getSinhInconsistencies('reph-vowels', /ර\u0dca\u200d?([ක-ෆ])([\u0dd0-\u0df3])/, (m, p1, p2) => 'ර\u0dca' + p1 + p2)
+//getSinhInconsistencies('reph', /ර\u0dca([ක-ෆ])([^\u0dd0-\u0df3])/, (m, p1, p2) => 'ර\u0dca\u200d' + p1 + p2) //(?:\u0dca\u200d?[ක-ෆ])?
+getSinhInconsistencies('reph', /ර\u0dca([ක-ෆ])$/, (m, p1, p2) => 'ර\u0dca\u200d' + p1)
+//getSinhInconsistencies('ooee', /[ඕඒ\u0dda\u0ddd]/, (m) => String.fromCharCode(m.charCodeAt(0) - 1))
+
+function countJoinedLetters() {
+    const words = readWordList('word-list-sinh.txt'), counts = {}, freqSum = {}
+    Object.keys(words).forEach(w => {
+        [...w.matchAll(/([නතක])\u0dca\u200d?([දධවථෂ])/g)].forEach(m => {
+            if (counts[m[0]]) {
+                counts[m[0]]++
+                freqSum[m[0]] += Number(words[w].freq)
+            } else {
+                counts[m[0]] = 1
+                freqSum[m[0]] = Number(words[w].freq)
+            }
+        })
+    })
+    console.log(Object.keys(counts).map(k => [k, counts[k], freqSum[k]].join('\t')).join('\n'))
+}
+countJoinedLetters()
