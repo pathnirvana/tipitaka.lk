@@ -10,13 +10,13 @@ const fs = require('fs')
 const path = require('path')
 const vkb = require('vkbeautify'), perf = require('perf_hooks').performance
 const { processTextFiles } = require('../common-functions.js')
-const checkedFilename = '5-sinh-checked.txt'
+const checkedFilename = '10-sinh-joined-checked.txt'
 const ignoreFilename = 'sinh-ignore.json', newIgnoreFilename = 'sinh-ignore-new.json'
-const dryRun = false
+const dryRun = false, writeIgnoreList = false
 
 const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, ignoreFilename), 'utf-8')), replacements = {}
 const input = fs.readFileSync(path.join(__dirname, checkedFilename), 'utf-8').split('\n').forEach((line, lineNum) => {
-    const cells = line.split('\t').filter(c => c.trim()).map(cell => cell.match(/([\u0D80-\u0DFF\u200d]+)\/(\d+)([mcdx]?)/)) // for pali need extra \/\d+
+    const cells = line.split('\t').filter(c => c.trim()).map(cell => cell.match(/([\u0D80-\u0DFF\u200d!]+)\/(\d+)([mcdx]?)/)) // for pali need extra \/\d+
     //console.log(cells)
     if (cells.some(m => !m) || !cells[0] || !cells.slice(1)) console.error(`malformed line in ${checkedFilename} ${line} at line ${lineNum}`)
     const mainWord = cells[0][1]
@@ -30,7 +30,7 @@ const input = fs.readFileSync(path.join(__dirname, checkedFilename), 'utf-8').sp
         }
     })    
 })
-if (!dryRun)
+if (!dryRun && writeIgnoreList)
     fs.writeFileSync(path.join(__dirname, newIgnoreFilename), vkb.json(JSON.stringify(ignoreWords)), 'utf-8')
 console.log(`wrote new ignore list with ${Object.keys(ignoreWords).length} words to ${newIgnoreFilename}`)
 
@@ -63,4 +63,4 @@ console.log(`changed ${changed} files out of ${considered} files, in ${perf.now(
 
 Object.entries(replacements).filter(([w, info]) => info.done != info.freq).forEach(([w, info]) => console.log(`${w} freq ${info.freq}, but found ${info.done} places to replace`))
 if (!dryRun)
-    fs.writeFileSync(path.join(__dirname, '5-done-replacements.json'), vkb.json(JSON.stringify(replacements)), 'utf-8')
+    fs.writeFileSync(path.join(__dirname, '10-done-replacements.json'), vkb.json(JSON.stringify(replacements)), 'utf-8')
