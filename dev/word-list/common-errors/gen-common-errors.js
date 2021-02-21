@@ -134,27 +134,36 @@ function getSinhInconsistencies(name, pattern, replaceFunc) {
 }
 
 const lowerMap = { '\u0dda': '\u0dd9', '\u0ddd': '\u0ddc' }
-//getSinhInconsistencies('reph-yansa', /ර\u0dcaය([^\u0dca])/, (m, p1) => 'ර\u0dca\u200dය\u0dca\u200dය' + (lowerMap[p1] || p1)) // done
-getSinhInconsistencies('reph-ththa', /ර\u0dca\u200d?(ත?\u0dca?\u200d?ථ)$/, (m, p1) => 'ර\u0dca\u200dත\u0dca\u200dථ') // |ත\u0dca?\u200d?ථ? // done
-getSinhInconsistencies('joined', /([නතක])\u0dca([දධවථෂ])/, (m, p1, p2) => p1 + '\u0dca\u200d' + p2)
+//getSinhInconsistencies('reph-yansa', /ර\u0dcaය([^\u0dca])/, (m, p1) => 'ර\u0dca\u200dය\u0dca\u200dය' + (lowerMap[p1] || p1)) // done -8
+//getSinhInconsistencies('reph-ththa', /ර\u0dca\u200d?(ත?\u0dca?\u200d?ථ)$/, (m, p1) => 'ර\u0dca\u200dත\u0dca\u200dථ') // |ත\u0dca?\u200d?ථ? // done - 9
+//getSinhInconsistencies('joined', /([නතක])\u0dca([දධවථෂ])/, (m, p1, p2) => p1 + '\u0dca\u200d' + p2) //done -10
 getSinhInconsistencies('reph-vowels', /ර\u0dca\u200d?([ක-ෆ])([\u0dd0-\u0df3])/, (m, p1, p2) => 'ර\u0dca' + p1 + p2)
 //getSinhInconsistencies('reph', /ර\u0dca([ක-ෆ])([^\u0dd0-\u0df3])/, (m, p1, p2) => 'ර\u0dca\u200d' + p1 + p2) //(?:\u0dca\u200d?[ක-ෆ])?
 getSinhInconsistencies('reph', /ර\u0dca([ක-ෆ])$/, (m, p1, p2) => 'ර\u0dca\u200d' + p1)
 //getSinhInconsistencies('ooee', /[ඕඒ\u0dda\u0ddd]/, (m) => String.fromCharCode(m.charCodeAt(0) - 1))
 
-function countJoinedLetters() {
-    const words = readWordList('word-list-sinh.txt'), counts = {}, freqSum = {}
-    Object.keys(words).forEach(w => {
-        [...w.matchAll(/([නතක])\u0dca\u200d?([දධවථෂ])/g)].forEach(m => {
-            if (counts[m[0]]) {
-                counts[m[0]]++
-                freqSum[m[0]] += Number(words[w].freq)
-            } else {
-                counts[m[0]] = 1
-                freqSum[m[0]] = Number(words[w].freq)
-            }
-        })
-    })
-    console.log(Object.keys(counts).map(k => [k, counts[k], freqSum[k]].join('\t')).join('\n'))
+
+// common typing errors involving vowels
+const vowelErrors = {
+    'අා': 'ආ', 'අැ': 'ඇ', 'අෑ': 'ඈ', 'උෟ': 'ඌ', 'ඔ්': 'ඕ', 'ඔෟ': 'ඖ', 'එ්': 'ඒ', 'එෙ': 'ඓ',
+    'ේ': 'ේ', '්ෙ': 'ේ', 'ෝ': 'ෝ', '්ො': 'ෝ', 'ෙෙ': 'ෛ', 'ො': 'ො', 'ාෙ': 'ො', 'ේා': 'ෝ', 'ාේ': 'ෝ',
+    'ෘෘ': 'ෲ', 'ඝෘ': 'ඍ', 'ඝෲ': 'ඎ', 'සෘ': 'ඍ', 'සෲ': 'ඎ'
 }
-countJoinedLetters()
+getSinhInconsistencies('multi-vowels', new RegExp(Object.keys(vowelErrors).join('|'), 'g'), (m) => vowelErrors[m]) // done -11
+
+// function countJoinedLetters() {
+//     const words = readWordList('word-list-sinh.txt'), counts = {}, freqSum = {}
+//     Object.keys(words).forEach(w => {
+//         [...w.matchAll(/([නතක])\u0dca\u200d?([දධවථෂ])/g)].forEach(m => {
+//             if (counts[m[0]]) {
+//                 counts[m[0]]++
+//                 freqSum[m[0]] += Number(words[w].freq)
+//             } else {
+//                 counts[m[0]] = 1
+//                 freqSum[m[0]] = Number(words[w].freq)
+//             }
+//         })
+//     })
+//     console.log(Object.keys(counts).map(k => [k, counts[k], freqSum[k]].join('\t')).join('\n'))
+// }
+// countJoinedLetters()
