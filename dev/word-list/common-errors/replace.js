@@ -10,7 +10,7 @@ const fs = require('fs')
 const path = require('path')
 const vkb = require('vkbeautify'), perf = require('perf_hooks').performance
 const { processTextFiles } = require('../common-functions.js')
-const checkedFilename = '12-reph-above-vowels-checked.txt'
+const checkedFilename = '13-sinh-reph-checked.txt'
 const ignoreFilename = 'sinh-ignore.json', newIgnoreFilename = 'sinh-ignore-new.json'
 const dryRun = false, writeIgnoreList = false
 
@@ -65,4 +65,4 @@ console.log(`changed ${changed} files out of ${considered} files, in ${perf.now(
 
 Object.entries(replacements).filter(([w, info]) => info.done != info.freq).forEach(([w, info]) => console.log(`${w} freq ${info.freq}, but found ${info.done} places to replace`))
 if (!dryRun)
-    fs.writeFileSync(path.join(__dirname, '12-done-replacements.json'), vkb.json(JSON.stringify(replacements)), 'utf-8')
+    fs.writeFileSync(path.join(__dirname, '13-done-replacements.json'), vkb.json(JSON.stringify(replacements)), 'utf-8')

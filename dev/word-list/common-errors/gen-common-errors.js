@@ -146,10 +146,10 @@ const vowelErrors = {
 }
 //getSinhInconsistencies('multi-vowels', new RegExp(Object.keys(vowelErrors).join('|'), 'g'), (m) => vowelErrors[m]) // done -11
 //getSinhInconsistencies('temp', /[\u0dca-\u0ddf]{2,}/, (m) => '-') // temp list for additional multi vowel errors that can not be fixed automatically
-getSinhInconsistencies('reph-above-vowels', /ර\u0dca\u200d?([ක-ෆ])([\u0dd2\u0dd3\u0dda\u0ddd]|\u0dca[^\u200d])/, (m, p1, p2) => 'ර\u0dca' + p1 + (lowerMap[p2] || p2)) // 12-reph with above vowels
-getSinhInconsistencies('reph-vowels', /ර\u0dca\u200d?([ක-ෆ])([\u0dd0-\u0df3])/, (m, p1, p2) => 'ර\u0dca' + p1 + p2) // higher vowels after aa
-//getSinhInconsistencies('reph', /ර\u0dca([ක-ෆ])([^\u0dd0-\u0df3])/, (m, p1, p2) => 'ර\u0dca\u200d' + p1 + p2) //(?:\u0dca\u200d?[ක-ෆ])?
-getSinhInconsistencies('reph', /ර\u0dca([ක-ෆ])/, (m, p1, p2) => 'ර\u0dca\u200d' + p1)
+//getSinhInconsistencies('reph-above-vowels', /ර\u0dca\u200d?([ක-ෆ])([\u0dd2\u0dd3\u0dda\u0ddd]|\u0dca[^\u200d])/, (m, p1, p2) => 'ර\u0dca' + p1 + (lowerMap[p2] || p2)) // 12-reph with above vowels
+//getSinhInconsistencies('reph-vowels', /ර\u0dca\u200d?([ක-ෆ])([\u0dd0-\u0df3])/, (m, p1, p2) => 'ර\u0dca' + p1 + p2) // higher vowels after aa // not used
+//getSinhInconsistencies('reph', /ර\u0dca([ක-ෆ])([^\u0dd0-\u0df3])/, (m, p1, p2) => 'ර\u0dca\u200d' + p1 + p2) //(?:\u0dca\u200d?[ක-ෆ])? // not used
+getSinhInconsistencies('reph', /ර\u0dca([ක-ෆ])/, (m, p1, p2) => 'ර\u0dca\u200d' + p1) // 13 - done
 //getSinhInconsistencies('ooee', /[ඕඒ\u0dda\u0ddd]/, (m) => String.fromCharCode(m.charCodeAt(0) - 1))
 
 
