@@ -10,9 +10,9 @@ const fs = require('fs')
 const path = require('path')
 const vkb = require('vkbeautify'), perf = require('perf_hooks').performance
 const { processTextFiles } = require('../common-functions.js')
-const checkedFilename = '13-sinh-reph-checked.txt'
-const ignoreFilename = 'sinh-ignore.json', newIgnoreFilename = 'sinh-ignore-new.json'
-const dryRun = false, writeIgnoreList = false
+const checkedFilename = '14-sinh-eeoo-checked.txt', doneFilename = '14-done-replacements.json'
+const ignoreFilename = 'sinh-eeoo-ignore.json', newIgnoreFilename = 'sinh-eeoo-ignore-new.json'
+const dryRun = false, writeIgnoreList = true
 
 const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, ignoreFilename), 'utf-8')), replacements = {}
 const input = fs.readFileSync(path.join(__dirname, checkedFilename), 'utf-8').split('\n').forEach((line, lineNum) => {
@@ -65,4 +65,4 @@ console.log(`changed ${changed} files out of ${considered} files, in ${perf.now(
 
 Object.entries(replacements).filter(([w, info]) => info.done != info.freq).forEach(([w, info]) => console.log(`${w} freq ${info.freq}, but found ${info.done} places to replace`))
 if (!dryRun)
-    fs.writeFileSync(path.join(__dirname, '13-done-replacements.json'), vkb.json(JSON.stringify(replacements)), 'utf-8')
+    fs.writeFileSync(path.join(__dirname, doneFilename), vkb.json(JSON.stringify(replacements)), 'utf-8')
