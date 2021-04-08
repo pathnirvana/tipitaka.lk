@@ -10,7 +10,7 @@ const fs = require('fs')
 const path = require('path')
 const vkb = require('vkbeautify'), perf = require('perf_hooks').performance
 const { processTextFiles } = require('../common-functions.js')
-const checkedFilename = '14-sinh-eeoo-checked.txt', doneFilename = '14-done-replacements.json'
+const checkedFilename = '15-sinh-eeoo-checked.txt', doneFilename = '15-done-replacements.json'
 const ignoreFilename = 'sinh-eeoo-ignore.json', newIgnoreFilename = 'sinh-eeoo-ignore-new.json'
 const dryRun = false, writeIgnoreList = true
 
