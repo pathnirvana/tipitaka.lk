@@ -78,19 +78,20 @@ variationsRegex = new RegExp(Object.keys(variations).join('|'), 'g')
 //potentialErrors('word-list-pali.txt', 'niggahitha-inconsistencies-pali.txt')
 
 
-function getSinhOEInconsistencies() {
-    const baseMap = {}, long = (b) => b.replace(/[ඔඑ\u0dd9\u0ddc]/g, (m) => String.fromCharCode(m.charCodeAt(0) + 1))
-    fs.readFileSync(path.join(__dirname, 'eo-basewords.txt'), 'utf-8').split('\n').map(b => b.trim()).forEach(b => {
+function getSinhOEInconsistencies(inputFilename, outFilename) {
+    const baseMap = {}, long = (b) => b.replace(/[ඔඑ\u0dd9\u0ddc]/g, (m) => String.fromCharCode(m.charCodeAt(0) + 1)).replace(/[^\u0d80-\u0dff]/g, '')
+    fs.readFileSync(path.join(__dirname, inputFilename), 'utf-8').split('\n').map(b => b.trim()).forEach(b => {
         const j = b.replace(/([නතක])\u0dca([දධවථෂ])/g, (m, p1, p2) => p1 + '\u0dca\u200d' + p2)
         if (b != j) baseMap[j] = long(j)
         const r = b.replace(/ර\u0dca([ක-ෆ])/g, (m, p1, p2) => 'ර\u0dca\u200d' + p1)
         if (b != r) baseMap[r] = long(r)
         baseMap[b] = long(b)
     })
+    //console.log(baseMap)
     const baseReg = new RegExp(Object.keys(baseMap).join('|'), 'g')
-    const words = readWordList('word-list-sinh.txt'), outFilename = 'sinh-inconsistencies-ooee-base.txt', errors = []
+    const words = readWordList('word-list-sinh.txt'), errors = []
     Object.keys(words).filter(w => baseReg.test(w)).forEach(w => {
-        const fixed = w.replace(baseReg, (m) => baseMap[m])
+        const fixed = w.replace(baseReg, (m) => baseMap[m] || baseMap['^' + m]) // add to beginning ^ for නො
         //if (w.replace(/[^ඕඒ\u0dda\u0ddd]/g, '').length == 1 && /(ගේ|යෝ|වේ|යේ)$/.test(w)) return
         errors.push([fixed, w])
     })
@@ -99,7 +100,7 @@ function getSinhOEInconsistencies() {
     writeHtml(tbody, 'common-errors/' + outFilename)
     console.log(`potential oe inconsistencies: ${errors.length} to ${outFilename}`)
 }
-getSinhOEInconsistencies() // first run with 14-basewords
+getSinhOEInconsistencies('16-eo-basewords.txt', 'sinh-inconsistencies-ooee-base16.txt') // first run with 14-basewords, second with 15-basewords, 
 
 function getSinhInconsistencies(name, pattern, replaceFunc) {
     const words = readWordList('word-list-sinh.txt'), outFilename = `sinh-inconsistencies-${name}.txt`,
