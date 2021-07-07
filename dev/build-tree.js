@@ -58,7 +58,7 @@ const tree = {
     'vp-prj': [],
     'vp-pct': [], // vp-pct-2-5 small but needed
     'vp-mv': [],
-    'vp-cv': [], 'vp-pv': [], // wait
+    'vp-cv': [], 'vp-pv': [], 
 
     /** atta tree */
     //'vp': [ 'විනයපිටක (අට්ඨකථා)', 'විනය පිටකය (අටුවාව)',       7, [0, 0], 'root', 'vp-prj'],
