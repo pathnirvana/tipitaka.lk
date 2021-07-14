@@ -39,7 +39,7 @@ const tree = {
     'kn-vv': [], 'kn-pv': [],
     'kn-thag': [], //'ථෙරගාථාපාළි', 'ථෙරගාථා', 5, [0,0], 'kn', 'kn-thag-1'], // broken to two files
     'kn-thig': [], // single file
-    'kn-mn': [], 'kn-nc': [], // wait for sinhala
+    'kn-mn': [], 'kn-nc': [], 
     'kn-jat': [], // 'ජාතකපාළි', 'ජාතකපාළි', 5, [0,0], 'kn', 'kn-jat-1'],
     'kn-ps': [], // 'පටිසම්භිදාමග්ගො', 'පටිසම්භිදාමාර්‍ගය', 5, [0,0], 'kn', 'kn-ps-1-1'],
     'kn-ap': [], //'අපදානපාළි', 'අපදානපාළිය', 5, [0,0], 'kn', 'kn-ap-1-1'],
@@ -106,7 +106,7 @@ const inputFiles = fs.readdirSync(dataInputFolder)
     .filter(name => filesFilter.test(name)).map(name => name.split('.')[0]).sort() // sort needed to get kn-nett before kn-nett-x
 inputFiles.forEach(fileKey => {
     const obj = JSON.parse(fs.readFileSync(path.join(dataInputFolder, fileKey + '.json')))
-    const paliOnly = /^(ap-pat|vp-cv-5|kn-mn|kn-nc)/.test(fileKey), isAtta = fileKey.startsWith('atta-')
+    const paliOnly = /^ap-pat/.test(fileKey), isAtta = fileKey.startsWith('atta-')
     if (obj.filename != fileKey) {
         console.error(`filename mismatch ${obj.filename} in ${fileKey}`)
     }
