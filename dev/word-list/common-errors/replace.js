@@ -12,10 +12,11 @@ const vkb = require('vkbeautify'), perf = require('perf_hooks').performance
 const { processTextFiles } = require('../common-functions.js')
 const checkedFilename = '16-sinh-eeoo-checked.txt', doneFilename = '16-done-replacements.json'
 const ignoreFilename = 'sinh-eeoo-ignore.json', newIgnoreFilename = 'sinh-eeoo-ignore-new.json'
-const dryRun = false, writeIgnoreList = true
+//const checkedFilename = '16-sinh-eeoo-checked.txt', doneFilename = '16-done-replacements-newly-added.json'
+const dryRun = false, writeIgnoreList = false
 
 const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, ignoreFilename), 'utf-8')), replacements = {}
-const input = fs.readFileSync(path.join(__dirname, checkedFilename), 'utf-8').split('\n').forEach((line, lineNum) => {
+fs.readFileSync(path.join(__dirname, checkedFilename), 'utf-8').split('\n').forEach((line, lineNum) => {
     const cells = line.split('\t').filter(c => c.trim()).map(cell => cell.match(/([\u0D80-\u0DFF\u200d!]+)\/(\d+)([mcdx]?)/)) // for pali need extra \/\d+
     //console.log(cells)
     if (cells.some(m => !m) || !cells[0] || !cells.slice(1)) console.error(`malformed line in ${checkedFilename} ${line} at line ${lineNum}`)
@@ -58,11 +59,12 @@ function makeReplacements(data) {
     return modCount
 }
 
-const perf1 = perf.now()
-const modCounts = processTextFiles(file => !/^atta/.test(file), (data, file) => makeReplacements(data), dryRun)
+const perf1 = perf.now(), fileFilter = file => !/^atta/.test(file) ///^(vp-cv|kn-mn|kn-nc)/.test(file)    //
+const modCounts = processTextFiles(fileFilter, (data, file) => makeReplacements(data), dryRun)
 const considered = Object.keys(modCounts).length, changed = Object.values(modCounts).filter(v => v).length
 console.log(`changed ${changed} files out of ${considered} files, in ${perf.now() - perf1} mills`)
 
 Object.entries(replacements).filter(([w, info]) => info.done != info.freq).forEach(([w, info]) => console.log(`${w} freq ${info.freq}, but found ${info.done} places to replace`))
+//const doneReplacements = Object.fromEntries(Object.entries(replacements).filter(([w, info]) => info.done))
 if (!dryRun)
     fs.writeFileSync(path.join(__dirname, doneFilename), vkb.json(JSON.stringify(replacements)), 'utf-8')
