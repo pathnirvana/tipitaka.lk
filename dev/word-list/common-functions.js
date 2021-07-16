@@ -48,7 +48,7 @@ function processTextFiles(filterFunc, operationFunc, dryRun = false) {
         const data = JSON.parse(fs.readFileSync(path.join(sourceDir, file), 'utf-8'))
         const modCount = operationFunc(data, file)
         if (modCount > 0) {
-            //console.log(`processed file ${fullName} with ${modCount} changes with ${operation}`)
+            //console.log(`processed file ${file} with ${modCount} changes`)
             if (!dryRun) fs.writeFileSync(path.join(outputDir, file), vkb.json(JSON.stringify(data)), 'utf-8')
         }
         modCounts[file] = modCount
