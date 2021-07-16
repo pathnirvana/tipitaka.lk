@@ -72,7 +72,35 @@ console.log(`processed ${numEntries} entries from ${numFiles} files`)
 writeWordList(wordListPali, 'word-list-pali.txt')
 writeWordList(wordListSinh, 'word-list-sinh.txt')
 
+
+/** check for spacing inconsistencies */
+function inconsistentSpacing(wordList, lang, filePath) {
+    const wList = {}, errors = {}
+    Object.keys(wordList).forEach(w => wList[w] = sumValues(wordList[w]))
+    splitWordsCorpus[lang].forEach(words => {
+        for (let i = 1; i < words.length; i++) {
+            if (lang == 'pali' && ['පි', 'න', 'නො', 'ති', 'න්ති'].indexOf(words[i]) >= 0) continue
+            const comb2 = words[i-1] + words[i], comb3 = i > 1 ? words[i-2] + comb2 : ''
+            if (wList[comb2]) addToList(errors, comb2, words[i-1] + ' ' + words[i])
+            if (wList[comb3]) addToList(errors, comb3, words[i-2] + ' ' + words[i-1] + ' ' + words[i])
+        } 
+    })
+    
+    const errorAr = Object.keys(errors).map(comb => // 3-d array
+        [[comb, wList[comb]], ...Object.keys(errors[comb]).map(pair => [pair, errors[comb][pair]])]
+            .sort((a, b) => b[1] - a[1])
+    ).sort((a, b) => b[0][1] - a[0][1]) // sort by 2 dimentions
+
+    // fs.writeFileSync(path.join(__dirname, filePath), errorAr.map(ar => ar.map(wf => wf.join(':')).join('\t')).join('\n'), 'utf-8')
+    const tbody = errorAr.map(ar => '<td>' + ar.map(([w, f]) => `<a href="https://tipitaka.lk/fts/${w.replace(/ /g, '%20')}/1-1-10">${w}</a>/${f}`).join('</td><td>') + '</td>').join('</tr><tr>')
+    writeHtml(tbody, filePath)
+    console.log(`wrote ${errorAr.length} lines ${errorAr.reduce((a, v) => a + v.length, 0)} words to ${filePath}`)
+}
+inconsistentSpacing(wordListPali, 'pali', 'spacing-inconsistencies-pali.txt')
+inconsistentSpacing(wordListSinh, 'sinh', 'spacing-inconsistencies-sinh.txt')
+
 process.exit(0)
+
 
 /** count the endings with quotes */ 
 function wordsEnding(words, lang, ending) { // add to lists only if a quoteWord
@@ -110,28 +138,4 @@ writeHtml(smallTables.join('</tr></table><br><table><tr>'), 'endings/word-list-o
 fs.writeFileSync(path.join(__dirname, 'endings/quote-endings.txt'), quoteCounts.map(wfc => wfc.join('\t')).join('\n'), 'utf-8')
 
 
-/** check for spacing inconsistencies */
-function inconsistentSpacing(wordList, lang, filePath) {
-    const wList = {}, errors = {}
-    Object.keys(wordList).forEach(w => wList[w] = sumValues(wordList[w]))
-    splitWordsCorpus[lang].forEach(words => {
-        for (let i = 1; i < words.length; i++) {
-            if (['පි', 'න', 'නො', 'ති', 'න්ති'].indexOf(words[i]) >= 0) continue
-            const comb2 = words[i-1] + words[i], comb3 = i > 1 ? words[i-2] + comb2 : ''
-            if (wList[comb2]) addToList(errors, comb2, words[i-1] + ' ' + words[i])
-            if (wList[comb3]) addToList(errors, comb3, words[i-2] + ' ' + words[i-1] + ' ' + words[i])
-        } 
-    })
-    
-    const errorAr = Object.keys(errors).map(comb => // 3-d array
-        [[comb, wList[comb]], ...Object.keys(errors[comb]).map(pair => [pair, errors[comb][pair]])]
-            .sort((a, b) => b[1] - a[1])
-    ).sort((a, b) => b[0][1] - a[0][1]) // sort by 2 dimentions
 
-    fs.writeFileSync(path.join(__dirname, filePath),
-        errorAr.map(ar => ar.map(wf => wf.join(':')).join('\t')).join('\n'), 'utf-8')
-    const tbody = errorAr.map(ar => ar.map(([w, f]) => `<a href="https://tipitaka.lk/fts/${w.replace(/ /g, '%20')}/1-1-10">${w}</a>:${f}`).join('\t\t')).join('</td></tr><tr><td>')
-    writeHtml(`<td>${tbody}</td>`, filePath)
-    console.log(`wrote ${errorAr.length} lines ${errorAr.reduce((a, v) => a + v.length, 0)} words to ${filePath}`)
-}
-inconsistentSpacing(wordListPali, 'pali', 'spacing-inconsistencies-pali.txt')
