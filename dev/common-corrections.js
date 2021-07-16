@@ -11,7 +11,7 @@ const outputDir = path.join(sourceDir, 'corrected')
 let processedFilesCount = 0
 
 const fileFilter = /./
-const operation = 'extraZWJRemove'
+const operation = 'multipleSpaces'
 
 const replaceHelper = (e, replaceFunc) => {
     const newText = replaceFunc(e.text)
