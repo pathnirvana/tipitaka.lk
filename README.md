@@ -8,6 +8,7 @@ This webapp is built with Vue and Vuetify. It is designed to run in either
    
 ## Run Production Website
 * `npm run build` and deploy `dist` directory to webserver
+* export NODE_SERVER_MODE=production and run PM2 as below
 * use PM2 to run `server/server.js` as `tipitaka-lk-server` on the webserver
 * use nginx `proxy_pass` directive to pass requests from tipitaka.lk to `localhost:8400`
 
@@ -30,4 +31,4 @@ npm run serve
 * Follow the instructions on `server/server.js` to build a binary using `pkg`.
 * Make a zip file containing the above binary, `node_sqlite3.node`, `dist` and `server` folders
 
-Please check the LICENSE file if you wish to extract any content from the website for redistribution.
+**Please check the LICENSE file if you wish to extract any content from the website for redistribution.**
