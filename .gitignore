@@ -21,6 +21,5 @@ yarn-error.log*
 *.sln
 *.sw?
 
-fts*.db
 node_sqlite3.node
 tipitaka-lk.exe
