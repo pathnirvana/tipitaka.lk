@@ -4,6 +4,7 @@
  * also serve static files for offline apps
  * 
  * tipitaka.lk server - prod run as follows (ubuntu)
+ * export NODE_SERVER_MODE=production
  * pm2 start server/server.js --name tipitaka-lk-server
  * pm2 save (save after changing any process parameters)
  * 
@@ -24,7 +25,7 @@ const fastify = require('fastify')({
     logger: false,
 })
 
-if (process.platform == 'linux') { // not needed for desktop apps
+if (process.env.NODE_SERVER_MODE == 'production') { // not needed for desktop apps
     // cors not needed for POST queries with devServer.proxy setting in vue.config.js
     fastify.register(require('fastify-cors'), {
         origin: true, 
