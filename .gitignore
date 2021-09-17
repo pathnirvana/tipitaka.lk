@@ -21,5 +21,6 @@ yarn-error.log*
 *.sln
 *.sw?
 
+/dev/obsolete
 node_sqlite3.node
 tipitaka-lk.exe
