@@ -50,7 +50,7 @@ function potentialErrors(inputFilename, outFilename, ignoreWords = {}, getLink =
     console.log(`potential visual errors: ${errors.length} main-words, ${permCount} error-words to ${outFilename}`)
 }
 
-let mainWordThres = 2, errorWordThres = 400, freqRatio = 2, lengthThres = 4 // for errors 
+let mainWordThres = 5, errorWordThres = 400, freqRatio = 5, lengthThres = 4 // for errors 
 let variations = {}
 ;['\u0dca', '\u0dcf', '\u0dd0', '\u0dd1', '\u0dd2', '\u0dd3', '\u0dd4', '\u0dd6', '\u0dd9', '\u200d'].forEach(dv => variations[dv] = ['']) // delete dept vowel + zwj for sinh
 const visualV = 'ජ:ඡ, ච:ව, න:ත, එ:ඵ, එ:ළු, ළු:ඵ, බ:ඛ, ධ:ඨ, ඨ:ඪ, ඊ:ර' // visually close pairs
@@ -69,6 +69,9 @@ const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, 'pali-ignore
 //potentialErrors('word-list-pali.txt', '7-common-errors-01-04.txt', ignoreWords) // 2, 400, 2, 4 - 
 
 //potentialErrors('word-list-sinh.txt', '5-common-errors-sinh.txt', {}, linkSinh) // 5, 400, 5, 4
+//potentialErrors('word-list-sinh.txt', '17-common-errors-sinh.txt', ignoreWordsSinh, linkSinh) // 5, 400, 5, 4 - new list created after adding vp-cv kn-mn and kn-nc
+const ignoreWordsSinh = JSON.parse(fs.readFileSync(path.join(__dirname, 'sinh-ignore.json'), 'utf-8'))
+potentialErrors('word-list-sinh.txt', '17-common-errors-sinh.txt', ignoreWordsSinh, linkSinh) // 5, 400, 5, 4 - new list created after adding vp-cv kn-mn and kn-nc
 
 
 mainWordThres = 1, errorWordThres = 40, freqRatio = 1, lengthThres = 4 // for inconsistencies 
@@ -100,7 +103,7 @@ function getSinhOEInconsistencies(inputFilename, outFilename) {
     writeHtml(tbody, 'common-errors/' + outFilename)
     console.log(`potential oe inconsistencies: ${errors.length} to ${outFilename}`)
 }
-getSinhOEInconsistencies('16-eo-basewords.txt', 'sinh-inconsistencies-ooee-base16.txt') // first run with 14-basewords, second with 15-basewords, 
+// getSinhOEInconsistencies('16-eo-basewords.txt', 'sinh-inconsistencies-ooee-base16.txt') // first run with 14-basewords, second with 15-basewords, third with 16-basewords
 
 function getSinhInconsistencies(name, pattern, replaceFunc) {
     const words = readWordList('word-list-sinh.txt'), outFilename = `sinh-inconsistencies-${name}.txt`,
