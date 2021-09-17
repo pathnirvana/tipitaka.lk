@@ -72,6 +72,7 @@ console.log(`processed ${numEntries} entries from ${numFiles} files`)
 writeWordList(wordListPali, 'word-list-pali.txt')
 writeWordList(wordListSinh, 'word-list-sinh.txt')
 
+process.exit(0)
 
 /** check for spacing inconsistencies */
 function inconsistentSpacing(wordList, lang, filePath) {
@@ -98,8 +99,6 @@ function inconsistentSpacing(wordList, lang, filePath) {
 }
 inconsistentSpacing(wordListPali, 'pali', 'spacing-inconsistencies-pali.txt')
 inconsistentSpacing(wordListSinh, 'sinh', 'spacing-inconsistencies-sinh.txt')
-
-process.exit(0)
 
 
 /** count the endings with quotes */ 
