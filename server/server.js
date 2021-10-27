@@ -4,6 +4,7 @@
  * also serve static files for offline apps
  * 
  * tipitaka.lk server - prod run as follows (ubuntu)
+ * you will have to install any node dependencies before sunning pm2
  * export NODE_SERVER_MODE=production
  * pm2 start server/server.js --name tipitaka-lk-server
  * pm2 save (save after changing any process parameters)
@@ -25,16 +26,21 @@ const fastify = require('fastify')({
     logger: false,
 })
 
+// if prerender added to the nginx conf directly so the following is not needed
+// prerender is setup at nginx conf and cors not needed
 if (process.env.NODE_SERVER_MODE == 'production') { // not needed for desktop apps
-    // cors not needed for POST queries with devServer.proxy setting in vue.config.js
-    fastify.register(require('fastify-cors'), {
-        origin: true, 
-        methods: ['GET'], // only needed for the version check
+//     // cors not needed for POST queries with devServer.proxy setting in vue.config.js
+//     fastify.register(require('fastify-cors'), {
+//         origin: true, 
+//         methods: ['GET'], // only needed for the version check
+//     })
+    console.log(colors.yellow('server is running on PRODUCTION mode with prerender server.'))
+    fastify.register(require('fastify-express')).then(() => {
+        fastify.use(require('prerender-node')
+            .set('prerenderServiceUrl', 'http://localhost:3000/')
+            .set('prerenderToken', 'YOUR_TOKEN')
+            .blacklisted('^/tipitaka-query'))
     })
-    fastify.use(require('prerender-node')
-        .set('prerenderServiceUrl', 'http://localhost:3000/')
-        .set('prerenderToken', 'YOUR_TOKEN')
-        .blacklisted('^/tipitaka-query'))
 }
 
 // we need to find the dist and server directories
