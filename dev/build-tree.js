@@ -39,8 +39,8 @@ const tree = {
     'kn-vv': [], 'kn-pv': [],
     'kn-thag': [], //'ථෙරගාථාපාළි', 'ථෙරගාථා', 5, [0,0], 'kn', 'kn-thag-1'], // broken to two files
     'kn-thig': [], // single file
-    'kn-mn': [], 'kn-nc': [], 
     'kn-jat': [], // 'ජාතකපාළි', 'ජාතකපාළි', 5, [0,0], 'kn', 'kn-jat-1'],
+    'kn-mn': [], 'kn-nc': [], 
     'kn-ps': [], // 'පටිසම්භිදාමග්ගො', 'පටිසම්භිදාමාර්‍ගය', 5, [0,0], 'kn', 'kn-ps-1-1'],
     'kn-ap': [], //'අපදානපාළි', 'අපදානපාළිය', 5, [0,0], 'kn', 'kn-ap-1-1'],
     'kn-bv': [], 'kn-cp': [], // overwritten - needed for order
@@ -71,7 +71,8 @@ const tree = {
     'atta-an': [ 'අඞ්ගුත්තරනිකායො අට්ඨකථා', 'අඞ්ගුත්තර නිකාය අටුවාව', 6, [0, 0], 'atta-sp', 'atta-an-1'],
     'atta-kn': [ 'ඛුද්දකනිකායො අට්ඨකථා', 'කුදුගත් සඟිය අටුවාව',      6, [0, 0], 'atta-sp', 'atta-kn-khp'],
     
-    'atta-kn-khp': [], 'atta-kn-dhp': [], 'atta-kn-ud':  [], 'atta-kn-iti': [], 'atta-kn-snp': [], 'atta-kn-vv': [], 'atta-kn-pv': []// order
+    'atta-kn-khp': [], 'atta-kn-dhp': [], 'atta-kn-ud':  [], 'atta-kn-iti': [], 'atta-kn-snp': [], 'atta-kn-vv': [], 'atta-kn-pv': [], // order
+    'atta-kn-thag': [], 'atta-kn-thig': [], //order
 }
 const headingAtEndKeys = ['kn-vv', 'kn-pv', 'kn-thag', 'kn-thig', 
         'kn-jat$', 'kn-jat-(5|11|22)', 'ap-dhs', 'ap-vbh', 'ap-yam-(6|7|8|10)', 'vp-pv(-2)?$'] 
