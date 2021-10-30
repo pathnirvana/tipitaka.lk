@@ -42,7 +42,7 @@ inputFiles.forEach(filename => {
         if (heading.pi != sinhH.pi || heading.ei != sinhH.ei || heading.level != sinhH.level) {
             console.error(`headings mismatch in ${fileKey} ${JSON.stringify(heading)}`)
         }
-        if (!heading.text || !sinhH.text) {
+        if (!heading.text.trim() || !sinhH.text.trim()) {
             console.error(`empty heading in ${fileKey} ${JSON.stringify(heading)}`)
         }
     })
