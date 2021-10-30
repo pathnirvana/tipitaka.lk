@@ -10,8 +10,8 @@ const sourceDir = path.join(__dirname, '../public/static/text')
 const outputDir = path.join(sourceDir, 'corrected')
 let processedFilesCount = 0
 
-const fileFilter = /./
-const operation = 'multipleSpaces'
+const fileFilter = /anya-vm/
+const operation = 'attaCopyTitles'
 
 const replaceHelper = (e, replaceFunc) => {
     const newText = replaceFunc(e.text)
@@ -47,6 +47,16 @@ const operationsList = {
                 //console.log(footnotes)
             }
         })
+        return modCount
+    },
+    attaCopyTitles: (data) => {
+        let modCount = 0
+        data.pages.forEach(p => p.sinh.entries.forEach((e, i) => {
+            if (e.type == 'heading' && !e.text.trim()) {
+                e.text = p.pali.entries[i].text
+                modCount++
+            }
+        }))
         return modCount
     },
 
