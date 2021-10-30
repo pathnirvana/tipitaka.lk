@@ -61,9 +61,9 @@ const tree = {
     'vp-cv': [], 'vp-pv': [], 
 
     /** atta tree */
-    //'vp': [ 'විනයපිටක (අට්ඨකථා)', 'විනය පිටකය (අටුවාව)',       7, [0, 0], 'root', 'vp-prj'],
+    //'atta-vp': [ 'විනයපිටක (අට්ඨකථා)', 'විනය පිටකය (අටුවාව)',       7, [0, 0], 'root', 'vp-prj'],
     'atta-sp': [ 'සුත්තපිටක අට්ඨකථා', 'සූත්‍ර පිටකය අටුවාව',        7, [0, 0], 'root', 'atta-dn-1'],
-    //'ap': [ 'අභිධම්මපිටක (අට්ඨකථා)', 'අභිධර්ම පිටකය (අටුවාව)',   7, [0, 0], 'root', 'ap-dhs'],
+    //'atta-ap': [ 'අභිධම්මපිටක (අට්ඨකථා)', 'අභිධර්ම පිටකය (අටුවාව)',   7, [0, 0], 'root', 'ap-dhs'],
 
     'atta-dn': [ 'දීඝනිකාය අට්ඨකථා', 'දික් සඟිය අටුවාව',         6, [0, 0], 'atta-sp', 'atta-dn-1'],
     'atta-mn': [ 'මජ්ඣිමනිකාය අට්ඨකථා', 'මැදුම් සඟිය අටුවාව',     6, [0, 0], 'atta-sp', 'atta-mn-1'],
@@ -73,13 +73,18 @@ const tree = {
     
     'atta-kn-khp': [], 'atta-kn-dhp': [], 'atta-kn-ud':  [], 'atta-kn-iti': [], 'atta-kn-snp': [], 'atta-kn-vv': [], 'atta-kn-pv': [], // order
     'atta-kn-thag': [], 'atta-kn-thig': [], //order
+
+    // file must be named anya-vm-1 instead of just anya-vm and first heading changed to centered
+    // otherwise will have an error since key 'anya' is not in the tree
+    'anya-vm': [ 'විසුද්ධිමග්ගො', 'විසුද්ධි මාර්ගය',       7, [0, 0], 'root', 'anya-vm-1'], 
+    
 }
 const headingAtEndKeys = ['kn-vv', 'kn-pv', 'kn-thag', 'kn-thig', 
         'kn-jat$', 'kn-jat-(5|11|22)', 'ap-dhs', 'ap-vbh', 'ap-yam-(6|7|8|10)', 'vp-pv(-2)?$'] 
 
 const dataInputFolder = __dirname + '/../public/static/text/'
 const treeOutFilename = __dirname + '/../public/static/data/tree.json'
-const filesFilter = /^dn-|^mn-|^sn-|^an-|^kn-|^ap-|^vp-|^atta-/
+const filesFilter = /^dn-|^mn-|^sn-|^an-|^kn-|^ap-|^vp-|^atta-|^anya-/
 
 const getName = (text) => {
     text = text.trim()
@@ -117,7 +122,7 @@ inputFiles.forEach(fileKey => {
         return;
     }
     const parentKey = fileKey.split('-').slice(0, -1).join('-'); // remove one from key
-    const keyOffset = fileKey.split('-').slice(-1)[0] // last number
+    const keyOffset = fileKey.split('-').slice(-1)[0] // last number/name
     const parentStack = [[parentKey, keyOffset]] // key and keyOffset(can be non numeric e.g. khp)
 
     const headings = getHeadings(pages, 'pali'), sinhHeadings = getHeadings(pages, 'sinh')
