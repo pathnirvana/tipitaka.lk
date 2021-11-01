@@ -7524,7 +7524,7 @@
             "pali": {
                 "entries": [
                     {
-                        "type": "heading",
+                        "type": "centered",
                         "text": "සමථභෙදො",
                         "level": 4
                     },
@@ -7564,7 +7564,7 @@
                 "entries": [
                     {
                         "text": "ශමථ භේදය",
-                        "type": "heading",
+                        "type": "centered",
                         "level": 4
                     },
                     {
