@@ -57,12 +57,11 @@ const tree = {
 
     'vp-prj': [],
     'vp-pct': [], // vp-pct-2-5 small but needed
-    'vp-mv': [],
-    'vp-cv': [], 'vp-pv': [], 
+    'vp-mv': [], 'vp-cv': [], 'vp-pv': [], // order
 
     /** atta tree */
-    //'atta-vp': [ 'විනයපිටක (අට්ඨකථා)', 'විනය පිටකය (අටුවාව)',       7, [0, 0], 'root', 'vp-prj'],
-    'atta-sp': [ 'සුත්තපිටක අට්ඨකථා', 'සූත්‍ර පිටකය අටුවාව',        7, [0, 0], 'root', 'atta-dn-1'],
+    'atta-vp': [ 'විනය අට්ඨකථා', 'විනය අටුවාව',       7, [0, 0], 'root', 'vp-prj'],
+    'atta-sp': [ 'සුත්ත අට්ඨකථා', 'සූත්‍ර අටුවාව',        7, [0, 0], 'root', 'atta-dn-1'],
     //'atta-ap': [ 'අභිධම්මපිටක (අට්ඨකථා)', 'අභිධර්ම පිටකය (අටුවාව)',   7, [0, 0], 'root', 'ap-dhs'],
 
     'atta-dn': [ 'දීඝනිකාය අට්ඨකථා', 'දික් සඟිය අටුවාව',         6, [0, 0], 'atta-sp', 'atta-dn-1'],
@@ -73,6 +72,9 @@ const tree = {
     
     'atta-kn-khp': [], 'atta-kn-dhp': [], 'atta-kn-ud':  [], 'atta-kn-iti': [], 'atta-kn-snp': [], 'atta-kn-vv': [], 'atta-kn-pv': [], // order
     'atta-kn-thag': [], 'atta-kn-thig': [], //order
+
+    'atta-vp-prj': [], // TODO: atta mapping of few titles are wrong
+    'atta-vp-pct': [], 'atta-vp-mv': [], 'atta-vp-cv': [], 'atta-vp-pv': [],
 
     // file must be named anya-vm-1 instead of just anya-vm and first heading changed to centered
     // otherwise will have an error since key 'anya' is not in the tree

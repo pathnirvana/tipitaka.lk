@@ -12,8 +12,10 @@ const vkb = require('vkbeautify')
 const path = require('path')
 
 // following files were not processed - dn, mn-1 - headings were already good or copied manually
-const filename = 'atta-kn-thig'
+const filename = 'atta-vp-prj'
 const isSimpleCopy = false // simply copy the headings without any modification
+    sinhalaTitlesOnly = true // modify only sinhala titles
+    emptyTilesOnly = true // fill in only the empty headings
 const tree = JSON.parse(fs.readFileSync(__dirname + '/../../public/static/data/tree.json', { encoding: 'utf-8' }))
 const keysToProcess = Object.keys(tree).filter(k => (tree[k][5] == filename && tree[k][2] <= 4))
 const data = JSON.parse(fs.readFileSync(`${__dirname}/../../public/static/text/${filename}.json`, { encoding: 'utf-8' }))
@@ -47,8 +49,10 @@ keysToProcess.forEach(akey => {
     }
 
     const attaDigit = attaRes[1].trim() ? (attaRes[1].trim() + ' ') : '', isRange = attaRes[1].indexOf('-') >= 0
-    if (isSimpleCopy) { if (level > 1) pEnt.text = tree[key][0] }
-    else if (mulaRes[2].trim()) { // only if mula name is non empty
+    if (sinhalaTitlesOnly) { // do nothing
+    } else if (isSimpleCopy) { 
+        if (level > 1) pEnt.text = tree[key][0]
+    } else if (mulaRes[2].trim()) { // only if mula name is non empty
         if (level == 1 && !/සුත්(තං|තානි)$/.test(mulaRes[2])) { 
             //diff.push(`pali not sutta,${key},${level},${attaH},${mulaRes[2]}`)
             //return // do not replace
@@ -61,8 +65,10 @@ keysToProcess.forEach(akey => {
 
     // sinhala heading
     const msinhRes = /^([\d\-\. ]*)(.*)$/.exec(tree[key][1]) // remove digits if any
-    if (isSimpleCopy) sEnt.text = tree[key][1]
-    else if (msinhRes[2].trim()) {
+    if (emptyTilesOnly && sEnt.text.trim()) { // do nothing
+    } else if (isSimpleCopy) {
+        sEnt.text = tree[key][1]
+    } else if (msinhRes[2].trim()) {
         if (level == 1 && !/සූත්‍රය|පෘච්ඡා?$/.test(msinhRes[2])) {
             //diff.push(`sinh not suttra,${key},${level},${tree[akey][1]},${msinhRes[2]}`)
             //return
@@ -93,6 +99,8 @@ function getSinhVanna(isRange, mulaName) {
     if (mulaName.endsWith('සූත්‍රය')) {
         const ending = isRange ? 'ආදි සූත්‍ර වර්ණනා' : 'සූත්‍ර වර්ණනාව'
         newHeading = mulaName.replace(/සූත්‍රය$/, ending)
+    } else if (mulaName.endsWith('පදය')) {
+        newHeading = mulaName.replace(/පදය$/, 'පද වර්ණනාව') // දෙවන සිකපදය -> දෙවන සිකපද වර්ණනාව
     }
     return newHeading.replace(/ආදි ආදි/, 'ආදි')
 }
