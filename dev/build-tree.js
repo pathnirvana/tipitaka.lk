@@ -49,10 +49,7 @@ const tree = {
     
     'ap-dhs': [],
     'ap-vbh': [], // TODO - last chapter is not headingAtEnd
-    'ap-kvu': [],
-    'ap-dhk': [],
-    'ap-pug': [],
-    'ap-yam': [],
+    'ap-kvu': [], 'ap-dhk': [], 'ap-pug': [], 'ap-yam': [],
     'ap-pat': [], // ap-pat cant break due to page boundries, pat-2-83 is small but still needed since it is in a new book
 
     'vp-prj': [],
@@ -60,9 +57,9 @@ const tree = {
     'vp-mv': [], 'vp-cv': [], 'vp-pv': [], // order
 
     /** atta tree */
-    'atta-vp': [ 'විනය අට්ඨකථා', 'විනය අටුවාව',       7, [0, 0], 'root', 'vp-prj'],
+    'atta-vp': [ 'විනය අට්ඨකථා', 'විනය අටුවාව',       7, [0, 0], 'root', 'atta-vp-prj'],
     'atta-sp': [ 'සුත්ත අට්ඨකථා', 'සූත්‍ර අටුවාව',        7, [0, 0], 'root', 'atta-dn-1'],
-    //'atta-ap': [ 'අභිධම්මපිටක (අට්ඨකථා)', 'අභිධර්ම පිටකය (අටුවාව)',   7, [0, 0], 'root', 'ap-dhs'],
+    'atta-ap': [ 'අභිධම්ම අට්ඨකථා', 'අභිධර්ම අටුවාව',   7, [0, 0], 'root', 'atta-ap-dhs'],
 
     'atta-dn': [ 'දීඝනිකාය අට්ඨකථා', 'දික් සඟිය අටුවාව',         6, [0, 0], 'atta-sp', 'atta-dn-1'],
     'atta-mn': [ 'මජ්ඣිමනිකාය අට්ඨකථා', 'මැදුම් සඟිය අටුවාව',     6, [0, 0], 'atta-sp', 'atta-mn-1'],
@@ -72,6 +69,9 @@ const tree = {
     
     'atta-kn-khp': [], 'atta-kn-dhp': [], 'atta-kn-ud':  [], 'atta-kn-iti': [], 'atta-kn-snp': [], 'atta-kn-vv': [], 'atta-kn-pv': [], // order
     'atta-kn-thag': [], 'atta-kn-thig': [], //order
+
+    //'atta-ap-kvu': [], 'atta-ap-dhk': [], 
+    'atta-ap-pug': [], 'atta-ap-yam': [], 'atta-ap-pat': [],
 
     'atta-vp-prj': [], // TODO: atta mapping of few titles are wrong
     'atta-vp-pct': [], 'atta-vp-mv': [], 'atta-vp-cv': [], 'atta-vp-pv': [],

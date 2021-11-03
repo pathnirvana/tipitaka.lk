@@ -26,11 +26,6 @@
                         "level": 3
                     },
                     {
-                        "type": "heading",
-                        "text": "$$1. කුසලත්තිකං$$",
-                        "level": 2
-                    },
-                    {
                         "type": "centered",
                         "text": "මාතිකානික්ඛෙපවාරො",
                         "level": 2
@@ -38,7 +33,7 @@
                     {
                         "type": "heading",
                         "text": "පච්චයුද්දෙසො",
-                        "level": 1
+                        "level": 2
                     },
                     {
                         "type": "paragraph",
@@ -52,7 +47,7 @@
                     {
                         "type": "heading",
                         "text": "පච්චයනිද්දෙසො",
-                        "level": 1
+                        "level": 2
                     },
                     {
                         "type": "paragraph",
@@ -391,7 +386,12 @@
                     },
                     {
                         "type": "heading",
-                        "text": "1. පටිච්චවාරො",
+                        "text": "$$පුච්ඡාවාරො$$",
+                        "level": 2
+                    },
+                    {
+                        "type": "centered",
+                        "text": "1. __පටිච්ච__වාරො",
                         "level": 1
                     },
                     {
@@ -878,6 +878,16 @@
                     {
                         "type": "centered",
                         "text": "පණ්ණත්තිවාරො නිට්ඨිතො.",
+                        "level": 1
+                    },
+                    {
+                        "type": "heading",
+                        "text": "$$1. කුසලත්තිකං$$",
+                        "level": 2
+                    },
+                    {
+                        "type": "heading",
+                        "text": "$$1. පටිච්චවාරො$$",
                         "level": 1
                     },
                     {
@@ -8141,9 +8151,9 @@
             "pali": {
                 "entries": [
                     {
-                        "type": "centered",
+                        "type": "heading",
                         "text": "පච්චනීය උද්ධාරං",
-                        "level": 2
+                        "level": 1
                     },
                     {
                         "type": "paragraph",
@@ -8220,6 +8230,11 @@
                     {
                         "type": "centered",
                         "text": "පඤ්හාවාරස්ස පච්චනීය උද්ධාරං.",
+                        "level": 1
+                    },
+                    {
+                        "type": "heading",
+                        "text": "$$පච්චනීය ගණනා$$",
                         "level": 1
                     },
                     {
@@ -8745,6 +8760,11 @@
                     {
                         "type": "centered",
                         "text": "පඤ්හාවාරස්ස පච්චනීය ගණනා.",
+                        "level": 1
+                    },
+                    {
+                        "type": "heading",
+                        "text": "$$අනුලොමපච්චනීයං$$",
                         "level": 1
                     },
                     {
@@ -11215,9 +11235,9 @@
                         "level": 1
                     },
                     {
-                        "type": "centered",
+                        "type": "heading",
                         "text": "පච්චනියානුලොමං.",
-                        "level": 2
+                        "level": 1
                     },
                     {
                         "type": "paragraph",
