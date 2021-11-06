@@ -14,7 +14,7 @@ const childrenSort = (a, b) => {
 function genTree(key, index, addChildren, letterOpt) {
   let { pali, sinh, children } = index[key]
   pali = beautifyText(pali, 'pali', letterOpt) 
-  sinh = beautifyText(sinh, 'sinh', letterOpt) 
+  sinh = beautifyText(sinh, 'sinh', letterOpt) || pali // if no sinh name, return the pali name (for pattana mula)
   const treeItem = { pali, sinh, key }
   if (children.length && addChildren(key)) { // key.split('-').length < keyLen
     treeItem.children = children.map(cKey => genTree(cKey, index, addChildren, letterOpt)).sort(childrenSort)
@@ -46,7 +46,8 @@ export default {
     },
     getName: (state, getters, rState, rGetters) => (key, language) => {
       const lang = language || rState.treeLanguage
-      const rawName = state.index[key] ? state.index[key][lang] : 'key error' // or sinh
+      
+      const rawName = state.index[key] ? state.index[key][lang] : 'key not found'
       return beautifyText(rawName, lang, rState)
     },
 
