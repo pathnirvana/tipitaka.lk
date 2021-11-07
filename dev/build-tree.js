@@ -70,6 +70,7 @@ const tree = {
     'atta-kn-khp': [], 'atta-kn-dhp': [], 'atta-kn-ud':  [], 'atta-kn-iti': [], 'atta-kn-snp': [], 'atta-kn-vv': [], 'atta-kn-pv': [], // order
     'atta-kn-thag': [], 'atta-kn-thig': [], //order
 
+    'atta-ap-dhs': [], // todo: atta link probably can be improved with more knowledge
     'atta-ap-vbh': [], // due to headingsAtEnd and multilevel in atta, attalink was very hacky. TODO- add headings at beginning to mula
     'atta-ap-kvu': [], 'atta-ap-dhk': [], 'atta-ap-pug': [], 'atta-ap-yam': [], 'atta-ap-pat': [],
 

@@ -10,8 +10,8 @@ const sourceDir = path.join(__dirname, '../public/static/text')
 const outputDir = path.join(sourceDir, 'corrected')
 let processedFilesCount = 0
 
-const fileFilter = /atta-ap-vbh/
-const operation = 'attaCopyTitles'
+const fileFilter = /atta-ap/
+const operation = 'multipleSpaces'
 
 const replaceHelper = (e, replaceFunc) => {
     const newText = replaceFunc(e.text)
