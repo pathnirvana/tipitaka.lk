@@ -12,7 +12,7 @@ const vkb = require('vkbeautify'), perf = require('perf_hooks').performance
 const { processTextFiles } = require('../common-functions.js')
 const checkedFilename = '7-pali-checked.txt', doneFilename = '7-done-replacements.json'
 const ignoreFilename = 'pali-ignore.json', newIgnoreFilename = 'pali-ignore-new.json'
-const dryRun = true, writeIgnoreList = true
+const dryRun = false, writeIgnoreList = true
 
 const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, ignoreFilename), 'utf-8')), replacements = {}
 fs.readFileSync(path.join(__dirname, checkedFilename), 'utf-8').split('\n').forEach((line, lineNum) => {
