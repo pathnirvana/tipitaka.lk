@@ -1,1 +1,1 @@
-server/fts.db filter=lfs diff=lfs merge=lfs -text
+# server/fts.db filter=lfs diff=lfs merge=lfs -text
