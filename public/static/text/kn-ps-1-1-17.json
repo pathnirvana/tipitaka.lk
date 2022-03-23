@@ -831,7 +831,8 @@
                     {
                         "type": "heading",
                         "text": "25-28. පටිසම්භිදාඤාණං",
-                        "level": 1
+                        "level": 1,
+                        "keyOffset": 25
                     },
                     {
                         "type": "paragraph",
@@ -1026,7 +1027,8 @@
                     {
                         "type": "heading",
                         "text": "29-31. ඤාණත්තයං",
-                        "level": 1
+                        "level": 1,
+                        "keyOffset": 29
                     },
                     {
                         "type": "paragraph",
@@ -1194,7 +1196,8 @@
                     {
                         "type": "heading",
                         "text": "32. ආනන්තරිකසමාධිඤාණං",
-                        "level": 1
+                        "level": 1,
+                        "keyOffset": 32
                     },
                     {
                         "type": "paragraph",
@@ -2627,7 +2630,8 @@
                     {
                         "type": "heading",
                         "text": "50. ඉද්ධිවිධඤාණං",
-                        "level": 1
+                        "level": 1,
+                        "keyOffset": 50
                     },
                     {
                         "type": "paragraph",
@@ -3263,7 +3267,8 @@
                     {
                         "type": "heading",
                         "text": "64-67 සුද්ධිකපටිසම්භිදාඤාණං",
-                        "level": 1
+                        "level": 1,
+                        "keyOffset": 64
                     },
                     {
                         "type": "paragraph",
@@ -3375,7 +3380,8 @@
                     {
                         "type": "heading",
                         "text": "68. ඉන්ද්රියපරොපරියත්තඤාණං.",
-                        "level": 1
+                        "level": 1,
+                        "keyOffset": 68
                     },
                     {
                         "type": "paragraph",
@@ -4444,5 +4450,6 @@
         }
     ],
     "bookId": 37,
-    "pageOffset": 0
+    "pageOffset": 0,
+    "collection": "mula"
 }
