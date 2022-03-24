@@ -246,7 +246,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "නගර කාණ්ඩය",
+                        "text": "නගර කාණ්ඩය යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -522,7 +522,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "වනප්‍රවේශ කාණ්ඩය.",
+                        "text": "වන ප්‍රවේශ කාණ්ඩය යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -831,7 +831,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "ක්‍රීඩා කාණ්ඩය.",
+                        "text": "ක්‍රීඩා කාණ්ඩය යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -1417,7 +1417,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "නගර ප්‍රවේශ කාණ්ඩය නිමි.",
+                        "text": "නගර ප්‍රවේශ කාණ්ඩය යි.",
                         "type": "heading",
                         "level": 1
                     }
@@ -1657,7 +1657,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "සුහග කාණ්ඩය නිමි.",
+                        "text": "සුහග කාණ්ඩය යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -6075,6 +6075,7 @@
                     {
                         "type": "heading",
                         "text": "දොහළකණ්ඩො.",
+                        "keyOffset": 2,
                         "level": 1
                     },
                     {
@@ -8535,7 +8536,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "කාළාගිරි කාණ්ඩය.",
+                        "text": "කාළාගිරි කාණ්ඩය යි.",
                         "type": "heading",
                         "level": 1
                     }
@@ -10037,7 +10038,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "ඡන්නපථප්‍රශ්නය යි.",
+                        "text": "ඡන්නපථ ප්‍රශ්නය යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -10078,6 +10079,7 @@
                     {
                         "type": "heading",
                         "text": "ඛජ්ජොපණක පඤ්හො.",
+                        "keyOffset": 10,
                         "level": 1
                     },
                     {
@@ -12896,6 +12898,7 @@
                     {
                         "type": "heading",
                         "text": "මහාඋම්මග්ගකණ්ඩං.",
+                        "keyOffset": 16,
                         "level": 1
                     },
                     {
@@ -12965,7 +12968,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "මහාඋම්මග්ගකාණ්ඩය යි.",
+                        "text": "මහාඋම්මග්ග කාණ්ඩය යි.",
                         "type": "heading",
                         "level": 1
                     },

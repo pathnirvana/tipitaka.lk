@@ -239,7 +239,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "දසවරගාථා යි.",
+                        "text": "දසවර ගාථා යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -1169,7 +1169,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "හිමවත් වැනුමි.",
+                        "text": "හිමවත් වැනුම යි.",
                         "type": "heading",
                         "level": 1
                     }
@@ -2633,7 +2633,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "දානකාණ්ඩය නිමි.",
+                        "text": "දාන කාණ්ඩය යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -3804,6 +3804,7 @@
                     {
                         "type": "heading",
                         "text": "ජූජකපබ්බං නිට්ඨිතං.",
+                        "keyOffset": 5,
                         "level": 1
                     },
                     {
@@ -3888,7 +3889,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "ජූජක පර්‍වය නිමි.",
+                        "text": "ජූජක පර්‍වය යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -4328,7 +4329,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "සුළුවන වැනුමි.",
+                        "text": "සුළුවන වැනුම යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -5295,7 +5296,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "මහ වන වැනුම් නිමි.",
+                        "text": "මහවන වැනුම යි.",
                         "type": "heading",
                         "level": 1
                     }
@@ -6425,7 +6426,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "කුමාරපර්‍ව යි.",
+                        "text": "කුමාර පර්‍වය යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -7406,7 +7407,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "මද්‍රී පර්‍වය නිමි.",
+                        "text": "මද්‍රී පර්‍වය යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -7794,7 +7795,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "ශක්‍ර පර්‍වය නිමි.",
+                        "text": "ශක්‍ර පර්‍වය යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -8618,7 +8619,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "මහාරාජපර්ව යි.",
+                        "text": "මහාරාජ පර්‍වය යි.",
                         "type": "heading",
                         "level": 1
                     },
@@ -8941,7 +8942,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "ෂට්ක්‍ෂත්‍රිය කාණ්ඩ යි.",
+                        "text": "ෂට්ක්‍ෂත්‍රිය කාණ්ඩය යි.",
                         "type": "heading",
                         "level": 1
                     }
