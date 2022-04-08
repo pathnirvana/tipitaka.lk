@@ -12,10 +12,10 @@ const vkb = require('vkbeautify')
 const path = require('path')
 
 // following files were not processed - dn, mn-1 - headings were already good or copied manually
-const filename = 'atta-vp-prj'
+const filename = 'atta-kn-ap'
 const isSimpleCopy = false // simply copy the headings without any modification
-    sinhalaTitlesOnly = true // modify only sinhala titles
-    emptyTilesOnly = true // fill in only the empty headings
+    sinhalaTitlesOnly = false // modify only sinhala titles
+    emptyTitlesOnly = true // fill in only the empty headings
 const tree = JSON.parse(fs.readFileSync(__dirname + '/../../public/static/data/tree.json', { encoding: 'utf-8' }))
 const keysToProcess = Object.keys(tree).filter(k => (tree[k][5] == filename && tree[k][2] <= 4))
 const data = JSON.parse(fs.readFileSync(`${__dirname}/../../public/static/text/${filename}.json`, { encoding: 'utf-8' }))
@@ -65,7 +65,7 @@ keysToProcess.forEach(akey => {
 
     // sinhala heading
     const msinhRes = /^([\d\-\. ]*)(.*)$/.exec(tree[key][1]) // remove digits if any
-    if (emptyTilesOnly && sEnt.text.trim()) { // do nothing
+    if (emptyTitlesOnly && sEnt.text.trim()) { // do nothing
     } else if (isSimpleCopy) {
         sEnt.text = tree[key][1]
     } else if (msinhRes[2].trim()) {
