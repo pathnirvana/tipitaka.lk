@@ -26,9 +26,11 @@ npm run serve
 ## For Android App
 * Uncomment the public path in `vue.config.js` and build
 * Place the built files in asset directory in an Android webview app
+* Place the sqlite db files from the `server` foleder in the `dbassets` asset pack
 
 ## For Desktop App
 * Follow the instructions on `server/server.js` to build a binary using `pkg`.
 * Make a zip file containing the above binary, `node_sqlite3.node`, `dist` and `server` folders
+* The above steps are now included in the `dev/create-releases.ps1` PowerShell script (just run it)
 
 **Please check the LICENSE file if you wish to extract any content from the website for redistribution.**
