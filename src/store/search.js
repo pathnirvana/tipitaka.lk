@@ -16,8 +16,8 @@ const routeToSearchPage = (input, type) => {
 }
 
 const dbVersions = { // updated dbs need to be marked here for update in android app
-  'dict': 1,
-  'fts': 1
+  'dict': 2,
+  'fts': 2
 }
 
 const storedSettings = ['filter', 'selectedDictionaries', 'searchType']
