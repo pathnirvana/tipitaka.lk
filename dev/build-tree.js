@@ -49,7 +49,7 @@ const tree = {
     
     'ap-dhs': [],
     'ap-vbh': [], // TODO - last chapter is not headingAtEnd (also see comment below for atta-ap-vbh)
-    'ap-kvu': [], 'ap-dhk': [], 'ap-pug': [], 'ap-yam': [],
+    'ap-dhk': [], 'ap-pug': [], 'ap-kvu': [], 'ap-yam': [],
     'ap-pat': [], // ap-pat cant break due to page boundries, pat-2-83 is small but still needed since it is in a new book
 
     'vp-prj': [],
@@ -73,7 +73,7 @@ const tree = {
 
     'atta-ap-dhs': [], // todo: atta link probably can be improved with more knowledge
     'atta-ap-vbh': [], // due to headingsAtEnd and multilevel in atta, attalink was very hacky. TODO- add headings at beginning to mula
-    'atta-ap-kvu': [], 'atta-ap-dhk': [], 'atta-ap-pug': [], 'atta-ap-yam': [], 'atta-ap-pat': [],
+    'atta-ap-dhk': [], 'atta-ap-pug': [], 'atta-ap-kvu': [], 'atta-ap-yam': [], 'atta-ap-pat': [],
 
     'atta-vp-prj': [], // TODO: atta mapping of few titles are wrong
     'atta-vp-pct': [], 'atta-vp-mv': [], 'atta-vp-cv': [], 'atta-vp-pv': [],
