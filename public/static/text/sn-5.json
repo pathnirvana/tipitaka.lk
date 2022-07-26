@@ -5074,8 +5074,9 @@
                         "level": 1
                     },
                     {
-                        "type": "paragraph",
-                        "text": "චතුත්ථ පාචීනනින්නසුත්තං"
+                        "type": "heading",
+                        "text": "චතුත්ථ පාචීනනින්නසුත්තං",
+                        "level": 1
                     },
                     {
                         "type": "paragraph",
