@@ -25,8 +25,8 @@ npm run serve
 
 ## For Android App
 * Uncomment the public path in `vue.config.js` and build
-* Place the built files in asset directory in an Android webview app
-* Place the sqlite db files from the `server` foleder in the `dbassets` asset pack
+* Place the built files in `app/src/main/assets` directory in an Android webview app
+* Place the sqlite db files from the `server` folder (dict.db and fts.db) in the `dbassets/src/main/assets`
 
 ## For Desktop App
 * Follow the instructions on `server/server.js` to build a binary using `pkg`.
