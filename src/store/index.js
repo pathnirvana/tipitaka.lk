@@ -5,6 +5,7 @@ import Vuetify from '@/plugins/vuetify'
 import tree from './tree.js'
 import search from './search.js'
 import tabs from './tabs.js'
+import audio from './audio.js'
 import { settingsKey } from '@/constants.js'
 
 Vue.use(Vuex)
@@ -27,6 +28,7 @@ export default new Vuex.Store({
     tree,
     search,
     tabs,
+    audio,
   },
 
   state: {
