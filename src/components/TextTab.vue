@@ -1,6 +1,6 @@
 <template>
 <!-- <v-scale-transition hide-on-leave> -->
-  <v-sheet class="my-2">
+  <v-sheet class="my-2 tab-text-content">
     <!--<div v-scroll:window="handleScroll">{{ scrollTop }}</div>-->
     <v-card v-if="tab.errorMessage" color="error">
       <v-card-title>සූත්‍රය ලබාගැනීමේදී වරදක් සිදුවිය</v-card-title>

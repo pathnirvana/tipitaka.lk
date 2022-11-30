@@ -14,14 +14,14 @@
           <span v-for="(ne, j) in matchingNoteParts(se[0])" :key="j" :class="ne[1] || false">{{ ne[0] }}</span>
         </v-tooltip>
 
-        <span v-else :class="se[1] || false" :key="i" v-html="genWords(se[0])"></span>
+        <span v-else :class="se[1] || false" :key="i+'else'" v-html="genWords(se[0])"></span>
 
       </template>
       <ShareLinkIcon v-if="entry.type == 'heading'" :link="linkToEntry" />
       <BookmarkIcon v-if="entry.type == 'heading'" :entry="entry" />
     </div>
 
-    <v-menu v-if="entryOptions || menuOpen" v-model="menuOpen" offset-y class="options-menu">
+    <v-menu v-if="entryOptions || menuOpen" v-model="menuOpen" offset-y style="z-index: 1000;">
       <template v-slot:activator="{ on }">
         <v-btn color="info" rounded icon absolute top left small class="ma-n2 pa-0"  v-on="on">
           <v-icon>mdi-dots-horizontal</v-icon>
@@ -38,6 +38,13 @@
         </v-list-item>
         <AtuwaLinkIcon :entry="entry" :isListItem="true" />
         <BookmarkIcon :entry="entry" :isListItem="true" />
+        <v-list-item @click="toggleAudioPlay" class="cursor-pointer" v-if="audioAvailable">
+          <v-list-item-icon>
+            <v-icon v-if="isAudioPlayingEntry" color="primary">mdi-pause</v-icon>
+            <v-icon v-else>mdi-play</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>{{ 'සජ්ඣායනය' + (isAudioPlayingEntry ? ' නවත්වන්න' : ' අසන්න') }}</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-menu>
 
@@ -76,6 +83,7 @@ td.entry { width: 50%; vertical-align: top; position: relative; text-align: just
 .html .strike { text-decoration: line-through; text-decoration-color: var(--v-accent-base); }
 .html .bold { color: var(--v-info-base); }
 .html .highlight { background-color: var(--v-highlight-base); } /* fts */
+.audio-playing { background-color: var(--v-highlight-base); }
 
 /* .type-info { position: absolute; top: 0; left: 0; font-size: 0.8em; opacity: 0.5; color: gray; } */
 .cursor-pointer { cursor: pointer; } /* cursor is not set properly in some menu items */
@@ -85,6 +93,7 @@ td.entry { width: 50%; vertical-align: top; position: relative; text-align: just
 <script>
 import { mapState } from 'vuex'
 import { beautifyText } from '@/text-convert.mjs'
+import { entryToAudioKey } from '@/constants.js'
 import AtuwaLinkIcon from '@/components/AtuwaLinkIcon.vue'
 const optionsAllowedTypes = ['unindented', 'gatha', 'paragraph']
 
@@ -106,7 +115,7 @@ export default {
   
   computed: {
     ...mapState(['footnoteMethod']),
-    cssClasses() { return `text html ${this.entry.type}`},
+    cssClasses() { return `text html ${this.entry.type} ${this.isAudioPlayingEntry ? 'audio-playing' : ''}`},
     entryColor() {
       if (this.entry.type == 'heading') return 'primary'
       return ''
@@ -120,7 +129,14 @@ export default {
     contentToCopy() { // remove bold, underline and footnote pointers
       let text = this.entry.text.replace(/\*\*|__|\{\S+?\}/g, '')
       return beautifyText(text, this.entry.language, this.$store.state)
-    }
+    },
+    isAudioPlayingEntry() {
+      return (this.$store.getters['audio/getIsPlaying'] && 
+        entryToAudioKey(this.$store.getters['audio/getActiveEntry']) == entryToAudioKey(this.entry))
+    },
+    audioAvailable() {
+      return this.entry.key.startsWith('ap-dhs-1')
+    },
   },
 
   methods: {
@@ -148,7 +164,14 @@ export default {
     showWordOptions(e) {
       if (e.target.matches('w')) {
         console.log(e.target.innerText)
-        this.$store.dispatch('search/openBottomSheet', e.target)
+        this.$store.dispatch('search/openInlineDict', e.target)
+      }
+    },
+    toggleAudioPlay() {
+      if (this.isAudioPlayingEntry) {
+        this.$store.commit('audio/togglePlay')
+      } else {
+        this.$store.dispatch('audio/startEntry', this.entry)
       }
     },
   },

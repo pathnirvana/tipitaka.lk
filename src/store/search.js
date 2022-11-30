@@ -43,7 +43,7 @@ export default {
     titleSearchCache: {},
     md5SearchCache: { 'fts': {}, 'dict': {} },
     maxResults: 100,  // search stopped after getting this many matches
-    bottomSheet: { show: false, wordElem: null, word: '', results: {} },
+    inlineDict: { show: false, wordElem: null, word: '', results: {} },
 
     bookmarks: {}, // loaded from localStorage
   },
@@ -90,15 +90,15 @@ export default {
       state.selectedDictionaries = newList
       saveSettings(state)
     },
-    setBottomSheet(state, { prop, value }) {
-      if (prop == 'show' && !value && state.bottomSheet.wordElem) {
-        state.bottomSheet.wordElem.classList.remove('bottom-open')
+    setInlineDict(state, { prop, value }) {
+      if (prop == 'show' && !value && state.inlineDict.wordElem) {
+        state.inlineDict.wordElem.classList.remove('bottom-open')
       }
       if (prop == 'wordElem' && value) {
-        if (state.bottomSheet.wordElem) state.bottomSheet.wordElem.classList.remove('bottom-open')
+        if (state.inlineDict.wordElem) state.inlineDict.wordElem.classList.remove('bottom-open')
         value.classList.add('bottom-open')
       }
-      Vue.set(state.bottomSheet, prop, value)
+      Vue.set(state.inlineDict, prop, value)
     },
     loadSearchSettings(state) {
       const json = localStorage.getItem(searchSettingsKey)
@@ -137,29 +137,29 @@ export default {
       }
     },
 
-    async openBottomSheet({ commit, dispatch }, target) {
-      commit('setBottomSheet', { prop: 'show', value: true })
-      commit('setBottomSheet', { prop: 'wordElem', value: target })
+    async openInlineDict({ commit, dispatch }, target) {
+      commit('setInlineDict', { prop: 'show', value: true })
+      commit('setInlineDict', { prop: 'wordElem', value: target })
       const word = target.innerText.replace(/[\.,:\?\(\)“”‘’]/g, '')
-      commit('setBottomSheet', { prop: 'word', value: word })
-      return dispatch('runBottomWordQuery')
+      commit('setInlineDict', { prop: 'word', value: word })
+      return dispatch('runInlineQuery')
     },
 
-    async runBottomWordQuery({ commit, dispatch, getters, state }) {
-      commit('setBottomSheet', { prop: 'queryRunning', value: true })
-      commit('setBottomSheet', { prop: 'errorMessage', value: '' })
-      const word = state.bottomSheet.word
+    async runInlineQuery({ commit, dispatch, getters, state }) {
+      commit('setInlineDict', { prop: 'queryRunning', value: true })
+      commit('setInlineDict', { prop: 'errorMessage', value: '' })
+      const word = state.inlineDict.word
       const dictList = getters['getShortDicts']
       const sql = `SELECT word, dict, meaning FROM dictionary 
         WHERE word IN ('${dictWordList(word).join("','")}') AND dict IN ('${[...dictList, 'BR'].join("','")}')
         ORDER BY word LIMIT 50;`
       try {
         const results = await dispatch('runDictQuery', { sql, 'input': word })
-        commit('setBottomSheet', { prop: 'results', value: results })
+        commit('setInlineDict', { prop: 'results', value: results })
       } catch (e) {
-        commit('setBottomSheet', { prop: 'errorMessage', value: e.message })
+        commit('setInlineDict', { prop: 'errorMessage', value: e.message })
       }
-      commit('setBottomSheet', { prop: 'queryRunning', value: false })
+      commit('setInlineDict', { prop: 'queryRunning', value: false })
     },
 
     // no error checking - callers must call within a try-catch

@@ -4,7 +4,7 @@ import Vuetify from '@/plugins/vuetify'
 import { getJson } from '@/constants.js'
 
 function addEntryFields(pages, orderedKeys, filename) { // move to vuex
-  let curKey = ''
+  let curKey = '', cInd = 0
   pages.forEach((page, pi) => {
     page.pali.entries.forEach((paliEntry, ei) => {
       if (paliEntry.type == 'heading') {
@@ -15,7 +15,7 @@ function addEntryFields(pages, orderedKeys, filename) { // move to vuex
         }
       }
       
-      const addProps = { key: curKey, eInd: [pi, ei]}
+      const addProps = { key: curKey, eInd: [pi, ei], cInd: cInd++ } // cInd used for audio
       Object.assign(paliEntry, addProps)
       paliEntry.language = 'pali'
       const sinhEntry = page.sinh.entries[ei]
@@ -51,7 +51,7 @@ export default {
     },
     getShowScanPage: (state) => state.tabList[state.activeInd].showScanPage,
     getIsAtta: (state) => state.tabList[state.activeInd].keyProp.filename.startsWith('atta-'),
-    getActiveTabInfo: (state) => (ind, prop) => state.tabList[ind][prop],
+    getTabInfo: (state) => (ind, prop) => state.tabList[ind][prop],
     getVisiblePages: (state) => (ind) => {
       const tab = state.tabList[ind]
       if (!tab.isLoaded) return []

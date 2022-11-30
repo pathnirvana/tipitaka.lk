@@ -13,8 +13,9 @@
     </v-btn>
 </template>
 
-<script>
+<script lang="js">
 import { mapState } from 'vuex'
+import { entryToKeyStr } from '@/constants.js'
 // either text or hText must be present for non-heading type
 const fieldsNeeded = ['key', 'language', 'eInd', 'type', 'text', 'hText'] 
 
@@ -34,8 +35,7 @@ export default {
             return '' // TODO depend on dark mode
         },
         bookmarkKey() {
-            const { key, eInd, language } = this.bookmarkObject
-            return `${key}:${eInd.join('-')}:${language}`
+            return entryToKeyStr(this.bookmarkObject)
         },
         bookmarkObject() {
             const obj = {}

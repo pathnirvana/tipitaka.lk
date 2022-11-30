@@ -12,7 +12,7 @@
     </span>
 </template>
 
-<script>
+<script lang="js">
 import { mapState, mapGetters } from 'vuex'
 
 export default {

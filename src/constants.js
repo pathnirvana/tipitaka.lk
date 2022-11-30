@@ -83,6 +83,17 @@ export async function callAndroidAsync(javaFuncName, params) {
 	})
 }
 
+// used for comparing entry locations
+export function entryToKeyStr(entry) {
+    const { key, eInd, language } = entry
+    return `${key}:${eInd.join('-')}:${language}`
+}
+// same as above but without language
+export function entryToAudioKey(entry) { 
+    const { key, eInd } = entry
+    return `${key}:${eInd.join('-')}`
+}
+
 // async function testCallJavaAsync() {
 // 	const res = await callJavaAsync('testFunc', { val: 100 })
 // 	console.log(`received res = ${res}`)
