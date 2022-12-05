@@ -49,6 +49,10 @@
             <v-list-item-icon><v-icon>mdi-information</v-icon></v-list-item-icon>
             <v-list-item-title>අප ගැන</v-list-item-title>
           </v-list-item>
+          <v-list-item href="https://github.com/pathnirvana/tipitaka.lk" target="_blank">
+            <v-list-item-icon><v-icon>mdi-github</v-icon></v-list-item-icon>
+            <v-list-item-title>කේත දත්ත ගබඩාව / GitHub</v-list-item-title>
+          </v-list-item>
         </v-list>
       </v-menu>
 
@@ -253,6 +257,7 @@ export default {
   created() {
     this.$store.dispatch('initialize')
     this.$store.dispatch('search/initialize')
+    this.$store.dispatch('audio/initialize')
   }
 };
 </script>

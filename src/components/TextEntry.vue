@@ -134,8 +134,8 @@ export default {
       return (this.$store.getters['audio/getIsPlaying'] && 
         entryToAudioKey(this.$store.getters['audio/getActiveEntry']) == entryToAudioKey(this.entry))
     },
-    audioAvailable() {
-      return this.entry.key.startsWith('ap-dhs-1')
+    audioAvailable() { // TODO: remove this check after all the audio is availabe
+      return this.$store.getters['audio/getAudioAvailable'](this.entry.key)
     },
   },
 
