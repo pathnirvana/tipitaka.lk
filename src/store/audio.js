@@ -40,6 +40,7 @@ export default {
     duration: 0,
     currentSrc: '',
     currentTime: 0,
+    fileMap: {}, // mapping of text filenames to audio filenames
   },
   getters: {
     getActiveEntry: (state) => {
@@ -48,6 +49,10 @@ export default {
     getActiveLabel: (state) => { return state.labels[state.curEntryInd] },
     getIsPlaying: (state) => {
       return state.isPlaying
+    },
+    getAudioAvailable: (state, getters, rootState, rootGetters) => (key) => {
+      const filename = rootGetters['tree/getKey'](key).filename
+      return state.fileMap[filename]
     },
   },
   mutations: {
@@ -76,19 +81,31 @@ export default {
     setSilenceGap(state, silence) {
       state.silenceGap = silence
     },
-
+    setFileMap(state, fileMap) {
+      Object.preventExtensions(fileMap) // read-only not reactive - this improves perf
+      state.fileMap = fileMap
+    },
   },
 
   actions: {
+    async initialize({commit}) {
+      const fileMap = await getJson('/audio/file-map.json')
+      console.log(fileMap)
+      commit('setFileMap', fileMap)
+    },
+
     async startEntry({state, commit, rootGetters, dispatch}, entry) {
-      const data = rootGetters['tabs/getActiveTab'].data, entries = []
+      const data = rootGetters['tabs/getActiveTab'].data, entries = [], audioFiles = state.fileMap[data.filename]
+      if (!audioFiles) return // audio not availabe for this file
       if (data.filename != state.filename) { // different text file being played
         // reload text entries and the labels
         data.pages.forEach(page => entries.push(...page.pali.entries))
         state.entries = entries
         state.filename = data.filename
-        // TODO should loop here until all labels are loaded
-        state.labels = await loadLabels(`/audio/${data.filename}_1`) 
+        // parallel load all label files
+        const promises = audioFiles.map(async labelFile => await loadLabels('/audio/' + labelFile))
+        const labelArrays = await Promise.all(promises)
+        state.labels = labelArrays.flat(1) // concat all arrays
       }
 
       commit('setAudioControls', true)

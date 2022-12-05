@@ -24,4 +24,3 @@ yarn-error.log*
 /dev/obsolete
 node_sqlite3.node
 tipitaka-lk.exe
-server/fts.db
