@@ -3,8 +3,8 @@ import router from '@/router'
 import Vuetify from '@/plugins/vuetify'
 import { getJson } from '@/constants.js'
 
-function addEntryFields(pages, orderedKeys, filename) { // move to vuex
-  let curKey = '', cInd = 0
+function addEntryFields(pages, orderedKeys, filename) {
+  let curKey = '', cInd = 0 // cInd used for audio
   pages.forEach((page, pi) => {
     page.pali.entries.forEach((paliEntry, ei) => {
       if (paliEntry.type == 'heading') {
@@ -15,7 +15,7 @@ function addEntryFields(pages, orderedKeys, filename) { // move to vuex
         }
       }
       
-      const addProps = { key: curKey, eInd: [pi, ei], cInd: cInd++ } // cInd used for audio
+      const addProps = { key: curKey, eInd: [pi, ei], cInd: cInd++ } 
       Object.assign(paliEntry, addProps)
       paliEntry.language = 'pali'
       const sinhEntry = page.sinh.entries[ei]
