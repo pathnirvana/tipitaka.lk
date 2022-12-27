@@ -3,7 +3,7 @@ import router from '@/router'
 import { allFilterKeys, dictionaryInfo, searchSettingsKey, 
   bookmarksStorageKey, callAndroidAsync } from '@/constants.js'
 import md5 from 'md5'
-import { dictWordList } from '../singlish'
+import { isSinglishQuery, getPossibleMatches } from '@pnfo/singlish-search'
 import axios from 'axios'
 
 const routeToSearchPage = (input, type) => {
@@ -13,6 +13,19 @@ const routeToSearchPage = (input, type) => {
   } else if (router.currentRoute.name != type) {
     router.replace(`/${type}/${input}`)
   }
+}
+
+function dictWordList(input) {
+	const query = input.toLowerCase().replace(/[\u200d\.,:\?\(\)“”‘’]/g, '') // remove common chars in the words
+	// Search all singlish_combinations of translations from roman to sinhala
+	let words = isSinglishQuery(query) ? getPossibleMatches(query) : []
+	if (!words.length) words = [query]; // if not singlish or no possible matches found
+	// TODO: improve this code to ignore na na la la sha sha variations at the comparison
+	// for each word generate the stripEnd variation and add it
+	const stripEnd = words.map(w => w.replace(/[\u0DCA-\u0DDF\u0D82\u0D83]+$/g, ''))
+	// add possible vowels only if non singlish (only one word) - otherwise will be too many words
+	const addVowel = !isSinglishQuery(query) ? ['ා', 'ි', 'ී', 'ු', 'ූ', 'ෙ', 'ො'].map(v => stripEnd[0] + v) : []
+	return [...words, ...stripEnd, ...addVowel].filter((w, i, ar) => ar.indexOf(w) == i) // concat and remove duplicates
 }
 
 const dbVersions = { // updated dbs need to be marked here for update in android app
@@ -142,10 +155,10 @@ export default {
       commit('setInlineDict', { prop: 'wordElem', value: target })
       const word = target.innerText.replace(/[\.,:\?\(\)“”‘’]/g, '')
       commit('setInlineDict', { prop: 'word', value: word })
-      return dispatch('runInlineQuery')
+      return dispatch('runInlineDictQuery')
     },
 
-    async runInlineQuery({ commit, dispatch, getters, state }) {
+    async runInlineDictQuery({ commit, dispatch, getters, state }) {
       commit('setInlineDict', { prop: 'queryRunning', value: true })
       commit('setInlineDict', { prop: 'errorMessage', value: '' })
       const word = state.inlineDict.word
@@ -160,6 +173,20 @@ export default {
         commit('setInlineDict', { prop: 'errorMessage', value: e.message })
       }
       commit('setInlineDict', { prop: 'queryRunning', value: false })
+    },
+
+    async runPageDictQuery({ dispatch, getters }, input) {
+      const wordsList = dictWordList(input), dictFilter = `dict IN ('${getters['getShortDicts'].join("', '")}')`
+      const likePrefixQuery = (wordsList.length > 100) ? '' :
+       `UNION
+          SELECT word, COUNT(dict) AS num, 'like' AS meaning FROM dictionary 
+            WHERE (word LIKE '${wordsList.join("_%' OR word LIKE '")}_%') AND ${dictFilter}
+            GROUP BY word`
+
+      const sql = `SELECT word, dict, meaning FROM dictionary 
+            WHERE word IN ('${wordsList.join("','")}') AND (${dictFilter} OR dict = 'BR')
+          ${likePrefixQuery} ORDER BY word LIMIT 50;`
+      return dispatch('runDictQuery', { sql, input })
     },
 
     // no error checking - callers must call within a try-catch
