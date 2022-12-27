@@ -25,7 +25,7 @@
 <script>
 import TipitakaLink from '@/components/TipitakaLink'
 import FilterTree from '@/components/FilterTree'
-import { isSinglishQuery, getPossibleMatches } from '@/singlish.js'
+import { isSinglishQuery, getPossibleMatches } from '@pnfo/singlish-search'
 import { copyMetaTitle } from '@/constants.js'
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import _ from 'lodash'

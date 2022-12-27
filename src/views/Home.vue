@@ -93,8 +93,8 @@ export default {
   },
 
   methods: {
-    runInlineQuery() {
-      this.$store.dispatch('search/runInlineQuery')
+    runInlineDictQuery() {
+      this.$store.dispatch('search/runInlineDictQuery')
     },
     inlineWordBackspace() {
       // strip one consonent + vowel at a time
@@ -105,7 +105,7 @@ export default {
   watch: {  },
 
   created() { 
-    this.debouncedWordQuery = _.debounce(this.runInlineQuery, 400)
+    this.debouncedWordQuery = _.debounce(this.runInlineDictQuery, 400)
   },
 
   metaInfo() { // create page title by joining keyName and rootName 

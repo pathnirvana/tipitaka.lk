@@ -22,8 +22,8 @@
 
 <script>
 import { dictionaryInfo, Language, copyMetaTitle } from '@/constants.js'
-import { dictWordList, isSinglishQuery } from '@/singlish.js'
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { isSinglishQuery } from '@pnfo/singlish-search'
+import { mapState } from 'vuex'
 import DictionaryFilter from '@/components/DictionaryFilter'
 import DictionaryResults from '@/components/DictionaryResults'
 import _ from 'lodash'
@@ -66,21 +66,7 @@ export default {
       }
       return ''
     },
-    wordsList() {
-      return dictWordList(this.searchInput)
-    },
-    dictFilter() { // short names of the selected dictionaries
-      return `dict IN ('${this.selectedShortDicts.join("', '")}')`
-    },
-    likePrefixQuery() { // this is slow for large number of words hence limit
-      if (this.wordsList.length > 100) return ''
-      return `UNION
-          SELECT word, COUNT(dict) AS num, 'like' AS meaning FROM dictionary 
-            WHERE (word LIKE '${this.wordsList.join("_%' OR word LIKE '")}_%') AND ${this.dictFilter}
-            GROUP BY word`
-    },
     selectedDictionaries() { return this.$store.state.search.selectedDictionaries }, // just for watching 
-    selectedShortDicts() { return this.$store.getters['search/getShortDicts'] },
     linkToPage() { return '/dict/' + this.searchInput },
   },
 
@@ -92,14 +78,9 @@ export default {
     async getSearchResults() {
       if (this.inputError) return
       this.resultsInput = this.searchInput
-      //console.log(this.wordsList.length)
-      const sql = `SELECT word, dict, meaning FROM dictionary 
-            WHERE word IN ('${this.wordsList.join("','")}') AND (${this.dictFilter} OR dict = 'BR')
-          ${this.likePrefixQuery} ORDER BY word LIMIT 50;`
-
       this.queryRunning = true
       try {
-        this.results = await this.$store.dispatch('search/runDictQuery', { sql, 'input': this.searchInput })
+        this.results = await this.$store.dispatch('search/runPageDictQuery', this.searchInput)
       } catch (e) {
         console.error(e)
         this.errorMessage = e.message

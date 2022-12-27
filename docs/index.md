@@ -7,7 +7,7 @@ The BJT texts, consisting of an estimated thirty-five million characters, were k
 
 ## Proofreading done by Tipitaka.lk
 
-First round by making corrections to the SLTP source files by comparing it with scanned PDFs of BJT. Initially we used Chaṭṭha Saṃgāyanā Tipiṭaka (CST) available in [Tipitaka.app](https://tipitaka.app/) instead of SLTP as source material. But later we switched to using SLTP as it matched the scanned PDFs better.
+First round by making corrections to the SLTP source files by comparing it with scanned PDFs of BJT manually by both volunteers and paid employees. Initially we used Chaṭṭha Saṃgāyanā Tipiṭaka (CST) available in [Tipitaka.app](https://tipitaka.app/) instead of SLTP as source material. But later we switched to using SLTP as it matched the scanned PDFs better.
 
 Second round by identifying the common errors that occur in printing, reading and typing Sinhala letters and then programmatically identifying potential locations in the text with these errors. All potential errors were then manually checked by volunteers and scholar monks to correct many mistakes in both printing and typesetting
 
