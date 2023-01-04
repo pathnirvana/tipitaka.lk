@@ -2489,7 +2489,8 @@
                     {
                         "type": "centered",
                         "text": "2",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
