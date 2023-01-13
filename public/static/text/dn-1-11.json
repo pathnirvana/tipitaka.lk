@@ -8,7 +8,8 @@
                     {
                         "type": "centered",
                         "text": "11",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1235,7 +1236,8 @@
                     {
                         "type": "centered",
                         "text": "12",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2645,7 +2647,8 @@
                     {
                         "type": "centered",
                         "text": "13",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
