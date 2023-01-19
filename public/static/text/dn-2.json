@@ -32,7 +32,8 @@
                     {
                         "type": "centered",
                         "text": "1.",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2352,7 +2353,8 @@
                     {
                         "type": "centered",
                         "text": "2.",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
