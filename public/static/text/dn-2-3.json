@@ -8,7 +8,8 @@
                     {
                         "type": "centered",
                         "text": "3.",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
