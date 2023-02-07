@@ -1,7 +1,5 @@
 {
     "filename": "mn-1-1",
-    "bookId": 13,
-    "pageOffset": 0,
     "pages": [
         {
             "pageNum": 2,
@@ -35,7 +33,8 @@
                     {
                         "type": "centered",
                         "text": "1.1.",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -53,7 +52,8 @@
                     {
                         "type": "centered",
                         "text": "(1)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -390,7 +390,8 @@
                     {
                         "type": "centered",
                         "text": "(2)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -484,7 +485,8 @@
                     {
                         "type": "centered",
                         "text": "(3)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -575,7 +577,8 @@
                     {
                         "type": "centered",
                         "text": "(4)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -593,7 +596,8 @@
                     {
                         "type": "centered",
                         "text": "(5)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -681,7 +685,8 @@
                     {
                         "type": "centered",
                         "text": "(6)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -699,7 +704,8 @@
                     {
                         "type": "centered",
                         "text": "(7)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -717,7 +723,8 @@
                     {
                         "type": "centered",
                         "text": "(8)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -827,7 +834,8 @@
                     {
                         "type": "centered",
                         "text": "1.1.2",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1291,7 +1299,8 @@
                     {
                         "type": "centered",
                         "text": "1.1.3",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1509,7 +1518,8 @@
                     {
                         "type": "centered",
                         "text": "1.1.4",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2063,7 +2073,8 @@
                     {
                         "type": "centered",
                         "text": "1.1.5",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2651,7 +2662,8 @@
                     {
                         "type": "centered",
                         "text": "1.1.6",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2944,7 +2956,8 @@
                     {
                         "type": "centered",
                         "text": "1.1.7",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3229,7 +3242,8 @@
                     {
                         "type": "centered",
                         "text": "1.1.8",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4157,7 +4171,8 @@
                     {
                         "type": "centered",
                         "text": "1.1.9",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5227,7 +5242,8 @@
                     {
                         "type": "centered",
                         "text": "1.1.10",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -6162,5 +6178,8 @@
                 ]
             }
         }
-    ]
+    ],
+    "bookId": 13,
+    "pageOffset": 0,
+    "collection": "mula"
 }
