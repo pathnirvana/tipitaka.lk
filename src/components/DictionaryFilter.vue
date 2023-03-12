@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn v-bind="attrs" v-on="on" :depressed="!isLimited" class="my-2">
         <v-icon class="mr-2" :color="isLimited ? 'primary' : ''">mdi-book-open-page-variant</v-icon>
-        {{ isLimited ? 'සෙවුම් ශබ්දකෝෂ සීමා වී ඇත' : 'සෙවුම් ශබ්දකෝෂ සීමා කිරීම' }}
+        {{ isLimited ? 'සොයන ශබ්දකෝෂ සීමා වී ඇත' : 'සොයන ශබ්දකෝෂ සීමා කිරීම' }}
       </v-btn>
     </template>
     
