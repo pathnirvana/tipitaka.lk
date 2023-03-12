@@ -21,7 +21,7 @@
     </v-simple-table>
 
     <v-card v-if="results.prefixWords.length">
-      <v-card-subtitle>ශබ්දකෝෂ වල ඇති මෙම අකුරු වලින් ඇරඹෙන වෙනත් වචන</v-card-subtitle>
+      <v-card-subtitle>ශබ්දකෝෂ වල අඩංගු මෙම අකුරු වලින් ඇරඹෙන වෙනත් වචන</v-card-subtitle>
       <v-card-text>
         <v-chip v-for="({ word }, i) in results.prefixWords" :key="i" class="ma-1"
           @click="$router.push({ name: 'dict', params: { word } })">{{ word }}</v-chip>
