@@ -34,8 +34,8 @@
           <v-card-actions>
             <v-radio-group v-model="footnoteMethod">
               <v-radio label="නොපෙන්වන්න" value="hidden"></v-radio>
-              <v-radio label="click එබූ විට පෙන්වන්න" value="click"></v-radio>
-              <v-radio label="hover විට පෙන්වන්න" value="hover"></v-radio>
+              <v-radio label="ඔබන විට පෙන්වන්න" value="click"></v-radio>
+              <v-radio label="මතින් යනවිට පෙන්වන්න" value="hover"></v-radio>
               <v-radio label="පිටුවේ අග පෙන්වන්න" value="end-page"></v-radio>
               <!--<v-radio label="එතැනම පෙන්වන්න" value="show-inline"></v-radio>-->
             </v-radio-group>
@@ -50,7 +50,7 @@
             <v-switch v-model="bandiLetters" class="mx-2" label="පාළි බැඳි අකුරු භාවිතා කරන්න"></v-switch>
             <v-switch v-model="specialLetters" class="mx-2" label="විශේෂ පාළි අකුරු භාවිතා කරන්න"></v-switch>
             <v-switch v-model="showPageNumbers" class="mx-2" label="පොතේ පිටු අංක පෙන්වන්න"></v-switch>
-            <v-switch v-model="syncTree" class="mx-2" label="කියවන සූත්‍රය හා නාමාවලිය සමමුහු (Sync) කරන්න"></v-switch>
+            <v-switch v-model="syncTree" class="mx-2" label="කියවන සූත්‍රය හා නාමාවලිය සමමුහූර්ත කරන්න"></v-switch>
           </v-card-text>
         </v-card>
       </v-col>
@@ -71,7 +71,7 @@
       <v-col cols="12" sm="6" xl="4">
         <v-card>  
           <v-card-title>පාළි සිංහල තීරු තෝරන්න</v-card-title> 
-          <v-card-text>අලුතෙන් සූත්‍රයක් ඇරීමේදී පෙන්වන්නේ පාළි, සිංහල හෝ ඒ තීරු දෙකමද යන්න.</v-card-text>
+          <v-card-text>නව සූත්‍රයක් ඇරීමේදී පෙන්වන්නේ පාළි, සිංහල හෝ ඒ තීරු දෙකමද බව.</v-card-text>
           <v-card-actions>
             <TabColumnSelector :iconType="false" varName="defaultColumns" />
             <span class="ml-3">{{ columnSelectionText }}</span>
@@ -81,14 +81,14 @@
 
       <v-col cols="12" sm="6" xl="4">
         <v-card>  
-          <v-card-title>මෘදුකාංගය යාවත්කාලින (update) කිරීම</v-card-title> 
+          <v-card-title>මෘදුකාංගය යාවත්කාල කිරීම</v-card-title> 
           <v-card-text>
-            <div>{{ `ඔබ දැන් භාවිතා කරන්නේ version: ${version} වන මෘදුකාංගයයි.` }}</div>
+            <div>{{ `ඔබගේ වත්මන් අනුවාදය: ${version}` }}</div>
             <div :class="versionColor">{{ versionText }}</div>
           </v-card-text>
           <v-card-actions>
             <v-btn @click="checkVersion" color="primary" outlined>
-              <v-icon class="mr-2">mdi-update</v-icon>පරික්ෂා කරන්න
+              <v-icon class="mr-2">mdi-update</v-icon>පරීක්‍ෂා කරන්න
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -139,13 +139,13 @@ export default {
     },
     versionText() {
       if (this.newVersion == -1) {
-        return `පරික්ෂා කිරීමේදී දෝෂයක් මතුවිය. ඔබ අන්තර්ජාලයට සම්බන්ධ වී නැවත උත්සාහ කරන්න.`
+        return `පරික්‍ෂා කිරීමේදී දෝෂයක් මතුවිය. අන්තර්ජාලයට සම්බන්ධ වී නැවත උත්සාහ කරන්න.`
       } else if (this.newVersion <= this.version) {
-        return `ඔබ දැනටමත් අලුත්ම version එක භාවිතා කරමින් සිටී.`
+        return `ඔබ නවතම අනුවාදය භාවිතා කරමින් සිටියි.`
       } else if (this.newVersion) {
-        return `අලුත් version ${this.newVersion} පැමිණ ඇත. ඔබේ මෘදුකාංගය යාවත්කාලින කරගන්න.`
+        return `නව අනුවාදයක් (${this.newVersion}) තිබේ. ඔබගේ මෘදුකාංගය යාවත්කාල කරගන්න.`
       }
-      return `පහත බොත්තම ඔබා අලුත් version එකක් තිබේදැයි පරික්ෂා කරන්න.`
+      return `පහත බොත්තම එබීමෙන් නව අනුවාදයක් තිබේදැයි බලන්න.`
     },
     versionColor() {
       if (this.newVersion == -1) return 'error--text'
