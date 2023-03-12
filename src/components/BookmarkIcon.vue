@@ -4,7 +4,7 @@
             <v-icon v-if="isStarred" color="star">mdi-star</v-icon>
             <v-icon v-else>mdi-star-outline</v-icon>
         </v-list-item-icon>
-        <v-list-item-title>{{ isStarred ? 'තරුව ඉවත්කරන්න' : 'තරුවක් යොදන්න' }} </v-list-item-title>
+        <v-list-item-title>{{ isStarred ? 'තරුව ඉවතලන්න' : 'තරුවක් යොදන්න' }} </v-list-item-title>
     </v-list-item>
 
     <v-btn v-else icon x-small @click="toggleStarred">
