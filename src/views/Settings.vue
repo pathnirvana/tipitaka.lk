@@ -34,8 +34,8 @@
           <v-card-actions>
             <v-radio-group v-model="footnoteMethod">
               <v-radio label="නොපෙන්වන්න" value="hidden"></v-radio>
-              <v-radio label="ඔබන විට පෙන්වන්න" value="click"></v-radio>
-              <v-radio label="මතින් යනවිට පෙන්වන්න" value="hover"></v-radio>
+              <v-radio label="ඔබන විට පෙන්වන්න (on click)" value="click"></v-radio>
+              <v-radio label="මතින් යනවිට පෙන්වන්න (on hover)" value="hover"></v-radio>
               <v-radio label="පිටුවේ අග පෙන්වන්න" value="end-page"></v-radio>
               <!--<v-radio label="එතැනම පෙන්වන්න" value="show-inline"></v-radio>-->
             </v-radio-group>
@@ -50,7 +50,7 @@
             <v-switch v-model="bandiLetters" class="mx-2" label="පාළි බැඳි අකුරු භාවිතා කරන්න"></v-switch>
             <v-switch v-model="specialLetters" class="mx-2" label="විශේෂ පාළි අකුරු භාවිතා කරන්න"></v-switch>
             <v-switch v-model="showPageNumbers" class="mx-2" label="පොතේ පිටු අංක පෙන්වන්න"></v-switch>
-            <v-switch v-model="syncTree" class="mx-2" label="කියවන සූත්‍රය හා නාමාවලිය සමමුහූර්ත කරන්න"></v-switch>
+            <v-switch v-model="syncTree" class="mx-2" label="කියවන සූත්‍රය හා නාමාවලිය සමමුහූර්ත (sync) කරන්න"></v-switch>
           </v-card-text>
         </v-card>
       </v-col>
