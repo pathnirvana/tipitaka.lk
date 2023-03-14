@@ -29,8 +29,8 @@ import DictionaryResults from '@/components/DictionaryResults'
 import _ from 'lodash'
 
 const searchBarRules = [
-  v => !!v || 'සෙවීම සඳහා පාලි වචනය ඇතුළු කරන්න.',
-  v => v.length >= 2 || 'අඩුම තරමේ අකුරු 2 ක් වත් ඇතුළු කරන්න.',
+  v => !!v || 'සෙවීමට පාලි වචනය ඇතුල් කරන්න.',
+  v => v.length >= 2 || 'අවම වශයෙන් අකුරු 2 ක් ඇතුල් කරන්න.',
   v => !/\s/.test(v) || 'හිස් තැන් රහිතව එක් පදයක් පමණක් යොදන්න.',
   v => (!isSinglishQuery(v) || v.length <= 10) || 'සිංග්ලිෂ් වලින් සෙවීමේ දී උපරිමය අකුරු 10 කට සීමා කර ඇත.',
   v => v.length <= 25 || 'උපරිම දිග අකුරු 25',
@@ -53,10 +53,10 @@ export default {
     searchMessage() {
       if (!this.searchInput || _.isEmpty(this.results)) return ''
       const matchedMessage = !this.results.matches.length ?
-        `“${this.searchInput}” යන සෙවුම සඳහා ගැළපෙන වචන ශබ්දකෝෂ වල හමුවුයේ නැත. ` :
-        `“${this.searchInput}” යන සෙවුම සඳහා ගැළපෙන වචන ${this.results.matches.length} ක් හමුවුනා. `
+        `“${this.searchInput}” යන සෙවුම සඳහා ගැළපෙන වචන ශබ්දකෝෂ වල අඩංගු නොවේ. ` :
+        `“${this.searchInput}” යන සෙවුම සඳහා ගැළපෙන වචන ${this.results.matches.length} ක් හමුවිය. `
       const prefixMessage = this.results.prefixWords.length ? 
-        `මෙම අකුරු වලින් ඇරඹෙන වෙනත් වචන ${this.results.prefixWords.length} ක් ශබ්දකෝෂ වල හමුවුනා.` : ''
+        `මෙම අකුරු වලින් ඇරඹෙන වෙනත් වචන ${this.results.prefixWords.length} ක් ශබ්දකෝෂ වල හමුවිය.` : ''
       return matchedMessage + prefixMessage
     },
     inputError() { // check rules
@@ -71,7 +71,7 @@ export default {
   },
 
   metaInfo() {  
-    return copyMetaTitle(this.searchInput ? `“${this.searchInput}” යන ශබ්දකෝෂ සෙවුම සඳහා ලැබුණු ප්‍රතිඵල` : 'පාළි ශබ්දකෝෂ සෙවීම')
+    return copyMetaTitle(this.searchInput ? `“${this.searchInput}” යන සෙවුමට ශබ්දකෝෂ වලින් ලැබුණු ප්‍රතිඵල` : 'පාළි ශබ්දකෝෂ සෙවීම')
   },
 
   methods: {

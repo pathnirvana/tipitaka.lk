@@ -31,9 +31,9 @@ import { mapState, mapGetters, mapMutations } from 'vuex'
 import _ from 'lodash'
 
 const searchBarRules = [
-  v => !!v || 'සෙවීම සඳහා සූත්‍ර නමේ කොටසක් ඇතුළු කරන්න.',
-  v => v.length >= 2 || 'අඩුම තරමේ අකුරු 2 ක් වත් ඇතුළු කරන්න.',
-  v => !/\s/.test(v) || 'හිස් තැන් රහිතව එක් පදයක් පමණක් යොදන්න.',
+  v => !!v || 'සෙවීමට සූත්‍ර නාමයෙහි කොටසක් ඇතුල් කරන්න.',
+  v => v.length >= 2 || 'අවම වශයෙන් අකුරු 2 ක් ඇතුල් කරන්න.',
+  v => !/\s/.test(v) || 'හිස්තැන් රහිතව එක් පදයක් පමණක් යොදන්න.',
   v => (!isSinglishQuery(v) || v.length <= 10) || 'සිංග්ලිෂ් වලින් සෙවීමේ දී උපරිමය අකුරු 10 කට සීමා කර ඇත.',
   v => v.length <= 25 || 'උපරිම දිග අකුරු 25',
   v => !(/[^A-Za-z\u0D80-\u0DFF\u200D]/.test(v)) || 'සෙවුම් පදය සඳහා ඉංග්‍රීසි සහ සිංහල අකුරු පමණක් යොදන්න.',
@@ -63,9 +63,9 @@ export default {
       if (!this.results.length) {
         return `“${this.searchInput}” යන සෙවුම සඳහා ගැළපෙන වචන කිසිවක් හමුවුයේ නැත. වෙනත් සෙවුමක් උත්සාහ කර බලන්න.`
       } else if (this.results.length < this.maxResults) {
-        return `“${this.searchInput}” යන සෙවුම සඳහා ගැළපෙන වචන ${this.results.length} ක් හමුවුනා.`
+        return `“${this.searchInput}” යන සෙවුම සඳහා ගැළපෙන වචන ${this.results.length} ක් හමුවිය.`
       } else { 
-        return `ඔබගේ “${this.searchInput}” යන සෙවුම සඳහා ගැළපෙන වචන ${this.maxResults} කට වඩා හමුවුනා. එයින් මුල් වචන ${this.maxResults} පහත දැක්වේ.`
+        return `ඔබගේ “${this.searchInput}” යන සෙවුම සඳහා ගැළපෙන වචන ${this.maxResults} කට වඩා හමුවිය. එයින් මුල් වචන ${this.maxResults} පහත දැක්වේ.`
       }
     },
     inputError() { // check rules
@@ -79,7 +79,7 @@ export default {
   },
 
   metaInfo() {  
-    return copyMetaTitle(this.searchInput ? `“${this.searchInput}” යන සූත්‍ර නම් සෙවීම සඳහා ලැබුණු ප්‍රතිඵල` : 'සූත්‍ර නම් සෙවීම')
+    return copyMetaTitle(this.searchInput ? `“${this.searchInput}” යන සූත්‍ර නාම සෙවීම සඳහා ලැබුණු ප්‍රතිඵල` : 'සූත්‍ර නම් සෙවීම')
   },
 
   methods: {

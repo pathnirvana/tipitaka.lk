@@ -41,7 +41,7 @@
                 <v-divider></v-divider>
                 <v-list-item disabled>
                     <v-list-item-icon><v-icon>mdi-download</v-icon></v-list-item-icon>
-                    <v-list-item-title>භාගත කරගන්න</v-list-item-title>
+                    <v-list-item-title>බාගන්න</v-list-item-title>
                 </v-list-item>
             </v-list>
         </v-menu>
