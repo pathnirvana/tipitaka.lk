@@ -19,7 +19,7 @@
         <v-list dense shaped>
           <v-list-item @click="searchType = 'title'">
             <v-list-item-icon><v-icon>mdi-format-title</v-icon></v-list-item-icon>
-            <v-list-item-title>සූත්‍ර නම් සෙවීම</v-list-item-title>
+            <v-list-item-title>සූත්‍ර නාම සෙවීම</v-list-item-title>
             <v-list-item-icon><v-icon color="success">{{ searchType == 'title' ? 'mdi-check' : ''}}</v-icon></v-list-item-icon>
           </v-list-item>
           <v-list-item @click="searchType = 'fts'">
@@ -51,7 +51,7 @@
           </v-list-item>
           <v-list-item href="https://github.com/pathnirvana/tipitaka.lk" target="_blank">
             <v-list-item-icon><v-icon>mdi-github</v-icon></v-list-item-icon>
-            <v-list-item-title>කේත දත්ත ගබඩාව / GitHub</v-list-item-title>
+            <v-list-item-title>කේත කෝෂ්ඨය / ගිට්හබ්</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -200,7 +200,7 @@ export default {
     return {
       showTree: null,
       searchTypeInfo: {
-        'title': ['සූත්‍ර නම්', 'mdi-format-title'],
+        'title': ['සූත්‍ර නාම', 'mdi-format-title'],
         'fts': ['සූත්‍ර අන්තර්ගතය', 'mdi-text'], 
         'dict': ['පාලි ශබ්දකෝෂ', 'mdi-book-open-page-variant'], 
       },

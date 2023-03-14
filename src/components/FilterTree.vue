@@ -22,7 +22,7 @@
         <v-btn @click="toggleAllSelect" text>
           <v-icon color="accent" class="mr-1">
             {{ allSelect ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline' }}
-          </v-icon>සියල්ල {{ allSelect ? 'තෝරන්න' : 'ඉවත්කරන්න' }}
+          </v-icon>සියල්ල {{ allSelect ? 'තෝරන්න' : 'නොතෝරන්න' }}
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn @click="dialog = false" text>

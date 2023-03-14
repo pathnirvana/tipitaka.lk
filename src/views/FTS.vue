@@ -7,7 +7,7 @@
           <v-col cols="12" :sm="showMatchPhrase ? 4 : 12">
             <v-radio-group v-model="exactWord" :mandatory="true" dense>
               <v-radio label="එම වචනයම සොයන්න" :value="1"></v-radio>
-              <v-radio label="මේ අකුරු වලින් ඇරඹේන ඕනෑම වචනයක්" :value="0"></v-radio>
+              <v-radio label="මේ අකුරු වලින් ඇරඹෙන ඕනෑම වචනයක්" :value="0"></v-radio>
             </v-radio-group>
           </v-col>
           <v-col cols="12" sm="4" v-if="showMatchPhrase">
@@ -34,7 +34,7 @@
 
     <v-card v-if="errorMessage" color="error">
       <v-card-title>අන්තර්ගතය සෙවීමේදී වරදක් සිදුවිය.</v-card-title>
-      <v-card-text>{{ errorMessage + '. ඔබේ අන්තර්ජාල සම්බන්ධතාවය පරික්ෂා කර බලන්න.' }}</v-card-text>
+      <v-card-text>{{ errorMessage + '. ඔබගේ අන්තර්ජාල සම්බන්ධතාවය පරීක්‍ෂා කර බලන්න.' }}</v-card-text>
     </v-card>
 
     <div class="d-flex flex-column" v-if="results.length">
@@ -87,8 +87,8 @@ import { mapState, mapGetters } from 'vuex'
 import _ from 'lodash'
 
 const searchBarRules = [
-  v => !!v || 'සෙවීම සඳහා වචන ඇතුළු කරන්න.',
-  v => v.length >= 2 || 'අඩුම තරමේ අකුරු 2 ක් වත් ඇතුළු කරන්න.',  // very slow in android
+  v => !!v || 'සෙවීම සඳහා වචන ඇතුල් කරන්න.',
+  v => v.length >= 2 || 'අවම වශයෙන් අකුරු 2 ක් ඇතුල් කරන්න.',  // very slow in android
   v => !(/[a-z]/i.test(v) && !/AND|OR|NOT/.test(v)) || 'අන්තර්ගතය සෙවීමේදී සිංහල අකුරු පමණක් භාවිතා කරන්න.',
   v => !/[^a-z\u0D80-\u0DFF\u200D\*\^\(\) ]/i.test(v) || 'සෙවුම් පදය සඳහා ඉංග්‍රීසි සහ සිංහල අකුරු පමණක් යොදන්න.',
 ]
@@ -127,9 +127,9 @@ export default {
       if (!numResults)
         return `“${terms}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද කිසිවක් හමුවුයේ නැත. වෙනත් සෙවුමක් උත්සාහ කර බලන්න.`
       else if(numResults < this.maxResults)
-        return `“${terms}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද ${numResults} ක් හමුවුනා.`
+        return `“${terms}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද ${numResults} ක් හමුවිය.`
       else 
-        return `ඔබගේ “${terms}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද ${this.maxResults} කට වඩා හමුවුනා. එයින් මුල් ${this.maxResults} පහත දැක්වේ.`
+        return `ඔබගේ “${terms}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද ${this.maxResults} කට වඩා හමුවිය. එයින් මුල් ${this.maxResults} පහත දැක්වේ.`
     },
     inputError() { // check rules
       for (let rule of searchBarRules) {
