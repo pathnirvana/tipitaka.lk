@@ -21,4 +21,5 @@ The proofread text is made available in [this GitHub repository](https://github.
 3. Digitization of Aṭṭhakathā Sinhala Translations
 
 ### ව්‍යාපෘතිය ගැන වෙනත් විස්තර
-[සිංහල පරිවර්තනයේ පාළි වචන දීර්ඝව ලිවීමට හේතු](pali-hal-reasons.md)
+1. [සෝදුපත් බැලූ ආකාරය](proofreading.md) 
+2. [සිංහල පරිවර්තනයේ පාළි වචන දීර්ඝව ලිවීමට හේතු](pali-hal-reasons.md)
