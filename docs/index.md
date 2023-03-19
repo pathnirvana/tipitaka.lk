@@ -20,3 +20,5 @@ The proofread text is made available in [this GitHub repository](https://github.
 2. Recording the pronounciation of the whole Tipitaka and linking it with the text
 3. Digitization of Aṭṭhakathā Sinhala Translations
 
+### ව්‍යාපෘතිය ගැන වෙනත් විස්තර
+[සිංහල පරිවර්තනයේ පාළි වචන දීර්ඝව ලිවීමට හේතු](pali-hal-reasons.md)
