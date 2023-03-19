@@ -16,7 +16,7 @@ Third round is an ongoing effort to correct the errors reported daily by users o
 The proofread text is made available in [this GitHub repository](https://github.com/pathnirvana/tipitaka.lk/tree/master/public/static/text)
 
 ## Sub Projects
-1. Producing a digital version of the Buddha Jayanthi Sinhala translation
+1. Producing a digital version of the Buddha Jayanthi Sinhala translation completed by a group of volunteers under the thripitakaya.org website.
 2. Recording the pronounciation of the whole Tipitaka and linking it with the text
 3. Digitization of Aṭṭhakathā Sinhala Translations
 
