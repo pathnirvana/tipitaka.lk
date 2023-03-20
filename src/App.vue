@@ -51,7 +51,7 @@
           </v-list-item>
           <v-list-item href="https://github.com/pathnirvana/tipitaka.lk" target="_blank">
             <v-list-item-icon><v-icon>mdi-github</v-icon></v-list-item-icon>
-            <v-list-item-title>කේත කෝෂ්ඨය / ගිට්හබ්</v-list-item-title>
+            <v-list-item-title>කේත කෝෂ්ඨය / GitHub</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
