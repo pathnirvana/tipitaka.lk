@@ -83,7 +83,7 @@
         <v-card>  
           <v-card-title>මෘදුකාංගය යාවත්කාල කිරීම</v-card-title> 
           <v-card-text>
-            <div>{{ `ඔබගේ වත්මන් අනුවාදය: ${version}` }}</div>
+            <div>{{ `ඔබගේ වත්මන් අනුවාදය (version): ${version}` }}</div>
             <div :class="versionColor">{{ versionText }}</div>
           </v-card-text>
           <v-card-actions>
