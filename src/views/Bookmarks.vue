@@ -54,7 +54,7 @@ export default {
       if (!this.bookmarksCount) {
         return `ඔබ කිසිම සූත්‍රයකට හෝ පරිච්ඡේදයකට තරු යොදා නැත. සටහන් තැබීමට තරු ලකුණ මත ඔබන්න.`
       } else { 
-        return `ඔබ තරු යෙදු සූත්‍ර ${this.bookmarksCount} ක ලැයිස්තුවක් පහත දැක්වේ.`
+        return `ඔබ විසින් තරු යෙදු සූත්‍ර ${this.bookmarksCount} ක ලැයිස්තුවක් පහත දැක්වේ.`
       }
     },
     bookmarksCount() { return Object.keys(this.bookmarks).length }
