@@ -81,7 +81,7 @@
 
       <v-col cols="12" sm="6" xl="4">
         <v-card>  
-          <v-card-title>මෘදුකාංගය යාවත්කාල කිරීම</v-card-title> 
+          <v-card-title>මෘදුකාංගය යාවත්කාලීන කිරීම</v-card-title> 
           <v-card-text>
             <div>{{ `ඔබගේ වත්මන් අනුවාදය (version): ${version}` }}</div>
             <div :class="versionColor">{{ versionText }}</div>
