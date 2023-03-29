@@ -1,7 +1,5 @@
 {
     "filename": "mn-2-3",
-    "bookId": 14,
-    "pageOffset": 0,
     "pages": [
         {
             "pageNum": 252,
@@ -15,7 +13,8 @@
                     {
                         "type": "centered",
                         "text": "2.3.1",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -177,7 +176,8 @@
                     {
                         "type": "centered",
                         "text": "2.3.2",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -516,7 +516,8 @@
                     {
                         "type": "centered",
                         "text": "2.3.3",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -986,7 +987,8 @@
                     {
                         "type": "centered",
                         "text": "2.3.4",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1214,7 +1216,8 @@
                     {
                         "type": "centered",
                         "text": "2.3.5",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1835,7 +1838,8 @@
                     {
                         "type": "centered",
                         "text": "2.3.6",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2488,7 +2492,8 @@
                     {
                         "type": "centered",
                         "text": "2.3.7",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3550,7 +3555,8 @@
                     {
                         "type": "centered",
                         "text": "2.3.8",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3878,7 +3884,8 @@
                     {
                         "type": "centered",
                         "text": "2.3.9",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4708,7 +4715,8 @@
                     {
                         "type": "centered",
                         "text": "2.3.10",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5063,7 +5071,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "වෙඛනසසුත්තං දසමං.",
+                        "text": "වෙඛනස්සසුත්තං දසමං.",
                         "level": 1
                     },
                     {
@@ -5076,8 +5084,9 @@
                         "text": "තස්ස වග්ගස්ස උද්දානං"
                     },
                     {
-                        "type": "paragraph",
-                        "text": "පුණ්ඩරී අග්ගි සහා කථිනාමො, දීඝනඛො පුන භාරද්වාජගොත්තොසන්දක උද්දයි මණ්ඩිකාපුත්තො, මණිකො තථා කච්චානො වරවග්ගො.{1}"
+                        "type": "gatha",
+                        "text": "පුණ්ඩරී අග්ගි සහා කථිනාමො, දීඝනඛො පුන භාරද්වාජගොත්තො\nසන්දක උද්දයි මණ්ඩිකාපුත්තො, මණිකො තථා කච්චානො වරවග්ගො.{1}",
+                        "level": 1
                     }
                 ],
                 "footnotes": [
@@ -5115,5 +5124,8 @@
                 "footnotes": []
             }
         }
-    ]
+    ],
+    "bookId": 14,
+    "pageOffset": 0,
+    "collection": "mula"
 }

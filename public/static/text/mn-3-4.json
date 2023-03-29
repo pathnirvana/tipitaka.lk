@@ -1,7 +1,5 @@
 {
     "filename": "mn-3-4",
-    "bookId": 15,
-    "pageOffset": 0,
     "pages": [
         {
             "pageNum": 398,
@@ -15,7 +13,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4. 1",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -249,7 +248,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4. 2",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -514,7 +514,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4. 3",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1149,7 +1150,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4. 4",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1506,7 +1508,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4. 5",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1803,7 +1806,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4. 6",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2254,7 +2258,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4. 7",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2582,7 +2587,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4. 8",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3020,7 +3026,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4. 9",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3516,7 +3523,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4. 10",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4146,7 +4154,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4. 11",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4508,7 +4517,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4. 12",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4821,18 +4831,20 @@
                         "level": 2
                     },
                     {
-                        "text": "",
+                        "text": "එහි උද්දානය",
                         "type": "centered",
                         "level": 1
                     },
                     {
-                        "type": "gatha",
-                        "text": "",
-                        "level": 1
+                        "type": "paragraph",
+                        "text": "භද්දේකරත්ත, ආනන්දභද්දේකරත්ත, කච්චානභද්දේකරත්ත, ලොමසකඞ්ගියභද්දේකරත්ත සූත්‍රයෝ යැ, චූළකම්මවිභඞ්ග, මහාකම්මවිභඞ්ග, සළයතනවිභඞ්ග, උද්දේසවිභඞ්ග, ධාතුවිභඞ්ග, සච්චවිභඞ්ග සූත්‍රය හා දක්‍ෂිණාවිභඞ්ගසූත්‍රය ද වේ."
                     }
                 ],
                 "footnotes": []
             }
         }
-    ]
+    ],
+    "bookId": 15,
+    "pageOffset": 0,
+    "collection": "mula"
 }
