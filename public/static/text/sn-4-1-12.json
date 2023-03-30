@@ -1,7 +1,5 @@
 {
     "filename": "sn-4-1-12",
-    "bookId": 19,
-    "pageOffset": 0,
     "pages": [
         {
             "pageNum": 194,
@@ -15,7 +13,8 @@
                     {
                         "type": "centered",
                         "text": "1. 12. 1",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -85,7 +84,8 @@
                     {
                         "type": "centered",
                         "text": "1. 12. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -111,7 +111,8 @@
                     {
                         "type": "centered",
                         "text": "1. 12. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -368,7 +369,8 @@
                     {
                         "type": "centered",
                         "text": "1. 12. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -615,7 +617,8 @@
                     {
                         "type": "centered",
                         "text": "1. 12. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -681,7 +684,8 @@
                     {
                         "type": "centered",
                         "text": "1. 12. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -747,7 +751,8 @@
                     {
                         "type": "centered",
                         "text": "1. 12. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -871,7 +876,8 @@
                     {
                         "type": "centered",
                         "text": "1. 12. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1030,7 +1036,8 @@
                     {
                         "type": "centered",
                         "text": "1. 12. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1048,7 +1055,8 @@
                     {
                         "type": "centered",
                         "text": "1. 12. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -8401,5 +8409,8 @@
                 "footnotes": []
             }
         }
-    ]
+    ],
+    "bookId": 19,
+    "pageOffset": 0,
+    "collection": "mula"
 }
