@@ -1,7 +1,5 @@
 {
     "filename": "sn-4-8",
-    "bookId": 19,
-    "pageOffset": 0,
     "pages": [
         {
             "pageNum": 556,
@@ -20,7 +18,8 @@
                     {
                         "type": "centered",
                         "text": "8. 1. 1",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -100,7 +99,8 @@
                     {
                         "type": "centered",
                         "text": "8. 1. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -236,7 +236,8 @@
                     {
                         "type": "centered",
                         "text": "8. 1. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -314,7 +315,8 @@
                     {
                         "type": "centered",
                         "text": "8. 1. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -328,7 +330,8 @@
                     {
                         "type": "centered",
                         "text": "8. 1. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -420,7 +423,8 @@
                     {
                         "type": "centered",
                         "text": "8. 1. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -544,7 +548,8 @@
                     {
                         "type": "centered",
                         "text": "8. 1. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -712,7 +717,8 @@
                     {
                         "type": "centered",
                         "text": "8. 1. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -6586,5 +6592,8 @@
                 "footnotes": []
             }
         }
-    ]
+    ],
+    "bookId": 19,
+    "pageOffset": 0,
+    "collection": "mula"
 }
