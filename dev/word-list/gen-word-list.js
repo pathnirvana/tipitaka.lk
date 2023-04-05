@@ -55,8 +55,9 @@ const wordListPali = {}, wordListSinh = {}, splitWordsCorpus = { pali: [], sinh:
 const sumValues = obj => Object.values(obj).reduce((a, v) => a + v, 0)
 const dataInputFolder = path.join(__dirname, '../../public/static/text/')
 
-// select only mula files
-const inputFiles = fs.readdirSync(dataInputFolder).filter(name => /json$/.test(name)).filter(name => !/^atta/.test(name))
+// select only mula or atta files
+const isAtta = false, textSelection = new RegExp(isAtta ? '^atta' : '^(?!atta)')
+const inputFiles = fs.readdirSync(dataInputFolder).filter(name => /json$/.test(name)).filter(name => textSelection.test(name))
 let numEntries = 0, numFiles = 0
 inputFiles.forEach(filename => {
     const fileKey = filename.split('.')[0]
@@ -69,8 +70,8 @@ inputFiles.forEach(filename => {
 })
 console.log(`processed ${numEntries} entries from ${numFiles} files`)
 
-writeWordList(wordListPali, 'word-list-pali.txt')
-writeWordList(wordListSinh, 'word-list-sinh.txt')
+writeWordList(wordListPali, `word-list-pali${isAtta ? '-atta' : ''}.txt`)
+writeWordList(wordListSinh, `word-list-sinh${isAtta ? '-atta' : ''}.txt`)
 
 process.exit(0)
 

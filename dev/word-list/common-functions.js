@@ -57,7 +57,7 @@ function processTextFiles(filterFunc, operationFunc, dryRun = false) {
 }
 
 function getCstWordList() {
-    const cstPath = 'C:/Users/Janaka/Documents/node/cst/dev/pali/freq-totals-mul.txt'
+    const cstPath = '/Users/janaka/node/cst/dev/pali/freq-totals-mul.txt'
     const cstWords = []
     fs.readFileSync(cstPath, 'utf-8').split('\n').forEach(line => {
         const [w, freq, length, files] = line.trim().split(',')
