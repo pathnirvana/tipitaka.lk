@@ -71,7 +71,7 @@ const ignoreWords = JSON.parse(fs.readFileSync(path.join(__dirname, 'pali-ignore
 //potentialErrors('word-list-sinh.txt', '5-common-errors-sinh.txt', {}, linkSinh) // 5, 400, 5, 4
 //potentialErrors('word-list-sinh.txt', '17-common-errors-sinh.txt', ignoreWordsSinh, linkSinh) // 5, 400, 5, 4 - new list created after adding vp-cv kn-mn and kn-nc
 const ignoreWordsSinh = JSON.parse(fs.readFileSync(path.join(__dirname, 'sinh-ignore.json'), 'utf-8'))
-potentialErrors('word-list-sinh.txt', '17-common-errors-sinh.txt', ignoreWordsSinh, linkSinh) // 5, 400, 5, 4 - new list created after adding vp-cv kn-mn and kn-nc
+potentialErrors('word-list-sinh-atta.txt', '18-common-errors-sinh-atta.txt', ignoreWordsSinh, linkSinh) // 5, 400, 5, 4 - for all atta 
 
 
 mainWordThres = 1, errorWordThres = 40, freqRatio = 1, lengthThres = 4 // for inconsistencies 
