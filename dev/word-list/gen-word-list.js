@@ -43,12 +43,11 @@ function writeWordList(list, filePath, linkWGen = w => w) {
     const tbody = listAr.map(([w, sum, str]) => `<td><a href="https://tipitaka.lk/fts/${linkWGen(w)}/1-1-10">${w}</a></td><td>${sum}</td><td>${str}</td>`).join('</tr><tr>')
     if (filePath.length) {
         fs.writeFileSync(path.join(__dirname, filePath), listAr.map(ar => ar.join('\t')).join('\n'), 'utf-8')
-        writeHtml(tbody, filePath)
+        //writeHtml(tbody, filePath)
         console.log(`wrote ${Object.keys(list).length} words to ${filePath}`)
     }
     return tbody
 }
-
 
 /** count word */
 const wordListPali = {}, wordListSinh = {}, splitWordsCorpus = { pali: [], sinh: [] }
@@ -56,7 +55,7 @@ const sumValues = obj => Object.values(obj).reduce((a, v) => a + v, 0)
 const dataInputFolder = path.join(__dirname, '../../public/static/text/')
 
 // select only mula or atta files
-const isAtta = false, textSelection = new RegExp(isAtta ? '^atta' : '^(?!atta)')
+const isAtta = true, textSelection = new RegExp(isAtta ? '^(atta|anya)' : '^(?!(atta|anya))')
 const inputFiles = fs.readdirSync(dataInputFolder).filter(name => /json$/.test(name)).filter(name => textSelection.test(name))
 let numEntries = 0, numFiles = 0
 inputFiles.forEach(filename => {
