@@ -1,7 +1,5 @@
 {
     "filename": "sn-5-2",
-    "bookId": 20,
-    "pageOffset": 0,
     "pages": [
         {
             "pageNum": 140,
@@ -20,7 +18,8 @@
                     {
                         "type": "centered",
                         "text": "2. 1. 1",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -42,7 +41,8 @@
                     {
                         "type": "centered",
                         "text": "2. 1. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -259,7 +259,8 @@
                     {
                         "type": "centered",
                         "text": "2. 1. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -407,7 +408,8 @@
                     {
                         "type": "centered",
                         "text": "2. 1. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -477,7 +479,8 @@
                     {
                         "type": "centered",
                         "text": "2. 1. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -543,7 +546,8 @@
                     {
                         "type": "centered",
                         "text": "2. 1. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -694,7 +698,8 @@
                     {
                         "type": "centered",
                         "text": "2. 1. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -708,7 +713,8 @@
                     {
                         "type": "centered",
                         "text": "2. 1. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -784,7 +790,8 @@
                     {
                         "type": "centered",
                         "text": "2. 1. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -798,7 +805,8 @@
                     {
                         "type": "centered",
                         "text": "2. 1. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -884,7 +892,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -898,7 +907,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -912,7 +922,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -986,7 +997,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1064,7 +1076,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1090,7 +1103,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1169,7 +1183,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1181,20 +1196,29 @@
                         "text": "563. සත්තිමෙ භික්ඛවෙ, බොජ්ඣඞ්ගා භාවිතා බහුලීකතා අපාරා පාරං ගමනාය සංවත්තන්ති. කතමෙ සත්ත: සතිසම්බොජ්ඣඞ්ගො -පෙ- උපෙඛාසම්බොජ්ඣඞ්ගො. ඉමෙ ඛො භික්ඛවෙ, සත්තබොජ්ඣඞ්ගා භාවිතා බහුලීකතා අපාරා පාරං ගමනාය සංවත්තන්තීති. ඉදමවොච -පෙ- සත්ථා.{1}"
                     },
                     {
-                        "type": "paragraph",
-                        "text": "1. අප්පකා තෙ මනුස්සෙසු, යෙ ජනා පාරගාමිනො,අථායං ඉතරා පජා තීරමෙවානුධාවති."
+                        "type": "gatha",
+                        "text": "1. අප්පකා තෙ මනුස්සෙසු, යෙ ජනා පාරගාමිනො,\nඅථායං ඉතරා පජා තීරමෙවානුධාවති.",
+                        "level": 1
                     },
                     {
-                        "type": "paragraph",
-                        "text": "2. යෙ ච ඛො සම්මදක්ඛාතෙ ධම්මෙ ධම්මානුවත්තිනො,තෙ ජනා පාරමෙස්සන්ති මච්චුධෙය්යං සුදුත්තරං."
+                        "type": "gatha",
+                        "text": "2. යෙ ච ඛො සම්මදක්ඛාතෙ ධම්මෙ ධම්මානුවත්තිනො,\nතෙ ජනා පාරමෙස්සන්ති මච්චුධෙය්යං සුදුත්තරං.",
+                        "level": 1
                     },
                     {
-                        "type": "paragraph",
-                        "text": "3. කණ්හං ධම්මං විප්පහාය සුක්කං භාවෙථ පණ්ඩිතො,ඔකා අනොකං ආගම්ම{2} විවෙකෙ යත්ථ දූරමං.\n4. තත්රාභිරතිමිච්ඡෙය්ය හිත්වා කාමෙ අකිඤ්චනො,පරියොදපෙය්ය අත්තානං චිත්තක්ලෙසෙහි පණ්ඩිතො."
+                        "type": "gatha",
+                        "text": "3. කණ්හං ධම්මං විප්පහාය සුක්කං භාවෙථ පණ්ඩිතො,\nඔකා අනොකං ආගම්ම{2} විවෙකෙ යත්ථ දූරමං.",
+                        "level": 1
                     },
                     {
-                        "type": "paragraph",
-                        "text": "5. යෙසං සම්බොධිඅඞ්ගෙසු{3} සම්මා චිත්තං සුභාවිතං,ආදානපටිනිස්සග්ගෙ අනුපාදාය යෙ රතා.ඛීණාසවා ජුතිමන්තො තෙ ලොකෙ පරිනිබ්බුතාති."
+                        "type": "gatha",
+                        "text": "4. තත්රාභිරතිමිච්ඡෙය්ය හිත්වා කාමෙ අකිඤ්චනො,\nපරියොදපෙය්ය අත්තානං චිත්තක්ලෙසෙහි පණ්ඩිතො.",
+                        "level": 1
+                    },
+                    {
+                        "type": "gatha",
+                        "text": "5. යෙසං සම්බොධිඅඞ්ගෙසු{3} සම්මා චිත්තං සුභාවිතං,\nආදානපටිනිස්සග්ගෙ අනුපාදාය යෙ රතා.\nඛීණාසවා ජුතිමන්තො තෙ ලොකෙ පරිනිබ්බුතාති.",
+                        "level": 1
                     }
                 ],
                 "footnotes": [
@@ -1253,6 +1277,10 @@
                         "type": "paragraph"
                     },
                     {
+                        "type": "paragraph",
+                        "text": ""
+                    },
+                    {
                         "text": "5. යම් කෙනෙකුන්ගේ සිත බොජ්ඣඞ්ගයන්හි මැනැවින් වඩන ලද ද, යම් කෙනෙක් උපාදාන රහිත ව නිවනෙහි ඇලුණාහු ද ලොව්හි බැබළීම් ඇති ඒ රහත්හු පිරිනිවියාහු යි.",
                         "type": "paragraph"
                     }
@@ -1267,7 +1295,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1281,7 +1310,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1295,7 +1325,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1395,7 +1426,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1409,7 +1441,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1423,7 +1456,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1514,7 +1548,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1532,7 +1567,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1595,7 +1631,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1613,7 +1650,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1681,7 +1719,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1699,7 +1738,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1779,7 +1819,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1911,7 +1952,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1925,7 +1967,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1985,7 +2028,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2034,7 +2078,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2048,7 +2093,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2066,7 +2112,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2139,7 +2186,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2153,7 +2201,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2216,7 +2265,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2290,7 +2340,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2371,7 +2422,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2385,7 +2437,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2399,7 +2452,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2490,7 +2544,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2504,7 +2559,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2518,7 +2574,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2532,7 +2589,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2615,7 +2673,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2629,7 +2688,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2643,7 +2703,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2744,7 +2805,8 @@
                     {
                         "type": "centered",
                         "text": "2. 6. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3026,7 +3088,8 @@
                     {
                         "type": "centered",
                         "text": "2. 6. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3248,7 +3311,8 @@
                     {
                         "type": "centered",
                         "text": "2. 6. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3313,7 +3377,8 @@
                     {
                         "type": "centered",
                         "text": "2. 6. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3521,7 +3586,8 @@
                     {
                         "type": "centered",
                         "text": "2. 6. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3689,7 +3755,8 @@
                     {
                         "type": "centered",
                         "text": "2. 6. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3854,7 +3921,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3868,7 +3936,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3882,7 +3951,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3956,7 +4026,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3970,7 +4041,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3984,7 +4056,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3998,7 +4071,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 7-12",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4081,7 +4155,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 13-18",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4095,7 +4170,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 19-24",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4109,7 +4185,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 25-30",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4123,7 +4200,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 31-36",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4137,7 +4215,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 37-42",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4151,7 +4230,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 43-48",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4165,7 +4245,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 49-54",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4179,7 +4260,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7. 55-60",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4350,7 +4432,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 1-6",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4364,7 +4447,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 7-12",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4378,7 +4462,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 13-18",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4392,7 +4477,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 19-24",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4406,7 +4492,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 25-30",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4420,7 +4507,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 31-36",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4434,7 +4522,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 37-42",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4448,7 +4537,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 43-48",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4592,7 +4682,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 49-54",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4606,7 +4697,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 55",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4620,7 +4712,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 56.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4634,7 +4727,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 57.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4717,7 +4811,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 58.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4731,7 +4826,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 59.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4745,7 +4841,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8. 60.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4846,7 +4943,8 @@
                     {
                         "type": "centered",
                         "text": "2. 9. 1-12",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4879,7 +4977,8 @@
                     {
                         "type": "centered",
                         "text": "2. 10. 1-10",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4997,7 +5096,8 @@
                     {
                         "type": "centered",
                         "text": "2. 11. 1-12",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5033,7 +5133,8 @@
                     {
                         "type": "centered",
                         "text": "2. 12. 1-40",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5042,7 +5143,11 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": "757-796. තිස්සො ඉමා භික්ඛවෙ, එසනා. කතමා තිස්සො: කාමෙසනා, භවෙසනා, බ්රහ්මචරියෙසනා -පෙ- භාවෙතබ්බොති.\n(මග්ගසංයුත්තස්ස එසනාවග්ගො විය විත්ථාරෙතබ්බො)"
+                        "text": "757-796. තිස්සො ඉමා භික්ඛවෙ, එසනා. කතමා තිස්සො: කාමෙසනා, භවෙසනා, බ්රහ්මචරියෙසනා -පෙ- භාවෙතබ්බොති."
+                    },
+                    {
+                        "type": "paragraph",
+                        "text": "(මග්ගසංයුත්තස්ස එසනාවග්ගො විය විත්ථාරෙතබ්බො)"
                     },
                     {
                         "type": "centered",
@@ -5066,7 +5171,8 @@
                     {
                         "type": "centered",
                         "text": "2. 13. 1-40",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5151,8 +5257,12 @@
                         "level": 1
                     },
                     {
-                        "text": "757-796 මහණෙනි, මේ ඒසනා තුනෙකි. කවර තුනෙක් ද යත්: කාමේසනා, භාවේසනා, බ්‍රහ්මචරියේසනා යි. … වැඩිය යුත්තේ යි.\n(මග්ග සංයුත්තයෙහි ඒසනාවර්‍ගය මෙන් විතර කටයුතු)",
+                        "text": "757-796 මහණෙනි, මේ ඒසනා තුනෙකි. කවර තුනෙක් ද යත්: කාමේසනා, භාවේසනා, බ්‍රහ්මචරියේසනා යි. … වැඩිය යුත්තේ යි.",
                         "type": "paragraph"
+                    },
+                    {
+                        "type": "paragraph",
+                        "text": "(මග්ග සංයුත්තයෙහි ඒසනාවර්‍ගය මෙන් විතර කටයුතු)"
                     },
                     {
                         "text": "දොළොස්වැනි ඒසනා වර්‍ග යි.",
@@ -5219,7 +5329,8 @@
                     {
                         "type": "centered",
                         "text": "2. 14. 1-36",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5252,7 +5363,8 @@
                     {
                         "type": "centered",
                         "text": "2. 15. 1-30",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5285,7 +5397,8 @@
                     {
                         "type": "centered",
                         "text": "2. 16. 1-36",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5427,7 +5540,8 @@
                     {
                         "type": "centered",
                         "text": "2. 17. 1-120",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5460,7 +5574,8 @@
                     {
                         "type": "centered",
                         "text": "2. 18. 1-120",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5585,5 +5700,8 @@
                 "footnotes": []
             }
         }
-    ]
+    ],
+    "bookId": 20,
+    "pageOffset": 0,
+    "collection": "mula"
 }
