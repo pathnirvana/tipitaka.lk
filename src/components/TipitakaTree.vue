@@ -25,7 +25,7 @@
 
     <v-skeleton-loader v-else type="paragraph"></v-skeleton-loader>
     
-    <v-speed-dial v-model="speedDial" top right direction="bottom" transition="slide-y-transition" absolute>
+    <!-- <v-speed-dial v-model="speedDial" top right direction="bottom" transition="slide-y-transition" absolute>
       <template v-slot:activator>
         <v-btn v-model="speedDial" color="primary" fab small>
           <v-icon v-if="speedDial">mdi-close</v-icon>
@@ -41,13 +41,35 @@
       <v-btn fab small color="success" @click="$emit('closeTree')">
         <v-icon>mdi-menu-open</v-icon>
       </v-btn>
-    </v-speed-dial>
+    </v-speed-dial> -->
+    <v-layout>
+      <v-flex class="absolute-top-right">
+        <v-btn fab x-small color="error" @click="$emit('closeTree')" class="mb-2">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+        <v-btn fab x-small color="success" @click="syncBranches" class="mb-2">
+          <v-icon>mdi-sync</v-icon>
+        </v-btn>
+        <v-btn fab x-small color="success" @click="$store.commit('tree/closeAllBranches')" class="mb-2">
+          <v-icon>mdi-arrow-collapse-vertical</v-icon>
+        </v-btn>
+      </v-flex>
+    </v-layout>  
 
   </v-sheet>
 </template>
 
 <style >
 .tipitaka-tree .v-treeview-node__label { cursor: pointer; }
+.absolute-top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 10pt;
+}
 </style>
 
 <script>

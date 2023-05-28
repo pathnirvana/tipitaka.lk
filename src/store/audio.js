@@ -8,6 +8,8 @@ audio.onerror = audio.onpause = audio.onended = () => store.commit('audio/setPla
 audio.ondurationchange = () => store.commit('audio/setDuration', audio.duration)
 audio.ontimeupdate = () => store.dispatch('audio/timeUpdated', audio.currentTime)
 
+const audioBaseUrl = 'https://sajjha.sgp1.cdn.digitaloceanspaces.com/original/'
+
 async function loadLabels(src) {
   const response = await axios.get(src + '.txt');
   
@@ -81,7 +83,7 @@ export default {
 
   actions: {
     async initialize({commit}) {
-      const fileMap = await getJson('/audio/file-map.json')
+      const fileMap = await getJson('/static/data/file-map.json')
       console.log(fileMap)
       commit('setFileMap', fileMap)
     },
@@ -94,7 +96,7 @@ export default {
         data.pages.forEach(page => entries.push(...page.pali.entries))
         
         // parallel load all label files
-        const promises = audioFiles.map(async labelFile => await loadLabels('/audio/' + labelFile))
+        const promises = audioFiles.map(async labelFile => await loadLabels(audioBaseUrl + labelFile))
         const labelArrays = await Promise.all(promises), labels = []
         labelArrays.flat(1).forEach(label => labels[label.text - 1] = label) // concat all arrays and sort by label text
         entries.filter(e => !e.noAudio).forEach((entry, i) => entry.label = labels[i]) // assign labels to entries

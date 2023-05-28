@@ -11,7 +11,7 @@ import { settingsKey } from '@/constants.js'
 Vue.use(Vuex)
 
 const storedSettings = ['darkMode', 'defaultColumns', 'treeLanguage', 'footnoteMethod', 
-  'bandiLetters', 'specialLetters', 'showPageNumbers', 'fontSize', 'syncTree']
+  'bandiLetters', 'specialLetters', 'showPageNumbers', 'fontSize', 'syncTree', 'autoHideSearchBar']
 function saveSettings(state) {
   const obj = {}
   storedSettings.forEach(s => obj[s] = state[s])
@@ -41,6 +41,7 @@ export default new Vuex.Store({
     showPageNumbers: true,
     fontSize: 0,
     syncTree: true,
+    autoHideSearchBar: true,
     isLoaded: false,
     snackbar: {model: false, timeout: 2000, message: ''},
     androidBusy: false, // only used in android app

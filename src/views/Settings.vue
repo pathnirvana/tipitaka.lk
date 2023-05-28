@@ -51,6 +51,7 @@
             <v-switch v-model="specialLetters" class="mx-2" label="විශේෂ පාළි අකුරු භාවිතා කරන්න"></v-switch>
             <v-switch v-model="showPageNumbers" class="mx-2" label="පොතේ පිටු අංක පෙන්වන්න"></v-switch>
             <v-switch v-model="syncTree" class="mx-2" label="කියවන සූත්‍රය හා නාමාවලිය සමමුහූර්ත (sync) කරන්න"></v-switch>
+            <v-switch v-model="autoHideSearchBar" class="mx-2" label="සෙවුම් කොටුව ඉබේ අරින්න වසන්න"></v-switch>
           </v-card-text>
         </v-card>
       </v-col>
@@ -128,7 +129,7 @@ export default {
     ...mapState(['bandiLetters', 'specialLetters']),
 
     ...getVuexBindings(['darkMode', 'treeLanguage', 'footnoteMethod', 
-      'bandiLetters', 'specialLetters', 'showPageNumbers', 'fontSize', 'syncTree']),
+      'bandiLetters', 'specialLetters', 'showPageNumbers', 'fontSize', 'syncTree', 'autoHideSearchBar']),
     
     columnSelectionText() {
       switch(this.$store.state.defaultColumns) {
