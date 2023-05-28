@@ -239,7 +239,7 @@ export default {
       },
     },
     appBarHide() {
-      return this.$vuetify.breakpoint.height < 700 || !this.smAndUp
+      return (this.$vuetify.breakpoint.height < 700 || !this.smAndUp) && this.$store.state.autoHideSearchBar
     }
   },
   methods: {
