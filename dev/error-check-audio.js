@@ -15,8 +15,9 @@ function loadLabels(labelFile) {
 }
 
 const textInputFolder = path.join(__dirname, '../public/static/text/'),
-    audioInputFolder = path.join(__dirname, '../public/audio'),
-    fileMap = JSON.parse(fs.readFileSync(path.join(audioInputFolder, 'file-map.json'), 'utf-8')),
+    audioInputFolder = path.join(__dirname, 'audio'),
+    fileMapFilename = path.join(__dirname, '../public/static/data/file-map.json'),
+    fileMap = JSON.parse(fs.readFileSync(fileMapFilename, 'utf-8')),
     countLabelFiles = Object.values(fileMap).reduce((a, labels) => a + labels.length, 0)
 
 Object.entries(fileMap).forEach(([textFile, labelFiles]) => {
