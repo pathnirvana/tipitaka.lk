@@ -18,11 +18,12 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 1. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "unindented",
-                        "text": "(සාවත්ථිනිදානං:)"
+                        "text": "[සාවත්ථිනිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -47,7 +48,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 1. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -150,7 +152,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 1. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -175,7 +178,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 1. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -256,7 +260,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 1. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -269,7 +274,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 1. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -286,7 +292,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 1. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -425,7 +432,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 1. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -446,7 +454,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 1. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -526,7 +535,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 1. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -665,11 +675,12 @@
                     {
                         "type": "heading",
                         "text": "3. 2. 2. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "unindented",
-                        "text": "සාවත්ථි නිදානං:"
+                        "text": "[සාවත්ථි නිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -686,7 +697,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 2. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -777,7 +789,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 2. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -814,7 +827,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 2. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -987,7 +1001,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 2. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -1126,7 +1141,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 2. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -1342,7 +1358,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 2. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -1473,7 +1490,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 2. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -1592,7 +1610,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 2. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -1720,7 +1739,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 2. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -1844,11 +1864,12 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 3. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "unindented",
-                        "text": "(කුසිනාරා නිදානං:)"
+                        "text": "[කුසිනාරා නිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -1887,7 +1908,7 @@
                         "level": 1
                     },
                     {
-                        "text": "",
+                        "text": "need typing",
                         "type": "unindented"
                     },
                     {
@@ -1913,11 +1934,12 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 3. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "unindented",
-                        "text": "(සාවත්ථි නිදානං :)"
+                        "text": "[සාවත්ථි නිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -1971,7 +1993,7 @@
                         "level": 1
                     },
                     {
-                        "text": "",
+                        "text": "need typing",
                         "type": "unindented"
                     },
                     {
@@ -2017,11 +2039,12 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 3. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "unindented",
-                        "text": "(වෙසාලී නිදානං:)"
+                        "text": "[වෙසාලී නිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -2046,11 +2069,12 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 3. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "unindented",
-                        "text": "(කපිලවත්ථු නිදානං.)"
+                        "text": "[කපිලවත්ථු නිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -2247,11 +2271,12 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 3. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "unindented",
-                        "text": "(සාවත්ථි නිදානං)"
+                        "text": "[සාවත්ථි නිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -2344,11 +2369,12 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 3. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "unindented",
-                        "text": "(බාරාණසි නිදානං:)"
+                        "text": "[බාරාණසි නිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -2414,7 +2440,7 @@
                         "level": 1
                     },
                     {
-                        "text": "[ බරණැස් නිදානයි:]",
+                        "text": "[බරණැස් නිදානයි:]",
                         "type": "unindented"
                     },
                     {
@@ -2480,11 +2506,12 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 3. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "unindented",
-                        "text": "(සාවත්ථි නිදානං)"
+                        "text": "[සාවත්ථි නිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -2588,7 +2615,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 3. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2687,7 +2715,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 1. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2724,7 +2753,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 3. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2863,11 +2893,12 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
-                        "type": "paragraph",
-                        "text": "(සාවත්ථි නිදානං:)"
+                        "type": "unindented",
+                        "text": "[සාවත්ථි නිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -2934,8 +2965,8 @@
                         "level": 1
                     },
                     {
-                        "text": "",
-                        "type": "paragraph"
+                        "text": "need typing",
+                        "type": "unindented"
                     },
                     {
                         "type": "paragraph",
@@ -3000,7 +3031,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3021,7 +3053,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3042,7 +3075,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3152,7 +3186,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3181,7 +3216,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3278,7 +3314,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3295,7 +3332,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3411,7 +3449,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3572,7 +3611,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3609,7 +3649,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 11.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3719,7 +3760,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 12.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3740,7 +3782,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 4. 13.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3771,11 +3814,12 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 5. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "unindented",
-                        "text": "(සාවත්ථිනිදානං :)"
+                        "text": "[සාවත්ථි නිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -3923,7 +3967,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 5. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3960,7 +4005,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 5. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3985,7 +4031,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 5. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4014,7 +4061,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 5. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4172,7 +4220,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 5. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4193,7 +4242,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 5. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4214,7 +4264,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 5. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4239,7 +4290,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 5. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4381,7 +4433,8 @@
                     {
                         "type": "heading",
                         "text": "3. 3. 5. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4429,11 +4482,12 @@
                     {
                         "type": "heading",
                         "text": "3. 6. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "unindented",
-                        "text": "(සාවත්ථි නිදානං:)"
+                        "text": "[සාවත්ථි නිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -4597,7 +4651,8 @@
                     {
                         "type": "heading",
                         "text": "3. 6. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4705,7 +4760,8 @@
                     {
                         "type": "heading",
                         "text": "3. 6. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4718,7 +4774,8 @@
                     {
                         "type": "heading",
                         "text": "3. 6. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4731,7 +4788,8 @@
                     {
                         "type": "heading",
                         "text": "3. 6. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4804,7 +4862,8 @@
                     {
                         "type": "heading",
                         "text": "3. 6. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4817,7 +4876,8 @@
                     {
                         "type": "heading",
                         "text": "3. 6. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4844,7 +4904,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4865,7 +4926,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4978,7 +5040,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4991,7 +5054,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5004,7 +5068,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5017,7 +5082,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5030,7 +5096,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5043,7 +5110,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5056,7 +5124,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5069,7 +5138,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5199,7 +5269,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 11.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5212,7 +5283,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 12.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5225,7 +5297,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 13.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5238,7 +5311,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 14.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5251,7 +5325,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 15.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5264,7 +5339,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 16.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5277,7 +5353,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 17.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5290,7 +5367,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 18.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5420,7 +5498,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 19.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5433,7 +5512,8 @@
                     {
                         "type": "heading",
                         "text": "3. 7. 20.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5459,7 +5539,8 @@
                     {
                         "type": "heading",
                         "text": "3. 8. 1-170",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5638,7 +5719,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -5686,8 +5768,9 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "[need typing]",
-                        "type": "paragraph"
+                        "text": "[ඒකකනිපාතය]",
+                        "type": "centered",
+                        "level": 2
                     },
                     {
                         "type": "paragraph",
@@ -5710,7 +5793,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "6.(තෙළෙස්වන වර්‍ගයෙහි මුල) ‘පුග්ගල’ පදයෙන් යුත් සූත්‍ර ය. (එහි අග) ‘සාරිපුත්ත’ පදයෙන් ගත් සූත්‍ර ය. එසෙයින්ම ‘ඒතදග්ග’ පාළියෙහි එන සූත්‍ර ය. අට්ඨානපාළි සූත්‍ර ය, ‘නිබ්බිදාය - සම්බෝධාය’ යන පෙදෙන් බිඳි සූත්‍ර ය. ‘අනුප්පන්න - කුසල’ යන පෙදෙන් බිඳි සූත්‍ර ය. (මෙහි ද අනුප්පන්න අකුසල’ ආදී ව්‍යතිරේක පක්‍ෂය ද ඇතුළති)",
+                        "text": "6. (තෙළෙස්වන වර්‍ගයෙහි මුල) ‘පුග්ගල’ පදයෙන් යුත් සූත්‍ර ය. (එහි අග) ‘සාරිපුත්ත’ පදයෙන් ගත් සූත්‍ර ය. එසෙයින්ම ‘ඒතදග්ග’ පාළියෙහි එන සූත්‍ර ය. අට්ඨානපාළි සූත්‍ර ය, ‘නිබ්බිදාය - සම්බෝධාය’ යන පෙදෙන් බිඳි සූත්‍ර ය. ‘අනුප්පන්න - කුසල’ යන පෙදෙන් බිඳි සූත්‍ර ය. (මෙහි ද අනුප්පන්න අකුසල’ ආදී ව්‍යතිරේක පක්‍ෂය ද ඇතුළති)",
                         "type": "paragraph"
                     }
                 ],
@@ -5859,7 +5942,7 @@
                         "text": ""
                     },
                     {
-                        "text": "[need typing]",
+                        "text": "ප්‍රථමනිපාත යි",
                         "type": "centered",
                         "level": 1
                     }
@@ -5873,12 +5956,13 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "(දුකනිපාතො)",
+                        "text": "[දුකනිපාතො]",
                         "level": 2
                     },
                     {
-                        "type": "paragraph",
-                        "text": ""
+                        "type": "centered",
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -5932,12 +6016,12 @@
                     },
                     {
                         "type": "gatha",
-                        "text": "11. පුග්ගලො සුභනිමිත්තඤ්ච චෙතො බාලෙන පඤ්චමං,\nපඤ්ඤා අසොක පුබ්බකාරී ච තිත්තො ගො දුත්තප්පපච්චයඤ්ච.{2}",
+                        "text": "11. පුග්ගලො සුභනිමිත්තඤ්ච චෙතො බාලෙන පඤ්චමං,\nපඤ්ඤා අසොක පුබ්බකාරී ච තිත්තො ගො දුත්තප්පපච්චයඤ්ච.{*}",
                         "level": 1
                     },
                     {
                         "type": "gatha",
-                        "text": "12. වුත්තගරුකා ලහුකා දුට්ඨුල්ලෙන චාති\nආයාචානි චත්තාරො ඛතෙහි ච දූරපරිසචිත්තකො ච,{2}",
+                        "text": "12. වුත්තගරුකා ලහුකා දුට්ඨුල්ලෙන චාති\nආයාචානි චත්තාරො ඛතෙහි ච දූරපරිසචිත්තකො ච,{*}",
                         "level": 1
                     },
                     {
@@ -5953,7 +6037,7 @@
                     },
                     {
                         "type": "footnote",
-                        "text": "2. ගලිතබ්යඤ්ජනා පනෙ‘තා ගාථා විරනික්කිත්තා දිස්සන්ති."
+                        "text": "*. ගලිතබ්යඤ්ජනා පනෙ‘තා ගාථා විරනික්කිත්තා දිස්සන්ති."
                     }
                 ]
             },
@@ -5965,8 +6049,8 @@
                         "level": 2
                     },
                     {
-                        "type": "paragraph",
-                        "text": "(මෙහි සූත්‍ර සඞ්ඛ්‍යා පෙළෙහි එන සෙයිනැ යි දතයුතු.)"
+                        "type": "centered",
+                        "text": "[මෙහි සූත්‍ර සඞ්ඛ්‍යා පෙළෙහි එන සෙයිනැ යි දතයුතු.]"
                     },
                     {
                         "text": "1. (ප්‍රථම වර්‍ගයෙහි) වජ්ජ, පධාන, තපනීය - අතපනීය දෙකය, පස්වන උපඤ්ඤාත, සඤ්ඤෝජනීය, කණ්හ, සුක්ක, චරියා, වස්සූපනායිකාය යි සූත්‍ර (දසයෙකි.)",
@@ -6060,7 +6144,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -6158,15 +6243,17 @@
                     },
                     {
                         "text": "[need typing]",
-                        "type": "paragraph"
+                        "type": "centered",
+                        "level": 1
+                    },
+                    {
+                        "type": "centered",
+                        "text": "[need typing]",
+                        "level": 2
                     },
                     {
                         "type": "paragraph",
-                        "text": "[need typing]"
-                    },
-                    {
-                        "type": "paragraph",
-                        "text": "(මෙහි සූත්‍ර සංඛ්‍යා පෙළෙහි එන සෙයිනැයි දත යුතු)"
+                        "text": "[මෙහි සූත්‍ර සංඛ්‍යා පෙළෙහි එන සෙයිනැයි දත යුතු]"
                     },
                     {
                         "text": "1. භය, ලක්ඛණ, චින්තී, අච්චය, අයෝනිසෝ, අකුසල, සාවජ්ජ, සබ්‍යාපජ්ඣ, ඛත, මල සූත්‍රය යි (ප්‍රථම - බාල වර්‍ගයෙහි) දසයෙක.",
@@ -6302,5 +6389,6 @@
         }
     ],
     "bookId": 22,
-    "pageOffset": 0
+    "pageOffset": 0,
+    "collection": "mula"
 }
