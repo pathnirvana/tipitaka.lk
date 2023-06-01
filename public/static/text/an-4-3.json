@@ -1,7 +1,5 @@
 {
     "filename": "an-4-3",
-    "bookId": 23,
-    "pageOffset": 0,
     "pages": [
         {
             "pageNum": 196,
@@ -20,11 +18,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 1. 1",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(පඨමවලාහකසුත්තං)",
+                        "text": "[පඨමවලාහකසුත්තං]",
                         "level": 1
                     },
                     {
@@ -135,11 +134,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 1. 2",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(දුතියවලාහකසුත්තං)",
+                        "text": "[දුතියවලාහකසුත්තං]",
                         "level": 1
                     },
                     {
@@ -236,11 +236,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 1. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(කුම්භසුත්තං)",
+                        "text": "[කුම්භසුත්තං]",
                         "level": 1
                     },
                     {
@@ -366,11 +367,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 1. 4",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(උදකරහදසුත්තං)",
+                        "text": "[උදකරහදසුත්තං]",
                         "level": 1
                     },
                     {
@@ -463,7 +465,8 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 1. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -569,11 +572,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 1. 6{*}\n4. 3. 1. 7",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(මූසිකාසුත්තං)",
+                        "text": "[මූසිකාසුත්තං]",
                         "keyOffset": 7,
                         "level": 1
                     },
@@ -676,11 +680,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 1. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(බලිවද්දසුත්තං)",
+                        "text": "[බලිවද්දසුත්තං]",
                         "level": 1
                     },
                     {
@@ -815,11 +820,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 1. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(රුක්ඛසුත්තං)",
+                        "text": "[රුක්ඛසුත්තං]",
                         "level": 1
                     },
                     {
@@ -920,11 +926,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 1. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ආසිවිසසුත්තං)",
+                        "text": "[ආසිවිසසුත්තං]",
                         "level": 1
                     },
                     {
@@ -1061,16 +1068,17 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 2. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(කෙසිසුත්තං)",
+                        "text": "[කෙසිසුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "(සාවත්ථිනිදානං)"
+                        "text": "[සාවත්ථිනිදානං]"
                     },
                     {
                         "type": "paragraph",
@@ -1216,11 +1224,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 2. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(අස්සාජානීය-ජව සුත්තං)",
+                        "text": "[අස්සාජානීය-ජව සුත්තං]",
                         "level": 1
                     },
                     {
@@ -1321,11 +1330,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 2. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(අස්සාජානීය-පතොදසුත්තං)",
+                        "text": "[අස්සාජානීය-පතොදසුත්තං]",
                         "level": 1
                     },
                     {
@@ -1463,11 +1473,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 2. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(නාගසුත්තං)",
+                        "text": "[නාගසුත්තං]",
                         "level": 1
                     },
                     {
@@ -1613,11 +1624,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 2. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ඨානසුත්තං)",
+                        "text": "[ඨානසුත්තං]",
                         "level": 1
                     },
                     {
@@ -1711,11 +1723,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 2. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(අප්පමාදසුත්තං)",
+                        "text": "[අප්පමාදසුත්තං]",
                         "level": 1
                     },
                     {
@@ -1780,11 +1793,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 2. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ආරක්ඛසුත්තං)",
+                        "text": "[ආරක්ඛසුත්තං]",
                         "level": 1
                     },
                     {
@@ -1814,11 +1828,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 2. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(සංවෙජනීයසුත්තං)",
+                        "text": "[සංවෙජනීයසුත්තං]",
                         "level": 1
                     },
                     {
@@ -1929,11 +1944,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 2. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(භයසුත්තං)",
+                        "text": "[භයසුත්තං]",
                         "level": 1
                     },
                     {
@@ -1947,11 +1963,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 2. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(දුතියභයසුත්තං)",
+                        "text": "[දුතියභයසුත්තං]",
                         "level": 1
                     },
                     {
@@ -1975,16 +1992,17 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 3. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(භයසුත්තං)",
+                        "text": "[භයසුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "(සාවත්ථිනිදානං)"
+                        "text": "[සාවත්ථිනිදානං]"
                     },
                     {
                         "type": "paragraph",
@@ -2145,11 +2163,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 3. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(උදකොරොහභයසුත්තං)",
+                        "text": "[උදකොරොහභයසුත්තං]",
                         "level": 1
                     },
                     {
@@ -2280,11 +2299,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 3. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(පුගගලසුත්තං)",
+                        "text": "[පුගගලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -2386,11 +2406,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 3. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(දුතියපුග්ගලසුත්තං)",
+                        "text": "[දුතියපුග්ගලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -2412,11 +2433,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 3. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(තතියපුග්ගලසුත්තං)",
+                        "text": "[තතියපුග්ගලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -2507,11 +2529,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 3. 6",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(චතුත්ථපුග්ගලසුත්තං)",
+                        "text": "[චතුත්ථපුග්ගලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -2581,11 +2604,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 3. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(තථාගත අච්ඡරියසුත්තං)",
+                        "text": "[තථාගත අච්ඡරියසුත්තං]",
                         "level": 1
                     },
                     {
@@ -2678,11 +2702,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 3. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(දුතියතථාගතච්ඡරියසුත්තං)",
+                        "text": "[දුතියතථාගතච්ඡරියසුත්තං]",
                         "level": 1
                     },
                     {
@@ -2787,11 +2812,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 3. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ආනන්දච්ඡරියසුත්තං)",
+                        "text": "[ආනන්දච්ඡරියසුත්තං]",
                         "level": 1
                     },
                     {
@@ -2901,11 +2927,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 3. 10",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(චක්කවත්තිඅච්ඡරියසුත්තං)",
+                        "text": "[චක්කවත්තිඅච්ඡරියසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3038,16 +3065,17 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 4. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(සංයොජනපුග්ගලසුත්තං)",
+                        "text": "[සංයොජනපුග්ගලසුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "(සාවත්ථිනිදානං)"
+                        "text": "[සාවත්ථිනිදානං]"
                     },
                     {
                         "type": "paragraph",
@@ -3161,11 +3189,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 4 . 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(පටිභානපුග්ගලසුත්තං)",
+                        "text": "[පටිභානපුග්ගලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3183,11 +3212,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 4. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(නෙය්යපුග්ගලසුත්තං)",
+                        "text": "[නෙය්යපුග්ගලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3205,11 +3235,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 4. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ඵලුපජීවීපුග්ගලසුත්තං)",
+                        "text": "[ඵලුපජීවීපුග්ගලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3323,11 +3354,12 @@
                     {
                         "type": "centered",
                         "text": "4.3.4.5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(වජ්ජපුග්ගලසුත්තං)",
+                        "text": "[වජ්ජපුග්ගලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3361,11 +3393,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 4. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(පරිපූරකාරීපුග්ගලසුත්තං)",
+                        "text": "[පරිපූරකාරීපුග්ගලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3456,11 +3489,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 4. 7",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ගරුපුග්ගලසුත්තං)",
+                        "text": "[ගරුපුග්ගලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3490,11 +3524,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 4. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(නිකට්ඨපුග්ගලසුත්තං)",
+                        "text": "[නිකට්ඨපුග්ගලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3606,11 +3641,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 4. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ධම්මකථිකසුත්තං)",
+                        "text": "[ධම්මකථිකසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3708,11 +3744,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 4. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(වාදීසුත්තං)",
+                        "text": "[වාදීසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3735,21 +3772,23 @@
                     {
                         "type": "heading",
                         "text": "5. ආභාවග්ගො",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "centered",
                         "text": "4. 3. 5. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ආභාසුත්තං)",
+                        "text": "[ආභාසුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "(සාවත්ථිනාදානං)"
+                        "text": "[සාවත්ථිනිදානං]"
                     },
                     {
                         "type": "paragraph",
@@ -3766,11 +3805,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 5. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(පභාසුත්තං)",
+                        "text": "[පභාසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3886,11 +3926,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 5. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ආලොකසුත්තං)",
+                        "text": "[ආලොකසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3908,11 +3949,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 5. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ඔභාසසුත්තං)",
+                        "text": "[ඔභාසසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3930,11 +3972,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 5. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(පජ්ජොතසුත්තං)",
+                        "text": "[පජ්ජොතසුත්තං]",
                         "level": 1
                     },
                     {
@@ -3952,11 +3995,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 5. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(කාලසුත්තං)",
+                        "text": "[කාලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -4075,11 +4119,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 5. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(දුතියකාලසුත්තං)",
+                        "text": "[දුතියකාලසුත්තං]",
                         "level": 1
                     },
                     {
@@ -4105,11 +4150,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 5. 8",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(වචීදුච්චරිතසුත්තං)",
+                        "text": "[වචීදුච්චරිතසුත්තං]",
                         "level": 1
                     },
                     {
@@ -4127,11 +4173,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 5. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(වචීසුචරිතසුත්තං)",
+                        "text": "[වචීසුචරිතසුත්තං]",
                         "level": 1
                     },
                     {
@@ -4149,11 +4196,12 @@
                     {
                         "type": "centered",
                         "text": "4. 3. 5. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(සාරසුත්තං)",
+                        "text": "[සාරසුත්තං]",
                         "level": 1
                     },
                     {
@@ -4314,5 +4362,8 @@
                 "footnotes": []
             }
         }
-    ]
+    ],
+    "bookId": 23,
+    "pageOffset": 0,
+    "collection": "mula"
 }
