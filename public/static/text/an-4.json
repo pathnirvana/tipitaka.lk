@@ -1,7 +1,5 @@
 {
     "filename": "an-4",
-    "bookId": 23,
-    "pageOffset": 0,
     "pages": [
         {
             "pageNum": 2,
@@ -45,7 +43,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 1. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -179,16 +178,17 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 1. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "( පපතිතසුත්තං)",
+                        "text": "[පපතිතසුත්තං]",
                         "level": 1
                     },
                     {
-                        "type": "paragraph",
-                        "text": "(සාවත්ථිනිදානං:)"
+                        "type": "unindented",
+                        "text": "[සාවත්ථි නිදානං:]"
                     },
                     {
                         "type": "paragraph",
@@ -268,7 +268,7 @@
                     },
                     {
                         "text": "[සැවැත් නිදානයි:]",
-                        "type": "paragraph"
+                        "type": "unindented"
                     },
                     {
                         "text": "2. මහණෙනි, සතර කරුණෙකින් අසමන්‍වාගත පුද්ගල මෙසස්නෙන් ගිළිහිනැ යි කියනු ලැබේ. කවර සතර කරුණෙන යත්:",
@@ -334,11 +334,12 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 1. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(පඨමඛතසුත්තං)",
+                        "text": "[පඨමඛතසුත්තං]",
                         "level": 1
                     },
                     {
@@ -491,7 +492,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 1. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -662,7 +664,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 1. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -779,7 +782,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 1. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -902,7 +906,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 1. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1021,7 +1026,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 1. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1116,7 +1122,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 1. 9",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1148,7 +1155,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 1. 10",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1421,7 +1429,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 2. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1542,7 +1551,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 2. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1638,7 +1648,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 2. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1749,7 +1760,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 2. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1836,7 +1848,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 2. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1956,7 +1969,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 2. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2000,7 +2014,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 2. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2108,7 +2123,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 2. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2135,7 +2151,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 2. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2179,7 +2196,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 2. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2400,7 +2418,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 3. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2537,7 +2556,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 3. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2736,7 +2756,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 3. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2877,7 +2898,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 3. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2988,7 +3010,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 3. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3096,7 +3119,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 3. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3124,7 +3148,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 3. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3224,7 +3249,8 @@
                     {
                         "type": "centered",
                         "text": "4.1.3.8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3324,7 +3350,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 3. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3414,7 +3441,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 3. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3695,7 +3723,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 4. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3726,7 +3755,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 4. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3763,7 +3793,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 4. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3905,12 +3936,22 @@
                     },
                     {
                         "type": "gatha",
-                        "text": "76. යදා බුද්ධො අභිඤ්ඤාය ධම්මචක්කං පවත්තයි,\nසදෙවකස්ස ලොකස්ස සත්ථා අප්පටිපුග්ගලො.\n77. සක්කායඤ්ච නිරොධඤ්ච සක්කායස්ස ච සම්භවං,\nඅරියං චට්ඨඞ්ගිකං මග්ගං දුක්ඛූපසමගාමිනං.",
+                        "text": "76. යදා බුද්ධො අභිඤ්ඤාය ධම්මචක්කං පවත්තයි,\nසදෙවකස්ස ලොකස්ස සත්ථා අප්පටිපුග්ගලො.",
                         "level": 1
                     },
                     {
                         "type": "gatha",
-                        "text": "78. යෙපි දීඝායුකා දෙවා වණ්ණවන්තො යසස්සිනො,\nභීතා සන්තාසමාපාදුං සීහස්සෙවිතරෙමිගා.\n79. අවීතිවත්තා සක්කායං අනිච්චා කිර භො මයං,\nසුත්වා අරහතො වාක්යං විප්පමුත්තස්ස තාදිනො’ති.",
+                        "text": "77. සක්කායඤ්ච නිරොධඤ්ච සක්කායස්ස ච සම්භවං,\nඅරියං චට්ඨඞ්ගිකං මග්ගං දුක්ඛූපසමගාමිනං.",
+                        "level": 1
+                    },
+                    {
+                        "type": "gatha",
+                        "text": "78. යෙපි දීඝායුකා දෙවා වණ්ණවන්තො යසස්සිනො,\nභීතා සන්තාසමාපාදුං සීහස්සෙවිතරෙමිගා.",
+                        "level": 1
+                    },
+                    {
+                        "type": "gatha",
+                        "text": "79. අවීතිවත්තා සක්කායං අනිච්චා කිර භො මයං,\nසුත්වා අරහතො වාක්යං විප්පමුත්තස්ස තාදිනො’ති.",
                         "level": 1
                     }
                 ],
@@ -3943,8 +3984,16 @@
                         "type": "paragraph"
                     },
                     {
+                        "type": "paragraph",
+                        "text": ""
+                    },
+                    {
                         "text": "78-79. (ලාභාදියෙහි) තාදී වූ කෙලෙසුන් කෙරෙන් මිදුනු අර්‍හත් ඒ බුදුන්ගේ බස් අසා, “භවත්නි, අපි පඤ්චස්කන්‍ධය පැන නොගියම්හු ල, අනිත්‍යයම්හු ලැ” යි කියා, ශරීරවර්‍ණයෙන් වර්‍ණවත් වූ යශස්වී වූ දීර්‍ඝායුෂ්ක වූ යම් දෙවියෝ ඇත් ද ඔහු සිංහරාජයාට ඉතරමෘගයන් බියපත් වන්නාක් සෙයින් බිය වැදුනාහු සංත්‍රාසයට වැටුනාහ.",
                         "type": "paragraph"
+                    },
+                    {
+                        "type": "paragraph",
+                        "text": ""
                     }
                 ],
                 "footnotes": []
@@ -3957,7 +4006,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 4. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4079,7 +4129,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 4. 5",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4292,7 +4343,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 4. 6",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4396,7 +4448,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 4. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4529,7 +4582,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 4. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4622,7 +4676,12 @@
                     },
                     {
                         "type": "gatha",
-                        "text": "91. කාමෙසනා භවෙසනා බ්රහ්මචරියෙසනා සහ,\nඉති සච්චපරාමාසො දිට්ඨිට්ඨානා සමුස්සයා.\n92. සබ්බරාගවිරත්තස්ස තණ්හක්ඛයවිමුත්තිනො,\nඑසනා පටිනිස්සට්ඨා දිට්ඨිට්ඨානා සමූහතා.",
+                        "text": "91. කාමෙසනා භවෙසනා බ්රහ්මචරියෙසනා සහ,\nඉති සච්චපරාමාසො දිට්ඨිට්ඨානා සමුස්සයා.",
+                        "level": 1
+                    },
+                    {
+                        "type": "gatha",
+                        "text": "92. සබ්බරාගවිරත්තස්ස තණ්හක්ඛයවිමුත්තිනො,\nඑසනා පටිනිස්සට්ඨා දිට්ඨිට්ඨානා සමූහතා.",
                         "level": 1
                     },
                     {
@@ -4656,8 +4715,12 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "91-92 සියලු රාගයා කෙරෙන් විරක්ත වූ අර්‍හත්ඵල විමුක්තියෙන් සමන්‍වාගත වූ මහණහු විසින් කාමේසනාය, භවෙසනාය යන මෙය හා බ්‍රහ්මචරියේසනාය යන ඒසනාවෝ හරණ ලදහ. උස්ව නැඟ සිටුනා දෘෂ්ටීහු ද ඉතිසත්‍යපරාමර්‍ෂය ද යන දෘෂ්ටිසත්‍යයෝ නසන ලදහ.",
+                        "text": "91-92. සියලු රාගයා කෙරෙන් විරක්ත වූ අර්‍හත්ඵල විමුක්තියෙන් සමන්‍වාගත වූ මහණහු විසින් කාමේසනාය, භවෙසනාය යන මෙය හා බ්‍රහ්මචරියේසනාය යන ඒසනාවෝ හරණ ලදහ. උස්ව නැඟ සිටුනා දෘෂ්ටීහු ද ඉතිසත්‍යපරාමර්‍ෂය ද යන දෘෂ්ටිසත්‍යයෝ නසන ලදහ.",
                         "type": "paragraph"
+                    },
+                    {
+                        "type": "paragraph",
+                        "text": ""
                     },
                     {
                         "text": "93. සන්හුන් කෙලෙසුන් ඇති ස්මෘතිමත් කාය - චිත්තපස්සද්ධි ඇති නොපරදවන ලද සිවුසස් දත් ඒ මහණ ඒකාන්තයෙන් මානයාගේ ප්‍රහාණාභිසමයයෙන් “පතිලීන” යයි කියනු ලැබේ.",
@@ -4674,7 +4737,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 4. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4793,7 +4857,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 4. 10",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4952,7 +5017,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 5. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5115,7 +5181,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 5. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5157,7 +5224,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 5. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5311,7 +5379,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 5. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5355,7 +5424,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 5. 5",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5562,7 +5632,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 5. 6",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5694,7 +5765,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 5. 7",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5790,7 +5862,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 5. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5826,7 +5899,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 5. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5951,7 +6025,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1. 5. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -6066,7 +6141,12 @@
                     },
                     {
                         "type": "gatha",
-                        "text": "128. මිච්ඡාජීවෙන ජීවන්ති එකෙ සමණබ්රාහ්මණා,\nඑතෙ උපක්කිලෙසා වුත්තා බුද්ධෙනාදිච්චබන්ධුනා.\n129. යෙහි උපක්කිලිට්ඨා{1} එකෙ සමණබ්රාහ්මණා,\nන තපන්ති න භාසන්ති අද්ධුවා{2} සරජාපගා.",
+                        "text": "128. මිච්ඡාජීවෙන ජීවන්ති එකෙ සමණබ්රාහ්මණා,\nඑතෙ උපක්කිලෙසා වුත්තා බුද්ධෙනාදිච්චබන්ධුනා.",
+                        "level": 1
+                    },
+                    {
+                        "type": "gatha",
+                        "text": "129. යෙහි උපක්කිලිට්ඨා{1} එකෙ සමණබ්රාහ්මණා,\nන තපන්ති න භාසන්ති අද්ධුවා{2} සරජාපගා.",
                         "level": 1
                     },
                     {
@@ -6128,6 +6208,10 @@
                         "type": "paragraph"
                     },
                     {
+                        "type": "paragraph",
+                        "text": ""
+                    },
+                    {
                         "text": "130. මෝහාන්‍ධකාරයෙන් වළඳනා ලද තෘෂ්ණාවට දාස වූ තෘෂ්ණායොත්‍ර සහිත ඔහු කැකුළු අත්බව වඩත්. පුනර්‍භවය නැවැත ගණිත්.",
                         "type": "paragraph"
                     },
@@ -6153,5 +6237,8 @@
                 "footnotes": []
             }
         }
-    ]
+    ],
+    "bookId": 23,
+    "pageOffset": 0,
+    "collection": "mula"
 }
