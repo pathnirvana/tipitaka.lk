@@ -1,7 +1,5 @@
 {
     "filename": "an-6-2",
-    "bookId": 25,
-    "pageOffset": 0,
     "pages": [
         {
             "pageNum": 152,
@@ -20,11 +18,12 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 1. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(සොණ සුත්තං)",
+                        "text": "[සොණ සුත්තං]",
                         "level": 1
                     },
                     {
@@ -325,22 +324,28 @@
                     },
                     {
                         "type": "gatha",
-                        "text": "64. සෙලො යථා එකඝනො වාතෙන න සමීරති\nඑවං රූපා රසා සද්දා ගන්ධා ඵස්සා ච කෙවලා.\n\n65. ඉට්ඨා ධම්මා අනිට්ඨා ච නප්පවෙධෙන්ති තාදිනො.\nඨිතං චිත්තං විප්පමුත්තං වයංචස්සානුපස්සතී’ති.",
+                        "text": "64. සෙලො යථා එකඝනො වාතෙන න සමීරති\nඑවං රූපා රසා සද්දා ගන්ධා ඵස්සා ච කෙවලා.",
+                        "level": 1
+                    },
+                    {
+                        "type": "gatha",
+                        "text": "65. ඉට්ඨා ධම්මා අනිට්ඨා ච නප්පවෙධෙන්ති තාදිනො.\nඨිතං චිත්තං විප්පමුත්තං වයංචස්සානුපස්සතී’ති.",
                         "level": 1
                     },
                     {
                         "type": "centered",
                         "text": "6. 2. 1. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ඵග්ගුණසුත්තං)",
+                        "text": "[ඵග්ගුණසුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -395,6 +400,10 @@
                     {
                         "text": "64-65. ඒකඝන ශෛලපර්‍වතයෙක් යම්සේ සුළඟින් නො සැලේ ද, එ සෙයින් රූප ශබ්ද ගන්‍ධ රස ස්පර්‍ශ යන ඉෂ්ට වූ ද අනිෂ්ට වූ ද හැම ධර්‍මයෝ තාදීහුගේ සිත නො සලත්. ඔහුගේ ස්ථිත වූ සිත විමුක්ත වේ. එ චිත්තයාගේ උදයව්‍යය ද දක්නේ යි.",
                         "type": "paragraph"
+                    },
+                    {
+                        "type": "paragraph",
+                        "text": ""
                     },
                     {
                         "type": "centered",
@@ -608,11 +617,12 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 1. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ඡළාභිජාති සුත්තං)",
+                        "text": "[ඡළාභිජාති සුත්තං]",
                         "level": 1
                     },
                     {
@@ -881,16 +891,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 1. 4",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(ආසවසුත්තං)",
+                        "text": "[ආසවසුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -1073,11 +1084,12 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 1. 5",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(දාරුකම්මික සුත්තං)",
+                        "text": "[දාරුකම්මික සුත්තං]",
                         "level": 1
                     },
                     {
@@ -1220,11 +1232,12 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 1. 6",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(හත්ථිසාරිපුත්ත සුත්තං)",
+                        "text": "[හත්ථිසාරිපුත්ත සුත්තං]",
                         "level": 1
                     },
                     {
@@ -1504,11 +1517,12 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 1. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(මජ්ඣෙසුත්තං)",
+                        "text": "[මජ්ඣෙසුත්තං]",
                         "level": 1
                     },
                     {
@@ -1697,11 +1711,12 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 1. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(පුරිසින්ද්රියඤාණ සුත්තං)",
+                        "text": "[පුරිසින්ද්රියඤාණ සුත්තං]",
                         "level": 1
                     },
                     {
@@ -2112,16 +2127,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 1. 9",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(නිබ්බෙධික සුත්තං)",
+                        "text": "[නිබ්බෙධික සුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -2742,16 +2758,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 1. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(සීහනාද සුත්තං)",
+                        "text": "[සීහනාද සුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -2985,7 +3002,12 @@
                     },
                     {
                         "type": "gatha",
-                        "text": "සොණො ඵග්ගුණං ඡළාභිජාතියො ආසවා දාරුකම්මහත්ථිමජ්ඣං\nපස්ස චිත්තපරායනං උදකං නිබ්බෙධිකසීහනාදෙන වග්ගොති - සීමු.\n\nසොණො ඵග්ගුණොභිජාති ආසවා දාරුහත්ථි ච\nමජ්ඣෙ ඤාණං නිබ්බෙධිකං සීහනාදොති තෙ දසාති - මඡසං",
+                        "text": "සොණො ඵග්ගුණං ඡළාභිජාතියො ආසවා දාරුකම්මහත්ථිමජ්ඣං\nපස්ස චිත්තපරායනං උදකං නිබ්බෙධිකසීහනාදෙන වග්ගොති - සීමු.",
+                        "level": 1
+                    },
+                    {
+                        "type": "gatha",
+                        "text": "සොණො ඵග්ගුණොභිජාති ආසවා දාරුහත්ථි ච\nමජ්ඣෙ ඤාණං නිබ්බෙධිකං සීහනාදොති තෙ දසාති - මඡසං",
                         "level": 1
                     }
                 ],
@@ -3034,6 +3056,10 @@
                     {
                         "text": "සෝණ සූත්‍රය, ඵග්ගුණ සූත්‍රය, ඡළාභිජාති සූත්‍රය, ආසව සූත්‍රය, දාරුකම්මික සූත්‍රය, හත්‍ථිසාරිපුත්ත සූත්‍රය, මජ්ඣෙ සූත්‍රය, පුරිසින්‍ද්‍රියඤාණ සූත්‍රය, නිබ්බේධික සූත්‍රය, සීහනාද සූත්‍රය දැයි දශසූත්‍ර කෙනෙක් වෙත්.",
                         "type": "paragraph"
+                    },
+                    {
+                        "type": "paragraph",
+                        "text": ""
                     }
                 ],
                 "footnotes": []
@@ -3051,16 +3077,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 2. 1",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(අනාගාමිඵල සුත්තං)",
+                        "text": "[අනාගාමිඵල සුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -3089,16 +3116,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 2. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(අරහත්තඵල සුත්තං)",
+                        "text": "[අරහත්තඵල සුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -3127,16 +3155,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 2. 3",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(මිත්ත සුත්තං)",
+                        "text": "[මිත්ත සුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -3270,16 +3299,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 2. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(සඞ්ගණිකාරාම සුත්තං)",
+                        "text": "[සඞ්ගණිකාරාම සුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -3292,16 +3322,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 2. 5",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(දෙවතා සුත්තං)",
+                        "text": "[දෙවතා සුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -3510,16 +3541,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 2. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(සමාධිසුත්තං)",
+                        "text": "[සමාධිසුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -3664,16 +3696,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 2. 7",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(සක්ඛිභබ්බ සුත්තං)",
+                        "text": "[සක්ඛිභබ්බ සුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -3790,16 +3823,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 2. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(බල සුත්තං)",
+                        "text": "[බල සුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -3828,16 +3862,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 2. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(පඨමජ්ඣාන සුත්තං)",
+                        "text": "[පඨමජ්ඣාන සුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -3955,16 +3990,17 @@
                     {
                         "type": "centered",
                         "text": "6. 2. 2. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
-                        "text": "(දුතිය පඨමජ්ඣාන සුත්තං)",
+                        "text": "[දුතිය පඨමජ්ඣාන සුත්තං]",
                         "level": 1
                     },
                     {
                         "type": "unindented",
-                        "text": "**(සාවත්ථිනිදානං)**"
+                        "text": "**[සාවත්ථිනිදානං]**"
                     },
                     {
                         "type": "paragraph",
@@ -7902,5 +7938,8 @@
                 ]
             }
         }
-    ]
+    ],
+    "bookId": 25,
+    "pageOffset": 0,
+    "collection": "mula"
 }
