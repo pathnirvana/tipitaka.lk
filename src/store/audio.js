@@ -84,11 +84,10 @@ export default {
   actions: {
     async initialize({commit}) {
       const fileMap = await getJson('/static/data/file-map.json')
-      console.log(fileMap)
       commit('setFileMap', fileMap)
     },
 
-    async startEntry({state, commit, rootGetters, dispatch}, entry) {
+    async startEntry({state, commit, rootGetters, dispatch}, eInd) {
       const data = rootGetters['tabs/getActiveTab'].data, entries = [], audioFiles = state.fileMap[data.filename]
       if (!audioFiles) return // audio not availabe for this file
       if (data.filename != state.filename) { // different text file being played
@@ -107,7 +106,8 @@ export default {
       }
 
       commit('setAudioControls', true)
-      dispatch('updateAudio', { newInd: entry.cInd, dir: 1 })
+      const playEntry = state.entries.find(e => e.eInd[0] == eInd[0] && e.eInd[1] >= eInd[1])
+      dispatch('updateAudio', { newInd: playEntry ? playEntry.cInd : 0, dir: 1 })
     },
   
     moveParagraph({state, dispatch}, inc) {

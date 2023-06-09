@@ -9,39 +9,23 @@
       item-key="key"
       dense shaped class="tipitaka-tree"
     >
-      <template v-slot:prepend="{ item, open }">
-        <span @click.stop="">
-          <v-icon v-if="item.children">{{ open ? 'mdi-folder-open' : 'mdi-folder' }}</v-icon>
-          <v-icon v-else>mdi-file-document-outline</v-icon>
-        </span>
-      </template>
-
-      <template v-slot:label="{ item }">
-        <span @click.stop="openNewTab(item.key)" :id="item.key == getActiveKey ? 'activelabel' : ''">
-          {{ item[$store.state.treeLanguage] }}
-        </span>
+      <template v-slot:label="{ item, open }">
+          <span @mouseenter="hoveredKey = item.key">
+            <v-hover v-slot="{ hover: hoverIcon }">
+              <v-icon v-if="hoveredKey == item.key && getAudioAvailable(item.key)" 
+                @click.stop="openNewTab(item.key, true)" :color="hoverIcon ? 'error' : 'info'">mdi-play-circle</v-icon>
+              <v-icon v-else-if="item.children">{{ open ? 'mdi-folder-open' : 'mdi-folder' }}</v-icon>
+              <v-icon v-else>mdi-file-document-outline</v-icon>
+            </v-hover>
+            <span @click.stop="openNewTab(item.key)" :id="item.key == getActiveKey ? 'activelabel' : ''">
+              {{ item[$store.state.treeLanguage] }}
+            </span>
+          </span>
       </template>
     </v-treeview>
 
     <v-skeleton-loader v-else type="paragraph"></v-skeleton-loader>
     
-    <!-- <v-speed-dial v-model="speedDial" top right direction="bottom" transition="slide-y-transition" absolute>
-      <template v-slot:activator>
-        <v-btn v-model="speedDial" color="primary" fab small>
-          <v-icon v-if="speedDial">mdi-close</v-icon>
-          <v-icon v-else>mdi-dots-vertical</v-icon>
-        </v-btn>
-      </template>
-      <v-btn fab small color="success" @click="syncBranches">
-        <v-icon>mdi-sync</v-icon>
-      </v-btn>
-      <v-btn fab small color="success" @click="$store.commit('tree/closeAllBranches')">
-        <v-icon>mdi-arrow-collapse-vertical</v-icon>
-      </v-btn>
-      <v-btn fab small color="success" @click="$emit('closeTree')">
-        <v-icon>mdi-menu-open</v-icon>
-      </v-btn>
-    </v-speed-dial> -->
     <v-layout>
       <v-flex class="absolute-top-right">
         <v-btn fab x-small color="error" @click="$emit('closeTree')" class="mb-2">
@@ -80,14 +64,15 @@ export default {
   props: {  },
   data() {
     return {
-      speedDial: false, // speed dial with options
       selected: [], // not used
+      hoveredKey: '',
     }
   },
   computed: {
     ...mapState('tree', ['treeView', 'openBranches']),
     ...mapState('tabs', ['activeInd']),
     ...mapGetters('tabs', ['getActiveKey']),
+    ...mapGetters('audio', ['getAudioAvailable']),
     openedBranches: {
       get() { return this.openBranches },
       set(open) { this.$store.commit('tree/setOpenBranches', open) }
@@ -95,8 +80,8 @@ export default {
   },
 
   methods: {
-    openNewTab(key) {
-      this.$store.dispatch('tabs/openAndSetActive', { key })
+    openNewTab(key, playAudio = false) {
+      this.$store.dispatch('tabs/openAndSetActive', { key, playAudio })
     },
     syncBranches() {
       this.$store.dispatch('tree/syncOpenBranches', true) // force sync
@@ -112,7 +97,7 @@ export default {
     // init done here so can open tree afterwards
     await this.$store.dispatch('tree/initialize') // TODO can we open initial page before tree init completed - good for SEO
 
-    const params = this.$route.params
+    const params = {...this.$route.params, ...this.$route.query}  // query could contain playAudio=true - however might not allow audio without user interaction
     if (params.key) {
       console.log(`opening initial page ${JSON.stringify(params)}`)
       this.$store.dispatch('tabs/openAndSetActive', this.parseParams(params))
