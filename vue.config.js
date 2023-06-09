@@ -7,6 +7,7 @@ module.exports = {
   },
   parallel: 4,
   devServer: {
+    host: '0.0.0.0',
     port: 8081, // with hot reloading
     proxy: 'http://localhost:8400', // server js for tipitaka-queries
   },

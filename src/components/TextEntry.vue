@@ -171,7 +171,7 @@ export default {
       if (this.isAudioPlayingEntry) {
         this.$store.commit('audio/togglePlay')
       } else {
-        this.$store.dispatch('audio/startEntry', this.entry)
+        this.$store.dispatch('audio/startEntry', this.entry.eInd)
       }
     },
   },

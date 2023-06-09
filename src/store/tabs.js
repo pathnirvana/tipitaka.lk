@@ -120,20 +120,21 @@ export default {
         params.errorMessage = `supplied tab params ${params} is missing key props`
         return
       }
-      const eInd = params.eInd || params.keyProp.eInd // TipitakaLink, eIndStr or from key
-      params.entryStart = eInd[1]
-      params.pageEnd = params.pageStart = eInd[0]
+      params.eInd = params.eInd || params.keyProp.eInd // TipitakaLink, eIndStr or from key
+      params.entryStart = params.eInd[1]
+      params.pageEnd = params.pageStart = params.eInd[0]
       params.isLoaded = false
     },
     
-    openAndSetActive({ state, commit, dispatch, rootState }, params) {
+    async openAndSetActive({ state, commit, dispatch, rootState }, params) {
       params.showScanPage = false // set initial values
       params.columns = !params.language ? rootState.defaultColumns : Number(params.language == 'sinh')
       dispatch('normalizeParams', params)
       commit('openTab', params) // add params to state
       commit('setActiveInd', state.tabList.length - 1)
-      dispatch('loadTextData', state.tabList.length - 1)
+      await dispatch('loadTextData', state.tabList.length - 1)
       dispatch('tree/syncOpenBranches', false, { root: true })
+      if (params.playAudio) await dispatch('audio/startEntry', params.eInd, { root: true })
     },
 
     replaceAndSetActive({state, commit, dispatch}, params) {
