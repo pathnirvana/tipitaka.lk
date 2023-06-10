@@ -18,7 +18,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 1. 1",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -36,7 +37,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 1. 2-12",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -222,7 +224,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 2. 1",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -390,7 +393,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 2. 2",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -408,7 +412,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 2. 3",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -505,7 +510,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 2. 4",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -608,7 +614,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 2. 5",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -705,7 +712,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 2. 6",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1041,7 +1049,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 2. 7",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1110,7 +1119,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 2. 8",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1128,7 +1138,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 2. 9",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1212,7 +1223,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 2. 10",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1770,7 +1782,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 2. 11",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2125,7 +2138,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 3. 1",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2159,7 +2173,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 3. 2",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2292,7 +2307,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 3. 3",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2326,7 +2342,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 3. 4",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2360,7 +2377,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 3. 5",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2509,7 +2527,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 3. 6",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2543,7 +2562,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 3. 7",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2577,7 +2597,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 3. 8",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2726,7 +2747,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 3. 9",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2760,7 +2782,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 3. 10",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2794,7 +2817,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 3. 11",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2958,7 +2982,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 4. 1",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2992,7 +3017,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 4. 2",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3026,7 +3052,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 4. 3",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3180,7 +3207,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 4. 4",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3214,7 +3242,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 4. 5",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3248,7 +3277,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 4. 6",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3397,7 +3427,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 4. 7",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3431,7 +3462,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 4. 8",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3465,7 +3497,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 4. 9",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3614,7 +3647,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 4. 10",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3710,7 +3744,8 @@
                     {
                         "type": "centered",
                         "text": "10. 4. 5. 1-12",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3921,5 +3956,6 @@
         }
     ],
     "bookId": 27,
-    "pageOffset": 0
+    "pageOffset": 0,
+    "collection": "mula"
 }
