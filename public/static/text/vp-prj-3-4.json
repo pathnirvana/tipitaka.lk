@@ -8,7 +8,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -442,7 +443,8 @@
                     {
                         "type": "centered",
                         "text": "3. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2467,7 +2469,8 @@
                     {
                         "type": "centered",
                         "text": "3. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2966,8 +2969,10 @@
                         "text": "**සඞ්ඝාදිසෙසො**ති -පෙ- තෙනපි වුච්චති සඞ්ඝාදිසෙසොති."
                     },
                     {
-                        "type": "paragraph",
-                        "text": "<hr/>"
+                        "type": "centered",
+                        "text": "------------",
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3039,8 +3044,9 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "<hr/>",
-                        "type": "paragraph"
+                        "text": "------------",
+                        "type": "centered",
+                        "level": 1
                     },
                     {
                         "text": "1. මහණ තෙම නො දෙසූ ගෙබිම් ඇති උපද්‍රව සහිත වූ උපචාර රහිත වූ කුටියක් කෙරේ හෝ කරවා නම් සඟවෙසෙස් සමග දෙ දුකුළාඇවැතෙක් වෙයි.",
@@ -3606,7 +3612,8 @@
                     {
                         "type": "centered",
                         "text": "3. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4096,7 +4103,8 @@
                     {
                         "type": "centered",
                         "text": "3. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4762,7 +4770,8 @@
                     {
                         "type": "centered",
                         "text": "3. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5272,7 +5281,8 @@
                     {
                         "type": "centered",
                         "text": "3. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5633,7 +5643,8 @@
                     {
                         "type": "centered",
                         "text": "3. 11.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5844,7 +5855,8 @@
                     {
                         "type": "centered",
                         "text": "3. 12.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -6004,7 +6016,8 @@
                     {
                         "type": "centered",
                         "text": "3. 13.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -6551,5 +6564,6 @@
         }
     ],
     "bookId": 1,
-    "pageOffset": 0
+    "pageOffset": 0,
+    "collection": "mula"
 }
