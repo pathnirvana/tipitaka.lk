@@ -1,4 +1,37 @@
 {
+    "vp-prj": [
+        "vp-prj-1",
+        "vp-prj-2-1-1",
+        "vp-prj-2-1-3",
+        "vp-prj-2-1-4",
+        "vp-prj-2-2",
+        "vp-prj-2-2-1"
+    ],
+    "vp-prj-3": [
+        "vp-prj-3-1",
+        "vp-prj-3-2",
+        "vp-prj-3-3"
+    ],
+    "vp-prj-3-4": [
+        "vp-prj-3-4",
+        "vp-prj-3-5",
+        "vp-prj-3-6",
+        "vp-prj-3-7",
+        "vp-prj-3-9",
+        "vp-prj-3-12"
+    ],
+    "vp-prj-4": [
+        "vp-prj-4",
+        "vp-prj-5-1-1",
+        "vp-prj-5-1-5",
+        "vp-prj-5-2-1",
+        "vp-prj-5-2-6",
+        "vp-prj-5-3-1",
+        "vp-prj-5-3-5"
+    ],
+    "vp-cv": [
+        "vp-cv-1-1"
+    ],
     "dn-1": [
         "dn-1-1",
         "dn-1-2"
@@ -449,8 +482,5 @@
     ],
     "ap-dhs": [
         "ap-dhs-1"
-    ],
-    "vp-cv": [
-        "vp-cv-1-1"
     ]
 }
