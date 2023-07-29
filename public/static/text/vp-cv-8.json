@@ -8,7 +8,8 @@
                     {
                         "type": "centered",
                         "text": "8",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3421,7 +3422,8 @@
                     {
                         "type": "centered",
                         "text": "9.",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4959,7 +4961,8 @@
                     {
                         "type": "centered",
                         "text": "10.",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -7609,7 +7612,8 @@
                     {
                         "type": "centered",
                         "text": "11.",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -8133,11 +8137,11 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": "[need typing]"
+                        "text": "යානි ඛො පන භො ආනන්ද පොරාණකානි දුබ්බලචීවරානි තානි කථං කරිස්සථාති."
                     },
                     {
                         "type": "paragraph",
-                        "text": "[need typing]"
+                        "text": "තානි මහාරාජ උත්තරත්ථරණං කරිස්සාමාති."
                     },
                     {
                         "type": "paragraph",
@@ -8149,15 +8153,15 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": "යානි පන{4} භො ආනන්ද පොරාණකානි භුම්මත්ථරණානි තානි කථං කරිස්සථාති."
+                        "text": "යානි පන{4} භො ආනන්ද පොරාණකානි භිසිච්ඡවියො තානි කථං කරිස්සථාති."
                     },
                     {
                         "type": "paragraph",
-                        "text": "[need typing]"
+                        "text": "තානි මහාරාජ භුම්මත්ථරණං කරිස්සාමාති."
                     },
                     {
                         "type": "paragraph",
-                        "text": "[need typing]"
+                        "text": "යානි පන භො ආනන්ද පොරාණකානි භුම්මත්ථරණානි තානි කථං කරිස්සථාති."
                     },
                     {
                         "type": "paragraph",
@@ -8488,7 +8492,8 @@
                     {
                         "type": "centered",
                         "text": "12.",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
