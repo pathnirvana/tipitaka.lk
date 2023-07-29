@@ -77,6 +77,45 @@
         "vp-pct-2-4-9",
         "vp-pct-2-5"
     ],
+    "vp-mv": [
+        "vp-mv-1-1",
+        "vp-mv-1-2",
+        "vp-mv-1-3",
+        "vp-mv-1-4",
+        "vp-mv-1-5",
+        "vp-mv-1-6",
+        "vp-mv-1-7",
+        "vp-mv-1-8",
+        "vp-mv-1-9"
+    ],
+    "vp-mv-2": [
+        "vp-mv-2-1",
+        "vp-mv-2-2",
+        "vp-mv-2-3",
+        "vp-mv-3"
+    ],
+    "vp-mv-4": [
+        "vp-mv-4-1",
+        "vp-mv-4-2",
+        "vp-mv-5"
+    ],
+    "vp-mv-6": [
+        "vp-mv-6-1",
+        "vp-mv-6-2",
+        "vp-mv-6-3",
+        "vp-mv-6-4"
+    ],
+    "vp-mv-7": [
+        "vp-mv-7",
+        "vp-mv-8-1",
+        "vp-mv-8-2"
+    ],
+    "vp-mv-9": [
+        "vp-mv-9-1",
+        "vp-mv-9-2",
+        "vp-mv-10-1",
+        "vp-mv-10-2"
+    ],
     "vp-cv": [
         "vp-cv-1-1"
     ],
