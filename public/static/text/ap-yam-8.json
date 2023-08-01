@@ -4934,7 +4934,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "[need typing]",
+                        "text": "චිත්තයමකය නිමි.",
                         "level": 3
                     }
                 ],
@@ -11870,7 +11870,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "[need typing]",
+                        "text": "ධම්මයමක නිමි.",
                         "level": 2
                     }
                 ],
@@ -11879,5 +11879,6 @@
         }
     ],
     "bookId": 53,
-    "pageOffset": 0
+    "pageOffset": 0,
+    "collection": "mula"
 }

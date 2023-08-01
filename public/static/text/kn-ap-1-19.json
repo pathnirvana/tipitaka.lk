@@ -2108,21 +2108,22 @@
                         "level": 1
                     },
                     {
-                        "text": "[need typing]",
+                        "text": "යලි වගෙහි උද්දානය:",
                         "type": "unindented"
                     },
                     {
-                        "type": "paragraph",
-                        "text": "[need typing]"
-                    },
-                    {
-                        "type": "centered",
-                        "text": "",
+                        "type": "gatha",
+                        "text": "භික්ඛාදායී පරිවාර - සෙරෙය්‍ය සොභිත සහ\nඡත්ත බන්ධුජීව - සුපාරිචරිය ද\nකුමුද කුජට සහ - තමාලීවහ දැයි දස\nසසිය සසැට ගයෙකි - ඉන් වැඩියෙකුදු වේ ම ය. ",
                         "level": 1
                     },
                     {
                         "type": "centered",
-                        "text": "",
+                        "text": "භික්ෂාවර්‍ගදශකය යි.",
+                        "level": 1
+                    },
+                    {
+                        "type": "centered",
+                        "text": "ද්විතීය ශතකය සමාප්තයි",
                         "level": 1
                     },
                     {
@@ -12276,5 +12277,6 @@
         }
     ],
     "bookId": 39,
-    "pageOffset": 0
+    "pageOffset": 0,
+    "collection": "mula"
 }
