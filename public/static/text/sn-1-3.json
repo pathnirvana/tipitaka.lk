@@ -1085,12 +1085,12 @@
             "sinh": {
                 "entries": [
                     {
-                        "type": "paragraph",
-                        "text": "[need typing]"
+                        "type": "unindented",
+                        "text": "**එහි උද්දානය: **"
                     },
                     {
-                        "type": "unindented",
-                        "text": "[need typing]"
+                        "type": "paragraph",
+                        "text": "දහර, පුරිස, රාජ, පිය, අත්තරක්ඛිත, අප්පකා, අත්‍ථකරණ, මල්ලිකා, යඤ්ඤ, බන්‍ධන ය යි සූත්‍ර දශයෙකි."
                     },
                     {
                         "type": "heading",
