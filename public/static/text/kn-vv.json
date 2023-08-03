@@ -2170,17 +2170,17 @@
                         "level": 1
                     },
                     {
-                        "text": "__need typing__",
+                        "text": "ප්‍රථම පීඨවර්ග යි",
                         "type": "centered",
                         "level": 2
                     },
                     {
                         "type": "unindented",
-                        "text": "typing"
+                        "text": "එහි උද්දානය:"
                     },
                     {
                         "type": "paragraph",
-                        "text": "typing"
+                        "text": "පඤ්චපීඨ යැ තයෝ නාවා යැ දීපතිල දක්ඛිණා දෙක යැ පතිබ්බතා දෙක යැ සුණිසා දෙක යැ උත්තරා යැ සිරිමා යැ කෙසකාරිකා යැ යි එයින් වර්ගය කියනු ලැබේ."
                     }
                 ],
                 "footnotes": []
@@ -14008,16 +14008,17 @@
                         "level": 2
                     },
                     {
-                        "text": "need typing",
+                        "text": "එහි උද්දානය: ",
                         "type": "unindented"
                     },
                     {
                         "type": "paragraph",
-                        "text": "need typing"
+                        "text": "දළිද්ද (චිත්තලතා යැ නන්දන යැ යි) දෙක යැ, විහාර (මණිථූණ යැ සුවණ්ණ යැ යි) දෙක යැ භතක (අම්බවිමාන) ගොපල යැ කන්ථක යැ අනෙක වණ්ණ යැ මට්ටකුණ්ඩලී යැ සේරිස්සක යැ සුනික්ඛිත්ත යැ යි පුරුෂ විමාන පිළිබඳ තුන්වැනි වර්‍ග යි"
                     },
                     {
-                        "type": "paragraph",
-                        "text": "need typing"
+                        "type": "centered",
+                        "text": "සතරවෙනි බණවර යි. ",
+                        "level": 1
                     },
                     {
                         "type": "centered",
@@ -14030,5 +14031,6 @@
         }
     ],
     "bookId": 30,
-    "pageOffset": 0
+    "pageOffset": 0,
+    "collection": "mula"
 }
