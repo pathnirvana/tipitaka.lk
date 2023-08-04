@@ -2,59 +2,6 @@
     "filename": "kn-dhp",
     "pages": [
         {
-            "pageNum": 24,
-            "pali": {
-                "entries": [
-                    {
-                        "type": "centered",
-                        "text": "සුත්තන්තපිටකෙ",
-                        "level": 3
-                    },
-                    {
-                        "type": "centered",
-                        "text": "ඛුද්දකනිකායො",
-                        "level": 5
-                    },
-                    {
-                        "type": "centered",
-                        "text": "(දුතියො ගන්ථො)",
-                        "level": 1
-                    },
-                    {
-                        "type": "centered",
-                        "text": "ධම්මපදපාළි",
-                        "level": 3
-                    }
-                ],
-                "footnotes": []
-            },
-            "sinh": {
-                "entries": [
-                    {
-                        "text": "සූත්‍රපිටකයෙහි",
-                        "type": "centered",
-                        "level": 3
-                    },
-                    {
-                        "text": "කුදූගත් සඟිය",
-                        "type": "centered",
-                        "level": 5
-                    },
-                    {
-                        "text": "(දෙවෙනි ග්‍රන්‍ථය)",
-                        "type": "centered",
-                        "level": 1
-                    },
-                    {
-                        "text": "දම්පියාපෙළ",
-                        "type": "centered",
-                        "level": 3
-                    }
-                ],
-                "footnotes": []
-            }
-        },
-        {
             "pageNum": 26,
             "pali": {
                 "entries": [
