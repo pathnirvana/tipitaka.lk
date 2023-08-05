@@ -637,6 +637,82 @@
         "an-11-2"
     ],
     "ap-dhs": [
-        "ap-dhs-1"
+        "ap-dhs-1",
+        "ap-dhs-2-1"
+    ],
+    "ap-yam": [
+        "ap-yam-1",
+        "ap-yam-2-1",
+        "ap-yam-2-3",
+        "ap-yam-2-4",
+        "ap-yam-2-5"
+    ],
+    "ap-yam-3": [
+        "ap-yam-3-1",
+        "ap-yam-3-3-a",
+        "ap-yam-3-3-b",
+        "ap-yam-3-3-c",
+        "ap-yam-3-4-a",
+        "ap-yam-3-4-b",
+        "ap-yam-3-5"
+    ],
+    "ap-yam-4": [
+        "ap-yam-4",
+        "ap-yam-5-1",
+        "ap-yam-5-3",
+        "ap-yam-5-4",
+        "ap-yam-5-5"
+    ],
+    "ap-yam-6": [
+        "ap-yam-6-1",
+        "ap-yam-6-3",
+        "ap-yam-6-4",
+        "ap-yam-6-5"
+    ],
+    "ap-yam-7": [
+        "ap-yam-7-1",
+        "ap-yam-7-2-3",
+        "ap-yam-7-3",
+        "ap-yam-7-3-4",
+        "ap-yam-7-4",
+        "ap-yam-7-4-5"
+    ],
+    "ap-yam-7-5": [
+        "ap-yam-7-5",
+        "ap-yam-7-5-5",
+        "ap-yam-7-6",
+        "ap-yam-7-6-4",
+        "ap-yam-7-7"
+    ],
+    "ap-yam-8": [
+        "ap-yam-8-1",
+        "ap-yam-8-2",
+        "ap-yam-9-1",
+        "ap-yam-9-3",
+        "ap-yam-9-4",
+        "ap-yam-9-5"
+    ],
+    "ap-yam-10": [
+        "ap-yam-10-1",
+        "ap-yam-10-2"
+    ],
+    "ap-yam-10-3": [
+        "ap-yam-10-3-1-a",
+        "ap-yam-10-3-1-b",
+        "ap-yam-10-3-1-c",
+        "ap-yam-10-3-1-d",
+        "ap-yam-10-3-3-a",
+        "ap-yam-10-3-3-b"
+    ],
+    "ap-yam-10-3-4": [
+        "ap-yam-10-3-4",
+        "ap-yam-10-3-5-a",
+        "ap-yam-10-3-5-b",
+        "ap-yam-10-3-5-c",
+        "ap-yam-10-3-6-a",
+        "ap-yam-10-3-6-b"
+    ],
+    "ap-yam-10-4": [
+        "ap-yam-10-4"
     ]
 }
