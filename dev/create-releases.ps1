@@ -22,12 +22,20 @@ rm ./node_sqlite3.node
 echo 'created windows-x64 zip'
 
 cp dist_desktop/server-macos-x64 ./tipitaka-lk-macos
-./node_modules/.bin/node-pre-gyp install --directory=./node_modules/sqlite3 --target_platform=darwin
+./node_modules/.bin/node-pre-gyp install --directory=./node_modules/sqlite3 --target_platform=darwin --target_arch=x64
 cp node_modules/sqlite3/lib/binding/napi-v3-darwin-x64/node_sqlite3.node .
-tar -a -c -f dist_desktop/tipitaka-lk-macos.zip dist server tipitaka-lk-macos node_sqlite3.node
+tar -a -c -f dist_desktop/tipitaka-lk-macos-x64.zip dist server tipitaka-lk-macos node_sqlite3.node
 rm ./tipitaka-lk-macos
 rm ./node_sqlite3.node
-echo 'created macos zip'
+echo 'created macos-x64 zip'
+
+cp dist_desktop/server-macos-arm64 ./tipitaka-lk-macos
+./node_modules/.bin/node-pre-gyp install --directory=./node_modules/sqlite3 --target_platform=darwin --target_arch=arm64
+cp node_modules/sqlite3/lib/binding/napi-v6-darwin-unknown-arm64/node_sqlite3.node .
+tar -a -c -f dist_desktop/tipitaka-lk-macos-arm64.zip dist server tipitaka-lk-macos node_sqlite3.node
+rm ./tipitaka-lk-macos
+rm ./node_sqlite3.node
+echo 'created macos-arm64 zip'
 
 cp dist_desktop/server-linux-x64 ./tipitaka-lk-linux
 ./node_modules/.bin/node-pre-gyp install --directory=./node_modules/sqlite3 --target_platform=linux
