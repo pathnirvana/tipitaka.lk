@@ -2,6 +2,7 @@
 node_modules
 /dist
 /dist_desktop
+text-dump
 
 # local env files
 .env.local
