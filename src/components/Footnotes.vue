@@ -5,7 +5,7 @@
       <div class="footnotes-list html">
         <div v-for="(note, index) in footnotes" :key="index">
           <span class="fn-number">{{ note.number }}.</span>
-          <span v-for="(se, i) in note.text" :key="i" :class="se[1] || false">{{ se[0] }}</span>
+          <span v-for="(se, i) in note.parts" :key="i" :class="se[1] || false">{{ se[0] }}</span>
         </div>
       </div>
     </template>
