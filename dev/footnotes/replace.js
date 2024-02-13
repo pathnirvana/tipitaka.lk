@@ -17,8 +17,8 @@ fs.mkdirSync(outputDir)
 function writeFile(data, filename, modsCount) {
     const outputFile = path.join(outputDir, filename + '.json')
     assert(!fs.existsSync(outputFile), `output file ${filename} already exists in ${outputDir}`)
-    //fs.writeFileSync(outputFile, vkb.json(JSON.stringify(data)), 'utf-8')
-    //console.log(`wrote file ${filename} with ${modsCount} modifications`)
+    fs.writeFileSync(outputFile, vkb.json(JSON.stringify(data)), 'utf-8')
+    console.log(`wrote file ${filename} with ${modsCount} modifications`)
     processedFilesCount++
 }
 
@@ -40,10 +40,10 @@ fs.readFileSync(path.join(__dirname, checkedFilename), 'utf-8').split('\n').forE
     assert(footnote, `footnote ${fnIndex} does not exist to overwrite for ${line} line ${lineNum}`)
 
     //if (/^\d+$/.test(newText)) newText = newText + '.' // ending . has been removed by google sheets for empty footnotes
-    //if (!/^(\d+|\*|†|[a-z])\./.test(newText)) console.error(`malformed new text ${newText}`)
+    if (!/^(\d+|\*|†|[a-z])\./.test(newText)) console.error(`malformed new text ${newText}`)
     if (newText.length < 4 && footnote.text.length > 5) console.error(`possibly deleted new text ${newText} and ${footnote.text}`)
     const parts = newText.split(';')
-    if (parts.length >= 2 && parts.some(p => p.split('–').length != 2)) console.error(`line ${lineNum}: ${newText}`) 
+    //if (parts.length >= 2 && parts.some(p => p.split('–').length != 2)) console.error(`line ${lineNum}: ${newText}`) 
     footnote.text = newText.replace(/\[nl\]/g, '\n')
     modsCount++
     processedLinesCount++
