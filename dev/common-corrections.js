@@ -10,8 +10,8 @@ const sourceDir = path.join(__dirname, '../public/static/text')
 const outputDir = path.join(sourceDir, 'corrected')
 let processedFilesCount = 0
 
-const fileFilter = /atta-kn/
-const operation = 'attaFootnotes'
+const fileFilter = /./ // all files
+const operation = 'extraZWJRemove'
 
 const replaceHelper = (e, replaceFunc) => {
     const newText = replaceFunc(e.text)
@@ -77,7 +77,7 @@ const operationsList = {
         const allZWJ = (e) => replaceHelper(e, (text) => text.replace(/\u200d/g, ''))
         const extraZWJ = (e) => replaceHelper(e, (text) => {
             let t = text.replace(/([^\u0dca])\u200d([^\u0dca])/g, '$1$2')
-            return text.replace(/^\u200d/g, '').replace(/\u200d$/g, '')
+            return t.replace(/^\u200d/g, '').replace(/\u200d$/g, '')
         })
         data.pages.forEach(p => {
             p.pali.entries.forEach(e => modCount += allZWJ(e))

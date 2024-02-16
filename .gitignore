@@ -3,6 +3,8 @@ node_modules
 /dist
 /dist_desktop
 text-dump
+/public/static/text/fnreplaced
+/public/static/text/corrected
 
 # local env files
 .env.local
