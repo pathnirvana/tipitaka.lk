@@ -1,5 +1,5 @@
 /**
- * makes corections to the json text files that are hard to do via find-replace
+ * apply the footnotes-checked.txt file's changes to the json text files
  */
 "use strict"
 

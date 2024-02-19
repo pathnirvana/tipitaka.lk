@@ -41,13 +41,17 @@
             <v-list-item-icon><v-icon color="star">mdi-star</v-icon></v-list-item-icon>
             <v-list-item-title>{{ isView('Bookmarks') ? 'තරු යෙදුමෙන් පිටවෙන්න' : 'තරු යෙදූ සූත්‍ර / Bookmarks' }}</v-list-item-title>
           </v-list-item>
+          <v-list-item @click="toggleView('Abbreviations')" :input-value="isView('Abbreviations')">
+            <v-list-item-icon><v-icon>mdi-asterisk</v-icon></v-list-item-icon>
+            <v-list-item-title>{{ isView('Abbreviations') ? 'කෙටි යෙදුමෙන් පිටවෙන්න' : 'කෙටි යෙදුම් / Abbreviations' }}</v-list-item-title>
+          </v-list-item>
           <v-list-item to="Help" disabled>
             <v-list-item-icon><v-icon>mdi-help-circle</v-icon></v-list-item-icon>
             <v-list-item-title>උදව් / උපදෙස්</v-list-item-title>
           </v-list-item>
-          <v-list-item to="About" disabled>
+          <v-list-item href="https://pathnirvana.github.io/tipitaka.lk/" target="_blank">
             <v-list-item-icon><v-icon>mdi-information</v-icon></v-list-item-icon>
-            <v-list-item-title>අප ගැන</v-list-item-title>
+            <v-list-item-title>අප ගැන / About</v-list-item-title>
           </v-list-item>
           <v-list-item href="https://github.com/pathnirvana/tipitaka.lk" target="_blank">
             <v-list-item-icon><v-icon>mdi-github</v-icon></v-list-item-icon>

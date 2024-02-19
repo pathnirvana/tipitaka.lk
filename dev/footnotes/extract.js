@@ -1,3 +1,6 @@
+/**
+ * extract all the footnotes from the mula pali side
+ */
 "use strict"
 
 const fs = require('fs')

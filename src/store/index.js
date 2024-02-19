@@ -6,7 +6,7 @@ import tree from './tree.js'
 import search from './search.js'
 import tabs from './tabs.js'
 import audio from './audio.js'
-import { settingsKey } from '@/constants.js'
+import { settingsKey, getJson } from '@/constants.js'
 
 Vue.use(Vuex)
 
@@ -36,6 +36,7 @@ export default new Vuex.Store({
     defaultColumns: 2,
     treeLanguage: 'pali',
     footnoteMethod: Vuetify.framework.breakpoint.smAndDown ? 'click' : 'hover',
+    footnoteAbbreviations: {}, footnoteAbbreviationKeys: [], 
     bandiLetters: true,
     specialLetters: false,
     showPageNumbers: true,
@@ -69,7 +70,6 @@ export default new Vuex.Store({
         Object.assign(state, storedSettings)
         console.log(`settings loaded from storage key ${settingsKey}`)
       }
-      state.isLoaded = true
     },
     setSnackbar(state, { timeout, message, type }) {
       if (!message && type) message = snackbarTypeToMsg[type]
@@ -82,12 +82,20 @@ export default new Vuex.Store({
         // }
       }
     },
+    setAbbreviations(state, abbreviations) {
+      // TODO: need to recompute everytime beautify text is changed
+      state.footnoteAbbreviations = abbreviations
+      state.footnoteAbbreviationKeys = Object.keys(abbreviations)
+      state.isLoaded = true
+    },
   },
   
   actions: {
-    initialize({commit}) {
+    async initialize({commit}) {
       // read settings from local storage
       commit('loadSettings')
+      const abbreviations = await getJson('/static/data/footnote-abbreviations.json')
+      commit('setAbbreviations', abbreviations)
     },
   },
   

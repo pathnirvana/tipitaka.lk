@@ -14,7 +14,7 @@ SELECT filename, eind, language, highlight(tipitaka, 5, '<b>', '</b>') AS htext 
 
 FTS 4
 CREATE VIRTUAL TABLE tipitaka USING fts4(filename, eind, language, type, level, text, 
-    tokenize = unicode61 "tokenchars=" "seperators=()[]:");
+    tokenize = unicode61 "tokenchars=" " seperators=()[]:");
 SELECT filename, eind, language, snippet(tipitaka, '<b>', '</b>', '...', 5) AS htext FROM tipitaka 
     WHERE text MATCH 'අභික්කන්තවණ්ණා NEAR තෙනුපසඞ්කමි' AND filename LIKE 'an-%';
 */
@@ -28,7 +28,7 @@ SELECT filename, eind, language, snippet(tipitaka, '<b>', '</b>', '...', 5) AS h
 // process.exit(0)
 
 function writeEntry(e, eind, lang, fileKey) {
-    let text = e.text.replace(/[\*_~\$\u200d]|\{\d*\}/g, '') // zwj and footnote pointers
+    let text = e.text.replace(/[\*_~\$\u200d]|\{\S{0,2}\}/g, '') // zwj and footnote pointers
     text = text.replace(/\n/g, ' ') // looks like newline prevents matches for words bordering the newline
     if (writeFtsDb) {
         ftsDb.db.run('INSERT INTO tipitaka (filename, eind, language, type, level, text) VALUES (?, ?, ?, ?, ?, ?)', 
@@ -74,6 +74,7 @@ inputFiles.forEach(filename => {
 
 if (writeFtsDb) {
     ftsDb.run('COMMIT')
+    ftsDb.run('VACUUM') // reclaim unused space in db file
     ftsDb.close();
     console.log(`added ${numEntries} entries from ${numFiles} files to ftsDB`)
 }

@@ -20,6 +20,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "Settings" */ '../views/Settings.vue'),
   },
   {
+    path: '/abbreviations',
+    name: 'Abbreviations',
+    component: () => import(/* webpackChunkName: "Bookmarks" */ '../views/Abbreviations.vue'),
+  },
+  {
     path: '/bookmarks',
     name: 'Bookmarks',
     component: () => import(/* webpackChunkName: "Bookmarks" */ '../views/Bookmarks.vue'),

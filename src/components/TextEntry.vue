@@ -1,18 +1,18 @@
 <template>
   <td class="entry pa-2" :style="$store.getters['styles']" 
     @mouseover="showEntryOptions" @mouseleave="entryOptions = false">
-    <!--<span v-if="$parent.showTypeInfo" class="type-info">{{ entry.type + '.' + entry.level }}</span>-->
+
     <div :class="cssClasses" :level="entry.level" @click="showWordOptions">
       <AtuwaLinkIcon v-if="entry.type == 'heading'" :entry="entry" />
       <template v-for="(se, i) in entry.parts">
 
-        <v-tooltip v-if="se[1] == 'fn-pointer' && footnoteMethod != 'end-page'" :key="i" bottom
-          :open-on-click="footnoteMethod == 'click'" :open-on-hover="footnoteMethod == 'hover'" color="black">
-          <template v-slot:activator="{ on }">
-            <span v-on="on" class="fn-pointer">{{ se[0] }}</span>
+        <v-menu v-if="se[1] == 'fn-pointer' && footnoteMethod != 'end-page'" :key="i" bottom offset-y 
+          :open-on-hover="footnoteMethod == 'hover'" color="black" :close-on-content-click="false">
+          <template v-slot:activator="{ on, attrs }">
+            <span v-on="on" v-bind="attrs" class="fn-pointer">{{ se[0] }}</span>
           </template>
-          <span v-for="(ne, j) in matchingNoteParts(se[0])" :key="j" :class="ne[1] || false">{{ ne[0] }}</span>
-        </v-tooltip>
+          <Footnote :footnote="matchingFootnote(se[0])" class="px-2"></Footnote>
+        </v-menu>
 
         <span v-else :class="se[1] || false" :key="i+'else'" v-html="genWords(se[0])"></span>
 
@@ -78,7 +78,7 @@ td.entry { width: 50%; vertical-align: top; position: relative; text-align: just
 .centered[level="1"] { font-size: 1.1em; } /* normal text size here */
 .centered[level="0"] { font-family: 'sinhala'; } /* non bold, just centered */
 
-.html .fn-pointer { font-size: 0.9em; color: var(--v-error-base); cursor: pointer; padding: 0px 3px; }
+.html .fn-pointer { font-size: 0.9em; color: var(--v-info-base); cursor: pointer; padding: 0px 3px; }
 .html .underline { text-decoration: underline; text-decoration-color: var(--v-error-base); }
 .html .strike { text-decoration: line-through; text-decoration-color: var(--v-accent-base); }
 .html .bold { color: var(--v-info-base); }
@@ -95,11 +95,12 @@ import { mapState } from 'vuex'
 import { beautifyText } from '@/text-convert.mjs'
 import { entryToAudioKey } from '@/constants.js'
 import AtuwaLinkIcon from '@/components/AtuwaLinkIcon.vue'
+import Footnote from '@/components/Footnote.vue'
 const optionsAllowedTypes = ['unindented', 'gatha', 'paragraph']
 
 export default {
   name: 'TextEntry',
-  components: { AtuwaLinkIcon },
+  components: { AtuwaLinkIcon, Footnote },
   props: {
     entry: Object,
     footnotes: Array,
@@ -148,9 +149,9 @@ export default {
       //return text.replace(/([\s>‘“])([\u0d80-\u0dff\u200d]+)/g, '$1<w>$2</w>')
       return part.replace(/([\u0d80-\u0dff\u200d]+)/g, '<w>$1</w>')
     },
-    matchingNoteParts(number) {
-      const fn = this.footnotes.find(note => note.number == number)
-      return fn ? fn.parts : []
+    matchingFootnote(number) {
+      return this.footnotes.find(note => note.number == number)
+      //return fn ? fn.parts : []
     },
     onLinkCopy() {
       this.$store.commit('setSnackbar', { type: 'link-copied' })
