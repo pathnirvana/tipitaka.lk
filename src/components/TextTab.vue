@@ -29,8 +29,8 @@
             <TextEntry v-if="columns.sinh && !paliOnly" :entry="row.sinh" :footnotes="footnotes.sinh"></TextEntry>
           </tr>
           <tr>
-            <Footnotes v-if="columns.pali" language="pali" :footnotes="footnotes.pali"></Footnotes>
-            <Footnotes v-if="columns.sinh && !paliOnly" language="sinh" :footnotes="footnotes.sinh"></Footnotes>
+            <FootnoteList v-if="columns.pali" language="pali" :footnotes="footnotes.pali"></FootnoteList>
+            <FootnoteList v-if="columns.sinh && !paliOnly" language="sinh" :footnotes="footnotes.sinh"></FootnoteList>
           </tr>
         </template>
 
@@ -67,7 +67,7 @@
 
 <script>
 import TextEntry from '@/components/TextEntry.vue'
-import Footnotes from '@/components/Footnotes.vue'
+import FootnoteList from '@/components/FootnoteList.vue'
 import { beautifyText } from '@/text-convert.mjs'
 import { getBJTImageSrc } from '@/scanned-pages.js'
 import { mapState, mapGetters, mapMutations } from 'vuex'
@@ -82,7 +82,7 @@ export default {
   name: 'TextTab',
   components: {
     TextEntry,
-    Footnotes,
+    FootnoteList,
   },
   props: {
     tabIndex: Number,
@@ -157,10 +157,16 @@ export default {
       return {...entry, parts: this.textParts(text) }
     },
     processFootnote(fnote, language) {
-      let _0, number, text = beautifyText(fnote.text, language, this.$store.state)
+      let _0, number, content, text = beautifyText(fnote.text, language, this.$store.state)
       const m = /^([^\s\.\{\}]+)[\.\s]([\s\S]+)$/.exec(text) // [\s\S]+ needed for matching new lines
-      if (m) [_0, number, text] = m
-      return {...fnote, number, parts: this.textParts(text, language) }
+      if (m) [_0, number, content] = m
+      if (language == 'pali') {
+        // find available abbr and create parts for those
+        const abbrs = content.split(';').map(variant => variant.split('–')).filter(vpart => vpart.length > 1)
+          .map(vpart => vpart[1].split(',')).flat().map(a => a.trim()).filter(a => this.$store.state.footnoteAbbreviationKeys.includes(a))
+        if (abbrs.length) content = content.replace(new RegExp(`(${abbrs.join('|')})`, 'g'), '|$1℗fn-abbr|')
+      }
+      return {...fnote, number, parts: this.textParts(content, language) }
     },
     textParts(text) {
       text = text.replace(/\{(.+?)\}/g, this.$store.state.footnoteMethod == 'hidden' ? '' : '|$1℗fn-pointer|');
