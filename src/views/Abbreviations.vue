@@ -7,12 +7,14 @@
         <tr>
           <th class="table-heading">කෙටි යෙදුම</th>
           <th class="table-heading">අර්ථ විස්තරය</th>
+          <th class="table-heading">යෙදුනු වාර ගණන</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(desc, abbr) in footnoteAbbreviations" :key="abbr">
+        <tr v-for="([desc, count], abbr) in footnoteAbbreviations" :key="abbr">
           <td class="abbr">{{ abbr }}</td>
           <td class="desc">{{ desc }}</td>
+          <td class="count">{{ count }}</td>
         </tr>
       </tbody>
     </v-simple-table>

@@ -34,7 +34,7 @@ export default {
     ...mapState(['footnoteMethod']),
   },
   methods: {
-    matchingAbbrDescription(abbr) { return this.$store.state.footnoteAbbreviations[abbr] }
+    matchingAbbrDescription(abbr) { return this.$store.state.footnoteAbbreviations[abbr][0] }
   }
 }
 
