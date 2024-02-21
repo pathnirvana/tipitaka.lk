@@ -29,3 +29,4 @@ node_sqlite3.node
 tipitaka-lk.exe
 tipitaka-lk-macos
 server/fts.db
+server/fts.db copy
