@@ -1347,7 +1347,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "පස්වන වගයි",
+                        "text": "පස්වන වග යි",
                         "level": 1
                     }
                 ],
@@ -1636,7 +1636,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "සවන වගයි",
+                        "text": "සවන වග යි",
                         "level": 1
                     },
                     {
@@ -3671,7 +3671,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "සවැනි වගයි.",
+                        "text": "සවැනි වග යි.",
                         "type": "centered",
                         "level": 1
                     }
@@ -4600,7 +4600,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "දෙවන වගයි.",
+                        "text": "දෙවන වග යි.",
                         "type": "centered",
                         "level": 1
                     }
@@ -5005,7 +5005,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "තෙවන වගයි.",
+                        "text": "තෙවන වග යි.",
                         "type": "centered",
                         "level": 1
                     },
@@ -5637,7 +5637,7 @@
                         "level": 1
                     },
                     {
-                        "text": "පස්වන වගයි.",
+                        "text": "පස්වන වග යි.",
                         "type": "centered",
                         "level": 1
                     },
@@ -6006,7 +6006,7 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "සවන වගයි.",
+                        "text": "සවන වග යි.",
                         "type": "centered",
                         "level": 1
                     },
@@ -6559,17 +6559,22 @@
                         "type": "paragraph"
                     },
                     {
-                        "text": "අටවෙනි [ අමා ] වගයි.",
+                        "text": "අටවෙනි [ අමා ] වග යි.",
                         "type": "centered",
                         "level": 1
                     },
                     {
-                        "text": "ඒකක නිපාතයෙහි සූත්‍ර දහස* නිමි.",
+                        "text": "ඒකක නිපාතයෙහි සූත්‍ර දහස{*} නිමි.",
                         "type": "centered",
                         "level": 1
                     }
                 ],
-                "footnotes": []
+                "footnotes": [
+                    {
+                        "type": "footnote",
+                        "text": "*. විමසන්නේය."
+                    }
+                ]
             }
         }
     ],
