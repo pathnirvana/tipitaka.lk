@@ -226,7 +226,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "1. .1 4.",
+                        "text": "1. 1. 4.",
                         "level": 1
                     },
                     {
@@ -3295,7 +3295,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "2. .2 3.",
+                        "text": "2. 2. 3.",
                         "level": 1
                     },
                     {
@@ -3689,7 +3689,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "2. .2 7.",
+                        "text": "2. 2. 7.",
                         "level": 1
                     },
                     {
