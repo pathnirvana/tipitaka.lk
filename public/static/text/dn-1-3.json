@@ -7,7 +7,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "3",
+                        "text": "3.",
                         "level": 3,
                         "noAudio": true
                     },
@@ -76,7 +76,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "3",
+                        "text": "3.",
                         "level": 3
                     },
                     {
@@ -2727,7 +2727,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "4",
+                        "text": "4.",
                         "level": 3,
                         "noAudio": true
                     },
@@ -2763,7 +2763,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "4",
+                        "text": "4.",
                         "level": 3
                     },
                     {
@@ -3772,7 +3772,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "5",
+                        "text": "5.",
                         "level": 3,
                         "noAudio": true
                     },
@@ -3812,7 +3812,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "5",
+                        "text": "5.",
                         "level": 3
                     },
                     {
@@ -6246,7 +6246,7 @@
             }
         }
     ],
-    "bookId": "10",
+    "bookId": "10.",
     "pageOffset": 0,
     "collection": "mula"
 }

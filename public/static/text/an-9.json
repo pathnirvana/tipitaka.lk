@@ -27,7 +27,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 1. 1",
+                        "text": "9. 1. 1. 1.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -88,7 +88,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.1.1.",
+                        "text": "9. 1. 1. 1.",
                         "level": 1
                     },
                     {
@@ -216,7 +216,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 1. 2",
+                        "text": "9. 1. 1. 2.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -285,7 +285,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.2.2.",
+                        "text": "9. 1. 2. 2.",
                         "level": 1
                     },
                     {
@@ -323,7 +323,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 1. 3",
+                        "text": "9. 1. 1. 3.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -360,7 +360,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.3.3.",
+                        "text": "9. 1. 3. 3.",
                         "level": 1
                     },
                     {
@@ -557,7 +557,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 1. 4",
+                        "text": "9. 1. 1. 4.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -597,7 +597,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.4.4.",
+                        "text": "9. 1. 4. 4.",
                         "level": 1
                     },
                     {
@@ -796,7 +796,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 1. 5",
+                        "text": "9. 1. 1. 5.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -824,7 +824,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.5.5.",
+                        "text": "9. 1. 5. 5.",
                         "level": 1
                     },
                     {
@@ -891,7 +891,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 1. 6",
+                        "text": "9. 1. 1. 6.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -923,7 +923,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.6.6.",
+                        "text": "9. 1. 6. 6.",
                         "level": 1
                     },
                     {
@@ -1044,7 +1044,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 1. 7",
+                        "text": "9. 1. 1. 7.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -1081,7 +1081,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.7.7.",
+                        "text": "9. 1. 7. 7.",
                         "level": 1
                     },
                     {
@@ -1115,7 +1115,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 1. 8",
+                        "text": "9. 1. 1. 8.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -1164,7 +1164,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.8.8.",
+                        "text": "9. 1. 8. 8.",
                         "level": 1
                     },
                     {
@@ -1198,7 +1198,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 1. 9",
+                        "text": "9. 1. 1. 9.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -1217,7 +1217,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 1. 10",
+                        "text": "9. 1. 1. 10.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -1264,7 +1264,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.9.9.",
+                        "text": "9. 1. 9. 9.",
                         "level": 1
                     },
                     {
@@ -1282,7 +1282,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.10.10.",
+                        "text": "9. 1. 10. 10.",
                         "level": 1
                     },
                     {
@@ -1326,7 +1326,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 2. 1",
+                        "text": "9. 1. 2. 1.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -1376,7 +1376,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.2.1.",
+                        "text": "9. 1. 2. 1.",
                         "level": 1
                     },
                     {
@@ -1588,7 +1588,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 2. 2",
+                        "text": "9. 1. 2. 2.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -1625,7 +1625,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.2.2.",
+                        "text": "9. 1. 2. 2.",
                         "level": 1
                     },
                     {
@@ -1799,7 +1799,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 2. 3",
+                        "text": "9. 1. 2. 3.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -1860,7 +1860,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.2.3.",
+                        "text": "9. 1. 2. 3.",
                         "level": 1
                     },
                     {
@@ -2078,7 +2078,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 2. 4",
+                        "text": "9. 1. 2. 4.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -2146,7 +2146,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.2.4.",
+                        "text": "9. 1. 2. 4.",
                         "level": 1
                     },
                     {
@@ -2248,7 +2248,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 2. 5",
+                        "text": "9. 1. 2. 5.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -2304,7 +2304,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.2.5.",
+                        "text": "9. 1. 2. 5.",
                         "level": 1
                     },
                     {
@@ -2334,7 +2334,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 2. 6",
+                        "text": "9. 1. 2. 6.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -2357,7 +2357,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 2. 7",
+                        "text": "9. 1. 2. 7.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -2394,7 +2394,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.2.6.",
+                        "text": "9. 1. 2. 6.",
                         "level": 1
                     },
                     {
@@ -2416,7 +2416,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.2.7.",
+                        "text": "9. 1. 2. 7.",
                         "level": 1
                     },
                     {
@@ -2458,7 +2458,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 2. 8",
+                        "text": "9. 1. 2. 8.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -2511,7 +2511,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.2.8.",
+                        "text": "9. 1. 2. 8.",
                         "level": 1
                     },
                     {
@@ -2622,7 +2622,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 2. 9",
+                        "text": "9. 1. 2. 9.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -2703,7 +2703,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.2.9.",
+                        "text": "9. 1. 2. 9.",
                         "level": 1
                     },
                     {
@@ -2753,7 +2753,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 2. 10",
+                        "text": "9. 1. 2. 10.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -2814,7 +2814,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.2.10.",
+                        "text": "9. 1. 2. 10.",
                         "level": 1
                     },
                     {
@@ -2996,7 +2996,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 3. 1",
+                        "text": "9. 1. 3. 1.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -3035,7 +3035,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 3. 2",
+                        "text": "9. 1. 3. 2.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -3081,7 +3081,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.3.1.",
+                        "text": "9. 1. 3. 1.",
                         "level": 1
                     },
                     {
@@ -3119,7 +3119,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.3.2.",
+                        "text": "9. 1. 3. 2.",
                         "level": 1
                     },
                     {
@@ -3413,7 +3413,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 3. 3",
+                        "text": "9. 1. 3. 3.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -3436,7 +3436,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 3. 4",
+                        "text": "9. 1. 3. 4.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -3485,7 +3485,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.3.3.",
+                        "text": "9. 1. 3. 3.",
                         "level": 1
                     },
                     {
@@ -3507,7 +3507,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.3.4.",
+                        "text": "9. 1. 3. 4.",
                         "level": 1
                     },
                     {
@@ -3573,7 +3573,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 3. 5",
+                        "text": "9. 1. 3. 5.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -3630,7 +3630,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.3.5.",
+                        "text": "9. 1. 3. 5.",
                         "level": 1
                     },
                     {
@@ -3668,7 +3668,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 3. 6",
+                        "text": "9. 1. 3. 6.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -3721,7 +3721,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.3.6.",
+                        "text": "9. 1. 3. 6.",
                         "level": 1
                     },
                     {
@@ -3809,7 +3809,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 3. 7",
+                        "text": "9. 1. 3. 7.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -3845,7 +3845,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.3.7.",
+                        "text": "9. 1. 3. 7.",
                         "level": 1
                     },
                     {
@@ -3957,7 +3957,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 3. 8",
+                        "text": "9. 1. 3. 8.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -3997,7 +3997,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.3.8.",
+                        "text": "9. 1. 3. 8.",
                         "level": 1
                     },
                     {
@@ -4031,7 +4031,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 3. 9",
+                        "text": "9. 1. 3. 9.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -4054,7 +4054,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 3. 10",
+                        "text": "9. 1. 3. 10.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -4086,7 +4086,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.3.9.",
+                        "text": "9. 1. 3. 9.",
                         "level": 1
                     },
                     {
@@ -4108,7 +4108,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.3.10.",
+                        "text": "9. 1. 3. 10.",
                         "level": 1
                     },
                     {
@@ -4138,7 +4138,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 3. 11",
+                        "text": "9. 1. 3. 11.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -4180,7 +4180,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.3.11.",
+                        "text": "9. 1. 3. 11.",
                         "level": 1
                     },
                     {
@@ -4228,7 +4228,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 4. 1",
+                        "text": "9. 1. 4. 1.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -4269,7 +4269,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.4.1.",
+                        "text": "9. 1. 4. 1.",
                         "level": 1
                     },
                     {
@@ -4307,7 +4307,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 4. 2",
+                        "text": "9. 1. 4. 2.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -4352,7 +4352,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.4.2.",
+                        "text": "9. 1. 4. 2.",
                         "level": 1
                     },
                     {
@@ -4523,7 +4523,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 4. 3",
+                        "text": "9. 1. 4. 3.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -4564,7 +4564,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.4.3.",
+                        "text": "9. 1. 4. 3.",
                         "level": 1
                     },
                     {
@@ -4659,7 +4659,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 4. 4",
+                        "text": "9. 1. 4. 4.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -4695,7 +4695,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.4.4.",
+                        "text": "9. 1. 4. 4.",
                         "level": 1
                     },
                     {
@@ -4922,7 +4922,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 4. 5",
+                        "text": "9. 1. 4. 5.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -4975,7 +4975,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.4.5.",
+                        "text": "9. 1. 4. 5.",
                         "level": 1
                     },
                     {
@@ -5117,7 +5117,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 4. 6",
+                        "text": "9. 1. 4. 6.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -5153,7 +5153,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.4.6.",
+                        "text": "9. 1. 4. 6.",
                         "level": 1
                     },
                     {
@@ -5207,7 +5207,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 4. 7",
+                        "text": "9. 1. 4. 7.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -5272,7 +5272,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.4.7.",
+                        "text": "9. 1. 4. 7.",
                         "level": 1
                     },
                     {
@@ -5433,7 +5433,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 4. 8",
+                        "text": "9. 1. 4. 8.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -5494,7 +5494,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.4.8.",
+                        "text": "9. 1. 4. 8.",
                         "level": 1
                     },
                     {
@@ -5586,7 +5586,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 4. 9",
+                        "text": "9. 1. 4. 9.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -5626,7 +5626,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.4.9.",
+                        "text": "9. 1. 4. 9.",
                         "level": 1
                     },
                     {
@@ -5752,7 +5752,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 4. 10",
+                        "text": "9. 1. 4. 10.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -5793,7 +5793,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.4.10.",
+                        "text": "9. 1. 4. 10.",
                         "level": 1
                     },
                     {
@@ -6421,7 +6421,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 5. 1",
+                        "text": "9. 1. 5. 1.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -6476,7 +6476,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.5.1.",
+                        "text": "9. 1. 5. 1.",
                         "level": 1
                     },
                     {
@@ -6588,7 +6588,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 5. 2",
+                        "text": "9. 1. 5. 2.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -6633,7 +6633,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.5.2.",
+                        "text": "9. 1. 5. 2.",
                         "level": 1
                     },
                     {
@@ -6675,7 +6675,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 5. 3",
+                        "text": "9. 1. 5. 3.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -6715,7 +6715,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.5.3.",
+                        "text": "9. 1. 5. 3.",
                         "level": 1
                     },
                     {
@@ -6757,7 +6757,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 5. 4",
+                        "text": "9. 1. 5. 4.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -6797,7 +6797,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.5.4.",
+                        "text": "9. 1. 5. 4.",
                         "level": 1
                     },
                     {
@@ -6835,7 +6835,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 5. 5",
+                        "text": "9. 1. 5. 5.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -6862,7 +6862,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 5. 6",
+                        "text": "9. 1. 5. 6.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -6898,7 +6898,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.5.5.",
+                        "text": "9. 1. 5. 5.",
                         "level": 1
                     },
                     {
@@ -6924,7 +6924,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.5.6.",
+                        "text": "9. 1. 5. 6.",
                         "level": 1
                     },
                     {
@@ -6958,7 +6958,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 1. 5. 7",
+                        "text": "9. 1. 5. 7.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -6977,7 +6977,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 5. 8",
+                        "text": "9. 1. 5. 8.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -6996,7 +6996,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 5. 9",
+                        "text": "9. 1. 5. 9.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7015,7 +7015,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 1. 5. 10",
+                        "text": "9. 1. 5. 10.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7079,7 +7079,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.1.5.7.",
+                        "text": "9. 1. 5. 7.",
                         "level": 1
                     },
                     {
@@ -7097,7 +7097,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.5.8.",
+                        "text": "9. 1. 5. 8.",
                         "level": 1
                     },
                     {
@@ -7115,7 +7115,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.5.9.",
+                        "text": "9. 1. 5. 9.",
                         "level": 1
                     },
                     {
@@ -7133,7 +7133,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.1.5.10.",
+                        "text": "9. 1. 5. 10.",
                         "level": 1
                     },
                     {
@@ -7195,7 +7195,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 1. 1",
+                        "text": "9. 2. 1. 1.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7222,7 +7222,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 1. 2",
+                        "text": "9. 2. 1. 2.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7241,7 +7241,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 1. 3",
+                        "text": "9. 2. 1. 3.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7260,7 +7260,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 1. 4",
+                        "text": "9. 2. 1. 4.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7295,7 +7295,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.1.1.",
+                        "text": "9. 2. 1. 1.",
                         "level": 1
                     },
                     {
@@ -7321,7 +7321,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.1.2.",
+                        "text": "9. 2. 1. 2.",
                         "level": 1
                     },
                     {
@@ -7339,7 +7339,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.1.3.",
+                        "text": "9. 2. 1. 3.",
                         "level": 1
                     },
                     {
@@ -7357,7 +7357,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.1.4.",
+                        "text": "9. 2. 1. 4.",
                         "level": 1
                     },
                     {
@@ -7384,7 +7384,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 2. 1. 5",
+                        "text": "9. 2. 1. 5.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7403,7 +7403,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 1. 6",
+                        "text": "9. 2. 1. 6.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7422,7 +7422,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 1. 7",
+                        "text": "9. 2. 1. 7.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7441,7 +7441,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 1. 8",
+                        "text": "9. 2. 1. 8.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7460,7 +7460,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 1. 9",
+                        "text": "9. 2. 1. 9.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7479,7 +7479,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 1. 10",
+                        "text": "9. 2. 1. 10.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7507,7 +7507,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.2.1.5.",
+                        "text": "9. 2. 1. 5.",
                         "level": 1
                     },
                     {
@@ -7525,7 +7525,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.1.6.",
+                        "text": "9. 2. 1. 6.",
                         "level": 1
                     },
                     {
@@ -7543,7 +7543,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.1.7.",
+                        "text": "9. 2. 1. 7.",
                         "level": 1
                     },
                     {
@@ -7561,7 +7561,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.1.8.",
+                        "text": "9. 2. 1. 8.",
                         "level": 1
                     },
                     {
@@ -7579,7 +7579,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.1.9.",
+                        "text": "9. 2. 1. 9.",
                         "level": 1
                     },
                     {
@@ -7597,7 +7597,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.1.10.",
+                        "text": "9. 2. 1. 10.",
                         "level": 1
                     },
                     {
@@ -7631,7 +7631,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 1. 11",
+                        "text": "9. 2. 1. 11.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7694,7 +7694,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.1.11.",
+                        "text": "9. 2. 1. 11.",
                         "level": 1
                     },
                     {
@@ -7750,7 +7750,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 2. 1",
+                        "text": "9. 2. 2. 1.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7773,7 +7773,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 2. 2",
+                        "text": "9. 2. 2. 2.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7810,7 +7810,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.2.1.",
+                        "text": "9. 2. 2. 1.",
                         "level": 1
                     },
                     {
@@ -7832,7 +7832,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.2.2.",
+                        "text": "9. 2. 2. 2.",
                         "level": 1
                     },
                     {
@@ -7866,7 +7866,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 2. 2. 3",
+                        "text": "9. 2. 2. 3.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7893,7 +7893,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 2. 4",
+                        "text": "9. 2. 2. 4.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7920,7 +7920,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 2. 5",
+                        "text": "9. 2. 2. 5.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -7952,7 +7952,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.2.2.3.",
+                        "text": "9. 2. 2. 3.",
                         "level": 1
                     },
                     {
@@ -7978,7 +7978,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.2.4.",
+                        "text": "9. 2. 2. 4.",
                         "level": 1
                     },
                     {
@@ -8004,7 +8004,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.2.5.",
+                        "text": "9. 2. 2. 5.",
                         "level": 1
                     },
                     {
@@ -8038,7 +8038,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 2. 2. 6",
+                        "text": "9. 2. 2. 6.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8065,7 +8065,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 2. 7",
+                        "text": "9. 2. 2. 7.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8092,7 +8092,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 2. 8",
+                        "text": "9. 2. 2. 8.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8124,7 +8124,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.2.2.6.",
+                        "text": "9. 2. 2. 6.",
                         "level": 1
                     },
                     {
@@ -8150,7 +8150,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.2.7.",
+                        "text": "9. 2. 2. 7.",
                         "level": 1
                     },
                     {
@@ -8176,7 +8176,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.2.8.",
+                        "text": "9. 2. 2. 8.",
                         "level": 1
                     },
                     {
@@ -8210,7 +8210,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 2. 2. 9",
+                        "text": "9. 2. 2. 9.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8246,7 +8246,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.2.2.9.",
+                        "text": "9. 2. 2. 9.",
                         "level": 1
                     },
                     {
@@ -8284,7 +8284,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 2. 2. 10",
+                        "text": "9. 2. 2. 10.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8343,7 +8343,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.2.2.10.",
+                        "text": "9. 2. 2. 10.",
                         "level": 1
                     },
                     {
@@ -8403,7 +8403,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 3. 1",
+                        "text": "9. 2. 3. 1.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8434,7 +8434,7 @@
                     },
                     {
                         "type": "heading",
-                        "text": "9. 2. 3. 2-9",
+                        "text": "9. 2. 3. 2-9.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8458,7 +8458,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.3.1.",
+                        "text": "9. 2. 3. 1.",
                         "level": 1
                     },
                     {
@@ -8488,7 +8488,7 @@
                     },
                     {
                         "type": "heading",
-                        "text": "9.2.3.2-9",
+                        "text": "9. 2. 3. 2-9.",
                         "level": 1
                     },
                     {
@@ -8509,7 +8509,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 2. 3. 10",
+                        "text": "9. 2. 3. 10.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8546,7 +8546,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.2.3.10.",
+                        "text": "9. 2. 3. 10.",
                         "level": 1
                     },
                     {
@@ -8590,7 +8590,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 4. 1",
+                        "text": "9. 2. 4. 1.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8613,7 +8613,7 @@
                     },
                     {
                         "type": "heading",
-                        "text": "9. 2. 4. 2-9",
+                        "text": "9. 2. 4. 2-9.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8637,7 +8637,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.4.1.",
+                        "text": "9. 2. 4. 1.",
                         "level": 1
                     },
                     {
@@ -8659,7 +8659,7 @@
                     },
                     {
                         "type": "heading",
-                        "text": "9.2.4.2-9",
+                        "text": "9. 2. 4. 2-9.",
                         "level": 1
                     },
                     {
@@ -8680,7 +8680,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9. 2. 4. 10",
+                        "text": "9. 2. 4. 10.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8744,7 +8744,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "9.2.4.10.",
+                        "text": "9. 2. 4. 10.",
                         "level": 1
                     },
                     {
@@ -8805,7 +8805,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 5. 1",
+                        "text": "9. 2. 5. 1.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8824,7 +8824,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9. 2. 5. 2",
+                        "text": "9. 2. 5. 2.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8843,7 +8843,7 @@
                     },
                     {
                         "type": "heading",
-                        "text": "9. 2. 5. 3-18",
+                        "text": "9. 2. 5. 3-18.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8867,7 +8867,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.5.1.",
+                        "text": "9. 2. 5. 1.",
                         "level": 1
                     },
                     {
@@ -8885,7 +8885,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "9.2.5.2.",
+                        "text": "9. 2. 5. 2.",
                         "level": 1
                     },
                     {
@@ -8903,7 +8903,7 @@
                     },
                     {
                         "type": "heading",
-                        "text": "9.2.5.3-18",
+                        "text": "9. 2. 5. 3-18.",
                         "level": 1
                     },
                     {
@@ -8924,7 +8924,7 @@
                 "entries": [
                     {
                         "type": "heading",
-                        "text": "9. 2. 5. 19-340",
+                        "text": "9. 2. 5. 19-340.",
                         "level": 1,
                         "noAudio": true
                     },
@@ -8958,7 +8958,7 @@
                 "entries": [
                     {
                         "type": "heading",
-                        "text": "9.2.5.19-340",
+                        "text": "9. 2. 5. 19-340.",
                         "level": 1
                     },
                     {

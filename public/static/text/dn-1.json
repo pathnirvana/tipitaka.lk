@@ -2488,7 +2488,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "2",
+                        "text": "2.",
                         "level": 3,
                         "noAudio": true
                     },
@@ -2525,7 +2525,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "2",
+                        "text": "2.",
                         "level": 3
                     },
                     {
@@ -4862,7 +4862,7 @@
             }
         }
     ],
-    "bookId": "10",
+    "bookId": "10.",
     "pageOffset": 0,
     "collection": "mula"
 }

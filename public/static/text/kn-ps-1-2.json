@@ -7,7 +7,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "2",
+                        "text": "2.",
                         "level": 2
                     },
                     {
@@ -90,7 +90,7 @@
             "sinh": {
                 "entries": [
                     {
-                        "text": "2",
+                        "text": "2.",
                         "type": "centered",
                         "level": 2
                     },
