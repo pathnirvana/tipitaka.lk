@@ -27,7 +27,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "1",
+                        "text": "1.",
                         "level": 2,
                         "noAudio": true
                     },
@@ -71,7 +71,7 @@
                         "level": 3
                     },
                     {
-                        "text": "1",
+                        "text": "1.",
                         "type": "centered",
                         "level": 2
                     },
@@ -876,7 +876,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "2",
+                        "text": "2.",
                         "level": 2,
                         "noAudio": true
                     },
@@ -943,7 +943,7 @@
                         "level": 3
                     },
                     {
-                        "text": "2",
+                        "text": "2.",
                         "type": "centered",
                         "level": 2
                     },

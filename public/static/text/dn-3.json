@@ -31,7 +31,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "1",
+                        "text": "1.",
                         "level": 3,
                         "noAudio": true
                     },
@@ -96,7 +96,7 @@
                     },
                     {
                         "type": "centered",
-                        "text": "1",
+                        "text": "1.",
                         "level": 3
                     },
                     {
@@ -1753,7 +1753,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "2",
+                        "text": "2.",
                         "level": 3,
                         "noAudio": true
                     },
@@ -2965,7 +2965,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "3",
+                        "text": "3.",
                         "level": 3,
                         "noAudio": true
                     },
@@ -4123,7 +4123,7 @@
                 "entries": [
                     {
                         "type": "centered",
-                        "text": "4",
+                        "text": "4.",
                         "level": 3,
                         "noAudio": true
                     },
