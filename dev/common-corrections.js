@@ -11,7 +11,7 @@ const outputDir = path.join(sourceDir, 'corrected')
 let processedFilesCount = 0
 
 const fileFilter = /./ // all files
-const operation = 'extraZWJRemove'
+const operation = 'centeredBolding'
 
 const replaceHelper = (e, replaceFunc) => {
     const newText = replaceFunc(e.text)
@@ -68,6 +68,16 @@ const operationsList = {
         data.pages.forEach(p => {
             p.pali.entries.forEach(e => modCount += trimSpaces(e))
             p.sinh.entries.forEach(e => modCount += trimSpaces(e))
+        })
+        return modCount
+    },
+
+    // remove extra bolding symbols ** in heading/centered type text because it is bold by default
+    centeredBolding: (data) => {
+        let modCount = 0
+        const removeBold = (e) => replaceHelper(e, (text) => text.replace(/\*\*/g, ''))
+        data.pages.forEach(p => {
+            [...p.pali.entries, ...p.sinh.entries].filter(e => ['heading', 'centered'].includes(e.type)).forEach(e => modCount += removeBold(e))
         })
         return modCount
     },
