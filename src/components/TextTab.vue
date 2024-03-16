@@ -157,10 +157,10 @@ export default {
       return {...entry, parts: this.textParts(text) }
     },
     processFootnote(fnote, language) {
-      let _0, number, content, text = beautifyText(fnote.text, language, this.$store.state)
+      let _0, number = '', content = '', text = beautifyText(fnote.text, language, this.$store.state)
       const m = /^([^\s\.\{\}]+)[\.\s]([\s\S]+)$/.exec(text) // [\s\S]+ needed for matching new lines
       if (m) [_0, number, content] = m
-      if (language == 'pali') {
+      if (language == 'pali' && content) {
         // find available abbr and create parts for those
         const abbrs = content.split(';').map(variant => variant.split('–')).filter(vpart => vpart.length > 1)
           .map(vpart => vpart[1].split(',')).flat().map(a => a.trim()).filter(a => this.$store.state.footnoteAbbreviationKeys.includes(a))
