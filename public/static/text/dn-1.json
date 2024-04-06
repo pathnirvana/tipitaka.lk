@@ -4862,7 +4862,7 @@
             }
         }
     ],
-    "bookId": "10.",
+    "bookId": 10,
     "pageOffset": 0,
     "collection": "mula"
 }
