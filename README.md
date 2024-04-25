@@ -5,7 +5,9 @@ This webapp is built with Vue and Vuetify. It is designed to run in either
 * Website/SPA on https://tipitaka.lk
 * Offline Android app
 * Offline Desktop app (Windows/Mac/Linux)
-   
+
+[Github pages](https://pathnirvana.github.io/tipitaka.lk/) explaining the proofreading process
+
 ## Run Production Website
 * `npm run build` and deploy `dist` directory to webserver
 * export NODE_SERVER_MODE=production and run PM2 as below
