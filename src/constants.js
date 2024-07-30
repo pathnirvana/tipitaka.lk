@@ -1,3 +1,5 @@
+import { Capacitor } from "@capacitor/core"
+
 /** special flags and constants */
 export const tipitakaAppVersion = 1.0 // used to determine if app needs to be updated 
 
@@ -32,6 +34,11 @@ export const dictionaryInfo = {
     'VRI English': [Language.EN, 'VRI', 'en-vri', {d: 'Dictionary distributed with VRI Chatta Sangayana Software', g: true, n: 13508}],
     'Critical PD': [Language.EN, 'CR', 'en-critical', {d: 'Critical Pali Dictionary - limited number of words', o: 'extracted from https://cpd.uni-koeln.de/', n: 29669, g: true}],
 }
+
+export const IOS = 'ios';
+export const platform = Capacitor.getPlatform();
+export const dbFileNameDict = 'dict.db';
+export const dbFileNameFts = 'fts.db';
 
 // helper function to copy the title to the og:title
 export const copyMetaTitle = (title) => ({

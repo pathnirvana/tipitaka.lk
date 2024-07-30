@@ -406,6 +406,7 @@ const bjtBooksInfo = {
 }
 
 import axios from 'axios'
+import { IOS, platform } from './constants'
 // initialize bjt params
 let bjtBooksFolder, bjtImageExt
 async function initBjtParams() {
@@ -413,6 +414,8 @@ async function initBjtParams() {
     if (typeof Android != 'undefined') {
         // put 10/DN1_Page_001.jpg/png in either Pictures/bjt_newbooks or bjt_books for local testing
         bjtParams = Android.getBjtParams()
+    } else if (platform === IOS) {
+        bjtParams = 'https://pitaka.lk/bjt/newbooks|jpg';
     } else { // desktop app and website
         try {
             const response = await axios.get('/tipitaka-query/bjt-params')

@@ -1,0 +1,17 @@
+{
+  "appId": "lk.tipitaka.ios",
+  "appName": "tipitaka.lk",
+  "webDir": "dist",
+
+  
+    "plugins": {
+      "CapacitorSQLite": {
+
+        "androidDatabaseLocation": "default",
+        "iosIsEncryption": false,
+        "androidIsEncryption": false
+      }
+    }
+  
+  
+}

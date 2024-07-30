@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import router from '@/router'
 import { allFilterKeys, dictionaryInfo, searchSettingsKey, 
-  bookmarksStorageKey, callAndroidAsync } from '@/constants.js'
+  bookmarksStorageKey, callAndroidAsync, IOS } from '@/constants.js'
 import md5 from 'md5'
 import { isSinglishQuery, getPossibleMatches } from '@pnfo/singlish-search'
 import axios from 'axios'
+
+//ios
+import { querySqlite } from '../services/sqlite-service'
+import { copyDatabaseFiles } from '../services/filecopy-service'
+import { platform } from '../constants'
 
 const routeToSearchPage = (input, type) => {
   if (!input) return
@@ -148,6 +153,15 @@ export default {
         await callAndroidAsync('openDbs', dbVersions) // opens all dbs copying from assets if necessary
         commit('set', { name: 'androidBusy', value: false }, { root: true })
       }
+
+      //The platform check can be removed if android logic is also added to sqlite-service.
+      //So this file is free of platform specific details.
+      //Using the same variable name androidBusy due to duplication. would be good to rename to avoid confusion.
+      if (platform === IOS) {
+        commit('set', { name: 'androidBusy', value: true }, { root: true })
+        await copyDatabaseFiles();
+        commit('set', { name: 'androidBusy', value: false }, { root: true })
+      }
     },
 
     async openInlineDict({ commit, dispatch }, target) {
@@ -224,6 +238,8 @@ async function sendSearchQuery(type, sql) {
   if (typeof Android !== 'undefined') {
     const jsonStr = await callAndroidAsync('runSqliteQuery', { type, sql })
     return JSON.parse(jsonStr)
+  } else if (platform === IOS) {
+    return await querySqlite(type, sql);
   }
   //const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''
   //const baseUrl = 'https://tipitaka.lk' // force prod server
