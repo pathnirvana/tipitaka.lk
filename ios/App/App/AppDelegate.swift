@@ -14,48 +14,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window = UIWindow(frame: UIScreen.main.bounds)
         }
         
-        // Get the current root view controller
-        if let rootViewController = self.window?.rootViewController {
-            // Create a container view to hold the app's main content
-            let containerView = UIView()
-            containerView.translatesAutoresizingMaskIntoConstraints = false
-            rootViewController.view.addSubview(containerView)
-            
-            // Adjust constraints to avoid the cutout area
-            NSLayoutConstraint.activate([
-                containerView.leadingAnchor.constraint(equalTo: rootViewController.view.leadingAnchor),
-                containerView.trailingAnchor.constraint(equalTo: rootViewController.view.trailingAnchor),
-                containerView.topAnchor.constraint(equalTo: rootViewController.view.safeAreaLayoutGuide.topAnchor),
-                containerView.bottomAnchor.constraint(equalTo: rootViewController.view.safeAreaLayoutGuide.bottomAnchor)
-            ])
-            
-            // Add the original root view controller's view to the container view
-            if let originalView = rootViewController.view.subviews.first {
-                containerView.addSubview(originalView)
-                originalView.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    originalView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-                    originalView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-                    originalView.topAnchor.constraint(equalTo: containerView.topAnchor),
-                    originalView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-                ])
-            }
+        // Get the current root view controller, or create a new one if none exists
+        let rootViewController: UIViewController
+        if let existingRootViewController = self.window?.rootViewController {
+            rootViewController = existingRootViewController
         } else {
-            // If there is no root view controller, set up a new one
-            let rootViewController = UIViewController()
+            rootViewController = CAPBridgeViewController()
             self.window?.rootViewController = rootViewController
-            
-            // Create a container view to hold the app's main content
-            let containerView = UIView()
-            containerView.translatesAutoresizingMaskIntoConstraints = false
-            rootViewController.view.addSubview(containerView)
-            
-            // Adjust constraints to avoid the cutout area
+        }
+        
+        // Create a container view to hold the app's main content
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        rootViewController.view.addSubview(containerView)
+        
+        // Adjust constraints to avoid the cutout area at the top
+        NSLayoutConstraint.activate([
+            containerView.leadingAnchor.constraint(equalTo: rootViewController.view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: rootViewController.view.trailingAnchor),
+            containerView.topAnchor.constraint(equalTo: rootViewController.view.safeAreaLayoutGuide.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: rootViewController.view.bottomAnchor)
+        ])
+        
+        if let capacitorView = rootViewController.view.subviews.first {
+            containerView.addSubview(capacitorView)
+            capacitorView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                containerView.leadingAnchor.constraint(equalTo: rootViewController.view.leadingAnchor),
-                containerView.trailingAnchor.constraint(equalTo: rootViewController.view.trailingAnchor),
-                containerView.topAnchor.constraint(equalTo: rootViewController.view.safeAreaLayoutGuide.topAnchor),
-                containerView.bottomAnchor.constraint(equalTo: rootViewController.view.safeAreaLayoutGuide.bottomAnchor)
+                capacitorView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                capacitorView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                capacitorView.topAnchor.constraint(equalTo: containerView.topAnchor),
+                capacitorView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
             ])
         }
         

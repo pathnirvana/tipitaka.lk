@@ -3,7 +3,8 @@
       <v-card tile>
         <v-progress-linear :value="progessPercentage" class="my-0" height="3"></v-progress-linear>
       </v-card>
-      <v-toolbar dense flat>
+      
+      <v-toolbar :class="{ 'custom-toolbar-height': isIOS }" dense flat>
         
         <div class="text">{{ getActiveLabel.text }}</div>
         
@@ -62,11 +63,19 @@
 
 <style scoped>
 .text { text-overflow: ellipsis; overflow: hidden;}
+
+.custom-toolbar-height {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 </style>
 
 <script lang="js">
 import { mapState, mapGetters } from 'vuex'
 import Vue from 'vue'
+import { IOS, platform } from '../constants';
 
 export default {
     name: 'AudioControl',
@@ -100,6 +109,9 @@ export default {
             text = text.replace(/\d+[\.,]?/g, '') // numbers followed by punctuation
             return text.replace(/[#\*\$_~]/g, '') // formatting marks
         },
+        isIOS(){
+            return platform === IOS;
+        }
     },
 
     methods: {

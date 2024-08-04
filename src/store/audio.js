@@ -11,13 +11,30 @@ audio.ontimeupdate = () => store.dispatch('audio/timeUpdated', audio.currentTime
 const audioBaseUrl = 'https://sajjha.sgp1.cdn.digitaloceanspaces.com/original/'
 
 async function loadLabels(src) {
-  const response = await axios.get(src + '.txt');
-  
-  return response.data.split('\n').slice(0, -1) // removes the last empty line (for mac only \n)
-    .map(line => {
-      const [start, end, text] = line.trim().split('\t').map(n => Number(n))
-      return {start, end, text, src: src + '.m4a'}; // 3 fields, start/end/num(starts at 1)
-    }) 
+    try {
+      const req = src + '.txt';
+      console.log("Request : " + req);
+      const response = await axios.get(req, { timeout: 5000 });
+      
+      return response.data.split('\n').slice(0, -1) // removes the last empty line (for mac only \n)
+        .map(line => {
+          const [start, end, text] = line.trim().split('\t').map(n => Number(n))
+          return {start, end, text, src: src + '.m4a'}; // 3 fields, start/end/num(starts at 1)
+        }) 
+    }
+    catch (error) {
+      if (error.response) {
+          // Server responded with a status other than 2xx
+          console.error(`Server responded with status ${error.response.status} for URL: ${src}`);
+      } else if (error.request) {
+          // Request was made but no response was received
+          console.error(`No response received for URL: ${src}`, error.message);
+      } else {
+          // Something happened in setting up the request
+          console.error(`Error in setting up request for URL: ${src}`, error.message);
+      }
+      throw error;
+    }
 }
 
 export default {
@@ -88,26 +105,29 @@ export default {
     },
 
     async startEntry({state, commit, rootGetters, dispatch}, eInd) {
-      const data = rootGetters['tabs/getActiveTab'].data, entries = [], audioFiles = state.fileMap[data.filename]
-      if (!audioFiles) return // audio not availabe for this file
-      if (data.filename != state.filename) { // different text file being played
-        // reload text entries and the labels
-        data.pages.forEach(page => entries.push(...page.pali.entries))
-        
-        // parallel load all label files
-        const promises = audioFiles.map(async labelFile => await loadLabels(audioBaseUrl + labelFile))
-        const labelArrays = await Promise.all(promises), labels = []
-        labelArrays.flat(1).forEach(label => labels[label.text - 1] = label) // concat all arrays and sort by label text
-        entries.filter(e => !e.noAudio).forEach((entry, i) => entry.label = labels[i]) // assign labels to entries
-        Object.preventExtensions(entries)
-        state.entries = entries
-        state.filename = data.filename
-        //const noAudio = /(^$|^\$.+$|^[\d\.,\- ]+$)/.test(paliEntry.text) || paliEntry.noAudio // empty, starts with $ or all numbers
+      try {
+        const data = rootGetters['tabs/getActiveTab'].data, entries = [], audioFiles = state.fileMap[data.filename]
+        if (!audioFiles) return // audio not availabe for this file
+        if (data.filename != state.filename) { // different text file being played
+          // reload text entries and the labels
+          data.pages.forEach(page => entries.push(...page.pali.entries))
+          
+          // parallel load all label files
+          const promises = audioFiles.map(async labelFile => await loadLabels(audioBaseUrl + labelFile))
+          const labelArrays = await Promise.all(promises), labels = []
+          labelArrays.flat(1).forEach(label => labels[label.text - 1] = label) // concat all arrays and sort by label text
+          entries.filter(e => !e.noAudio).forEach((entry, i) => entry.label = labels[i]) // assign labels to entries
+          Object.preventExtensions(entries)
+          state.entries = entries
+          state.filename = data.filename
+          //const noAudio = /(^$|^\$.+$|^[\d\.,\- ]+$)/.test(paliEntry.text) || paliEntry.noAudio // empty, starts with $ or all numbers
+        }
+        commit('setAudioControls', true)
+        const playEntry = state.entries.find(e => e.eInd[0] == eInd[0] && e.eInd[1] >= eInd[1])
+        dispatch('updateAudio', { newInd: playEntry ? playEntry.cInd : 0, dir: 1 })
+      } catch (error) {
+        console.error('Error in startEntry:', error.message);
       }
-
-      commit('setAudioControls', true)
-      const playEntry = state.entries.find(e => e.eInd[0] == eInd[0] && e.eInd[1] >= eInd[1])
-      dispatch('updateAudio', { newInd: playEntry ? playEntry.cInd : 0, dir: 1 })
     },
   
     moveParagraph({state, dispatch}, inc) {
@@ -146,6 +166,5 @@ export default {
       }
       commit('setCurrentTime', newTime)
     },
-    
   },
 }
