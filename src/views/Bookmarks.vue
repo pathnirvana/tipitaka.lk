@@ -5,7 +5,7 @@
     <v-simple-table v-if="$store.getters.isLoaded">
       <tbody>
         <tr v-for="(bookmark, bKey) in bookmarks" :key="bKey">
-          <td :style="{ paddingTop: '10px', paddingBottom: '10px'}">
+          <td :style="getTdStyle">
             <TipitakaLink :itemKey="bookmark.key" :params="bookmark" />
 
             <div v-if="bookmark.type != 'heading'" :class="bookmark.type" :style="$store.getters['styles']">
@@ -38,6 +38,7 @@ import TipitakaLink from '@/components/TipitakaLink'
 import { copyMetaTitle } from '@/constants.js'
 import { mapState } from 'vuex'
 import _ from 'lodash'
+import { IOS, platform } from '../constants';
 
 export default {
   name: 'Bookmarks',
@@ -57,7 +58,10 @@ export default {
         return `ඔබ විසින් තරු යෙදු සූත්‍ර ${this.bookmarksCount} ක ලැයිස්තුවක් පහත දැක්වේ.`
       }
     },
-    bookmarksCount() { return Object.keys(this.bookmarks).length }
+    bookmarksCount() { return Object.keys(this.bookmarks).length },
+    getTdStyle(){
+        return platform === IOS ? { paddingTop: '10px', paddingBottom: '10px' } : {};
+    }
   },
 
   metaInfo() {  
