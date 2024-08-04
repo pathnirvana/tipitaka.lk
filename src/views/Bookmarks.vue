@@ -60,7 +60,7 @@ export default {
     },
     bookmarksCount() { return Object.keys(this.bookmarks).length },
     getTdStyle(){
-        return platform === IOS ? { paddingTop: '10px', paddingBottom: '10px' } : {};
+        return platform === IOS ? { paddingTop: '12px', paddingBottom: '12px' } : {};
     }
   },
 
