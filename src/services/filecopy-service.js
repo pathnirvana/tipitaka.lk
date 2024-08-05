@@ -11,7 +11,6 @@ export async function copyDatabaseFiles() {
    if (platform === IOS) {
       try {
          sqlite = new SQLiteConnection(CapacitorSQLite);
-
          const result = await sqlite.getDatabaseList();
          console.log('Database list before copy:', result.values);
 
