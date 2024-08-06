@@ -13,7 +13,7 @@
           
         </template>
         
-        <v-btn icon @click="navigateToActive"><v-icon>mdi-sync</v-icon></v-btn>
+        <v-btn icon @click="navigateToActive"><v-icon>mdi-chevron-double-up</v-icon></v-btn>
         <v-menu offset-y top>
             <template v-slot:activator="{ on, attrs }">
                 <v-btn icon v-on="on" v-bind="attrs">
@@ -24,8 +24,8 @@
                 <v-list-item>
                     <v-list-item-icon><v-icon>mdi-play-speed</v-icon></v-list-item-icon>
                     <v-list-item-content>
-                        <v-slider v-model="rate" :step="0.05" :min="0.75" :max="1.25" 
-                            persistent-hint :hint="`සජ්ඣායනා වේගය ${Math.round(rate * 100) - 100}％`" style="width: 150px">
+                        <v-slider v-model="rate" :step="0.05" :min="0.75" :max="2" 
+                            persistent-hint :hint="`සජ්ඣායනා වේගය ${rate}x`" style="width: 150px">
                         </v-slider>
                     </v-list-item-content>
                 </v-list-item>
@@ -53,7 +53,7 @@
             <v-icon v-else>mdi-play</v-icon>
         </v-btn>
         <v-btn icon @click="$store.dispatch('audio/moveParagraph', 1)"><v-icon>mdi-fast-forward</v-icon></v-btn>
-        <v-btn icon @click="showAudio = false" color="error">
+        <v-btn icon @click="showAudio = false, $store.commit('audio/pauseAudio')" color="error">
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-toolbar>
