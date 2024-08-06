@@ -69,6 +69,10 @@ export default {
         audio.play()
       }
     },
+    pauseAudio(state) {
+      if (!audio.src) return
+      audio.pause();
+    },
     setPlaybackRate(state, playbackRate) {
       state.playbackRate = audio.playbackRate = playbackRate
     },
