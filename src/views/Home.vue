@@ -9,7 +9,7 @@
     </v-btn>
 
 
-    <v-sheet v-if="$store.state.audio.audioControls" class="bottom-sheet pb-2" height="50px" :elevation="5">
+    <v-sheet v-if="$store.state.audio.audioControls" class="bottom-sheet pb-2" :height="getAudioControlSheetHeight" :elevation="5">
       <AudioControl/>
     </v-sheet>
     
@@ -57,6 +57,7 @@ import DictionaryResults from '@/components/DictionaryResults'
 import AudioControl from '@/components/AudioControl'
 import { copyMetaTitle } from '@/constants.js'
 import _ from 'lodash'
+import { IOS, platform } from '../constants';
 
 export default {
   name: 'Home',
@@ -89,7 +90,9 @@ export default {
         this.debouncedWordQuery()
       }
     },
-
+    getAudioControlSheetHeight(){
+        return platform === IOS ? '65px' : '50px'
+    }
   },
 
   methods: {

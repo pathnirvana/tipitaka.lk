@@ -1,0 +1,17 @@
+# Ignore build and output directories
+App/build
+App/Pods
+App/output
+
+App/App/public/
+
+# Ignore Xcode derived data and user data
+DerivedData
+xcuserdata
+
+# Cordova plugins for Capacitor
+capacitor-cordova-ios-plugins
+
+# Generated Config files
+App/App/capacitor.config.json
+App/App/config.xml
