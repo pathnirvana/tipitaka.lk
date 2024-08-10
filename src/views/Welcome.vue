@@ -57,14 +57,14 @@
 
       </v-row>
         
-      <v-row>
+      <v-row v-if="!isIOS">
         <v-col cols="12">
           <v-banner icon="mdi-information" color="info">
             අන්තර්ජාලය නැතිව භාවිතා කළ හැකි මෘදුකාංග පහතින් බාගත කරගන්න.
           </v-banner>
         </v-col>
       </v-row>
-      <v-row class="download-software-list">
+      <v-row class="download-software-list" v-if="!isIOS">
         <v-col cols="6" sm="3" xl="2">
           <v-row justify="center">
             <a href="https://play.google.com/store/apps/details?id=lk.tipitaka.main" target="_blank"><img src="static/images/android2.png"></a>
@@ -98,9 +98,16 @@
 </style>
 
 <script>
+import { IOS, platform } from '../constants';
+
 export default {
   metaInfo: {
     title: 'Welcome / පිළිගනිමු',
   },
+  computed: {
+      isIOS() {
+      return platform === IOS;
+    }
+  }
 }
 </script>
