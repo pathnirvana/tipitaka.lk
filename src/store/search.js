@@ -225,10 +225,10 @@ async function sendSearchQuery(type, sql) {
     const jsonStr = await callAndroidAsync('runSqliteQuery', { type, sql })
     return JSON.parse(jsonStr)
   }
-  //const baseUrl = process.env.NODE_ENV == 'development' ? 'http://192.168.1.107:5555' : ''
   //const baseUrl = 'https://tipitaka.lk' // force prod server
   // check devServer.proxy setting in vue.config.js
-  const response = await axios.post('/tipitaka-query/' + type, { type, sql })
+  // const response = await axios.post('/tipitaka-query/' + type, { type, sql }) // for js server
+  const response = await axios.post('/sql-query', { dbname: type + '.db', query: sql }) // for go server
   return response.data
 }
 

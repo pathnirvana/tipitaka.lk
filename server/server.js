@@ -60,14 +60,14 @@ const SqliteDB = require('./sql-query.js');
 const ftsDb = new SqliteDB(path.join(dirname, 'server/fts.db'), false)
 const dictDb = new SqliteDB(path.join(dirname, 'server/dict.db'), false)
 
-fastify.post('/tipitaka-query/fts', async (request, reply) => { // hit fts db
+fastify.post('/sql-query/fts', async (request, reply) => { // hit fts db
     reply.type('application/json').code(200)
     console.log(request.body)
     const rows = await ftsDb.loadAll(request.body.sql)
     return rows
 })
 
-fastify.post('/tipitaka-query/dict', async (request, reply) => { // hit dict db
+fastify.post('/sql-query/dict', async (request, reply) => { // hit dict db
     reply.type('application/json').code(200)
     console.log(request.body)
     const rows = await dictDb.loadAll(request.body.sql)

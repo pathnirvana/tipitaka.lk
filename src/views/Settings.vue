@@ -159,7 +159,7 @@ export default {
     async checkVersion() {
       try {
         const response = await axios.get('https://tipitaka.lk/tipitaka-query/version')
-        this.newVersion = Number(response.data)
+        this.newVersion = Number(response.data.split('v').pop()) // returns something like "Tipitaka.lk v2.0"
       } catch (err) {
         console.log(err)
         this.newVersion = -1

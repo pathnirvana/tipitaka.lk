@@ -28,5 +28,6 @@ yarn-error.log*
 node_sqlite3.node
 tipitaka-lk.exe
 tipitaka-lk-macos
-server/fts.db
-server/fts.db copy
+fts.db*
+server/bin/tipitaka_lk*
+server/server

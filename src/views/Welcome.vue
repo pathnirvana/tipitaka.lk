@@ -72,6 +72,11 @@
         </v-col>
         <v-col cols="6" sm="3" xl="2">
           <v-row justify="center">
+            <a href="https://apps.apple.com/us/app/sinhala-tripitaka-atuwa/id6615068500" target="_blank"><img src="static/images/ios.png"></a>
+          </v-row>
+        </v-col>
+        <v-col cols="6" sm="3" xl="2">
+          <v-row justify="center">
             <a href="https://github.com/pathnirvana/tipitaka.lk/releases/" target="_blank"><img src="static/images/windows.png"></a>
           </v-row>
         </v-col>
