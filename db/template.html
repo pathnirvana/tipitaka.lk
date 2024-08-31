@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.PathInfo.GetTitle}}</title>  
+    <meta name="description" content="{{.PathInfo.GetDescription .Collection}} පාළි සිංහල ත්‍රිපිටකය සහ අටුවාව Sri Lankan Tripitaka and Atuwa in Sinhala, Sinhala translations සිංහල පරිවර්තනය.">
+    <meta name="keywords" content="tripitaka, sri lanka, sinhala, pali, buddhism, path nirvana foundation">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="icon" type="image/png" sizes="96x96" href="https://tipitaka.lk/static/images/favicon-96x96.png">
+
+    <meta property="og:title" content="{{.PathInfo.GetTitle}}">
+    <meta property="og:description" content="{{.PathInfo.GetDescription .Collection}} පාළි සිංහල ත්‍රිපිටකය සහ අටුවාව සිංහල පරිවර්තනය. Access the Sri Lankan Tripitaka in Sinhala script, with Pali and Sinhala translations.">
+    <meta property="og:image" content="https://tipitaka.lk/static/images/og-500x300.png"> 
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="500">
+    <meta property="og:image:height" content="300">
+    <meta property="og:url" content="https://tipitaka.lk/{{.PathInfo.String}}">
+    <meta property="og:type" content="article">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article", 
+        "name": "{{.PathInfo.GetTitle}}",
+        "description": "{{.PathInfo.GetDescription .Collection}} Sri Lanka Buddha Jayanthi Tripitaka in Sinhala script, featuring both Pali and Sinhala translations.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Path Nirvana Foundation"
+        }
+    }
+    </script>
+
+    <link rel="canonical" href="https://tipitaka.lk/{{.PathInfo.String}}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Sinhala:wght@100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: "Noto Serif Sinhala", serif; font-weight: 400; font-size: 15px;}
+        b { font-family: "Noto Serif Sinhala", serif; font-weight: 700; }
+        .text { font-size: 1.1em; line-height: 130%; word-break: break-word; text-align: justify; /*white-space: pre-wrap;*/ }
+        .entry { margin: 0.6em 0 0.6em 0;}
+
+        .heading { /*font-weight: bold;*/ color: darkblue; text-align: center; }
+        .heading[level="5"] { font-size: 1.8em; } /* sn-2 */
+        .heading[level="4"] { font-size: 1.7em; } /* sn-2-1-9 */
+        .heading[level="3"] { font-size: 1.6em; }
+        .heading[level="2"] { font-size: 1.4em; }
+        .heading[level="1"] { font-size: 1.3em; }
+
+        .paragraph { text-indent: 1.4em; padding-left: 0em; }
+
+        .gatha { text-indent: 0em; padding-left: 2.4em; text-align: left; }
+        .gatha[level="2"] { padding-left: 5em; }
+
+        .unindented { text-indent: 0em; padding-left: 0em; text-align: left; }
+
+        .centered { text-align: center; /*font-weight: bold;*/ }
+        .centered[level="5"] { font-size: 2.1em; }
+        .centered[level="4"] { font-size: 1.8em; }
+        .centered[level="3"] { font-size: 1.5em; }
+        .centered[level="2"] { font-size: 1.25em; }
+        .centered[level="1"] { font-size: 1.1em; } /* normal text size here */
+        .centered[level="0"] {  } /* non bold, just centered */
+    </style>
+</head>
+<body>
+    <h2>{{.PathInfo.GetDescription .Collection}}</h2>
+    <h3>
+    {{range .PathInfo.GetHeadingLinks}}
+        <span class="headings"><a href="{{.URL}}">{{.Name}}</a> < </span>
+    {{end}}
+    </h3>
+    
+    <div class="text">
+    {{range .Entries}}
+        <div class="{{.Type}} entry" level="{{.Level}}">
+            {{.RenderText}}
+        </div>
+    {{end}}
+    </div>
+</body>
+</html>

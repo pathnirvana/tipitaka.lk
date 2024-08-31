@@ -1,5 +1,5 @@
 /** special flags and constants */
-export const tipitakaAppVersion = 1.0 // used to determine if app needs to be updated 
+export const tipitakaAppVersion = 2.0 // used to determine if app needs to be updated 
 
 const settingsVersion = '2'
 export const settingsKey = `tipitaka.lk-settings-${settingsVersion}`
