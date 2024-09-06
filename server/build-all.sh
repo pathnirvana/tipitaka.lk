@@ -16,13 +16,13 @@ export CGO_ENABLED=1
 
 # Platforms and architectures to build for
 PLATFORMS=(
-    #"linux/amd64/linux_intel/x86_64-unknown-linux-gnu-gcc"
+    "linux/amd64/linux_intel/x86_64-unknown-linux-gnu-gcc"
     ####"linux/arm64/linux_arm"
     #"darwin/amd64/macos_intel/"
     #"darwin/arm64/macos_m1m2/"
-    "windows/amd64/windows_intel/x86_64-w64-mingw32-gcc"
+    #"windows/amd64/windows_intel/x86_64-w64-mingw32-gcc"
     ####"windows/arm64/windows_arm/"
-    "windows/386/windows_32bit/i686-w64-mingw32-gcc"  # Windows 32-bit
+    #"windows/386/windows_32bit/i686-w64-mingw32-gcc"  # Windows 32-bit
 )
 
 # Iterate over each platform

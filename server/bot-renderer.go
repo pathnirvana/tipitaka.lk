@@ -17,9 +17,10 @@ import (
 // Compile the regex pattern (do this once, outside the handler)
 var (
 	excludePattern = regexp.MustCompile(`/(fts|dict)/`)
-	botPathPattern = regexp.MustCompile(`Googlebot|facebookexternalhit`)
-	treeData       map[string]TreeItem
-	htmlTemplate   *template.Template
+	botPattern     = regexp.MustCompile(`(?i)googlebot|bingbot|yandex|baiduspider|twitterbot|facebookexternalhit|rogerbot|linkedinbot|embedly|quora link preview|showyoubot|outbrain|pinterest/0\.|pinterestbot|slackbot|vkshare|w3c_validator|whatsapp|applebot|duckduckbot|msnbot|ia_archiver|facebookplatform|telegram|petalbot|ahrefsbot`)
+	//botPathPattern = regexp.MustCompile(`Googlebot|facebookexternalhit`)
+	treeData     map[string]TreeItem
+	htmlTemplate *template.Template
 )
 
 type ReplaceRules []struct {
@@ -125,20 +126,20 @@ func BotRendererMiddleware(c *fiber.Ctx) error {
 	}
 
 	userAgent := c.Get("User-Agent")
-	//if botPathPattern.MatchString(userAgent) {
-	data, err := getTemplateData(c.Path())
-	if err != nil {
-		fmt.Printf("Error handling bot path %s: %v\n", c.Path(), err)
-		return c.Next()
+	if botPattern.MatchString(userAgent) {
+		data, err := getTemplateData(c.Path())
+		if err != nil {
+			fmt.Printf("Error handling bot path %s: %v\n", c.Path(), err)
+			return c.Next()
+		}
+		c.Response().Header.Set("Content-Type", "text/html")
+		if err := htmlTemplate.Execute(c.Response().BodyWriter(), data); err != nil {
+			fmt.Printf("Error handling bot path %s: %v\n", c.Path(), err)
+			return c.Next()
+		}
+		fmt.Printf("Bot render for %s, path %s.\n", userAgent, c.Path())
+		return nil // Indicate successful handling
 	}
-	c.Response().Header.Set("Content-Type", "text/html")
-	if err := htmlTemplate.Execute(c.Response().BodyWriter(), data); err != nil {
-		fmt.Printf("Error handling bot path %s: %v\n", c.Path(), err)
-		return c.Next()
-	}
-	fmt.Printf("Bot render for %s, path %s.\n", userAgent, c.Path())
-	return nil // Indicate successful handling
-	//}
 
 	return c.Next()
 }
@@ -197,7 +198,15 @@ type Entry struct {
 	NoAudio bool   `json:"noAudio,omitempty"` // 'omitempty' handles optional fields
 }
 
+var ( // cache the most recent file to reuse - not sure if this would be helpful
+	prevDocument     *Document
+	prevTextFilename string
+)
+
 func loadTextFile(filename string) (*Document, error) {
+	if filename == prevTextFilename {
+		return prevDocument, nil
+	}
 	data, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
@@ -206,6 +215,7 @@ func loadTextFile(filename string) (*Document, error) {
 	if err := json.Unmarshal(data, &doc); err != nil {
 		return nil, err
 	}
+	prevDocument, prevTextFilename = &doc, filename
 	return &doc, nil
 }
 

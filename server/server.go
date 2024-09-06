@@ -13,8 +13,7 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/gofiber/fiber/v2"
-
-	//"github.com/gofiber/fiber/v2/middleware/compress" // Import compress middleware for gzip
+	"github.com/gofiber/fiber/v2/middleware/compress"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/skratchdot/open-golang/open"
@@ -55,9 +54,9 @@ func main() {
 	app := fiber.New(fiber.Config{AppName: APPNAME, DisableStartupMessage: true})
 
 	// Use gzip compression middleware
-	//app.Use(compress.New(compress.Config{
-	//    Level: compress.LevelBestSpeed, // Adjust compression level as needed
-	//}))
+	app.Use(compress.New(compress.Config{
+		Level: compress.LevelBestSpeed, // Adjust compression level as needed
+	}))
 
 	initBotRendererMiddleware()
 	// serve pre-rendered pages to google/fb bots

@@ -1,0 +1,24 @@
+# Systemd conf file to run the Go binary in production
+# Should be located in /etc/systemd/system/tipitaka_lk.service
+
+[Unit]
+Description=Tipitaka.lk Go server
+After=network.target
+
+[Service]
+Type=simple
+User=janaka
+
+WorkingDirectory=/home/janaka/www/tipitaka.lk
+ExecStart=/home/janaka/www/tipitaka.lk/tipitaka_lk_linux_intel -no-open
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+# Start Service
+# sudo systemctl start tipitaka_lk.service
+
+# View Logs
+# journalctl -u tipitaka_lk.service
