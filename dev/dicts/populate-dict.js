@@ -8,26 +8,24 @@ const path = require('path')
 const SqliteDB = require('../../server/sql-query.js')
 //const { dictionaryInfo } = require('../../src/constants.js')
 
-const dictionaryList = new Map([
-    ['en-buddhadatta', 'BUE'],
-    ['en-nyanatiloka', 'ND'],
-    ['en-pts', 'PTS'],
-    ['en-dppn', 'PN'],
-    ['en-vri', 'VRI'],
-    ['en-critical', 'CR'],
+const dictionaryList = [ // shortname to filename map
+    ['BUE', 'en-buddhadatta.json'],
+    ['ND', 'en-nyanatiloka.json'],
+    ['PTS', 'en-pts.json'],
+    ['PN', 'en-dppn.json'],
+    ['VRI', 'en-vri.json'],
+    ['CR', 'en-critical.json'],
     
-    ['si-buddhadatta', 'BUS'],
-    ['si-sumangala', 'MS'],
-])
+    ['BUS', 'sinhala/buddhadatta_dict.json'],
+    ['MS', 'sinhala/sumangala_dict.json'],
+]
 
 const dataInputFolder = path.join(__dirname, 'dict-input')
-const inputFiles = fs.readdirSync(dataInputFolder).map(name => name.split('.')[0])
 let allWords = []
 let meaningsProcessed = 0
 
-inputFiles.forEach(dictName => {
-    const data = JSON.parse(fs.readFileSync(path.join(dataInputFolder, dictName + '.json')))
-    const shortName = dictionaryList.get(dictName)
+dictionaryList.forEach(([shortName, filename]) => {
+    const data = JSON.parse(fs.readFileSync(path.join(dataInputFolder, filename)))
     data.forEach(([word, meaning]) => {
         if (shortName == 'CR') meaning = removeBRTags(meaning)
         word = word.replace(/\d$/, '') // some words have ending numbers
