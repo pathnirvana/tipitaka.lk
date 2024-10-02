@@ -16,7 +16,7 @@
                         "level": 5
                     },
                     {
-                        "type": "heading",
+                        "type": "centered",
                         "text": "අපදානපාළි",
                         "level": 4
                     },
@@ -118,7 +118,7 @@
                     },
                     {
                         "text": "අපදාන පාළි",
-                        "type": "heading",
+                        "type": "centered",
                         "level": 4
                     },
                     {
