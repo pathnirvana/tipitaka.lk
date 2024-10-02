@@ -17,7 +17,7 @@
                         "noAudio": true
                     },
                     {
-                        "type": "heading",
+                        "type": "centered",
                         "text": "ජාතකපාළි",
                         "level": 4
                     },
@@ -127,7 +127,7 @@
                     },
                     {
                         "text": "ජාතක පාළි",
-                        "type": "heading",
+                        "type": "centered",
                         "level": 4
                     },
                     {

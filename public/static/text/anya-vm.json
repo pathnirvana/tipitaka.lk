@@ -1,5 +1,5 @@
 {
-    "filename": "anya-vm-1",
+    "filename": "anya-vm",
     "pages": [
         {
             "pageNum": 1,
@@ -11,7 +11,7 @@
                         "level": 1
                     },
                     {
-                        "type": "centered",
+                        "type": "heading",
                         "text": "විසුද්ධිමග්ගො",
                         "level": 5
                     },
@@ -103,7 +103,7 @@
                         "level": 1
                     },
                     {
-                        "type": "centered",
+                        "type": "heading",
                         "text": "විසුද්ධි මාර්ගය",
                         "level": 5
                     },

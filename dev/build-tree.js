@@ -79,8 +79,8 @@ const tree = {
     'atta-vp-pct': [], 'atta-vp-mv': [], 'atta-vp-cv': [], 'atta-vp-pv': [],
 
     // file must be named anya-vm-1 instead of just anya-vm and first heading changed to centered
-    // otherwise will have an error since key 'anya' is not in the tree
-    'anya-vm': [ 'විසුද්ධිමග්ගො', 'විසුද්ධි මාර්ගය',       7, [0, 0], 'root', 'anya-vm-1'], 
+    // otherwise will have an error since key 'anya' is not in the tree (updated here)
+    'anya': [ 'අන්‍ය', 'අන්‍ය',       7, [0, 0], 'root', 'anya-vm'], 
     
 }
 const headingAtEndKeys = ['kn-vv', 'kn-pv', 'kn-thag', 'kn-thig', 
