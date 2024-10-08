@@ -4,6 +4,7 @@
         {
             "pageNum": 308,
             "pali": {
+                "sequenceStart": 4,
                 "entries": [
                     {
                         "type": "heading",
@@ -29,6 +30,7 @@
                 "footnotes": []
             },
             "sinh": {
+                "sequenceStart": 4,
                 "entries": [
                     {
                         "text": "3. ඕපම්ම වර්‍ගය",
