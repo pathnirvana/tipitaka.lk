@@ -8,7 +8,7 @@
                     {
                         "type": "heading",
                         "text": "7. සාරිපුත්තසංයුත්තං",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "type": "heading",
@@ -63,7 +63,7 @@
                     {
                         "text": "7. සාරිපුත්ත සංයුක්තය",
                         "type": "heading",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "text": "1. සාරිපුත්ත වර්‍ගය",
@@ -724,7 +724,7 @@
                     {
                         "type": "heading",
                         "text": "8. නාගසංයුත්තං",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "type": "heading",
@@ -804,7 +804,7 @@
                     {
                         "text": "8. නාග සංයුක්තය",
                         "type": "heading",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "text": "1. නාග වර්‍ගය",
@@ -2032,7 +2032,7 @@
                     {
                         "type": "heading",
                         "text": "9. සුපණ්ණ සංයුත්තං",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "type": "heading",
@@ -2120,7 +2120,7 @@
                     {
                         "text": "9. සුපණ්ණ සංයුක්තය",
                         "type": "heading",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "text": "1. සුපණ්ණ වර්‍ගය",
@@ -3015,7 +3015,7 @@
                     {
                         "type": "heading",
                         "text": "10. ගන්ධබ්බකායසංයුත්තං",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "type": "heading",
@@ -3085,7 +3085,7 @@
                     {
                         "text": "10. ගන්‍ධබ්බ සංයුක්තය",
                         "type": "heading",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "text": "1. ගන්‍ධබ්බ වර්‍ගය",
@@ -3463,7 +3463,7 @@
                     {
                         "type": "heading",
                         "text": "11. වලාහකසංයුත්තං",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "type": "heading",
@@ -3528,7 +3528,7 @@
                     {
                         "text": "11. වලාහක සංයුක්තය",
                         "type": "heading",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "text": "1. වලාහක වර්‍ගය",
@@ -4016,7 +4016,7 @@
                     {
                         "type": "heading",
                         "text": "12. වච්ඡගොත්තසංයුත්තං",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "type": "heading",
@@ -4082,7 +4082,7 @@
                     {
                         "text": "12. වච්ඡගොත්ත සංයුක්තය",
                         "type": "heading",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "text": "1. වච්ඡගොත්ත වර්‍ගය",
@@ -5653,7 +5653,7 @@
                     {
                         "type": "heading",
                         "text": "13. ඣානසංයුත්තං",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "type": "heading",
@@ -5734,7 +5734,7 @@
                     {
                         "text": "13. ඣාන සංයුක්තය",
                         "type": "heading",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "text": "1. ඣාන වර්‍ගය",
