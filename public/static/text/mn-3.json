@@ -1,5 +1,5 @@
 {
-    "filename": "mn-3-1",
+    "filename": "mn-3",
     "pages": [
         {
             "pageNum": 2,
@@ -16,9 +16,9 @@
                         "level": 5
                     },
                     {
-                        "type": "centered",
+                        "type": "heading",
                         "text": "උපරිපණ්ණාසකො",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "type": "heading",
@@ -86,9 +86,9 @@
                         "level": 5
                     },
                     {
-                        "type": "centered",
+                        "type": "heading",
                         "text": "උපරිපණ්ණාසකය",
-                        "level": 3
+                        "level": 4
                     },
                     {
                         "type": "heading",

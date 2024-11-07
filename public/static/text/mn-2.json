@@ -1,5 +1,5 @@
 {
-    "filename": "mn-2-1",
+    "filename": "mn-2",
     "pages": [
         {
             "pageNum": 2,
@@ -16,9 +16,9 @@
                         "level": 5
                     },
                     {
-                        "type": "centered",
+                        "type": "heading",
                         "text": "මජ්ඣිමපණ්ණාසකො",
-                        "level": 1
+                        "level": 4
                     },
                     {
                         "type": "heading",
@@ -70,9 +70,9 @@
                         "level": 5
                     },
                     {
-                        "type": "centered",
+                        "type": "heading",
                         "text": "මධ්‍යම පණ්ණාසකය",
-                        "level": 1
+                        "level": 4
                     },
                     {
                         "text": "1. ගහපති වර්‍ගය",
