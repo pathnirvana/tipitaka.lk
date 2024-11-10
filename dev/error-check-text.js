@@ -21,7 +21,7 @@ inputFiles.forEach(filename => {
         console.error(`filename mismatch in ${fileKey} ${obj.filename}`)
     }
 
-    if (!obj.bookId) console.error(`bookId missing in ${fileKey} ${obj.bookId}`)
+    if (!obj.bookId || obj.bookId < 1 || obj.bookId > 57) console.error(`bookId missing in ${fileKey} ${obj.bookId}`)
     if (typeof obj.pageOffset != 'number') console.error(`pageOffset is not a number ${fileKey} ${obj.pageOffset}`)
     
     // check page numbers
