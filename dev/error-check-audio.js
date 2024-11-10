@@ -13,6 +13,7 @@ function loadLabels(labelFile) {
             return {start, end, text, labelFile}; // 3 fields, start/end/num(starts at 1)
         }) 
 }
+const manualLabelAddedFiles = ['sn-1-5', 'sn-1-8'] // labels like 528.1 were added to label files without modifiying the audio
 
 const textInputFolder = path.join(__dirname, '../public/static/text/'),
     audioInputFolder = path.join(__dirname, 'audio'),
@@ -36,7 +37,7 @@ Object.entries(fileMap).forEach(([textFile, labelFiles]) => {
             console.error(`labels: ${labelFile} has a non number field in one of start, end or label text`)
         if (startLabel != nextLabel) 
             console.error(`text: ${textFile}, labels: ${labelFile}, start label must be ${nextLabel} but found ${startLabel}`)
-        if (endLabel - startLabel != labels.length - 1)
+        if (endLabel - startLabel != labels.length - 1 && !manualLabelAddedFiles.includes(labelFile)) 
             console.error(`text: ${textFile}, labels: ${labelFile}, count labels: ${labels.length}, start/end: ${startLabel}/${endLabel} mismatch`)
         nextLabel = endLabel + 1
         if (!fs.existsSync(path.join(audioInputFolder, labelFile + '.m4a')))
