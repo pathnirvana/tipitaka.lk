@@ -75,7 +75,7 @@ func main() {
 		db, exists := dbConnections[payload.DBName]
 		if !exists {
 			var err error
-			db, err = sqlx.Open("sqlite3", getPathToFile("db/"+payload.DBName))
+			db, err = sqlx.Open("sqlite3", getPathToFile("db/"+payload.DBName)+"?mode=ro") // make sure to open read-only
 			if err != nil {
 				mutex.Unlock()
 				return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
@@ -138,77 +138,6 @@ func main() {
 	// Run the server
 	log.Fatal(app.Listen(PORT))
 }
-
-// Function to execute query and return results as JSON
-/*func executeQueryAndReturnJSON(c *fiber.Ctx) error {
-	var payload QueryPayload
-	if err := c.BodyParser(&payload); err != nil {
-		return c.Status(http.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
-	}
-
-	// Get or create database connection (same as before)
-	mutex.Lock()
-	db, exists := dbConnections[payload.DBName]
-	if !exists {
-		var err error
-		db, err = sql.Open("sqlite", filepath.Join(exePath, rootPath, "db", payload.DBName))
-		if err != nil {
-			mutex.Unlock()
-			return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
-		}
-		dbConnections[payload.DBName] = db
-	}
-	mutex.Unlock()
-
-	// Execute the SQL query
-	rows, err := db.Query(payload.Query)
-	if err != nil {
-		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
-	}
-	defer rows.Close()
-
-	// Get column names
-	columns, err := rows.Columns()
-	if err != nil {
-		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
-	}
-
-	// Prepare the results slice
-	var results []map[string]interface{}
-
-	// Iterate over rows and scan values
-	for rows.Next() {
-		values := make([]interface{}, len(columns))
-		valuePtrs := make([]interface{}, len(columns))
-		for i := range columns {
-			valuePtrs[i] = &values[i]
-		}
-
-		if err := rows.Scan(valuePtrs...); err != nil {
-			return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
-		}
-
-		// Create a map for each row
-		entry := make(map[string]interface{})
-		for i, col := range columns {
-			var v interface{}
-			val := values[i]
-
-			// Convert byte slices to strings if needed
-			b, ok := val.([]byte)
-			if ok {
-				v = string(b)
-			} else {
-				v = val
-			}
-			entry[col] = v
-		}
-		results = append(results, entry)
-	}
-
-	// Return the results as JSON
-	return c.JSON(results)
-}*/
 
 func getBJTParams(userBJTPath string) (string, bool) { // only supports bjt_newbooks/jpg
 	path := "/Pictures/bjt_newbooks/"
