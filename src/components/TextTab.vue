@@ -69,7 +69,7 @@
 import TextEntry from '@/components/TextEntry.vue'
 import FootnoteList from '@/components/FootnoteList.vue'
 import { beautifyText } from '@/text-convert.mjs'
-import { getBJTImageSrc } from '@/scanned-pages.js'
+import { getBJTImageSrc } from '@/scanned-pages.mjs'
 import { mapState, mapGetters, mapMutations } from 'vuex'
 
 const eIndEquals = (a, b) => a[0] == b[0] && a[1] == b[1]
