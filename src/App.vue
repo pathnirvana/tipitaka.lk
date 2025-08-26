@@ -222,7 +222,7 @@ export default {
     },
     searchInput: {
       get() { return this.$store.getters['search/getSearchInput'] },
-      set(input) { this.$store.commit('search/setSearchInput', input ? input.trim() : '') }
+      set(input) { this.$store.commit('search/setSearchInput', input ? input : '') }
     },
     searchType: {
       get() { return this.$store.getters['search/getSearchType'] },
