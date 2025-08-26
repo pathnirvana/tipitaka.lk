@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import router from '@/router'
 import { allFilterKeys, dictionaryInfo, searchSettingsKey, 
-  bookmarksStorageKey, callAndroidAsync } from '@/constants.js'
+  bookmarksStorageKey, callAndroidAsync, IOS, platform } from '@/constants.js'
 import md5 from 'md5'
 import { isSinglishQuery, getPossibleMatches } from '@pnfo/singlish-search'
 import axios from 'axios'
+
+//ios
+import { querySqlite } from '../services/sqlite-service'
+import { copyDatabaseFiles } from '../services/filecopy-service'
 
 const routeToSearchPage = (input, type) => {
   if (!input) return
@@ -26,6 +30,10 @@ function dictWordList(input) {
 	// add possible vowels only if non singlish (only one word) - otherwise will be too many words
 	const addVowel = !isSinglishQuery(query) ? ['ා', 'ි', 'ී', 'ු', 'ූ', 'ෙ', 'ො'].map(v => stripEnd[0] + v) : []
 	return [...words, ...stripEnd, ...addVowel].filter((w, i, ar) => ar.indexOf(w) == i) // concat and remove duplicates
+}
+
+function normalizeWord(input) {
+  return input.toLowerCase().replace(/[\u200d\.,:\?\(\)“”‘’]/g, '') 
 }
 
 const dbVersions = { // updated dbs need to be marked here for update in android app
@@ -56,7 +64,8 @@ export default {
     titleSearchCache: {},
     md5SearchCache: { 'fts': {}, 'dict': {} },
     maxResults: 100,  // search stopped after getting this many matches
-    inlineDict: { show: false, wordElem: null, word: '', results: {} },
+    inlineDict: { show: false, wordElem: null, word: '', results: {}, exactMatch: false },
+    exactMatchPage: false,
 
     bookmarks: {}, // loaded from localStorage
   },
@@ -103,6 +112,10 @@ export default {
       state.selectedDictionaries = newList
       saveSettings(state)
     },
+    setExactMatchPage(state, value) {
+      state.exactMatchPage = value
+    },
+
     setInlineDict(state, { prop, value }) {
       if (prop == 'show' && !value && state.inlineDict.wordElem) {
         state.inlineDict.wordElem.classList.remove('bottom-open')
@@ -148,6 +161,15 @@ export default {
         await callAndroidAsync('openDbs', dbVersions) // opens all dbs copying from assets if necessary
         commit('set', { name: 'androidBusy', value: false }, { root: true })
       }
+
+      //The platform check can be removed if android logic is also added to sqlite-service.
+      //So this file is free of platform specific details.
+      //Using the same variable name androidBusy due to duplication. would be good to rename to avoid confusion.
+      if (platform === IOS) {
+        commit('set', { name: 'androidBusy', value: true }, { root: true })
+        await copyDatabaseFiles();
+        commit('set', { name: 'androidBusy', value: false }, { root: true })
+      }
     },
 
     async openInlineDict({ commit, dispatch }, target) {
@@ -161,11 +183,17 @@ export default {
     async runInlineDictQuery({ commit, dispatch, getters, state }) {
       commit('setInlineDict', { prop: 'queryRunning', value: true })
       commit('setInlineDict', { prop: 'errorMessage', value: '' })
+
       const word = state.inlineDict.word
+      const exactMatch = state.inlineDict.exactMatch
       const dictList = getters['getShortDicts']
+
+      const whereClause = exactMatch ? `WHERE word = '${normalizeWord(word)}';`
+                                     : `WHERE word IN ('${dictWordList(word).join("','")}')`;
+
       const sql = `SELECT word, dict, meaning FROM dictionary 
-        WHERE word IN ('${dictWordList(word).join("','")}') AND dict IN ('${[...dictList, 'BR'].join("','")}')
-        ORDER BY word LIMIT 50;`
+                   ${whereClause} AND dict IN ('${[...dictList, 'BR'].join("','")}')
+                   ORDER BY word LIMIT 50;`
       try {
         const results = await dispatch('runDictQuery', { sql, 'input': word })
         commit('setInlineDict', { prop: 'results', value: results })
@@ -175,17 +203,23 @@ export default {
       commit('setInlineDict', { prop: 'queryRunning', value: false })
     },
 
-    async runPageDictQuery({ dispatch, getters }, input) {
+    async runPageDictQuery({ dispatch, getters }, {input, exactMatchPage}) {
       const wordsList = dictWordList(input), dictFilter = `dict IN ('${getters['getShortDicts'].join("', '")}')`
-      const likePrefixQuery = (wordsList.length > 100) ? '' :
+
+      const whereClause = exactMatchPage ? `WHERE word = '${normalizeWord(input)}'`
+                                         : `WHERE word IN ('${wordsList.join("','")}')`;
+
+      const likePrefixQuery = (wordsList.length > 100 || exactMatchPage) ? '' :
        `UNION
-          SELECT word, COUNT(dict) AS num, 'like' AS meaning FROM dictionary 
+          SELECT word, COUNT(dict) AS num, 'like' AS meaning, 2 as priority FROM dictionary 
             WHERE (word LIKE '${wordsList.join("_%' OR word LIKE '")}_%') AND ${dictFilter}
             GROUP BY word`
 
-      const sql = `SELECT word, dict, meaning FROM dictionary 
-            WHERE word IN ('${wordsList.join("','")}') AND (${dictFilter} OR dict = 'BR')
-          ${likePrefixQuery} ORDER BY word LIMIT 50;`
+      const sql = `SELECT word, dict, meaning, priority FROM (
+                    SELECT word, dict, meaning, 1 as priority FROM dictionary 
+                    ${whereClause} AND (${dictFilter} OR dict = 'BR')
+                    ${likePrefixQuery}
+                  ) combined_results ORDER BY priority, word LIMIT 50;`
       return dispatch('runDictQuery', { sql, input })
     },
 
@@ -224,11 +258,13 @@ async function sendSearchQuery(type, sql) {
   if (typeof Android !== 'undefined') {
     const jsonStr = await callAndroidAsync('runSqliteQuery', { type, sql })
     return JSON.parse(jsonStr)
+  } else if (platform === IOS) {
+    return await querySqlite(type, sql);
   }
   //const baseUrl = 'https://tipitaka.lk' // force prod server
-  // check devServer.proxy setting in vue.config.js
-  // const response = await axios.post('/tipitaka-query/' + type, { type, sql }) // for js server
-  const response = await axios.post('/sql-query', { dbname: type + '.db', query: sql }) // for go server
+  //check devServer.proxy setting in vue.config.js
+  const response = await axios.post('/sql-query/' + type, { type, sql }) // for js server. changed to sql-query from tipitaka-query to work
+  //const response = await axios.post('/sql-query', { dbname: type + '.db', query: sql }) // for go server
   return response.data
 }
 

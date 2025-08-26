@@ -1,7 +1,7 @@
 <template>
-  <v-dialog v-model="dialog" max-width="300">
+  <v-dialog v-model="dialog" :max-width="$vuetify.breakpoint.smAndDown ? '300px' : '400px'">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn v-bind="attrs" v-on="on" :depressed="!isLimited" class="my-2">
+      <v-btn v-bind="attrs" v-on="on" :depressed="isLimited" class="mt-2">
         <v-icon class="mr-2" :color="isLimited ? 'primary' : ''">mdi-book-open-page-variant</v-icon>
         {{ isLimited ? 'සොයන ශබ්දකෝෂ සීමා වී ඇත' : 'සොයන ශබ්දකෝෂ සීමා කිරීම' }}
       </v-btn>

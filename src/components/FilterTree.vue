@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" max-width="300">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn v-bind="attrs" v-on="on" :depressed="!isLimited">
+      <v-btn v-bind="attrs" v-on="on" :depressed="isLimited" class="mt-2">
         <v-icon class="mr-1" :color="isLimited ? 'primary' : ''">mdi-filter-variant</v-icon>
         {{ isLimited ? 'සෙවුම සීමා වී ඇත' : 'සෙවුම සීමා කිරීම' }}
       </v-btn>

@@ -7,27 +7,47 @@
     <v-btn fab small fixed bottom right @click="$vuetify.goTo(0)">
         <v-icon>mdi-chevron-triple-up</v-icon>
     </v-btn>
+    <!-- Audio Error Snackbar -->
+    <v-snackbar
+      v-model="showAudioErrorSnackbar"
+      :timeout="6000"
+      color="primary"
+      multi-line
+      centered
+      @input="handleSnackbarClose">
+      <div v-html="$store.state.audio.audioError" style="text-align: left;"></div>
+      <template v-slot:action="{ attrs }">
+        <v-btn text v-bind="attrs" @click="handleSnackbarClose(false)">
+        <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
 
-
-    <v-sheet v-if="$store.state.audio.audioControls" class="bottom-sheet pb-2" height="50px" :elevation="5">
+    <v-sheet v-if="$store.state.audio.audioControls" class="bottom-sheet pb-2" :height="getAudioControlSheetHeight" :elevation="5">
       <AudioControl/>
     </v-sheet>
     
-    <v-sheet v-if="showInlineDict" class="bottom-sheet pb-2" height="250px" :elevation="7">
-      <v-toolbar dense flat>
-        <v-text-field v-model="inlineWord" hide-details class="shrink"></v-text-field>
+    <v-sheet v-if="showInlineDict" class="bottom-sheet pb-2" :style="{ height: sheetHeight }" :elevation="7">
+      <v-toolbar :dense="$vuetify.breakpoint.smAndDown" flat>
+        <v-text-field v-model="inlineWord" hide-details :class="{ grow: $vuetify.breakpoint.mdAndUp }"></v-text-field>
         <v-btn icon @click="inlineWordBackspace"><v-icon>mdi-backspace</v-icon></v-btn>
-        <v-btn @click="$router.push('/fts/' + inlineWord)" :icon="!smAndUp">
-          <span v-if="smAndUp">අන්තර්ගතයේ සොයන්න</span>
-          <v-icon v-else color="primary">mdi-magnify</v-icon>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <v-btn @click="showInlineDict = !showInlineDict" icon color="error">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
+        <div class="button-container">
+          <v-btn  @click="$router.push('/fts/' + inlineWord)" :icon="true">
+            <v-icon :size="$vuetify.breakpoint.mdAndUp ? '30px' : '24px'" color="primary">mdi-magnify</v-icon>
+          </v-btn>
+          <v-btn v-model="exactMatch" @click="toggleExactMatch"  icon="true">
+            <v-icon :size="$vuetify.breakpoint.mdAndUp ? '30px' : '24px'" :color="exactMatch ? 'primary' : ''">mdi-format-letter-matches</v-icon>
+          </v-btn>
+          <v-btn @click="resizeInlineDictSheet" icon="true">
+            <v-icon :size="$vuetify.breakpoint.mdAndUp ? '30px' : '24px'" color="primary">{{ isExpanded ? 'mdi-chevron-down-circle-outline' : 'mdi-chevron-up-circle-outline' }}</v-icon>
+          </v-btn>
+          <v-btn @click="showInlineDict = !showInlineDict" icon color="error">
+            <v-icon :size="$vuetify.breakpoint.mdAndUp ? '30px' : '24px'">mdi-close</v-icon>
+          </v-btn>
+        </div>
       </v-toolbar>
 
-      <v-sheet max-height="200px" style="overflow-y: auto">
+      <v-sheet :style="{ height: '100%', overflowY: 'auto' }">
         <DictionaryResults :results="inlineDict.results" />
     
         <v-skeleton-loader v-if="inlineDict.queryRunning" type="table"></v-skeleton-loader>
@@ -36,9 +56,7 @@
           {{ `මෙම වචනය ශබ්දකෝෂ වල හමුවූයේ නැත. අකුරු කිහිපයක් අඩු කර උත්සාහ කරන්න.` }}
         </div>
       </v-sheet>
-
     </v-sheet>
-    
   </v-sheet>
 </template>
 
@@ -47,6 +65,25 @@
   z-index: 10; border-top: 1px solid var(--v-secondary-base); }
 .result .word { color: var(--v-info-base); }
 .search-message { font-size: 0.9rem; }
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+/* For medium screens and below (e.g., tablets and mobile) */
+@media (max-width: 768px) {
+  .button-container {
+    gap: 4px; /* Smaller gap for tablets and mobile */
+  }
+}
+
+/* For small screens (e.g., mobile) */
+@media (max-width: 480px) {
+  .button-container {
+    gap: 1px; /* Even smaller gap for mobile */
+  }
+}
 </style>
 
 <script>
@@ -55,7 +92,7 @@ import { mapState, mapGetters } from 'vuex'
 import TextTab from '@/components/TextTab.vue'
 import DictionaryResults from '@/components/DictionaryResults'
 import AudioControl from '@/components/AudioControl'
-import { copyMetaTitle } from '@/constants.js'
+import { copyMetaTitle, IOS, platform } from '@/constants.js'
 import _ from 'lodash'
 
 export default {
@@ -65,9 +102,12 @@ export default {
     DictionaryResults,
     AudioControl,
   },
-  data: () => ({
-    
-  }),
+  data() {
+    return {
+      isExpanded: false, // Tracks the toggle state
+      sheetHeight: '250px' // Initial height
+    };
+  },
   computed: {
     ...mapState('tabs', ['activeInd', 'tabList']),
     ...mapState('search', ['inlineDict']),
@@ -89,7 +129,16 @@ export default {
         this.debouncedWordQuery()
       }
     },
-
+    exactMatch: {
+      get() { return this.inlineDict.exactMatch },
+      set(value) { 
+        this.$store.commit('search/setInlineDict', { prop: 'exactMatch', value }) 
+        this.debouncedWordQuery()
+      } 
+    },
+    showAudioErrorSnackbar: {
+      get() { return !!this.$store.state.audio.audioError }
+    },
   },
 
   methods: {
@@ -99,6 +148,23 @@ export default {
     inlineWordBackspace() {
       // strip one consonent + vowel at a time
       this.inlineWord = this.inlineWord.replace(/[අ-ෆ][\u0DCA-\u0DDF\u0D82\u0D83\u200d]*$/, '')
+    },
+    toggleExactMatch() {
+      this.exactMatch = !this.exactMatch
+    },
+    getAudioControlSheetHeight() {
+        return platform === IOS ? '65px' : '50px'
+    },
+    resizeInlineDictSheet() {
+      // Toggle the isExpanded state and adjust height
+      this.isExpanded = !this.isExpanded;
+      this.sheetHeight = this.isExpanded ? '75vh' : '250px'; // Set to 75% viewport height or 250px
+    },
+    handleSnackbarClose(isVisible) {
+      // When snackbar becomes invisible (either by timeout or manual close)
+      if (!isVisible) {
+        this.$store.commit('audio/clearAudioError');
+      }
     },
   },
 
