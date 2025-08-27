@@ -30,11 +30,14 @@ SELECT filename, eind, language, snippet(tipitaka, '<b>', '</b>', '...', 5) AS h
 function writeEntry(e, eind, lang, fileKey) {
     let text = e.text.replace(/[\*_~\$\u200d]|\{\S{0,2}\}/g, '') // zwj and footnote pointers
     text = text.replace(/\n/g, ' ') // looks like newline prevents matches for words bordering the newline
+    text = text.trim();
+
     if (writeFtsDb) {
-        ftsDb.db.run('INSERT INTO tipitaka (filename, eind, language, type, level, text) VALUES (?, ?, ?, ?, ?, ?)', 
+        ftsDb.run('INSERT INTO tipitaka (filename, eind, language, type, level, text) VALUES (?, ?, ?, ?, ?, ?)', 
             [fileKey, eind.join('-'), lang, e.type, e.level || 0, text]);
-    }
+    }  
     
+
     if (writeSuggestedWords) {
         const wordList = (lang == 'pali') ? wordListPali : wordListSinh
         text = text.replace(/[\.\:\[\]\(\)\{\}\-–,\d'"‘’“”\?\n\t\r]/g, ' ') // replace with spaces
@@ -50,14 +53,42 @@ function writeEntry(e, eind, lang, fileKey) {
     numEntries++
 }
 
+//Moved the table creation logic in to a function. 
+function createVirtualTable() {
+    if (writeFtsDb) {
+        ftsDb.run('BEGIN');
+        ftsDb.run('DROP TABLE IF EXISTS tipitaka')
+        const sinhalaRange = [];
+        for (let i = 0x0d80; i <= 0x0dff; i++) {
+            sinhalaRange.push(String.fromCharCode(i));
+        }
+
+        const createVirtualTableSQL = `CREATE VIRTUAL TABLE IF NOT EXISTS tipitaka USING fts4(
+            filename, eind, language, type, level, text, 
+            tokenize = unicode61 "tokenchars='${sinhalaRange.join('')}'"
+        );`;
+
+        ftsDb.run(createVirtualTableSQL);
+        ftsDb.run('COMMIT');
+    }
+}
+
 const writeFtsDb = true, writeSuggestedWords = false
 const wordListPali = [], wordListSinh = []
 const dataInputFolder = path.join(__dirname, '../public/static/text/')
 const ftsDictFile = path.join(__dirname, '../server/fts.db')
 const ftsDb = new SqliteDB(ftsDictFile, true)
+
+// Table creation and data insertion had to seperated in to two transactions, in order to work.
+// Uncomment the call to createVirtualTable() and the return statement first time.
+// Once the table is created, comment this block and run the script again to insert data.
+// if you're getting errors, just try step over in debugging mode from ftsDb.run('BEGIN') to ftsDb.run('COMMIT'). Strange!
+
+// createVirtualTable();
+// return;
+
 if (writeFtsDb) {
-    ftsDb.db.run('BEGIN')
-    ftsDb.db.run('DELETE FROM tipitaka')
+   ftsDb.run('BEGIN');
 }
 
 const inputFiles = fs.readdirSync(dataInputFolder).filter(name => /json$/.test(name))
