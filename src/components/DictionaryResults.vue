@@ -1,7 +1,7 @@
 <template>
   <v-sheet v-if="!isEmptyResults">
     <v-sheet v-if="results.breakups.length" class="d-flex flex-wrap my-2">
-      <div v-for="({word, type, breakup}, i) in results.breakups" :key=i class="px-4 breakup">
+      <div v-for="({word, type, breakup}, i) in results.breakups" :key=i class="px-4 py-2 breakup">
         <span>{{ word }}</span>
         <v-chip outlined class="mx-1">{{ type }}</v-chip>
         <span>{{ breakup }}</span>
@@ -11,7 +11,7 @@
     <v-simple-table v-if="results.matches.length">
       <tbody>
         <tr v-for="({ word, dict, meaning }, i) in results.matches" :key="i">
-          <td class="result" :style="$store.getters['styles']">
+          <td class="result py-2" :style="$store.getters['styles']">
             <span class="word">{{ word }}</span>
             <v-chip class="mx-3" x-small>{{ dict }}</v-chip>
             <span class="meaning" v-html="meaning"></span>

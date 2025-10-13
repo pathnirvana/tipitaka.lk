@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@pnfo/pali-converter": "github:pnfo/pali-converter",
     "@pnfo/singlish-search": "^1.1.0",
     "axios": "^0.21.2",
     "caniuse-lite": "^1.0.30001434",
