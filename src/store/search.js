@@ -188,7 +188,7 @@ export default {
       const exactMatch = state.inlineDict.exactMatch
       const dictList = getters['getShortDicts']
 
-      const whereClause = exactMatch ? `WHERE word = '${normalizeWord(word)}';`
+      const whereClause = exactMatch ? `WHERE word = '${normalizeWord(word)}'`
                                      : `WHERE word IN ('${dictWordList(word).join("','")}')`;
 
       const sql = `SELECT word, dict, meaning FROM dictionary 
