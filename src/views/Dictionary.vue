@@ -6,18 +6,19 @@
       {{ searchMessage }}
       <ShareLinkIcon :link="linkToPage" />
     </v-banner>
-    <v-row >
-    <v-col cols="12">
-      <DictionaryFilter />
-    </v-col>
-    <v-col cols="12">
-      <v-btn v-model="exactMatchPage" @click="toggleExactMatch" class="mb-6">
-        <v-icon :color="exactMatchPage ? 'primary' : ''" class="mr-1">mdi-format-letter-matches</v-icon>
-        <span>එම වචනයම සොයන්න</span>
-      </v-btn>
-    </v-col>
-  </v-row>
-
+    <v-container fluid class="pl-4">
+      <v-row class="align-center mb-5" >
+        <v-col cols="12" sm="auto">
+          <DictionaryFilter />
+        </v-col>
+        <v-col cols="12" sm="auto" class="pt-0 pt-sm-3">
+          <v-btn v-model="exactMatchPage" @click="toggleExactMatch" class="mt-sm-3">
+            <v-icon :color="exactMatchPage ? 'primary' : ''" class="mr-2">mdi-format-letter-matches</v-icon>
+            <span>එම වචනයම සොයන්න</span>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
     <v-spacer></v-spacer>
     <v-skeleton-loader v-if="queryRunning" type="table"></v-skeleton-loader>
 

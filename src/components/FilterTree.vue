@@ -1,8 +1,8 @@
 <template>
-  <v-dialog v-model="dialog" max-width="300">
+  <v-dialog v-model="dialog" :max-width="$vuetify.breakpoint.smAndDown ? '300px' : '400px'">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn v-bind="attrs" v-on="on" :depressed="isLimited" class="mt-2">
-        <v-icon class="mr-1" :color="isLimited ? 'primary' : ''">mdi-filter-variant</v-icon>
+      <v-btn v-bind="attrs" v-on="on" :depressed="isLimited" class="mt-3">
+        <v-icon class="mr-2" :color="isLimited ? 'primary' : ''">mdi-filter-variant</v-icon>
         {{ isLimited ? 'සෙවුම සීමා වී ඇත' : 'සෙවුම සීමා කිරීම' }}
       </v-btn>
     </template>
