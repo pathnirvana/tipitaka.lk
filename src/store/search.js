@@ -79,6 +79,8 @@ export default {
     getMd5Cache: (state) => (type, sql) => state.md5SearchCache[type][md5(sql)],
     getTitleCache: (state) => (query) => state.titleSearchCache[query],
     getShortDicts: (state) => state.selectedDictionaries.map(dict => dictionaryInfo[dict][1]),
+
+    isDictionaryFilterLimited: (state) => state.selectedDictionaries.length < Object.keys(dictionaryInfo).length,
   },
 
   mutations: {
