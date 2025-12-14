@@ -6,9 +6,20 @@
       {{ searchMessage }}
       <ShareLinkIcon :link="linkToPage" />
     </v-banner>
-
-    <DictionaryFilter />
-
+    <v-container fluid class="pl-4">
+      <v-row class="align-center mb-5" >
+        <v-col cols="12" sm="auto">
+          <DictionaryFilter />
+        </v-col>
+        <v-col cols="12" sm="auto" class="pt-0 pt-sm-3">
+          <v-btn v-model="exactMatchPage" @click="toggleExactMatch" class="mt-sm-3">
+            <v-icon :color="exactMatchPage ? 'primary' : ''" class="mr-2">mdi-format-letter-matches</v-icon>
+            <span>එම වචනයම සොයන්න</span>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-spacer></v-spacer>
     <v-skeleton-loader v-if="queryRunning" type="table"></v-skeleton-loader>
 
     <DictionaryResults :results="results" />
@@ -49,7 +60,7 @@ export default {
   }),
   
   computed: {
-    ...mapState('search', ['maxResults', 'searchInput', 'searchType']),
+    ...mapState('search', ['maxResults', 'searchInput', 'searchType', 'exactMatchPage']),
     searchMessage() {
       if (!this.searchInput || _.isEmpty(this.results)) return ''
       const matchedMessage = !this.results.matches.length ?
@@ -68,6 +79,13 @@ export default {
     },
     selectedDictionaries() { return this.$store.state.search.selectedDictionaries }, // just for watching 
     linkToPage() { return '/dict/' + this.searchInput },
+    exactMatchPage: {
+      get() { return this.$store.state.search.exactMatchPage },
+      set(value) {
+        this.$store.commit('search/setExactMatchPage', value)
+        this.debouncedGetResults();
+      } 
+    },
   },
 
   metaInfo() {  
@@ -80,9 +98,10 @@ export default {
       this.resultsInput = this.searchInput
       this.queryRunning = true
       try {
-        this.results = await this.$store.dispatch('search/runPageDictQuery', this.searchInput)
+        console.log("exactMatchPage: " + this.exactMatchPage);
+        this.results = await this.$store.dispatch('search/runPageDictQuery', { input: this.searchInput, exactMatchPage: this.exactMatchPage })
       } catch (e) {
-        console.error(e)
+        console.error(e.message)
         this.errorMessage = e.message
       }
       this.queryRunning = false
@@ -93,6 +112,9 @@ export default {
         this.$router.push(this.linkToPage)
       }
       this.debouncedGetResults()
+    },
+    toggleExactMatch() {
+      this.exactMatchPage = !this.exactMatchPage
     },
   },
   

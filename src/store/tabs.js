@@ -38,6 +38,7 @@ export default {
   state: {
     activeInd: -1,
     tabList: [],
+    tabScrollPositions: {}, // Store scroll positions for each tab
   },
 
   getters: {
@@ -57,6 +58,10 @@ export default {
       if (!tab.isLoaded) return []
       return tab.data.pages.slice(tab.pageStart, tab.pageEnd)
     },
+    // Get saved scroll position for a tab
+    getTabScrollPosition: (state) => (tabIndex) => {
+      return state.tabScrollPositions[tabIndex] || 0
+    },
   },
 
   mutations: {
@@ -68,13 +73,36 @@ export default {
       updateRoute(params.key)
     },
     closeTab(state, closeInd) {
+      // Clear scroll position when tab is closed
+      Vue.delete(state.tabScrollPositions, closeInd)
+      
+      // Remove the tab from the list
       state.tabList.splice(closeInd, 1)
-      // if activeEnd or lower is closed decrement activeInd
-      if (closeInd <= state.activeInd) state.activeInd = Math.max(0, state.activeInd - 1)
-      if (!state.tabList.length) { 
-        router.replace('/') // if all tabs closed - go to welcome page
-      } else {
+      
+      // Check if there are any tabs left
+      if (state.tabList.length) {
+        // Still have tabs - remap scroll positions
+        const newScrollPositions = {}
+        Object.keys(state.tabScrollPositions).forEach(key => {
+          const index = parseInt(key)
+          if (index > closeInd) {
+            newScrollPositions[index - 1] = state.tabScrollPositions[index]
+          } else {
+            newScrollPositions[index] = state.tabScrollPositions[index]
+          }
+        })
+        state.tabScrollPositions = newScrollPositions
+        
+        // Update active index
+        if (closeInd <= state.activeInd) {
+          state.activeInd = Math.max(0, state.activeInd - 1)
+        }
         updateRoute(state.tabList[state.activeInd].key)
+      } else {
+        // All tabs closed - clear everything and go to welcome page
+        state.tabScrollPositions = {}
+        state.activeInd = -1
+        router.replace('/')
       }
     },
     // make an existing tab active
@@ -106,6 +134,10 @@ export default {
     },
     setShowScanPage(state, val) {
       Vue.set(state.tabList[state.activeInd], 'showScanPage', val)
+    },
+    // Save scroll position for a tab
+    saveTabScrollPosition(state, { tabIndex, scrollPosition }) {
+      Vue.set(state.tabScrollPositions, tabIndex, scrollPosition)
     },
   },
   actions: {
