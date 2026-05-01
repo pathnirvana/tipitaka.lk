@@ -29,5 +29,10 @@ node_sqlite3.node
 tipitaka-lk.exe
 tipitaka-lk-macos
 fts.db*
+
+# put zip files in github due to warning
+dict.db
+dev/dicts/all-words.json
+
 server/bin/tipitaka_lk*
 server/server
