@@ -3,7 +3,21 @@
       <v-card tile>
         <v-progress-linear :value="progessPercentage" class="my-0" height="3"></v-progress-linear>
       </v-card>
-      <v-toolbar dense flat>
+      
+      <v-dialog v-model="showLoadingDialog" persistent>
+        <v-card>
+            <v-card-text>
+                <div class="d-flex flex-no-wrap justify-space-around align-center">
+                <div class="ml-3"><v-progress-circular size="50" indeterminate color="primary"></v-progress-circular></div> 
+                <div>
+                    <v-card-text>{{ loadingMessage }}</v-card-text>
+                </div>
+            </div>
+            </v-card-text>
+        </v-card>
+      </v-dialog>
+
+      <v-toolbar :class="{ 'custom-toolbar-height': isIOS }" dense flat>
         
         <div class="text">{{ getActiveLabel.text }}</div>
         
@@ -62,11 +76,19 @@
 
 <style scoped>
 .text { text-overflow: ellipsis; overflow: hidden;}
+
+.custom-toolbar-height {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 </style>
 
 <script lang="js">
 import { mapState, mapGetters } from 'vuex'
 import Vue from 'vue'
+import { IOS, platform } from '../constants';
 
 export default {
     name: 'AudioControl',
@@ -76,7 +98,7 @@ export default {
     },
 
     computed: {
-        ...mapState('audio', ['audioControls', 'playbackRate', 'isPlaying', 'currentTime', 'duration', 'silenceGap']),
+        ...mapState('audio', ['audioControls', 'playbackRate', 'isPlaying', 'currentTime', 'duration', 'silenceGap', 'isLoading']),
         ...mapGetters('audio', ['getActiveEntry', 'getActiveLabel']),
 
         progessPercentage() { return this.duration ? this.currentTime / this.duration * 100 : 0 },
@@ -99,6 +121,15 @@ export default {
             text = text.replace(/\{.+?\}/g, '') // footnotes
             text = text.replace(/\d+[\.,]?/g, '') // numbers followed by punctuation
             return text.replace(/[#\*\$_~]/g, '') // formatting marks
+        },
+        isIOS(){
+            return platform === IOS;
+        },
+        showLoadingDialog() {
+            return this.isLoading;
+        },
+        loadingMessage() {
+            return 'සජ්ඣායනා දත්ත බාග​ත වෙමින් පවතී...';
         },
     },
 

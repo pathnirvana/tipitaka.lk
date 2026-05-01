@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="py-2">
     <span class="root py-2" @click="openSutta" :style="$store.getters['styles']">
       <span class="pitaka-icon mr-2 pa-1">{{ items[0].text }}</span>
       

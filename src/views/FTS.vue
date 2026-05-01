@@ -1,36 +1,49 @@
 <template>
   <v-sheet>
     <v-banner v-if="!!inputError" color="error">{{ inputError }}</v-banner>
-    <v-container fluid>
-      <v-row dense>
+    <v-banner v-else-if="!!searchMessage" shaped> 
+      {{ searchMessage }}
+      <ShareLinkIcon :link="linkToPage"/>
+    </v-banner>
+    <!-- <v-container fluid> -->
+      <v-container fluid class="pl-4">
         <template v-if="!isAdvancedMode">
-          <v-col cols="12" :sm="showMatchPhrase ? 4 : 12">
-            <v-radio-group v-model="exactWord" :mandatory="true" dense>
-              <v-radio label="එම වචනයම සොයන්න" :value="1"></v-radio>
-              <v-radio label="මේ අකුරු වලින් ඇරඹෙන ඕනෑම වචනයක්" :value="0"></v-radio>
-            </v-radio-group>
-          </v-col>
-          <v-col cols="12" sm="4" v-if="showMatchPhrase">
-            <v-radio-group v-model="matchPhrase" :mandatory="true" dense>
-              <v-radio label="සම්පුර්ණ වාක්‍යක් ලෙස" :value="1"></v-radio>
-              <v-radio label="වෙන්වූ වචන සමූහයක් ලෙස" :value="0"></v-radio>
-            </v-radio-group>
-          </v-col>
-          <v-col cols="12" sm="4" v-if="showMatchPhrase && !matchPhrase">
-            <v-text-field label="වචන අතර උපරිම දුර" v-model="wordDistance"></v-text-field>
-          </v-col>
+          <v-row class="align-center mb-5" >
+            <v-col cols="12" sm="auto">
+              <!-- <v-radio-group v-model="exactWord" :mandatory="true" dense>
+                <v-radio label="එම වචනයම සොයන්න" :value="1"></v-radio>
+                <v-radio label="මේ අකුරු වලින් ඇරඹෙන ඕනෑම වචනයක්" :value="0"></v-radio>
+              </v-radio-group> -->
+              <FilterTree searchType="fts"/>
+            </v-col>
+            <v-col cols="12" sm="auto" class="pt-0 pt-sm-3">
+              <v-btn v-model="exactWord" @click="toggleExactMatch" class="mt-sm-3">
+                <v-icon :color="exactMatchPage ? 'primary' : ''" class="mr-2">mdi-format-letter-matches</v-icon>
+                <span>එම වචනයම සොයන්න</span>
+              </v-btn>
+            </v-col>
+            <v-col cols="12" sm="auto" v-if="showMatchPhrase" class="pt-0 pt-sm-3 ml-sm-8">
+              <v-radio-group v-model="matchPhrase" :mandatory="true" dense>
+                <v-radio label="සම්පුර්ණ වාක්‍යක් ලෙස" :value="1"></v-radio>
+                <v-radio label="වෙන්වූ වචන සමූහයක් ලෙස" :value="0"></v-radio>
+              </v-radio-group>
+            </v-col>  
+            <v-col cols="6" sm="3" v-if="showMatchPhrase && !matchPhrase" class="pt-0 pt-sm-3 ml-sm-3">
+              <v-text-field label="වචන අතර උපරිම දුර" v-model="wordDistance"></v-text-field>
+            </v-col>
+          </v-row>
         </template>
-        <v-col cols="12" sm="6" md="8">
+        <!-- <v-col cols="12" sm="6" md="8">
           <v-banner v-if="!!searchMessage">
             {{ searchMessage }}
             <ShareLinkIcon :link="linkToPage" />
           </v-banner>
-        </v-col>
-        <v-col cols="12" sm="6" md="4">
+        </v-col> -->
+        <!-- <v-col cols="12" sm="6" md="4">
           <FilterTree searchType="fts" />
-        </v-col>
-      </v-row>
-    </v-container>
+        </v-col> -->
+      </v-container>
+    <!-- </v-container> -->
 
     <v-card v-if="errorMessage" color="error">
       <v-card-title>අන්තර්ගතය සෙවීමේදී වරදක් සිදුවිය.</v-card-title>
@@ -40,13 +53,13 @@
     <div class="d-flex flex-column" v-if="results.length">
       <div v-for="group in results" :key="group.key" class="result-group pa-2">
 
-        <div v-if="!group.isOpen" class="result">
+        <div v-if="!group.isOpen" class="result pl-2">
           <TipitakaLink v-if="group.key" :itemKey="group.key" :params="group.items[0]" />
           <div class="html" v-html="group.items[0].hText" :style="$store.getters['styles']"></div>
         </div>
 
         <template v-else>
-          <div v-for="(res, i) in group.items" :key="i" class="result my-2">
+          <div v-for="(res, i) in group.items" :key="i" class="result">
             <TipitakaLink v-if="res.key" :itemKey="res.key" :params="res" />
             <div class="html" v-html="res.hText" :style="$store.getters['styles']"></div>
           </div>
@@ -237,6 +250,9 @@ export default {
         this.$router.replace(this.linkToPage)
       }
       this.debouncedGetResults()
+    },
+    toggleExactMatch() {
+      this.exactWord = this.exactWord == 0 ? 1 : 0
     },
   },
   
