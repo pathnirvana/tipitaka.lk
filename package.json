@@ -12,7 +12,7 @@
     "caniuse-lite": "^1.0.30001434",
     "colors": "^1.4.0",
     "core-js": "^3.7.0",
-    "fastify": "^3.8.0",
+    "fastify": "^5.10.0",
     "fastify-cors": "^4.1.0",
     "fastify-static": "^4.4.1",
     "lodash": "^4.17.21",
