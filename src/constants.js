@@ -1,6 +1,15 @@
-/** special flags and constants */
-export const tipitakaAppVersion = 2.0 // used to determine if app needs to be updated 
+let Capacitor = null;
+if (typeof window !== 'undefined' && window.Capacitor) {
+  try {
+    Capacitor = require('@capacitor/core').Capacitor;
+  } catch (e) {
+    console.warn('Capacitor not available');
+  }
+}
 
+/** special flags and constants */
+export const installedAndroidAppVersion = 2.0 // used to determine if app needs to be updated, remember to update this when new version is released
+export const installedIosAppVersion = 2.3 // remember to update this when new version is released
 const settingsVersion = '2'
 export const settingsKey = `tipitaka.lk-settings-${settingsVersion}`
 const bookmarksVersion = '1'
@@ -31,7 +40,18 @@ export const dictionaryInfo = {
     'Proper Names': [Language.EN, 'PN', 'en-dppn', {d: 'Pali Proper Names by G P Malalasekera', o: 'dpr', g: true}],
     'VRI English': [Language.EN, 'VRI', 'en-vri', {d: 'Dictionary distributed with VRI Chatta Sangayana Software', g: true, n: 13508}],
     'Critical PD': [Language.EN, 'CR', 'en-critical', {d: 'Critical Pali Dictionary - limited number of words', o: 'extracted from https://cpd.uni-koeln.de/', n: 29669, g: true}],
+    'Digital Pali Dictionary': [Language.EN, 'DPD', 'en-dpd', {d: 'Digital Pali Dictionary', o: 'dpr', g: true}],
+    'DPD Construction': [Language.EN, 'DPDC', 'en-dpd-construction', {d: 'Digital Pali Dictionary Construction', o: 'dpr', g: true}],
 }
+
+export const IOS = 'ios';
+export const platform = Capacitor ? Capacitor.getPlatform() : null;
+export const dbFileNameDict = 'dict.db';
+export const dbFileNameFts = 'fts.db';
+export const bundleId = "lk.tipitaka.ios";
+export const iosFtsVersion = '2'; // remember to update this when a new fts version is released
+export const iosDictVersion = '2'; // remember to update this when a new dict version is released
+export const dpdReleaseVersion = 'v0.2.20250709'
 
 // helper function to copy the title to the og:title
 export const copyMetaTitle = (title) => ({

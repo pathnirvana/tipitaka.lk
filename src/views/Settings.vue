@@ -64,7 +64,7 @@
           </v-card-text>
           <v-card-actions>
             <v-slider v-model="fontSize" step="1" ticks="always" :thumb-size="24"
-              thumb-label="always" :min="-5" :max="5"></v-slider>
+              thumb-label="always" :min="-6" :max="12"></v-slider>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -72,7 +72,7 @@
       <v-col cols="12" sm="6" xl="4">
         <v-card>  
           <v-card-title>පාළි සිංහල තීරු තෝරන්න</v-card-title> 
-          <v-card-text>නව සූත්‍රයක් ඇරීමේදී පෙන්වන්නේ පාළි, සිංහල හෝ ඒ තීරු දෙකමද බව.</v-card-text>
+          <v-card-text>නව සූත්‍රයක් විවෘත කරනවිට පෙන්වන්නේ පාළි, සිංහල හෝ ඒ තීරු දෙකමද බව.</v-card-text>
           <v-card-actions>
             <TabColumnSelector :iconType="false" varName="defaultColumns" />
             <span class="ml-3">{{ columnSelectionText }}</span>
@@ -84,10 +84,10 @@
         <v-card>  
           <v-card-title>මෘදුකාංගය යාවත්කාලීන කිරීම</v-card-title> 
           <v-card-text>
-            <div>{{ `ඔබගේ වත්මන් අනුවාදය (version): ${version}` }}</div>
+            <div>{{ `ඔබගේ වත්මන් අනුවාදය (version): ${version.toFixed(1)}` }}</div>
             <div :class="versionColor">{{ versionText }}</div>
           </v-card-text>
-          <v-card-actions>
+          <v-card-actions class="px-4">
             <v-btn @click="checkVersion" color="primary" outlined>
               <v-icon class="mr-2">mdi-update</v-icon>පරීක්‍ෂා කරන්න
             </v-btn>
@@ -95,6 +95,25 @@
         </v-card>
       </v-col>
 
+      <v-col cols="12" sm="6" xl="4">
+        <v-card>  
+          <v-card-title>DPD ශබ්දකෝ​ෂ අනුවාදය</v-card-title> 
+          <v-card-text>
+            <div>{{ `ඔබගේ වත්මන් DPD ශබ්දකෝ​ෂය: ${dpdReleaseVersion}`}}</div>
+          </v-card-text>
+          <v-card-actions class="px-4">
+            <v-btn 
+              color="primary" 
+              outlined
+              href="https://www.dpdict.net/" 
+              target="_blank"
+              style="text-transform: none">
+              <v-icon class="mr-2">mdi-open-in-new</v-icon>
+              DPD Dictionary
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -102,8 +121,8 @@
 <script>
 import TabColumnSelector from '@/components/TabColumnSelector'
 import { mapState } from 'vuex'
-import { tipitakaAppVersion } from '@/constants.js'
-import axios from 'axios'
+import { installedAndroidAppVersion, installedIosAppVersion, platform, IOS, dpdReleaseVersion} from '@/constants.js'
+import { getLatestVersionAvailable } from '../services/version-service'
 
 function getVuexBindings(props) {
   const bindings = {}
@@ -122,8 +141,9 @@ export default {
   },
 
   data: () => ({
-    version: tipitakaAppVersion, //Number(process.env.VUE_APP_VERSION),
+    version: platform === IOS ? installedIosAppVersion : installedAndroidAppVersion, //Number(process.env.VUE_APP_VERSION),
     newVersion: 0,
+    dpdReleaseVersion: dpdReleaseVersion,
   }),
   computed: {
     ...mapState(['bandiLetters', 'specialLetters']),
@@ -157,14 +177,8 @@ export default {
 
   methods: {
     async checkVersion() {
-      try {
-        const response = await axios.get('https://tipitaka.lk/tipitaka-query/version')
-        this.newVersion = Number(response.data.split('v').pop()) // returns something like "Tipitaka.lk v2.0"
-      } catch (err) {
-        console.log(err)
-        this.newVersion = -1
-      }
-    }
+      this.newVersion = await getLatestVersionAvailable();
+    },
   },
 
   mounted() { this.checkVersion() },

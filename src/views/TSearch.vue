@@ -1,8 +1,10 @@
 <template>
   <v-sheet>
     <v-banner v-if="!!inputError" color="error">{{ inputError }}</v-banner>
-    <v-banner v-else-if="!!searchMessage">{{ searchMessage }}<ShareLinkIcon :link="linkToPage" /></v-banner>
-    <FilterTree searchType="title" />
+    <v-banner v-else-if="!!searchMessage" shaped>{{ searchMessage }}<ShareLinkIcon :link="linkToPage" /></v-banner>
+    <v-container fluid class="mb-5 pl-4">
+        <FilterTree searchType="title" />
+    </v-container>
 
     <v-simple-table v-if="$store.getters.isLoaded">
       <tbody>

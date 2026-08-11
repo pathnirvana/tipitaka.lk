@@ -15,6 +15,8 @@ const dictionaryList = [ // shortname to filename map
     ['PN', 'en-dppn.json'],
     ['VRI', 'en-vri.json'],
     ['CR', 'en-critical.json'],
+    ['DPD', 'en-dpd.json'],
+    ['DPDC', 'en-dpd-construction.json'],
     
     ['BUS', 'sinhala/buddhadatta_dict.json'],
     ['MS', 'sinhala/sumangala_dict.json'],
@@ -29,7 +31,32 @@ dictionaryList.forEach(([shortName, filename]) => {
     data.forEach(([word, meaning]) => {
         if (shortName == 'CR') meaning = removeBRTags(meaning)
         word = word.replace(/\d$/, '') // some words have ending numbers
-        allWords.push([word, shortName, meaning])
+        
+        if (shortName === 'DPD') {
+            (async () => {
+                const { convert, Script } = await import('@pnfo/pali-converter')
+                let siword = convert(word, Script.SI, Script.RO)
+                if (siword) { 
+                    allWords.push([siword, shortName, meaning])
+                } else {
+                    console.log(`Could not covert to SI ${word}`)
+                }
+            })().catch(console.error)         
+        } else if (shortName === 'DPDC') {
+            (async () => {
+                const { convert, Script } = await import('@pnfo/pali-converter')
+                let siWord = convert(word, Script.SI, Script.RO)
+                let siMeaning = convert(meaning, Script.SI, Script.RO)
+                if (siWord) { 
+                    allWords.push([siWord, shortName, siMeaning])
+                } else {
+                    console.log(`Could not covert to SI ${word}`)
+                }
+            })().catch(console.error)         
+        }
+        else {
+            allWords.push([word, shortName, meaning])
+        }  
     })
     meaningsProcessed += data.length
 })
@@ -45,12 +72,12 @@ breakupsAr.forEach(([word, type, origin, breakups]) => {
 meaningsProcessed += breakupsAr.length
 
 allWords = allWords.sort((a, b) => a[0] > b[0]).filter(row => row.every(col => col)) // sort and remove null meanings
-console.log(`total words ${allWords.length} - total meanings ${meaningsProcessed}`)
 fs.writeFileSync(path.join(__dirname, 'all-words.json'), vkb.json(JSON.stringify(allWords)), 'utf-8')
+console.log(`total words ${allWords.length} - total meanings ${meaningsProcessed}`)
 
 const dbFilebase = 'dict.db'
 const dbFilePath = path.join(__dirname, '../../server/', dbFilebase)
-writeToSqlite().then(() => console.log(`wrote to sqlite db ${dbFilebase}`))
+writeToSqlite().then(() => console.log(`wrote to sqlite db - ${dbFilebase}`))
 
 // write to sqlite db
 async function writeToSqlite() {

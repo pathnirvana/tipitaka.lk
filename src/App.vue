@@ -176,6 +176,9 @@
 
 .v-navigation-drawer__content { overflow-x: auto !important; } /* Need to be outside the scope */
 .v-sheet.d-inline-flex { min-width: 100%; min-height: 100%; } /** Needed to fill the drawer */
+a {
+  color: var(--v-linkColor) !important;
+}
 </style>
 
 <script>
@@ -219,7 +222,7 @@ export default {
     },
     searchInput: {
       get() { return this.$store.getters['search/getSearchInput'] },
-      set(input) { this.$store.commit('search/setSearchInput', input ? input.trim() : '') }
+      set(input) { this.$store.commit('search/setSearchInput', input ? input : '') }
     },
     searchType: {
       get() { return this.$store.getters['search/getSearchType'] },
