@@ -1,0 +1,17 @@
+{
+  "meta.info": [{}],
+  "tree.node": [{ "key": "dn-1-1" }, { "key": "ap-pat-1" }],
+  "tree.children": [{ "parent_id": 0 }, { "parent_id": 2 }],
+  "tree.paths": [{ "ids": "10\u001f20" }],
+  "tree.pathsByKeys": [{ "keys": "dn-1-1\u001fan-1-1" }],
+  "tree.neighbor": [{ "id": 10, "dir": 1 }, { "id": 10, "dir": -1 }],
+  "tree.titleIndex": [{}],
+  "text.entries": [{ "file": "dn-1", "from": 0, "to": 1 }, { "file": "ap-pat", "from": 0, "to": 0 }],
+  "text.footnotes": [{ "file": "dn-1", "from": 0, "to": 5 }],
+  "fts.candidates": [{ "q": "එවං*", "lang": 2, "groups": "", "limit": 100 }, { "q": "\"එවං මෙ\"", "lang": 0, "groups": "5\u001f16", "limit": 10 }],
+  "fts.count": [{ "q": "එවං*", "lang": 2, "groups": "" }],
+  "fts.texts": [{ "ids": "1\u001f2\u001f3" }],
+  "audio.entries": [{ "file": "dn-1" }],
+  "dict.page": [{ "words": "ධම්ම\u001fධම්", "dicts": "BUS\u001fMS\u001fPTS", "prefix": 1 }, { "words": "ධම්ම", "dicts": "BUS", "prefix": 0 }],
+  "dict.inline": [{ "words": "ධම්ම\u001fධම්මා", "dicts": "BUS\u001fMS\u001fBR" }]
+}
