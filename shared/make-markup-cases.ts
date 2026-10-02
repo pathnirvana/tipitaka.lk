@@ -12,7 +12,7 @@ const manual = [
 const corpus = ['dn-1', 'atta-sn-5', 'ap-kvu-8', 'atta-kn-dhp-19', 'vp-cv-5', 'atta-mn-1', 'anya-vm-12'].flatMap(f => {
   const d = JSON.parse(fs.readFileSync(`public/static/text/${f}.json`, 'utf-8'))
   const all = d.pages.flatMap((p: any) => [...p.pali.entries, ...p.sinh.entries, ...p.pali.footnotes]).map((e: any) => e.text as string)
-  const tricky = all.filter(t => /[<&|]|\*\*[^*]*\n|\{[^}]{2,}\}/.test(t)).slice(0, 4)
+  const tricky = all.filter((t: string) => /[<&|]|\*\*[^*]*\n|\{[^}]{2,}\}/.test(t)).slice(0, 4)
   return [...tricky, all[3], all[10]].filter(Boolean)
 })
 const cases = [...new Set([...manual, ...corpus])].map(input => ({ input, html: tokensToHtml(parseMarkup(input)) }))

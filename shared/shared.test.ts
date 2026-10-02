@@ -171,3 +171,22 @@ describe('queries.sql parser', () => {
     expect(() => parseQueries('-- name: z\n-- db: text\nSELECT 1; SELECT 2')).toThrow(/multiple/)
   })
 })
+
+import { markTerms, buildSnippet } from './highlight'
+describe('highlight', () => {
+  const terms = [{ text: 'සුත', prefix: true }]
+  it('marks matching words in raw text', () => {
+    expect(markTerms('එවං මෙ **සුතං** සුත්තං{1} x', terms)).toBe('එවං මෙ **##සුතං##** ##සුත්තං##{1} x')
+    expect(markTerms('බ්‍රහ්ම', [{ text: 'බ්රහ්ම', prefix: false }])).toBe('##බ්‍රහ්ම##')
+  })
+  it('builds snippets in the v2 <sr> format', () => {
+    const s = buildSnippet('a b c **සුතං** d', terms)
+    expect(s.html).toBe('a b c <sr>සුතං</sr> d')
+    expect(s.numMatches).toBe(1)
+    const long = Array.from({ length: 100 }, (_, i) => `w${i}`).join(' ') + ' සුතං ' + Array.from({ length: 100 }, (_, i) => `x${i}`).join(' ')
+    const s2 = buildSnippet(long, terms)
+    expect(s2.html.startsWith('<b>…</b>')).toBe(true)
+    expect(s2.html.endsWith('<b>…</b>')).toBe(true)
+    expect(s2.html).toContain('<sr>සුතං</sr>')
+  })
+})

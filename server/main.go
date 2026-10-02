@@ -23,13 +23,14 @@ func main() {
 	noOpen := flag.Bool("no-open", false, "do not open the browser")
 	rootPath := flag.String("root-path", "", "folder containing dist/ (or web/dist/) and db/, relative to the binary or absolute")
 	bjtPath := flag.String("bjt-path", "", "local folder with BJT scanned pages (e.g. /Pictures/bjt_newbooks)")
+	dbDir := flag.String("db-dir", "", "folder with text.db and dict.db (default <root>/db)")
 	flag.Parse()
 
-	root, err := findRoot(*rootPath)
+	root, err := findRoot(*rootPath, *dbDir)
 	if err != nil {
 		log.Fatal(err)
 	}
-	app, err := NewApp(Config{Root: root, BjtPath: *bjtPath})
+	app, err := NewApp(Config{Root: root, BjtPath: *bjtPath, DBDir: *dbDir})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -48,7 +49,7 @@ func main() {
 }
 
 // findRoot locates the folder holding the web build and the dbs.
-func findRoot(rootPath string) (string, error) {
+func findRoot(rootPath, dbDir string) (string, error) {
 	var candidates []string
 	if filepath.IsAbs(rootPath) {
 		candidates = append(candidates, rootPath)
@@ -61,6 +62,15 @@ func findRoot(rootPath string) (string, error) {
 		}
 	}
 	for _, c := range candidates {
+		if dbDir != "" {
+			if _, err := os.Stat(filepath.Join(c, "web", "dist", "index.html")); err == nil {
+				return filepath.Clean(c), nil
+			}
+			if _, err := os.Stat(filepath.Join(c, "dist", "index.html")); err == nil {
+				return filepath.Clean(c), nil
+			}
+			continue
+		}
 		if _, err := os.Stat(filepath.Join(c, "db", "text.db")); err == nil {
 			return filepath.Clean(c), nil
 		}
@@ -98,6 +108,7 @@ type App struct {
 type Config struct {
 	Root    string
 	BjtPath string
+	DBDir   string // default <Root>/db
 	// IndexHTML overrides dist/index.html (tests)
 	IndexHTML string
 }
@@ -108,14 +119,18 @@ func NewApp(cfg Config) (*App, error) {
 	if a.queries, err = ParseQueries(queriesSQL); err != nil {
 		return nil, err
 	}
-	if a.dbs, err = OpenDBs(filepath.Join(cfg.Root, "db")); err != nil {
+	dbDir := cfg.DBDir
+	if dbDir == "" {
+		dbDir = filepath.Join(cfg.Root, "db")
+	}
+	if a.dbs, err = OpenDBs(dbDir); err != nil {
 		return nil, err
 	}
 	if a.meta, err = a.dbs.Meta(); err != nil {
 		return nil, err
 	}
 	a.apiHash = a.meta["api_hash"]
-	for _, d := range []string{"dist", filepath.Join("web", "dist")} {
+	for _, d := range []string{filepath.Join("web", "dist"), "dist"} { // repo checkout first, release layout second
 		if _, err := os.Stat(filepath.Join(cfg.Root, d, "index.html")); err == nil {
 			a.distDir = filepath.Join(cfg.Root, d)
 			break

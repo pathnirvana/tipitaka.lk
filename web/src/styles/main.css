@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face { font-family: 'sinhala'; src: url('../assets/fonts/UN-Abhaya.woff2') format('woff2'); font-weight: normal; font-display: swap; }
+@font-face { font-family: 'heading2'; src: url('../assets/fonts/AbhayaLibre-SemiBold.woff2') format('woff2'); font-weight: normal; font-display: swap; }
+
+/* theme colours (v2 Vuetify theme) */
+:root {
+  --c-primary: #C63100; --c-accent: #EF5100; --c-info: #2196F3; --c-success: #4CAF50; --c-error: #FF5252;
+  --c-warning: #FB8C00; --c-highlight: #FFF176; --c-star: #F9A825;
+  --c-bg: #FFFFFF; --c-surface: #FFFFFF; --c-surface2: #F5F5F5; --c-fg: #212121; --c-muted: #757575; --c-line: #E0E0E0;
+  --font-size: 16px;
+}
+.dark {
+  --c-primary: #FF8A65; --c-accent: #FF6E40; --c-info: #4FC3F7; --c-success: #81C784; --c-error: #FF6E6E;
+  --c-warning: #FFB74D; --c-highlight: #4527A0; --c-star: #FFD600;
+  --c-bg: #121212; --c-surface: #1E1E1E; --c-surface2: #2A2A2A; --c-fg: #ECECEC; --c-muted: #A0A0A0; --c-line: #3A3A3A;
+}
+
+html, body { background: var(--c-bg); color: var(--c-fg); }
+body { font-family: 'sinhala', serif; margin: 0; -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+a { color: inherit; }
+
+@layer components {
+  .icon-btn { @apply inline-flex items-center justify-center rounded-full p-1.5 text-fg; }
+  .icon-btn:hover { background: var(--c-surface2); }
+  .btn { @apply inline-flex items-center rounded border border-line px-3 py-1.5 text-sm; background: var(--c-surface); }
+  .btn:hover { background: var(--c-surface2); }
+  .btn-primary { @apply btn border-primary text-primary; }
+  .card { @apply rounded border border-line p-3; background: var(--c-surface); }
+  .banner { @apply border-l-4 px-4 py-3 text-sm; background: var(--c-surface2); }
+  .menu-item { @apply flex w-full items-center px-4 py-2 text-left text-sm; }
+  .menu-item:hover { background: var(--c-surface2); }
+  .chip { @apply inline-flex items-center rounded-full border border-line px-2 py-0.5 text-xs; }
+  .input { @apply w-full rounded border border-line bg-surface px-2 py-1 text-fg outline-none; }
+  .input:focus { border-color: var(--c-primary); }
+}
+
+/* ---- text entries (v2 TextEntry.vue). em units: font size is set on the entry cell ---- */
+.entry-text { font-family: 'sinhala', serif; font-size: 1.1em; line-height: 130%; word-break: break-word; text-align: justify; }
+.entry-text.heading { font-family: 'heading2', 'sinhala', serif; color: var(--c-primary); text-align: center; }
+.entry-text.heading[data-level="5"] { font-size: 1.8em; }
+.entry-text.heading[data-level="4"] { font-size: 1.7em; }
+.entry-text.heading[data-level="3"] { font-size: 1.6em; }
+.entry-text.heading[data-level="2"] { font-size: 1.4em; }
+.entry-text.heading[data-level="1"] { font-size: 1.3em; }
+.entry-text.paragraph { text-indent: 1.4em; }
+.entry-text.gatha { text-indent: 0; padding-left: 2.4em; text-align: left; }
+.entry-text.gatha[data-level="2"] { padding-left: 5em; }
+.entry-text.unindented { text-indent: 0; text-align: left; }
+.entry-text.centered { text-align: center; font-family: 'heading2', 'sinhala', serif; }
+.entry-text.centered[data-level="5"] { font-size: 2.1em; }
+.entry-text.centered[data-level="4"] { font-size: 1.8em; }
+.entry-text.centered[data-level="3"] { font-size: 1.5em; }
+.entry-text.centered[data-level="2"] { font-size: 1.25em; }
+.entry-text.centered[data-level="1"] { font-size: 1.1em; }
+.entry-text.centered[data-level="0"] { font-family: 'sinhala', serif; } /* level 0 is stored as missing (A31) */
+.entry-text.audio-playing { background: var(--c-highlight); }
+
+.rt-bold { color: var(--c-info); }
+.rt-underline { text-decoration: underline; text-decoration-color: var(--c-error); }
+.rt-strike { text-decoration: line-through; text-decoration-color: var(--c-accent); }
+.rt-highlight, sr { background: var(--c-highlight); }
+.fn-pointer { font-size: 0.9em; color: var(--c-info); cursor: pointer; padding: 0 3px; }
+.fn-abbr { color: var(--c-info); cursor: help; }
+.w.selected-word { background: var(--c-highlight); }
+.scan-img { width: 100%; max-width: 750px; filter: grayscale(100%) contrast(90%) brightness(95%); }
+.dark .scan-img { filter: invert(100%) contrast(70%) brightness(150%); }
+.dark .invert-dark { filter: invert(90%); }

@@ -74,7 +74,7 @@ WHERE n.id = :id + :dir;
 -- name: tree.titleIndex
 -- db: text
 -- max_rows: 30000
-SELECT n.id, n.key, n.pali, n.sinh, IFNULL(n.grp, -1) AS grp FROM node n ORDER BY n.id;
+SELECT n.id, n.key, n.pali, n.sinh, IFNULL(n.grp, -1) AS grp, n.page_idx, n.entry_idx FROM node n ORDER BY n.id;
 
 -- name: text.entries
 -- db: text

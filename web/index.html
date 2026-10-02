@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="si">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tripitaka Atuwa</title>
+    <meta name="description" content="සිංහල ත්‍රිපිටකය අටුවාව Software Search Thripitaka Tripitaka Atuwa of Sri Lanka">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://tipitaka.lk/static/images/og-500x300.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="500">
+    <meta property="og:image:height" content="300">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Tripitaka">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#C63100">
+    <link rel="apple-touch-icon" href="/static/images/app-logo.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+    <script>
+      // apply the dark theme before first paint (settings saved by the app)
+      try { if (JSON.parse(localStorage.getItem('tipitaka.lk-settings-2') || '{}').darkMode) document.documentElement.className = 'dark' } catch (e) {}
+    </script>
+    <style>
+      #ssr { max-width: 900px; margin: 56px auto 0; padding: 8px 16px; font-size: 17px; line-height: 1.4; }
+      #ssr .ssr-crumbs { font-size: 14px; margin-bottom: 12px; }
+      #ssr .ssr-entry { margin: 0.6em 0; text-align: justify; }
+      #ssr .heading, #ssr .centered { text-align: center; }
+      #ssr .heading { color: #C63100; font-size: 1.3em; }
+      #ssr .paragraph { text-indent: 1.4em; }
+      #ssr .gatha { padding-left: 2.4em; text-align: left; }
+      #ssr .editorial { opacity: .7; }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

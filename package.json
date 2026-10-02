@@ -10,7 +10,7 @@
     "build:fixture": "tsx build/cli.ts --fixture",
     "build:web": "vite build --config web/vite.config.ts",
     "build:web:app": "VITE_APP=1 vite build --config web/vite.config.ts",
-    "build:server": "cd server && CGO_ENABLED=0 go build -o bin/tipitaka_lk .",
+    "build:server": "bash scripts/build-server.sh",
     "typecheck": "vue-tsc --noEmit -p tsconfig.json",
     "lint": "eslint shared build web/src e2e",
     "test": "vitest run",
