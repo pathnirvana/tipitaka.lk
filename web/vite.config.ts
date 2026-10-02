@@ -12,7 +12,8 @@ import { fileURLToPath } from 'node:url'
 const isApp = process.env.VITE_APP === '1'
 const root = fileURLToPath(new URL('.', import.meta.url))
 const repo = fileURLToPath(new URL('..', import.meta.url))
-export const browsers = ['chrome >= 61', 'safari >= 12', 'ios >= 12', 'firefox >= 68', 'edge >= 79']
+// Android 7 ships WebView 53 (updates via Play Store are not guaranteed); Vue 3 needs ES2015 Proxy (Chrome 49, Safari 10)
+export const browsers = ['chrome >= 53', 'safari >= 10', 'ios >= 10', 'firefox >= 52', 'edge >= 79']
 
 function buildInfo() {
   for (const f of [`${repo}db/build-info.json`, `${repo}e2e/fixtures/db/build-info.json`]) {

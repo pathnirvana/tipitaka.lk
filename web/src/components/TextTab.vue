@@ -14,15 +14,15 @@
       </div>
       <section v-for="page in pages" :key="page.pageIdx" class="page" :data-page-idx="page.pageIdx">
         <template v-if="!tab.showScanPage">
-          <div v-if="settings.showPageNumbers && !isAtta" :class="['grid text-center', gridCols]">
+          <div v-if="settings.showPageNumbers && !isAtta" :class="['pair text-center', gridCols]">
             <div v-if="cols.pali"><button class="btn border-0 text-info" data-testid="page-number" @click.stop="tabs.update(tab, { showScanPage: true })">{{ page.pageNum }}</button></div>
             <div v-if="cols.sinh"><button class="btn border-0 text-info" @click.stop="tabs.update(tab, { showScanPage: true })">{{ page.pageNum + 1 }}</button></div>
           </div>
-          <div v-for="row in visibleRows(page)" :key="row.entry_idx" :class="['grid', gridCols]" :data-eind="`${row.page_idx}-${row.entry_idx}`">
+          <div v-for="row in visibleRows(page)" :key="row.entry_idx" :class="['pair', gridCols]" :data-eind="`${row.page_idx}-${row.entry_idx}`">
             <EntryCell v-if="cols.pali" :row="row" lang="pali" :file="file" :terms="termsFor(row)" :hide-footnotes="settings.footnoteMethod === 'hidden'" />
             <EntryCell v-if="cols.sinh" :row="row" lang="sinh" :file="file" :terms="termsFor(row)" :hide-footnotes="settings.footnoteMethod === 'hidden'" />
           </div>
-          <div v-if="settings.footnoteMethod === 'end-page'" :class="['grid', gridCols]">
+          <div v-if="settings.footnoteMethod === 'end-page'" :class="['pair', gridCols]">
             <div v-for="l in shownLangs" :key="l" class="px-2 py-2" :data-lang="l">
               <template v-if="page.footnotes[l].length">
                 <hr class="border-line">
@@ -33,7 +33,7 @@
             </div>
           </div>
         </template>
-        <div v-else :class="['grid', gridCols]">
+        <div v-else :class="['pair', gridCols]">
           <div v-for="l in shownLangs" :key="l" class="text-center">
             <img class="scan-img inline-block" :src="scanSrc(page.pageNum, l)" :alt="`page ${page.pageNum}`" data-testid="scan-img" loading="lazy">
           </div>
@@ -85,7 +85,7 @@ const columns = computed(() => tabs.tabColumns(props.tab))
 // pali only files always show the pali column (v2 showed an empty page for /ap-pat/sinh - A37)
 const cols = computed(() => ({ pali: columns.value === 0 || columns.value === 2 || tabs.paliOnly(props.tab), sinh: (columns.value === 1 || columns.value === 2) && !tabs.paliOnly(props.tab) }))
 const shownLangs = computed(() => (['pali', 'sinh'] as const).filter(l => cols.value[l]))
-const gridCols = computed(() => (cols.value.pali && cols.value.sinh ? 'grid-cols-2' : 'grid-cols-1'))
+const gridCols = computed(() => (cols.value.pali && cols.value.sinh ? 'pair-2' : 'pair-1'))
 
 const pages = computed<PageData[]>(() => {
   void text.version // re-evaluate when pages are loaded

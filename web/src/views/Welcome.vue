@@ -10,12 +10,12 @@
       පාළි අටුවා ඡට්ඨ සංගායනාවෙන් වන අතර එහි සිංහල පරිවර්තනය බෞද්ධ සංස්කෘතික මධ්‍යස්ථානයේ මුද්‍රණයෙනි.
       මෙම වෙබ් අඩවිය සහ මෘදුකාංගය පහත ව්‍යාපෘති හා වෙබ් අඩවි වල සාමුහික ප්‍රයත්නයක ප්‍රතිඵලයකි.
     </p>
-    <div class="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4 xl:grid-cols-6">
-      <img v-for="l in logos" :key="l" :src="asset(l)" class="invert-dark w-full rounded border border-line" alt="">
+    <div class="-mx-1.5 mb-6 flex flex-wrap">
+      <div v-for="l in logos" :key="l" class="w-1/2 p-1.5 sm:w-1/4 xl:w-1/6"><img :src="asset(l)" class="invert-dark w-full rounded border border-line" alt=""></div>
     </div>
     <div class="banner mb-4 border-info">අන්තර්ජාලය නැතිව භාවිතා කළ හැකි මෘදුකාංග පහතින් බාගත කරගන්න.</div>
-    <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 xl:grid-cols-6">
-      <a v-for="d in downloads" :key="d.img" :href="d.href" target="_blank" rel="noopener" class="flex justify-center">
+    <div class="flex flex-wrap">
+      <a v-for="d in downloads" :key="d.img" :href="d.href" target="_blank" rel="noopener" class="flex w-1/2 justify-center p-1.5 sm:w-1/4 xl:w-1/6">
         <img :src="asset(d.img)" class="h-10 invert dark:invert-0" alt="">
       </a>
     </div>

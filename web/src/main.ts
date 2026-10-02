@@ -5,6 +5,11 @@ import App from './App.vue'
 import { makeRouter } from './router'
 import './styles/main.css'
 
+// small DOM polyfills for old WebViews (Android 7 ships WebView 53)
+if (!Element.prototype.getAttributeNames) {
+  Element.prototype.getAttributeNames = function (this: Element) { return Array.prototype.map.call(this.attributes, (a: Attr) => a.name) as string[] }
+}
+
 async function polyfills() { // old WebViews (Android 7 / iOS 12)
   const tasks: Promise<unknown>[] = []
   if (!('IntersectionObserver' in window)) tasks.push(import('intersection-observer'))

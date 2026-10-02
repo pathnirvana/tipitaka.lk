@@ -38,6 +38,10 @@ a { color: inherit; }
   .input:focus { border-color: var(--c-primary); }
 }
 
+/* pali | sinhala rows: flexbox (CSS grid needs Chrome 57, Android 7 ships WebView 53) */
+.pair { display: flex; }
+.pair > * { flex: 1 1 0; min-width: 0; }
+
 /* ---- text entries (v2 TextEntry.vue). em units: font size is set on the entry cell ---- */
 .entry-text { font-family: 'sinhala', serif; font-size: 1.1em; line-height: 130%; word-break: break-word; text-align: justify; }
 .entry-text.heading { font-family: 'heading2', 'sinhala', serif; color: var(--c-primary); text-align: center; }
