@@ -1,7 +1,7 @@
 <!-- small popover positioned next to an anchor element (footnotes, menus, tooltips) -->
 <template>
   <Teleport to="body">
-    <div v-if="open && anchor" ref="box" class="fixed z-50 max-w-[min(90vw,420px)] rounded border border-line bg-surface p-2 text-fg shadow-lg"
+    <div v-if="open && anchor" ref="box" class="fixed z-50 rounded border border-line bg-surface p-2 text-fg shadow-lg"
       :style="style" role="dialog" @mouseleave="$emit('leave')">
       <slot />
     </div>
@@ -14,7 +14,7 @@ import { ref, watch, nextTick, onBeforeUnmount } from 'vue'
 const props = defineProps<{ open: boolean; anchor: HTMLElement | null; placement?: 'bottom' | 'top' }>()
 const emit = defineEmits<{ close: []; leave: [] }>()
 const box = ref<HTMLElement>()
-const style = ref<Record<string, string>>({ left: '0px', top: '0px', visibility: 'hidden' })
+const style = ref<Record<string, string>>({ left: '0px', top: '0px', visibility: 'hidden', maxWidth: '90vw' })
 
 function position() {
   if (!props.anchor || !box.value) return
@@ -24,7 +24,7 @@ function position() {
   if (top + b.height > vh - 4) top = Math.max(4, a.top - b.height - 4)
   if (top < 4) top = Math.min(vh - b.height - 4, a.bottom + 4)
   const left = Math.max(4, Math.min(a.left, vw - b.width - 4))
-  style.value = { left: `${left}px`, top: `${top}px`, visibility: 'visible' }
+  style.value = { left: `${left}px`, top: `${top}px`, visibility: 'visible', maxWidth: `${Math.min(420, vw * 0.9)}px` }
 }
 function onDocClick(e: Event) {
   const t = e.target as Node

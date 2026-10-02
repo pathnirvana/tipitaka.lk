@@ -8,7 +8,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { createRequire } from 'node:module'
-import { beautifyText } from '../../src/text-convert.mjs'
+import { beautifyText } from './text-convert.mjs'
 
 const require = createRequire(import.meta.url)
 const { isSinglishQuery, getPossibleMatches } = require('@pnfo/singlish-search')

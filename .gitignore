@@ -51,3 +51,5 @@ server/server
 
 /web/public/static/data
 /web/public/static/sitemap.txt
+/e2e/test-results
+/e2e/playwright-report

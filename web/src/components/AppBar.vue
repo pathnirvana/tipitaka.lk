@@ -117,8 +117,8 @@ const isView = (name: string) => route.name === name
 function toggleView(name: string) { if (isView(name)) router.back(); else router.push({ name }) }
 
 const isTextTab = computed(() => route.name === 'Home' && tabs.activeInd >= 0)
-const tabColumns = computed({ get: () => tabs.tabColumns(tabs.activeTab), set: v => { if (tabs.activeTab) tabs.activeTab.columns = v } })
-const scan = computed({ get: () => !!tabs.activeTab?.showScanPage, set: v => { if (tabs.activeTab) tabs.activeTab.showScanPage = v } })
+const tabColumns = computed({ get: () => tabs.tabColumns(tabs.activeTab), set: v => { if (tabs.activeTab) tabs.update(tabs.activeTab, { columns: v }) } })
+const scan = computed({ get: () => !!tabs.activeTab?.showScanPage, set: v => { if (tabs.activeTab) tabs.update(tabs.activeTab, { showScanPage: v }) } })
 
 // hide on scroll down for small screens (v2 appBarHide)
 const autoHide = computed(() => (viewport.height.value < 700 || !smAndUp.value) && settings.autoHideSearchBar)

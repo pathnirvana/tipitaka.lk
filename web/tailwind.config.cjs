@@ -2,7 +2,7 @@
 const v = (name) => `var(--c-${name})`
 module.exports = {
   content: [__dirname + '/index.html', __dirname + '/src/**/*.{vue,ts}'],
-  darkMode: 'class',
+  darkMode: ['variant', '.dark &'], // plain descendant selectors (the default uses :is() which old WebViews lack)
   theme: {
     // same breakpoints as Vuetify 2 (the v2 app logic depends on smAndUp/mdAndUp)
     screens: { sm: '600px', md: '960px', lg: '1264px', xl: '1904px' },

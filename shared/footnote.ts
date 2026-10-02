@@ -25,7 +25,7 @@ export function footnoteTokens(content: string, abbrs: string[]): FnToken[] {
   const re = new RegExp(`(${[...new Set(abbrs)].map(escapeRe).join('|')})`, 'g')
   const split = (tks: Token[]): FnToken[] => tks.flatMap((tk): FnToken[] => {
     if (tk.t === 'text') {
-      return tk.v.split(re).filter(Boolean).map((part, i, arr) =>
+      return tk.v.split(re).filter(Boolean).map(part =>
         abbrs.includes(part) ? { t: 'abbr', v: part } : { t: 'text', v: part })
     }
     if ('c' in tk) return [{ ...tk, c: split(tk.c) as Token[] }]

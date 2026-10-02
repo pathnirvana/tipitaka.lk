@@ -132,5 +132,8 @@ export const useTabs = defineStore('tabs', () => {
     await replaceActive({ key: n.key, language: tab.language })
   }
 
-  return { tabList, activeInd, activeTab, activeKey, tabColumns, isAtta, paliOnly, openTab, replaceActive, closeTab, setActive, findTab, loadNextPage, loadPrevPage, navigate }
+  /** updates fields of a tab (components never mutate the tab objects directly) */
+  function update(tab: Tab, patch: Partial<Pick<Tab, 'columns' | 'showScanPage'>>) { Object.assign(tab, patch) }
+
+  return { update, tabList, activeInd, activeTab, activeKey, tabColumns, isAtta, paliOnly, openTab, replaceActive, closeTab, setActive, findTab, loadNextPage, loadPrevPage, navigate }
 })

@@ -15,8 +15,8 @@
       <section v-for="page in pages" :key="page.pageIdx" class="page" :data-page-idx="page.pageIdx">
         <template v-if="!tab.showScanPage">
           <div v-if="settings.showPageNumbers && !isAtta" :class="['grid text-center', gridCols]">
-            <div v-if="cols.pali"><button class="btn border-0 text-info" data-testid="page-number" @click.stop="tab.showScanPage = true">{{ page.pageNum }}</button></div>
-            <div v-if="cols.sinh"><button class="btn border-0 text-info" @click.stop="tab.showScanPage = true">{{ page.pageNum + 1 }}</button></div>
+            <div v-if="cols.pali"><button class="btn border-0 text-info" data-testid="page-number" @click.stop="tabs.update(tab, { showScanPage: true })">{{ page.pageNum }}</button></div>
+            <div v-if="cols.sinh"><button class="btn border-0 text-info" @click.stop="tabs.update(tab, { showScanPage: true })">{{ page.pageNum + 1 }}</button></div>
           </div>
           <div v-for="row in visibleRows(page)" :key="row.entry_idx" :class="['grid', gridCols]" :data-eind="`${row.page_idx}-${row.entry_idx}`">
             <EntryCell v-if="cols.pali" :row="row" lang="pali" :file="file" :terms="termsFor(row)" :hide-footnotes="settings.footnoteMethod === 'hidden'" />
@@ -27,7 +27,7 @@
               <template v-if="page.footnotes[l].length">
                 <hr class="border-line">
                 <div class="flex flex-wrap text-left text-[0.9em]" data-testid="footnote-list">
-                  <div v-for="(fn, i) in page.footnotes[l]" :key="i" class="flex-auto px-4 py-0.5"><FootnoteContent :text="fn" :lang="l" /></div>
+                  <div v-for="(note, i) in page.footnotes[l]" :key="i" class="flex-auto px-4 py-0.5"><FootnoteContent :text="note" :lang="l" /></div>
                 </div>
               </template>
             </div>
@@ -158,7 +158,7 @@ function onTouchEnd(e: TouchEvent) {
   if (dx > -100 || Math.abs(dy) > 20) return
   if (cols.value.pali === cols.value.sinh || tabs.paliOnly(props.tab)) return
   const toSinh = cols.value.pali
-  props.tab.columns = toSinh ? 1 : 0
+  tabs.update(props.tab, { columns: toSinh ? 1 : 0 })
   ui.notify(toSinh ? 'සිංහල' : 'පාළි', 1000)
 }
 </script>

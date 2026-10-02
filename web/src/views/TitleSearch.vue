@@ -18,7 +18,6 @@ import { computed, onMounted, ref, shallowRef, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import { useDebounceFn } from '@vueuse/core'
-import { isSinglishQuery, getPossibleMatches } from '@pnfo/singlish-search'
 import FilterDialog from '@/components/FilterDialog.vue'
 import TipitakaLink from '@/components/TipitakaLink.vue'
 import ShareButton from '@/components/ShareButton.vue'
@@ -26,13 +25,10 @@ import Skeleton from '@/components/Skeleton.vue'
 import { useSearch } from '@/stores/search'
 import { useTree, type TreeItem } from '@/stores/tree'
 import { wordInputError } from '@shared/dict-words'
-import { normalizeTitle } from '@shared/normalize'
-import { FILTER_KEYS } from '@shared/constants'
-import type { EInd } from '@shared/routes'
+import { titleSearch, type TitleResult } from '@/data/title'
 
 const search = useSearch(), tree = useTree(), route = useRoute(), router = useRouter()
-interface Result { key: string; language: 'pali' | 'sinh'; eInd: EInd; type: null }
-const results = shallowRef<Result[]>([])
+const results = shallowRef<TitleResult[]>([])
 const paths = shallowRef(new Map<string, TreeItem[]>())
 const loading = ref(false)
 const resultsInput = ref<string | null>(null)
@@ -57,22 +53,9 @@ useHead({ title: computed(() => (input.value ? `“${input.value}” යන ස�
 
 async function getResults() {
   if (inputError.value) return
-  const query = normalizeTitle(input.value)
   loading.value = true
   try {
-    const index = await tree.loadTitleIndex()
-    let words: string[] = isSinglishQuery(query) ? getPossibleMatches(query) : []
-    if (!words.length) words = [query]
-    const re = new RegExp(words.map(normalizeTitle).join('|'), 'i')
-    const groups = new Set(search.filter.title.keys.map(k => (FILTER_KEYS as readonly string[]).indexOf(k)))
-    const cols = search.filter.title.columns
-    const out: Result[] = []
-    for (let i = 0; i < index.length && out.length < search.maxResults; i++) {
-      const n = index[i]
-      if (!groups.has(n.grp)) continue // v2 prefix match also matched an-10 for an-1 (A5)
-      const matchPali = cols.includes(0) && re.test(normalizeTitle(n.pali))
-      if (matchPali || (cols.includes(1) && re.test(normalizeTitle(n.sinh)))) out.push({ key: n.key, language: matchPali ? 'pali' : 'sinh', eInd: [n.page_idx, n.entry_idx], type: null })
-    }
+    const out = titleSearch(await tree.loadTitleIndex(), input.value, search.filter.title, search.maxResults)
     paths.value = await tree.getPaths(out.map(r => r.key))
     results.value = out
     resultsInput.value = input.value

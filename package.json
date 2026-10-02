@@ -3,7 +3,9 @@
   "version": "3.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "vite --config web/vite.config.ts",
     "build:data": "tsx build/cli.ts",
@@ -16,7 +18,9 @@
     "test": "vitest run",
     "test:full": "FULL=1 vitest run build",
     "test:sqlite-compat": "bash scripts/sqlite-compat.sh",
-    "test:e2e": "playwright test -c e2e/playwright.config.ts"
+    "test:e2e": "npm run build:fixture && npm run build:web && npm run build:web:app && npm run build:server && playwright test -c e2e/playwright.config.ts",
+    "build:dict": "tsx build/dict.ts",
+    "check:css": "node scripts/check-css.mjs"
   },
   "dependencies": {
     "@pnfo/singlish-search": "^1.1.0",

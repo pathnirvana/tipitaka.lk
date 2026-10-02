@@ -1,6 +1,6 @@
 <template>
   <AppBar />
-  <aside v-show="ui.showTree" class="fixed bottom-0 left-0 z-30 w-[min(350px,100vw)] border-r border-line bg-surface" :style="{ top: headerHeight }" data-testid="drawer">
+  <aside v-show="ui.showTree" class="fixed bottom-0 left-0 z-30 border-r border-line bg-surface" :style="{ top: headerHeight, width: `${Math.min(350, viewport.width.value)}px` }" data-testid="drawer">
     <TreeDrawer />
   </aside>
   <div v-if="ui.showTree && narrow" class="fixed inset-0 z-20 bg-black/30" @click="ui.showTree = false" />
