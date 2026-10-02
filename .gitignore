@@ -36,3 +36,15 @@ dev/dicts/all-words.json
 
 server/bin/tipitaka_lk*
 server/server
+
+# v3
+/web/dist
+/web/dist-app
+/db/text.db*
+/db/build-report.md
+/db/build-info.json
+/e2e/fixtures/db
+/test-results
+/playwright-report
+/server/bin/tipitaka_lk
+/scripts/.cache
