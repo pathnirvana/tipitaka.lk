@@ -6,7 +6,7 @@
     <FilterDialog type="title" />
     <Skeleton v-if="loading" />
     <div v-else class="mt-2 divide-y divide-line" data-testid="title-results">
-      <div v-for="r in results" :key="r.key" class="px-2" data-testid="title-result">
+      <div v-for="r in results" :key="r.key" class="px-2" data-testid="title-result" :data-key="r.key">
         <TipitakaLink v-if="paths.get(r.key)" :path="paths.get(r.key)!" :params="r" />
       </div>
     </div>

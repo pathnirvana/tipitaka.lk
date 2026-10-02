@@ -48,3 +48,6 @@ server/server
 /playwright-report
 /server/bin/tipitaka_lk
 /scripts/.cache
+
+/web/public/static/data
+/web/public/static/sitemap.txt

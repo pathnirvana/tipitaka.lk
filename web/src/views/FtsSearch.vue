@@ -25,7 +25,7 @@
     </div>
     <div class="flex flex-col" data-testid="fts-results">
       <div v-for="g in groups" :key="g.key" class="border border-dotted border-line p-2" data-testid="fts-group">
-        <div v-for="(item, i) in (g.open ? g.items : g.items.slice(0, 1))" :key="i" class="my-1" data-testid="fts-item">
+        <div v-for="(item, i) in (g.open ? g.items : g.items.slice(0, 1))" :key="i" class="my-1" data-testid="fts-item" :data-key="item.key" :data-lang="item.language">
           <TipitakaLink v-if="item.key && paths.get(item.key)" :path="paths.get(item.key)!" :params="{ ...item, hWords: terms, text: null }" />
           <div class="text-[1.1em]" :style="{ fontSize: settings.fontPx }" v-html="safe(item.hText)" />
         </div>
