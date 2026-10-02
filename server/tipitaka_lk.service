@@ -1,6 +1,5 @@
-# Systemd conf file to run the Go binary in production
-# Should be located in /etc/systemd/system/tipitaka_lk.service
-
+# systemd unit for the tipitaka.lk Go server (v3). Install: /etc/systemd/system/tipitaka_lk.service
+# scripts/deploy.sh puts each release in ~/www/tipitaka.lk/releases/<ts> and points `current` at it.
 [Unit]
 Description=Tipitaka.lk Go server
 After=network.target
@@ -8,17 +7,13 @@ After=network.target
 [Service]
 Type=simple
 User=janaka
-
-WorkingDirectory=/home/janaka/www/tipitaka.lk
-ExecStart=/home/janaka/www/tipitaka.lk/tipitaka_lk_linux_intel -no-open
+WorkingDirectory=/home/janaka/www/tipitaka.lk/current
+ExecStart=/home/janaka/www/tipitaka.lk/current/tipitaka_lk -no-open -listen 127.0.0.1:8400
 Restart=on-failure
 RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
 
-# Start Service
-# sudo systemctl start tipitaka_lk.service
-
-# View Logs
+# sudo systemctl daemon-reload && sudo systemctl restart tipitaka_lk
 # journalctl -u tipitaka_lk.service

@@ -1,38 +1,40 @@
 # Tipitaka.lk - Buddha Jayanthi Tripitaka and Atuwa
 
-This webapp is built with Vue and Vuetify. It is designed to run in either
+The proofread Buddha Jayanthi Tripitaka (Pali + Sinhala) and Atuwa, served as
+* the website https://tipitaka.lk
+* offline Android and iOS apps (WebView)
+* offline desktop apps (Windows / macOS / Linux)
 
-* Website/SPA on https://tipitaka.lk
-* Offline Android app
-* Offline Desktop app (Windows/Mac/Linux)
+[Github pages](https://pathnirvana.github.io/tipitaka.lk/) explaining the proofreading process.
 
-[Github pages](https://pathnirvana.github.io/tipitaka.lk/) explaining the proofreading process
+**The text lives in [`public/static/text/*.json`](public/static/text) - the ground truth edited by proofreaders.**
+Everything else is generated from it. See [dev-docs/architecture.md](dev-docs/architecture.md).
 
-## Run Production Website
-* `npm run build` and deploy `dist` directory to webserver
-* export NODE_SERVER_MODE=production and run PM2 as below
-* use PM2 to run `server/server.js` as `tipitaka-lk-server` on the webserver
-* use nginx `proxy_pass` directive to pass requests from tipitaka.lk to `localhost:8400`
-
-### Compiles and hot-reloads for development
+## Quick start (development)
+Requirements: Node 22+, Go 1.23+ with a C compiler (cgo), `unzip`.
 ```
-node server/server.js
-npm run serve
+npm ci
+unzip -o db/dict.db.zip -x '__MACOSX/*' -d db   # dictionary db (rarely changes)
+npm run build:data       # public/static/text/*.json -> db/text.db (validation, tree, search index) ~15 s
+npm run build:web        # web app -> web/dist
+npm run build:server     # Go server -> server/bin/tipitaka_lk
+./server/bin/tipitaka_lk -root-path ..   # http://localhost:8400
+npm run dev              # vite dev server with hot reload on :8081 (proxies /api to :8400)
 ```
 
-### Update Prod Website when text changes
-* copy the changed text files in the `dist` dir to prod server
-* run `fts-populate.js` and copy the `fts.db` to server
-* PM2 restart the `tipitaka-lk-server` to use the new db file
+## After proofreading changes
+* `npm run build:data` validates the text (errors fail; new warnings fail unless accepted with
+  `npm run build:data -- --update-baseline`) and rebuilds `db/text.db`. See `db/build-report.md`.
+* Deploy only the text: `scripts/deploy-data.sh`. CI runs the full validation on every push to master.
 
-## For Android App
-* Uncomment the public path in `vue.config.js` and build
-* Place the built files in `app/src/main/assets` directory in an Android webview app
-* Place the sqlite db files from the `server` folder (dict.db and fts.db) in the `dbassets/src/main/assets`
+## Tests
+`npm test` (unit), `npm run test:full` (full corpus, parity with v2), `npm run test:sqlite-compat`
+(Android SQLite 3.9.2), `cd server && go test ./...`, `npm run test:e2e` (Playwright). See [dev-docs/testing.md](dev-docs/testing.md).
 
-## For Desktop App
-* Follow the instructions on `server/server.js` to build a binary using `pkg`.
-* Make a zip file containing the above binary, `node_sqlite3.node`, `dist` and `server` folders
-* The above steps are now included in the `dev/create-releases.ps1` PowerShell script (just run it)
+## Releases
+* Website: `scripts/deploy.sh <linux binary>` (binary from the `release` GitHub workflow).
+* Desktop: the `release` workflow builds zips for all platforms (`scripts/release-desktop.sh` for the current one).
+* Android: `scripts/android-assets.sh /path/to/Android/Tipitaka.lk` then build the bundle in Android Studio.
+  iOS: see [dev-docs/native-bridge.md](dev-docs/native-bridge.md).
 
 **Please check the LICENSE file if you wish to extract any content from the website for redistribution.**

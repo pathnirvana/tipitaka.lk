@@ -14,7 +14,7 @@ declare module '*.vue' {
   export default component
 }
 
-/** native bridge injected by the Android / iOS WebView apps (contract: docs/native-bridge.md) */
+/** native bridge injected by the Android / iOS WebView apps (contract: dev-docs/native-bridge.md) */
 interface AndroidBridge {
   runAsync(rand: string, funcName: string, jsonParams: string): void
   runAsyncResult(rand: string): string

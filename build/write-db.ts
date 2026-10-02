@@ -1,4 +1,4 @@
-/** Writes db/text.db from the corpus + tree. Schema documented in docs/data-pipeline.md. */
+/** Writes db/text.db from the corpus + tree. Schema documented in dev-docs/data-pipeline.md. */
 import fs from 'node:fs'
 import Database from 'better-sqlite3'
 import type { Corpus } from './corpus'

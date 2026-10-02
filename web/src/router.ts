@@ -3,7 +3,7 @@ import Welcome from './views/Welcome.vue'
 import Reader from './views/Reader.vue'
 import { isNativeApp } from './data/source'
 
-// URL formats are a public contract (shared links) - see docs/architecture.md
+// URL formats are a public contract (shared links) - see dev-docs/architecture.md
 export const routes = [
   { path: '/', name: 'Welcome', component: Welcome },
   { path: '/settings', name: 'Settings', component: () => import('./views/Settings.vue') },
