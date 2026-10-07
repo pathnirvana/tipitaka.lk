@@ -14,8 +14,9 @@
             </button>
             <Floating :open="typeOpen" :anchor="typeBtn ?? null" @close="typeOpen = false">
               <div class="min-w-[240px] py-1" @click="typeOpen = false">
-                <button v-for="(info, t) in typeInfo" :key="t" class="menu-item" :data-testid="`search-type-${t}`" @click="setType(t)">
-                  <component :is="info.icon" class="mr-3 text-primary" />{{ info.menu }}<IconCheck v-if="search.searchType === t" class="ml-auto text-success" />
+                <button v-for="(info, t) in typeInfo" :key="t" :class="['menu-item border-l-4', search.searchType === t ? 'border-primary bg-surface2 font-bold text-primary' : 'border-transparent']"
+                  :aria-current="search.searchType === t" :data-testid="`search-type-${t}`" @click="setType(t)">
+                  <component :is="info.icon" class="mr-3 shrink-0 text-lg text-primary" />{{ info.menu }}
                 </button>
               </div>
             </Floating>
@@ -48,7 +49,6 @@ import IconMenu from '~icons/mdi/menu'
 import IconTitle from '~icons/mdi/format-title'
 import IconTextSearch from '~icons/mdi/text-search'
 import IconDict from '~icons/mdi/book-open-page-variant'
-import IconCheck from '~icons/mdi/check'
 import IconDown from '~icons/mdi/menu-down'
 import IconClose from '~icons/mdi/close'
 import IconPrev from '~icons/mdi/skip-previous'

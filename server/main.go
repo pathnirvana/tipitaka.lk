@@ -17,7 +17,11 @@ import (
 	"github.com/skratchdot/open-golang/open"
 )
 
-const APPNAME = "Tipitaka.lk v3.0" // the number after 'v' is compared by old apps (Settings version check)
+const APPNAME = "Tipitaka.lk v3.0"
+
+// PublishedVersion is what /tipitaka-query/version reports. Old apps compare it with their own version and ask the
+// user to update when it is larger - keep 2.0 until the v3 Android/iOS/desktop builds are published (-published-version 3.0).
+var PublishedVersion = "2.0"
 
 func main() {
 	listen := flag.String("listen", "127.0.0.1:8400", "address to listen on (use 0.0.0.0:8400 to allow LAN access)")
@@ -25,6 +29,7 @@ func main() {
 	rootPath := flag.String("root-path", "", "folder containing dist/ (or web/dist/) and db/, relative to the binary or absolute")
 	bjtPath := flag.String("bjt-path", "", "local folder with BJT scanned pages (e.g. /Pictures/bjt_newbooks)")
 	dbDir := flag.String("db-dir", "", "folder with text.db and dict.db (default <root>/db)")
+	flag.StringVar(&PublishedVersion, "published-version", PublishedVersion, "version reported to apps by /tipitaka-query/version")
 	flag.Parse()
 	if u := os.Getenv("TIPITAKA_LATEST_VERSION_URL"); u != "" {
 		LatestVersionURL = u

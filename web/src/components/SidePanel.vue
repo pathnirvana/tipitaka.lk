@@ -53,12 +53,12 @@
 
 
       <nav class="panel-section">
-        <RouterLink to="/settings" class="panel-row" data-testid="menu-settings" @click="ui.showPanel = false"><IconCog class="panel-icon" />තවත් සැකසුම් / Settings</RouterLink>
-        <RouterLink to="/bookmarks" class="panel-row" data-testid="menu-bookmarks" @click="ui.showPanel = false"><IconStar class="panel-icon text-star" />තරු යෙදූ සූත්‍ර / Bookmarks</RouterLink>
-        <RouterLink to="/abbreviations" class="panel-row" data-testid="menu-abbreviations" @click="ui.showPanel = false"><IconAsterisk class="panel-icon" />කෙටි යෙදුම් / Abbreviations</RouterLink>
-        <RouterLink to="/" class="panel-row" @click="ui.showPanel = false"><IconHome class="panel-icon" />මුල් පිටුව / Home</RouterLink>
-        <a class="panel-row" href="https://pathnirvana.github.io/tipitaka.lk/" target="_blank" rel="noopener"><IconInfo class="panel-icon" />අප ගැන / About</a>
-        <a class="panel-row" href="https://github.com/pathnirvana/tipitaka.lk" target="_blank" rel="noopener"><IconGithub class="panel-icon" />කේත කෝෂ්ඨය / GitHub</a>
+        <RouterLink to="/settings" class="panel-row" data-testid="menu-settings" @click="ui.showPanel = false"><IconCog class="panel-icon" /><span class="flex-1">තවත් සැකසුම් / Settings</span></RouterLink>
+        <RouterLink to="/bookmarks" class="panel-row" data-testid="menu-bookmarks" @click="ui.showPanel = false"><IconStar class="panel-icon text-star" /><span class="flex-1">තරු යෙදූ සූත්‍ර / Bookmarks</span></RouterLink>
+        <RouterLink to="/abbreviations" class="panel-row" data-testid="menu-abbreviations" @click="ui.showPanel = false"><IconAsterisk class="panel-icon" /><span class="flex-1">කෙටි යෙදුම් / Abbreviations</span></RouterLink>
+        <RouterLink to="/" class="panel-row" @click="ui.showPanel = false"><IconHome class="panel-icon" /><span class="flex-1">මුල් පිටුව / Home</span></RouterLink>
+        <a class="panel-row" href="https://pathnirvana.github.io/tipitaka.lk/" target="_blank" rel="noopener"><IconInfo class="panel-icon" /><span class="flex-1">අප ගැන / About</span></a>
+        <a class="panel-row" href="https://github.com/pathnirvana/tipitaka.lk" target="_blank" rel="noopener"><IconGithub class="panel-icon" /><span class="flex-1">කේත කෝෂ්ඨය / GitHub</span></a>
       </nav>
     </aside>
     </Transition>

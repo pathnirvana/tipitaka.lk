@@ -45,7 +45,8 @@ input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-co
   .panel-row { @apply flex w-full items-center px-4 py-2.5 text-left text-base; }
   .panel-row > * + * { margin-left: 0.5rem; } /* no flex gap: Chrome 84+ */
   button.panel-row:hover, a.panel-row:hover { background: var(--c-surface2); }
-  .panel-icon { @apply mr-1 shrink-0 text-xl text-info; }
+  .panel-icon { @apply w-6 shrink-0 text-xl text-info; } /* fixed width column so the labels line up */
+  .panel-row > .panel-icon + * { margin-left: 0.75rem; }
   .option-group label { @apply mb-1.5 block; }
 }
 

@@ -163,7 +163,7 @@ func TestAPI(t *testing.T) {
 func TestLegacyEndpoints(t *testing.T) {
 	h := newTestApp(t, "../e2e/fixtures").Handler()
 	rec := get(t, h, "/tipitaka-query/version")
-	if rec.Body.String() != APPNAME || rec.Header().Get("Access-Control-Allow-Origin") != "*" {
+	if rec.Body.String() != "Tipitaka.lk v"+PublishedVersion || rec.Header().Get("Access-Control-Allow-Origin") != "*" {
 		t.Errorf("version: %q %v", rec.Body.String(), rec.Header())
 	}
 	if rec := get(t, h, "/tipitaka-query/bjt-params"); rec.Code != 200 {
@@ -268,7 +268,7 @@ func TestLatestVersion(t *testing.T) {
 	req.Host = "tipitaka.lk"
 	rec := httptest.NewRecorder()
 	h.ServeHTTP(rec, req)
-	if rec.Body.String() != APPNAME {
+	if rec.Body.String() != "Tipitaka.lk v"+PublishedVersion {
 		t.Errorf("on tipitaka.lk expected own version, got %q", rec.Body.String())
 	}
 }

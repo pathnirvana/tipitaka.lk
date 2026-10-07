@@ -15,7 +15,7 @@ func handleVersion(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*") // desktop/app call this cross-origin (v2 bug A35)
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	w.Header().Set("Cache-Control", "no-cache")
-	w.Write([]byte(APPNAME))
+	w.Write([]byte("Tipitaka.lk v" + PublishedVersion))
 }
 
 func (a *App) handleBjtParams(w http.ResponseWriter, r *http.Request) {
@@ -56,7 +56,7 @@ func (a *App) handleLatestVersion(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	w.Header().Set("Cache-Control", "no-cache")
 	if strings.HasSuffix(r.Host, "tipitaka.lk") {
-		w.Write([]byte(APPNAME))
+		w.Write([]byte("Tipitaka.lk v" + PublishedVersion))
 		return
 	}
 	latest.Lock()
