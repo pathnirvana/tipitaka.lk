@@ -25,14 +25,14 @@ npm run dev              # vite dev server with hot reload on :8081 (proxies /ap
 ## After proofreading changes
 * `npm run build:data` validates the text (errors fail; new warnings fail unless accepted with
   `npm run build:data -- --update-baseline`) and rebuilds `db/text.db`. See `db/build-report.md`.
-* Deploy only the text: `scripts/deploy-data.sh`. CI runs the full validation on every push to master.
+* Deploy with `scripts/deploy.sh` (text-only updates use the same command). CI runs the full validation on every push.
 
 ## Tests
 `npm test` (unit), `npm run test:full` (full corpus, parity with v2), `npm run test:sqlite-compat`
 (Android SQLite 3.9.2), `cd server && go test ./...`, `npm run test:e2e` (Playwright). See [dev-docs/testing.md](dev-docs/testing.md).
 
 ## Releases
-* Website: `scripts/deploy.sh <linux binary>` (binary from the `release` GitHub workflow).
+* Website: `scripts/deploy.sh` - pulls the latest text from GitHub, builds, uploads, tests and switches (see dev-docs/deploy.md).
 * Desktop: the `release` workflow builds zips for all platforms (`scripts/release-desktop.sh` for the current one).
 * Android: `scripts/android-assets.sh /path/to/Android/Tipitaka.lk` then build the bundle in Android Studio.
   iOS: see [dev-docs/native-bridge.md](dev-docs/native-bridge.md).

@@ -1,6 +1,6 @@
 name: release
-# builds the desktop app zips natively on each OS (the server needs cgo for sqlite FTS4) and the linux
-# server binary used by scripts/deploy.sh. Trigger with a v* tag or manually.
+# builds the desktop app zips natively on each OS (the server needs cgo for sqlite FTS4).
+# Trigger with a v* tag or manually. (The website binary is cross compiled by scripts/deploy.sh.)
 on:
   push: { tags: ['v*'] }
   workflow_dispatch:

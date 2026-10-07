@@ -100,7 +100,8 @@ func (a *App) handleQuery(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	etag := `W/"` + a.apiHash + `"`
-	if r.Method == http.MethodGet && strings.Contains(r.Header.Get("If-None-Match"), etag) {
+	isGet := r.Method == http.MethodGet || r.Method == http.MethodHead
+	if isGet && strings.Contains(r.Header.Get("If-None-Match"), etag) {
 		w.WriteHeader(http.StatusNotModified)
 		return
 	}
@@ -122,7 +123,7 @@ func (a *App) handleQuery(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("ETag", etag)
-	if v, _ := raw["v"].(string); r.Method == http.MethodGet && v != "" && v == a.apiHash {
+	if v, _ := raw["v"].(string); isGet && v != "" && v == a.apiHash {
 		w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
 	} else {
 		w.Header().Set("Cache-Control", "no-cache")
