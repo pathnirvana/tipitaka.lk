@@ -73,3 +73,22 @@ test('version check shows up to date (no cross-origin request)', async ({ page }
   await expect(page.getByTestId('version-text')).toContainText('නවතම අනුවාදය')
   expect(external).toEqual([])
 })
+
+test('default columns: "both" is offered in settings on every screen', async ({ page }) => {
+  await page.goto('/settings')
+  await page.getByTestId('columns-0').click()
+  await page.getByTestId('columns-2').click()
+  if (isMobile(page)) await expect(page.getByText('කුඩා තිර වල එක් තීරුවක් පමණක් පෙන්වේ.')).toBeVisible()
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('tipitaka.lk-settings-2')!).defaultColumns)).toBe(2)
+})
+
+test('tree pane slides in and out', async ({ page }) => {
+  await page.goto('/')
+  const drawer = page.getByTestId('drawer')
+  if (!(await drawer.isVisible())) await page.getByTestId('tree-toggle').click()
+  await expect(drawer).toBeVisible()
+  await page.getByTestId('tree-toggle').click()
+  await expect(drawer).toBeHidden()
+  await page.getByTestId('tree-toggle').click()
+  await expect(drawer).toBeVisible()
+})

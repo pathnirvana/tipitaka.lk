@@ -30,8 +30,6 @@ export interface Tab {
   pageStart: number
   pageEnd: number // exclusive
   columns: Columns
-  /** both columns were chosen for this tab on a small screen - honour it */
-  explicitBoth: boolean
   lastUsed: number
   language?: 'pali' | 'sinh'
   showScanPage: boolean
@@ -53,7 +51,7 @@ export const useTabs = defineStore('tabs', () => {
   /** v2 getTabColumns */
   function tabColumns(tab?: Tab): Columns {
     const cols = tab ? tab.columns : settings.defaultColumns
-    if (cols !== 2 || smAndUp.value || tab?.explicitBoth || settings.bothColumnsOnSmallScreens) return cols
+    if (cols !== 2 || smAndUp.value) return cols // small screens show one column (v2)
     if (settings.defaultColumns !== 2) return settings.defaultColumns
     return settings.treeLanguage === 'pali' ? 0 : 1
   }
@@ -61,7 +59,7 @@ export const useTabs = defineStore('tabs', () => {
   const paliOnly = (tab?: Tab) => !!tab?.node && isPaliOnlyFile(tab.node.file)
 
   function newTab(p: OpenParams, columns: Columns): Tab {
-    return { uid: uid++, key: p.key, node: null, eInd: p.eInd || [0, 0], entryStart: 0, pageStart: 0, pageEnd: 0, columns, explicitBoth: false, lastUsed: Date.now(),
+    return { uid: uid++, key: p.key, node: null, eInd: p.eInd || [0, 0], entryStart: 0, pageStart: 0, pageEnd: 0, columns, lastUsed: Date.now(),
       language: p.language, showScanPage: false, hWords: p.hWords || null, errorMessage: '', isLoaded: false }
   }
 
@@ -120,7 +118,6 @@ export const useTabs = defineStore('tabs', () => {
     if (!old) return openTab(p)
     const tab = newTab(p, p.language ? (Number(p.language === 'sinh') as Columns) : old.columns)
     tab.showScanPage = old.showScanPage
-    tab.explicitBoth = old.explicitBoth
     tabList.value.splice(activeInd.value, 1, tab)
     const t = tabList.value[activeInd.value]
     await load(t, p.eInd)
@@ -171,7 +168,7 @@ export const useTabs = defineStore('tabs', () => {
   }
 
   /** updates fields of a tab (components never mutate the tab objects directly) */
-  function update(tab: Tab, patch: Partial<Pick<Tab, 'columns' | 'showScanPage' | 'explicitBoth'>>) { Object.assign(tab, patch) }
+  function update(tab: Tab, patch: Partial<Pick<Tab, 'columns' | 'showScanPage'>>) { Object.assign(tab, patch) }
 
   return { update, closeOthers, closeAll, tabList, activeInd, activeTab, activeKey, tabColumns, isAtta, paliOnly, openTab, replaceActive, closeTab, setActive, findTab, loadNextPage, loadPrevPage, navigate }
 })

@@ -9,10 +9,12 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import IconColumns from '~icons/mdi/view-column'
+import { smAndUp } from '@/composables/breakpoints'
 
-defineProps<{ modelValue: number }>()
 defineEmits<{ 'update:modelValue': [v: 0 | 1 | 2] }>()
-// "both" is always offered - on small screens it is only used when chosen explicitly (see tabs.tabColumns)
-const options = [{ value: 0 as const, label: 'පාළි' }, { value: 2 as const, label: '' }, { value: 1 as const, label: 'සිංහල' }]
+// "both" is not offered on small screens (one column is shown there, like v2) except for the default setting
+const props = defineProps<{ modelValue: number; alwaysBoth?: boolean }>()
+const options = computed(() => [{ value: 0 as const, label: 'පාළි' }, ...(props.alwaysBoth || smAndUp.value ? [{ value: 2 as const, label: '' }] : []), { value: 1 as const, label: 'සිංහල' }])
 </script>

@@ -1,7 +1,9 @@
 <!-- right hand panel: quick settings, reading controls and navigation links (like open.tipitaka.lk) -->
 <template>
   <Teleport to="body">
-    <div v-if="ui.showPanel" class="fixed inset-0 z-40 bg-black/30" @click="ui.showPanel = false" />
+    <Transition enter-from-class="opacity-0" leave-to-class="opacity-0">
+      <div v-if="ui.showPanel" class="fixed inset-0 z-40 bg-black/30 transition-opacity duration-200" @click="ui.showPanel = false" />
+    </Transition>
     <Transition enter-from-class="translate-x-full" leave-to-class="translate-x-full">
     <aside v-if="ui.showPanel" class="fixed bottom-0 right-0 top-0 z-50 flex w-[330px] max-w-full flex-col overflow-y-auto border-l border-line bg-surface shadow-2xl transition-transform duration-200"
       data-testid="side-panel">
@@ -15,28 +17,6 @@
           <IconSun v-if="s.darkMode" class="panel-icon" /><IconMoon v-else class="panel-icon" />
           <span class="flex-1">{{ s.darkMode ? 'ආලෝකමත් තිරය' : 'අඳුරු තිරය' }}</span>
         </button>
-        <div class="panel-row">
-          <IconFormatSize class="panel-icon" />
-          <span class="flex-1 whitespace-nowrap">අකුරු විශාලත්වය</span>
-          <button class="icon-btn border border-line" title="smaller" data-testid="panel-font-down" :disabled="s.fontSize <= -5" @click="s.fontSize--"><IconMinus /></button>
-          <span class="w-8 text-center" data-testid="panel-font-size">{{ s.fontSize > 0 ? '+' : '' }}{{ s.fontSize }}</span>
-          <button class="icon-btn border border-line" title="larger" data-testid="panel-font-up" :disabled="s.fontSize >= 5" @click="s.fontSize++"><IconPlus /></button>
-        </div>
-        <div class="panel-row">
-          <IconFileTree class="panel-icon" />
-          <span class="flex-1">නාමාවලිය</span>
-          <div class="inline-flex overflow-hidden rounded-full border border-line">
-            <button v-for="l in langs" :key="l.value" :class="['px-3 py-1', s.treeLanguage === l.value ? 'bg-primary text-white' : 'hover:bg-surface2']" @click="s.treeLanguage = l.value">{{ l.label }}</button>
-          </div>
-        </div>
-        <label class="panel-row">
-          <IconFootnote class="panel-icon" />
-          <span class="flex-1">අධෝලිපි</span>
-          <select v-model="s.footnoteMethod" class="input w-auto py-1" data-testid="panel-footnotes">
-            <option value="hidden">නොපෙන්වන්න</option><option value="click">ඔබන විට</option>
-            <option value="hover">මතින් යනවිට</option><option value="end-page">පිටුවේ අග</option>
-          </select>
-        </label>
       </section>
 
       <section v-if="isTextTab" class="panel-section" data-testid="panel-reading">
@@ -53,6 +33,24 @@
           <button class="btn ml-2 flex-1 justify-center" data-testid="next-sutta" @click="tabs.navigate(1)">ඊළඟ සූත්‍රය<IconNext class="ml-1" /></button>
         </div>
       </section>
+
+      <section class="panel-section">
+        <div class="panel-row">
+          <IconFormatSize class="panel-icon" />
+          <span class="flex-1 whitespace-nowrap">අකුරු විශාලත්වය</span>
+          <button class="icon-btn border border-line" title="smaller" data-testid="panel-font-down" :disabled="s.fontSize <= -5" @click="s.fontSize--"><IconMinus /></button>
+          <span class="w-8 text-center" data-testid="panel-font-size">{{ s.fontSize > 0 ? '+' : '' }}{{ s.fontSize }}</span>
+          <button class="icon-btn border border-line" title="larger" data-testid="panel-font-up" :disabled="s.fontSize >= 5" @click="s.fontSize++"><IconPlus /></button>
+        </div>
+        <div class="panel-row">
+          <IconFileTree class="panel-icon" />
+          <span class="flex-1">නාමාවලිය</span>
+          <div class="inline-flex overflow-hidden rounded-full border border-line">
+            <button v-for="l in langs" :key="l.value" :class="['px-3 py-1', s.treeLanguage === l.value ? 'bg-primary text-white' : 'hover:bg-surface2']" @click="s.treeLanguage = l.value">{{ l.label }}</button>
+          </div>
+        </div>
+      </section>
+
 
       <nav class="panel-section">
         <RouterLink to="/settings" class="panel-row" data-testid="menu-settings" @click="ui.showPanel = false"><IconCog class="panel-icon" />තවත් සැකසුම් / Settings</RouterLink>
@@ -77,7 +75,6 @@ import IconFormatSize from '~icons/mdi/format-size'
 import IconMinus from '~icons/mdi/minus'
 import IconPlus from '~icons/mdi/plus'
 import IconFileTree from '~icons/mdi/file-tree'
-import IconFootnote from '~icons/mdi/format-superscript'
 import IconColumns from '~icons/mdi/view-column'
 import IconText from '~icons/mdi/text-box'
 import IconScanner from '~icons/mdi/scanner'

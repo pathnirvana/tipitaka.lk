@@ -80,14 +80,12 @@ test('unknown sutta key shows not found with a 404 status', async ({ page }) => 
 test('column selector', async ({ page }) => {
   await page.goto('/dn-1-1')
   if (isMobile(page)) {
-    await expect(entries(page, 'sinh')).toHaveCount(0) // the default "both" falls back to one column on small screens
+    await expect(entries(page, 'sinh')).toHaveCount(0) // small screens show one column (v2)
     await page.getByTestId('panel-toggle').click()
     const panel = page.getByTestId('side-panel')
+    await expect(panel.getByTestId('columns-2')).toHaveCount(0) // no "both" on small screens
     await panel.getByTestId('columns-1').click()
     await expect(entries(page, 'pali')).toHaveCount(0)
-    await panel.getByTestId('columns-2').click() // chosen explicitly -> both columns even on a small screen
-    await expect(entries(page, 'pali').first()).toBeVisible()
-    await expect(entries(page, 'sinh').first()).toBeVisible()
     return
   }
   await expect(entries(page, 'pali').first()).toBeVisible()

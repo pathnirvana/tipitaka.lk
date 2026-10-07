@@ -31,7 +31,8 @@
     <section class="card m-1.5 w-full sm:w-[calc(50%-12px)] xl:w-[calc(33.3%-12px)]">
       <h2 class="mb-1 text-xl">පාළි සිංහල තීරු තෝරන්න</h2>
       <p class="mb-2 text-[15px] text-muted">නව සූත්‍රයක් ඇරීමේදී පෙන්වන්නේ පාළි, සිංහල හෝ ඒ තීරු දෙකමද බව.</p>
-      <ColumnSelector v-model="defaultColumns" /> <span class="ml-3 text-[15px]">{{ columnText }}</span>
+      <ColumnSelector v-model="defaultColumns" always-both /> <span class="ml-3 text-[15px]">{{ columnText }}</span>
+      <p v-if="defaultColumns === 2 && !smAndUp" class="mt-2 text-[15px] text-muted">කුඩා තිර වල එක් තීරුවක් පමණක් පෙන්වේ.</p>
     </section>
     <section v-if="showUpdate" class="card m-1.5 w-full sm:w-[calc(50%-12px)] xl:w-[calc(33.3%-12px)]">
       <h2 class="mb-1 text-xl">මෘදුකාංගය යාවත්කාලීන කිරීම</h2>
@@ -51,6 +52,7 @@ import IconUpdate from '~icons/mdi/update'
 import ColumnSelector from '@/components/ColumnSelector.vue'
 import { useDefaultColumns } from '@/composables/columns'
 import { isNativeApp } from '@/data/source'
+import { smAndUp } from '@/composables/breakpoints'
 import { useSettings } from '@/stores/settings'
 import { APP_VERSION } from '@shared/constants'
 

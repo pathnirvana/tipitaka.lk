@@ -17,17 +17,15 @@ export interface Settings {
   fontSize: number
   syncTree: boolean
   autoHideSearchBar: boolean
-  /** show pali + sinhala side by side even on small screens (only when chosen explicitly on a small screen) */
-  bothColumnsOnSmallScreens: boolean
 }
 const STORED: (keyof Settings)[] = ['darkMode', 'defaultColumns', 'treeLanguage', 'footnoteMethod', 'bandiLetters',
-  'specialLetters', 'showPageNumbers', 'fontSize', 'syncTree', 'autoHideSearchBar', 'bothColumnsOnSmallScreens']
+  'specialLetters', 'showPageNumbers', 'fontSize', 'syncTree', 'autoHideSearchBar']
 
 export function defaultSettings(width = typeof window !== 'undefined' ? window.innerWidth : 1200): Settings {
   return {
     darkMode: false, defaultColumns: 2, treeLanguage: 'pali',
     footnoteMethod: width < 960 ? 'click' : 'hover', // v2: smAndDown ? 'click' : 'hover'
-    bandiLetters: true, specialLetters: false, showPageNumbers: true, fontSize: 0, syncTree: true, autoHideSearchBar: true, bothColumnsOnSmallScreens: false,
+    bandiLetters: true, specialLetters: false, showPageNumbers: true, fontSize: 0, syncTree: true, autoHideSearchBar: true,
   }
 }
 
