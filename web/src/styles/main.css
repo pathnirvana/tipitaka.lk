@@ -50,6 +50,11 @@ input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-co
   .option-group label { @apply mb-1.5 block; }
 }
 
+/* tree recitation button: on row hover, always visible on touch screens */
+.tree-audio { visibility: hidden; }
+.group:hover > .tree-audio, .tree-audio:focus-visible { visibility: visible; }
+@media (hover: none) { .tree-audio { visibility: visible; } }
+
 /* pali | sinhala rows: flexbox (CSS grid needs Chrome 57, Android 7 ships WebView 53) */
 .pair { display: flex; }
 .pair > * { flex: 1 1 0; min-width: 0; }

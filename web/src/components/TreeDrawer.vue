@@ -1,6 +1,6 @@
 <!-- sutta tree (v2 TipitakaTree.vue) - children are loaded on demand -->
 <template>
-  <nav class="relative h-full overflow-auto pb-16" :style="{ fontSize: settings.fontPx }" data-testid="tree" ref="scroller">
+  <nav class="relative h-full overflow-auto pb-2" :style="{ fontSize: settings.fontPx }" data-testid="tree" ref="scroller">
     <div class="absolute right-2 top-2 z-10 flex flex-col items-end space-y-2">
       <button class="icon-btn bg-error text-white shadow" title="close" @click="ui.showTree = false"><IconClose /></button>
       <button class="icon-btn bg-success text-white shadow" title="sync" data-testid="tree-sync" @click="sync"><IconSync /></button>

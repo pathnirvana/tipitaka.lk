@@ -9,7 +9,7 @@
         <BookmarkButton :bookmark="bookmark" />
       </template>
     </div>
-    <button v-if="hasOptions" ref="dots" class="icon-btn absolute -left-2 -top-2 hidden bg-surface text-info shadow group-hover:inline-flex"
+    <button v-if="hasOptions" ref="dots" class="icon-btn absolute left-0.5 top-0.5 hidden bg-surface text-info shadow group-hover:inline-flex"
       :class="{ '!inline-flex': menuOpen }" title="විකල්ප" data-testid="entry-options" @click.stop="menuOpen = !menuOpen">
       <IconDots />
     </button>

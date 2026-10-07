@@ -10,7 +10,7 @@ const ignore = ['css-touch-action', 'css-overscroll-behavior', 'css-text-indent'
   'outline', 'css-font-rendering-controls', 'font-unicode-range', 'css-filters', 'css-nesting', 'css-cascade-layers', 'css-touch-action',
   'css-overflow', 'css-text-orientation', 'css3-tabsize', 'variable-fonts', 'font-family-system-ui', 'extended-system-fonts',
   'css-not-sel-list' /* tailwind space-x uses :not([hidden]) with a single argument */,
-  'css-placeholder', 'mdn-text-decoration-shorthand', 'css-focus-within', 'css-focus-visible' /* cosmetic: placeholder colour, underline colour, search box focus border */, 'css-boxdecorationbreak', 'css-backdrop-filter', 'mdn-text-decoration-line', 'mdn-text-decoration-color']
+  'css-placeholder', 'mdn-text-decoration-shorthand', 'css-focus-within', 'css-focus-visible', 'css-media-interaction' /* cosmetic: placeholder colour, underline colour, search box focus border */, 'css-boxdecorationbreak', 'css-backdrop-filter', 'mdn-text-decoration-line', 'mdn-text-decoration-color']
 const dir = process.argv[2] || 'web/dist/assets'
 const problems = []
 for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.css'))) {
