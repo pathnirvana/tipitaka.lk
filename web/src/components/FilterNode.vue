@@ -1,9 +1,9 @@
 <template>
   <li>
-    <div class="flex items-center gap-1 py-0.5">
+    <div class="flex items-center space-x-1 py-0.5">
       <button v-if="node.children" class="icon-btn p-0" @click="expanded = !expanded"><IconDown v-if="expanded" /><IconRight v-else /></button>
       <span v-else class="inline-block w-5" />
-      <label class="flex items-center gap-1">
+      <label class="flex items-center space-x-1">
         <input type="checkbox" :checked="state === 'all'" :indeterminate="state === 'some'" :data-testid="`filter-${node.key}`" @change="$emit('toggle', node.leaves, state !== 'all')">
         {{ node.name }}
       </label>

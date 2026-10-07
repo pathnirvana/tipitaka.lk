@@ -42,9 +42,10 @@ input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-co
   .input { @apply w-full rounded border border-line bg-surface px-2 py-1 text-fg outline-none; }
   .input:focus { border-color: var(--c-primary); }
   .panel-section { @apply border-b border-line py-1; }
-  .panel-row { @apply flex w-full items-center gap-2 px-4 py-2.5 text-left text-base; }
+  .panel-row { @apply flex w-full items-center px-4 py-2.5 text-left text-base; }
+  .panel-row > * + * { margin-left: 0.5rem; } /* no flex gap: Chrome 84+ */
   button.panel-row:hover, a.panel-row:hover { background: var(--c-surface2); }
-  .panel-icon { @apply mr-2 shrink-0 text-xl text-info; }
+  .panel-icon { @apply mr-1 shrink-0 text-xl text-info; }
   .option-group label { @apply mb-1.5 block; }
 }
 

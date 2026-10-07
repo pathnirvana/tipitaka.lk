@@ -12,7 +12,7 @@
     {{ ui.snackbar.message }}
   </div>
   <Dialog :open="ui.nativeBusy">
-    <div class="flex items-center gap-4">
+    <div class="flex items-center space-x-4">
       <div class="h-10 w-10 shrink-0 animate-spin rounded-full border-4 border-primary border-t-transparent" />
       <div class="text-sm">මෙම මෘදුකාංගයේ දත්ත පිටපත් වෙමින් පවතී. මොහොතක් රැඳී සිටින්න. මෙය පළමු ස්ථාපනයේ දී පමණක් සිදුවේ.</div>
     </div>

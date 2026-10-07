@@ -19,7 +19,7 @@
     </section>
     <section class="card m-1.5 w-full sm:w-[calc(50%-12px)] xl:w-[calc(33.3%-12px)]">
       <h2 class="mb-2 text-xl">වෙනත් සැකසුම්</h2>
-      <label v-for="o in switches" :key="o.key" class="mb-1 flex items-center gap-2">
+      <label v-for="o in switches" :key="o.key" class="mb-1 flex items-center space-x-2">
         <input v-model="(s as any)[o.key]" type="checkbox" class="h-4 w-4 accent-[var(--c-primary)]" :data-testid="`setting-${o.key}`"> {{ o.label }}
       </label>
     </section>

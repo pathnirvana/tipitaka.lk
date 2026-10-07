@@ -2,7 +2,7 @@
 <template>
   <div class="p-3">
     <div v-if="inputError" class="banner mb-2 border-error" data-testid="search-error">{{ inputError }}</div>
-    <div class="flex flex-wrap items-start gap-3">
+    <div class="-m-1.5 flex flex-wrap items-start [&>*]:m-1.5">
       <template v-if="!advanced">
         <fieldset class="option-group">
           <label class="block"><input v-model.number="exactWord" type="radio" :value="1" data-testid="exact-1"> එම වචනයම සොයන්න</label>

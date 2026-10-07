@@ -1,7 +1,7 @@
 <!-- dictionary bottom sheet in the reader (v2 Home.vue) -->
 <template>
   <div v-if="dict.show" class="fixed bottom-0 left-1/2 z-30 h-[250px] w-full max-w-[800px] -translate-x-1/2 border-t border-line bg-surface shadow-2xl" data-testid="inline-dict">
-    <div class="flex items-center gap-1 px-2 py-1">
+    <div class="flex items-center space-x-1 px-2 py-1">
       <input v-model="word" class="input w-40" aria-label="word" data-testid="inline-dict-input">
       <button class="icon-btn" title="backspace" data-testid="inline-backspace" @click="backspace"><IconBackspace /></button>
       <button class="btn" data-testid="inline-fts" @click="$router.push('/fts/' + dict.word)">
