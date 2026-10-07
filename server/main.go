@@ -11,6 +11,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/skratchdot/open-golang/open"
@@ -25,6 +26,9 @@ func main() {
 	bjtPath := flag.String("bjt-path", "", "local folder with BJT scanned pages (e.g. /Pictures/bjt_newbooks)")
 	dbDir := flag.String("db-dir", "", "folder with text.db and dict.db (default <root>/db)")
 	flag.Parse()
+	if u := os.Getenv("TIPITAKA_LATEST_VERSION_URL"); u != "" {
+		LatestVersionURL = u
+	}
 
 	root, err := findRoot(*rootPath, *dbDir)
 	if err != nil {
@@ -102,6 +106,8 @@ type App struct {
 	meta      map[string]string
 	distDir   string
 	indexHTML string
+	indexMod  time.Time // mtime of dist/index.html when it was read (reloaded when the web app is rebuilt)
+	indexMu   sync.Mutex
 	bjtDir    string
 }
 
@@ -141,14 +147,37 @@ func NewApp(cfg Config) (*App, error) {
 		if a.distDir == "" {
 			return nil, fmt.Errorf("web build not found in %s/dist or %s/web/dist", cfg.Root, cfg.Root)
 		}
-		b, err := os.ReadFile(filepath.Join(a.distDir, "index.html"))
-		if err != nil {
+		if _, err := a.currentIndex(); err != nil {
 			return nil, err
 		}
-		a.indexHTML = string(b)
 	}
 	a.bjtDir = findBjtScans(cfg.BjtPath)
 	return a, nil
+}
+
+// currentIndex returns dist/index.html, re-reading it when the file changed (e.g. npm run build:web while running)
+func (a *App) currentIndex() (string, error) {
+	a.indexMu.Lock()
+	defer a.indexMu.Unlock()
+	if a.cfg.IndexHTML != "" {
+		return a.cfg.IndexHTML, nil
+	}
+	path := filepath.Join(a.distDir, "index.html")
+	st, err := os.Stat(path)
+	if err != nil {
+		if a.indexHTML != "" {
+			return a.indexHTML, nil // keep serving the last good copy during a rebuild
+		}
+		return "", err
+	}
+	if a.indexHTML == "" || !st.ModTime().Equal(a.indexMod) {
+		b, err := os.ReadFile(path)
+		if err != nil {
+			return a.indexHTML, err
+		}
+		a.indexHTML, a.indexMod = string(b), st.ModTime()
+	}
+	return a.indexHTML, nil
 }
 
 func (a *App) Handler() http.Handler {
@@ -158,6 +187,7 @@ func (a *App) Handler() http.Handler {
 	mux.HandleFunc("GET /api/health", a.handleHealth)
 	mux.HandleFunc("GET /tipitaka-query/version", handleVersion)
 	mux.HandleFunc("GET /tipitaka-query/bjt-params", a.handleBjtParams)
+	mux.HandleFunc("GET /tipitaka-query/latest-version", a.handleLatestVersion)
 	if a.bjtDir != "" {
 		mux.Handle("GET /bjt-scanned-pages/", http.StripPrefix("/bjt-scanned-pages/", http.FileServer(http.Dir(a.bjtDir))))
 	}

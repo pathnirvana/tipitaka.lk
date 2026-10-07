@@ -30,6 +30,9 @@ export interface Tab {
   pageStart: number
   pageEnd: number // exclusive
   columns: Columns
+  /** both columns were chosen for this tab on a small screen - honour it */
+  explicitBoth: boolean
+  lastUsed: number
   language?: 'pali' | 'sinh'
   showScanPage: boolean
   hWords: FtsTerm[] | null
@@ -38,6 +41,7 @@ export interface Tab {
 }
 
 let uid = 1
+export const MAX_TABS = 12
 
 export const useTabs = defineStore('tabs', () => {
   const tree = useTree(), text = useText(), settings = useSettings()
@@ -49,7 +53,7 @@ export const useTabs = defineStore('tabs', () => {
   /** v2 getTabColumns */
   function tabColumns(tab?: Tab): Columns {
     const cols = tab ? tab.columns : settings.defaultColumns
-    if (cols !== 2 || smAndUp.value) return cols
+    if (cols !== 2 || smAndUp.value || tab?.explicitBoth || settings.bothColumnsOnSmallScreens) return cols
     if (settings.defaultColumns !== 2) return settings.defaultColumns
     return settings.treeLanguage === 'pali' ? 0 : 1
   }
@@ -57,7 +61,7 @@ export const useTabs = defineStore('tabs', () => {
   const paliOnly = (tab?: Tab) => !!tab?.node && isPaliOnlyFile(tab.node.file)
 
   function newTab(p: OpenParams, columns: Columns): Tab {
-    return { uid: uid++, key: p.key, node: null, eInd: p.eInd || [0, 0], entryStart: 0, pageStart: 0, pageEnd: 0, columns,
+    return { uid: uid++, key: p.key, node: null, eInd: p.eInd || [0, 0], entryStart: 0, pageStart: 0, pageEnd: 0, columns, explicitBoth: false, lastUsed: Date.now(),
       language: p.language, showScanPage: false, hWords: p.hWords || null, errorMessage: '', isLoaded: false }
   }
 
@@ -79,21 +83,44 @@ export const useTabs = defineStore('tabs', () => {
     }
   }
 
+  /**
+   * opens a sutta. An already open sutta is re-used (moved to the requested position if one is given) instead of
+   * opening a duplicate tab, and the least recently used tabs are closed beyond MAX_TABS.
+   */
   async function openTab(p: OpenParams): Promise<Tab> {
     const columns: Columns = !p.language ? settings.defaultColumns : (Number(p.language === 'sinh') as Columns)
+    const existing = findTab(p.key)
+    if (existing >= 0) {
+      setActive(existing)
+      const tab = tabList.value[existing]
+      if (p.eInd || p.hWords) return replaceActive({ ...p, language: p.language || tab.language })
+      if (p.language) tab.columns = columns
+      return tab
+    }
     tabList.value.push(newTab(p, columns))
     activeInd.value = tabList.value.length - 1
     const tab = tabList.value[activeInd.value]
+    trimTabs()
     await load(tab, p.eInd)
     return tab
+  }
+
+  /** closes the least recently used tabs beyond MAX_TABS (never the active one) */
+  function trimTabs() {
+    while (tabList.value.length > MAX_TABS) {
+      const active = tabList.value[activeInd.value]
+      const oldest = tabList.value.filter(t => t !== active).sort((a, b) => a.lastUsed - b.lastUsed)[0]
+      closeTab(tabList.value.indexOf(oldest))
+    }
   }
 
   /** replace the active tab (keeps the columns / scan setting) */
   async function replaceActive(p: OpenParams): Promise<Tab> {
     const old = activeTab.value
     if (!old) return openTab(p)
-    const tab = newTab(p, old.columns)
+    const tab = newTab(p, p.language ? (Number(p.language === 'sinh') as Columns) : old.columns)
     tab.showScanPage = old.showScanPage
+    tab.explicitBoth = old.explicitBoth
     tabList.value.splice(activeInd.value, 1, tab)
     const t = tabList.value[activeInd.value]
     await load(t, p.eInd)
@@ -101,11 +128,22 @@ export const useTabs = defineStore('tabs', () => {
   }
 
   function closeTab(i: number) {
+    if (i < 0 || i >= tabList.value.length) return
     tabList.value.splice(i, 1)
-    if (i <= activeInd.value) activeInd.value = Math.max(0, activeInd.value - 1)
+    if (i < activeInd.value || (i === activeInd.value && activeInd.value >= tabList.value.length)) activeInd.value--
     if (!tabList.value.length) activeInd.value = -1
+    else if (activeInd.value < 0) activeInd.value = 0
   }
-  function setActive(i: number) { if (i >= 0 && i < tabList.value.length) activeInd.value = i }
+  function closeOthers(i: number) {
+    const keep = tabList.value[i]
+    if (!keep) return
+    tabList.value = [keep]
+    activeInd.value = 0
+  }
+  function closeAll() { tabList.value = []; activeInd.value = -1 }
+  function setActive(i: number) {
+    if (i >= 0 && i < tabList.value.length) { activeInd.value = i; tabList.value[i].lastUsed = Date.now() }
+  }
   function findTab(key: string) { return tabList.value.findIndex(t => t.key === key) }
 
   async function loadNextPage(tab: Tab, by = 1) {
@@ -133,7 +171,7 @@ export const useTabs = defineStore('tabs', () => {
   }
 
   /** updates fields of a tab (components never mutate the tab objects directly) */
-  function update(tab: Tab, patch: Partial<Pick<Tab, 'columns' | 'showScanPage'>>) { Object.assign(tab, patch) }
+  function update(tab: Tab, patch: Partial<Pick<Tab, 'columns' | 'showScanPage' | 'explicitBoth'>>) { Object.assign(tab, patch) }
 
-  return { update, tabList, activeInd, activeTab, activeKey, tabColumns, isAtta, paliOnly, openTab, replaceActive, closeTab, setActive, findTab, loadNextPage, loadPrevPage, navigate }
+  return { update, closeOthers, closeAll, tabList, activeInd, activeTab, activeKey, tabColumns, isAtta, paliOnly, openTab, replaceActive, closeTab, setActive, findTab, loadNextPage, loadPrevPage, navigate }
 })

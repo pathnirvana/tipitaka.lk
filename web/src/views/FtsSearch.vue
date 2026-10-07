@@ -4,7 +4,7 @@
     <div v-if="inputError" class="banner mb-2 border-error" data-testid="search-error">{{ inputError }}</div>
     <div class="flex flex-wrap items-start gap-3">
       <template v-if="!advanced">
-        <fieldset class="text-sm">
+        <fieldset class="option-group">
           <label class="block"><input v-model.number="exactWord" type="radio" :value="1" data-testid="exact-1"> එම වචනයම සොයන්න</label>
           <label class="block"><input v-model.number="exactWord" type="radio" :value="0" data-testid="exact-0"> මේ අකුරු වලින් ඇරඹෙන ඕනෑම වචනයක්</label>
         </fieldset>
@@ -12,7 +12,7 @@
           <label class="block"><input v-model.number="matchPhrase" type="radio" :value="1" data-testid="phrase-1"> සම්පුර්ණ වාක්‍යක් ලෙස</label>
           <label class="block"><input v-model.number="matchPhrase" type="radio" :value="0" data-testid="phrase-0"> වෙන්වූ වචන සමූහයක් ලෙස</label>
         </fieldset>
-        <label v-if="multiWord && !matchPhrase" class="text-sm">වචන අතර උපරිම දුර
+        <label v-if="multiWord && !matchPhrase">වචන අතර උපරිම දුර
           <input v-model.number="wordDistance" type="number" min="0" max="100" class="input w-20" data-testid="word-distance">
         </label>
       </template>

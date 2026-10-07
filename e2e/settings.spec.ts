@@ -66,7 +66,10 @@ test('abbreviations page', async ({ page }) => {
   await expect(page.getByTestId('abbreviations')).toContainText('මඡසං')
 })
 
-test('version check shows up to date', async ({ page }) => {
+test('version check shows up to date (no cross-origin request)', async ({ page }) => {
+  const external: string[] = []
+  page.on('request', r => { if (r.url().startsWith('https://tipitaka.lk')) external.push(r.url()) })
   await page.goto('/settings')
   await expect(page.getByTestId('version-text')).toContainText('නවතම අනුවාදය')
+  expect(external).toEqual([])
 })

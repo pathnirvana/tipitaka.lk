@@ -92,7 +92,8 @@ type ssrPage struct {
 var typeNames = []string{"centered", "heading", "paragraph", "gatha", "unindented"}
 
 func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
-	base := strings.Replace(a.indexHTML, "</head>", fmt.Sprintf(`<meta name="tipitaka-api" content="%s"></head>`, a.apiHash), 1)
+	index, _ := a.currentIndex()
+	base := strings.Replace(index, "</head>", fmt.Sprintf(`<meta name="tipitaka-api" content="%s"></head>`, a.apiHash), 1)
 	r, ok := parseSuttaRoute(path)
 	if !ok {
 		first := strings.Split(strings.Trim(path, "/"), "/")[0]

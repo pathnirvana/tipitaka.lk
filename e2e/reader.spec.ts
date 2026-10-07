@@ -80,10 +80,14 @@ test('unknown sutta key shows not found with a 404 status', async ({ page }) => 
 test('column selector', async ({ page }) => {
   await page.goto('/dn-1-1')
   if (isMobile(page)) {
-    await expect(entries(page, 'sinh')).toHaveCount(0) // both columns fall back to one on small screens
-    await page.getByTestId('text-menu').click()
-    await page.getByTestId('columns-1').click()
+    await expect(entries(page, 'sinh')).toHaveCount(0) // the default "both" falls back to one column on small screens
+    await page.getByTestId('panel-toggle').click()
+    const panel = page.getByTestId('side-panel')
+    await panel.getByTestId('columns-1').click()
     await expect(entries(page, 'pali')).toHaveCount(0)
+    await panel.getByTestId('columns-2').click() // chosen explicitly -> both columns even on a small screen
+    await expect(entries(page, 'pali').first()).toBeVisible()
+    await expect(entries(page, 'sinh').first()).toBeVisible()
     return
   }
   await expect(entries(page, 'pali').first()).toBeVisible()
@@ -127,8 +131,8 @@ test('infinite scroll loads more pages', async ({ page }) => {
 test('next / previous sutta opens the new sutta at its start (A36)', async ({ page }) => {
   await page.goto('/kn-dhp-1/5-2/pali')
   await expect(entries(page, 'pali').first()).toBeVisible()
-  if (isMobile(page)) await page.getByTestId('text-menu').click()
-  await page.getByTestId('next-sutta').click()
+  if (isMobile(page)) await page.getByTestId('panel-toggle').click()
+  await page.locator('[data-testid="next-sutta"]:visible').first().click()
   await expect(page).not.toHaveURL(/kn-dhp-1\b/)
   const key = new URL(page.url()).pathname.slice(1)
   const n = await node(page, key)
@@ -156,4 +160,38 @@ test('copy link from the entry menu', async ({ page, browserName }) => {
   await page.getByText('link එකක් ලබාගන්න').click()
   await expect(page.getByTestId('snackbar')).toBeVisible()
   expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(/^https:\/\/tipitaka\.lk\/dn-1-1\/\d+-\d+\/pali$/)
+})
+
+test('opening an already open sutta re-uses its tab', async ({ page }) => {
+  await page.goto('/dn-1-1/pali')
+  await page.locator('.entry-text.heading [data-testid="atuwa-link"]').first().click()
+  await expect(page.getByTestId('tab')).toHaveCount(2)
+  await page.locator('[data-testid="text-tab"]:visible .entry-text.heading [data-testid="atuwa-link"]').first().click() // back to the mula
+  await expect(page.getByTestId('tab')).toHaveCount(2)
+  await expect(page).toHaveURL(/\/dn-1-1$/)
+})
+
+test('tabs list: switch and close other tabs', async ({ page }) => {
+  await page.goto('/dn-1-1/pali')
+  await page.locator('.entry-text.heading [data-testid="atuwa-link"]').first().click()
+  await expect(page.getByTestId('tab')).toHaveCount(2)
+  await page.getByTestId('tabs-list').click()
+  const menu = page.getByTestId('tabs-list-menu')
+  await expect(menu.getByTestId('tabs-list-item')).toHaveCount(2)
+  await page.getByTestId('close-other-tabs').click()
+  await expect(page.getByTestId('tab')).toHaveCount(1)
+})
+
+test('side panel: dark mode, font size, links', async ({ page }) => {
+  await page.goto('/dn-1-1/pali')
+  await page.getByTestId('panel-toggle').click()
+  const panel = page.getByTestId('side-panel')
+  await panel.getByTestId('panel-dark').click()
+  await expect(page.locator('html')).toHaveClass(/dark/)
+  await panel.getByTestId('panel-font-up').click()
+  await expect(panel.getByTestId('panel-font-size')).toHaveText('+1')
+  await expect(page.getByTestId('text-tab').first()).toHaveAttribute('style', /font-size: 17px/)
+  await panel.getByTestId('menu-bookmarks').click()
+  await expect(page).toHaveURL(/\/bookmarks$/)
+  await expect(panel).toHaveCount(0)
 })

@@ -16,7 +16,7 @@ export default defineConfig({
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
   use: { baseURL: `http://127.0.0.1:${PORT}`, trace: 'retain-on-failure', locale: 'si-LK' },
   webServer: {
-    command: `../server/bin/tipitaka_lk -no-open -listen 127.0.0.1:${PORT} -root-path .. -db-dir fixtures/db`,
+    command: `TIPITAKA_LATEST_VERSION_URL=http://127.0.0.1:${PORT}/tipitaka-query/version ../server/bin/tipitaka_lk -no-open -listen 127.0.0.1:${PORT} -root-path .. -db-dir fixtures/db`,
     url: `http://127.0.0.1:${PORT}/api/health`,
     reuseExistingServer: !process.env.CI,
     stdout: 'ignore',

@@ -58,11 +58,22 @@ describe('tabs', () => {
     expect(t.pageEnd).toBe(3)
     const t2 = await tabs.openTab({ key: 'dn-1', eInd: [5, 2] })
     expect([t2.pageStart, t2.entryStart, t2.columns]).toEqual([5, 2, 2])
-    const bad = await tabs.openTab({ key: 'dn-1', eInd: [9999, 0] })
+    const bad = await tabs.openTab({ key: 'dn-1', eInd: [9999, 0] }) // already open -> same tab, new position
     expect(bad.pageStart).toBe(0) // out of range eInd falls back to the node position
-    expect(tabs.tabList.length).toBe(3)
-    tabs.closeTab(2); tabs.closeTab(1); tabs.closeTab(0)
+    expect(tabs.tabList.length).toBe(2)
+    await tabs.openTab({ key: 'dn-1-1' })
+    expect(tabs.activeInd).toBe(0)
+    tabs.closeTab(1); tabs.closeTab(0)
     expect(tabs.activeInd).toBe(-1)
+  })
+  it('closes the least recently used tabs beyond the limit', async () => {
+    const tabs = useTabs()
+    const keys = (await useTree().loadChildren(0)).map(r => r.key) // 7 roots
+    const more = ['dn-1-1', 'dn-1', 'an-1', 'an-10', 'kn-dhp', 'kn-dhp-1', 'ap-pat']
+    for (const k of [...keys, ...more]) await tabs.openTab({ key: k })
+    expect(tabs.tabList.length).toBe(12)
+    expect(tabs.activeKey).toBe('ap-pat')
+    expect(tabs.findTab('vp')).toBe(-1) // the oldest were closed
   })
   it('unknown keys give an error message', async () => {
     const t = await useTabs().openTab({ key: 'nope' })

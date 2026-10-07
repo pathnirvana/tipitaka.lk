@@ -17,6 +17,7 @@ export const useUi = defineStore('ui', () => {
   }
   const notifyType = (type: keyof typeof snackbarMessages) => notify(snackbarMessages[type])
   const showTree = ref(typeof window !== 'undefined' && window.innerWidth >= 1000) // v2 drawer mobile-breakpoint 1000
+  const showPanel = ref(false) // right hand side panel
   const nativeBusy = ref(false)
-  return { snackbar, notify, notifyType, showTree, nativeBusy, mdAndUp }
+  return { snackbar, notify, notifyType, showTree, showPanel, nativeBusy, mdAndUp }
 })

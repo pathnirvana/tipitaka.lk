@@ -1,9 +1,9 @@
 <template>
   <li>
     <div class="group flex cursor-pointer items-center whitespace-nowrap rounded-r-full py-0.5 pr-2 hover:bg-surface2"
-      :class="{ 'bg-surface2 text-primary': item.key === activeKey }" :style="{ paddingLeft: `${depth * 14 + 4}px` }"
+      :class="{ 'bg-surface2 text-primary': item.key === activeKey }" :style="{ paddingLeft: `${depth * 16 + 10}px` }"
       :id="item.key === activeKey ? 'activelabel' : undefined" data-testid="tree-node" :data-key="item.key">
-      <button class="icon-btn p-0.5" :aria-expanded="isOpen" :aria-label="item.key" @click.stop="toggle">
+      <button class="icon-btn mr-0.5 p-1 text-[1.1em]" :aria-expanded="isOpen" :aria-label="item.key" @click.stop="toggle">
         <IconPlayCircle v-if="hasAudio && hovered" class="text-info hover:text-error" @click.stop="emit('open', item.key, true)" />
         <template v-else-if="item.child_count">
           <IconFolderOpen v-if="isOpen" /><IconFolder v-else />

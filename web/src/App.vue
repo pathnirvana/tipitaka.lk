@@ -1,5 +1,6 @@
 <template>
   <AppBar />
+  <SidePanel />
   <aside v-show="ui.showTree" class="fixed bottom-0 left-0 z-30 border-r border-line bg-surface" :style="{ top: headerHeight, width: `${Math.min(350, viewport.width.value)}px` }" data-testid="drawer">
     <TreeDrawer />
   </aside>
@@ -24,6 +25,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import AppBar from './components/AppBar.vue'
 import TreeDrawer from './components/TreeDrawer.vue'
+import SidePanel from './components/SidePanel.vue'
 import Dialog from './components/Dialog.vue'
 import { useUi } from './stores/ui'
 import { useTabs } from './stores/tabs'

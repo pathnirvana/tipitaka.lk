@@ -22,20 +22,30 @@ html, body { background: var(--c-bg); color: var(--c-fg); }
 body { font-family: 'sinhala', serif; margin: 0; -webkit-tap-highlight-color: transparent; }
 button { cursor: pointer; }
 a { color: inherit; }
+button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; } /* no focus ring after mouse clicks */
+input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-color: var(--c-primary); vertical-align: -0.15em; margin-right: 0.35em; }
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
 
 @layer components {
   .icon-btn { @apply inline-flex items-center justify-center rounded-full p-1.5 text-fg; }
   .icon-btn:hover { background: var(--c-surface2); }
-  .btn { @apply inline-flex items-center rounded border border-line px-3 py-1.5 text-sm; background: var(--c-surface); }
+  /* UI text sizes follow the v2 (Vuetify) app: 16px labels / menus, 15px buttons */
+  .btn { @apply inline-flex items-center rounded border border-line px-3 py-1.5 text-[15px]; background: var(--c-surface); }
   .btn:hover { background: var(--c-surface2); }
   .btn-primary { @apply btn border-primary text-primary; }
   .card { @apply rounded border border-line p-3; background: var(--c-surface); }
-  .banner { @apply border-l-4 px-4 py-3 text-sm; background: var(--c-surface2); }
-  .menu-item { @apply flex w-full items-center px-4 py-2 text-left text-sm; }
+  .banner { @apply border-l-4 px-4 py-3 text-[15px] leading-relaxed; background: var(--c-surface2); }
+  .menu-item { @apply flex w-full items-center px-4 py-2.5 text-left text-base; }
   .menu-item:hover { background: var(--c-surface2); }
-  .chip { @apply inline-flex items-center rounded-full border border-line px-2 py-0.5 text-xs; }
+  .chip { @apply inline-flex items-center rounded-full border border-line px-2 py-0.5 text-[13px]; }
   .input { @apply w-full rounded border border-line bg-surface px-2 py-1 text-fg outline-none; }
   .input:focus { border-color: var(--c-primary); }
+  .panel-section { @apply border-b border-line py-1; }
+  .panel-row { @apply flex w-full items-center gap-2 px-4 py-2.5 text-left text-base; }
+  button.panel-row:hover, a.panel-row:hover { background: var(--c-surface2); }
+  .panel-icon { @apply mr-2 shrink-0 text-xl text-info; }
+  .option-group label { @apply mb-1.5 block; }
 }
 
 /* pali | sinhala rows: flexbox (CSS grid needs Chrome 57, Android 7 ships WebView 53) */

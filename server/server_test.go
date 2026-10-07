@@ -255,3 +255,20 @@ func FuzzSSRPath(f *testing.F) {
 		}
 	})
 }
+
+func TestLatestVersion(t *testing.T) {
+	upstream := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { w.Write([]byte("Tipitaka.lk v3.1")) }))
+	defer upstream.Close()
+	LatestVersionURL = upstream.URL
+	h := newTestApp(t, "../e2e/fixtures").Handler()
+	if rec := get(t, h, "/tipitaka-query/latest-version"); rec.Body.String() != "Tipitaka.lk v3.1" {
+		t.Errorf("latest version %d %q", rec.Code, rec.Body.String())
+	}
+	req := httptest.NewRequest("GET", "/tipitaka-query/latest-version", nil)
+	req.Host = "tipitaka.lk"
+	rec := httptest.NewRecorder()
+	h.ServeHTTP(rec, req)
+	if rec.Body.String() != APPNAME {
+		t.Errorf("on tipitaka.lk expected own version, got %q", rec.Body.String())
+	}
+}
