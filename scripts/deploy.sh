@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # One command deploy of tipitaka.lk (web app + server + dbs) to the production server.
 #
-#   scripts/deploy.sh             build, upload a new release, test it on a spare port, switch, verify
+#   scripts/deploy.sh             pull the latest text from github, build, upload a new release, test it on a spare port, switch, verify
 #   scripts/deploy.sh --rollback  switch back to the previous release
 #   scripts/deploy.sh --list      list the releases on the server
 #
@@ -44,8 +44,18 @@ case "${1:-}" in
   *) sed -n '2,12p' "$0"; exit 1 ;;
 esac
 
+say "0/6 getting the latest text from github (other proofreaders' commits)"
+if [ -n "$(git status --porcelain -- public/static/text)" ]; then
+  echo "public/static/text has uncommitted changes - commit or stash them first"; exit 1
+fi
+git fetch origin
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "$BRANCH" = master ]; then git merge --ff-only origin/master
+else git merge --no-edit origin/master || { git merge --abort; echo "merge of origin/master into $BRANCH failed - resolve it by hand"; exit 1; }; fi
+git log -1 --format='deploying %h %s (%cr)'
+
 say "1/6 building data, web app and the linux server binary"
-[ -z "$(git status --porcelain -- public/static/text web shared server build)" ] || echo "warning: uncommitted changes are being deployed"
+[ -z "$(git status --porcelain -- web shared server build)" ] || echo "warning: uncommitted code changes are being deployed"
 npm run build:data
 npm run build:web
 bash scripts/build-linux.sh
