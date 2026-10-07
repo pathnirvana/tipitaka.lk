@@ -96,12 +96,11 @@ function main() {
   fs.writeFileSync(path.join(outDir, 'build-report.md'), report.join('\n') + '\n')
 
   if (fixture) writeFixtureDict(path.join(outDir, 'dict.db'))
-  if (!fixture) {
-    const dataOut = 'web/public/static/data'
-    fs.mkdirSync(dataOut, { recursive: true })
-    for (const f of ['footnote-abbreviations.json', 'file-map.json']) fs.copyFileSync(path.join('public/static/data', f), path.join(dataOut, f))
-    writeSitemap(order, 'web/public/static/sitemap.txt')
-  }
+  // static data used by the web app (also needed by the e2e tests which only build the fixture dbs)
+  const dataOut = 'web/public/static/data'
+  fs.mkdirSync(dataOut, { recursive: true })
+  for (const f of ['footnote-abbreviations.json', 'file-map.json']) fs.copyFileSync(path.join('public/static/data', f), path.join(dataOut, f))
+  if (!fixture) writeSitemap(order, 'web/public/static/sitemap.txt')
   console.log(`done in ${((Date.now() - t0) / 1000).toFixed(1)} s. ${v.warnings.length} warnings - see ${outDir}/build-report.md`)
 }
 main()
