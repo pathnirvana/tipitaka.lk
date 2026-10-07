@@ -2,6 +2,9 @@
 # Builds the Go server for the current platform -> server/bin/tipitaka_lk
 # (mattn/go-sqlite3 needs cgo: pure Go sqlite drivers lack the FTS4 module used by text.db)
 set -euo pipefail
+# use the installed Go (go.dev installer in /usr/local/go); fail instead of silently downloading a toolchain
+export GOTOOLCHAIN=local
+echo "using $(go version)"
 cd "$(dirname "$0")/../server"
 mkdir -p bin
 if ! CGO_ENABLED=1 go build -o bin/tipitaka_lk . 2>/tmp/tipitaka-go-build.log; then

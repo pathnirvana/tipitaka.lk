@@ -3,6 +3,9 @@
 # .github/workflows/release.yml runs this on linux, macos-intel, macos-arm and windows runners).
 #   scripts/release-desktop.sh            -> release/tipitaka_lk_<os>_<arch>.zip
 set -euo pipefail
+# use the installed Go (go.dev installer in /usr/local/go); fail instead of silently downloading a toolchain
+export GOTOOLCHAIN=local
+echo "using $(go version)"
 cd "$(dirname "$0")/.."
 OS=$(go env GOOS); ARCH=$(go env GOARCH)
 NAME="tipitaka_lk_${OS}_${ARCH}"
