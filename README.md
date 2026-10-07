@@ -11,7 +11,7 @@ The proofread Buddha Jayanthi Tripitaka (Pali + Sinhala) and Atuwa, served as
 Everything else is generated from it. See [dev-docs/architecture.md](dev-docs/architecture.md).
 
 ## Quick start (development)
-Requirements: Node 22+, Go 1.23+ with a C compiler (cgo), `unzip`.
+Requirements: Node 22+, Go 1.25+ with a C compiler (cgo), `unzip`.
 ```
 npm ci
 unzip -o db/dict.db.zip -x '__MACOSX/*' -d db   # dictionary db (rarely changes)
