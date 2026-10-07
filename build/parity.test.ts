@@ -39,9 +39,9 @@ describe.runIf(FULL)('title search parity (legacy results are kept)', () => {
   const index = db.prepare(queries.get('tree.titleIndex')!.sql).all() as TitleRow[]
   for (const g of golden('title.json') as { input: string; filter?: { keys?: string[]; columns?: number[] }; results: { key: string }[] }[]) {
     if (/[a-z]/i.test(g.input)) continue // singlish word lists changed with @pnfo/singlish-search 1.2
-    it(`${g.input} ${JSON.stringify(g.filter || {})}`, () => {
+    it(`${g.input} ${JSON.stringify(g.filter || {})}`, async () => {
       const filter = { keys: g.filter?.keys || [...FILTER_KEYS], columns: g.filter?.columns || [0, 1] }
-      const mine = new Set(titleSearch(index, g.input, filter, 100000).map(r => r.key))
+      const mine = new Set((await titleSearch(index, g.input, filter, 100000)).map(r => r.key))
       // A5: v2 'an-1' filter also matched an-10/an-11
       const legacy = g.results.map(r => r.key).filter(k => !g.filter?.keys || g.filter.keys.some(f => k === f || k.startsWith(f + '-')))
       const missing = legacy.filter(k => !mine.has(k))

@@ -55,7 +55,7 @@ async function getResults() {
   if (inputError.value) return
   loading.value = true
   try {
-    const out = titleSearch(await tree.loadTitleIndex(), input.value, search.filter.title, search.maxResults)
+    const out = await titleSearch(await tree.loadTitleIndex(), input.value, search.filter.title, search.maxResults)
     paths.value = await tree.getPaths(out.map(r => r.key))
     results.value = out
     resultsInput.value = input.value

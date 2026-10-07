@@ -127,10 +127,10 @@ describe('title search', () => {
     { id: 1, key: 'an-1-1', pali: 'පඨමවග්ගො', sinh: 'පළමු වර්‍ගය', grp: FILTER_KEYS.indexOf('an-1'), page_idx: 0, entry_idx: 1 },
     { id: 2, key: 'an-10-1', pali: 'පඨමවග්ගො', sinh: 'පළමු වර්‍ගය', grp: FILTER_KEYS.indexOf('an-10'), page_idx: 0, entry_idx: 1 },
   ]
-  it('filters by group (A5) and ignores zwj (A32)', () => {
-    expect(titleSearch(index, 'වග්ග', { keys: ['an-1'], columns: [0, 1] }).map(r => r.key)).toEqual(['an-1-1'])
-    expect(titleSearch(index, 'වර්‍ග', { keys: [...FILTER_KEYS], columns: [1] }).map(r => r.language)).toEqual(['sinh', 'sinh'])
-    expect(titleSearch(index, 'වග්ග', { keys: [], columns: [0, 1] })).toEqual([])
+  it('filters by group (A5) and ignores zwj (A32)', async () => {
+    expect((await titleSearch(index, 'වග්ග', { keys: ['an-1'], columns: [0, 1] })).map(r => r.key)).toEqual(['an-1-1'])
+    expect((await titleSearch(index, 'වර්‍ග', { keys: [...FILTER_KEYS], columns: [1] })).map(r => r.language)).toEqual(['sinh', 'sinh'])
+    expect(await titleSearch(index, 'වග්ග', { keys: [], columns: [0, 1] })).toEqual([])
   })
 })
 

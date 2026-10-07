@@ -116,13 +116,16 @@ describe('footnotes', () => {
 })
 
 describe('dictWordList', () => {
-  it('matches legacy goldens for sinhala input', () => {
+  it('matches legacy goldens for sinhala input', async () => {
     for (const g of goldens('dict.json') as { input: string; words: string[] }[]) {
       if (/[a-z]/i.test(g.input)) continue // singlish lists changed with singlish-search 1.2.x
-      expect(dictWordList(g.input), g.input).toEqual(g.words)
+      expect(await dictWordList(g.input), g.input).toEqual(g.words)
     }
   })
-  it('singlish', () => { expect(dictWordList('dhamma')).toContain('ධම්ම') })
+  it('singlish (ranked, most likely first)', async () => {
+    const w = await dictWordList('dhamma')
+    expect(w[0]).toBe('ධම්ම')
+  })
   it('input rules', () => {
     expect(wordInputError('a b')).not.toBe('')
     expect(wordInputError("ධම්'")).not.toBe('')

@@ -1,5 +1,5 @@
 /** sutta name search over the title index (v2 TSearch.vue getSearchResults) */
-import { isSinglishQuery, getPossibleMatches } from '@pnfo/singlish-search'
+import { isSinglishQuery, singlishMatches } from '@shared/singlish'
 import { normalizeTitle } from '@shared/normalize'
 import { FILTER_KEYS } from '@shared/constants'
 import type { EInd } from '@shared/routes'
@@ -7,9 +7,9 @@ import type { TitleRow } from './types'
 
 export interface TitleResult { key: string; language: 'pali' | 'sinh'; eInd: EInd; type: null }
 
-export function titleSearch(index: readonly TitleRow[], input: string, filter: { keys: string[]; columns: number[] }, maxResults = 100): TitleResult[] {
+export async function titleSearch(index: readonly TitleRow[], input: string, filter: { keys: string[]; columns: number[] }, maxResults = 100): Promise<TitleResult[]> {
   const query = normalizeTitle(input)
-  let words: string[] = isSinglishQuery(query) ? getPossibleMatches(query) : []
+  let words: string[] = isSinglishQuery(query) ? await singlishMatches(query) : []
   if (!words.length) words = [query]
   const re = new RegExp(words.map(normalizeTitle).join('|'), 'i')
   // filter by the top level group of each node (v2 prefix match also matched an-10 for an-1 - A5)

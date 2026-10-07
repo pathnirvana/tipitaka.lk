@@ -25,12 +25,12 @@ export function processDictRows(rows: DictRow[]): DictResults {
 export const cleanInlineWord = (text: string) => text.replace(/[\.,:\?\(\)“”‘’]/g, '')
 
 export async function pageDictQuery(input: string, shortDicts: string[]): Promise<DictResults> {
-  const words = dictWordList(input)
+  const words = await dictWordList(input)
   const rows = await getData().query<DictRow>('dict.page', { words: joinList(words), dicts: joinList(shortDicts), prefix: words.length > MAX_PREFIX_WORDS ? 0 : 1 })
   return processDictRows(rows)
 }
 
 export async function inlineDictQuery(word: string, shortDicts: string[]): Promise<DictResults> {
-  const rows = await getData().query<DictRow>('dict.inline', { words: joinList(dictWordList(word)), dicts: joinList([...shortDicts, 'BR']) })
+  const rows = await getData().query<DictRow>('dict.inline', { words: joinList(await dictWordList(word)), dicts: joinList([...shortDicts, 'BR']) })
   return processDictRows(rows)
 }

@@ -1,9 +1,9 @@
 /** Candidate dictionary words for an input (port of dictWordList in src/store/search.js). */
-import { isSinglishQuery, getPossibleMatches } from '@pnfo/singlish-search'
+import { isSinglishQuery, singlishMatches } from './singlish'
 
-export function dictWordList(input: string): string[] {
+export async function dictWordList(input: string): Promise<string[]> {
   const query = input.toLowerCase().replace(/[‍\.,:\?\(\)“”‘’]/g, '') // remove common chars
-  let words: string[] = isSinglishQuery(query) ? getPossibleMatches(query) : []
+  let words: string[] = isSinglishQuery(query) ? await singlishMatches(query) : []
   if (!words.length) words = [query]
   const stripEnd = words.map(w => w.replace(/[්-ෟංඃ]+$/g, ''))
   const addVowel = !isSinglishQuery(query) ? ['ා', 'ි', 'ී', 'ු', 'ූ', 'ෙ', 'ො'].map(v => stripEnd[0] + v) : []
