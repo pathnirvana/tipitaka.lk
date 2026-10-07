@@ -2,7 +2,7 @@
  * Parity with the v2 (legacy) system using the goldens captured by e2e/legacy/capture.mjs.
  * FULL=1 only (needs db/text.db and db/dict.db). Accepted differences: e2e/legacy/accepted-diffs.md
  */
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeAll } from 'vitest'
 import fs from 'node:fs'
 import Database from 'better-sqlite3'
 import { parseQueries } from '../shared/queries'
@@ -18,7 +18,8 @@ type Row = { word: string; dict: string | number; meaning: string }
 const key = (r: Row) => `${r.word}|${r.dict}|${r.meaning}`
 
 describe.runIf(FULL)('dictionary parity (same word lists -> same rows)', () => {
-  const db = new Database('db/dict.db', { readonly: true })
+  let db: Database.Database // opened in beforeAll: describe bodies also run (for collection) when the suite is skipped
+  beforeAll(() => { db = new Database('db/dict.db', { readonly: true }) })
   for (const g of golden('dict.json') as { input: string; words: string[]; page: Row[]; inline: Row[] }[]) {
     it(g.input, () => {
       const page = db.prepare(queries.get('dict.page')!.sql).all({ words: joinList(g.words), dicts: joinList(DICTS), prefix: g.words.length > 100 ? 0 : 1 }) as Row[]
@@ -35,8 +36,8 @@ describe.runIf(FULL)('dictionary parity (same word lists -> same rows)', () => {
 })
 
 describe.runIf(FULL)('title search parity (legacy results are kept)', () => {
-  const db = new Database('db/text.db', { readonly: true })
-  const index = db.prepare(queries.get('tree.titleIndex')!.sql).all() as TitleRow[]
+  let index: TitleRow[]
+  beforeAll(() => { index = new Database('db/text.db', { readonly: true }).prepare(queries.get('tree.titleIndex')!.sql).all() as TitleRow[] })
   for (const g of golden('title.json') as { input: string; filter?: { keys?: string[]; columns?: number[] }; results: { key: string }[] }[]) {
     if (/[a-z]/i.test(g.input)) continue // singlish word lists changed with @pnfo/singlish-search 1.2
     it(`${g.input} ${JSON.stringify(g.filter || {})}`, async () => {

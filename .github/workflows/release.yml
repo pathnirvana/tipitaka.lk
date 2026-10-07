@@ -13,14 +13,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     defaults: { run: { shell: bash } }
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with: { node-version: 22, cache: npm }
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with: { go-version: '1.23', cache-dependency-path: server/go.sum }
       - run: npm ci
       - run: unzip -o -q db/dict.db.zip -x '__MACOSX/*' -d db
       - run: npm run build:data && npm run build:web
       - run: bash scripts/release-desktop.sh
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with: { name: 'desktop-${{ matrix.os }}', path: release/*.zip }

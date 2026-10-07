@@ -8,10 +8,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with: { node-version: 22, cache: npm }
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with: { go-version: '1.23', cache-dependency-path: server/go.sum }
       - run: npm ci
       - run: unzip -o -q db/dict.db.zip -x '__MACOSX/*' -d db
@@ -26,7 +26,7 @@ jobs:
       - run: npx playwright install --with-deps chromium webkit firefox
       - run: npx playwright test -c e2e/playwright.config.ts
         env: { CI: 1 }
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         if: failure()
         with: { name: playwright-report, path: e2e/playwright-report }
 
@@ -36,15 +36,16 @@ jobs:
     if: github.ref == 'refs/heads/master' || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with: { node-version: 22, cache: npm }
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with: { go-version: '1.23', cache-dependency-path: server/go.sum }
       - run: npm ci
       - run: unzip -o -q db/dict.db.zip -x '__MACOSX/*' -d db
+      - run: npm run build:fixture
       - run: npm run build:data
       - run: npm run test:full
       - run: cd server && FULL=1 go test -run TestSSRAllKeys ./...
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with: { name: build-report, path: db/build-report.md }
