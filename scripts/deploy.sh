@@ -15,6 +15,9 @@ BASE=${DEPLOY_BASE:-www/tipitaka.lk}           # relative to the remote home
 SITE=${DEPLOY_SITE:-https://tipitaka.lk}
 KEEP=${DEPLOY_KEEP:-3}                          # releases kept on the server
 STAGE_PORT=8499
+# macOS ships openrsync (no --info=progress2); a homebrew rsync is used when installed (brew install rsync)
+RSYNC=$(command -v /opt/homebrew/bin/rsync /usr/local/bin/rsync rsync | head -1)
+if "$RSYNC" --version 2>&1 | grep -q openrsync; then PROGRESS=--progress; else PROGRESS=--info=progress2; fi
 
 say() { printf '\n\033[1;33m==> %s\033[0m\n' "$*"; }
 remote() { ssh "$HOST" "$@"; }
@@ -69,11 +72,14 @@ PREV=$(remote "readlink $BASE/current || true")
 if [ -n "$PREV" ]; then LDIST="../../$(basename "$PREV")/dist"; LDB="../../$(basename "$PREV")/db"
 else LDIST="../../../dist"; LDB="../../../db"; fi
 remote "mkdir -p $REL/dist $REL/db"
-rsync -az --delete --link-dest="$LDIST" web/dist/ "$HOST:$REL/dist/"
+SWITCHED=0
+# a failed upload / staging test leaves no half release behind (the live site is not touched before the switch)
+trap '[ $SWITCHED = 1 ] || { echo "removing the unfinished release $TS"; ssh "$HOST" "rm -rf $REL"; }' EXIT
+"$RSYNC" -az --delete --link-dest="$LDIST" web/dist/ "$HOST:$REL/dist/"
 # v2 pages cached in browsers still fetch /static/text/*.json - keep serving them for a while after the switch
-rsync -az --link-dest="../../$LDIST/static/text" public/static/text/ "$HOST:$REL/dist/static/text/"
-rsync -azc --info=progress2 --link-dest="$LDB" db/text.db db/dict.db "$HOST:$REL/db/" # -c: identical files are hard linked, changed ones delta-transferred
-rsync -az server/bin/tipitaka_lk_linux_amd64 "$HOST:$REL/tipitaka_lk"
+"$RSYNC" -az --link-dest="../../$LDIST/static/text" public/static/text/ "$HOST:$REL/dist/static/text/"
+"$RSYNC" -azc $PROGRESS --link-dest="$LDB" db/text.db db/dict.db "$HOST:$REL/db/" # -c: identical files are hard linked, changed ones delta-transferred
+"$RSYNC" -az server/bin/tipitaka_lk_linux_amd64 "$HOST:$REL/tipitaka_lk"
 remote "chmod +x $REL/tipitaka_lk"
 
 say "3/6 testing the new release on port $STAGE_PORT"
@@ -83,13 +89,13 @@ remote "cd $REL && (nohup ./tipitaka_lk -no-open -listen 127.0.0.1:$STAGE_PORT <
   curl -fsS http://127.0.0.1:$STAGE_PORT/dn-1-1/sinh | grep -q 'id=\"ssr\"' || ok=0
   curl -fsS 'http://127.0.0.1:$STAGE_PORT/api/q/tree.node?key=dn-1-1' | grep -q 'dn-1' || ok=0
   kill \$(cat /tmp/tipitaka-stage.pid) 2>/dev/null || true
-  [ \$ok = 1 ] || { cat /tmp/tipitaka-stage.log; exit 1; }" || { echo "staging test failed - nothing was switched"; remote "rm -rf $REL"; exit 1; }
+  [ \$ok = 1 ] || { cat /tmp/tipitaka-stage.log; exit 1; }" || { echo "staging test failed - nothing was switched"; exit 1; }
 echo "staging ok"
 
 say "4/6 one time setup: systemd unit and nginx"
 if ! remote "systemctl cat tipitaka_lk 2>/dev/null | grep -q 'current/tipitaka_lk'"; then
   echo "installing the v3 systemd unit (runs current/tipitaka_lk on 127.0.0.1:8400)"
-  rsync -az server/tipitaka_lk.service "$HOST:/tmp/tipitaka_lk.service"
+  "$RSYNC" -az server/tipitaka_lk.service "$HOST:/tmp/tipitaka_lk.service"
   remote_tty "sudo cp /tmp/tipitaka_lk.service /etc/systemd/system/tipitaka_lk.service && sudo systemctl daemon-reload"
 fi
 NGINX=/etc/nginx/sites-enabled/tipitaka.lk.conf
@@ -104,6 +110,7 @@ if remote "grep -q 'proxy_pass http://localhost:8400;' $NGINX"; then
 fi
 
 say "5/6 switching to $TS"
+SWITCHED=1
 remote "cd $BASE && ln -sfn releases/$TS current.new && mv -T current.new current"
 if ! restart_and_verify "$API_HASH"; then
   echo "the new release is not healthy - rolling back"
