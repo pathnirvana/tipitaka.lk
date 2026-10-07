@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
-        with: { node-version: 22, cache: npm }
+        with: { node-version: 24, cache: npm }
       - uses: actions/setup-go@v6
         with: { go-version-file: server/go.mod, cache-dependency-path: server/go.sum }
       - run: npm ci
@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
-        with: { node-version: 22, cache: npm }
+        with: { node-version: 24, cache: npm }
       - uses: actions/setup-go@v6
         with: { go-version-file: server/go.mod, cache-dependency-path: server/go.sum }
       - run: npm ci
