@@ -10,6 +10,10 @@
 # sudo (password) is needed to restart the service; the first deploy also installs the systemd unit and can update nginx.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+# use the Node version in .nvmrc (terminals started from an old VS Code window can still have an older node in PATH)
+if [ -s "${NVM_DIR:-$HOME/.nvm}/nvm.sh" ]; then . "${NVM_DIR:-$HOME/.nvm}/nvm.sh" && nvm use >/dev/null; fi
+NODE_MAJOR=$(node -p 'process.versions.node.split(".")[0]')
+[ "$NODE_MAJOR" -ge "$(cat .nvmrc)" ] || { echo "node $(node --version) is too old - run: nvm use (needs $(cat .nvmrc))"; exit 1; }
 HOST=${DEPLOY_HOST:-tipitaka.lk}
 BASE=${DEPLOY_BASE:-www/tipitaka.lk}           # relative to the remote home
 SITE=${DEPLOY_SITE:-https://tipitaka.lk}
