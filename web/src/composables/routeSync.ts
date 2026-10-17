@@ -23,10 +23,11 @@ export function useRouteSync(router: Router) {
     }
     const language = isLanguage(route.params.language) ? route.params.language : undefined
     const tab = await tabs.openTab({ key, eInd: parseEIndStr(String(route.params.eIndStr || '')), language })
-    if (route.query.playAudio && tab.node) audio.startEntry(tab.node.file, tab.eInd)
+    if (route.query.playAudio && tab.node) audio.startEntry(tab.node.file, tab.eInd, tab.uid)
   }, { immediate: true })
 
-  watch(() => tabs.activeKey, key => {
+  // also on openCount: opening the already active sutta from a search page must still navigate to it
+  watch([() => tabs.activeKey, () => tabs.openCount], ([key]) => {
     const route = router.currentRoute.value
     if (!key) {
       if (route.name === 'Home') router.replace('/')

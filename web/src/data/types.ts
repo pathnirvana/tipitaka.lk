@@ -13,8 +13,10 @@ export interface EntryRow {
   no_audio: number; audio_idx: number; page_num: number
 }
 export interface FootnoteRow { page_idx: number; lang: number; idx: number; text: string }
+export interface AlignRow { page_idx: number; entry_idx: number; links: string; pu: string; sa: string; src: number }
 export interface FtsCandidate { d: number; mi: string; node_id: number; file: string; page_idx: number; entry_idx: number; len: number }
 export interface FtsText { id: number; p_type: number; p_level: number; p_text: string; s_text: string; node_key: string; file: string; page_idx: number; entry_idx: number }
 export interface DictRow { word: string; dict: string | number; meaning: string }
-export interface AudioEntryRow { audio_idx: number; page_idx: number; entry_idx: number }
+/** audio_ph: sha1-12 of the entry text, how <label>.json timing files refer to paragraphs (absent in dbs before it) */
+export interface AudioEntryRow { audio_idx: number; page_idx: number; entry_idx: number; audio_ph?: string }
 export interface MetaRow { k: string; v: string }

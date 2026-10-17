@@ -4,7 +4,8 @@
     <div class="h-[3px] bg-surface2"><div class="h-full bg-primary" :style="{ width: `${progress}%` }" /></div>
     <div class="flex items-center space-x-1 px-2 py-1">
       <div class="flex-1 truncate text-sm">{{ audio.activeEntry?.label?.num }}</div>
-      <button class="icon-btn" title="go to the playing paragraph" @click="goToActive"><IconUp /></button>
+      <button :class="['icon-btn', { 'bg-primary text-white hover:bg-primary': settings.audioFollow }]" title="සජ්ඣායනා වන ඡේදය පෙන්වන්න (sync)"
+        :aria-pressed="settings.audioFollow" data-testid="audio-follow" @click="toggleFollow"><IconSync /></button>
       <div class="relative">
         <button ref="cog" class="icon-btn" title="settings" @click="showSettings = !showSettings"><IconCog /></button>
         <Floating :open="showSettings" :anchor="cog ?? null" placement="top" @close="showSettings = false">
@@ -20,7 +21,7 @@
       <button class="icon-btn" title="play/pause" data-testid="audio-toggle" @click="audio.togglePlay()">
         <IconPause v-if="audio.isPlaying" class="text-primary" /><IconPlay v-else />
       </button>
-      <button class="icon-btn" title="next" @click="audio.move(1)"><IconForward /></button>
+      <button class="icon-btn" title="next" data-testid="audio-next" @click="audio.move(1)"><IconForward /></button>
       <button class="icon-btn text-error" title="close" @click="audio.close()"><IconClose /></button>
     </div>
   </div>
@@ -28,7 +29,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import IconUp from '~icons/mdi/chevron-double-up'
+import IconSync from '~icons/mdi/sync'
 import IconCog from '~icons/mdi/cog'
 import IconRewind from '~icons/mdi/rewind'
 import IconForward from '~icons/mdi/fast-forward'
@@ -38,15 +39,23 @@ import IconClose from '~icons/mdi/close'
 import Floating from './Floating.vue'
 import { useAudio } from '@/stores/audio'
 import { useTabs } from '@/stores/tabs'
+import { useSettings } from '@/stores/settings'
 
-const audio = useAudio(), tabs = useTabs()
+const audio = useAudio(), tabs = useTabs(), settings = useSettings()
 const cog = ref<HTMLElement>()
 const showSettings = ref(false)
 const progress = computed(() => (audio.duration ? (audio.currentTime / audio.duration) * 100 : 0))
-async function goToActive() { // active tab replaced by the playing entry (v2 navigateToActive)
-  const e = audio.activeEntry, tab = tabs.activeTab
-  if (!e || !tab?.node) return
-  await tabs.replaceActive({ key: tab.key, eInd: [e.page_idx, e.entry_idx], language: tab.language })
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+/** sync on: TextTab keeps the chanted paragraph / word on screen in the playing tab, which is shown here */
+async function toggleFollow() {
+  settings.audioFollow = !settings.audioFollow
+  const e = audio.activeEntry
+  if (!settings.audioFollow || !e) return
+  const i = tabs.tabList.findIndex(t => t.uid === audio.tabUid)
+  if (i >= 0) { tabs.setActive(i); return }
+  // the playing tab was closed or replaced: the active tab of that file is moved to the playing entry (v2 navigateToActive)
+  const tab = tabs.activeTab
+  if (!tab?.node || tab.node.file !== audio.file) return
+  const t = await tabs.replaceActive({ key: tab.key, eInd: [e.page_idx, e.entry_idx], language: tab.language })
+  audio.tabUid = t.uid
 }
 </script>

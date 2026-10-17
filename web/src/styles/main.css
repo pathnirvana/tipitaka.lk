@@ -8,13 +8,13 @@
 /* theme colours (v2 Vuetify theme) */
 :root {
   --c-primary: #C63100; --c-accent: #EF5100; --c-info: #2196F3; --c-success: #4CAF50; --c-error: #FF5252;
-  --c-warning: #FB8C00; --c-highlight: #FFF176; --c-star: #F9A825;
+  --c-warning: #FB8C00; --c-highlight: #FFF176; --c-align: #B2EBF2; --c-star: #F9A825;
   --c-bg: #FFFFFF; --c-surface: #FFFFFF; --c-surface2: #F5F5F5; --c-fg: #212121; --c-muted: #757575; --c-line: #E0E0E0;
   --font-size: 16px;
 }
 .dark {
   --c-primary: #FF8A65; --c-accent: #FF6E40; --c-info: #4FC3F7; --c-success: #81C784; --c-error: #FF6E6E;
-  --c-warning: #FFB74D; --c-highlight: #4527A0; --c-star: #FFD600;
+  --c-warning: #FFB74D; --c-highlight: #4527A0; --c-align: #00606B; --c-star: #FFD600;
   --c-bg: #121212; --c-surface: #1E1E1E; --c-surface2: #2A2A2A; --c-fg: #ECECEC; --c-muted: #A0A0A0; --c-line: #3A3A3A;
 }
 
@@ -87,6 +87,8 @@ input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-co
 .fn-pointer { font-size: 0.9em; color: var(--c-info); cursor: pointer; padding: 0 3px; }
 .fn-abbr { color: var(--c-info); cursor: help; }
 .w.selected-word { background: var(--c-highlight); }
+[data-w].aligned { background: var(--c-align); border-radius: 3px; } /* words linked by the pali-sinhala alignment */
+[data-w].chanting, [data-w].chanting-target { background: var(--c-align); border-radius: 3px; box-shadow: 0 2px 0 var(--c-primary); } /* the word being chanted and its sinhala words */
 .scan-img { width: 100%; max-width: 750px; filter: grayscale(100%) contrast(90%) brightness(95%); }
 .dark .scan-img { filter: invert(100%) contrast(70%) brightness(150%); }
 .dark .invert-dark { filter: invert(90%); }

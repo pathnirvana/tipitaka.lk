@@ -6,6 +6,7 @@
       <div v-for="(tab, i) in tabs.tabList" :key="tab.uid" role="tab" :aria-selected="i === tabs.activeInd" :title="names[i]"
         :class="['group flex max-w-[200px] shrink-0 cursor-pointer items-center whitespace-nowrap border-b-2 py-1.5 pl-3 pr-1', i === tabs.activeInd ? 'border-primary text-primary' : 'border-transparent text-muted hover:text-fg']"
         data-testid="tab" @click="tabs.setActive(i)" @auxclick.prevent="$event.button === 1 && tabs.closeTab(i)">
+        <IconSpeaker v-if="audio.isPlaying && audio.tabUid === tab.uid" class="mr-1 shrink-0 text-[0.9em]" data-testid="tab-audio" />
         <span class="truncate">{{ names[i] }}</span>
         <button :class="['ml-1 rounded-full p-0.5 text-[12px] hover:bg-error hover:text-white', i === tabs.activeInd ? '' : 'opacity-0 group-hover:opacity-100 max-sm:opacity-60']"
           title="close" data-testid="tab-close" @click.stop="tabs.closeTab(i)"><IconClose /></button>
@@ -40,13 +41,15 @@ import IconClose from '~icons/mdi/close'
 import IconLeft from '~icons/mdi/chevron-left'
 import IconRight from '~icons/mdi/chevron-right'
 import IconTabs from '~icons/mdi/tab'
+import IconSpeaker from '~icons/mdi/volume-high'
 import IconCloseBox from '~icons/mdi/close-box-multiple-outline'
 import IconCloseAll from '~icons/mdi/close-circle-multiple-outline'
 import Floating from './Floating.vue'
 import { useTabs } from '@/stores/tabs'
 import { useTree } from '@/stores/tree'
+import { useAudio } from '@/stores/audio'
 
-const tabs = useTabs(), tree = useTree()
+const tabs = useTabs(), tree = useTree(), audio = useAudio()
 const names = computed(() => tabs.tabList.map(t => (t.node ? tree.nameOf(t.node) : t.key)))
 const strip = ref<HTMLElement>(), listBtn = ref<HTMLElement>(), listEl = ref<HTMLElement>()
 const overflow = ref(false), listOpen = ref(false)

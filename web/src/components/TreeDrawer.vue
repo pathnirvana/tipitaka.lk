@@ -32,8 +32,13 @@ const roots = computed(() => tree.children.get(0))
 onMounted(() => tree.loadChildren(0))
 
 async function open(key: string, playAudio: boolean) {
-  const tab = await tabs.openTab({ key })
-  if (playAudio && tab.node) audio.startEntry(tab.node.file, tab.eInd)
+  const wasOpen = tabs.findTab(key) >= 0
+  let tab = await tabs.openTab({ key, reuse: playAudio })
+  if (playAudio && wasOpen) { // the open tab is re-used: back to the start of the sutta (where the recitation starts) in text mode
+    tab = await tabs.replaceActive({ key, language: tab.language })
+    tabs.update(tab, { showScanPage: false })
+  }
+  if (playAudio && tab.node) audio.startEntry(tab.node.file, tab.eInd, tab.uid)
   if (window.innerWidth < 1000) ui.showTree = false
 }
 async function sync() {

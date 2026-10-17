@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import { beautifyText } from './beautify'
 import { parseMarkup, tokensToHtml, tokensToPlain, stripForCopy } from './markup'
 import { normalizeForSearch, extractWords, normalizeTitle } from './normalize'
-import { buildMatch, ftsInputError, FTS_MESSAGES, termMatches } from './fts-query'
+import { buildMatch, ftsInputError, FTS_MESSAGES, termMatches, type FtsHighlight } from './fts-query'
 import { parseFootnote, findAbbreviations, footnoteTokens } from './footnote'
 import { dictWordList, wordInputError } from './dict-words'
 import { parseEIndStr, parseFtsOptions, ftsLink, entryLink, bookmarkKey } from './routes'
@@ -177,10 +177,25 @@ describe('queries.sql parser', () => {
 
 import { markTerms, buildSnippet } from './highlight'
 describe('highlight', () => {
-  const terms = [{ text: 'සුත', prefix: true }]
+  const terms: FtsHighlight = { terms: [{ text: 'සුත', prefix: true }], mode: 'terms', distance: 0 }
+  const opts = { exactWord: 1, matchPhrase: 1, wordDistance: 10 }
+  const hl = (input: string, o = opts) => { const m = buildMatch(input, o); if (!m.ok) throw new Error(m.error); return m.highlight }
   it('marks matching words in raw text', () => {
     expect(markTerms('එවං මෙ **සුතං** සුත්තං{1} x', terms)).toBe('එවං මෙ **##සුතං##** ##සුත්තං##{1} x')
-    expect(markTerms('බ්‍රහ්ම', [{ text: 'බ්රහ්ම', prefix: false }])).toBe('##බ්‍රහ්ම##')
+    expect(markTerms('බ්‍රහ්ම', hl('බ්‍රහ්ම'))).toBe('##බ්‍රහ්ම##')
+  })
+  it('a phrase is highlighted only where the whole phrase is (exact words)', () => {
+    const text = 'මා මෙ පුරතො අට්ඨාසීති. කො නු ඛො මා මෙ පුරතෙ අට්ඨාසීති. පුරතෙ ගච්ඡ'
+    expect(markTerms(text, hl('පුරතෙ අට්ඨාසීති'))).toBe('මා මෙ පුරතො අට්ඨාසීති. කො නු ඛො මා මෙ ##පුරතෙ## ##අට්ඨාසීති##. පුරතෙ ගච්ඡ')
+    // the snippet is centered on the phrase, not on the first single term (the reported search)
+    const long = 'පුරතො අට්ඨාසීති ' + Array.from({ length: 60 }, (_, i) => `w${i}`).join(' ') + ' පුරතෙ අට්ඨාසීති'
+    const s = buildSnippet(long, hl('පුරතෙ අට්ඨාසීති'))
+    expect(s.html).toContain('<sr>පුරතෙ</sr> <sr>අට්ඨාසීති</sr>')
+    expect(s.html).not.toContain('පුරතො')
+  })
+  it('near: only terms with the other terms within the distance', () => {
+    const near = hl('එවං සුතං', { exactWord: 1, matchPhrase: 0, wordDistance: 1 })
+    expect(markTerms('එවං x y සුතං එවං z සුතං', near)).toBe('එවං x y ##සුතං## ##එවං## z ##සුතං##')
   })
   it('builds snippets in the v2 <sr> format', () => {
     const s = buildSnippet('a b c **සුතං** d', terms)

@@ -26,7 +26,7 @@
     <div class="flex flex-col" data-testid="fts-results">
       <div v-for="g in groups" :key="g.key" class="border border-dotted border-line p-2" data-testid="fts-group">
         <div v-for="(item, i) in (g.open ? g.items : g.items.slice(0, 1))" :key="i" class="my-1" data-testid="fts-item" :data-key="item.key" :data-lang="item.language">
-          <TipitakaLink v-if="item.key && paths.get(item.key)" :path="paths.get(item.key)!" :params="{ ...item, hWords: terms, text: null }" />
+          <TipitakaLink v-if="item.key && paths.get(item.key)" :path="paths.get(item.key)!" :params="{ ...item, hWords: highlight, text: null }" />
           <div class="text-[1.1em]" :style="{ fontSize: settings.fontPx }" v-html="safe(item.hText)" />
         </div>
         <button v-if="g.items.length > 1" :class="['btn border-0', g.open ? 'text-success' : 'text-info']" data-testid="fts-group-toggle" @click="g.open = !g.open">
@@ -51,7 +51,7 @@ import Skeleton from '@/components/Skeleton.vue'
 import { useSearch } from '@/stores/search'
 import { useTree, type TreeItem } from '@/stores/tree'
 import { useSettings } from '@/stores/settings'
-import { buildMatch, cleanFtsInput, ftsInputError, isAdvancedQuery, type FtsTerm } from '@shared/fts-query'
+import { buildMatch, cleanFtsInput, ftsInputError, isAdvancedQuery, type FtsHighlight } from '@shared/fts-query'
 import { parseFtsOptions, ftsLink } from '@shared/routes'
 import { beautifyFTSText } from '@shared/beautify'
 import { FILTER_KEYS } from '@shared/constants'
@@ -73,7 +73,7 @@ const link = computed(() => ftsLink(input.value, { exactWord: exactWord.value, m
 
 const groups = ref<(FtsGroup & { open: boolean })[]>([])
 const paths = ref(new Map<string, TreeItem[]>())
-const terms = ref<FtsTerm[]>([])
+const highlight = ref<FtsHighlight | null>(null)
 const total = ref(-1)
 const running = ref(false)
 const errorMessage = ref('')
@@ -103,10 +103,10 @@ async function getResults() {
     const f = search.filter.fts
     const selected = f.keys.length && f.keys.length < FILTER_KEYS.length ? f.keys.map(k => (FILTER_KEYS as readonly string[]).indexOf(k)) : null
     const lang = f.columns.length < 2 ? (f.columns[0] === 1 ? 1 : 0) : 2
-    const res = await runFts(b.match, b.terms, lang, selected, settings.letterOptions)
+    const res = await runFts(b.match, b.highlight, lang, selected, settings.letterOptions)
     const p = await tree.getPaths(res.groups.map(g => g.key).filter(Boolean))
     if (my !== seq) return
-    terms.value = b.terms
+    highlight.value = b.highlight
     paths.value = p
     groups.value = res.groups.map(g => ({ ...g, open: false }))
     total.value = res.total

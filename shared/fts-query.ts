@@ -7,7 +7,9 @@ import { normalizeForSearch } from './normalize'
 
 export interface FtsOptions { exactWord: number; matchPhrase: number; wordDistance: number }
 export interface FtsTerm { text: string; prefix: boolean }
-export type FtsBuild = { ok: true; match: string; terms: FtsTerm[] } | { ok: false; error: string }
+/** what is highlighted: each term on its own, the terms as a phrase (in order, next to each other) or near each other */
+export interface FtsHighlight { terms: FtsTerm[]; mode: 'terms' | 'phrase' | 'near'; distance: number }
+export type FtsBuild = { ok: true; match: string; terms: FtsTerm[]; highlight: FtsHighlight } | { ok: false; error: string }
 
 export const FTS_MESSAGES = {
   empty: 'සෙවීම සඳහා වචන ඇතුල් කරන්න.',
@@ -65,20 +67,45 @@ export function buildMatch(rawInput: string, opts: FtsOptions): FtsBuild {
       parts.push(t.expr); terms.push(t.term); lastWasOp = false
     }
     if (lastWasOp || !terms.length) return { ok: false, error: FTS_MESSAGES.invalid }
-    return { ok: true, match: parts.join(' '), terms }
+    return { ok: true, match: parts.join(' '), terms, highlight: { terms, mode: 'terms', distance: 0 } }
   }
 
   const words = input.split(' ').map(w => termFrom(w, !opts.exactWord)).filter((t): t is NonNullable<typeof t> => !!t)
   if (!words.length) return { ok: false, error: FTS_MESSAGES.invalid }
   words.forEach(w => terms.push(w.term))
   let match = words[0].expr
+  const highlight: FtsHighlight = { terms, mode: 'terms', distance: 0 }
   if (words.length > 1) {
     const d = Math.max(0, Math.min(100, Math.floor(opts.wordDistance) || 0))
     match = opts.matchPhrase ? `"${words.map(w => w.expr).join(' ')}"` : words.map(w => w.expr).join(` NEAR/${d} `)
+    Object.assign(highlight, opts.matchPhrase ? { mode: 'phrase' } : { mode: 'near', distance: d })
   }
-  return { ok: true, match, terms }
+  return { ok: true, match, terms, highlight }
 }
 
+const termMatch = (word: string, t: FtsTerm) => (t.prefix ? word.startsWith(t.text) : word === t.text)
 /** does a normalised word match one of the query terms */
-export const termMatches = (word: string, terms: FtsTerm[]) =>
-  terms.some(t => (t.prefix ? word.startsWith(t.text) : word === t.text))
+export const termMatches = (word: string, terms: FtsTerm[]) => terms.some(t => termMatch(word, t))
+
+/**
+ * indexes of the (normalised) words to highlight: with a phrase only the words of a complete phrase, with near only
+ * term words that have every other term within the distance (FTS4 NEAR/n: at most n words between, any order).
+ * Falls back to every term word when nothing matches that way, so a result never shows without a highlight.
+ */
+export function highlightIndexes(words: string[], hl: FtsHighlight): number[] {
+  const { terms } = hl
+  const any = words.map((w, i) => (termMatches(w, terms) ? i : -1)).filter(i => i >= 0)
+  if (hl.mode === 'terms' || terms.length < 2) return any
+  const hits = new Set<number>()
+  if (hl.mode === 'phrase') {
+    for (let i = 0; i + terms.length <= words.length; i++)
+      if (terms.every((t, j) => termMatch(words[i + j], t))) terms.forEach((_, j) => hits.add(i + j))
+  } else {
+    const at = terms.map(t => words.map((w, i) => (termMatch(w, t) ? i : -1)).filter(i => i >= 0))
+    // a chain "a NEAR/n b NEAR/n c" can span (n + 1) words per step
+    terms.forEach((_, j) => at[j].forEach(i => {
+      if (terms.every((_, k) => k === j || at[k].some(x => x !== i && Math.abs(x - i) <= (hl.distance + 1) * Math.abs(k - j)))) hits.add(i)
+    }))
+  }
+  return hits.size ? [...hits].sort((a, b) => a - b) : any
+}

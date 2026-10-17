@@ -10,7 +10,7 @@ test('welcome page, open a sutta from the tree', async ({ page }) => {
   const tree = page.getByTestId('tree')
   await tree.getByLabel('dn', { exact: true }).click() // expand dn (sp is open by default)
   await tree.getByLabel('dn-1', { exact: true }).click()
-  await tree.locator('[data-key="dn-1-1"] span.pl-1').click()
+  await tree.locator('[data-key="dn-1-1"] [data-testid=tree-label]').click()
   await expect(page).toHaveURL(/\/dn-1-1$/)
   await expect(page).toHaveTitle(/බ්‍රහ්මජාල.* < .* \| බුද්ධ ජයන්ති ත්‍රිපිටකය/)
   await expect(page.getByTestId('tab')).toHaveCount(1)
@@ -60,7 +60,7 @@ test('back / forward switch between open suttas (A7)', async ({ page }) => {
   await openDrawerIfClosed(page)
   await page.getByTestId('tree').getByLabel('kn', { exact: true }).click()
   await page.getByTestId('tree').getByLabel('kn-dhp', { exact: true }).click()
-  await page.getByTestId('tree').locator('[data-key="kn-dhp-1"] span.pl-1').click()
+  await page.getByTestId('tree').locator('[data-key="kn-dhp-1"] [data-testid=tree-label]').click()
   await expect(page).toHaveURL(/\/kn-dhp-1$/)
   await expect(page.getByTestId('tab')).toHaveCount(2)
   await page.goBack()
@@ -169,6 +169,23 @@ test('opening an already open sutta re-uses its tab', async ({ page }) => {
   await expect(page).toHaveURL(/\/dn-1-1$/)
 })
 
+test('each tab keeps its own scroll position', async ({ page }) => {
+  await page.goto('/dn-1-1/pali')
+  await page.locator('.entry-text.heading [data-testid="atuwa-link"]').first().click()
+  await expect(page.getByTestId('tab')).toHaveCount(2)
+  const scrollY = () => page.evaluate(() => Math.round(window.scrollY))
+  await page.getByTestId('tab').first().click() // the mula (the fixture atuwa is too short to scroll)
+  await page.evaluate(() => window.scrollTo(0, 300))
+  await expect.poll(scrollY).toBe(300)
+  await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))) // the scroll event is delivered
+  await page.evaluate(() => window.scrollTo(0, 290)) // small screens show the app bar (with the tabs) again on scrolling up
+  await expect.poll(scrollY).toBe(290)
+  await page.getByTestId('tab').nth(1).click()
+  await expect.poll(scrollY).toBe(0)
+  await page.getByTestId('tab').first().click()
+  await expect.poll(scrollY).toBe(290)
+})
+
 test('tabs list: switch and close other tabs', async ({ page }) => {
   await page.goto('/dn-1-1/pali')
   await page.locator('.entry-text.heading [data-testid="atuwa-link"]').first().click()
@@ -192,4 +209,19 @@ test('side panel: dark mode, font size, links', async ({ page }) => {
   await panel.getByTestId('menu-bookmarks').click()
   await expect(page).toHaveURL(/\/bookmarks$/)
   await expect(panel).toHaveCount(0)
+})
+
+test('alignment view: hovering a pali word highlights its sinhala rendering', async ({ page }) => {
+  test.skip(isMobile(page), 'one column on small screens, no hover')
+  await page.addInitScript(() => localStorage.setItem('tipitaka.lk-settings-2', JSON.stringify({ alignmentView: true })))
+  await page.goto('/dn-1-1')
+  // dn-1 0:6 is aligned "... 2>1,2 ..." (fixture e2e/fixtures/alignments/dn-1.json)
+  const pair = page.locator('[data-testid="text-tab"]:visible [data-eind="0-6"]')
+  await pair.locator('[data-lang="pali"] [data-w="2"]').hover()
+  await expect(pair.locator('[data-lang="sinh"] [data-w="1"]')).toHaveClass(/aligned/)
+  await expect(pair.locator('[data-lang="sinh"] [data-w="2"]')).toHaveClass(/aligned/)
+  await expect(pair.locator('[data-lang="sinh"] [data-w="0"]')).not.toHaveClass(/aligned/)
+  await pair.locator('[data-lang="sinh"] [data-w="3"]').hover() // and from the sinhala side back to pali word 1
+  await expect(pair.locator('[data-lang="pali"] [data-w="1"]')).toHaveClass(/aligned/)
+  await expect(pair.locator('[data-lang="pali"] [data-w="2"]')).not.toHaveClass(/aligned/)
 })

@@ -3,7 +3,7 @@
   <div class="entry group relative px-2 py-1.5" :data-page="row.page_idx" :data-lang="lang" :data-entry="row.entry_idx">
     <div :class="['entry-text', type, { 'audio-playing': audioPlaying }]" :data-level="level">
       <AtuwaLink v-if="isHeading && row.node_key" :mirror-key="row.mirror_key" :language="lang" />
-      <RichText :text="text" :lang="lang" :terms="terms" :wrap-words="lang === 'pali'" :hide-footnotes="hideFootnotes" />
+      <RichText :text="text" :lang="lang" :terms="terms" :wrap-words="lang === 'pali'" :hide-footnotes="hideFootnotes" :index-words="indexWords" />
       <template v-if="isHeading && row.node_key">
         <ShareButton :link="`/${row.node_key}/${lang}`" />
         <BookmarkButton :bookmark="bookmark" />
@@ -41,7 +41,7 @@ import ShareButton from './ShareButton.vue'
 import BookmarkButton from './BookmarkButton.vue'
 import Floating from './Floating.vue'
 import type { EntryRow } from '@/data/types'
-import type { FtsTerm } from '@shared/fts-query'
+import type { FtsHighlight } from '@shared/fts-query'
 import { TYPES } from '@shared/constants'
 import { entryLink, type EInd } from '@shared/routes'
 import { stripForCopy } from '@shared/markup'
@@ -49,11 +49,12 @@ import { beautifyText } from '@shared/beautify'
 import { copyText } from '@/composables/clipboard'
 import { useUi } from '@/stores/ui'
 import { useAudio } from '@/stores/audio'
+import { useTabs } from '@/stores/tabs'
 import { useSettings } from '@/stores/settings'
 import type { Bookmark } from '@/stores/bookmarks'
 
-const props = defineProps<{ row: EntryRow; lang: 'pali' | 'sinh'; file: string; terms: FtsTerm[] | null; hideFootnotes: boolean }>()
-const ui = useUi(), audio = useAudio(), settings = useSettings()
+const props = defineProps<{ row: EntryRow; lang: 'pali' | 'sinh'; file: string; terms: FtsHighlight | null; hideFootnotes: boolean; indexWords?: boolean }>()
+const ui = useUi(), audio = useAudio(), settings = useSettings(), tabs = useTabs()
 const dots = ref<HTMLElement>()
 const menuOpen = ref(false)
 
@@ -80,6 +81,6 @@ async function copyContent() {
 }
 function toggleAudio() {
   if (audioPlaying.value) audio.togglePlay()
-  else audio.startEntry(props.file, eInd.value)
+  else audio.startEntry(props.file, eInd.value, tabs.activeTab?.uid) // the entry is in the visible (active) tab
 }
 </script>

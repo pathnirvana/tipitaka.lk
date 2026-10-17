@@ -7,7 +7,7 @@ import type { FtsCandidate, FtsText } from './types'
 import { buildSnippet } from '@shared/highlight'
 import { beautifyFTSText, type LetterOptions } from '@shared/beautify'
 import { joinList, TYPES } from '@shared/constants'
-import type { FtsTerm } from '@shared/fts-query'
+import type { FtsHighlight } from '@shared/fts-query'
 import type { EInd } from '@shared/routes'
 
 export const CANDIDATE_LIMIT = 2000
@@ -28,7 +28,7 @@ export function matchHits(miHex: string): number {
 }
 export const rankOf = (numMatches: number, len: number) => numMatches / Math.log2(Math.max(len, 2))
 
-export async function runFts(match: string, terms: FtsTerm[], lang: 0 | 1 | 2, groups: number[] | null, letters: LetterOptions): Promise<FtsResults> {
+export async function runFts(match: string, highlight: FtsHighlight, lang: 0 | 1 | 2, groups: number[] | null, letters: LetterOptions): Promise<FtsResults> {
   const g = groups ? joinList(groups) : ''
   const [cands, count] = await Promise.all([
     getData().query<FtsCandidate>('fts.candidates', { q: match, lang, groups: g, limit: CANDIDATE_LIMIT }),
@@ -42,7 +42,7 @@ export async function runFts(match: string, terms: FtsTerm[], lang: 0 | 1 | 2, g
     const t = texts.get(Math.floor(c.d / 2))
     if (!t) continue
     const language = c.d % 2 ? 'sinh' : 'pali'
-    const snip = buildSnippet(language === 'pali' ? t.p_text : t.s_text, terms)
+    const snip = buildSnippet(language === 'pali' ? t.p_text : t.s_text, highlight)
     const item: FtsItem = { key: t.node_key, eInd: [t.page_idx, t.entry_idx], language, hText: beautifyFTSText(snip.html, language, letters),
       numMatches: hits, textLength: c.len, type: TYPES[t.p_type], file: t.file }
     const grp = byKey.get(item.key) || { key: item.key, items: [], numMatches: 0 }

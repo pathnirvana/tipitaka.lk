@@ -10,8 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed, nextTick, watch } from 'vue'
 import { useHead } from '@unhead/vue'
+import { useEventListener } from '@vueuse/core'
 import IconTop from '~icons/mdi/chevron-triple-up'
 import TextTab from '@/components/TextTab.vue'
 import AudioControl from '@/components/AudioControl.vue'
@@ -24,6 +25,13 @@ import { removeBandi } from '@shared/beautify'
 
 const tabs = useTabs(), tree = useTree(), audio = useAudio(), inlineDict = useInlineDict()
 const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+
+// each tab keeps its own scroll position (the window scrolls, so it is saved per tab and restored on switching)
+useEventListener(window, 'scroll', () => { if (tabs.activeTab) tabs.update(tabs.activeTab, { scrollY: window.scrollY }) }, { passive: true })
+watch(() => tabs.activeTab, async t => {
+  await nextTick() // after the v-show switch, so the page is tall enough for the position
+  if (t && t === tabs.activeTab) window.scrollTo(0, t.scrollY)
+}, { immediate: true })
 
 // title "<sutta> < <collection root>" (v2 Home.vue metaInfo)
 const rootName = computed(() => {

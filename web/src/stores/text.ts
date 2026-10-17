@@ -2,7 +2,8 @@
 import { defineStore } from 'pinia'
 import { markRaw, ref } from 'vue'
 import { getData } from '@/data/source'
-import type { EntryRow, FootnoteRow } from '@/data/types'
+import type { AlignRow, EntryRow, FootnoteRow } from '@/data/types'
+import { EntryAlign } from '@shared/align'
 
 export interface PageData {
   pageIdx: number
@@ -14,6 +15,10 @@ export interface PageData {
 export const useText = defineStore('text', () => {
   const files = new Map<string, Map<number, PageData>>()
   const version = ref(0) // bumped when pages are added (cheap reactivity for the raw cache)
+  // pali-sinhala word alignments, fetched only while the alignment view is on: file -> 'page-entry' -> alignment
+  const aligns = new Map<string, Map<string, EntryAlign>>()
+  const alignPages = new Map<string, Set<number>>() // pages whose alignments were fetched (most entries have none)
+  const alignVersion = ref(0)
 
   function getPage(file: string, pageIdx: number): PageData | undefined {
     return files.get(file)?.get(pageIdx)
@@ -40,5 +45,24 @@ export const useText = defineStore('text', () => {
     version.value++
   }
 
-  return { getPage, loadRange, version }
+  function getAlign(file: string, pageIdx: number, entryIdx: number): EntryAlign | undefined {
+    return aligns.get(file)?.get(`${pageIdx}-${entryIdx}`)
+  }
+
+  /** loads the alignments of pages [from, to] of a file (inclusive) */
+  async function loadAlign(file: string, from: number, to: number) {
+    const done = alignPages.get(file) || new Set<number>()
+    alignPages.set(file, done)
+    while (from <= to && done.has(from)) from++
+    while (to >= from && done.has(to)) to--
+    if (from > to) return
+    const rows = await getData().query<AlignRow>('text.align', { file, from, to })
+    const cache = aligns.get(file) || new Map<string, EntryAlign>()
+    aligns.set(file, cache)
+    for (const r of rows) cache.set(`${r.page_idx}-${r.entry_idx}`, new EntryAlign(r.links, r.pu, r.sa))
+    for (let p = from; p <= to; p++) done.add(p)
+    alignVersion.value++
+  }
+
+  return { getPage, loadRange, version, getAlign, loadAlign, alignVersion }
 })

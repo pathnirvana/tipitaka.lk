@@ -87,3 +87,16 @@ test('full text search groups expand', async ({ page }) => {
   await toggle.click()
   await expect.poll(() => group.getByTestId('fts-item').count()).toBeGreaterThan(1)
 })
+
+test('full text search: going back and opening a result in an already open sutta opens it in a new tab (v2)', async ({ page }) => {
+  await page.goto('/fts/භික්ඛවෙ')
+  const link = page.getByTestId('tipitaka-link').first()
+  await link.click()
+  await expect(page).not.toHaveURL(/\/fts\//)
+  const url = page.url()
+  await page.goBack()
+  await expect(page).toHaveURL(/\/fts\//)
+  await link.click()
+  await expect(page).toHaveURL(url)
+  await expect(page.getByTestId('tab')).toHaveCount(2)
+})

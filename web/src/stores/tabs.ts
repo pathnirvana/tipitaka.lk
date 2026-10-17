@@ -5,7 +5,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { EInd } from '@shared/routes'
-import type { FtsTerm } from '@shared/fts-query'
+import type { FtsHighlight } from '@shared/fts-query'
 import type { NodeRow } from '@/data/types'
 import { useTree } from './tree'
 import { useText } from './text'
@@ -18,8 +18,9 @@ export interface OpenParams {
   key: string
   eInd?: EInd | null
   language?: 'pali' | 'sinh'
-  hWords?: FtsTerm[] | null
+  hWords?: FtsHighlight | null
   playAudio?: boolean
+  reuse?: boolean // switch to an already open tab of this sutta instead of opening a new one
 }
 export interface Tab {
   uid: number
@@ -33,7 +34,8 @@ export interface Tab {
   lastUsed: number
   language?: 'pali' | 'sinh'
   showScanPage: boolean
-  hWords: FtsTerm[] | null
+  scrollY: number // window scroll position, restored when the tab becomes active again
+  hWords: FtsHighlight | null
   errorMessage: string
   isLoaded: boolean
 }
@@ -45,6 +47,7 @@ export const useTabs = defineStore('tabs', () => {
   const tree = useTree(), text = useText(), settings = useSettings()
   const tabList = ref<Tab[]>([])
   const activeInd = ref(-1)
+  const openCount = ref(0) // bumped on every openTab so routeSync navigates even when the active key is unchanged
   const activeTab = computed<Tab | undefined>(() => tabList.value[activeInd.value])
   const activeKey = computed(() => activeTab.value?.key || '')
 
@@ -60,7 +63,7 @@ export const useTabs = defineStore('tabs', () => {
 
   function newTab(p: OpenParams, columns: Columns): Tab {
     return { uid: uid++, key: p.key, node: null, eInd: p.eInd || [0, 0], entryStart: 0, pageStart: 0, pageEnd: 0, columns, lastUsed: Date.now(),
-      language: p.language, showScanPage: false, hWords: p.hWords || null, errorMessage: '', isLoaded: false }
+      language: p.language, showScanPage: false, scrollY: 0, hWords: p.hWords || null, errorMessage: '', isLoaded: false }
   }
 
   async function load(tab: Tab, explicitEInd: EInd | null | undefined) {
@@ -82,12 +85,14 @@ export const useTabs = defineStore('tabs', () => {
   }
 
   /**
-   * opens a sutta. An already open sutta is re-used (moved to the requested position if one is given) instead of
-   * opening a duplicate tab, and the least recently used tabs are closed beyond MAX_TABS.
+   * opens a sutta in a new tab, even when it is already open (v2) - e.g. the open tab may be showing the scanned pages.
+   * With p.reuse an already open sutta is re-used instead (moved to the requested position if one is given).
+   * The least recently used tabs are closed beyond MAX_TABS.
    */
   async function openTab(p: OpenParams): Promise<Tab> {
+    openCount.value++
     const columns: Columns = !p.language ? settings.defaultColumns : (Number(p.language === 'sinh') as Columns)
-    const existing = findTab(p.key)
+    const existing = p.reuse ? findTab(p.key) : -1
     if (existing >= 0) {
       setActive(existing)
       const tab = tabList.value[existing]
@@ -141,7 +146,12 @@ export const useTabs = defineStore('tabs', () => {
   function setActive(i: number) {
     if (i >= 0 && i < tabList.value.length) { activeInd.value = i; tabList.value[i].lastUsed = Date.now() }
   }
-  function findTab(key: string) { return tabList.value.findIndex(t => t.key === key) }
+  /** the most recently used tab of a sutta (the same sutta can be open in several tabs) */
+  function findTab(key: string) {
+    let best = -1
+    tabList.value.forEach((t, i) => { if (t.key === key && (best < 0 || t.lastUsed >= tabList.value[best].lastUsed)) best = i })
+    return best
+  }
 
   async function loadNextPage(tab: Tab, by = 1) {
     if (!tab.node) return
@@ -168,7 +178,7 @@ export const useTabs = defineStore('tabs', () => {
   }
 
   /** updates fields of a tab (components never mutate the tab objects directly) */
-  function update(tab: Tab, patch: Partial<Pick<Tab, 'columns' | 'showScanPage'>>) { Object.assign(tab, patch) }
+  function update(tab: Tab, patch: Partial<Pick<Tab, 'columns' | 'showScanPage' | 'scrollY'>>) { Object.assign(tab, patch) }
 
-  return { update, closeOthers, closeAll, tabList, activeInd, activeTab, activeKey, tabColumns, isAtta, paliOnly, openTab, replaceActive, closeTab, setActive, findTab, loadNextPage, loadPrevPage, navigate }
+  return { update, closeOthers, closeAll, tabList, activeInd, openCount, activeTab, activeKey, tabColumns, isAtta, paliOnly, openTab, replaceActive, closeTab, setActive, findTab, loadNextPage, loadPrevPage, navigate }
 })

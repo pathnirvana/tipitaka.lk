@@ -18,5 +18,5 @@ import { useTabs } from '@/stores/tabs'
 const props = defineProps<{ mirrorKey: string; language: 'pali' | 'sinh'; listItem?: boolean }>()
 const emit = defineEmits<{ done: [] }>()
 const toAtuwa = computed(() => props.mirrorKey.startsWith('atta-'))
-function open() { useTabs().openTab({ key: props.mirrorKey, language: props.language }); emit('done') }
+function open() { useTabs().openTab({ key: props.mirrorKey, language: props.language, reuse: true }); emit('done') }
 </script>

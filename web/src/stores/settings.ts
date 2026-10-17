@@ -17,15 +17,17 @@ export interface Settings {
   fontSize: number
   syncTree: boolean
   autoHideSearchBar: boolean
+  alignmentView: boolean
+  audioFollow: boolean // keep the chanted paragraph / word on screen
 }
 const STORED: (keyof Settings)[] = ['darkMode', 'defaultColumns', 'treeLanguage', 'footnoteMethod', 'bandiLetters',
-  'specialLetters', 'showPageNumbers', 'fontSize', 'syncTree', 'autoHideSearchBar']
+  'specialLetters', 'showPageNumbers', 'fontSize', 'syncTree', 'autoHideSearchBar', 'alignmentView', 'audioFollow']
 
 export function defaultSettings(width = typeof window !== 'undefined' ? window.innerWidth : 1200): Settings {
   return {
     darkMode: false, defaultColumns: 2, treeLanguage: 'pali',
     footnoteMethod: width < 960 ? 'click' : 'hover', // v2: smAndDown ? 'click' : 'hover'
-    bandiLetters: true, specialLetters: false, showPageNumbers: true, fontSize: 0, syncTree: true, autoHideSearchBar: true,
+    bandiLetters: true, specialLetters: false, showPageNumbers: true, fontSize: 0, syncTree: true, autoHideSearchBar: true, alignmentView: false, audioFollow: false,
   }
 }
 
