@@ -99,6 +99,15 @@ FROM footnote fn JOIN file f ON f.id = fn.file_id
 WHERE f.name = :file AND fn.page_idx BETWEEN :from AND :to
 ORDER BY fn.page_idx, fn.lang, fn.idx;
 
+-- name: text.align
+-- db: text
+-- params: file:str from:int to:int
+-- max_rows: 6000
+SELECT e.page_idx, e.entry_idx, a.links, a.pu, a.sa, a.src
+FROM align a JOIN entry e ON e.id = a.entry_id JOIN file f ON f.id = e.file_id
+WHERE f.name = :file AND e.page_idx BETWEEN :from AND :to
+ORDER BY e.page_idx, e.entry_idx;
+
 -- name: fts.candidates
 -- db: text
 -- params: q:str lang:int groups:str limit:int
@@ -146,7 +155,7 @@ ORDER BY e.id;
 -- db: text
 -- params: file:str
 -- max_rows: 30000
-SELECT e.audio_idx, e.page_idx, e.entry_idx
+SELECT e.audio_idx, e.page_idx, e.entry_idx, e.audio_ph
 FROM entry e JOIN file f ON f.id = e.file_id
 WHERE f.name = :file AND e.audio_idx IS NOT NULL
 ORDER BY e.id;

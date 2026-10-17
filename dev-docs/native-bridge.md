@@ -31,6 +31,8 @@ Enhanced FTS query syntax (parentheses) is not needed. The SQL comes only from `
 * minimum OS: Android 7 (API 24) / iOS 12 (Vue 3 needs ES2015 Proxy).
 * delete the obsolete `*@fts.db` copies (~476 MB) - see `WebAppInterface.deleteLegacyDbs()` in the Android app.
 * static files are read with XMLHttpRequest relative to index.html (`static/data/*.json`).
+* allow media playback without a user gesture (Android `setMediaPlaybackRequiresUserGesture(false)`, iOS
+  `mediaTypesRequiringUserActionForPlayback = []`): recitation audio calls `play()` after loading its timings.
 
 ## Testing
 `e2e/android.spec.ts` runs the app build against a simulated bridge with the same quirks; `npm run test:sqlite-compat`

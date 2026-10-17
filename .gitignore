@@ -53,3 +53,4 @@ server/server
 /web/public/static/sitemap.txt
 /e2e/test-results
 /e2e/playwright-report
+/db/.upload/

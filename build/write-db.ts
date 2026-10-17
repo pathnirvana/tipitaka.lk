@@ -1,12 +1,14 @@
 /** Writes db/text.db from the corpus + tree. Schema documented in dev-docs/data-pipeline.md. */
 import fs from 'node:fs'
+import crypto from 'node:crypto'
 import Database from 'better-sqlite3'
 import type { Corpus } from './corpus'
 import type { TreeTuple } from './tree'
 import { normalizeForSearch } from '../shared/normalize'
 import { FILTER_KEYS, typeToInt, isPaliOnlyFile } from '../shared/constants'
+import type { Alignments } from './align'
 
-export const SCHEMA_VERSION = '1'
+export const SCHEMA_VERSION = '2'
 
 export const SCHEMA = `
 CREATE TABLE meta (k TEXT PRIMARY KEY, v TEXT NOT NULL);
@@ -21,11 +23,15 @@ CREATE INDEX node_parent ON node(parent_id, id);
 CREATE TABLE entry (id INTEGER PRIMARY KEY, file_id INTEGER NOT NULL, page_idx INTEGER NOT NULL, entry_idx INTEGER NOT NULL,
   node_id INTEGER, p_type INTEGER NOT NULL, p_level INTEGER, p_text TEXT NOT NULL,
   s_type INTEGER, s_level INTEGER, s_text TEXT, no_audio INTEGER, key_offset REAL, audio_idx INTEGER,
-  UNIQUE (file_id, page_idx, entry_idx));
+  audio_ph TEXT, UNIQUE (file_id, page_idx, entry_idx));
 CREATE TABLE footnote (file_id INTEGER NOT NULL, page_idx INTEGER NOT NULL, lang INTEGER NOT NULL, idx INTEGER NOT NULL,
   text TEXT NOT NULL, PRIMARY KEY (file_id, page_idx, lang, idx)) WITHOUT ROWID;
+CREATE TABLE align (entry_id INTEGER PRIMARY KEY, links TEXT NOT NULL, pu TEXT NOT NULL, sa TEXT NOT NULL, src INTEGER NOT NULL);
 CREATE VIRTUAL TABLE fts USING fts4(content="", text, tokenize=simple);
 `
+
+/** the chanted entry's text hash: recordings' timing files (<label>.json) refer to their paragraphs by it */
+export const audioHash = (text: string) => crypto.createHash('sha1').update(text).digest('hex').slice(0, 12)
 
 export function fileGroup(name: string): number | null {
   const m = FILTER_KEYS.map((k, i) => (name === k || name.startsWith(k + '-') ? i : -1)).filter(i => i >= 0)
@@ -39,9 +45,10 @@ export interface WriteDbInput {
   order: string[]
   entryNodes: Map<string, number[][]>
   meta: Record<string, string>
+  alignments?: Alignments
 }
 
-export function writeDb(outFile: string, { corpus, tree, order, entryNodes, meta }: WriteDbInput) {
+export function writeDb(outFile: string, { corpus, tree, order, entryNodes, meta, alignments }: WriteDbInput) {
   for (const f of [outFile, outFile + '-journal', outFile + '-wal']) fs.rmSync(f, { force: true })
   const db = new Database(outFile)
   db.pragma('journal_mode = OFF')
@@ -53,7 +60,8 @@ export function writeDb(outFile: string, { corpus, tree, order, entryNodes, meta
   const insFile = db.prepare('INSERT INTO file VALUES (?,?,?,?,?,?,?,?)')
   const insPage = db.prepare('INSERT INTO page VALUES (?,?,?)')
   const insNode = db.prepare('INSERT INTO node VALUES (?,?,?,?,?,?,?,?,?,?,?,?)')
-  const insEntry = db.prepare('INSERT INTO entry VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)')
+  const insEntry = db.prepare('INSERT INTO entry VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)')
+  const insAlign = db.prepare('INSERT INTO align VALUES (?,?,?,?,?)')
   const insFn = db.prepare('INSERT INTO footnote VALUES (?,?,?,?,?)')
   const insFts = db.prepare('INSERT INTO fts(docid, text) VALUES (?,?)')
   const insMeta = db.prepare('INSERT INTO meta VALUES (?,?)')
@@ -90,8 +98,10 @@ export function writeDb(outFile: string, { corpus, tree, order, entryNodes, meta
           const dfs = nodes[pi][ei]
           insEntry.run(entryId, fid, pi, ei, dfs >= 0 ? dfs + 1 : null, typeToInt(pe.type), pe.level ?? null, pe.text,
             se ? typeToInt(se.type) : null, se ? se.level ?? null : null, se ? se.text : null,
-            pe.noAudio ? 1 : null, pe.keyOffset ?? null, pe.noAudio ? null : audioIdx++)
+            pe.noAudio ? 1 : null, pe.keyOffset ?? null, pe.noAudio ? null : audioIdx++, pe.noAudio ? null : audioHash(pe.text))
           const pn = normalizeForSearch(pe.text)
+          const al = alignments?.row(f.filename, pi, ei, pe.text, se?.text ?? '')
+          if (al) insAlign.run(entryId, al.links, al.pu, al.sa, al.src)
           if (pn) insFts.run(BigInt(entryId * 2), pn)
           if (se) { const sn = normalizeForSearch(se.text); if (sn) insFts.run(BigInt(entryId * 2 + 1), sn) }
         })

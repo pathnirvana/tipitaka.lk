@@ -23,7 +23,7 @@ Around December 2026 remove the `public/static/text` upload from `scripts/deploy
 
 ## Android
 `scripts/android-assets.sh /Volumes/2TB/Android/Tipitaka.lk` copies `web/dist-app` and the dbs; then build the app
-bundle in Android Studio (branch `v3` of the Android repo: minSdk 24, obsolete fts.db cleanup).
+bundle in Android Studio (branch `v3` of the Android repo: minSdk 24, targetSdk 36 with edge-to-edge insets and predictive back, obsolete fts.db cleanup).
 `scripts/android-reload.sh` rebuilds + reinstalls a debug APK on a running emulator.
 
 ## iOS

@@ -9,7 +9,8 @@ import { buildTree, dfsOrder, type TreeTuple } from './tree'
 import { runLegacyBuildTree } from './legacy-tree'
 import { mapEntriesToNodes } from './entry-nodes'
 import { validateCorpus, toBaseline, newWarnings } from './validate'
-import { writeDb, fileGroup } from './write-db'
+import { writeDb, fileGroup, audioHash } from './write-db'
+import { Alignments } from './align'
 import { parseQueries } from '../shared/queries'
 import { buildMatch } from '../shared/fts-query'
 import { FILTER_KEYS, joinList } from '../shared/constants'
@@ -25,7 +26,7 @@ function buildAll(textDir: string, out: string, dropPlaceholders: boolean) {
   const tree = res.tree as Map<string, TreeTuple>
   const order = dfsOrder(tree)
   const entryNodes = mapEntriesToNodes(corpus.files, tree, order)
-  writeDb(out, { corpus, tree, order, entryNodes, meta: { schema_version: '1' } })
+  writeDb(out, { corpus, tree, order, entryNodes, meta: { schema_version: '2' }, alignments: new Alignments('e2e/fixtures/alignments') })
   return { corpus, res, tree, order, entryNodes }
 }
 
@@ -50,6 +51,7 @@ function roundTrip(corpus: ReturnType<typeof loadCorpus>, dbFile: string) {
       const se = p.sinh.entries[ei]
       const ok = r.name === f.filename && r.page_idx === pi && r.entry_idx === ei && r.p_text === pe.text && types[r.p_type] === pe.type &&
         r.p_level === (pe.level ?? null) && !!r.no_audio === !!pe.noAudio && r.key_offset === (pe.keyOffset ?? null) &&
+        r.audio_ph === (pe.noAudio ? null : audioHash(pe.text)) &&
         (se ? r.s_text === se.text && types[r.s_type] === se.type && r.s_level === (se.level ?? null) : r.s_text === null)
       if (!ok) throw new Error(`round trip mismatch ${f.filename} ${pi}-${ei}`)
     })

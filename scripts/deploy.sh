@@ -6,7 +6,8 @@
 #   scripts/deploy.sh --list      list the releases on the server
 #
 # Server layout: ~/www/tipitaka.lk/releases/<timestamp>/{tipitaka_lk,dist,db}, ~/www/tipitaka.lk/current -> releases/<ts>
-# Unchanged files are hard linked from the previous release, so text-only updates upload little except text.db.
+# Unchanged files are hard linked from the previous release, so text-only updates upload little except text.db,
+# which goes up zstd-compressed (~430 MB -> ~80 MB) and is unpacked and checked on the server.
 # sudo (password) is needed to restart the service; the first deploy also installs the systemd unit and can update nginx.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -26,6 +27,28 @@ if "$RSYNC" --version 2>&1 | grep -q openrsync; then PROGRESS=--progress; else P
 say() { printf '\n\033[1;33m==> %s\033[0m\n' "$*"; }
 remote() { ssh "$HOST" "$@"; }
 remote_tty() { ssh -t "$HOST" "$@"; }            # for sudo password prompts
+
+# a db of the release: hard linked from the previous release when identical (sha256), otherwise uploaded as zstd
+# (a rebuilt sqlite db has little in common with the old one for rsync's delta transfer) and unpacked on the server
+upload_db() {
+  local name=$1 prev_db=$2 sum zst
+  sum=$(shasum -a 256 "db/$name" | cut -d' ' -f1)
+  if [ -n "$prev_db" ] && [ "$(remote "sha256sum $prev_db/$name 2>/dev/null | cut -d' ' -f1")" = "$sum" ]; then
+    remote "ln $prev_db/$name $REL/db/$name"
+    echo "$name unchanged (hard linked)"
+    return
+  fi
+  zst="db/.upload/$name.$sum.zst"                   # kept until the db changes, so a retried deploy does not recompress
+  if [ ! -s "$zst" ]; then
+    rm -f db/.upload/"$name".*.zst; mkdir -p db/.upload
+    echo "compressing $name ($(du -m "db/$name" | cut -f1) MB) ..."
+    zstd -q -T0 -19 --long=27 "db/$name" -o "$zst.part" && mv "$zst.part" "$zst"
+  fi
+  echo "uploading $name as zstd ($(du -m "$zst" | cut -f1) MB)"
+  "$RSYNC" -a --whole-file $PROGRESS "$zst" "$HOST:$REL/db/$name.zst"
+  remote "zstd -q -d --long=27 --rm $REL/db/$name.zst -o $REL/db/$name && [ \"\$(sha256sum $REL/db/$name | cut -d' ' -f1)\" = $sum ]" \
+    || { echo "$name: unpacking on the server failed or the checksum differs"; exit 1; }
+}
 
 restart_and_verify() {
   local expected=$1
@@ -73,8 +96,8 @@ TS=$(date +%Y%m%d-%H%M%S)
 REL="$BASE/releases/$TS"
 # hard link unchanged files from the current release, or from the v2 layout on the first deploy
 PREV=$(remote "readlink $BASE/current || true")
-if [ -n "$PREV" ]; then LDIST="../../$(basename "$PREV")/dist"; LDB="../../$(basename "$PREV")/db"
-else LDIST="../../../dist"; LDB="../../../db"; fi
+if [ -n "$PREV" ]; then LDIST="../../$(basename "$PREV")/dist"; PREV_DB="$BASE/releases/$(basename "$PREV")/db"
+else LDIST="../../../dist"; PREV_DB="$BASE/db"; fi
 remote "mkdir -p $REL/dist $REL/db"
 SWITCHED=0
 # a failed upload / staging test leaves no half release behind (the live site is not touched before the switch)
@@ -82,7 +105,7 @@ trap '[ $SWITCHED = 1 ] || { echo "removing the unfinished release $TS"; ssh "$H
 "$RSYNC" -az --delete --link-dest="$LDIST" web/dist/ "$HOST:$REL/dist/"
 # v2 pages cached in browsers still fetch /static/text/*.json - keep serving them for a while after the switch
 "$RSYNC" -az --link-dest="../../$LDIST/static/text" public/static/text/ "$HOST:$REL/dist/static/text/"
-"$RSYNC" -azc $PROGRESS --link-dest="$LDB" db/text.db db/dict.db "$HOST:$REL/db/" # -c: identical files are hard linked, changed ones delta-transferred
+for db in text.db dict.db; do upload_db "$db" "$PREV_DB"; done
 "$RSYNC" -az server/bin/tipitaka_lk_linux_amd64 "$HOST:$REL/tipitaka_lk"
 remote "chmod +x $REL/tipitaka_lk"
 

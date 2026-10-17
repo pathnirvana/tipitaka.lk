@@ -1,5 +1,5 @@
 /**
- * npm run build:data [-- --text-dir public/static/text] [--out db] [--fixture] [--update-baseline]
+ * npm run build:data [-- --text-dir public/static/text] [--align-dir dev/alignments] [--out db] [--fixture] [--update-baseline]
  * Builds db/text.db + db/build-info.json + db/build-report.md and the static web data files.
  * The text JSON files are only read.
  */
@@ -12,6 +12,7 @@ import { buildTree, dfsOrder, type TreeTuple } from './tree'
 import { validateCorpus, toBaseline, newWarnings, type Baseline } from './validate'
 import { mapEntriesToNodes, legacyHeadingMapping } from './entry-nodes'
 import { writeDb, SCHEMA_VERSION } from './write-db'
+import { Alignments, ALIGN_DIR } from './align'
 import { writeSitemap, writeFixtureDict } from './emit'
 
 const args = process.argv.slice(2)
@@ -21,6 +22,7 @@ const opt = (name: string, def: string) => { const i = args.indexOf(name); retur
 const fixture = flag('--fixture')
 const textDir = opt('--text-dir', fixture ? 'e2e/fixtures/text' : 'public/static/text')
 const outDir = opt('--out', fixture ? 'e2e/fixtures/db' : 'db')
+const alignDir = opt('--align-dir', fixture ? 'e2e/fixtures/alignments' : ALIGN_DIR)
 const baselineFile = 'build/validation-baseline.json'
 
 function dbVersion(d = new Date()) {
@@ -79,7 +81,8 @@ function main() {
 
   fs.mkdirSync(outDir, { recursive: true })
   const queriesSql = fs.readFileSync('server/queries.sql', 'utf-8')
-  const apiHash = crypto.createHash('sha256').update(`${corpus.contentHash}|${SCHEMA_VERSION}|${queriesSql}`).digest('hex').slice(0, 16)
+  const alignments = new Alignments(alignDir)
+  const apiHash = crypto.createHash('sha256').update(`${corpus.contentHash}|${alignments.hash}|${SCHEMA_VERSION}|${queriesSql}`).digest('hex').slice(0, 16)
   let gitCommit = ''
   try { gitCommit = execSync('git rev-parse --short HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim() } catch { /* not a git checkout */ }
   const meta: Record<string, string> = {
@@ -88,7 +91,8 @@ function main() {
   }
   const dbFile = path.join(outDir, 'text.db')
   const t1 = Date.now()
-  writeDb(dbFile, { corpus, tree, order, entryNodes, meta })
+  writeDb(dbFile, { corpus, tree, order, entryNodes, meta, alignments })
+  report.push('', ...alignments.report())
   const size = fs.statSync(dbFile).size
   console.log(`wrote ${dbFile} (${(size / 1e6).toFixed(1)} MB) in ${((Date.now() - t1) / 1000).toFixed(1)} s`)
   report.splice(5, 0, `- db: ${dbFile} ${(size / 1e6).toFixed(1)} MB, api_hash ${apiHash}, db_version ${meta.db_version}`)
