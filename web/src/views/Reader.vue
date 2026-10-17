@@ -2,7 +2,7 @@
 <template>
   <div>
     <TextTab v-for="(tab, i) in tabs.tabList" v-show="i === tabs.activeInd" :key="tab.uid" :tab="tab" />
-    <button class="fixed bottom-4 right-4 z-20 rounded-full bg-surface2 p-2 shadow-lg" :class="{ 'bottom-[270px]': inlineDict.show, 'bottom-20': audio.controlsVisible && !inlineDict.show }"
+    <button class="fixed right-4 z-20 rounded-full bg-surface2 p-2 shadow-lg" :class="inlineDict.show ? 'bottom-[270px]' : audio.controlsVisible ? 'bottom-24' : 'bottom-4'"
       title="top" data-testid="scroll-top" @click="scrollTop"><IconTop /></button>
     <AudioControl />
     <InlineDict />

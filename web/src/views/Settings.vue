@@ -66,7 +66,7 @@ const switches = [
   { key: 'bandiLetters', label: 'පාළි බැඳි අකුරු භාවිතා කරන්න' }, { key: 'specialLetters', label: 'විශේෂ පාළි අකුරු භාවිතා කරන්න' },
   { key: 'showPageNumbers', label: 'පොතේ පිටු අංක පෙන්වන්න' }, { key: 'syncTree', label: 'කියවන සූත්‍රය හා නාමාවලිය සමමුහූර්ත (sync) කරන්න' },
   { key: 'autoHideSearchBar', label: 'සෙවුම් කොටුව ඉබේ අරින්න වසන්න' },
-  { key: 'alignmentView', label: 'පාළි වචනයට ගැළපෙන සිංහල වචන පෙන්වන්න (වචනය මතින් යන විට / ඔබන විට)' },
+  { key: 'alignmentView', label: 'පාළි වචනයට ගැළපෙන සිංහල වචන පෙන්වන්න' },
 ]
 const defaultColumns = useDefaultColumns()
 const columnText = computed(() => ({ 2: 'පාළි සිංහල දෙකම.', 0: 'පාළි පමණයි.', 1: 'සිංහල පමණයි.' })[defaultColumns.value])

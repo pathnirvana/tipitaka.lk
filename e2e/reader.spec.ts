@@ -47,7 +47,7 @@ test('server rendered article is shown without javascript', async ({ browser }) 
 
 test('the reader renders from the server data without a loading state and removes the article', async ({ page }) => {
   const apiCalls: string[] = []
-  page.on('request', r => { if (r.url().includes('/api/q/text.')) apiCalls.push(r.url()) })
+  page.on('request', r => { if (/\/api\/q\/text\.(entries|footnotes)/.test(r.url())) apiCalls.push(r.url()) }) // alignments load separately
   await page.goto('/dn-1-1/pali')
   await expect(entries(page, 'pali').first()).toBeVisible()
   await expect(page.locator('#ssr')).toHaveCount(0)

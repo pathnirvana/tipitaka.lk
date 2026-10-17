@@ -104,15 +104,15 @@ test('sync keeps the chanted paragraph on screen', async ({ page }) => {
   await cell.hover()
   await cell.getByTestId('entry-options').click()
   await page.getByText('සජ්ඣායනය අසන්න').click()
-  await page.getByTestId('audio-follow').click()
-  await expect(page.getByTestId('audio-follow')).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.getByTestId('audio-follow')).toHaveAttribute('aria-pressed', 'true') // on by default
   const playing = page.locator('[data-testid="text-tab"]:visible .entry-text.audio-playing').first()
   await expect(playing).toBeVisible()
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight)) // away from the chanted paragraph
   await expect(playing).not.toBeInViewport()
   await page.getByTestId('audio-next').click()
   await expect(playing).toBeInViewport()
-  await page.getByTestId('audio-follow').click() // off: no more scrolling
+  await page.getByTestId('audio-follow').click() // off: no more scrolling, remembered
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('tipitaka.lk-settings-2') || '{}').audioFollow)).toBe(false)
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight))
   await page.getByTestId('audio-next').click()
   await expect(playing).not.toBeInViewport()

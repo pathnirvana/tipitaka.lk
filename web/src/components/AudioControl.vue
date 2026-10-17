@@ -2,27 +2,34 @@
 <template>
   <div v-if="audio.controlsVisible" class="fixed bottom-0 left-1/2 z-30 w-full max-w-[800px] -translate-x-1/2 border-t border-line bg-surface shadow-2xl" data-testid="audio-control">
     <div class="h-[3px] bg-surface2"><div class="h-full bg-primary" :style="{ width: `${progress}%` }" /></div>
-    <div class="flex items-center space-x-1 px-2 py-1">
-      <div class="flex-1 truncate text-sm">{{ audio.activeEntry?.label?.num }}</div>
-      <button :class="['icon-btn', { 'bg-primary text-white hover:bg-primary': settings.audioFollow }]" title="සජ්ඣායනා වන ඡේදය පෙන්වන්න (sync)"
-        :aria-pressed="settings.audioFollow" data-testid="audio-follow" @click="toggleFollow"><IconSync /></button>
-      <div class="relative">
-        <button ref="cog" class="icon-btn" title="settings" @click="showSettings = !showSettings"><IconCog /></button>
-        <Floating :open="showSettings" :anchor="cog ?? null" placement="top" @close="showSettings = false">
-          <label class="block text-sm">සජ්ඣායනා වේගය {{ audio.playbackRate }}x
-            <input type="range" min="0.75" max="2" step="0.05" :value="audio.playbackRate" class="w-40" @input="audio.setRate(Number(($event.target as HTMLInputElement).value))">
-          </label>
-          <label class="mt-2 block text-sm">පරිච්ඡේද අතර නිහැඬියාව තත්පර {{ audio.silenceGap }}
-            <input v-model.number="audio.silenceGap" type="range" min="0" max="1" step="0.2" class="w-40">
-          </label>
-        </Floating>
+    <!-- paragraph number, sync | previous, play / pause (centered: equal width sides), next | settings, close -->
+    <div class="flex items-center px-2 py-1">
+      <div class="flex min-w-0 flex-1 basis-0 items-center space-x-1">
+        <span class="truncate text-sm text-muted">{{ audio.activeEntry?.label?.num }}</span>
+        <button :class="['icon-btn shrink-0', { 'bg-primary text-white hover:bg-primary': settings.audioFollow }]" title="සජ්ඣායනා වන ඡේදය පෙන්වන්න (sync)"
+          :aria-pressed="settings.audioFollow" data-testid="audio-follow" @click="toggleFollow"><IconSync /></button>
       </div>
-      <button class="icon-btn" title="previous" @click="audio.move(-1)"><IconRewind /></button>
-      <button class="icon-btn" title="play/pause" data-testid="audio-toggle" @click="audio.togglePlay()">
-        <IconPause v-if="audio.isPlaying" class="text-primary" /><IconPlay v-else />
-      </button>
-      <button class="icon-btn" title="next" data-testid="audio-next" @click="audio.move(1)"><IconForward /></button>
-      <button class="icon-btn text-error" title="close" @click="audio.close()"><IconClose /></button>
+      <div class="flex items-center space-x-2 sm:space-x-4">
+        <button class="icon-btn text-[1.6em]" title="previous" @click="audio.move(-1)"><IconRewind /></button>
+        <button class="icon-btn bg-primary p-2 text-[1.9em] text-white shadow hover:bg-primary hover:opacity-90" :title="audio.isPlaying ? 'pause' : 'play'" data-testid="audio-toggle" @click="audio.togglePlay()">
+          <IconPause v-if="audio.isPlaying" /><IconPlay v-else />
+        </button>
+        <button class="icon-btn text-[1.6em]" title="next" data-testid="audio-next" @click="audio.move(1)"><IconForward /></button>
+      </div>
+      <div class="flex flex-1 basis-0 items-center justify-end space-x-0.5">
+        <div class="relative">
+          <button ref="cog" class="icon-btn" title="settings" @click="showSettings = !showSettings"><IconCog /></button>
+          <Floating :open="showSettings" :anchor="cog ?? null" placement="top" @close="showSettings = false">
+            <label class="block text-sm">සජ්ඣායනා වේගය {{ audio.playbackRate }}x
+              <input type="range" min="0.75" max="2" step="0.05" :value="audio.playbackRate" class="w-40" @input="audio.setRate(Number(($event.target as HTMLInputElement).value))">
+            </label>
+            <label class="mt-2 block text-sm">පරිච්ඡේද අතර නිහැඬියාව තත්පර {{ audio.silenceGap }}
+              <input v-model.number="audio.silenceGap" type="range" min="0" max="1" step="0.2" class="w-40">
+            </label>
+          </Floating>
+        </div>
+        <button class="icon-btn text-error" title="close" @click="audio.close()"><IconClose /></button>
+      </div>
     </div>
   </div>
 </template>

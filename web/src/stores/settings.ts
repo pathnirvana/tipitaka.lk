@@ -27,7 +27,7 @@ export function defaultSettings(width = typeof window !== 'undefined' ? window.i
   return {
     darkMode: false, defaultColumns: 2, treeLanguage: 'pali',
     footnoteMethod: width < 960 ? 'click' : 'hover', // v2: smAndDown ? 'click' : 'hover'
-    bandiLetters: true, specialLetters: false, showPageNumbers: true, fontSize: 0, syncTree: true, autoHideSearchBar: true, alignmentView: false, audioFollow: false,
+    bandiLetters: true, specialLetters: false, showPageNumbers: true, fontSize: 0, syncTree: true, autoHideSearchBar: true, alignmentView: true, audioFollow: true,
   }
 }
 
