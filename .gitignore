@@ -41,6 +41,7 @@ server/server
 /web/dist
 /web/dist-app
 /db/text.db*
+/db/dict.db*
 /db/build-report.md
 /db/build-info.json
 /e2e/fixtures/db
