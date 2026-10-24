@@ -4,6 +4,7 @@ import { setActivePinia, createPinia } from 'pinia'
 import { nextTick } from 'vue'
 import { setData, Data } from '@/data/source'
 import { LocalSource } from '@/test-utils'
+import { themeClass } from '@/composables/themes'
 import { useSettings } from './settings'
 import { useTabs } from './tabs'
 import { useTree } from './tree'
@@ -25,12 +26,22 @@ describe('settings', () => {
     localStorage.setItem(SETTINGS_KEY, JSON.stringify({ darkMode: true, defaultColumns: 0, fontSize: 2, unknownOld: 1 }))
     setActivePinia(createPinia())
     const s = useSettings()
-    expect(s.darkMode).toBe(true)
+    expect(s.theme).toBe('dark') // the v2 dark mode switch becomes the dark theme
     expect(s.defaultColumns).toBe(0)
-    expect(s.fontPx).toBe('18px')
+    expect(s.fontPx).toBe('20px') // the reader's offset from the 18px base
     s.bandiLetters = false
     await nextTick()
-    expect(JSON.parse(localStorage.getItem(SETTINGS_KEY)!)).toMatchObject({ darkMode: true, bandiLetters: false, defaultColumns: 0 })
+    expect(JSON.parse(localStorage.getItem(SETTINGS_KEY)!)).toMatchObject({ theme: 'dark', bandiLetters: false, defaultColumns: 0 })
+  })
+  it('themes set the class of <html>, auto follows the system', async () => {
+    const s = useSettings()
+    expect(document.documentElement.className).toBe('')
+    s.theme = 'sepia'; await nextTick()
+    expect(document.documentElement.className).toBe('theme-sepia')
+    s.theme = 'dark'; await nextTick()
+    expect(document.documentElement.className).toBe('dark')
+    expect(themeClass('auto', true)).toBe('dark')
+    expect(themeClass('auto', false)).toBe('')
   })
 })
 
@@ -41,18 +52,30 @@ describe('search settings', () => {
     const s = useSearch()
     expect(s.filter.fts).toEqual({ keys: ['dn-1'], columns: [1] })
     expect(s.filter.title.columns).toEqual([0, 1])
-    expect(s.selectedDictionaries).toEqual(['Pali Text Society'])
-    expect(s.shortDicts()).toEqual(['PTS'])
     expect(s.searchType).toBe('dict')
+  })
+  it('the v2 dictionary choice becomes settings.dicts (dictionary codes, DPD on)', () => {
+    localStorage.setItem(SEARCH_SETTINGS_KEY, JSON.stringify({ selectedDictionaries: ['Pali Text Society', 'Buddhadatta Concise', 'Gone'] }))
+    setActivePinia(createPinia())
+    expect(useSettings().dicts).toEqual(['dpd', 'en-pts', 'en-ncped'])
+    localStorage.clear()
+    setActivePinia(createPinia())
+    expect(useSettings().dicts).toEqual([]) // all
   })
 })
 
 describe('tabs', () => {
   it('opens a tab with v2 pagination and columns', async () => {
     const tabs = useTabs()
-    const t = await tabs.openTab({ key: 'dn-1-1', language: 'sinh' })
+    const t = await tabs.openTab({ key: 'dn-1-1', language: 'sinh', languageColumn: true }) // a url /dn-1-1/sinh
     expect(t.isLoaded).toBe(true)
     expect([t.pageStart, t.pageEnd, t.entryStart, t.columns]).toEqual([0, 2, 4, 1])
+    expect((await tabs.openTab({ key: 'dn-1-1', language: 'sinh' })).columns).toBe(2) // in the app: the default columns
+    useSettings().defaultColumns = 0
+    expect((await tabs.openTab({ key: 'dn-1-1', language: 'pali' })).columns).toBe(0)
+    expect((await tabs.openTab({ key: 'dn-1-1', language: 'sinh', hWords: { terms: [], mode: 'terms', distance: 0 } })).columns).toBe(2) // a hit in the other language
+    useSettings().defaultColumns = 2
+    for (let i = 0; i < 3; i++) tabs.closeTab(tabs.tabList.length - 1)
     await tabs.loadPrevPage(t)
     expect(t.entryStart).toBe(0)
     await tabs.loadNextPage(t, 1)

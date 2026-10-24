@@ -160,42 +160,19 @@ FROM entry e JOIN file f ON f.id = e.file_id
 WHERE f.name = :file AND e.audio_idx IS NOT NULL
 ORDER BY e.id;
 
--- name: dict.page
--- db: dict
--- params: words:str dicts:str prefix:int
--- max_rows: 50
+-- name: fts.vocab
+-- db: text
+-- params: words:str prefix:int
+-- max_rows: 1000
+-- the candidate words (singlish -> sinhala spellings) that occur in the index, with the number of entries they occur in
+-- (prefix 1: words starting with the candidate). A correlated subquery: fts4aux gets the term range as a constraint (a
+-- join with the list does not pass it on: a scan of the 900k terms per candidate, 400 ms each)
 WITH RECURSIVE w(x, rest) AS (
   SELECT NULL, :words || char(31)
   UNION ALL SELECT substr(rest, 1, instr(rest, char(31)) - 1), substr(rest, instr(rest, char(31)) + 1)
-  FROM w WHERE rest <> ''),
-d(x, rest) AS (
-  SELECT NULL, :dicts || char(31)
-  UNION ALL SELECT substr(rest, 1, instr(rest, char(31)) - 1), substr(rest, instr(rest, char(31)) + 1)
-  FROM d WHERE rest <> '')
-SELECT word, dict, meaning FROM dictionary
-  WHERE word IN (SELECT x FROM w WHERE x IS NOT NULL)
-    AND (dict IN (SELECT x FROM d WHERE x IS NOT NULL) OR dict = 'BR')
-UNION
-SELECT word, COUNT(dict) AS dict, 'like' AS meaning FROM dictionary
-  WHERE :prefix = 1 AND rowid IN (
-      SELECT dc.rowid FROM w JOIN dictionary dc ON dc.word > w.x AND dc.word < w.x || char(1114111)
-      WHERE w.x IS NOT NULL AND w.x <> '')
-    AND dict IN (SELECT x FROM d WHERE x IS NOT NULL)
-  GROUP BY word
-ORDER BY word LIMIT 50;
-
--- name: dict.inline
--- db: dict
--- params: words:str dicts:str
--- max_rows: 50
-WITH RECURSIVE w(x, rest) AS (
-  SELECT NULL, :words || char(31)
-  UNION ALL SELECT substr(rest, 1, instr(rest, char(31)) - 1), substr(rest, instr(rest, char(31)) + 1)
-  FROM w WHERE rest <> ''),
-d(x, rest) AS (
-  SELECT NULL, :dicts || char(31)
-  UNION ALL SELECT substr(rest, 1, instr(rest, char(31)) - 1), substr(rest, instr(rest, char(31)) + 1)
-  FROM d WHERE rest <> '')
-SELECT word, dict, meaning FROM dictionary
-WHERE word IN (SELECT x FROM w WHERE x IS NOT NULL) AND dict IN (SELECT x FROM d WHERE x IS NOT NULL)
-ORDER BY word LIMIT 50;
+  FROM w WHERE rest <> '')
+SELECT word, docs FROM (
+  SELECT w.x AS word, (SELECT IFNULL(SUM(t.documents), 0) FROM fts_terms t WHERE t.col = '*' AND t.term >= w.x
+    AND t.term < w.x || (CASE :prefix WHEN 1 THEN char(1114111) ELSE char(1) END)) AS docs
+  FROM w WHERE w.x IS NOT NULL AND w.x <> '')
+WHERE docs > 0;

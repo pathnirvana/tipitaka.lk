@@ -51,12 +51,15 @@ upload_db() {
 }
 
 restart_and_verify() {
-  local expected=$1
+  local expected=$1 pid
+  pid=$(remote "systemctl show -p MainPID --value tipitaka_lk")
   remote_tty "sudo systemctl restart tipitaka_lk"
   for _ in $(seq 1 30); do
     got=$(curl -fsS "$SITE/api/health" 2>/dev/null | sed -n 's/.*"api_hash":"\([^"]*\)".*/\1/p' || true)
-    if [ -n "$expected" ] && [ "$got" = "$expected" ]; then echo "live: api_hash $got"; return 0; fi
-    if [ -z "$expected" ] && [ -n "$got" ]; then echo "live: api_hash $got"; return 0; fi
+    # a new process (the restart happened) that serves the expected data
+    if [ -n "$got" ] && { [ -z "$expected" ] || [ "$got" = "$expected" ]; } && [ "$(remote "systemctl show -p MainPID --value tipitaka_lk")" != "$pid" ]; then
+      echo "live: api_hash $got"; return 0
+    fi
     sleep 2
   done
   return 1
@@ -115,15 +118,20 @@ remote "cd $REL && (nohup ./tipitaka_lk -no-open -listen 127.0.0.1:$STAGE_PORT <
   curl -fsS http://127.0.0.1:$STAGE_PORT/api/health | grep -q '\"api_hash\":\"$API_HASH\"' || ok=0
   curl -fsS http://127.0.0.1:$STAGE_PORT/dn-1-1/sinh | grep -q 'id=\"ssr\"' || ok=0
   curl -fsS 'http://127.0.0.1:$STAGE_PORT/api/q/tree.node?key=dn-1-1' | grep -q 'dn-1' || ok=0
+  curl -fsS http://127.0.0.1:$STAGE_PORT/sitemaps/sinh.xml | grep -q '/dn-1-1/sinh<' || ok=0
+  curl -fsS http://127.0.0.1:$STAGE_PORT/robots.txt | grep -q 'Sitemap:' || ok=0
   kill \$(cat /tmp/tipitaka-stage.pid) 2>/dev/null || true
   [ \$ok = 1 ] || { cat /tmp/tipitaka-stage.log; exit 1; }" || { echo "staging test failed - nothing was switched"; exit 1; }
 echo "staging ok"
 
-say "4/6 one time setup: systemd unit and nginx"
-if ! remote "systemctl cat tipitaka_lk 2>/dev/null | grep -q 'current/tipitaka_lk'"; then
-  echo "installing the v3 systemd unit (runs current/tipitaka_lk on 127.0.0.1:8400)"
-  "$RSYNC" -az server/tipitaka_lk.service "$HOST:/tmp/tipitaka_lk.service"
-  remote_tty "sudo cp /tmp/tipitaka_lk.service /etc/systemd/system/tipitaka_lk.service && sudo systemctl daemon-reload"
+say "4/6 systemd units (installed when they differ from the server's) and nginx"
+# the server unit and the watchdog (server/tipitaka_lk*.{service,timer,sh}, same scheme as tipitaka.app). Installing
+# needs the sudo password; deploys that do not change the units only need the passwordless restart.
+"$RSYNC" -az server/tipitaka_lk.service server/tipitaka_lk_watchdog.service server/tipitaka_lk_watchdog.timer server/tipitaka_lk_watchdog.sh "$HOST:$REL/systemd/"
+if ! remote "cd $REL/systemd && cmp -s tipitaka_lk_watchdog.sh /usr/local/bin/tipitaka_lk_watchdog && for f in *.service *.timer; do cmp -s \$f /etc/systemd/system/\$f || exit 1; done"; then
+  echo "installing the systemd units (server, watchdog every 2 minutes) - sudo password:"
+  remote_tty "cd $REL/systemd && sudo install -m 644 *.service *.timer /etc/systemd/system/ && sudo install -m 755 tipitaka_lk_watchdog.sh /usr/local/bin/tipitaka_lk_watchdog \
+    && sudo systemctl daemon-reload && sudo systemctl enable tipitaka_lk && sudo systemctl enable --now tipitaka_lk_watchdog.timer"
 fi
 NGINX=/etc/nginx/sites-enabled/tipitaka.lk.conf
 if remote "grep -q 'proxy_pass http://localhost:8400;' $NGINX"; then

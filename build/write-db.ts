@@ -28,6 +28,8 @@ CREATE TABLE footnote (file_id INTEGER NOT NULL, page_idx INTEGER NOT NULL, lang
   text TEXT NOT NULL, PRIMARY KEY (file_id, page_idx, lang, idx)) WITHOUT ROWID;
 CREATE TABLE align (entry_id INTEGER PRIMARY KEY, links TEXT NOT NULL, pu TEXT NOT NULL, sa TEXT NOT NULL, src INTEGER NOT NULL);
 CREATE VIRTUAL TABLE fts USING fts4(content="", text, tokenize=simple);
+-- the vocabulary of the index (no storage: read from the fts tables) - singlish words are expanded to the words that occur
+CREATE VIRTUAL TABLE fts_terms USING fts4aux(fts);
 `
 
 /** the chanted entry's text hash: recordings' timing files (<label>.json) refer to their paragraphs by it */

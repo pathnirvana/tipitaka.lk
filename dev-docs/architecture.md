@@ -8,16 +8,24 @@ db/text.db  files, pages, entries (pali+sinhala pairs), footnotes, tree, FTS4 in
         │
         ├── Go server (server/)  website + desktop app
         │     GET|POST /api/q/<name>   named read-only queries from server/queries.sql
-        │     SSR-lite: title/meta/canonical + <article id="ssr"> + <script id="ssr-data"> for sutta urls
+        │     GET|POST /api/<op>       operations of the Go engine (server/engine): dicts, dict, lookup, meta
+        │     SSR-lite: title/meta/canonical/hreflang + <article id="ssr"> + <script id="ssr-data"> for sutta urls
+        │     /robots.txt, /sitemap.xml, /sitemaps/{pali,sinh}.xml (server/seo.go), load guard (server/guard.go)
         │     /tipitaka-query/version, /tipitaka-query/bjt-params, /bjt-scanned-pages/* (legacy endpoints)
         └── Android / iOS WebView apps: native bridge window.Android.runSqliteQuery({type, sql});
-              the web app inlines the params of the same named query (dev-docs/native-bridge.md)
+              the web app inlines the params of the same named query (dev-docs/native-bridge.md).
+              The engine operations need the engine in the app (gomobile, as tipitaka.app) - next native release
 web/  Vite + Vue 3 + TypeScript + Pinia + Vue Router 4 + Tailwind 3.4
 shared/  pure TS used by web, build and tests (markup parser, beautify, search normalisation, queries.sql parser...)
 ```
 
 ## Key decisions
-* **Named queries only.** `server/queries.sql` lists every SQL statement. The server never runs client SQL
+* **Moving to tipitaka.app's engine design (2026-10).** Operations with logic (now the dictionaries: DPD inflection
+  lookup, deconstruction, dictionary entries of the headwords) run in Go (`server/engine`, `dict.go` and
+  `normalize.go` shared with tipitaka.app - keep in sync) behind `/api/<op>`; the web app calls them with
+  `getData().op()`. Text, tree and search are still named queries and move op by op. `api_hash` (the `?v=` of
+  immutable api responses) covers the texts, alignments, `queries.sql`, the engine source and the dictionary db.
+* **Named queries.** `server/queries.sql` lists every SQL statement. The server never runs client SQL
   (v2 did, and opened the dbs writable - see dev-docs/v2-bugs.md). Params are scalar; lists are one string joined
   with `\x1f` and split in SQL with a recursive CTE. Every output column is non-NULL and integers fit int32
   (Android bridge limits). All SQL must run on SQLite 3.9.2 (Android 7) - `npm run test:sqlite-compat`.

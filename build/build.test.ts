@@ -116,16 +116,18 @@ describe('fixture corpus', () => {
   })
   it('every named query runs and returns no NULLs (bridge requirement)', () => {
     const samples = JSON.parse(fs.readFileSync('server/queries.samples.json', 'utf-8')) as Record<string, Record<string, string | number>[]>
-    const text = new Database(dbFile, { readonly: true }), dict = new Database('e2e/fixtures/db/dict.db', { readonly: true })
+    // (the dictionary is served by the engine, not by named queries: dict.db is only opened for a query that needs it)
+    const text = new Database(dbFile, { readonly: true })
+    let dict: InstanceType<typeof Database> | null = null
     for (const [name, q] of queries) {
       expect(samples[name], `samples for ${name}`).toBeTruthy()
       for (const params of samples[name]) {
-        const rows = (q.db === 'text' ? text : dict).prepare(q.sql).all(params) as any[]
+        const rows = (q.db === 'text' ? text : (dict ??= new Database('e2e/fixtures/db/dict.db', { readonly: true }))).prepare(q.sql).all(params) as any[]
         expect(rows.length, `${name} ${JSON.stringify(params)}`).toBeGreaterThan(0)
         for (const r of rows) for (const [c, v] of Object.entries(r)) expect(v, `${name}.${c}`).not.toBeNull()
       }
     }
-    text.close(); dict.close()
+    text.close(); dict?.close()
   })
   it('validation finds problems in broken files', () => {
     const f = JSON.parse(fs.readFileSync('e2e/fixtures/text/kn-khp.json', 'utf-8')) as JFile

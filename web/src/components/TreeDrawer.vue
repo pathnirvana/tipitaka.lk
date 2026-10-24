@@ -1,15 +1,18 @@
 <!-- sutta tree (v2 TipitakaTree.vue) - children are loaded on demand -->
 <template>
-  <nav class="relative h-full overflow-auto pb-2" :style="{ fontSize: settings.fontPx }" data-testid="tree" ref="scroller">
-    <div class="absolute right-2 top-2 z-10 flex flex-col items-end space-y-2">
-      <button class="icon-btn bg-error text-white shadow" title="close" @click="ui.showTree = false"><IconClose /></button>
-      <button class="icon-btn bg-success text-white shadow" title="sync" data-testid="tree-sync" @click="sync"><IconSync /></button>
-      <button class="icon-btn bg-success text-white shadow" title="collapse" @click="tree.openBranches = []"><IconCollapse /></button>
+  <nav class="flex h-full flex-col" aria-label="සූත්‍ර නාමාවලිය">
+    <div class="flex items-center border-b border-line py-1 pl-3 pr-1">
+      <span class="flex-1 truncate text-muted">සූත්‍ර නාමාවලිය</span>
+      <button class="icon-btn text-muted hover:text-primary" title="කියවන සූත්‍රය පෙන්වන්න (sync)" data-testid="tree-sync" @click="sync"><IconSync /></button>
+      <button class="icon-btn text-muted hover:text-primary" title="සියල්ල වසන්න (collapse)" data-testid="tree-collapse" @click="tree.openBranches = []"><IconCollapse /></button>
+      <button class="icon-btn text-muted hover:text-primary" title="close" data-testid="tree-close" @click="ui.showTree = false"><IconClose /></button>
     </div>
-    <ul v-if="roots" class="py-1">
-      <TreeNode v-for="r in roots" :key="r.key" :item="r" :depth="0" :active-key="tabs.activeKey" @open="open" />
-    </ul>
-    <Skeleton v-else />
+    <div ref="scroller" class="min-h-0 flex-1 overflow-y-auto overscroll-contain px-1 py-1.5" :style="{ fontSize: settings.fontPx }" data-testid="tree">
+      <ul v-if="roots">
+        <TreeNode v-for="r in roots" :key="r.key" :item="r" :depth="0" :active-key="tabs.activeKey" @open="open" />
+      </ul>
+      <Skeleton v-else />
+    </div>
   </nav>
 </template>
 
@@ -39,14 +42,18 @@ async function open(key: string, playAudio: boolean) {
     tabs.update(tab, { showScanPage: false })
   }
   if (playAudio && tab.node) audio.startEntry(tab.node.file, tab.eInd, tab.uid)
-  if (window.innerWidth < 1000) ui.showTree = false
+  // small screens: the drawer covers the text - close it after choosing a sutta, but not a branch (to go further down)
+  if (window.innerWidth < 1000 && (playAudio || !tree.items.get(key)?.child_count)) ui.showTree = false
 }
+/** opens the branches down to the active sutta and centers it in the tree (only the tree scrolls, not the page) */
 async function sync() {
   if (!tabs.activeKey) return
   await tree.openTo(tabs.activeKey)
   await nextTick()
-  const el = document.getElementById('activelabel') // may not exist when hidden (v2 threw here, A15)
-  if (el && scroller.value) scroller.value.scrollTop = el.offsetTop - 100
+  const el = scroller.value?.querySelector<HTMLElement>('[aria-current="page"]') // may not exist when hidden (v2 threw here, A15)
+  if (!el || !scroller.value) return
+  const r = el.getBoundingClientRect(), box = scroller.value.getBoundingClientRect()
+  scroller.value.scrollTop += r.top - box.top - (box.height - r.height) / 2
 }
 watch(() => tabs.activeKey, k => { if (k && settings.syncTree) sync() })
 defineExpose({ sync })

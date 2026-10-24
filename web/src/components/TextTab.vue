@@ -44,13 +44,13 @@
       </div>
     </template>
 
-    <Floating :open="!!fn.open" :anchor="fn.anchor" @close="closeFootnote" @leave="settings.footnoteMethod === 'hover' && closeFootnote()">
+    <Floating :open="!!fn.open" :anchor="fn.anchor" :close-only="settings.footnoteMethod !== 'hover'" @close="closeFootnote" @leave="settings.footnoteMethod === 'hover' && closeFootnote()">
       <div class="text-sm" data-testid="footnote-popover" @click="onPopoverClick">
         <FootnoteContent v-if="fn.text" :text="fn.text" :lang="fn.lang" />
         <span v-else class="text-muted">අධෝලිපිය හමු නොවීය.</span>
       </div>
     </Floating>
-    <Floating :open="!!abbr.anchor" :anchor="abbr.anchor" @close="abbr.anchor = null">
+    <Floating :open="!!abbr.anchor" :anchor="abbr.anchor" close-only @close="abbr.anchor = null">
       <span class="text-sm" data-testid="abbr-desc">{{ abbr.text }}</span>
     </Floating>
   </div>

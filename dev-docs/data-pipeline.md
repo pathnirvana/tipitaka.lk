@@ -50,5 +50,15 @@ view setting is on.
 `e2e/fixtures/make-fixtures.ts`) and `e2e/fixtures/alignments`. Used by unit, Go and Playwright tests.
 
 ## Dictionary
-`npm run build:dict` rebuilds `db/dict.db` from `dev/dicts` (needs the sinhala submodule). Normally the zipped
-`db/dict.db.zip` is reused. The Android apps keep dict version 2 unless dict.db changes (`web/src/data/source.ts`).
+`npm run build:dict [-- <tipitaka.app db/dict.db>]` builds `db/dict.db` from tipitaka.app's dictionary db (default
+`../cst/db/dict.db`, same schema; its build and daily upstream sync pin and update the sources): the English and
+Sinhala dictionaries (`LK_DICTS` in `build/dict.ts`), their abbreviations, PCED's word breakups, all DPD headwords and
+roots, and DPD's inflection / deconstruction lookup for the word forms of tipitaka.lk's texts (~430k of DPD's 1.2M).
+Words are Roman; the web app converts with `@pnfo/pali-converter` (lossless for every word of the texts). References
+to tipitaka.app's paragraphs are unwrapped. Rebuild after a text change that adds words. dict.db is not in git (like
+text.db); the deploy uploads the local one. The e2e fixture dictionary is cut from it (`npm run build:fixture`), so tests
+run locally (`npm run check`). The Android apps keep their dict db until the engine release (`web/src/data/source.ts`).
+
+Full text search in singlish: `fts_terms` (fts4aux over `fts`, no storage) is the index vocabulary; `fts.vocab`
+keeps the singlish library's spellings that occur (`web/src/data/fts.ts expandSinglish`) and the MATCH ORs them at
+the top level (`shared/fts-query.ts buildMatchSlots`).

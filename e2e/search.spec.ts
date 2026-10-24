@@ -1,4 +1,4 @@
-import { test, expect } from './fixtures'
+import { test, expect, entries, isMobile } from './fixtures'
 import type { Page } from '@playwright/test'
 
 const seedSearch = (page: Page, value: unknown) =>
@@ -99,4 +99,30 @@ test('full text search: going back and opening a result in an already open sutta
   await link.click()
   await expect(page).toHaveURL(url)
   await expect(page.getByTestId('tab')).toHaveCount(2)
+})
+
+test('full text search in singlish: the sinhala words of the texts are searched and shown', async ({ page }) => {
+  await page.goto('/fts/bhikkhave')
+  await expect(page.getByTestId('fts-item').first()).toBeVisible()
+  await expect(page.getByTestId('singlish-hint')).toContainText('සෙවූ සිංහල වචන')
+  await expect(page.getByTestId('singlish-hint')).toContainText('භික්ඛවෙ')
+  await expect(page.getByTestId('fts-item').first().locator('sr').first()).toBeVisible()
+  // a phrase of two singlish words
+  await page.goto('/fts/evan me/1-1-10')
+  await expect(page.getByTestId('fts-item').first()).toBeVisible()
+  await expect(page.getByTestId('fts-error')).toHaveCount(0)
+  // no sinhala word for it
+  await page.goto('/fts/qxzvbnm')
+  await expect(page.getByTestId('search-message')).toContainText('හමු නොවිණි')
+})
+
+test('singlish full text search suggests sinhala letters; results open with the default columns', async ({ page }) => {
+  await page.goto('/fts/bhikkhave')
+  await expect(page.getByTestId('singlish-hint')).toBeVisible()
+  await page.goto('/fts/භික්ඛවෙ')
+  await expect(page.getByTestId('fts-item').first()).toBeVisible()
+  await expect(page.getByTestId('singlish-hint')).toHaveCount(0)
+  await page.getByTestId('fts-item').first().getByTestId('tipitaka-link').click()
+  if (!isMobile(page)) await expect(entries(page, 'sinh').first()).toBeVisible() // both columns (the default), not only the hit's
+  await expect(entries(page, 'pali').first()).toBeVisible()
 })

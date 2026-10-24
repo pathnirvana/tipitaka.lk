@@ -95,7 +95,7 @@ export const useTree = defineStore('tree', () => {
     const path = await getPath(key)
     const parents = path.slice(0, -1)
     await Promise.all([0, ...parents.map(p => p.id)].map(id => loadChildren(id)))
-    openBranches.value = parents.map(p => p.key)
+    for (const p of parents) if (!openBranches.value.includes(p.key)) openBranches.value.push(p.key) // other open branches stay open
   }
   function toggleBranch(key: string) {
     const i = openBranches.value.indexOf(key)

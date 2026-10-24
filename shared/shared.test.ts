@@ -3,9 +3,9 @@ import fs from 'node:fs'
 import { beautifyText } from './beautify'
 import { parseMarkup, tokensToHtml, tokensToPlain, stripForCopy } from './markup'
 import { normalizeForSearch, extractWords, normalizeTitle } from './normalize'
-import { buildMatch, ftsInputError, FTS_MESSAGES, termMatches, type FtsHighlight } from './fts-query'
+import { buildMatch, buildMatchSlots, ftsInputError, FTS_MESSAGES, termMatches, type FtsHighlight } from './fts-query'
 import { parseFootnote, findAbbreviations, footnoteTokens } from './footnote'
-import { dictWordList, wordInputError } from './dict-words'
+import { wordInputError } from './dict-words'
 import { parseEIndStr, parseFtsOptions, ftsLink, entryLink, bookmarkKey } from './routes'
 import { parseQueries, renderSql, validateParams } from './queries'
 import { getBJTImageSrc } from './scanned-pages'
@@ -88,8 +88,20 @@ describe('buildMatch', () => {
   it('input rules', () => {
     expect(ftsInputError('')).toBe(FTS_MESSAGES.empty)
     expect(ftsInputError('ක')).toBe(FTS_MESSAGES.short)
-    expect(ftsInputError('dhamma')).toBe(FTS_MESSAGES.latin)
+    expect(ftsInputError('dhamma')).toBe('') // singlish: expanded to the sinhala words of the index
+    expect(ftsInputError('ORuva saha')).toBe('') // OR inside a word is not an operator
+    expect(ftsInputError('dhamma OR කුසල')).toBe(FTS_MESSAGES.singlishAdvanced)
     expect(ftsInputError("ධම්ම'")).toBe(FTS_MESSAGES.chars)
+  })
+  it('words with alternatives (singlish): OR at the top level only', () => {
+    const t = (text: string, prefix = false) => ({ text, prefix })
+    expect(buildMatchSlots([[t('ධම්ම'), t('ධම්මා')]], o)).toMatchObject({ match: 'ධම්ම OR ධම්මා' })
+    const near = buildMatchSlots([[t('ධම්ම'), t('ධම්මා')], [t('සුතං', true)]], { ...o, wordDistance: 5 })
+    expect(near).toMatchObject({ match: 'ධම්ම NEAR/5 සුතං* OR ධම්මා NEAR/5 සුතං*' })
+    const phrase = buildMatchSlots([[t('එවං')], [t('මෙ'), t('මේ')]], { ...o, matchPhrase: 1 })
+    expect(phrase).toMatchObject({ match: '"එවං මෙ" OR "එවං මේ"' })
+    if (!phrase.ok) throw new Error()
+    expect(markTerms('එවං මේ සුතං. මේ', phrase.highlight)).toBe('##එවං## ##මේ## සුතං. මේ') // the phrase with either spelling
   })
   it('single letter prefix terms are searched exactly', () => {
     expect(buildMatch('ච සුතං', o)).toMatchObject({ match: 'ච NEAR/10 සුතං*' })
@@ -115,21 +127,13 @@ describe('footnotes', () => {
   })
 })
 
-describe('dictWordList', () => {
-  it('matches legacy goldens for sinhala input', async () => {
-    for (const g of goldens('dict.json') as { input: string; words: string[] }[]) {
-      if (/[a-z]/i.test(g.input)) continue // singlish lists changed with singlish-search 1.2.x
-      expect(await dictWordList(g.input), g.input).toEqual(g.words)
-    }
-  })
-  it('singlish (ranked, most likely first)', async () => {
-    const w = await dictWordList('dhamma')
-    expect(w[0]).toBe('ධම්ම')
-  })
+describe('dictionary input', () => {
   it('input rules', () => {
     expect(wordInputError('a b')).not.toBe('')
     expect(wordInputError("ධම්'")).not.toBe('')
     expect(wordInputError('ධම්ම')).toBe('')
+    expect(wordInputError('dhammā')).toBe('') // Roman with diacritics
+    expect(wordInputError('dham*')).toBe('') // a pattern
   })
 })
 

@@ -4,6 +4,7 @@
  *   <label>.txt    before that: Audacity labels "start\tend\tnum" (num n = chanted entry n-1), + optional <label>.words.json
  */
 import { defineStore } from 'pinia'
+import { useUi } from './ui'
 import { ref, shallowRef, computed } from 'vue'
 import { getData, getStatic } from '@/data/source'
 import type { AudioEntryRow } from '@/data/types'
@@ -166,7 +167,14 @@ export const useAudio = defineStore('audio', () => {
   async function startEntry(f: string, eInd: EInd, fromTab = 0) {
     if (!isAvailable(f)) return
     tabUid.value = fromTab
-    await loadFile(f)
+    try {
+      await loadFile(f)
+    } catch (e) {
+      // e.g. no network, or the CDN refusing the page's origin (it allows tipitaka.lk and http://localhost:8400 only)
+      useUi().notify('සජ්ඣායනය ලබාගත නොහැක. අන්තර්ජාල සම්බන්ධතාවය පරීක්‍ෂා කරන්න.', 4000)
+      console.error('recitation', f, e)
+      return
+    }
     controlsVisible.value = true
     const i = entries.value.findIndex(e => e.page_idx > eInd[0] || (e.page_idx === eInd[0] && e.entry_idx >= eInd[1]))
     updateAudio(i >= 0 ? i : 0, 1)

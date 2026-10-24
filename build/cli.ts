@@ -7,6 +7,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import crypto from 'node:crypto'
 import { execSync } from 'node:child_process'
+import Database from 'better-sqlite3'
 import { loadCorpus } from './corpus'
 import { buildTree, dfsOrder, type TreeTuple } from './tree'
 import { validateCorpus, toBaseline, newWarnings, type Baseline } from './validate'
@@ -82,7 +83,11 @@ function main() {
   fs.mkdirSync(outDir, { recursive: true })
   const queriesSql = fs.readFileSync('server/queries.sql', 'utf-8')
   const alignments = new Alignments(alignDir)
-  const apiHash = crypto.createHash('sha256').update(`${corpus.contentHash}|${alignments.hash}|${SCHEMA_VERSION}|${queriesSql}`).digest('hex').slice(0, 16)
+  // api responses are cached for a year under api_hash: it covers everything they depend on - the texts, the
+  // alignments, the queries and engine code (response shapes) and the dictionary db (build/dict.ts stamps lk_built_at)
+  const engineSrc = fs.existsSync('server/engine') ? fs.readdirSync('server/engine').filter(f => f.endsWith('.go') && !f.endsWith('_test.go')).sort()
+    .map(f => fs.readFileSync(path.join('server/engine', f), 'utf-8')).join('\n') : ''
+  const apiHash = crypto.createHash('sha256').update(`${corpus.contentHash}|${alignments.hash}|${SCHEMA_VERSION}|${queriesSql}|${engineSrc}|${dictStamp('db/dict.db')}`).digest('hex').slice(0, 16)
   let gitCommit = ''
   try { gitCommit = execSync('git rev-parse --short HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim() } catch { /* not a git checkout */ }
   const meta: Record<string, string> = {
@@ -108,3 +113,12 @@ function main() {
   console.log(`done in ${((Date.now() - t0) / 1000).toFixed(1)} s. ${v.warnings.length} warnings - see ${outDir}/build-report.md`)
 }
 main()
+
+/** the build stamp of a dictionary db (build/dict.ts), '' when there is none */
+function dictStamp(file: string): string {
+  if (!fs.existsSync(file)) return ''
+  const db = new Database(file, { readonly: true })
+  try {
+    return (db.prepare(`SELECT v FROM meta WHERE k = 'lk_built_at'`).get() as { v: string } | undefined)?.v ?? ''
+  } catch { return '' } finally { db.close() }
+}

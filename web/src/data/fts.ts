@@ -7,7 +7,8 @@ import type { FtsCandidate, FtsText } from './types'
 import { buildSnippet } from '@shared/highlight'
 import { beautifyFTSText, type LetterOptions } from '@shared/beautify'
 import { joinList, TYPES } from '@shared/constants'
-import type { FtsHighlight } from '@shared/fts-query'
+import { cleanFtsInput, ftsTerm, type FtsHighlight, type FtsTerm } from '@shared/fts-query'
+import { isSinglishQuery, singlishMatches } from '@shared/singlish'
 import type { EInd } from '@shared/routes'
 
 export const CANDIDATE_LIMIT = 2000
@@ -54,4 +55,40 @@ export async function runFts(match: string, highlight: FtsHighlight, lang: 0 | 1
   for (const grp of out) grp.items.sort((a, b) => rankOf(b.numMatches, b.textLength) - rankOf(a.numMatches, a.textLength))
   out.sort((a, b) => b.numMatches - a.numMatches)
   return { groups: out, total: count[0]?.n || 0, shown: ranked.length }
+}
+
+export interface SinglishExpansion {
+  /** the alternatives of each word: the sinhala spellings that occur in the index (a sinhala word is its own slot) */
+  slots: FtsTerm[][]
+  /** singlish words without any word in the index */
+  missing: string[]
+}
+
+/**
+ * singlish words -> the sinhala spellings that occur in the index (most entries first): the singlish library gives the
+ * likely spellings, the index vocabulary (fts.vocab) keeps the real words. A spelling covered by a kept prefix is dropped.
+ */
+export async function expandSinglish(input: string, prefix: boolean): Promise<SinglishExpansion> {
+  const words = cleanFtsInput(input).split(' ')
+  const perWord = words.length === 1 ? 8 : 4 // alternatives per word (the phrases / near groups multiply)
+  const out: SinglishExpansion = { slots: [], missing: [] }
+  for (const w of words) {
+    if (!isSinglishQuery(w)) {
+      const t = ftsTerm(w, prefix)
+      if (t) out.slots.push([t])
+      continue
+    }
+    const cands = [...new Set((await singlishMatches(w, 100)).map(c => ftsTerm(c, prefix)?.text).filter((c): c is string => !!c))]
+    const rows = cands.length ? await getData().query<{ word: string; docs: number }>('fts.vocab', { words: joinList(cands), prefix: prefix ? 1 : 0 }) : []
+    const rank = new Map(cands.map((c, i) => [c, i]))
+    const kept: string[] = []
+    for (const r of [...rows].sort((a, b) => b.docs - a.docs || rank.get(a.word)! - rank.get(b.word)!)) {
+      if (kept.length >= perWord) break
+      if (prefix && kept.some(k => r.word.startsWith(k))) continue
+      kept.push(r.word)
+    }
+    if (!kept.length) out.missing.push(w)
+    else out.slots.push(kept.map(k => ftsTerm(k, prefix)!))
+  }
+  return out
 }

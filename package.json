@@ -20,9 +20,11 @@
     "test:sqlite-compat": "bash scripts/sqlite-compat.sh",
     "test:e2e": "npm run build:fixture && npm run build:web && npm run build:web:app && npm run build:server && playwright test -c e2e/playwright.config.ts",
     "build:dict": "tsx build/dict.ts",
-    "check:css": "node scripts/check-css.mjs"
+    "check:css": "node scripts/check-css.mjs",
+    "check": "bash scripts/check.sh"
   },
   "dependencies": {
+    "@pnfo/pali-converter": "github:pnfo/pali-converter#90ae03ecb28d1c2585c8d58e21dfde5625b35834",
     "@pnfo/singlish-search": "^1.4.0",
     "@unhead/vue": "^2.0.0",
     "@vueuse/core": "^13.0.0",

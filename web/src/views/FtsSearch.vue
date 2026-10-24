@@ -8,7 +8,7 @@
           <label class="block"><input v-model.number="exactWord" type="radio" :value="1" data-testid="exact-1"> එම වචනයම සොයන්න</label>
           <label class="block"><input v-model.number="exactWord" type="radio" :value="0" data-testid="exact-0"> මේ අකුරු වලින් ඇරඹෙන ඕනෑම වචනයක්</label>
         </fieldset>
-        <fieldset v-if="multiWord" class="text-sm">
+        <fieldset v-if="multiWord" class="option-group">
           <label class="block"><input v-model.number="matchPhrase" type="radio" :value="1" data-testid="phrase-1"> සම්පුර්ණ වාක්‍යක් ලෙස</label>
           <label class="block"><input v-model.number="matchPhrase" type="radio" :value="0" data-testid="phrase-0"> වෙන්වූ වචන සමූහයක් ලෙස</label>
         </fieldset>
@@ -19,7 +19,11 @@
       <span class="flex-1" />
       <FilterDialog type="fts" />
     </div>
-    <div v-if="message" class="banner my-2 border-info" data-testid="search-message">{{ message }} <ShareButton :link="link" /></div>
+    <div v-if="message" class="banner my-2 border-info" data-testid="search-message">{{ message }} <ShareButton :link="link" />
+      <div v-if="singlish" class="mt-1 text-sm text-muted" data-testid="singlish-hint">
+        <IconInfo class="mr-1 inline align-[-0.15em]" /><template v-if="searched.length">සෙවූ සිංහල වචන: {{ searchedText }}. </template>වඩාත් නිවැරදි ප්‍රතිඵල සඳහා සිංහල අකුරු වලින් සොයන්න.
+      </div>
+    </div>
     <div v-if="errorMessage" class="banner my-2 border-error" data-testid="fts-error">
       <div class="font-bold">අන්තර්ගතය සෙවීමේදී වරදක් සිදුවිය.</div>{{ errorMessage }}
     </div>
@@ -48,14 +52,15 @@ import FilterDialog from '@/components/FilterDialog.vue'
 import TipitakaLink from '@/components/TipitakaLink.vue'
 import ShareButton from '@/components/ShareButton.vue'
 import Skeleton from '@/components/Skeleton.vue'
+import IconInfo from '~icons/mdi/information-outline'
 import { useSearch } from '@/stores/search'
 import { useTree, type TreeItem } from '@/stores/tree'
 import { useSettings } from '@/stores/settings'
-import { buildMatch, cleanFtsInput, ftsInputError, isAdvancedQuery, type FtsHighlight } from '@shared/fts-query'
+import { buildMatch, buildMatchSlots, cleanFtsInput, ftsInputError, hasSinglish, isAdvancedQuery, type FtsHighlight } from '@shared/fts-query'
 import { parseFtsOptions, ftsLink } from '@shared/routes'
 import { beautifyFTSText } from '@shared/beautify'
 import { FILTER_KEYS } from '@shared/constants'
-import { runFts, CANDIDATE_LIMIT, type FtsGroup } from '@/data/fts'
+import { runFts, expandSinglish, CANDIDATE_LIMIT, type FtsGroup } from '@/data/fts'
 import { QueryError } from '@/data/source'
 
 const search = useSearch(), tree = useTree(), settings = useSettings(), route = useRoute(), router = useRouter()
@@ -78,9 +83,15 @@ const total = ref(-1)
 const running = ref(false)
 const errorMessage = ref('')
 const resultsInput = ref<string | null>(null)
+const searched = ref<string[]>([]) // the sinhala words of a singlish search
+const missing = ref<string[]>([]) // singlish words without sinhala words in the texts
+const singlish = computed(() => hasSinglish(input.value) && !inputError.value)
+const searchedText = computed(() => searched.value.map(w => beautifyFTSText(w, 'sinh', settings.letterOptions)).join(', '))
 
 const message = computed(() => {
-  if (inputError.value || total.value < 0) return ''
+  if (inputError.value) return ''
+  if (missing.value.length) return `“${missing.value.join(' ')}” යන සිංග්ලිෂ් වචනයට ගැළපෙන සිංහල වචන පෙළෙහි හමු නොවිණි. වෙනත් අකුරු වලින් ලියා බලන්න.`
+  if (total.value < 0) return ''
   const t = beautifyFTSText(input.value, 'sinh', settings.letterOptions)
   if (!total.value) return `“${t}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද කිසිවක් හමුවුයේ නැත. වෙනත් සෙවුමක් උත්සාහ කර බලන්න.`
   if (total.value <= search.maxResults) return `“${t}” යන සෙවුම සඳහා ගැළපෙන පරිච්ඡේද ${total.value} ක් හමුවිය.`
@@ -95,11 +106,27 @@ const countText = (g: FtsGroup) => (g.items.length === 2 ? 'ඡේදය' : `ඡ
 let seq = 0
 async function getResults() {
   if (inputError.value || !built.value.ok) return
-  const b = built.value, my = ++seq
+  let b = built.value
+  const my = ++seq
   errorMessage.value = ''
   resultsInput.value = input.value
   running.value = true
   try {
+    // singlish words: the sinhala spellings that occur in the texts, as alternatives
+    searched.value = []; missing.value = []
+    if (hasSinglish(input.value)) {
+      const exp = await expandSinglish(input.value, !exactWord.value)
+      if (my !== seq) return
+      if (exp.missing.length) {
+        missing.value = exp.missing
+        groups.value = []; total.value = -1
+        return
+      }
+      const sb = buildMatchSlots(exp.slots, { exactWord: exactWord.value, matchPhrase: matchPhrase.value, wordDistance: wordDistance.value })
+      if (!sb.ok) throw new Error(sb.error)
+      b = sb
+      searched.value = sb.terms.map(t => t.text)
+    }
     const f = search.filter.fts
     const selected = f.keys.length && f.keys.length < FILTER_KEYS.length ? f.keys.map(k => (FILTER_KEYS as readonly string[]).indexOf(k)) : null
     const lang = f.columns.length < 2 ? (f.columns[0] === 1 ? 1 : 0) : 2

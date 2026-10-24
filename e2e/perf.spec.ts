@@ -1,6 +1,7 @@
 import { test, expect } from './fixtures'
 
-// transfer budget for a cold deep link (v2 downloaded ~2 MB+: tree.json, the whole text file, ttf fonts)
+// transfer budget for a cold deep link (v2 downloaded ~2 MB+: tree.json, the whole text file, ttf fonts).
+// ~555 KB of it are the two Abhaya Uni faces (full Sinhala conjunct coverage, cached after the first visit)
 test('cold deep link transfer budget', async ({ page, browserName }) => {
   test.skip(browserName !== 'chromium', 'uses the chromium devtools protocol')
   const cdp = await page.context().newCDPSession(page)
@@ -10,5 +11,5 @@ test('cold deep link transfer budget', async ({ page, browserName }) => {
   await page.goto('/dn-1-1/sinh', { waitUntil: 'networkidle' })
   await expect(page.locator('.entry-text').first()).toBeVisible()
   console.log(`transferred ${(bytes / 1024).toFixed(0)} KB`)
-  expect(bytes).toBeLessThan(450 * 1024)
+  expect(bytes).toBeLessThan(800 * 1024)
 })

@@ -9,6 +9,7 @@ import (
 	"net/http/httptest"
 	"net/url"
 	"os"
+	"regexp"
 	"strings"
 	"testing"
 	"time"
@@ -204,6 +205,25 @@ func TestSSR(t *testing.T) {
 	if strings.Count(body, "<script") != strings.Count(body, "</script>") {
 		t.Errorf("unbalanced script tags")
 	}
+	// one canonical page per sutta and language, hreflang pali / sinhala, a description from the text, rel=next
+	for _, want := range []string{`<link rel="alternate" hreflang="pi" href="https://tipitaka.lk/dn-1-1/pali">`,
+		`<link rel="alternate" hreflang="si" href="https://tipitaka.lk/dn-1-1/sinh">`, `"@type":"Chapter"`, `"isPartOf"`,
+		`<article id="ssr" lang="si">`} {
+		if !strings.Contains(body, want) {
+			t.Errorf("ssr missing %q", want)
+		}
+	}
+	if !strings.Contains(get(t, h, "/dn-1/pali").Body.String(), `<link rel="next" href="https://tipitaka.lk/dn-1-1/pali">`) {
+		t.Errorf("rel=next to the next sutta missing")
+	}
+	if !regexp.MustCompile(`<meta name="description" content="[^"]*භාග්‍යවතුන්`).MatchString(body) {
+		t.Errorf("description is not taken from the text")
+	}
+	for path, canonical := range map[string]string{"/dn-1-1": "/dn-1-1/pali", "/dn-1-1/0-3/sinh": "/dn-1-1/sinh", "/ap-pat/sinh": "/ap-pat/pali"} {
+		if !strings.Contains(get(t, h, path).Body.String(), `<link rel="canonical" href="https://tipitaka.lk`+canonical+`">`) {
+			t.Errorf("%s: canonical should be %s", path, canonical)
+		}
+	}
 	for path, status := range map[string]int{"/ap-pat/sinh": 200, "/ap-pat-1/0-3/sinh": 200, "/dn-1-1/9999-0/pali": 200,
 		"/nosuchkey/pali": 404, "/settings": 200, "/fts/ධම්ම/0-0-10": 200, "/dict/abc": 200, "/": 200, "/dn-1-1/x/pali": 404,
 		"/missing.js": 404, "/atta-dn-1-1/pali": 200} {
@@ -270,5 +290,104 @@ func TestLatestVersion(t *testing.T) {
 	h.ServeHTTP(rec, req)
 	if rec.Body.String() != "Tipitaka.lk v"+PublishedVersion {
 		t.Errorf("on tipitaka.lk expected own version, got %q", rec.Body.String())
+	}
+}
+
+func TestRobotsSitemaps(t *testing.T) {
+	h := newTestApp(t, "../e2e/fixtures").Handler()
+	if b := get(t, h, "/robots.txt").Body.String(); !strings.Contains(b, "Sitemap: https://tipitaka.lk/sitemap.xml") || !strings.Contains(b, "Disallow: /api/") {
+		t.Errorf("robots.txt: %s", b)
+	}
+	if b := get(t, h, "/sitemap.xml").Body.String(); !strings.Contains(b, "<loc>https://tipitaka.lk/sitemaps/sinh.xml</loc>") {
+		t.Errorf("sitemap index: %s", b)
+	}
+	pali, sinh := get(t, h, "/sitemaps/pali.xml").Body.String(), get(t, h, "/sitemaps/sinh.xml").Body.String()
+	if !strings.Contains(pali, "<loc>https://tipitaka.lk/dn-1-1/pali</loc>") || !strings.Contains(sinh, "<loc>https://tipitaka.lk/dn-1-1/sinh</loc>") {
+		t.Errorf("sitemaps miss dn-1-1")
+	}
+	if !strings.Contains(pali, "/ap-pat/pali<") || strings.Contains(sinh, "/ap-pat/sinh<") {
+		t.Errorf("pali only files are in the pali sitemap only")
+	}
+	if rec := get(t, h, "/sitemaps/x.xml"); rec.Code != 404 {
+		t.Errorf("unknown sitemap: %d", rec.Code)
+	}
+	if rec := get(t, h, "/dn-1-1/pali"); rec.Header().Get("X-Content-Type-Options") != "nosniff" {
+		t.Errorf("security headers missing")
+	}
+}
+
+// rendered pages are cached; when no render slot is free a person gets the app shell, a crawler 503
+func TestSSRGuard(t *testing.T) {
+	a := newTestApp(t, "../e2e/fixtures")
+	h := a.Handler()
+	get(t, h, "/dn-1-1/pali")
+	get(t, h, "/dn-1-1/pali")
+	if a.guard.stats.cacheHits.Load() != 1 {
+		t.Errorf("second request not from the cache")
+	}
+	for i := 0; i < ssrSlots; i++ {
+		a.guard.ssr.acquire(context.Background(), 0)
+	}
+	defer func() {
+		for i := 0; i < ssrSlots; i++ {
+			a.guard.ssr.release()
+		}
+	}()
+	ua := func(agent string) *httptest.ResponseRecorder {
+		req := httptest.NewRequest("GET", "/dn-1/sinh", nil)
+		req.Header.Set("User-Agent", agent)
+		rec := httptest.NewRecorder()
+		h.ServeHTTP(rec, req)
+		return rec
+	}
+	if rec := ua("Mozilla/5.0 (Linux; Android 10) Chrome/120.0 Mobile Safari/537.36"); rec.Code != 200 || strings.Contains(rec.Body.String(), `id="ssr"`) {
+		t.Errorf("busy: a person gets the app shell (%d)", rec.Code)
+	}
+	if rec := ua("Mozilla/5.0 (compatible; Googlebot/2.1)"); rec.Code != 503 || rec.Header().Get("Retry-After") == "" {
+		t.Errorf("busy: a crawler gets 503 + Retry-After (%d)", rec.Code)
+	}
+}
+
+// the dictionary ops of the engine (tipitaka.app dict.go): a clicked word (DPD analysis + dictionaries), a typed word,
+// the list of dictionaries; responses are immutable with ?v=<api_hash>
+func TestDictOps(t *testing.T) {
+	a := newTestApp(t, "../e2e/fixtures")
+	h := a.Handler()
+	var look struct {
+		Word    string `json:"word"`
+		Dpd     []struct{ Lemma string } `json:"dpd"`
+		Entries []struct{ Dict, Word string } `json:"entries"`
+		Grammar json.RawMessage `json:"grammar"`
+	}
+	rec := get(t, h, "/api/lookup?w=dhammaṃ&v="+a.apiHash)
+	if err := json.Unmarshal(rec.Body.Bytes(), &look); err != nil || rec.Code != 200 {
+		t.Fatalf("lookup: %d %s", rec.Code, rec.Body.String())
+	}
+	if len(look.Dpd) == 0 || !strings.HasPrefix(look.Dpd[0].Lemma, "dhamma") || len(look.Grammar) == 0 || len(look.Entries) == 0 {
+		t.Errorf("lookup dhammaṃ: %+v", look)
+	}
+	if cc := rec.Header().Get("Cache-Control"); !strings.Contains(cc, "immutable") {
+		t.Errorf("lookup with ?v=api_hash: %q", cc)
+	}
+	var dict struct {
+		Entries []struct{ Dict, Word string } `json:"entries"`
+		Dpd     []struct{ Lemma string } `json:"dpd"`
+	}
+	json.Unmarshal(get(t, h, "/api/dict?w=dhamma&dicts=si-sumangala,en-pts").Body.Bytes(), &dict)
+	if len(dict.Entries) == 0 || len(dict.Dpd) != 0 {
+		t.Errorf("dict dhamma in two dictionaries (no dpd): %+v", dict)
+	}
+	for _, e := range dict.Entries {
+		if e.Dict != "si-sumangala" && e.Dict != "en-pts" {
+			t.Errorf("entry of an unselected dictionary: %s", e.Dict)
+		}
+	}
+	var dicts []struct{ Code, Lang string }
+	json.Unmarshal(get(t, h, "/api/dicts").Body.Bytes(), &dicts)
+	if len(dicts) != 8 || dicts[len(dicts)-1].Lang != "si" {
+		t.Errorf("dicts: %+v", dicts)
+	}
+	if rec := get(t, h, "/api/nosuchop"); rec.Code != 404 {
+		t.Errorf("unknown op: %d", rec.Code)
 	}
 }

@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { HttpSource, AndroidSource, Data, QueryError, callAndroidAsync, QUERIES, type DataSource } from './source'
 import { cacheKey } from './cache'
 import { matchHits, rankOf, runFts } from './fts'
-import { processDictRows } from './dictionary'
+import { toRoman, toSinh, cleanInlineWord } from './dictionary'
 import { titleSearch } from './title'
 import { parseLabels, assignLabels } from '@/stores/audio'
 import { setData } from './source'
@@ -110,15 +110,12 @@ describe('fts ranking', () => {
   })
 })
 
-describe('dictionary rows', () => {
-  it('splits matches, breakups and prefix words', () => {
-    const r = processDictRows([
-      { word: 'a', dict: 'BR', meaning: 'n|x+y' }, { word: 'a', dict: 'BUS', meaning: 'm' },
-      { word: 'a', dict: 3, meaning: 'like' }, { word: 'ab', dict: 2, meaning: 'like' },
-    ])
-    expect(r.breakups).toEqual([{ word: 'a', type: 'n', breakup: 'x+y' }])
-    expect(r.matches).toEqual([{ word: 'a', dict: 'BUS', meaning: 'm' }])
-    expect(r.prefixWords).toEqual([{ word: 'ab', count: 2 }])
+describe('dictionary words', () => {
+  it('Sinhala <-> Roman (the dictionary db is Roman), clicked words lose punctuation', () => {
+    expect(toRoman('ධම්මං')).toBe('dhammaṃ')
+    expect(toRoman('බ්‍රහ්මජාල')).toBe('brahmajāla')
+    expect(toSinh('brahmajāla')).toBe('බ්රහ්මජාල')
+    expect(cleanInlineWord('“ධම්මං,')).toBe('ධම්මං')
   })
 })
 

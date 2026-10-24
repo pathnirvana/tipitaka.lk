@@ -28,7 +28,26 @@ var (
 	appDivRe = regexp.MustCompile(`<div id="app"></div>`)
 )
 
-const siteURL = "https://tipitaka.lk"
+var htmlTagRe = regexp.MustCompile(`<[^>]*>`)
+
+// plainText of an entry (description): the html of the markup without tags and entities
+func plainText(markup string) string {
+	t := html.UnescapeString(htmlTagRe.ReplaceAllString(MarkupToHTML(markup, true), ""))
+	return strings.Join(strings.Fields(t), " ")
+}
+
+// cut at a word boundary below max runes
+func cut(s string, max int) string {
+	r := []rune(s)
+	if len(r) <= max {
+		return s
+	}
+	t := string(r[:max])
+	if i := strings.LastIndex(t, " "); i > max/2 {
+		t = t[:i]
+	}
+	return strings.TrimRight(t, " ,.;:") + "…"
+}
 
 type route struct {
 	key, lang string
@@ -156,15 +175,20 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 		}
 	}
 	fullTitle := title + " | බුද්ධ ජයන්ති ත්‍රිපිටකය"
-	desc := describe(r, node.Str("collection"), p)
-	canonical := siteURL + "/" + strings.Trim(path, "/")
+	// one canonical page per sutta and language (/key, /key/<p>-<e>/pali ... are the same page); hreflang pairs the
+	// pali text with its sinhala translation
+	paliOnly := node.Int("pali_only") == 1
+	pageURL := func(l string) string { return a.site + "/" + r.key + "/" + l }
+	canonical := pageURL(lang)
+	inLang := map[string]string{"pali": "pi", "sinh": "si"}[lang]
 
 	var art strings.Builder
-	art.WriteString(`<article id="ssr" lang="si"><nav class="ssr-crumbs">` + crumbs.String() + `</nav>`)
+	art.WriteString(`<article id="ssr" lang="` + inLang + `"><nav class="ssr-crumbs">` + crumbs.String() + `</nav>`)
 	textCol, typeCol, levelCol := "p_text", "p_type", "p_level"
 	if lang == "sinh" {
 		textCol, typeCol, levelCol = "s_text", "s_type", "s_level"
 	}
+	desc := ""
 	for _, e := range entries {
 		if e.Int("page_idx") == p && e.Int("entry_idx") < startEntry {
 			continue
@@ -173,7 +197,19 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 		if t < 0 || t >= len(typeNames) {
 			t = e.Int("p_type")
 		}
+		if desc == "" && typeNames[t] != "heading" && typeNames[t] != "centered" {
+			desc = cut(plainText(e.Str(textCol)), 160) // the text itself describes the page best
+		}
 		art.WriteString(fmt.Sprintf(`<div class="ssr-entry %s" data-level="%d">%s</div>`, typeNames[t], e.Int(levelCol), MarkupToHTML(e.Str(textCol), true)))
+	}
+	if desc == "" {
+		desc = describe(r, node.Str("collection"), p)
+	}
+	// the next sutta: a link for crawlers (and rel=next)
+	next := ""
+	if rows, err := a.RunNamed(ctx, "tree.neighbor", map[string]any{"id": node.Int("id"), "dir": 1}); err == nil && len(rows) > 0 && rows[0].Str("file") != "" {
+		next = rows[0].Str("key")
+		art.WriteString(fmt.Sprintf(`<nav class="ssr-next"><a href="/%s/%s" rel="next">ඊළඟ සූත්‍රය ›</a></nav>`, next, lang))
 	}
 	art.WriteString(`</article>`)
 
@@ -181,22 +217,41 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 	enc := json.NewEncoder(&dataJSON) // escapes < > & so the payload can not close the script tag
 	enc.Encode(data)
 
-	head := fmt.Sprintf(`<meta name="description" content="%[2]s">
+	var head strings.Builder
+	fmt.Fprintf(&head, `<meta name="description" content="%[2]s">
 <link rel="canonical" href="%[3]s">
 <meta property="og:title" content="%[1]s">
 <meta property="og:description" content="%[2]s">
 <meta property="og:url" content="%[3]s">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","name":%[4]s,"description":%[5]s,"publisher":{"@type":"Organization","name":"Path Nirvana Foundation"}}</script>`,
-		html.EscapeString(fullTitle), html.EscapeString(desc), html.EscapeString(canonical), jsonStr(fullTitle), jsonStr(desc))
+<meta property="og:site_name" content="බුද්ධ ජයන්ති ත්‍රිපිටකය">
+<meta property="og:locale" content="si_LK">`, html.EscapeString(fullTitle), html.EscapeString(desc), html.EscapeString(canonical))
+	fmt.Fprintf(&head, `<link rel="alternate" hreflang="pi" href="%s">`, pageURL("pali"))
+	if !paliOnly {
+		fmt.Fprintf(&head, `<link rel="alternate" hreflang="si" href="%s">`, pageURL("sinh"))
+	}
+	fmt.Fprintf(&head, `<link rel="alternate" hreflang="x-default" href="%s">`, pageURL("pali"))
+	if next != "" {
+		fmt.Fprintf(&head, `<link rel="next" href="%s/%s/%s">`, a.site, next, lang)
+	}
+	// schema.org: a book (top level) or a chapter of the book at the root of its path
+	ld := map[string]any{"@context": "https://schema.org", "@type": "Chapter", "name": title, "description": desc, "url": canonical,
+		"inLanguage": inLang, "publisher": map[string]any{"@type": "Organization", "name": "Path Nirvana Foundation", "url": a.site}}
+	if len(paths) > 1 {
+		root := paths[len(paths)-1]
+		ld["isPartOf"] = map[string]any{"@type": "Book", "name": name(root), "url": a.site + "/" + root.Str("key") + "/" + lang}
+	} else {
+		ld["@type"] = "Book"
+	}
+	fmt.Fprintf(&head, `<script type="application/ld+json">%s</script>`, jsonStr(ld))
 
 	out := titleRe.ReplaceAllLiteralString(base, "<title>"+html.EscapeString(fullTitle)+"</title>")
 	out = descRe.ReplaceAllLiteralString(out, "")
-	out = strings.Replace(out, "</head>", head+"</head>", 1)
+	out = strings.Replace(out, "</head>", head.String()+"</head>", 1)
 	out = appDivRe.ReplaceAllLiteralString(out, art.String()+`<div id="app"></div><script type="application/json" id="ssr-data">`+strings.TrimSpace(dataJSON.String())+`</script>`)
 	return ssrPage{200, out}
 }
 
-func jsonStr(s string) string {
+func jsonStr(s any) string {
 	var b bytes.Buffer
 	enc := json.NewEncoder(&b)
 	enc.Encode(s)
@@ -221,8 +276,46 @@ func describe(r route, collection string, page int) string {
 	return fmt.Sprintf("%s - %s%s පාළි සිංහල ත්‍රිපිටකය සහ අටුවාව Sri Lankan Tripitaka and Atuwa in Sinhala, Sinhala translations සිංහල පරිවර්තනය.", col, lang, pageStr)
 }
 
+// render: a cached page, or a page rendered in one of the ssr slots (guard.go). ok false: no slot in time
+func (a *App) render(ctx context.Context, path string) (ssrPage, bool) {
+	a.currentIndex() // empties the cache when the web app was rebuilt
+	if p, ok := a.ssr.get(path); ok {
+		a.guard.stats.cacheHits.Add(1)
+		return p, true
+	}
+	if !a.guard.ssr.acquire(ctx, ssrWait) {
+		return ssrPage{}, false
+	}
+	defer a.guard.ssr.release()
+	a.guard.stats.renders.Add(1)
+	p := a.renderIndex(ctx, path)
+	if p.status == 200 || p.status == 404 {
+		a.ssr.put(path, p)
+	}
+	return p, true
+}
+
 func (a *App) serveIndex(w http.ResponseWriter, r *http.Request) {
-	page := a.renderIndex(r.Context(), r.URL.Path)
+	bot := isBot(r)
+	if bot {
+		a.guard.stats.botRequests.Add(1)
+	}
+	page, ok := a.render(r.Context(), r.URL.Path)
+	if !ok {
+		// busy: a crawler is asked to come back later, a person gets the app (it renders the page in the browser)
+		w.Header().Set("Cache-Control", "no-store")
+		if bot {
+			a.guard.stats.shedBots.Add(1)
+			w.Header().Set("Retry-After", retryBots)
+			http.Error(w, "busy, please retry later", http.StatusServiceUnavailable)
+			return
+		}
+		a.guard.stats.shedPeople.Add(1)
+		index, _ := a.currentIndex()
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.Write([]byte(strings.Replace(index, "</head>", fmt.Sprintf(`<meta name="tipitaka-api" content="%s"></head>`, a.apiHash), 1)))
+		return
+	}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.Header().Set("Cache-Control", "no-cache")
 	w.WriteHeader(page.status)

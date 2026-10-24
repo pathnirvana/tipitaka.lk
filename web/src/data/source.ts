@@ -1,7 +1,8 @@
 /**
- * DataSource: runs the named queries of server/queries.sql.
- *  - HttpSource: GET/POST /api/q/<name> on the Go server (website, desktop app)
- *  - AndroidSource: the offline apps' JS bridge (window.Android.runSqliteQuery) with params inlined as literals
+ * DataSource: runs the named queries of server/queries.sql and the operations of the Go engine (server/engine).
+ *  - HttpSource: GET/POST /api/q/<name> and /api/<op> on the Go server (website, desktop app)
+ *  - AndroidSource: the offline apps' JS bridge (window.Android.runSqliteQuery) with params inlined as literals;
+ *    engine operations need the engine in the app (gomobile, the next native release)
  */
 import sqlText from '../../../server/queries.sql?raw'
 import { parseQueries, renderSql, validateParams, type QueryParams } from '@shared/queries'
@@ -14,8 +15,20 @@ export class QueryError extends Error {
   constructor(message: string, public code: 'fts_syntax' | 'network' | 'bad_request' | 'timeout' | 'server' | 'not_ready') { super(message) }
 }
 
+export type OpParams = Record<string, string | number | boolean>
+
 export interface DataSource {
   run<T>(name: QueryName, params: QueryParams): Promise<T[]>
+  /** an engine operation (/api/<op>) */
+  op<T>(op: string, params: OpParams): Promise<T>
+}
+
+/** an error answer of the server: {"error": "..."} or {"error": code, "message": ...} */
+async function httpError(res: Response): Promise<QueryError> {
+  let msg = `HTTP ${res.status}`
+  try { msg = (await res.json()).error || msg } catch { /* not json */ }
+  if (msg === 'fts_syntax') return new QueryError(msg, 'fts_syntax')
+  return new QueryError(msg, res.status === 503 ? 'timeout' : res.status === 400 ? 'bad_request' : 'server')
 }
 
 export class HttpSource implements DataSource {
@@ -33,13 +46,24 @@ export class HttpSource implements DataSource {
     }
     let res: Response
     try { res = await this.fetchImpl(url, init) } catch (e) { throw new QueryError(`network error: ${(e as Error).message}`, 'network') }
-    if (!res.ok) {
-      let msg = `HTTP ${res.status}`
-      try { msg = (await res.json()).error || msg } catch { /* not json */ }
-      if (msg === 'fts_syntax') throw new QueryError(msg, 'fts_syntax')
-      throw new QueryError(msg, res.status === 503 ? 'timeout' : res.status === 400 ? 'bad_request' : 'server')
-    }
+    if (!res.ok) throw await httpError(res)
     return (await res.json()) as T[]
+  }
+  async op<T>(op: string, params: OpParams): Promise<T> {
+    const qs = new URLSearchParams()
+    for (const k of Object.keys(params).sort()) qs.set(k, String(params[k])) // sorted: one url (http cache) per request
+    const hash = this.apiHash()
+    if (hash) qs.set('v', hash)
+    let url = `${import.meta.env.BASE_URL}api/${op}?${qs}`
+    let init: RequestInit | undefined
+    if (url.length > 1800) {
+      url = `${import.meta.env.BASE_URL}api/${op}`
+      init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(params) }
+    }
+    let res: Response
+    try { res = await this.fetchImpl(url, init) } catch (e) { throw new QueryError(`network error: ${(e as Error).message}`, 'network') }
+    if (!res.ok) throw await httpError(res)
+    return (await res.json()) as T
   }
 }
 
@@ -88,6 +112,9 @@ export class AndroidSource implements DataSource {
       throw new QueryError(msg, 'server')
     }
   }
+  async op<T>(): Promise<T> {
+    throw new QueryError('මෙම කොටස සඳහා යෙදුමේ නව සංස්කරණයක් අවශ්‍යයි.', 'not_ready') // the engine comes with the next app release
+  }
 }
 
 // ---------------- cached front door used by the app ----------------
@@ -112,6 +139,21 @@ export class Data {
       this.inflight.set(key, p)
     }
     return p as Promise<T[]>
+  }
+  private opCache = new LruCache<unknown>(300)
+  private opInflight = new Map<string, Promise<unknown>>()
+  /** an engine operation, cached like the queries */
+  async op<T>(op: string, params: OpParams = {}): Promise<T> {
+    const key = op + '|' + JSON.stringify(Object.keys(params).sort().map(k => [k, params[k]]))
+    const hit = this.opCache.get(key)
+    if (hit !== undefined) return hit as T
+    let p = this.opInflight.get(key)
+    if (!p) {
+      p = this.source.op<unknown>(op, params).then(r => { this.opCache.set(key, r); return r })
+        .finally(() => this.opInflight.delete(key))
+      this.opInflight.set(key, p)
+    }
+    return p as Promise<T>
   }
 }
 

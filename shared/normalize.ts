@@ -39,3 +39,8 @@ export function normalizeForSearch(raw: string): string {
 export function normalizeTitle(text: string): string {
   return text.replace(/[‌‍]/g, '').toLowerCase()
 }
+
+/** Roman Pali without diacritics, lower case (dictionary lookups, tipitaka.app shared/normalize.ts fold) */
+export function fold(s: string): string {
+  return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+}

@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/skratchdot/open-golang/open"
+	"tipitaka.lk/server/engine"
 )
 
 const APPNAME = "Tipitaka.lk v3.0"
@@ -29,6 +30,7 @@ func main() {
 	rootPath := flag.String("root-path", "", "folder containing dist/ (or web/dist/) and db/, relative to the binary or absolute")
 	bjtPath := flag.String("bjt-path", "", "local folder with BJT scanned pages (e.g. /Pictures/bjt_newbooks)")
 	dbDir := flag.String("db-dir", "", "folder with text.db and dict.db (default <root>/db)")
+	site := flag.String("site", "https://tipitaka.lk", "public url of the site (canonical links, sitemaps)")
 	flag.StringVar(&PublishedVersion, "published-version", PublishedVersion, "version reported to apps by /tipitaka-query/version")
 	flag.Parse()
 	if u := os.Getenv("TIPITAKA_LATEST_VERSION_URL"); u != "" {
@@ -39,13 +41,16 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	app, err := NewApp(Config{Root: root, BjtPath: *bjtPath, DBDir: *dbDir})
+	app, err := NewApp(Config{Root: root, BjtPath: *bjtPath, DBDir: *dbDir, Site: *site})
 	if err != nil {
 		log.Fatal(err)
 	}
-	url := "http://" + strings.Replace(*listen, "0.0.0.0", "localhost", 1)
+	// localhost, not 127.0.0.1: the recitation CDN allows only the origins http://localhost:8400 (and tipitaka.lk) - CORS
+	url := "http://" + strings.NewReplacer("0.0.0.0", "localhost", "127.0.0.1", "localhost").Replace(*listen)
 	printBox(url, root)
-	srv := &http.Server{Addr: *listen, Handler: app.Handler(), ReadHeaderTimeout: 10 * time.Second, WriteTimeout: 60 * time.Second}
+	go app.guard.logEvery(10 * time.Minute)
+	srv := &http.Server{Addr: *listen, Handler: app.Handler(), ReadHeaderTimeout: 10 * time.Second, WriteTimeout: 60 * time.Second,
+		IdleTimeout: 120 * time.Second}
 	if !*noOpen {
 		go func() {
 			time.Sleep(300 * time.Millisecond)
@@ -114,18 +119,30 @@ type App struct {
 	indexMod  time.Time // mtime of dist/index.html when it was read (reloaded when the web app is rebuilt)
 	indexMu   sync.Mutex
 	bjtDir    string
+	site      string // https://tipitaka.lk (canonical links, sitemaps)
+	guard     *guard
+	eng       *engine.Engine
+	ssr       *ssrCache
+	// sitemap nodes, read once
+	sitemapOnce sync.Once
+	sitemap     []sitemapNode
+	sitemapErr  error
 }
 
 type Config struct {
 	Root    string
 	BjtPath string
 	DBDir   string // default <Root>/db
+	Site    string // default https://tipitaka.lk
 	// IndexHTML overrides dist/index.html (tests)
 	IndexHTML string
 }
 
 func NewApp(cfg Config) (*App, error) {
-	a := &App{cfg: cfg}
+	a := &App{cfg: cfg, site: strings.TrimRight(cfg.Site, "/"), guard: newGuard(), ssr: newSSRCache(32 << 20)}
+	if a.site == "" {
+		a.site = "https://tipitaka.lk"
+	}
 	var err error
 	if a.queries, err = ParseQueries(queriesSQL); err != nil {
 		return nil, err
@@ -141,6 +158,7 @@ func NewApp(cfg Config) (*App, error) {
 		return nil, err
 	}
 	a.apiHash = a.meta["api_hash"]
+	a.eng = engine.New(a.dbs.Text, a.dbs.Dict, a.meta)
 	for _, d := range []string{filepath.Join("web", "dist"), "dist"} { // repo checkout first, release layout second
 		if _, err := os.Stat(filepath.Join(cfg.Root, d, "index.html")); err == nil {
 			a.distDir = filepath.Join(cfg.Root, d)
@@ -181,6 +199,7 @@ func (a *App) currentIndex() (string, error) {
 			return a.indexHTML, err
 		}
 		a.indexHTML, a.indexMod = string(b), st.ModTime()
+		a.ssr.clear() // pages rendered from the old build
 	}
 	return a.indexHTML, nil
 }
@@ -190,6 +209,11 @@ func (a *App) Handler() http.Handler {
 	mux.HandleFunc("GET /api/q/{name}", a.handleQuery)
 	mux.HandleFunc("POST /api/q/{name}", a.handleQuery)
 	mux.HandleFunc("GET /api/health", a.handleHealth)
+	mux.HandleFunc("GET /api/{op}", a.handleOp)
+	mux.HandleFunc("POST /api/{op}", a.handleOp)
+	mux.HandleFunc("GET /robots.txt", a.handleRobots)
+	mux.HandleFunc("GET /sitemap.xml", a.handleSitemapIndex)
+	mux.HandleFunc("GET /sitemaps/{file}", a.handleSitemap)
 	mux.HandleFunc("GET /tipitaka-query/version", handleVersion)
 	mux.HandleFunc("GET /tipitaka-query/bjt-params", a.handleBjtParams)
 	mux.HandleFunc("GET /tipitaka-query/latest-version", a.handleLatestVersion)
@@ -197,5 +221,5 @@ func (a *App) Handler() http.Handler {
 		mux.Handle("GET /bjt-scanned-pages/", http.StripPrefix("/bjt-scanned-pages/", http.FileServer(http.Dir(a.bjtDir))))
 	}
 	mux.HandleFunc("GET /", a.handleStatic)
-	return recoverMiddleware(gzipMiddleware(mux))
+	return recoverMiddleware(securityHeaders(gzipMiddleware(mux)))
 }

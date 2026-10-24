@@ -7,3 +7,5 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.52
 	github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966
 )
+
+require golang.org/x/text v0.43.0 // indirect

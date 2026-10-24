@@ -11,7 +11,8 @@
 <script setup lang="ts">
 import { ref, watch, nextTick, onBeforeUnmount } from 'vue'
 
-const props = defineProps<{ open: boolean; anchor: HTMLElement | null; placement?: 'bottom' | 'top' }>()
+/** closeOnly: a click outside only closes it (it does not also act on the page: a word lookup under a menu; tipitaka.app) */
+const props = defineProps<{ open: boolean; anchor: HTMLElement | null; placement?: 'bottom' | 'top'; closeOnly?: boolean }>()
 const emit = defineEmits<{ close: []; leave: [] }>()
 const box = ref<HTMLElement>()
 const style = ref<Record<string, string>>({ left: '0px', top: '0px', visibility: 'hidden', maxWidth: '90vw' })
@@ -29,6 +30,7 @@ function position() {
 function onDocClick(e: Event) {
   const t = e.target as Node
   if (box.value?.contains(t) || props.anchor?.contains(t)) return
+  if (props.closeOnly) { e.stopPropagation(); e.preventDefault() }
   emit('close')
 }
 const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') emit('close') }

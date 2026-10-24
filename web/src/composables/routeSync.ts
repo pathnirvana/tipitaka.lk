@@ -22,7 +22,7 @@ export function useRouteSync(router: Router) {
       return
     }
     const language = isLanguage(route.params.language) ? route.params.language : undefined
-    const tab = await tabs.openTab({ key, eInd: parseEIndStr(String(route.params.eIndStr || '')), language })
+    const tab = await tabs.openTab({ key, eInd: parseEIndStr(String(route.params.eIndStr || '')), language, languageColumn: !!language })
     if (route.query.playAudio && tab.node) audio.startEntry(tab.node.file, tab.eInd, tab.uid)
   }, { immediate: true })
 

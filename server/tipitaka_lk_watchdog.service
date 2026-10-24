@@ -1,0 +1,8 @@
+# Health check of tipitaka_lk (server/tipitaka_lk_watchdog.sh), started by tipitaka_lk_watchdog.timer.
+[Unit]
+Description=Tipitaka.lk health check
+After=tipitaka_lk.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/tipitaka_lk_watchdog

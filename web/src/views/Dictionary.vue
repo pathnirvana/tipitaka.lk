@@ -1,68 +1,52 @@
-<!-- pali dictionary search (v2 Dictionary.vue) -->
+<!-- pali dictionary search (v2 Dictionary.vue): the engine's dict operation (DPD, the English and Sinhala dictionaries) -->
 <template>
-  <div class="p-3">
+  <div class="mx-auto max-w-[900px] p-3">
     <div v-if="inputError" class="banner mb-2 border-error" data-testid="search-error">{{ inputError }}</div>
     <div v-else-if="message" class="banner mb-2 border-info" data-testid="search-message">{{ message }} <ShareButton :link="link" /></div>
-    <div v-if="errorMessage" class="banner mb-2 border-error" data-testid="dict-error">{{ errorMessage }}</div>
-    <DictionaryFilter />
-    <Skeleton v-if="running" />
-    <DictionaryResults :results="results" />
+    <div class="my-2 flex items-center">
+      <span class="flex-1 text-sm text-muted">සිංහල, රෝමානු (dhamma) හෝ සිංග්ලිෂ් අකුරු වලින් සොයන්න. * සහ ? යොදා රටා සෙවිය හැක.</span>
+      <DictFilter />
+    </div>
+    <DictView v-if="query" :word="query" mode="dict" @result="onResult" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, shallowRef, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import { useDebounceFn } from '@vueuse/core'
-import DictionaryFilter from '@/components/DictionaryFilter.vue'
-import DictionaryResults from '@/components/DictionaryResults.vue'
+import DictFilter from '@/components/DictFilter.vue'
+import DictView from '@/components/DictView.vue'
 import ShareButton from '@/components/ShareButton.vue'
-import Skeleton from '@/components/Skeleton.vue'
 import { useSearch } from '@/stores/search'
 import { wordInputError } from '@shared/dict-words'
-import { pageDictQuery, type DictResults } from '@/data/dictionary'
+import type { DictResult } from '@/data/dictionary'
 
 const search = useSearch(), route = useRoute(), router = useRouter()
 search.searchType = 'dict'
 if (route.params.word) search.searchInput = String(route.params.word)
 const input = computed(() => search.searchInput)
-const results = shallowRef<DictResults | null>(null)
-const running = ref(false)
-const errorMessage = ref('')
-const resultsInput = ref<string | null>(null)
+const query = ref('') // the input that is searched (debounced)
+const result = ref<DictResult | null>(null)
 const inputError = computed(() => wordInputError(input.value))
 const link = computed(() => '/dict/' + input.value)
 const message = computed(() => {
-  if (!input.value || !results.value) return ''
-  const r = results.value
-  const matched = !r.matches.length ? `“${input.value}” යන සෙවුම සඳහා ගැළපෙන වචන ශබ්දකෝෂ වල අඩංගු නොවේ. ` : `“${input.value}” යන සෙවුම සඳහා ගැළපෙන වචන ${r.matches.length} ක් හමුවිය. `
-  return matched + (r.prefixWords.length ? `මෙම අකුරු වලින් ඇරඹෙන වෙනත් වචන ${r.prefixWords.length} ක් ශබ්දකෝෂ වල හමුවිය.` : '')
+  const r = result.value
+  if (!query.value || !r) return ''
+  const n = r.entries.length + r.dpd.length
+  return n ? `“${query.value}” යන සෙවුම සඳහා ශබ්දකෝෂ වලින් අර්ථ ${n} ක් හමුවිය.` : `“${query.value}” යන සෙවුම සඳහා ගැළපෙන වචන ශබ්දකෝෂ වල අඩංගු නොවේ.`
 })
 useHead({ title: computed(() => (input.value ? `“${input.value}” යන සෙවුමට ශබ්දකෝෂ වලින් ලැබුණු ප්‍රතිඵල` : 'පාළි ශබ්දකෝෂ සෙවීම')) })
+const onResult = (r: DictResult | null) => { result.value = r }
 
-let seq = 0
-async function getResults() {
-  if (inputError.value) return
-  const my = ++seq
-  resultsInput.value = input.value
-  running.value = true
-  errorMessage.value = ''
-  try {
-    const r = await pageDictQuery(input.value, search.shortDicts())
-    if (my === seq) results.value = r
-  } catch (e) {
-    if (my === seq) errorMessage.value = (e as Error).message // v2 swallowed these errors (A9)
-  } finally { if (my === seq) running.value = false }
-}
-const debounced = useDebounceFn(getResults, 400)
+const run = useDebounceFn(() => { if (!inputError.value) query.value = input.value }, 400)
 function updatePage() {
   if (route.name === 'dict' && route.path !== link.value) router.push(link.value)
-  debounced()
+  run()
 }
-watch(input, v => { if (v !== resultsInput.value) updatePage() })
-watch(() => search.selectedDictionaries, () => debounced(), { deep: true })
+watch(input, v => { if (v !== query.value) updatePage() })
 // back/forward between words
-watch(() => route.params.word, w => { if (route.name === 'dict' && w && w !== resultsInput.value) search.searchInput = String(w) })
-onMounted(() => { if (input.value !== resultsInput.value) updatePage() })
+watch(() => route.params.word, w => { if (route.name === 'dict' && w && w !== query.value) search.searchInput = String(w) })
+onMounted(() => { if (input.value && input.value !== query.value) updatePage() })
 </script>

@@ -9,20 +9,20 @@ test('legacy settings are honoured (default columns, font size)', async ({ page 
   await page.goto('/dn-1-1')
   await expect(entries(page, 'pali').first()).toBeVisible()
   await expect(entries(page, 'sinh')).toHaveCount(0)
-  await expect(page.getByTestId('text-tab').first()).toHaveAttribute('style', /font-size: 19px/)
+  await expect(page.getByTestId('text-tab').first()).toHaveAttribute('style', /font-size: 21px/) // 18px base + 3
   await expect(page.locator('html')).toHaveClass(/dark/)
 })
 
 test('settings persist across reloads', async ({ page }) => {
   await page.goto('/settings')
-  await page.getByTestId('dark-toggle').click()
-  await expect(page.locator('html')).toHaveClass(/dark/)
+  await page.getByTestId('theme-sepia').click()
+  await expect(page.locator('html')).toHaveClass('theme-sepia')
   await page.getByTestId('fn-end-page').check()
   await page.reload()
-  await expect(page.locator('html')).toHaveClass(/dark/)
+  await expect(page.locator('html')).toHaveClass('theme-sepia')
   await expect(page.getByTestId('fn-end-page')).toBeChecked()
   const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('tipitaka.lk-settings-2')!))
-  expect(stored).toMatchObject({ darkMode: true, footnoteMethod: 'end-page' })
+  expect(stored).toMatchObject({ theme: 'sepia', footnoteMethod: 'end-page' })
 })
 
 for (const mode of ['click', 'hover', 'end-page', 'hidden'] as const) {

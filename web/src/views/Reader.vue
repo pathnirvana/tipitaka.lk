@@ -2,7 +2,7 @@
 <template>
   <div>
     <TextTab v-for="(tab, i) in tabs.tabList" v-show="i === tabs.activeInd" :key="tab.uid" :tab="tab" />
-    <button class="fixed right-4 z-20 rounded-full bg-surface2 p-2 shadow-lg" :class="inlineDict.show ? 'bottom-[270px]' : audio.controlsVisible ? 'bottom-24' : 'bottom-4'"
+    <button class="fixed z-20 rounded-full bg-surface2 p-2 shadow-lg" :style="{ right: `${dictRight + 16}px`, bottom: `${dictBottom + (audio.controlsVisible ? 80 : 16)}px` }"
       title="top" data-testid="scroll-top" @click="scrollTop"><IconTop /></button>
     <AudioControl />
     <InlineDict />
@@ -20,10 +20,11 @@ import InlineDict from '@/components/InlineDict.vue'
 import { useTabs } from '@/stores/tabs'
 import { useTree } from '@/stores/tree'
 import { useAudio } from '@/stores/audio'
-import { useInlineDict } from '@/stores/inlineDict'
+import { useLayout } from '@/composables/layout'
 import { removeBandi } from '@shared/beautify'
 
-const tabs = useTabs(), tree = useTree(), audio = useAudio(), inlineDict = useInlineDict()
+const tabs = useTabs(), tree = useTree(), audio = useAudio()
+const { dictRight, dictBottom } = useLayout()
 const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
 // each tab keeps its own scroll position (the window scrolls, so it is saved per tab and restored on switching)

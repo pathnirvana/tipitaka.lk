@@ -1,45 +1,88 @@
 /**
- * npm run build:dict - rebuilds db/dict.db from dev/dicts (port of dev/dicts/populate-dict.js).
- * Needs the sinhala dictionaries submodule: git submodule update --init dev/dicts/dict-input/sinhala
- * dict.db rarely changes; the released db/dict.db (db/dict.db.zip) is normally reused.
+ * npm run build:dict [-- <app dict.db>] - builds db/dict.db from the dictionary db of tipitaka.app (same schema, built by
+ * its build/dict.ts from the sources pinned in its data/dicts.lock and data/dpd.lock; its daily upstream sync keeps
+ * them current). Default source: ../cst/db/dict.db.
+ *
+ * tipitaka.lk keeps
+ *  - the English and Sinhala dictionaries (LK_DICTS), their abbreviations and the PCED word breakups
+ *  - the Digital Pāḷi Dictionary (DPD): all headwords and roots (typed searches), and the inflection / deconstruction
+ *    lookup of the word forms that occur in tipitaka.lk's texts (clicked words) - most of DPD's 1.2M forms are not in
+ *    the Sinhala editions
+ * Words are lower case Roman (the reader converts a clicked Sinhala word with @pnfo/pali-converter, lossless for all
+ * words of the texts). References to tipitaka.app's texts (<a data-ref="key#para">) are unwrapped: their paragraph
+ * numbers are not tipitaka.lk's.
  */
 import fs from 'node:fs'
-import path from 'node:path'
 import Database from 'better-sqlite3'
+import { convert } from '@pnfo/pali-converter'
 
-const dir = 'dev/dicts'
-const dictionaryList: [string, string][] = [ // short name -> input file
-  ['BUE', 'en-buddhadatta.json'], ['ND', 'en-nyanatiloka.json'], ['PTS', 'en-pts.json'], ['PN', 'en-dppn.json'],
-  ['VRI', 'en-vri.json'], ['CR', 'en-critical.json'], ['BUS', 'sinhala/buddhadatta_dict.json'], ['MS', 'sinhala/sumangala_dict.json'],
-]
-const removeBRTags = (m: string) => m.replace(/-<br\/>/g, '').replace(/<br\/>/g, ' ')
+/** tipitaka.app dictionary codes kept (in its display order) */
+export const LK_DICTS = ['en-ncped', 'en-nyanatiloka', 'en-pts', 'en-dppn', 'en-vri', 'en-critical', 'si-buddhadatta', 'si-sumangala']
 
-export function buildDictRows(): [string, string, string][] {
-  let rows: [string, string, string][] = []
-  for (const [short, file] of dictionaryList) {
-    const p = path.join(dir, 'dict-input', file)
-    if (!fs.existsSync(p)) throw new Error(`${p} missing (git submodule update --init dev/dicts/dict-input/sinhala)`)
-    for (const [w, m] of JSON.parse(fs.readFileSync(p, 'utf-8')) as [string, string][]) {
-      rows.push([w.replace(/\d$/, ''), short, short === 'CR' ? removeBRTags(m) : m])
-    }
+const DATA_REF = /<a data-ref="[^"]*">([\s\S]*?)<\/a>/g
+export const unwrapRefs = (html: string) => html.replace(DATA_REF, '$1')
+
+/** the Roman forms of the Pali words of text.db (p_text of mula and atta) */
+export function textWordForms(textDb: string): Set<string> {
+  const db = new Database(textDb, { readonly: true })
+  const sinh = new Set<string>()
+  for (const r of db.prepare('SELECT p_text FROM entry').iterate() as Iterable<{ p_text: string }>) {
+    for (const w of r.p_text.replace(/‍/g, '').split(/[^඀-෿]+/)) if (w) sinh.add(w)
   }
-  const breakups = JSON.parse(fs.readFileSync(path.join(dir, 'breakups.json'), 'utf-8')) as [string, string, string, [string, number][]][]
-  for (const [word, type, , brs] of breakups) for (const br of brs) rows.push([word, 'BR', `${type}|${br[0]}`])
-  // v2 used a boolean comparator here (A10); rows are sorted by word (byte order) and rows with an empty column dropped
-  rows = rows.filter(r => r.every(Boolean)).sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0))
-  return rows
+  db.close()
+  const roman = new Set<string>()
+  for (const w of sinh) roman.add(convert(w, 'latn', 'sinh').toLowerCase())
+  return roman
+}
+
+export function buildLkDict(appDict: string, out: string, words: Set<string>, log = (m: string) => console.log(m)) {
+  if (!fs.existsSync(appDict)) throw new Error(`${appDict} not found (tipitaka.app's db/dict.db; npm run build:dict -- <path>)`)
+  const tmp = out + '.tmp'
+  fs.rmSync(tmp, { force: true })
+  const src = new Database(appDict, { readonly: true })
+  const db = new Database(tmp)
+  db.pragma('journal_mode = OFF')
+  db.pragma('synchronous = OFF')
+  // the same schema (tables and indexes) as the source
+  const schema = src.prepare(`SELECT sql FROM sqlite_master WHERE sql IS NOT NULL AND name NOT LIKE 'sqlite_%' ORDER BY type = 'index', rowid`).all() as { sql: string }[]
+  for (const s of schema) db.exec(s.sql)
+  src.close()
+  db.exec(`ATTACH DATABASE '${appDict.replace(/'/g, "''")}' AS app`)
+  const codes = LK_DICTS.map(c => `'${c}'`).join(',')
+  db.transaction(() => {
+    db.exec(`INSERT INTO meta SELECT * FROM app.meta;
+      INSERT INTO dict SELECT * FROM app.dict WHERE code IN (${codes});
+      INSERT INTO entry SELECT * FROM app.entry WHERE dict_id IN (SELECT id FROM dict);
+      INSERT INTO dict_abbrev SELECT * FROM app.dict_abbrev WHERE dict_id IN (SELECT id FROM dict);
+      INSERT INTO breakup SELECT * FROM app.breakup;
+      INSERT INTO dpd_head SELECT * FROM app.dpd_head;
+      INSERT INTO dpd_root SELECT * FROM app.dpd_root;`)
+    const upd = db.prepare('UPDATE entry SET meaning = ? WHERE id = ?')
+    let refs = 0
+    for (const r of db.prepare(`SELECT id, meaning FROM entry WHERE meaning LIKE '%data-ref%'`).all() as { id: number; meaning: string }[]) {
+      upd.run(unwrapRefs(r.meaning), r.id)
+      refs++
+    }
+    const ins = db.prepare('INSERT INTO dpd_lookup SELECT * FROM app.dpd_lookup WHERE word = ?')
+    let n = 0
+    for (const w of words) n += ins.run(w).changes
+    db.prepare(`INSERT OR REPLACE INTO meta VALUES ('lk_built_at', ?), ('lk_source', ?), ('lk_dpd_lookup', ?)`).run(new Date().toISOString(), 'tipitaka.app dict.db', String(n))
+    const count = (t: string) => (db.prepare(`SELECT count(*) AS n FROM ${t}`).get() as { n: number }).n
+    log(`dictionaries: ${count('dict')}, entries ${count('entry')} (${refs} references unwrapped), breakups ${count('breakup')}`)
+    log(`dpd: headwords ${count('dpd_head')}, roots ${count('dpd_root')}, lookup ${n} of the ${words.size} word forms of the texts`)
+  })()
+  db.exec('DETACH DATABASE app')
+  db.exec('ANALYZE')
+  db.exec('VACUUM')
+  db.close()
+  fs.renameSync(tmp, out)
 }
 
 function main() {
-  const out = process.argv[2] || 'db/dict.db'
-  const rows = buildDictRows()
-  fs.rmSync(out, { force: true })
-  const db = new Database(out)
-  db.exec('CREATE TABLE dictionary (word TEXT NOT NULL, dict TEXT NOT NULL, meaning TEXT NOT NULL); CREATE INDEX worddict ON dictionary(word, dict);')
-  const ins = db.prepare('INSERT INTO dictionary (word, dict, meaning) VALUES (?, ?, ?)')
-  db.transaction(() => { for (const r of rows) ins.run(...r) })()
-  db.exec('ANALYZE; VACUUM')
-  db.close()
-  console.log(`wrote ${rows.length} rows to ${out}`)
+  const appDict = process.argv[2] || '../cst/db/dict.db'
+  const out = process.argv[3] || 'db/dict.db'
+  const words = textWordForms('db/text.db')
+  buildLkDict(appDict, out, words)
+  console.log(`wrote ${out} (${(fs.statSync(out).size / 2 ** 20).toFixed(0)} MB)`)
 }
 if (import.meta.url === `file://${process.argv[1]}`) main()

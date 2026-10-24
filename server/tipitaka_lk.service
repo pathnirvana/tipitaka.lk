@@ -1,6 +1,7 @@
-# systemd unit for the tipitaka.lk Go server (v3) - installed by scripts/deploy.sh to /etc/systemd/system/
+# systemd unit for the tipitaka.lk Go server (v3) - installed / updated by scripts/deploy.sh to /etc/systemd/system/
 # scripts/deploy.sh puts each release in ~/www/tipitaka.lk/releases/<ts> and points ~/www/tipitaka.lk/current at it.
 # -published-version: the version old apps see at /tipitaka-query/version - change to 3.0 after the v3 apps are published
+# nginx: proxy_pass http://127.0.0.1:8400; proxy_set_header Host $host;
 [Unit]
 Description=Tipitaka.lk Go server
 After=network.target
@@ -10,8 +11,20 @@ Type=simple
 User=janaka
 WorkingDirectory=/home/janaka/www/tipitaka.lk/current
 ExecStart=/home/janaka/www/tipitaka.lk/current/tipitaka_lk -no-open -listen 127.0.0.1:8400 -published-version 2.0
-Restart=on-failure
-RestartSec=5
+# always: also after a kill by the watchdog (tipitaka_lk_watchdog.timer) or the memory limit
+Restart=always
+RestartSec=3
+# the dbs are read-only and memory mapped by sqlite; keep the go heap small on the 1 GB droplet (shared with tipitaka.app)
+Environment=GOMEMLIMIT=250MiB
+# above MemoryHigh the kernel reclaims hard, at MemoryMax the server is killed and restarted instead of pushing the
+# other sites into swap (tipitaka.app 2026-10-19: 580 MB + 1 GB swap)
+MemoryHigh=400M
+MemoryMax=550M
+MemorySwapMax=100M
+LimitNOFILE=65536
 
 [Install]
 WantedBy=multi-user.target
+
+# sudo systemctl daemon-reload && sudo systemctl restart tipitaka_lk
+# journalctl -u tipitaka_lk.service -f

@@ -2,7 +2,7 @@
 <template>
   <div v-if="items.length" class="flex flex-wrap items-center">
     <span class="cursor-pointer py-2 hover:text-info" :style="{ fontSize: settings.fontPx }" data-testid="tipitaka-link" @click="open">
-      <span class="mr-2 rounded-[10px] border border-current px-1 text-[1.1em]">{{ items[0].text }}</span>
+      <span class="mr-2 whitespace-nowrap rounded-full bg-surface2 px-2.5 py-0.5 align-[0.1em] text-[0.85em] text-muted" data-testid="collection-chip">{{ collection }}</span>
       <span class="mr-2 text-[1.2em] text-primary">{{ items[items.length - 1].text.replace(/[\(\)\[\]]/g, '') }}</span>
       <span v-for="(item, i) in items.slice(1, -1)" :key="item.key" class="text-[1.1em]">
         <IconChevron v-if="i > 0" class="inline" />{{ item.text }}
@@ -24,8 +24,11 @@ import type { Bookmark } from '@/stores/bookmarks'
 const props = defineProps<{ path: TreeItem[]; params: OpenParams & { type?: string | null; text?: string | null; hText?: string | null; file?: string } }>()
 const emit = defineEmits<{ opened: [] }>()
 const tree = useTree(), settings = useSettings()
-const pitaka: Record<string, string> = { vp: 'VP', sp: 'SP', ap: 'AP' }
-const items = computed(() => props.path.map(item => ({ key: item.key, text: pitaka[item.key] || tree.nameOf(item, props.params.language) })))
+// the collection (root of the path): short Sinhala names, the same in both languages (v2: VP SP AP or the root's name)
+const COLLECTIONS: Record<string, string> = { vp: 'විනය', sp: 'සූත්‍ර', ap: 'අභිධර්ම', 'atta-vp': 'විනය අටුවා', 'atta-sp': 'සූත්‍ර අටුවා',
+  'atta-ap': 'අභිධර්ම අටුවා', anya: 'අන්‍ය' }
+const items = computed(() => props.path.map(item => ({ key: item.key, text: tree.nameOf(item, props.params.language) })))
+const collection = computed(() => COLLECTIONS[props.path[0]?.key] ?? items.value[0]?.text ?? '')
 const bookmark = computed<Bookmark>(() => ({
   key: props.params.key, language: props.params.language || settings.treeLanguage, eInd: props.params.eInd || null,
   type: props.params.type ?? null, text: props.params.text ?? null, hText: props.params.hText ?? null,

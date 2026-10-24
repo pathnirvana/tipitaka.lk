@@ -2,21 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face { font-family: 'sinhala'; src: url('../assets/fonts/UN-Abhaya.woff2') format('woff2'); font-weight: normal; font-display: swap; }
-@font-face { font-family: 'heading2'; src: url('../assets/fonts/AbhayaLibre-SemiBold.woff2') format('woff2'); font-weight: normal; font-display: swap; }
+/* Abhaya Uni (tipitaka.app): Sinhala + Latin with Pali diacritics, a real bold face for **bold** text.
+   Single font-weight values: ranges need Chrome 62 (WebView 53 would use the bold face for all text) */
+@font-face { font-family: 'sinhala'; src: url('../assets/fonts/AbhayaUni-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'sinhala'; src: url('../assets/fonts/AbhayaUni-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
 
-/* theme colours (v2 Vuetify theme) */
+/* colour themes (tipitaka.app): light (:root), sepia, green, dark; "auto" picks light or dark (composables/themes.ts).
+   info / success / warning / align / star are lk's own (icons, footnote pointers, alignment words, bookmarks) */
 :root {
-  --c-primary: #C63100; --c-accent: #EF5100; --c-info: #2196F3; --c-success: #4CAF50; --c-error: #FF5252;
-  --c-warning: #FB8C00; --c-highlight: #FFF176; --c-align: #B2EBF2; --c-star: #F9A825;
-  --c-bg: #FFFFFF; --c-surface: #FFFFFF; --c-surface2: #F5F5F5; --c-fg: #212121; --c-muted: #757575; --c-line: #E0E0E0;
-  --font-size: 16px;
+  --c-primary: #7a2e14; --c-primary-soft: #f3e3d8; --c-accent: #b4541f; --c-info: #2a6496; --c-success: #2e7d32; --c-error: #c62828;
+  --c-warning: #b26a00; --c-highlight: #ffe58a; --c-align: #cfe4ee; --c-star: #d89614;
+  --c-bg: #fbf8f3; --c-surface: #ffffff; --c-surface2: #f3eee7; --c-fg: #2b2522; --c-muted: #6b625c; --c-line: #e6ddd2;
+  color-scheme: light;
 }
-.dark {
-  --c-primary: #FF8A65; --c-accent: #FF6E40; --c-info: #4FC3F7; --c-success: #81C784; --c-error: #FF6E6E;
-  --c-warning: #FFB74D; --c-highlight: #4527A0; --c-align: #00606B; --c-star: #FFD600;
-  --c-bg: #121212; --c-surface: #1E1E1E; --c-surface2: #2A2A2A; --c-fg: #ECECEC; --c-muted: #A0A0A0; --c-line: #3A3A3A;
+.theme-sepia {
+  --c-primary: #6b3a1f; --c-primary-soft: #eadcc4; --c-accent: #a0522d; --c-info: #2f5f7f; --c-success: #3d7a3f; --c-error: #b3261e;
+  --c-warning: #9a5b12; --c-highlight: #f3d36b; --c-align: #d3dccb; --c-star: #b8860b;
+  --c-bg: #f4ecd8; --c-surface: #f9f3e3; --c-surface2: #ece2c9; --c-fg: #3b2f22; --c-muted: #76664f; --c-line: #dccdae;
 }
+.theme-green { /* sage: a soft green page, forest green accents */
+  --c-primary: #2f5b3c; --c-primary-soft: #d2e2cc; --c-accent: #8a5a1f; --c-info: #2b5f80; --c-success: #2f6b3c; --c-error: #b3261e;
+  --c-warning: #8a5a1f; --c-highlight: #f1dd8c; --c-align: #c4dcdc; --c-star: #a87b0b;
+  --c-bg: #e4ede0; --c-surface: #eef4ea; --c-surface2: #d9e4d4; --c-fg: #1e2a21; --c-muted: #55645a; --c-line: #c6d5c0;
+}
+.dark { /* warm charcoal, not black: less halation around the letters */
+  --c-primary: #f0a27a; --c-primary-soft: #3a2a22; --c-accent: #f0a27a; --c-info: #8ab8dc; --c-success: #8fcf94; --c-error: #ef9a9a;
+  --c-warning: #ffb74d; --c-highlight: #6b5410; --c-align: #2c4f55; --c-star: #ffd54f;
+  --c-bg: #1b1917; --c-surface: #23201d; --c-surface2: #2d2925; --c-fg: #e6dfd6; --c-muted: #a69c92; --c-line: #403a34;
+  color-scheme: dark;
+}
+/* light coloured buttons in the dark theme: dark text instead of white */
+.dark .bg-primary.text-white, .dark .bg-info.text-white, .dark .bg-success.text-white, .dark .bg-error.text-white { color: #1d1a18; }
 
 html, body { background: var(--c-bg); color: var(--c-fg); }
 body { font-family: 'sinhala', serif; margin: 0; -webkit-tap-highlight-color: transparent; }
@@ -61,7 +77,7 @@ input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-co
 
 /* ---- text entries (v2 TextEntry.vue). em units: font size is set on the entry cell ---- */
 .entry-text { font-family: 'sinhala', serif; font-size: 1.1em; line-height: 130%; word-break: break-word; text-align: justify; }
-.entry-text.heading { font-family: 'heading2', 'sinhala', serif; color: var(--c-primary); text-align: center; }
+.entry-text.heading { font-weight: 700; color: var(--c-primary); text-align: center; } /* the bold face (v2: Abhaya Libre SemiBold) */
 .entry-text.heading[data-level="5"] { font-size: 1.8em; }
 .entry-text.heading[data-level="4"] { font-size: 1.7em; }
 .entry-text.heading[data-level="3"] { font-size: 1.6em; }
@@ -71,16 +87,16 @@ input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-co
 .entry-text.gatha { text-indent: 0; padding-left: 2.4em; text-align: left; }
 .entry-text.gatha[data-level="2"] { padding-left: 5em; }
 .entry-text.unindented { text-indent: 0; text-align: left; }
-.entry-text.centered { text-align: center; font-family: 'heading2', 'sinhala', serif; }
+.entry-text.centered { text-align: center; font-weight: 700; }
 .entry-text.centered[data-level="5"] { font-size: 2.1em; }
 .entry-text.centered[data-level="4"] { font-size: 1.8em; }
 .entry-text.centered[data-level="3"] { font-size: 1.5em; }
 .entry-text.centered[data-level="2"] { font-size: 1.25em; }
 .entry-text.centered[data-level="1"] { font-size: 1.1em; }
-.entry-text.centered[data-level="0"] { font-family: 'sinhala', serif; } /* level 0 is stored as missing (A31) */
+.entry-text.centered[data-level="0"] { font-weight: 400; } /* level 0 is stored as missing (A31) */
 .entry-text.audio-playing { background: var(--c-highlight); }
 
-.rt-bold { color: var(--c-info); }
+.rt-bold { font-weight: 700; } /* the Abhaya Uni bold face (v2 / lk until 2026-10: blue text) */
 .rt-underline { text-decoration: underline; text-decoration-color: var(--c-error); }
 .rt-strike { text-decoration: line-through; text-decoration-color: var(--c-accent); }
 .rt-highlight, sr { background: var(--c-highlight); }
@@ -92,3 +108,23 @@ input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-co
 .scan-img { width: 100%; max-width: 750px; filter: grayscale(100%) contrast(90%) brightness(95%); }
 .dark .scan-img { filter: invert(100%) contrast(70%) brightness(150%); }
 .dark .invert-dark { filter: invert(90%); }
+
+/* ---- dictionary results (tipitaka.app main.css) ---- */
+.section-title { margin-bottom: 0.4rem; font-size: 13px; font-weight: 700; color: var(--c-muted); }
+.meaning-html { overflow-wrap: anywhere; }
+.meaning-html p { margin: 0.25em 0; }
+.meaning-html hr { border-color: var(--c-line); margin: 0.4em 0; }
+.meaning-html ul { list-style: disc; padding-left: 1.25em; }
+.meaning-html ol { list-style: decimal; padding-left: 1.5em; }
+.meaning-html blockquote { border-left: 3px solid var(--c-line); padding-left: 0.6em; margin: 0.3em 0; }
+.meaning-html td { padding: 0 0.5em 0 0; vertical-align: top; }
+.meaning-html a[data-dict] { color: var(--c-info); cursor: pointer; text-decoration: underline; }
+.meaning-html abbr[data-a] { text-decoration: underline dotted; cursor: help; }
+.meaning-html .ed-add { color: var(--c-accent); }
+.meaning-html .ed-mod { text-decoration: underline dotted; cursor: help; }
+.meaning-html .ed-orig { color: var(--c-muted); cursor: help; }
+.meaning-html .ed-orig::before { content: '('; }
+.meaning-html .ed-orig::after { content: ')'; }
+.meaning-html .ed-add { cursor: help; }
+.meaning-html .lnum { font-size: 0.8em; color: var(--c-muted); }
+.meaning-html .gram { color: var(--c-accent); font-size: 0.9em; }

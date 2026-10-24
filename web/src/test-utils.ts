@@ -11,4 +11,7 @@ export class LocalSource implements DataSource {
     const q = QUERIES.get(name)!
     return this.dbs[q.db].prepare(q.sql).all(params) as T[]
   }
+  async op<T>(op: string): Promise<T> {
+    throw new Error(`engine operation ${op}: not available in unit tests (server/server_test.go, e2e)`)
+  }
 }

@@ -105,6 +105,14 @@ func (a *App) handleQuery(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotModified)
 		return
 	}
+	if heavyOps[name] { // full text search: a few at a time (guard.go)
+		if !a.guard.api.acquire(r.Context(), apiWait) {
+			a.guard.stats.apiBusy.Add(1)
+			jsonError(w, http.StatusServiceUnavailable, "busy")
+			return
+		}
+		defer a.guard.api.release()
+	}
 	rows, err := a.RunNamed(r.Context(), name, raw)
 	var pe *ParamError
 	switch {
@@ -133,6 +141,7 @@ func (a *App) handleQuery(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) handleHealth(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-store")
-	writeJSON(w, http.StatusOK, map[string]string{"status": "ok", "api_hash": a.apiHash,
-		"content_hash": a.meta["content_hash"], "schema_version": a.meta["schema_version"], "db_version": a.meta["db_version"]})
+	writeJSON(w, http.StatusOK, map[string]any{"status": "ok", "api_hash": a.apiHash,
+		"content_hash": a.meta["content_hash"], "schema_version": a.meta["schema_version"], "db_version": a.meta["db_version"],
+		"load": a.guard.snapshot()})
 }

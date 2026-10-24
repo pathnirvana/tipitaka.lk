@@ -13,10 +13,9 @@
       </div>
 
       <section class="panel-section">
-        <button class="panel-row" data-testid="panel-dark" @click="s.darkMode = !s.darkMode">
-          <IconSun v-if="s.darkMode" class="panel-icon" /><IconMoon v-else class="panel-icon" />
-          <span class="flex-1">{{ s.darkMode ? 'ආලෝකමත් තිරය' : 'අඳුරු තිරය' }}</span>
-        </button>
+        <div class="panel-row" data-testid="panel-theme">
+          <IconPalette class="panel-icon" /><ThemePicker />
+        </div>
       </section>
 
       <section v-if="isTextTab" class="panel-section" data-testid="panel-reading">
@@ -38,9 +37,9 @@
         <div class="panel-row">
           <IconFormatSize class="panel-icon" />
           <span class="flex-1 whitespace-nowrap">අකුරු විශාලත්වය</span>
-          <button class="icon-btn border border-line" title="smaller" data-testid="panel-font-down" :disabled="s.fontSize <= -5" @click="s.fontSize--"><IconMinus /></button>
+          <button class="icon-btn border border-line" title="smaller" data-testid="panel-font-down" :disabled="s.fontSize <= FONT_SIZE_RANGE[0]" @click="s.fontSize--"><IconMinus /></button>
           <span class="w-8 text-center" data-testid="panel-font-size">{{ s.fontSize > 0 ? '+' : '' }}{{ s.fontSize }}</span>
-          <button class="icon-btn border border-line" title="larger" data-testid="panel-font-up" :disabled="s.fontSize >= 5" @click="s.fontSize++"><IconPlus /></button>
+          <button class="icon-btn border border-line" title="larger" data-testid="panel-font-up" :disabled="s.fontSize >= FONT_SIZE_RANGE[1]" @click="s.fontSize++"><IconPlus /></button>
         </div>
         <div class="panel-row">
           <IconFileTree class="panel-icon" />
@@ -69,8 +68,7 @@
 import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import IconClose from '~icons/mdi/close'
-import IconSun from '~icons/mdi/brightness-7'
-import IconMoon from '~icons/mdi/brightness-4'
+import IconPalette from '~icons/mdi/palette'
 import IconFormatSize from '~icons/mdi/format-size'
 import IconMinus from '~icons/mdi/minus'
 import IconPlus from '~icons/mdi/plus'
@@ -87,8 +85,9 @@ import IconHome from '~icons/mdi/home'
 import IconInfo from '~icons/mdi/information'
 import IconGithub from '~icons/mdi/github'
 import ColumnSelector from './ColumnSelector.vue'
+import ThemePicker from './ThemePicker.vue'
 import { useUi } from '@/stores/ui'
-import { useSettings } from '@/stores/settings'
+import { useSettings, FONT_SIZE_RANGE } from '@/stores/settings'
 import { useTabs } from '@/stores/tabs'
 import { useTabColumns } from '@/composables/columns'
 

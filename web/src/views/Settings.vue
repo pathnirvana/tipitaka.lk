@@ -1,11 +1,9 @@
 <template>
   <div class="flex flex-wrap p-1.5">
     <section class="card m-1.5 w-full sm:w-[calc(50%-12px)] xl:w-[calc(33.3%-12px)]">
-      <h2 class="mb-1 text-xl">{{ s.darkMode ? 'දහවල් ආලෝකමත් තිරය' : 'රාත්‍රී අඳුරු තිරය' }}</h2>
-      <p class="mb-2 text-[15px] text-muted">රාත්‍රී අඳුරු තිරය සහ දහවල් ආලෝකමත් තිරය අතර මාරු වෙන්න. අඳුරු තිරය රාත්‍රියේදී ඇසට පහසුය.</p>
-      <button class="btn-primary" data-testid="dark-toggle" @click="s.darkMode = !s.darkMode">
-        <IconSun v-if="s.darkMode" class="mr-2" /><IconMoon v-else class="mr-2" />{{ s.darkMode ? 'ආලෝකමත් තිරය' : 'අඳුරු තිරය' }}
-      </button>
+      <h2 class="mb-1 text-xl">තිරයේ වර්ණ</h2>
+      <p class="mb-2 text-[15px] text-muted">අඳුරු තිරය රාත්‍රියේදී ඇසට පහසුය. ස්වයංක්‍රීය: ඔබගේ උපාංගයේ සැකසුම අනුව ආලෝකමත් හෝ අඳුරු.</p>
+      <ThemePicker labels />
     </section>
     <section class="card m-1.5 w-full sm:w-[calc(50%-12px)] xl:w-[calc(33.3%-12px)]">
       <h2 class="mb-2 text-xl">සූත්‍ර නාමාවලිය පෙන්වන භාෂාව</h2>
@@ -25,14 +23,19 @@
     </section>
     <section class="card m-1.5 w-full sm:w-[calc(50%-12px)] xl:w-[calc(33.3%-12px)]">
       <h2 class="mb-2 text-xl">අකුරු විශාලත්වය</h2>
-      <div class="mb-2 text-info" :style="{ fontSize: s.fontPx }">නමො තස‍්ස භගවතො අරහතො</div>
-      <input v-model.number="s.fontSize" type="range" min="-5" max="5" step="1" class="w-full" data-testid="font-size"> <span class="text-[15px]">{{ s.fontSize }}</span>
+      <div class="entry-text mb-2" :style="{ fontSize: s.fontPx }"><b class="rt-bold">නමො තස්ස</b> භගවතො අරහතො සම්මාසම්බුද්ධස්ස</div>
+      <input v-model.number="s.fontSize" type="range" :min="FONT_SIZE_RANGE[0]" :max="FONT_SIZE_RANGE[1]" step="1" class="w-full" data-testid="font-size"> <span class="text-[15px]">{{ s.fontSize > 0 ? '+' : '' }}{{ s.fontSize }}</span>
     </section>
     <section class="card m-1.5 w-full sm:w-[calc(50%-12px)] xl:w-[calc(33.3%-12px)]">
       <h2 class="mb-1 text-xl">පාළි සිංහල තීරු තෝරන්න</h2>
       <p class="mb-2 text-[15px] text-muted">නව සූත්‍රයක් ඇරීමේදී පෙන්වන්නේ පාළි, සිංහල හෝ ඒ තීරු දෙකමද බව.</p>
       <ColumnSelector v-model="defaultColumns" always-both /> <span class="ml-3 text-[15px]">{{ columnText }}</span>
       <p v-if="defaultColumns === 2 && !smAndUp" class="mt-2 text-[15px] text-muted">කුඩා තිර වල එක් තීරුවක් පමණක් පෙන්වේ.</p>
+    </section>
+    <section class="card m-1.5 w-full sm:w-[calc(50%-12px)] xl:w-[calc(33.3%-12px)]" data-testid="settings-dicts">
+      <h2 class="mb-1 text-xl">ශබ්දකෝෂ</h2>
+      <p class="mb-2 text-[15px] text-muted">පාළි වචනයක් එබූ විට සහ ශබ්දකෝෂ සෙවීමේදී භාවිතා කරන ශබ්දකෝෂ.</p>
+      <DictFilter inline />
     </section>
     <section v-if="showUpdate" class="card m-1.5 w-full sm:w-[calc(50%-12px)] xl:w-[calc(33.3%-12px)]">
       <h2 class="mb-1 text-xl">මෘදුකාංගය යාවත්කාලීන කිරීම</h2>
@@ -46,14 +49,14 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { useHead } from '@unhead/vue'
-import IconSun from '~icons/mdi/brightness-7'
-import IconMoon from '~icons/mdi/brightness-4'
 import IconUpdate from '~icons/mdi/update'
 import ColumnSelector from '@/components/ColumnSelector.vue'
 import { useDefaultColumns } from '@/composables/columns'
 import { isNativeApp } from '@/data/source'
 import { smAndUp } from '@/composables/breakpoints'
-import { useSettings } from '@/stores/settings'
+import { useSettings, FONT_SIZE_RANGE } from '@/stores/settings'
+import ThemePicker from '@/components/ThemePicker.vue'
+import DictFilter from '@/components/DictFilter.vue'
 import { APP_VERSION } from '@shared/constants'
 
 useHead({ title: 'සැකසුම් / Settings' })

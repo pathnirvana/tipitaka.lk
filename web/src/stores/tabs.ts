@@ -21,6 +21,9 @@ export interface OpenParams {
   hWords?: FtsHighlight | null
   playAudio?: boolean
   reuse?: boolean // switch to an already open tab of this sutta instead of opening a new one
+  /** the url names the language (/key/pali, /key/sinh: a shared link): only that column. Otherwise new tabs show the
+   * default columns of the settings */
+  languageColumn?: boolean
 }
 export interface Tab {
   uid: number
@@ -61,6 +64,18 @@ export const useTabs = defineStore('tabs', () => {
   const isAtta = (tab?: Tab) => !!tab?.node && isAttaFile(tab.node.file)
   const paliOnly = (tab?: Tab) => !!tab?.node && isPaliOnlyFile(tab.node.file)
 
+  /**
+   * the columns of a new tab: the default columns of the settings; a url with the language shows that column; a search
+   * hit in the language the default single column does not show opens both columns (the highlighted words are seen)
+   */
+  function columnsFor(p: OpenParams): Columns {
+    const lang = (p.language === 'sinh' ? 1 : 0) as Columns
+    if (p.language && p.languageColumn) return lang
+    const def = settings.defaultColumns
+    if (p.language && p.hWords && def !== 2 && def !== lang) return 2
+    return def
+  }
+
   function newTab(p: OpenParams, columns: Columns): Tab {
     return { uid: uid++, key: p.key, node: null, eInd: p.eInd || [0, 0], entryStart: 0, pageStart: 0, pageEnd: 0, columns, lastUsed: Date.now(),
       language: p.language, showScanPage: false, scrollY: 0, hWords: p.hWords || null, errorMessage: '', isLoaded: false }
@@ -91,13 +106,13 @@ export const useTabs = defineStore('tabs', () => {
    */
   async function openTab(p: OpenParams): Promise<Tab> {
     openCount.value++
-    const columns: Columns = !p.language ? settings.defaultColumns : (Number(p.language === 'sinh') as Columns)
+    const columns = columnsFor(p)
     const existing = p.reuse ? findTab(p.key) : -1
     if (existing >= 0) {
       setActive(existing)
       const tab = tabList.value[existing]
       if (p.eInd || p.hWords) return replaceActive({ ...p, language: p.language || tab.language })
-      if (p.language) tab.columns = columns
+      if (p.languageColumn) tab.columns = columns
       return tab
     }
     tabList.value.push(newTab(p, columns))
@@ -121,7 +136,7 @@ export const useTabs = defineStore('tabs', () => {
   async function replaceActive(p: OpenParams): Promise<Tab> {
     const old = activeTab.value
     if (!old) return openTab(p)
-    const tab = newTab(p, p.language ? (Number(p.language === 'sinh') as Columns) : old.columns)
+    const tab = newTab(p, p.languageColumn ? columnsFor(p) : old.columns)
     tab.showScanPage = old.showScanPage
     tabList.value.splice(activeInd.value, 1, tab)
     const t = tabList.value[activeInd.value]

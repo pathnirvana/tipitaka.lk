@@ -77,8 +77,10 @@ test('search and dictionary through the bridge', async ({ page }) => {
   await setupBridge(page)
   await page.goto('http://app.local/android_asset/index.html#/fts/බ්‍රහ්මජාල')
   await expect(page.getByTestId('fts-item').first()).toBeVisible()
+  // the dictionary is an engine operation: the sql bridge of the current apps can not run it (the engine comes with the
+  // next native release) - a clear message instead of a broken page
   await page.goto('http://app.local/android_asset/index.html#/dict/ධම්ම')
-  await expect(page.getByTestId('dict-match').first()).toBeVisible()
+  await expect(page.getByTestId('dict-error')).toContainText('නව සංස්කරණයක්')
   await page.goto('http://app.local/android_asset/index.html#/title/brahmajala')
   await expect(page.locator('[data-testid="title-result"][data-key="dn-1-1"]')).toBeVisible()
   await page.goto("http://app.local/android_asset/index.html#/fts/කුසල OR අකුසල")

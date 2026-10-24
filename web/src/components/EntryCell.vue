@@ -13,7 +13,7 @@
       :class="{ '!inline-flex': menuOpen }" title="විකල්ප" data-testid="entry-options" @click.stop="menuOpen = !menuOpen">
       <IconDots />
     </button>
-    <Floating v-if="menuOpen" :open="menuOpen" :anchor="dots ?? null" @close="menuOpen = false">
+    <Floating v-if="menuOpen" :open="menuOpen" :anchor="dots ?? null" close-only @close="menuOpen = false">
       <div class="min-w-[220px] py-1 text-sm" @click="menuOpen = false">
         <button class="menu-item" @click="copyLink"><IconShare class="mr-3" />link එකක් ලබාගන්න</button>
         <button class="menu-item" @click="copyContent"><IconCopy class="mr-3" />ඡේදය copy කරගන්න</button>
