@@ -8,7 +8,7 @@ const src = 'public/static/text', out = 'e2e/fixtures/text'
 // file -> number of pages to keep (0 = all)
 const files: Record<string, number> = {
   'dn-1': 30, 'an-1': 20, 'an-10': 20, 'kn-khp': 0, 'kn-dhp': 25, 'kn-thig': 20, 'ap-pat': 12,
-  'atta-dn-1': 20, 'ap-kvu': 4, 'ap-kvu-8': 0, 'vp-prj': 6,
+  'atta-dn-1': 40, 'ap-kvu': 4, 'ap-kvu-8': 0, 'vp-prj': 6,
 }
 fs.mkdirSync(out, { recursive: true })
 for (const [f, n] of Object.entries(files)) {

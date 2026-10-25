@@ -54,6 +54,8 @@
       <nav class="panel-section">
         <RouterLink to="/settings" class="panel-row" data-testid="menu-settings" @click="ui.showPanel = false"><IconCog class="panel-icon" /><span class="flex-1">තවත් සැකසුම් / Settings</span></RouterLink>
         <RouterLink to="/bookmarks" class="panel-row" data-testid="menu-bookmarks" @click="ui.showPanel = false"><IconStar class="panel-icon text-star" /><span class="flex-1">තරු යෙදූ සූත්‍ර / Bookmarks</span></RouterLink>
+        <RouterLink to="/map" class="panel-row" data-testid="menu-map" @click="ui.showPanel = false"><IconMap class="panel-icon" /><span class="flex-1">ස්ථාන සිතියම / Map</span></RouterLink>
+        <RouterLink to="/names" class="panel-row" data-testid="menu-names" @click="ui.showPanel = false"><IconPeople class="panel-icon" /><span class="flex-1">ස්ථාන සහ පුද්ගලයන් / Names</span></RouterLink>
         <RouterLink to="/abbreviations" class="panel-row" data-testid="menu-abbreviations" @click="ui.showPanel = false"><IconAsterisk class="panel-icon" /><span class="flex-1">කෙටි යෙදුම් / Abbreviations</span></RouterLink>
         <RouterLink to="/" class="panel-row" @click="ui.showPanel = false"><IconHome class="panel-icon" /><span class="flex-1">මුල් පිටුව / Home</span></RouterLink>
         <a class="panel-row" href="https://pathnirvana.github.io/tipitaka.lk/" target="_blank" rel="noopener"><IconInfo class="panel-icon" /><span class="flex-1">අප ගැන / About</span></a>
@@ -69,6 +71,8 @@ import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import IconClose from '~icons/mdi/close'
 import IconPalette from '~icons/mdi/palette'
+import IconMap from '~icons/mdi/map-outline'
+import IconPeople from '~icons/mdi/account-group-outline'
 import IconFormatSize from '~icons/mdi/format-size'
 import IconMinus from '~icons/mdi/minus'
 import IconPlus from '~icons/mdi/plus'

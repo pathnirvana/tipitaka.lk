@@ -23,6 +23,8 @@ export default defineComponent({
     hideFootnotes: { type: Boolean, default: false },
     /** wrap every word (both languages, digits too) with data-w = its index in shared/tokenize, for alignment and audio timings */
     indexWords: { type: Boolean, default: false },
+    /** underlined words (needs indexWords): word index -> gloss ids (data-g) and classes (composables/glosses.ts) */
+    glossWords: { type: Map as PropType<Map<number, { g: string; cls: string }> | null>, default: null },
   },
   setup(props) {
     const settings = useSettings()
@@ -36,7 +38,8 @@ export default defineComponent({
         if (indexer) return t.split(WORD_SPLIT).map((part, i) => {
           if (!(i % 2)) return part
           const w = indexer.next(part)
-          return h('span', { class: /^\d+$/.test(part) ? 'wn' : 'w', ...(w >= 0 ? { 'data-w': w } : {}) }, part)
+          const gl = w >= 0 ? props.glossWords?.get(w) : undefined
+          return h('span', { class: (/^\d+$/.test(part) ? 'wn' : 'w') + (gl ? ' ' + gl.cls : ''), ...(w >= 0 ? { 'data-w': w } : {}), ...(gl ? { 'data-g': gl.g } : {}) }, part)
         }).filter(p => p !== '')
         if (!props.wrapWords) return [t]
         // split() with a capture group alternates [non-word, word, non-word, ...] so odd indexes are words

@@ -1,5 +1,6 @@
 <!-- dictionary pane in the reader (tipitaka.app study panel): a column on the right of wide screens, otherwise a bottom
-     sheet of the height the reader sets by dragging its handle (remembered). Tabs: the dictionary (setting / atta later). -->
+     sheet of the height the reader sets by dragging its handle (remembered). Tabs: the dictionary, the aṭṭhakathā (mūla) of
+     the clicked word or paragraph, the setting. -->
 <template>
   <aside v-if="dict.show" :class="dictSide ? 'fixed bottom-0 right-0 z-30 flex flex-col border-l border-line bg-surface'
     : 'fixed inset-x-0 bottom-0 z-40 flex flex-col rounded-t-2xl border-t border-line bg-surface shadow-2xl'"
@@ -9,10 +10,17 @@
       <div class="h-1.5 w-12 rounded-full bg-line" />
     </div>
     <div class="flex shrink-0 items-center border-b border-line px-2 py-1">
-      <button v-for="t in TABS" :key="t.id" :class="['rounded-lg px-3 py-1 text-[15px]', dict.tab === t.id ? 'bg-primary-soft text-primary' : 'text-muted hover:bg-surface2']"
+      <button v-for="t in tabsShown" :key="t.id" :class="['rounded-lg px-3 py-1 text-[15px]', dict.tab === t.id ? 'bg-primary-soft text-primary' : 'text-muted hover:bg-surface2']"
         :data-testid="`dict-tab-${t.id}`" @click="dict.tab = t.id">{{ t.label }}</button>
       <span class="flex-1" />
       <button class="icon-btn" title="close" data-testid="inline-dict-close" @click="dict.close()"><IconClose /></button>
+    </div>
+    <div v-if="dict.tab !== 'dict' && dict.ctx" class="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-2">
+      <template v-if="dict.tab === 'atta'">
+        <GlossView v-if="dict.glosses.length" :glosses="dict.glosses" />
+        <LinksView v-else :file="dict.ctx.file" :page="dict.ctx.page" :entry="dict.ctx.entry" />
+      </template>
+      <SettingView v-else :node-key="dict.ctx.key" :file="dict.ctx.file" :page="dict.ctx.page" :entry="dict.ctx.entry" />
     </div>
     <template v-if="dict.tab === 'dict'">
       <div class="flex shrink-0 items-center px-2 py-1.5">
@@ -36,13 +44,26 @@ import IconBackspace from '~icons/mdi/backspace-outline'
 import IconMagnify from '~icons/mdi/magnify'
 import IconClose from '~icons/mdi/close'
 import DictView from './DictView.vue'
+import LinksView from './LinksView.vue'
+import GlossView from './GlossView.vue'
+import SettingView from './SettingView.vue'
 import { useInlineDict } from '@/stores/inlineDict'
 import { useSettings } from '@/stores/settings'
 import { smAndUp, viewport } from '@/composables/breakpoints'
 import { useLayout, DICT_WIDTH } from '@/composables/layout'
 
-const TABS = [{ id: 'dict', label: 'ශබ්දකෝෂය' }] as const
+// the paragraph's tabs once a paragraph is known (a clicked word, the paragraph menu)
+const tabsShown = computed(() => [
+  { id: 'dict' as const, label: 'ශබ්දකෝෂය' },
+  ...(dict.ctx ? [{ id: 'atta' as const, label: attaLabel.value },
+    { id: 'setting' as const, label: 'ස්ථානය' }] : []),
+])
 const dict = useInlineDict(), settings = useSettings()
+// the explanations of a clicked word are aṭṭhakathā (a mūla word) or mūla (an aṭṭhakathā lemma); else the paragraph's other side
+const attaLabel = computed(() => {
+  const toMula = dict.glosses.length ? dict.glosses[0].side === 'c' : !!dict.ctx?.file.startsWith('atta-')
+  return (toMula ? 'මූල පාළිය' : 'අටුවාව') + (dict.glosses.length ? ` (${dict.glosses.length})` : '')
+})
 const { dictSide, headerHeight } = useLayout()
 // the input follows the clicked word; an edited word is searched (debounced)
 const input = ref(dict.word)

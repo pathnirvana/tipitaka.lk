@@ -38,7 +38,7 @@
         <button class="icon-btn ml-1 text-xl" :class="{ 'text-primary': ui.showPanel }" title="සැකසුම් සහ සබැඳි" data-testid="panel-toggle" @click="ui.showPanel = !ui.showPanel"><IconMore /></button>
       </div>
     </div>
-    <TabsBar v-if="isTextTab" />
+    <TabsBar v-if="isTextTab && !columnsView" />
   </header>
 </template>
 
@@ -46,6 +46,7 @@
 import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import IconMenu from '~icons/mdi/menu'
+import { useLayout } from '@/composables/layout'
 import IconTitle from '~icons/mdi/format-title'
 import IconTextSearch from '~icons/mdi/text-search'
 import IconDict from '~icons/mdi/book-open-page-variant'
@@ -69,6 +70,7 @@ import { useTabColumns } from '@/composables/columns'
 
 const ui = useUi(), tabs = useTabs(), search = useSearch(), settings = useSettings()
 const route = useRoute(), router = useRouter()
+const { columnsView } = useLayout()
 const typeBtn = ref<HTMLElement>()
 const typeOpen = ref(false)
 

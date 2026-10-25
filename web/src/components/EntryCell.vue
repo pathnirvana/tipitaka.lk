@@ -3,7 +3,7 @@
   <div class="entry group relative px-2 py-1.5" :data-page="row.page_idx" :data-lang="lang" :data-entry="row.entry_idx">
     <div :class="['entry-text', type, { 'audio-playing': audioPlaying }]" :data-level="level">
       <AtuwaLink v-if="isHeading && row.node_key" :mirror-key="row.mirror_key" :language="lang" />
-      <RichText :text="text" :lang="lang" :terms="terms" :wrap-words="lang === 'pali'" :hide-footnotes="hideFootnotes" :index-words="indexWords" />
+      <RichText :text="text" :lang="lang" :terms="terms" :wrap-words="lang === 'pali'" :hide-footnotes="hideFootnotes" :index-words="indexWords || !!glossWords" :gloss-words="glossWords" />
       <template v-if="isHeading && row.node_key">
         <ShareButton :link="`/${row.node_key}/${lang}`" />
         <BookmarkButton :bookmark="bookmark" />
@@ -17,7 +17,8 @@
       <div class="min-w-[220px] py-1 text-sm" @click="menuOpen = false">
         <button class="menu-item" @click="copyLink"><IconShare class="mr-3" />link එකක් ලබාගන්න</button>
         <button class="menu-item" @click="copyContent"><IconCopy class="mr-3" />ඡේදය copy කරගන්න</button>
-        <AtuwaLink :mirror-key="row.mirror_key" :language="lang" list-item />
+        <button v-if="row.mirror_key" class="menu-item" data-testid="menu-alongside" @click="alongside"><IconColumns class="mr-3" />{{ isAttaText ? 'මූල පාළිය සමඟ කියවන්න' : 'අටුවාව සමඟ කියවන්න' }}</button>
+        <button class="menu-item" data-testid="menu-setting" @click="openSetting"><IconPlace class="mr-3" />දේශනා කළ ස්ථානය</button>
         <BookmarkButton :bookmark="bookmark" list-item />
         <button v-if="audioAvailable" class="menu-item" @click="toggleAudio">
           <IconPause v-if="audioPlaying" class="mr-3 text-primary" /><IconPlay v-else class="mr-3" />
@@ -35,6 +36,8 @@ import IconShare from '~icons/mdi/share-variant'
 import IconCopy from '~icons/mdi/content-copy'
 import IconPlay from '~icons/mdi/play'
 import IconPause from '~icons/mdi/pause'
+import IconColumns from '~icons/mdi/view-split-vertical'
+import IconPlace from '~icons/mdi/map-marker-outline'
 import RichText from './RichText'
 import AtuwaLink from './AtuwaLink.vue'
 import ShareButton from './ShareButton.vue'
@@ -50,10 +53,14 @@ import { copyText } from '@/composables/clipboard'
 import { useUi } from '@/stores/ui'
 import { useAudio } from '@/stores/audio'
 import { useTabs } from '@/stores/tabs'
+import { useInlineDict } from '@/stores/inlineDict'
+import { links } from '@/data/names'
+import { openAlongside } from '@/composables/alongside'
 import { useSettings } from '@/stores/settings'
 import type { Bookmark } from '@/stores/bookmarks'
 
-const props = defineProps<{ row: EntryRow; lang: 'pali' | 'sinh'; file: string; terms: FtsHighlight | null; hideFootnotes: boolean; indexWords?: boolean }>()
+const props = defineProps<{ row: EntryRow; lang: 'pali' | 'sinh'; file: string; terms: FtsHighlight | null; hideFootnotes: boolean; indexWords?: boolean
+  glossWords?: Map<number, { g: string; cls: string }> }>()
 const ui = useUi(), audio = useAudio(), settings = useSettings(), tabs = useTabs()
 const dots = ref<HTMLElement>()
 const menuOpen = ref(false)
@@ -78,6 +85,17 @@ async function copyLink() {
 }
 async function copyContent() {
   if (await copyText(beautifyText(stripForCopy(text.value), props.lang, settings.letterOptions))) ui.notifyType('content-copied')
+}
+const isAttaText = computed(() => props.file.startsWith('atta-'))
+/** the paragraph's setting (place, people) in the pane */
+function openSetting() {
+  useInlineDict().openTab('setting', { file: props.file, page: props.row.page_idx, entry: props.row.entry_idx, key: props.row.node_key })
+}
+/** the aṭṭhakathā (mūla) alongside, at the first passage linked to the paragraph, else at the start of the sutta's aṭṭhakathā */
+async function alongside() {
+  const t = (await links(props.file, props.row.page_idx, props.row.entry_idx).catch(() => []))[0]
+  if (t) openAlongside(t.key, [t.page, t.entry])
+  else openAlongside(props.row.mirror_key)
 }
 function toggleAudio() {
   if (audioPlaying.value) audio.togglePlay()

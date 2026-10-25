@@ -1,0 +1,87 @@
+/* the map of places (draw.ts): colours of the light / sepia / green / dark themes */
+.tmap {
+  --map-sea: #dfe7ea; --map-land: #f6efe2; --map-mountain: #e4d6bf; --map-river: #6e9fbf; --map-coast: #9fb6c0;
+  --map-border: #c9b9a3; --map-label: #6b625c; --map-river-label: #4f7c99; --map-place: var(--c-primary);
+  --map-place-fill: #fff; --map-journey: #b4541f;
+  background: var(--map-sea); font-family: inherit;
+}
+.theme-sepia .tmap {
+  --map-sea: #d9dccd; --map-land: #f1e6cc; --map-mountain: #e0cfa8; --map-river: #6f93a3; --map-coast: #a6b2a2;
+}
+.theme-green .tmap {
+  --map-sea: #d3e1dc; --map-land: #eaf1e3; --map-mountain: #d5dcc1; --map-river: #5f93a8; --map-coast: #9fb5ab;
+  --map-border: #b5c4ab; --map-label: #55645a; --map-river-label: #4a7d8f; --map-journey: #8a5a1f;
+}
+.dark .tmap {
+  --map-sea: #1a2429; --map-land: #2a2622; --map-mountain: #3f362d; --map-river: #4f86a8; --map-coast: #3f4d53;
+  --map-border: #4d433b; --map-label: #a69c92; --map-river-label: #7fb2d1; --map-place-fill: #23201d; --map-journey: #f0a27a;
+}
+.tmap .tm-land { fill: var(--map-land); fill-opacity: 1; }
+.tmap .tm-mountain { fill: var(--map-mountain); fill-opacity: 0.8; }
+.tmap .tm-coast { stroke: var(--map-coast); }
+.tmap .tm-border { stroke: var(--map-border); stroke-dasharray: 4 3; stroke-opacity: 0.8; }
+.tmap .tm-river { stroke: var(--map-river); stroke-opacity: 0.75; fill: none; stroke-linecap: round; }
+.tmap .tm-river-named { stroke-opacity: 1; }
+.tmap .tm-river-on { stroke: var(--map-river); stroke-opacity: 0.9; fill: none; }
+.tmap .tm-journey { stroke: var(--map-journey); stroke-dasharray: 7 5; fill: none; stroke-linecap: round; }
+/* with today's map the drawing gives way to the tiles */
+.tmap.tm-online .tm-land, .tmap.tm-online .tm-mountain, .tmap.tm-online .tm-coast, .tmap.tm-online .tm-border,
+.tmap.tm-online .tm-river:not(.tm-river-on) { display: none; }
+.tmap.tm-online .tm-region { fill-opacity: 0.05; }
+
+.tmap .tm-place { stroke: var(--map-place); fill: var(--map-place-fill); fill-opacity: 0.9; }
+.tmap .tm-related { fill: var(--map-place); fill-opacity: 0.35; }
+.tmap .tm-main { fill: var(--map-place); fill-opacity: 1; stroke: var(--map-place-fill); }
+.tmap .tm-context { stroke: var(--map-label); fill: var(--map-label); fill-opacity: 0.5; stroke-opacity: 0.6; }
+.tmap .tm-approx { stroke-dasharray: 3 2; }
+
+.tmap .tm-label { white-space: nowrap; pointer-events: none; }
+.tmap .tm-label span { display: inline-block; transform: translate(-50%, -50%); color: var(--map-label); text-shadow: 0 0 3px var(--map-land), 0 0 2px var(--map-land); }
+.tmap .tm-region-label span { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+.tmap .tm-region-label.tm-janapada-label span { font-size: 12px; }
+.tmap .tm-river-label span { font-size: 11px; font-style: italic; color: var(--map-river-label); }
+.tmap .tm-mountain-label span { font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.7; }
+.tmap.tm-far .tm-region-label:not(.tm-janapada-label), .tmap.tm-far .tm-river-label { display: none; }
+.tmap.tm-near .tm-region-label { opacity: 0.6; }
+
+.tmap .leaflet-tooltip.tm-tip { background: var(--c-surface); color: var(--c-fg); border: 1px solid var(--c-line); box-shadow: 0 1px 4px rgb(0 0 0 / 0.15); font-size: 12px; padding: 2px 6px; }
+.tmap .leaflet-tooltip.tm-tip::before { display: none; }
+.tmap .leaflet-tooltip.tm-tip-label { background: transparent; border: 0; box-shadow: none; padding: 0 2px; font-size: 12px; text-shadow: 0 0 3px var(--map-land), 0 0 3px var(--map-land); }
+.tmap .leaflet-tooltip.tm-tip-label.tm-tip-main { font-size: 14px; }
+.tmap .tm-tip-meaning { color: var(--c-muted); font-size: 11px; }
+
+.tmap .tm-stop { display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: var(--map-journey); color: #fff; font-size: 10px; font-weight: 600; border: 1.5px solid var(--map-place-fill); }
+.tmap .leaflet-control-attribution { background: var(--c-surface); opacity: 0.85; color: var(--c-muted); font-size: 10px; }
+.tmap .leaflet-control-attribution:empty { display: none; }
+.tmap .leaflet-control-attribution a { color: var(--c-muted); }
+.tmap .leaflet-bar a { background: var(--c-surface); color: var(--c-fg); border-color: var(--c-line); }
+.tmap .leaflet-tooltip.tm-tip-label.tm-tip-open { visibility: visible !important; background: var(--c-surface); border: 1px solid var(--c-line); padding: 2px 6px; text-shadow: none; z-index: 10; }
+/* the satellite view: light labels on the imagery */
+.tmap.tm-satellite { --map-label: #f4efe6; --map-river-label: #cfe6f5; --map-land: #1b1a17; }
+.tmap.tm-satellite .tm-region { fill-opacity: 0.04; }
+.tmap.tm-satellite .leaflet-tooltip.tm-tip-label { color: #fff; text-shadow: 0 0 3px #000, 0 0 2px #000; }
+
+/* the shaded relief, blended over the land (the theme's colours stay) */
+.tmap .tm-relief-pane { mix-blend-mode: multiply; opacity: 0.38; }
+.theme-sepia .tmap .tm-relief-pane, .theme-green .tmap .tm-relief-pane { opacity: 0.45; }
+.dark .tmap .tm-relief-pane { mix-blend-mode: soft-light; opacity: 0.9; }
+.tmap.tm-online .tm-relief-pane { display: none; }
+.tmap .tm-region-label.tm-janapada-label span { font-size: 12.5px; font-weight: 600; opacity: 0.75; }
+
+/* the sources behind (i) */
+.tmap .tm-sources { clear: both; display: flex; flex-direction: column; align-items: flex-end; }
+.tmap .tm-sources > * + * { margin-top: 4px; } /* (no flex gap: Chrome 84+) */
+.tmap .tm-sources-button { width: 22px; height: 22px; border-radius: 9999px; border: 1px solid var(--c-line); background: var(--c-surface); color: var(--c-muted);
+  font: italic 600 12px/20px Georgia, serif; text-align: center; cursor: pointer; }
+.tmap .tm-sources-panel { max-width: 300px; padding: 6px 8px; border: 1px solid var(--c-line); border-radius: 6px; background: var(--c-surface); color: var(--c-muted);
+  font-size: 11px; line-height: 1.5; text-align: right; }
+.tmap .tm-sources-panel a { color: var(--c-link); }
+
+/* on today's map and the satellite view the places stand out: solid, a white ring, white halos on the labels */
+.tmap.tm-online .tm-place { fill: var(--map-place); fill-opacity: 0.95; stroke: #fff; stroke-width: 2px; stroke-opacity: 1; }
+.tmap.tm-online .tm-main { fill: #d64b12; stroke-width: 3px; }
+.tmap.tm-online .tm-context { fill: #555; fill-opacity: 0.9; stroke: #fff; stroke-width: 1.5px; }
+.tmap.tm-online .leaflet-tooltip.tm-tip-label { color: #2b2522; font-weight: 600; text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 2px #fff; }
+.tmap.tm-online .tm-label span { text-shadow: 0 0 3px #fff, 0 0 2px #fff; }
+.tmap.tm-satellite .leaflet-tooltip.tm-tip-label { color: #fff; text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 2px #000; }
+.tmap.tm-satellite .tm-label span { text-shadow: 0 0 3px #000, 0 0 2px #000; }

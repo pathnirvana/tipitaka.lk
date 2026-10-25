@@ -10,7 +10,7 @@
   <Transition enter-from-class="opacity-0" leave-to-class="opacity-0">
     <div v-if="ui.showTree && narrow" class="fixed inset-0 z-20 bg-black/30 transition-opacity duration-200" @click="ui.showTree = false" />
   </Transition>
-  <main class="transition-[padding] duration-200" :style="{ paddingTop: `${headerHeight}px`, paddingLeft: treeColumn ? `${TREE_WIDTH}px` : '0', paddingRight: `${dictRight}px`, paddingBottom: `${dictBottom}px` }">
+  <main class="transition-[padding-left,padding-right] duration-200" :style="{ paddingTop: `${headerHeight}px`, paddingLeft: treeColumn ? `${TREE_WIDTH}px` : '0', paddingRight: `${dictRight}px`, paddingBottom: `${dictBottom}px` }">
     <RouterView />
   </main>
   <div v-if="ui.snackbar.show" class="fixed left-1/2 top-16 z-50 -translate-x-1/2 rounded-full bg-info px-5 py-2 text-center text-white shadow-lg" role="status" data-testid="snackbar">

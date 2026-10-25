@@ -1,8 +1,10 @@
-<!-- open suttas: scrollable tab strip with scroll buttons and a list of all tabs -->
+<!-- open suttas: scrollable tab strip with scroll buttons and a list of all tabs; listOnly: just the list (the header of
+     the last column of the columns view, which has no tab strip) -->
 <template>
-  <div class="flex h-10 items-stretch border-t border-line" data-testid="tabs-bar">
+  <div :class="listOnly ? 'flex' : 'flex h-10 items-stretch border-t border-line'" :data-testid="listOnly ? 'tabs-list-only' : 'tabs-bar'">
+    <template v-if="!listOnly">
     <button v-show="overflow" class="icon-btn shrink-0 rounded-none" title="scroll left" @click="scrollBy(-1)"><IconLeft /></button>
-    <div ref="strip" class="no-scrollbar flex min-w-0 flex-1 items-end overflow-x-auto" :class="{ 'justify-center': !overflow }" role="tablist" @scroll="updateOverflow">
+    <div ref="strip" class="no-scrollbar relative flex min-w-0 flex-1 items-end overflow-x-auto" :class="{ 'justify-center': !overflow }" role="tablist" @scroll="updateOverflow">
       <div v-for="(tab, i) in tabs.tabList" :key="tab.uid" role="tab" :aria-selected="i === tabs.activeInd" :title="names[i]"
         :class="['group flex max-w-[200px] shrink-0 cursor-pointer items-center whitespace-nowrap border-b-2 py-1.5 pl-3 pr-1', i === tabs.activeInd ? 'border-primary text-primary' : 'border-transparent text-muted hover:text-fg']"
         data-testid="tab" @click="tabs.setActive(i)" @auxclick.prevent="$event.button === 1 && tabs.closeTab(i)">
@@ -13,8 +15,9 @@
       </div>
     </div>
     <button v-show="overflow" class="icon-btn shrink-0 rounded-none" title="scroll right" @click="scrollBy(1)"><IconRight /></button>
-    <div v-if="tabs.tabList.length > 1" class="relative shrink-0 border-l border-line">
-      <button ref="listBtn" class="icon-btn h-full rounded-none px-2" :title="`ඇරි සූත්‍ර ${tabs.tabList.length}`" data-testid="tabs-list" @click="listOpen = !listOpen">
+    </template>
+    <div v-if="tabs.tabList.length > 1" :class="['relative shrink-0', { 'border-l border-line': !listOnly }]">
+      <button ref="listBtn" :class="['icon-btn rounded-none px-2', listOnly ? '' : 'h-full']" :title="`ඇරි සූත්‍ර ${tabs.tabList.length}`" data-testid="tabs-list" @click="listOpen = !listOpen">
         <IconTabs /><span class="ml-0.5 text-xs">{{ tabs.tabList.length }}</span>
       </button>
       <Floating :open="listOpen" :anchor="listBtn ?? null" @close="listOpen = false">
@@ -49,6 +52,7 @@ import { useTabs } from '@/stores/tabs'
 import { useTree } from '@/stores/tree'
 import { useAudio } from '@/stores/audio'
 
+defineProps<{ listOnly?: boolean }>()
 const tabs = useTabs(), tree = useTree(), audio = useAudio()
 const names = computed(() => tabs.tabList.map(t => (t.node ? tree.nameOf(t.node) : t.key)))
 const strip = ref<HTMLElement>(), listBtn = ref<HTMLElement>(), listEl = ref<HTMLElement>()
@@ -59,8 +63,12 @@ function scrollBy(dir: number) { strip.value?.scrollBy({ left: dir * strip.value
 async function revealActive() {
   await nextTick()
   updateOverflow()
-  const el = strip.value?.querySelectorAll('[role="tab"]')[tabs.activeInd] as HTMLElement | undefined
-  el?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+  // only the strip scrolls (scrollIntoView could scroll the page too: the auto-hidden app bar then hid the tabs)
+  const st = strip.value, el = st?.querySelectorAll('[role="tab"]')[tabs.activeInd] as HTMLElement | undefined
+  if (!st || !el) return
+  const left = el.offsetLeft, right = left + el.offsetWidth // (the strip is the tabs' offset parent)
+  if (left < st.scrollLeft) st.scrollLeft = left
+  else if (right > st.scrollLeft + st.clientWidth) st.scrollLeft = right - st.clientWidth
 }
 watch(() => [tabs.activeInd, tabs.tabList.length], revealActive)
 watch(listOpen, async o => { if (o) { await nextTick(); listEl.value?.querySelector('[data-active="true"]')?.scrollIntoView({ block: 'nearest' }) } })

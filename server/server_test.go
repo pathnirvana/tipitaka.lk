@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -354,10 +355,10 @@ func TestDictOps(t *testing.T) {
 	a := newTestApp(t, "../e2e/fixtures")
 	h := a.Handler()
 	var look struct {
-		Word    string `json:"word"`
-		Dpd     []struct{ Lemma string } `json:"dpd"`
+		Word    string                        `json:"word"`
+		Dpd     []struct{ Lemma string }      `json:"dpd"`
 		Entries []struct{ Dict, Word string } `json:"entries"`
-		Grammar json.RawMessage `json:"grammar"`
+		Grammar json.RawMessage               `json:"grammar"`
 	}
 	rec := get(t, h, "/api/lookup?w=dhammaṃ&v="+a.apiHash)
 	if err := json.Unmarshal(rec.Body.Bytes(), &look); err != nil || rec.Code != 200 {
@@ -371,7 +372,7 @@ func TestDictOps(t *testing.T) {
 	}
 	var dict struct {
 		Entries []struct{ Dict, Word string } `json:"entries"`
-		Dpd     []struct{ Lemma string } `json:"dpd"`
+		Dpd     []struct{ Lemma string }      `json:"dpd"`
 	}
 	json.Unmarshal(get(t, h, "/api/dict?w=dhamma&dicts=si-sumangala,en-pts").Body.Bytes(), &dict)
 	if len(dict.Entries) == 0 || len(dict.Dpd) != 0 {
@@ -389,5 +390,116 @@ func TestDictOps(t *testing.T) {
 	}
 	if rec := get(t, h, "/api/nosuchop"); rec.Code != 404 {
 		t.Errorf("unknown op: %d", rec.Code)
+	}
+}
+
+func TestNamesOps(t *testing.T) {
+	a := newTestApp(t, "../e2e/fixtures")
+	h := a.Handler()
+	decode := func(target string, v any) {
+		t.Helper()
+		rec := get(t, h, target)
+		if rec.Code != 200 {
+			t.Fatalf("%s: %d %s", target, rec.Code, rec.Body.String())
+		}
+		if err := json.Unmarshal(rec.Body.Bytes(), v); err != nil {
+			t.Fatalf("%s: %v", target, err)
+		}
+	}
+	// mūla -> aṭṭhakathā and back
+	var links []struct {
+		Key, File   string
+		Page, Entry int
+	}
+	decode("/api/links?file=dn-1&page=1&entry=0", &links)
+	if len(links) == 0 || !strings.HasPrefix(links[0].File, "atta-") {
+		t.Fatalf("links of dn-1 1:0: %+v", links)
+	}
+	var back []struct {
+		File        string
+		Page, Entry int
+	}
+	decode("/api/links?file="+links[0].File+"&page="+strconv.Itoa(links[0].Page)+"&entry="+strconv.Itoa(links[0].Entry), &back)
+	found := false
+	for _, b := range back {
+		found = found || (b.File == "dn-1" && b.Page == 1 && b.Entry == 0)
+	}
+	if !found {
+		t.Errorf("atta -> mūla does not lead back: %+v", back)
+	}
+	var counts map[string]int
+	decode("/api/linkcounts?file=dn-1&from=0&to=2", &counts)
+	if counts["1:0"] < len(links) {
+		t.Errorf("linkcounts 1:0 = %d, links %d", counts["1:0"], len(links))
+	}
+	// glosses: the mūla words a commentary lemma quotes, from both sides
+	type gloss struct {
+		G, P, E, W, EP, EE, EW, TP, TE, TW, TEP, TEE, TEW, XP, XE, XW int
+		Side, File, Key                                               string
+	}
+	var gs []gloss
+	decode("/api/glosses?file=dn-1&from=0&to=1", &gs)
+	if len(gs) == 0 {
+		t.Fatal("no glosses on dn-1 pages 0-1")
+	}
+	before := func(p1, e1, w1, p2, e2, w2 int) bool {
+		return p1 < p2 || (p1 == p2 && (e1 < e2 || (e1 == e2 && w1 <= w2)))
+	}
+	for _, g := range gs {
+		if g.Side != "t" || g.File != "atta-dn-1" || !strings.HasPrefix(g.Key, "atta-dn-1") || !before(g.P, g.E, g.W, g.EP, g.EE, g.EW) ||
+			!before(g.TP, g.TE, g.TW, g.TEP, g.TEE, g.TEW) || !before(g.TEP, g.TEE, g.TEW, g.XP, g.XE, g.XW) {
+			t.Fatalf("gloss from dn-1: %+v", g)
+		}
+	}
+	var cs []gloss
+	decode("/api/glosses?file=atta-dn-1&from="+strconv.Itoa(gs[0].TP)+"&to="+strconv.Itoa(gs[0].TP), &cs)
+	found = false
+	for _, c := range cs {
+		found = found || (c.G == gs[0].G && c.Side == "c" && c.File == "dn-1" && c.P == gs[0].TP && c.TP == gs[0].P && c.TW == gs[0].W)
+	}
+	if !found {
+		t.Errorf("gloss %d not seen from atta-dn-1: %+v", gs[0].G, cs)
+	}
+	// the setting of a sutta: its own, then a sub-node's from the parent
+	var set struct {
+		From  string                        `json:"from"`
+		Roles []struct{ Slug, Role string } `json:"roles"`
+	}
+	decode("/api/settings?key=dn-1-1", &set)
+	slugs := ""
+	for _, r := range set.Roles {
+		slugs += r.Role + ":" + r.Slug + " "
+	}
+	if set.From != "" || !strings.Contains(slugs, "place:rajagaha") {
+		t.Errorf("settings dn-1-1: %+v", set)
+	}
+	// names, places, an entity's page
+	var names []struct{ Slug string }
+	decode("/api/names?q=savatth&limit=5", &names)
+	if len(names) == 0 || names[0].Slug != "savatthi" {
+		t.Errorf("names savatth: %+v", names)
+	}
+	var places []struct {
+		Slug string
+		Prec int
+	}
+	decode("/api/places", &places)
+	if len(places) == 0 || places[0].Prec == 0 {
+		t.Errorf("places: %+v", places)
+	}
+	var page struct {
+		Slug     string
+		Settings []struct{ Key, Role, ParentPali string } `json:"settingNodes"`
+		Mentions []struct {
+			Key   string
+			Count int
+		} `json:"mentionNodes"`
+	}
+	decode("/api/entity?slug=rajagaha", &page)
+	if page.Slug != "rajagaha" || len(page.Settings) == 0 || page.Settings[0].ParentPali == "" {
+		t.Errorf("entity rajagaha: %+v", page)
+	}
+	if rec := get(t, h, "/api/entity?slug=no-such-name"); rec.Code != 404 {
+		t.Errorf("unknown entity: %d", rec.Code)
 	}
 }

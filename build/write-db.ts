@@ -7,6 +7,7 @@ import type { TreeTuple } from './tree'
 import { normalizeForSearch } from '../shared/normalize'
 import { FILTER_KEYS, typeToInt, isPaliOnlyFile } from '../shared/constants'
 import type { Alignments } from './align'
+import type { CstData } from './cst'
 
 export const SCHEMA_VERSION = '2'
 
@@ -48,9 +49,10 @@ export interface WriteDbInput {
   entryNodes: Map<string, number[][]>
   meta: Record<string, string>
   alignments?: Alignments
+  cst?: CstData
 }
 
-export function writeDb(outFile: string, { corpus, tree, order, entryNodes, meta, alignments }: WriteDbInput) {
+export function writeDb(outFile: string, { corpus, tree, order, entryNodes, meta, alignments, cst }: WriteDbInput): string[] {
   for (const f of [outFile, outFile + '-journal', outFile + '-wal']) fs.rmSync(f, { force: true })
   const db = new Database(outFile)
   db.pragma('journal_mode = OFF')
@@ -114,9 +116,11 @@ export function writeDb(outFile: string, { corpus, tree, order, entryNodes, meta
     meta.entry_count = String(entryId)
     for (const [k, v] of Object.entries(meta)) insMeta.run(k, v)
   })()
+  const report = cst ? db.transaction(() => cst.write(db))() : []
   db.exec("INSERT INTO fts(fts) VALUES('optimize')")
   db.exec('ANALYZE')
   db.pragma('journal_mode = DELETE')
   db.exec('VACUUM')
   db.close()
+  return report
 }

@@ -90,7 +90,9 @@ type ssrCache struct {
 	items    map[string]ssrPage
 }
 
-func newSSRCache(maxBytes int) *ssrCache { return &ssrCache{maxBytes: maxBytes, items: map[string]ssrPage{}} }
+func newSSRCache(maxBytes int) *ssrCache {
+	return &ssrCache{maxBytes: maxBytes, items: map[string]ssrPage{}}
+}
 
 func (c *ssrCache) get(k string) (ssrPage, bool) {
 	c.mu.Lock()

@@ -35,6 +35,8 @@ export { expect }
 export const isMobile = (page: Page) => (page.viewportSize()?.width || 1000) < 600
 /** reader text of the given language column */
 export const entries = (page: Page, lang: 'pali' | 'sinh') => page.locator(`[data-testid="text-tab"]:visible .entry[data-lang="${lang}"]`)
+/** the underlined words (aṭṭhakathā glosses) are loaded just after the text and re-render its words: clicks wait for them */
+export const glossesLoaded = (page: Page) => expect(page.locator('[data-testid="text-tab"]:visible .gl').first()).toBeVisible()
 export async function openDrawerIfClosed(page: Page) {
   if (!(await page.getByTestId('drawer').isVisible())) await page.getByTestId('tree-toggle').click()
 }

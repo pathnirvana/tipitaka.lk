@@ -1,4 +1,4 @@
-import { test, expect, entries, isMobile, openDrawerIfClosed } from './fixtures'
+import { test, expect, entries, isMobile, openDrawerIfClosed, glossesLoaded } from './fixtures'
 import type { Page } from '@playwright/test'
 
 const node = async (page: Page, key: string) => (await (await page.request.get(`/api/q/tree.node?key=${key}`)).json())[0]
@@ -139,6 +139,7 @@ test('next / previous sutta opens the new sutta at its start (A36)', async ({ pa
 
 test('tabs: open, switch, close; closing the last goes home', async ({ page }) => {
   await page.goto('/dn-1-1/pali')
+  await glossesLoaded(page)
   await expect(page.getByTestId('tab')).toHaveCount(1)
   await page.locator('.entry-text.heading [data-testid="atuwa-link"]').first().click() // opens atuwa in a new tab
   await expect(page.getByTestId('tab')).toHaveCount(2)

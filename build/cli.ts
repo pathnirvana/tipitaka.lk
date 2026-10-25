@@ -14,6 +14,7 @@ import { validateCorpus, toBaseline, newWarnings, type Baseline } from './valida
 import { mapEntriesToNodes, legacyHeadingMapping } from './entry-nodes'
 import { writeDb, SCHEMA_VERSION } from './write-db'
 import { Alignments, ALIGN_DIR } from './align'
+import { CstData } from './cst'
 import { writeSitemap, writeFixtureDict } from './emit'
 
 const args = process.argv.slice(2)
@@ -83,11 +84,12 @@ function main() {
   fs.mkdirSync(outDir, { recursive: true })
   const queriesSql = fs.readFileSync('server/queries.sql', 'utf-8')
   const alignments = new Alignments(alignDir)
+  const cst = new CstData()
   // api responses are cached for a year under api_hash: it covers everything they depend on - the texts, the
   // alignments, the queries and engine code (response shapes) and the dictionary db (build/dict.ts stamps lk_built_at)
   const engineSrc = fs.existsSync('server/engine') ? fs.readdirSync('server/engine').filter(f => f.endsWith('.go') && !f.endsWith('_test.go')).sort()
     .map(f => fs.readFileSync(path.join('server/engine', f), 'utf-8')).join('\n') : ''
-  const apiHash = crypto.createHash('sha256').update(`${corpus.contentHash}|${alignments.hash}|${SCHEMA_VERSION}|${queriesSql}|${engineSrc}|${dictStamp('db/dict.db')}`).digest('hex').slice(0, 16)
+  const apiHash = crypto.createHash('sha256').update(`${corpus.contentHash}|${alignments.hash}|${SCHEMA_VERSION}|${queriesSql}|${engineSrc}|${dictStamp('db/dict.db')}|${cst.hash}`).digest('hex').slice(0, 16)
   let gitCommit = ''
   try { gitCommit = execSync('git rev-parse --short HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim() } catch { /* not a git checkout */ }
   const meta: Record<string, string> = {
@@ -96,7 +98,8 @@ function main() {
   }
   const dbFile = path.join(outDir, 'text.db')
   const t1 = Date.now()
-  writeDb(dbFile, { corpus, tree, order, entryNodes, meta, alignments })
+  const cstReport = writeDb(dbFile, { corpus, tree, order, entryNodes, meta, alignments, cst })
+  report.push('', ...cstReport)
   report.push('', ...alignments.report())
   const size = fs.statSync(dbFile).size
   console.log(`wrote ${dbFile} (${(size / 1e6).toFixed(1)} MB) in ${((Date.now() - t1) / 1000).toFixed(1)} s`)

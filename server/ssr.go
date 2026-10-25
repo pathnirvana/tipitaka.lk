@@ -19,7 +19,7 @@ import (
 // and <script id="ssr-data"> with the exact named query results the reader needs (pre-fills the client cache).
 
 var reservedRoutes = map[string]bool{"": true, "settings": true, "abbreviations": true, "bookmarks": true,
-	"title": true, "dict": true, "fts": true}
+	"title": true, "dict": true, "fts": true, "map": true, "names": true}
 
 var (
 	eIndRe   = regexp.MustCompile(`^(\d+)-(\d+)$`)

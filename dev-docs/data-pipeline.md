@@ -1,6 +1,7 @@
 # Data pipeline
 
-`npm run build:data` (build/cli.ts) - reads `public/static/text/*.json` and `dev/alignments/*.json` only, writes:
+`npm run build:data` (build/cli.ts) - reads `public/static/text/*.json`, `dev/alignments/*.json`, `dev/cst-map/*.json`
+and `dev/cst-data/*.tsv` only, writes:
 * `db/text.db`, `db/build-info.json` (`api_hash`, `db_version`, `content_hash`), `db/build-report.md`
 * `web/public/static/data/{footnote-abbreviations,file-map}.json`, `web/public/static/sitemap.txt`
 
@@ -30,6 +31,13 @@ node(id = DFS order, key, parent_id, level, pali, sinh, file_id, page_idx, entry
 entry(id, file_id, page_idx, entry_idx, node_id, p_type, p_level, p_text, s_type, s_level, s_text, no_audio, key_offset, audio_idx, audio_ph)
 footnote(file_id, page_idx, lang, idx, text)
 align(entry_id, links, pu, sa, src)               schema 2: pali-sinhala word alignments, see below
+entry_link(mula, atta, src)                       mūla entry <-> aṭṭhakathā entry (src 1 paragraph number, 2 lemma)
+entity(id, slug, type, name, name_fold, lemma, family, meaning, lat, lon, prec, mentions, settings)   places, people...
+node_setting(node_id, entity_id, role, ord, source, conf, listed)   place / teacher / with / about of a sutta
+entry_mention(entry_id, entity_id, amb)           the names in an entry
+gloss(id, conf, src, a_entry, a_w, a_eentry, a_ew, x_entry, x_w, m_entry, m_w, m_eentry, m_ew)
+                                                  an aṭṭhakathā lemma (a..ae), the last word of its explanation (x) and
+                                                  the mūla words it quotes (m..me); entry ids, shared/tokenize word numbers
 fts USING fts4(content="", text, tokenize=simple)   docid = entry.id*2 + lang (0 pali, 1 sinh)
 ```
 Types: centered 0, heading 1, paragraph 2, gatha 3, unindented 4. Levels as in the JSON (NULL when absent).
@@ -44,6 +52,34 @@ table only when its text hashes match the current entry texts and all its word n
 the fresh, stale (text changed since aligning: realign these) and invalid records. The store's content hash is part of
 `api_hash`. `src`: 1 model, 2 Opus, 3 reviewer, 4 rule. Fetched by the `text.align` query only while the alignment
 view setting is on.
+
+## tipitaka.app data: commentary links and words, places and people (build/cst.ts)
+tipitaka.app (`../cst`, VRI's CST texts) links each aṭṭhakathā paragraph to the mūla paragraph it explains, aligns the
+commentary's lemmas with the mūla words they quote (glosses, its dev-docs/alignments.md) and knows the places, people
+and settings of the suttas. tipitaka.lk uses them through a map of its entries to CST paragraphs:
+* `npx tsx dev/cst-map/map.ts [files...]` - aligns the words of each lk file with the CST book (Myers diff in chunks of
+  ~300 words, located by trigrams, nearby offsets preferred for repeated passages; `dev/cst/align.ts`) and writes
+  `dev/cst-map/<file>.json` (format `lk-cst/2`: `"page:entry": [sha1-12 of p_text, confidence, "book#idx ...", runs]`,
+  runs `"lkW book#idx cstW len;..."`: the entry's words from lkW (shared/tokenize numbers, the web's `data-w`) are the
+  paragraph's words from cstW) and `report.md` (95% of the entries mapped; the weakest are ap-pat, ap-kvu and a few SN
+  books). ~2 minutes.
+* `npx tsx dev/cst-map/export.ts` - writes the app's links, entities, settings, mentions and mūla-aṭṭhakathā glosses to
+  `dev/cst-data/` (committed, so the build does not need the app's repository). Gloss offsets (UTF-16 in the app's Roman
+  text) become CST word numbers (`romanSpans` in `dev/cst/align.ts`; 99.99% of the paragraphs tokenize identically,
+  the rest are aligned). Rerun both after an upstream (tipitaka.app) update.
+* The build uses a map record only while its hash matches the entry's Pāḷi text: the report counts the stale records
+  (rerun map.ts for those files after text edits). Links of a paragraph mapped to more than 64 entry pairs are dropped.
+  A setting goes to the lk nodes holding at least a quarter of the unit's entries. A gloss is placed through the runs: a
+  word lk reads differently (a variant between two runs of an entry) is the word at the same distance in lk's gap; a
+  gloss whose paragraph is not mapped is dropped (92% placed: 105,377 of 114,833; most of the rest quote mūla
+  paragraphs of SN/MN/Snp that are not mapped). The data's hash is part of `api_hash`.
+
+## Aṭṭhakathā Pāḷi from VRI (dev/atta-vri)
+`npx tsx dev/atta-vri/reimport.ts [--file atta-dn-1] [--write]` brings the aṭṭhakathā Pāḷi up to the VRI text of
+tipitaka.app (word level diff; the base is the commit of the last sync, recorded in `report.md`). lk's pages, entry
+splits, bold and Sinhala stay. Only lk's own choices need care: the Jātaka order, the headings (not aligned) and the
+hand corrections in `keep.tsv`. Without `--write` it only reports (`changes.tsv` applied, `errata.tsv` lk corrections
+kept, `review.tsv` not applied).
 
 ## Fixture corpus
 `npm run build:fixture` builds `e2e/fixtures/db/{text,dict}.db` from `e2e/fixtures/text` (truncated copies made by

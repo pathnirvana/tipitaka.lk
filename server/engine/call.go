@@ -95,7 +95,7 @@ func splitList(p Params, name string) []string {
 }
 
 // Ops are the names accepted by Call.
-var Ops = []string{"meta", "dicts", "dict", "lookup"}
+var Ops = []string{"meta", "dicts", "dict", "lookup", "links", "linkcounts", "settings", "names", "places", "entity", "paranames", "glosses"}
 
 // Call runs an operation. Errors are *ParamError (bad request), ErrNotFound, *ErrTooBroad or internal.
 func (e *Engine) Call(ctx context.Context, op string, p Params) (any, error) {
@@ -119,6 +119,64 @@ func (e *Engine) Call(ctx context.Context, op string, p Params) (any, error) {
 			return e.Lookup(ctx, w, splitList(p, "dicts"), limit)
 		}
 		return e.Dictionary(ctx, w, splitList(p, "dicts"), limit)
+	case "links", "paranames":
+		file, err := str(p, "file")
+		if err != nil {
+			return nil, err
+		}
+		page, err := num(p, "page", -1)
+		if err != nil {
+			return nil, err
+		}
+		entry, err := num(p, "entry", -1)
+		if err != nil {
+			return nil, err
+		}
+		if op == "paranames" {
+			return e.ParaNames(ctx, file, page, entry)
+		}
+		return e.Links(ctx, file, page, entry)
+	case "linkcounts", "glosses":
+		file, err := str(p, "file")
+		if err != nil {
+			return nil, err
+		}
+		from, err := num(p, "from", 0)
+		if err != nil {
+			return nil, err
+		}
+		to, err := num(p, "to", 0)
+		if err != nil {
+			return nil, err
+		}
+		if op == "glosses" {
+			return e.Glosses(ctx, file, from, to)
+		}
+		return e.LinkCounts(ctx, file, from, to)
+	case "settings":
+		key, err := str(p, "key")
+		if err != nil {
+			return nil, err
+		}
+		return e.Settings(ctx, key)
+	case "names":
+		q, err := str(p, "q")
+		if err != nil {
+			return nil, err
+		}
+		limit, err := num(p, "limit", 100)
+		if err != nil {
+			return nil, err
+		}
+		return e.Names(ctx, q, splitList(p, "types"), limit)
+	case "places":
+		return e.Places(ctx)
+	case "entity":
+		slug, err := str(p, "slug")
+		if err != nil {
+			return nil, err
+		}
+		return e.EntityInfo(ctx, slug)
 	}
 	return nil, ErrNotFound
 }

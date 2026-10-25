@@ -26,6 +26,11 @@
       <div class="entry-text mb-2" :style="{ fontSize: s.fontPx }"><b class="rt-bold">නමො තස්ස</b> භගවතො අරහතො සම්මාසම්බුද්ධස්ස</div>
       <input v-model.number="s.fontSize" type="range" :min="FONT_SIZE_RANGE[0]" :max="FONT_SIZE_RANGE[1]" step="1" class="w-full" data-testid="font-size"> <span class="text-[15px]">{{ s.fontSize > 0 ? '+' : '' }}{{ s.fontSize }}</span>
     </section>
+    <section class="card m-1.5 w-full sm:w-[calc(50%-12px)] xl:w-[calc(33.3%-12px)]" data-testid="settings-tab-view">
+      <h2 class="mb-1 text-xl">ඇරි සූත්‍ර පෙන්වන ආකාරය</h2>
+      <p class="mb-2 text-[15px] text-muted">අටුවාව මූල පාළිය සමඟ කියවීමට “පැත්තෙන් පැත්තට” තෝරන්න: වචනයෙන් වචනය එකට අනුචලනය (scroll) වේ.</p>
+      <label v-for="o in tabViewOptions" :key="o.value" class="block"><input v-model="s.tabView" type="radio" :value="o.value" :data-testid="`tab-view-${o.value}`"> {{ o.label }}</label>
+    </section>
     <section class="card m-1.5 w-full sm:w-[calc(50%-12px)] xl:w-[calc(33.3%-12px)]">
       <h2 class="mb-1 text-xl">පාළි සිංහල තීරු තෝරන්න</h2>
       <p class="mb-2 text-[15px] text-muted">නව සූත්‍රයක් ඇරීමේදී පෙන්වන්නේ පාළි, සිංහල හෝ ඒ තීරු දෙකමද බව.</p>
@@ -70,6 +75,12 @@ const switches = [
   { key: 'showPageNumbers', label: 'පොතේ පිටු අංක පෙන්වන්න' }, { key: 'syncTree', label: 'කියවන සූත්‍රය හා නාමාවලිය සමමුහූර්ත (sync) කරන්න' },
   { key: 'autoHideSearchBar', label: 'සෙවුම් කොටුව ඉබේ අරින්න වසන්න' },
   { key: 'alignmentView', label: 'පාළි වචනයට ගැළපෙන සිංහල වචන පෙන්වන්න' },
+  { key: 'glossUnderline', label: 'අටුවාවෙන් විස්තර කෙරෙන වචන යටින් ඉරි අඳින්න' },
+  { key: 'syncColumns', label: 'මූල පාළිය සහ අටුවාව එකට අනුචලනය (scroll) කරන්න' },
+]
+const tabViewOptions = [
+  { value: 'single', label: 'එක් සූත්‍රයක් පමණි' }, { value: 'tabs', label: 'ටැබ් (tabs) ලෙස' },
+  { value: 'columns', label: 'පැත්තෙන් පැත්තට (තීරු ලෙස)' },
 ]
 const defaultColumns = useDefaultColumns()
 const columnText = computed(() => ({ 2: 'පාළි සිංහල දෙකම.', 0: 'පාළි පමණයි.', 1: 'සිංහල පමණයි.' })[defaultColumns.value])

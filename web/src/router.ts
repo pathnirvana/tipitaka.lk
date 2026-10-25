@@ -12,6 +12,8 @@ export const routes = [
   { path: '/title/:term?', name: 'title', component: () => import('./views/TitleSearch.vue') },
   { path: '/dict/:word?', name: 'dict', component: () => import('./views/Dictionary.vue') },
   { path: '/fts/:words?/:options?', name: 'fts', component: () => import('./views/FtsSearch.vue') },
+  { path: '/map', name: 'map', component: () => import('./views/MapView.vue') },
+  { path: '/names/:slug?', name: 'names', component: () => import('./views/Names.vue') },
   { path: '/:key/:eIndStr([0-9\\-]+)?/:language([a-z]{4})?', name: 'Home', component: Reader },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('./views/NotFound.vue') },
 ]

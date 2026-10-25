@@ -6,27 +6,40 @@
    Single font-weight values: ranges need Chrome 62 (WebView 53 would use the bold face for all text) */
 @font-face { font-family: 'sinhala'; src: url('../assets/fonts/AbhayaUni-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
 @font-face { font-family: 'sinhala'; src: url('../assets/fonts/AbhayaUni-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+/* tipitaka.app's interface sizes (its fonts.css): Sinhala interface text at 141.3%, Pāḷi names at 110.1% of the font size
+   (Sinhala letters only: Latin meanings keep the size). Used by the pages from the app (.ui-app: map, names, setting) so
+   they read as in the app; browsers without size-adjust (Chrome < 92, Safari < 17) show the plain sizes */
+@font-face { font-family: 'ui-sinh'; src: url('../assets/fonts/AbhayaUni-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; unicode-range: U+0D80-0DFF, U+200C-200D; size-adjust: 141.3%; }
+@font-face { font-family: 'ui-sinh'; src: url('../assets/fonts/AbhayaUni-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; unicode-range: U+0D80-0DFF, U+200C-200D; size-adjust: 141.3%; }
+@font-face { font-family: 'pali-sinh'; src: url('../assets/fonts/AbhayaUni-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; unicode-range: U+0D80-0DFF, U+200C-200D; size-adjust: 110.1%; }
+@font-face { font-family: 'pali-sinh'; src: url('../assets/fonts/AbhayaUni-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; unicode-range: U+0D80-0DFF, U+200C-200D; size-adjust: 110.1%; }
+.ui-app { font-family: 'ui-sinh', 'sinhala', serif; }
+.ui-app .pali { font-family: 'pali-sinh', 'sinhala', serif; }
 
 /* colour themes (tipitaka.app): light (:root), sepia, green, dark; "auto" picks light or dark (composables/themes.ts).
    info / success / warning / align / star are lk's own (icons, footnote pointers, alignment words, bookmarks) */
 :root {
   --c-primary: #7a2e14; --c-primary-soft: #f3e3d8; --c-accent: #b4541f; --c-info: #2a6496; --c-success: #2e7d32; --c-error: #c62828;
+  --gl-mula: rgba(194, 65, 12, .55); --gl-atta: rgba(67, 56, 202, .5);
   --c-warning: #b26a00; --c-highlight: #ffe58a; --c-align: #cfe4ee; --c-star: #d89614;
   --c-bg: #fbf8f3; --c-surface: #ffffff; --c-surface2: #f3eee7; --c-fg: #2b2522; --c-muted: #6b625c; --c-line: #e6ddd2;
   color-scheme: light;
 }
 .theme-sepia {
   --c-primary: #6b3a1f; --c-primary-soft: #eadcc4; --c-accent: #a0522d; --c-info: #2f5f7f; --c-success: #3d7a3f; --c-error: #b3261e;
+  --gl-mula: rgba(177, 71, 26, .5); --gl-atta: rgba(79, 70, 153, .42);
   --c-warning: #9a5b12; --c-highlight: #f3d36b; --c-align: #d3dccb; --c-star: #b8860b;
   --c-bg: #f4ecd8; --c-surface: #f9f3e3; --c-surface2: #ece2c9; --c-fg: #3b2f22; --c-muted: #76664f; --c-line: #dccdae;
 }
 .theme-green { /* sage: a soft green page, forest green accents */
   --c-primary: #2f5b3c; --c-primary-soft: #d2e2cc; --c-accent: #8a5a1f; --c-info: #2b5f80; --c-success: #2f6b3c; --c-error: #b3261e;
+  --gl-mula: rgba(169, 74, 28, .5); --gl-atta: rgba(75, 74, 154, .42);
   --c-warning: #8a5a1f; --c-highlight: #f1dd8c; --c-align: #c4dcdc; --c-star: #a87b0b;
   --c-bg: #e4ede0; --c-surface: #eef4ea; --c-surface2: #d9e4d4; --c-fg: #1e2a21; --c-muted: #55645a; --c-line: #c6d5c0;
 }
 .dark { /* warm charcoal, not black: less halation around the letters */
   --c-primary: #f0a27a; --c-primary-soft: #3a2a22; --c-accent: #f0a27a; --c-info: #8ab8dc; --c-success: #8fcf94; --c-error: #ef9a9a;
+  --gl-mula: rgba(251, 146, 60, .6); --gl-atta: rgba(165, 180, 252, .6);
   --c-warning: #ffb74d; --c-highlight: #6b5410; --c-align: #2c4f55; --c-star: #ffd54f;
   --c-bg: #1b1917; --c-surface: #23201d; --c-surface2: #2d2925; --c-fg: #e6dfd6; --c-muted: #a69c92; --c-line: #403a34;
   color-scheme: dark;
@@ -55,6 +68,7 @@ input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-co
   .menu-item { @apply flex w-full items-center px-4 py-2.5 text-left text-base; }
   .menu-item:hover { background: var(--c-surface2); }
   .chip { @apply inline-flex items-center rounded-full border border-line px-2 py-0.5 text-[13px]; }
+  .ui-app .chip { @apply px-3 py-1; background: var(--c-surface); } /* (tipitaka.app's chip: text-sm on the element) */
   .input { @apply w-full rounded border border-line bg-surface px-2 py-1 text-fg outline-none; }
   .input:focus { border-color: var(--c-primary); }
   .panel-section { @apply border-b border-line py-1; }
@@ -104,6 +118,14 @@ input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-co
 .fn-abbr { color: var(--c-info); cursor: help; }
 .w.selected-word { background: var(--c-highlight); }
 [data-w].aligned { background: var(--c-align); border-radius: 3px; } /* words linked by the pali-sinhala alignment */
+/* the aṭṭhakathā alignment (tipitaka.app glosses): dashed underlines of the mūla words the aṭṭhakathā explains (in the
+   aṭṭhakathā's colour) and of the aṭṭhakathā's lemmas (in the mūla's); hovered: both sides highlighted */
+.gl { border-bottom: 1px dashed var(--gl-c, var(--c-muted)); cursor: pointer; }
+.gl-atta { --gl-c: var(--gl-atta); }
+.gl-lemma { --gl-c: var(--gl-mula); }
+.gl.gl-hover { background: var(--c-highlight); border-bottom-style: solid; border-radius: 2px; }
+/* a column of a phone (columns view): a little smaller text */
+.narrow-col .entry-text { font-size: 1em; }
 [data-w].chanting, [data-w].chanting-target { background: var(--c-align); border-radius: 3px; box-shadow: 0 2px 0 var(--c-primary); } /* the word being chanted and its sinhala words */
 .scan-img { width: 100%; max-width: 750px; filter: grayscale(100%) contrast(90%) brightness(95%); }
 .dark .scan-img { filter: invert(100%) contrast(70%) brightness(150%); }

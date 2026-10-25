@@ -5,7 +5,7 @@ import doiuse from 'doiuse'
 
 const browsers = ['chrome >= 53', 'safari >= 10', 'ios >= 10', 'firefox >= 52']
 // features that degrade gracefully (cosmetic) and are accepted
-const ignore = ['css3-cursors', 'css-touch-action', 'css-overscroll-behavior', 'css-text-indent', 'css-text-align-last', 'css-selection',
+const ignore = ['css3-cursors', 'css-mixblendmode', 'css-color-adjust', 'css3-cursors-grab', 'pointer', 'css-touch-action', 'css-overscroll-behavior', 'css-text-indent', 'css-text-align-last', 'css-selection',
   'css-scrollbar', 'text-decoration', 'css-resize', 'css-appearance', 'css-sticky', 'css-unset-value', 'css-initial-value',
   'outline', 'css-font-rendering-controls', 'font-unicode-range', 'css-filters', 'css-nesting', 'css-cascade-layers', 'css-touch-action',
   'css-overflow', 'css-text-orientation', 'css3-tabsize', 'variable-fonts', 'font-family-system-ui', 'extended-system-fonts',

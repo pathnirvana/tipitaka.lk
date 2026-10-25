@@ -3,7 +3,7 @@
  * not inside the store actions.
  */
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import type { EInd } from '@shared/routes'
 import type { FtsHighlight } from '@shared/fts-query'
 import type { NodeRow } from '@/data/types'
@@ -24,6 +24,7 @@ export interface OpenParams {
   /** the url names the language (/key/pali, /key/sinh: a shared link): only that column. Otherwise new tabs show the
    * default columns of the settings */
   languageColumn?: boolean
+  afterActive?: boolean // a new tab goes next to the active one (opened alongside), not at the end
 }
 export interface Tab {
   uid: number
@@ -54,10 +55,10 @@ export const useTabs = defineStore('tabs', () => {
   const activeTab = computed<Tab | undefined>(() => tabList.value[activeInd.value])
   const activeKey = computed(() => activeTab.value?.key || '')
 
-  /** v2 getTabColumns */
-  function tabColumns(tab?: Tab): Columns {
+  /** v2 getTabColumns; narrow: a column of the columns view too narrow for pāḷi and sinhala side by side */
+  function tabColumns(tab?: Tab, narrow = false): Columns {
     const cols = tab ? tab.columns : settings.defaultColumns
-    if (cols !== 2 || smAndUp.value) return cols // small screens show one column (v2)
+    if (cols !== 2 || (smAndUp.value && !narrow)) return cols // small screens show one column (v2)
     if (settings.defaultColumns !== 2) return settings.defaultColumns
     return settings.treeLanguage === 'pali' ? 0 : 1
   }
@@ -105,6 +106,7 @@ export const useTabs = defineStore('tabs', () => {
    * The least recently used tabs are closed beyond MAX_TABS.
    */
   async function openTab(p: OpenParams): Promise<Tab> {
+    if (settings.tabView === 'single' && activeTab.value) { openCount.value++; return replaceActive(p) } // one sutta at a time
     openCount.value++
     const columns = columnsFor(p)
     const existing = p.reuse ? findTab(p.key) : -1
@@ -115,8 +117,8 @@ export const useTabs = defineStore('tabs', () => {
       if (p.languageColumn) tab.columns = columns
       return tab
     }
-    tabList.value.push(newTab(p, columns))
-    activeInd.value = tabList.value.length - 1
+    if (p.afterActive && activeInd.value >= 0) tabList.value.splice(++activeInd.value, 0, newTab(p, columns))
+    else { tabList.value.push(newTab(p, columns)); activeInd.value = tabList.value.length - 1 }
     const tab = tabList.value[activeInd.value]
     trimTabs()
     await load(tab, p.eInd)
@@ -191,6 +193,9 @@ export const useTabs = defineStore('tabs', () => {
     if (!n) return
     await replaceActive({ key: n.key, language: tab.language })
   }
+
+  // one sutta at a time: the other tabs close
+  watch(() => settings.tabView, v => { if (v === 'single' && tabList.value.length > 1) closeOthers(activeInd.value) })
 
   /** updates fields of a tab (components never mutate the tab objects directly) */
   function update(tab: Tab, patch: Partial<Pick<Tab, 'columns' | 'showScanPage' | 'scrollY'>>) { Object.assign(tab, patch) }
