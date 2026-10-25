@@ -52,7 +52,7 @@
             <ul class="mb-2 ml-5">
               <li v-for="n in b.items" :key="n.key">
                 <RouterLink :to="'/' + n.key" class="flex items-baseline py-0.5 text-sm hover:text-primary">
-                  <span class="min-w-0 flex-1 truncate">{{ tree.nameOf(n) }}</span><span v-if="(n.count ?? 0) > 1" class="ml-3 text-muted">×{{ n.count }}</span>
+                  <span class="min-w-0 flex-1 truncate">{{ tree.nameOf(n) }}</span><span v-if="(n.count ?? 0) > 1" class="ml-3 text-muted">{{ n.count }}</span>
                 </RouterLink>
               </li>
             </ul>
@@ -69,7 +69,7 @@
             <ul class="mb-2 ml-5">
               <li v-for="n in b.items" :key="n.key">
                 <RouterLink :to="`/${n.key}/${n.page}-${n.entry}`" class="flex items-baseline py-0.5 text-sm hover:text-primary">
-                  <span class="min-w-0 flex-1 truncate">{{ tree.nameOf(n) }}</span><span v-if="(n.count ?? 0) > 1" class="ml-3 text-muted">×{{ n.count }}</span>
+                  <span class="min-w-0 flex-1 truncate">{{ tree.nameOf(n) }}</span><span v-if="(n.count ?? 0) > 1" class="ml-3 text-muted">{{ n.count }}</span>
                 </RouterLink>
               </li>
             </ul>
