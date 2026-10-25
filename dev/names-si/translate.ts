@@ -4,13 +4,18 @@
  * like "villages, towns and cities"), by Gemini. The translations are lk's own, keyed by the English text, so they
  * survive re-exports from the app; only new texts are sent.
  *
- *   GEMINI_API_KEY=… npx tsx dev/names-si/translate.ts [--limit N] [--model gemini-4-argon]
+ *   GEMINI_API_KEY=… npx tsx dev/names-si/translate.ts [--app] [--limit N] [--model gemini-4-argon]
+ *
+ * --app: also every name of tipitaka.app's db (../cst/db/text.db, the names the texts do not mention too), so that the
+ * files cover the app's names as well (it can use them for its Sinhala interface).
  *
  * Writes dev/names-si/meanings.tsv and families.tsv (en, si) - reviewed by hand: a corrected row stays (rows are only
  * added). The build (build/cst.ts) shows the Sinhala and falls back to the English.
  */
 import fs from 'node:fs'
 import path from 'node:path'
+import Database from 'better-sqlite3'
+import { CST_DB } from '../cst/align'
 
 const DIR = 'dev/names-si'
 const KEY = process.env.GEMINI_API_KEY
@@ -63,6 +68,11 @@ async function gemini(items: { i: number; kind: string; en: string }[]): Promise
 async function main() {
   if (!KEY) throw new Error('GEMINI_API_KEY is not set')
   const rows = fs.readFileSync('dev/cst-data/entities.tsv', 'utf-8').split('\n').slice(1).filter(Boolean).map(l => l.split('\t'))
+  if (process.argv.includes('--app')) {
+    const db = new Database(CST_DB, { readonly: true })
+    for (const e of db.prepare('SELECT slug, type, name, lemma, family, meaning FROM entity').all() as Record<string, string>[]) rows.push([e.slug, e.type, e.name, e.lemma, e.family, e.meaning])
+    db.close()
+  }
   const files = { meaning: path.join(DIR, 'meanings.tsv'), category: path.join(DIR, 'families.tsv') }
   const done = { meaning: readTsv(files.meaning), category: readTsv(files.category) }
   // (columns: slug type name lemma family meaning …)

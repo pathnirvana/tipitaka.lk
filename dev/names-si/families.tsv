@@ -14,6 +14,7 @@ DPPN: banker	සිටුවරු
 DPPN: barber	කරණවෑමියන්
 DPPN: bathing-place	නාන තොටුපළවල්
 DPPN: bird	පක්ෂීන්
+DPPN: birds	පක්ෂීහු
 DPPN: bodhisatta	බෝධිසත්වවරු
 DPPN: brahmin	බ්‍රාහ්මණයෝ
 DPPN: brahmins	බ්‍රාහ්මණයන්
@@ -47,6 +48,7 @@ DPPN: cow	එළදෙනුන්
 DPPN: crow	කවුඩන්
 DPPN: daughter	දියණියන්
 DPPN: deer	මුවන්
+DPPN: deities	දෙවිවරු
 DPPN: deity	දෙවිවරු
 DPPN: deva	දෙවිවරුන්
 DPPN: devaputta	දිව්‍යපුත්‍රයන්
@@ -55,10 +57,12 @@ DPPN: disciple	ශ්‍රාවකයෝ
 DPPN: disciples	ශ්‍රාවකයන්
 DPPN: district	පෙදෙස්
 DPPN: dog	බල්ලන්
+DPPN: dwellers	වාසීහු
 DPPN: dynasty	රාජවංශ
 DPPN: elder	තෙරවරුන් වහන්සේලා
 DPPN: elephant	ඇතුන්
 DPPN: elephants	ඇත්තු
+DPPN: envoy	දූතයෝ
 DPPN: family	පවුල්
 DPPN: father	පියවරු
 DPPN: field	කෙත්
@@ -67,6 +71,7 @@ DPPN: fisherman	ධීවරයන්
 DPPN: ford	තොටුපළවල්
 DPPN: forest	වනාන්තර
 DPPN: friend	මිත්‍රයෝ
+DPPN: garden	උයන්
 DPPN: gardener	උයන්පල්ලන්
 DPPN: garland-maker	මාලාකරුවන්
 DPPN: gate	දොරටු
@@ -77,10 +82,12 @@ DPPN: goddess	දෙවඟනන්
 DPPN: gods	දෙවිවරුන්
 DPPN: goose	හංසයන්
 DPPN: governor	පාලකයන්
+DPPN: granddaughter	මිණිබිරියෝ
 DPPN: group	කණ්ඩායම්
 DPPN: grove	වන ලැහැබ්
 DPPN: hall	ශාලා
 DPPN: harbour	වරායවල්
+DPPN: hell	නිරයවල්
 DPPN: hermit	තාපසවරු
 DPPN: hermitage	අසපු
 DPPN: hill	කඳු
@@ -106,6 +113,7 @@ DPPN: locality	ප්‍රදේශ
 DPPN: man	පුරුෂයන්
 DPPN: merchant	වෙළෙන්දන්
 DPPN: minister	ඇමතිවරුන්
+DPPN: monasteries	විහාරාරාම
 DPPN: monastery	විහාරාරාම
 DPPN: monk	භික්ෂූන් වහන්සේලා
 DPPN: monkey	වඳුරන්
@@ -116,6 +124,7 @@ DPPN: mountains	කඳු
 DPPN: musician	සංගීතඥයන්
 DPPN: nāga	නාගයෝ
 DPPN: nāgas	නාගයන්
+DPPN: nation	ජාතීන්
 DPPN: nephew	බෑණනුවෝ
 DPPN: nigama	නියම්ගම්
 DPPN: nigaṇṭha	නිගණ්ඨයන්
@@ -123,10 +132,12 @@ DPPN: novice	සාමණේරයන් වහන්සේලා
 DPPN: nun	භික්ෂුණීන් වහන්සේලා
 DPPN: nuns	භික්ෂුණීන් වහන්සේලා
 DPPN: ocean	සාගර
+DPPN: official	රාජපුරුෂයෝ
 DPPN: owl	බකමූණන්
 DPPN: ox	ගවයන්
 DPPN: palace	මාළිගා
 DPPN: paribbājaka	පරිබ්‍රාජකයන්
+DPPN: pariveṇa	පිරිවෙන්
 DPPN: park	උද්‍යාන
 DPPN: parrot	ගිරවුන්
 DPPN: people	මිනිසුන්
@@ -144,6 +155,7 @@ DPPN: province	පළාත්
 DPPN: purohita	පුරෝහිතයන්
 DPPN: queen	බිසෝවරුන්
 DPPN: race	ජාතීන්
+DPPN: realm	තල
 DPPN: region	ප්‍රදේශ
 DPPN: residence	වාසස්ථාන
 DPPN: river	ගංගා
@@ -161,6 +173,7 @@ DPPN: sea	මුහුදු
 DPPN: seaport	වරායවල්
 DPPN: sect	නිකායන්
 DPPN: sects	නිකායන්
+DPPN: serpent	නාගයෝ
 DPPN: servant	සේවකයන්
 DPPN: seṭṭhi	සිටුවරු
 DPPN: shrine	චෛත්‍යයන්
@@ -168,7 +181,9 @@ DPPN: sister	සොහොයුරියෝ
 DPPN: slave	දාසයන්
 DPPN: snake	සර්පයන්
 DPPN: son	පුත්‍රයෝ
+DPPN: story	කථා වස්තු
 DPPN: street	වීදි
+DPPN: suburb	උපනගර
 DPPN: tank	වැව්
 DPPN: tanks	වැව්
 DPPN: teacher	ආචාර්යවරුන්
@@ -187,6 +202,8 @@ DPPN: verses	ගාථා
 DPPN: viceroy	යුවරජවරු
 DPPN: vihāra	විහාරස්ථාන
 DPPN: village	ගම්
+DPPN: vimāna	විමාන
+DPPN: vulture	ගිජුලිහිණියෝ
 DPPN: weaver	පේෂකාරයන්
 DPPN: well	ළිං
 DPPN: wife	භාර්යාවන්
@@ -259,6 +276,7 @@ place names; onomatopoeia	ස්ථාන; අනුකරණ ශබ්ද
 place names; Sri Lanka	ස්ථාන; ලංකාව
 previous Buddhas	පෙර බුදුවරුන් වහන්සේලා
 previous incarnations of the Buddha	බුදුරජාණන් වහන්සේගේ පෙර ආත්මභාව
+six ascetic teachers; family names	ෂඩ් ශාස්තෘවරයෝ; ගෝත්‍ර නාම
 six ascetic teachers; names of ascetics	ෂට් ශාස්තෘවරු; තාපසවරු
 villages, towns and cities	ගම්, නියම්ගම් සහ නුවරවල්
 villages, towns and cities; Sri Lanka	ගම්, නියම්ගම් සහ නුවරවල්; ශ්‍රී ලංකාව
