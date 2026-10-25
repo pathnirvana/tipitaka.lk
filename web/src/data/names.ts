@@ -14,7 +14,10 @@ export interface Entity {
 export interface SettingRow extends Entity { role: SettingRole; source: string }
 export interface SettingResult { key: string; from: '' | 'parent' | 'first'; roles: SettingRow[] }
 export interface LinkTarget { key: string; file: string; page: number; entry: number; text: string; sinh: string; src: number }
-export interface NodeRef { key: string; pali: string; sinh: string; role?: string; count?: number; page: number; entry: number; parentPali: string; parentSinh: string }
+export interface NodeRef {
+  key: string; pali: string; sinh: string; role?: string; count?: number; page: number; entry: number; parentPali: string; parentSinh: string
+  bookPali: string; bookSinh: string; groupPali: string; groupSinh: string; atta: boolean // its book and nikāya (the name page groups by book)
+}
 /** the parent of a node ref as a tree item (its title: context for titles like "1. 1. 1") */
 export const parentOf = (n: NodeRef) => ({ pali: n.parentPali, sinh: n.parentSinh })
 export interface Related extends Entity { role?: SettingRole; count: number }

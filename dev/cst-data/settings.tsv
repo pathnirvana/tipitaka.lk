@@ -234,8 +234,8 @@ ghositarama	place	1	vin02m1.mul	1068	1079	nidana	0.95	1
 savatthi	place	0	vin02m1.mul	1079	1089	nidana	0.95	1	
 jetavana	place	1	vin02m1.mul	1079	1089	nidana	0.95	1	
 bhagga	place	0	vin02m1.mul	1089	1110	nidana	0.95	1	
-sumsumaragira	place	1	vin02m1.mul	1089	1110	nidana	0.95	1	
-bhesakalavana-2	place	2	vin02m1.mul	1089	1110	nidana	0.95	1	
+susumaragira	place	1	vin02m1.mul	1089	1110	nidana	0.95	1	
+bhesakalavana	place	2	vin02m1.mul	1089	1110	nidana	0.95	1	
 migadaya-1	place	3	vin02m1.mul	1089	1110	nidana	0.95	1	
 rajagaha	place	0	vin02m1.mul	1110	1141	nidana	0.95	1	
 veluvana	place	1	vin02m1.mul	1110	1141	nidana	0.95	1	
@@ -649,7 +649,7 @@ nigrodharama	place	2	vin02m3.mul	2420	2425	nidana	0.95	1
 savatthi	place	0	vin02m4.mul	2804	2828	nidana	0.95	1	
 jetavana	place	1	vin02m4.mul	2804	2828	nidana	0.95	1	
 rajagaha	place	0	s0101m.mul	3	216	nidana	0.95	1	
-nalanda-2	place	1	s0101m.mul	3	216	nidana	0.95	1	
+nalanda	place	1	s0101m.mul	3	216	nidana	0.95	1	
 rajagaha	place	0	s0101m.mul	216	368	nidana	0.95	1	
 ambavana-2	place	1	s0101m.mul	216	368	nidana	0.95	1	
 icchanangala	place	0	s0101m.mul	368	468	nidana	0.95	1	
@@ -682,7 +682,7 @@ savatthi	place	0	s0101m.mul	851	914	nidana	0.95	1
 jetavana	place	1	s0101m.mul	851	914	nidana	0.95	1	
 ananda-2	teacher	0	s0101m.mul	851	914	nidana	0.9	1	
 subha-3	with	0	s0101m.mul	851	914	nidana	0.85	1	
-nalanda-2	place	0	s0101m.mul	914	964	nidana	0.95	1	
+nalanda	place	0	s0101m.mul	914	964	nidana	0.95	1	
 pavarikambavana	place	1	s0101m.mul	914	964	nidana	0.95	1	
 kevatta-2	with	0	s0101m.mul	914	964	nidana	0.85	1	
 salavatika	place	0	s0101m.mul	964	991	nidana	0.95	1	
@@ -734,7 +734,7 @@ savatthi	place	0	s0103m.mul	258	325	nidana	0.95	1
 pubbarama	place	1	s0103m.mul	258	325	nidana	0.95	1	
 migaramatupasada	place	2	s0103m.mul	258	325	nidana	0.95	1	
 vasetthabharadvaja	with	0	s0103m.mul	258	325	nidana	0.85	1	
-nalanda-2	place	0	s0103m.mul	325	389	nidana	0.95	1	
+nalanda	place	0	s0103m.mul	325	389	nidana	0.95	1	
 pavarikambavana	place	1	s0103m.mul	325	389	nidana	0.95	1	
 sariputta	with	0	s0103m.mul	325	389	nidana	0.85	1	
 sakka-2-2	place	0	s0103m.mul	389	468	nidana	0.95	1	
@@ -786,7 +786,7 @@ kapilavatthu	place	1	s0201m.mul	535	558	nidana	0.95	1
 nigrodharama	place	2	s0201m.mul	535	558	nidana	0.95	1	
 bhagga	place	0	s0201m.mul	558	630	nidana	0.95	1	
 susumaragira	place	1	s0201m.mul	558	630	nidana	0.95	1	
-bhesakalavana-2	place	2	s0201m.mul	558	630	nidana	0.95	1	
+bhesakalavana	place	2	s0201m.mul	558	630	nidana	0.95	1	
 migadaya-2	place	3	s0201m.mul	558	630	nidana	0.95	1	
 mahamoggallana	teacher	0	s0201m.mul	558	630	nidana	0.9	1	
 savatthi	place	0	s0201m.mul	630	657	nidana	0.95	1	
@@ -883,14 +883,14 @@ savatthi	place	0	s0201m.mul	1696	1722	nidana	0.95	1
 jetavana	place	1	s0201m.mul	1696	1722	nidana	0.95	1	
 bhagga	place	0	s0201m.mul	1722	1792	nidana	0.95	1	
 susumaragira	place	1	s0201m.mul	1722	1792	nidana	0.95	1	
-bhesakalavana-2	place	2	s0201m.mul	1722	1792	nidana	0.95	1	
+bhesakalavana	place	2	s0201m.mul	1722	1792	nidana	0.95	1	
 migadaya-2	place	3	s0201m.mul	1722	1792	nidana	0.95	1	
 mahamoggallana	teacher	0	s0201m.mul	1722	1792	nidana	0.9	1	
 campa	place	0	s0202m.mul	4	28	nidana	0.95	1	
 gaggara-1	place	1	s0202m.mul	4	28	nidana	0.95	1	
 kandaraka	with	0	s0202m.mul	4	28	nidana	0.85	1	
 vesali	place	0	s0202m.mul	28	44	nidana	0.95	1	
-beluvagamaka	place	1	s0202m.mul	28	44	nidana	0.95	1	
+veluvagamaka	place	1	s0202m.mul	28	44	nidana	0.95	1	
 ananda-2	teacher	0	s0202m.mul	28	44	nidana	0.9	1	
 dasama-2	with	0	s0202m.mul	28	44	nidana	0.85	1	
 sakka-2-2	place	0	s0202m.mul	44	67	nidana	0.95	1	
@@ -901,7 +901,7 @@ apana-3	place	1	s0202m.mul	67	108	nidana	0.95	1
 rajagaha	place	0	s0202m.mul	108	122	nidana	0.95	1	
 ambavana-2	place	1	s0202m.mul	108	122	nidana	0.95	1	
 jivaka	with	0	s0202m.mul	108	122	nidana	0.85	1	
-nalanda-2	place	0	s0202m.mul	122	232	nidana	0.95	1	
+nalanda	place	0	s0202m.mul	122	232	nidana	0.95	1	
 pavarikambavana	place	1	s0202m.mul	122	232	nidana	0.95	1	
 dighatapassi	with	0	s0202m.mul	122	232	nidana	0.85	1	
 koliya	place	0	s0202m.mul	232	246	nidana	0.95	1	
@@ -993,7 +993,7 @@ mahakaccana	teacher	0	s0202m.mul	918	939	nidana	0.9	1
 mahakaccana	with	0	s0202m.mul	918	939	nidana	0.85	1	
 bhagga	place	0	s0202m.mul	939	1016	nidana	0.95	1	
 susumaragira	place	1	s0202m.mul	939	1016	nidana	0.95	1	
-bhesakalavana-2	place	2	s0202m.mul	939	1016	nidana	0.95	1	
+bhesakalavana	place	2	s0202m.mul	939	1016	nidana	0.95	1	
 migadaya-2	place	3	s0202m.mul	939	1016	nidana	0.95	1	
 sanjikaputta	with	0	s0202m.mul	939	1016	nidana	0.85	1	
 bodhi-4	with	1	s0202m.mul	939	1016	nidana	0.85	1	
@@ -1407,7 +1407,7 @@ rajagaha	place	0	s0301m.mul	1221	1263	nidana	0.95	1
 veluvana	place	1	s0301m.mul	1221	1263	nidana	0.95	1	
 kalandakanivapa	place	2	s0301m.mul	1221	1263	nidana	0.95	1	
 sahali	with	0	s0301m.mul	1221	1263	nidana	0.85	1	
-nika-2	with	1	s0301m.mul	1221	1263	nidana	0.85	1	
+nika	with	1	s0301m.mul	1221	1263	nidana	0.85	1	
 akotaka	with	2	s0301m.mul	1221	1263	nidana	0.85	1	
 vegabbhari	with	3	s0301m.mul	1221	1263	nidana	0.85	1	
 manavagamiya	with	4	s0301m.mul	1221	1263	nidana	0.85	1	
@@ -1646,7 +1646,7 @@ rajagaha	place	0	s0301m.mul	2462	2499	inherit	0.7	1
 veluvana	place	1	s0301m.mul	2462	2499	inherit	0.7	1	
 kalandakanivapa	place	2	s0301m.mul	2462	2499	inherit	0.7	1	
 magadha	place	0	s0301m.mul	2500	2523	nidana	0.95	1	
-dakkhinagiri-2	place	1	s0301m.mul	2500	2523	nidana	0.95	1	
+dakkhinagiri	place	1	s0301m.mul	2500	2523	nidana	0.95	1	
 ekanala	place	2	s0301m.mul	2500	2523	nidana	0.95	1	
 brahmanagama	place	3	s0301m.mul	2500	2523	nidana	0.95	1	
 kasibharadvaja	with	0	s0301m.mul	2500	2523	nidana	0.85	1	
@@ -1671,13 +1671,13 @@ sakka-2-2	place	0	s0301m.mul	2651	2664	nidana	0.95	1
 khomadussa-2	place	1	s0301m.mul	2651	2664	nidana	0.95	1	
 alavi-1	place	0	s0301m.mul	2665	2677	nidana	0.95	1	
 aggalava	place	1	s0301m.mul	2665	2677	nidana	0.95	1	
-vangisa-2	teacher	0	s0301m.mul	2665	2677	nidana	0.9	1	
+vangisa	teacher	0	s0301m.mul	2665	2677	nidana	0.9	1	
 alavi-1	place	0	s0301m.mul	2677	2689	nidana	0.95	1	
 aggalava	place	1	s0301m.mul	2677	2689	nidana	0.95	1	
-vangisa-2	teacher	0	s0301m.mul	2677	2689	nidana	0.9	1	
+vangisa	teacher	0	s0301m.mul	2677	2689	nidana	0.9	1	
 alavi-1	place	0	s0301m.mul	2689	2699	nidana	0.95	1	
 aggalava	place	1	s0301m.mul	2689	2699	nidana	0.95	1	
-vangisa-2	teacher	0	s0301m.mul	2689	2699	nidana	0.9	1	
+vangisa	teacher	0	s0301m.mul	2689	2699	nidana	0.9	1	
 savatthi	place	0	s0301m.mul	2699	2711	nidana	0.95	1	
 jetavana	place	1	s0301m.mul	2699	2711	nidana	0.95	1	
 ananda-2	teacher	0	s0301m.mul	2699	2711	nidana	0.9	1	
@@ -1700,7 +1700,7 @@ campa	place	0	s0301m.mul	2791	2798	nidana	0.95	1
 gaggara-1	place	1	s0301m.mul	2791	2798	nidana	0.95	1	
 savatthi	place	0	s0301m.mul	2798	2811	nidana	0.95	1	
 jetavana	place	1	s0301m.mul	2798	2811	nidana	0.95	1	
-vangisa-2	teacher	0	s0301m.mul	2798	2811	nidana	0.9	1	
+vangisa	teacher	0	s0301m.mul	2798	2811	nidana	0.9	1	
 savatthi	place	0	s0301m.mul	2828	2842	inherit	0.7	1	
 jetavana	place	1	s0301m.mul	2828	2842	inherit	0.7	1	
 savatthi	place	0	s0301m.mul	2842	2851	inherit	0.7	1	
@@ -1919,18 +1919,18 @@ anathapindika-1	with	0	s0302m.mul	314	328	nidana	0.85	1
 savatthi	place	0	s0302m.mul	328	334	inherit	0.7	1	
 savatthi	place	0	s0302m.mul	334	340	inherit	0.7	1	
 savatthi	place	0	s0302m.mul	340	346	inherit	0.7	1	
-natika-2	place	0	s0302m.mul	346	353	nidana	0.95	1	
+natika	place	0	s0302m.mul	346	353	nidana	0.95	1	
 ginjakavasatha	place	1	s0302m.mul	346	353	nidana	0.95	1	
-natika-2	place	0	s0302m.mul	353	358	inherit	0.7	1	
+natika	place	0	s0302m.mul	353	358	inherit	0.7	1	
 ginjakavasatha	place	1	s0302m.mul	353	358	inherit	0.7	1	
-natika-2	place	0	s0302m.mul	358	363	inherit	0.7	1	
+natika	place	0	s0302m.mul	358	363	inherit	0.7	1	
 ginjakavasatha	place	1	s0302m.mul	358	363	inherit	0.7	1	
 janussoni	with	0	s0302m.mul	358	363	nidana	0.85	1	
-natika-2	place	0	s0302m.mul	363	371	inherit	0.7	1	
+natika	place	0	s0302m.mul	363	371	inherit	0.7	1	
 ginjakavasatha	place	1	s0302m.mul	363	371	inherit	0.7	1	
-natika-2	place	0	s0302m.mul	371	377	inherit	0.7	1	
+natika	place	0	s0302m.mul	371	377	inherit	0.7	1	
 ginjakavasatha	place	1	s0302m.mul	371	377	inherit	0.7	1	
-natika-2	place	0	s0302m.mul	377	388	inherit	0.7	1	
+natika	place	0	s0302m.mul	377	388	inherit	0.7	1	
 ginjakavasatha	place	1	s0302m.mul	377	388	inherit	0.7	1	
 savatthi	place	0	s0302m.mul	389	404	nidana	0.95	1	
 jetavana	place	1	s0302m.mul	389	404	nidana	0.95	1	
@@ -2030,9 +2030,9 @@ savatthi	place	0	s0302m.mul	712	718	inherit	0.7	1
 jetavana	place	1	s0302m.mul	712	718	inherit	0.7	1	
 savatthi	place	0	s0302m.mul	718	729	inherit	0.7	1	
 jetavana	place	1	s0302m.mul	718	729	inherit	0.7	1	
-natika-2	place	0	s0302m.mul	729	735	nidana	0.95	1	
+natika	place	0	s0302m.mul	729	735	nidana	0.95	1	
 ginjakavasatha	place	1	s0302m.mul	729	735	nidana	0.95	1	
-natika-2	place	0	s0302m.mul	735	740	inherit	0.7	1	
+natika	place	0	s0302m.mul	735	740	inherit	0.7	1	
 ginjakavasatha	place	1	s0302m.mul	735	740	inherit	0.7	1	
 rajagaha	place	0	s0302m.mul	740	746	nidana	0.95	1	
 gijjhakuta	place	1	s0302m.mul	740	746	nidana	0.95	1	
@@ -2379,7 +2379,7 @@ kalandakanivapa	place	2	s0302m.mul	1409	1417	inherit	0.7	1
 mahakappina	with	0	s0302m.mul	1409	1417	nidana	0.85	1	
 bhagga	place	0	s0303m.mul	5	25	nidana	0.95	1	
 susumaragira	place	1	s0303m.mul	5	25	nidana	0.95	1	
-bhesakalavana-2	place	2	s0303m.mul	5	25	nidana	0.95	1	
+bhesakalavana	place	2	s0303m.mul	5	25	nidana	0.95	1	
 migadaya-2	place	3	s0303m.mul	5	25	nidana	0.95	1	
 nakulapitar	with	0	s0303m.mul	5	25	nidana	0.85	1	
 sakka-2-2	place	0	s0303m.mul	25	38	nidana	0.95	1	
@@ -2388,12 +2388,12 @@ sariputta	with	0	s0303m.mul	25	38	nidana	0.85	1
 avanti-1	place	0	s0303m.mul	38	63	nidana	0.95	1	
 kuraraghara	place	1	s0303m.mul	38	63	nidana	0.95	1	
 mahakaccana	teacher	0	s0303m.mul	38	63	nidana	0.9	1	
-haliddikani-2	with	0	s0303m.mul	38	63	nidana	0.85	1	
+haliddikani	with	0	s0303m.mul	38	63	nidana	0.85	1	
 mahakaccana	with	1	s0303m.mul	38	63	nidana	0.85	1	
 avanti-1	place	0	s0303m.mul	63	70	nidana	0.95	1	
 kuraraghara	place	1	s0303m.mul	63	70	nidana	0.95	1	
 mahakaccana	teacher	0	s0303m.mul	63	70	nidana	0.9	1	
-haliddikani-2	with	0	s0303m.mul	63	70	nidana	0.85	1	
+haliddikani	with	0	s0303m.mul	63	70	nidana	0.85	1	
 mahakaccana	with	1	s0303m.mul	63	70	nidana	0.85	1	
 savatthi	place	0	s0303m.mul	70	83	nidana	0.95	1	
 jetavana	place	1	s0303m.mul	70	83	nidana	0.95	1	
@@ -2767,7 +2767,7 @@ rajagaha	place	0	s0303m.mul	1238	1246	nidana	0.95	1
 veluvana	place	1	s0303m.mul	1238	1246	nidana	0.95	1	
 kalandakanivapa	place	2	s0303m.mul	1238	1246	nidana	0.95	1	
 sariputta	teacher	0	s0303m.mul	1238	1246	nidana	0.9	1	
-sucimukhi-2	with	0	s0303m.mul	1238	1246	nidana	0.85	1	
+sucimukhi	with	0	s0303m.mul	1238	1246	nidana	0.85	1	
 sariputta	with	1	s0303m.mul	1238	1246	nidana	0.85	1	
 savatthi	place	0	s0303m.mul	1251	1253	abbrev	0.95	1	
 savatthi	place	0	s0303m.mul	1253	1255	abbrev	0.95	1	
@@ -3046,7 +3046,7 @@ mahavana-1	place	1	s0304m.mul	806	810	nidana	0.95	1
 kutagarasala-2	place	2	s0304m.mul	806	810	nidana	0.95	1	
 vajji-1	place	0	s0304m.mul	810	812	nidana	0.95	1	
 hatthigama	place	1	s0304m.mul	810	812	nidana	0.95	1	
-nalanda-2	place	0	s0304m.mul	812	814	nidana	0.95	1	
+nalanda	place	0	s0304m.mul	812	814	nidana	0.95	1	
 pavarikambavana	place	1	s0304m.mul	812	814	nidana	0.95	1	
 upali-1	with	0	s0304m.mul	812	814	nidana	0.85	1	
 kosambi	place	0	s0304m.mul	814	820	nidana	0.95	1	
@@ -3065,15 +3065,15 @@ ananda-2	with	0	s0304m.mul	822	824	nidana	0.85	1
 avanti-1	place	0	s0304m.mul	824	827	nidana	0.95	1	
 kuraraghara	place	1	s0304m.mul	824	827	nidana	0.95	1	
 mahakaccana	teacher	0	s0304m.mul	824	827	nidana	0.9	1	
-haliddikani-2	with	0	s0304m.mul	824	827	nidana	0.85	1	
+haliddikani	with	0	s0304m.mul	824	827	nidana	0.85	1	
 mahakaccana	with	1	s0304m.mul	824	827	nidana	0.85	1	
 bhagga	place	0	s0304m.mul	827	830	nidana	0.95	1	
 susumaragira	place	1	s0304m.mul	827	830	nidana	0.95	1	
-bhesakalavana-2	place	2	s0304m.mul	827	830	nidana	0.95	1	
+bhesakalavana	place	2	s0304m.mul	827	830	nidana	0.95	1	
 migadaya-2	place	3	s0304m.mul	827	830	nidana	0.95	1	
 nakulapitar	with	0	s0304m.mul	827	830	nidana	0.85	1	
 avanti-1	place	0	s0304m.mul	830	861	nidana	0.95	1	
-makkarakata-2	place	1	s0304m.mul	830	861	nidana	0.95	1	
+makkarakata	place	1	s0304m.mul	830	861	nidana	0.95	1	
 arannakutika	place	2	s0304m.mul	830	861	nidana	0.95	1	
 mahakaccana	teacher	0	s0304m.mul	830	861	nidana	0.9	1	
 lohicca	with	0	s0304m.mul	830	861	nidana	0.85	1	
@@ -3488,7 +3488,7 @@ vajji-1	place	0	s0304m.mul	1570	1575	nidana	0.95	1
 ukkacela	place	1	s0304m.mul	1570	1575	nidana	0.95	1	
 ganga-1	place	2	s0304m.mul	1570	1575	nidana	0.95	1	
 sariputta	teacher	0	s0304m.mul	1570	1575	nidana	0.9	1	
-samandaka	with	0	s0304m.mul	1570	1575	nidana	0.85	1	
+samandakani	with	0	s0304m.mul	1570	1575	nidana	0.85	1	
 sariputta	with	1	s0304m.mul	1570	1575	nidana	0.85	1	
 vajji-1	place	0	s0304m.mul	1575	1579	inherit	0.7	1	
 ukkacela	place	1	s0304m.mul	1575	1579	inherit	0.7	1	
@@ -3575,17 +3575,17 @@ kalandakanivapa	place	2	s0304m.mul	1760	1762	inherit	0.7	1
 rajagaha	place	0	s0304m.mul	1762	1766	inherit	0.7	1	
 veluvana	place	1	s0304m.mul	1762	1766	inherit	0.7	1	
 kalandakanivapa	place	2	s0304m.mul	1762	1766	inherit	0.7	1	
-nalanda-2	place	0	s0304m.mul	1766	1772	nidana	0.95	1	
+nalanda	place	0	s0304m.mul	1766	1772	nidana	0.95	1	
 pavarikambavana	place	1	s0304m.mul	1766	1772	nidana	0.95	1	
 asibandhakaputta	with	0	s0304m.mul	1766	1772	nidana	0.85	1	
-nalanda-2	place	0	s0304m.mul	1772	1777	nidana	0.95	1	
+nalanda	place	0	s0304m.mul	1772	1777	nidana	0.95	1	
 pavarikambavana	place	1	s0304m.mul	1772	1777	nidana	0.95	1	
 asibandhakaputta	with	0	s0304m.mul	1772	1777	nidana	0.85	1	
-nalanda-2	place	0	s0304m.mul	1777	1791	nidana	0.95	1	
+nalanda	place	0	s0304m.mul	1777	1791	nidana	0.95	1	
 pavarikambavana	place	1	s0304m.mul	1777	1791	nidana	0.95	1	
 asibandhakaputta	with	0	s0304m.mul	1777	1791	nidana	0.85	1	
 gamani-1	with	1	s0304m.mul	1777	1791	nidana	0.85	1	
-nalanda-2	place	0	s0304m.mul	1791	1796	nidana	0.95	1	
+nalanda	place	0	s0304m.mul	1791	1796	nidana	0.95	1	
 pavarikambavana	place	1	s0304m.mul	1791	1796	nidana	0.95	1	
 asibandhakaputta	with	0	s0304m.mul	1791	1796	nidana	0.85	1	
 gamani-1	with	1	s0304m.mul	1791	1796	nidana	0.85	1	
@@ -3665,7 +3665,7 @@ baranasi	place	0	s0304m.mul	2002	2005	inherit	0.7	1
 isipatana	place	1	s0304m.mul	2002	2005	inherit	0.7	1	
 migadaya-1	place	2	s0304m.mul	2002	2005	inherit	0.7	1	
 vacchagotta-1	with	0	s0304m.mul	2002	2005	nidana	0.85	1	
-natika-2	place	0	s0304m.mul	2005	2010	nidana	0.95	1	
+natika	place	0	s0304m.mul	2005	2010	nidana	0.95	1	
 ginjakavasatha	place	1	s0304m.mul	2005	2010	nidana	0.95	1	
 sabhiya	teacher	0	s0304m.mul	2005	2010	nidana	0.9	1	
 vacchagotta-1	with	0	s0304m.mul	2005	2010	nidana	0.85	1	
@@ -3795,10 +3795,10 @@ anjanavana	place	1	s0305m.mul	461	464	inherit	0.7	1
 migadaya-1	place	2	s0305m.mul	461	464	inherit	0.7	1	
 kosambi	place	0	s0305m.mul	464	468	nidana	0.95	1	
 ghositarama	place	1	s0305m.mul	464	468	nidana	0.95	1	
-upavana-2	teacher	0	s0305m.mul	464	468	nidana	0.9	1	
+upavana	teacher	0	s0305m.mul	464	468	nidana	0.9	1	
 sariputta	teacher	1	s0305m.mul	464	468	nidana	0.9	1	
 sariputta	with	0	s0305m.mul	464	468	nidana	0.85	1	
-upavana-2	with	1	s0305m.mul	464	468	nidana	0.85	1	
+upavana	with	1	s0305m.mul	464	468	nidana	0.85	1	
 kosambi	place	0	s0305m.mul	468	470	inherit	0.7	1	
 ghositarama	place	1	s0305m.mul	468	470	inherit	0.7	1	
 kosambi	place	0	s0305m.mul	470	476	inherit	0.7	1	
@@ -4256,8 +4256,8 @@ icchanangalavanasanda	place	1	s0305m.mul	1939	1944	nidana	0.95	1
 sakka-2-2	place	0	s0305m.mul	1944	1956	nidana	0.95	1	
 kapilavatthu	place	1	s0305m.mul	1944	1956	nidana	0.95	1	
 nigrodharama	place	2	s0305m.mul	1944	1956	nidana	0.95	1	
-lomasakambhiya	teacher	0	s0305m.mul	1944	1956	nidana	0.9	1	
-lomasakambhiya	with	0	s0305m.mul	1944	1956	nidana	0.85	1	
+lomasakangiya	teacher	0	s0305m.mul	1944	1956	nidana	0.9	1	
+lomasakangiya	with	0	s0305m.mul	1944	1956	nidana	0.85	1	
 savatthi	place	0	s0305m.mul	1956	1975	abbrev	0.95	1	
 ananda-2	with	0	s0305m.mul	1956	1975	nidana	0.85	1	
 savatthi	place	0	s0305m.mul	1975	1978	inherit	0.7	1	
@@ -4287,13 +4287,13 @@ savatthi	place	0	s0305m.mul	2038	2057	abbrev	0.95	1
 isidattapurana	with	0	s0305m.mul	2038	2057	nidana	0.85	1	
 veludvara	place	0	s0305m.mul	2057	2070	nidana	0.95	1	
 brahmanagama	place	1	s0305m.mul	2057	2070	nidana	0.95	1	
-natika-2	place	0	s0305m.mul	2070	2078	nidana	0.95	1	
+natika	place	0	s0305m.mul	2070	2078	nidana	0.95	1	
 ginjakavasatha	place	1	s0305m.mul	2070	2078	nidana	0.95	1	
 ananda-2	with	0	s0305m.mul	2070	2078	nidana	0.85	1	
-natika-2	place	0	s0305m.mul	2078	2082	inherit	0.7	1	
+natika	place	0	s0305m.mul	2078	2082	inherit	0.7	1	
 ginjakavasatha	place	1	s0305m.mul	2078	2082	inherit	0.7	1	
 ananda-2	with	0	s0305m.mul	2078	2082	nidana	0.85	1	
-natika-2	place	0	s0305m.mul	2082	2093	inherit	0.7	1	
+natika	place	0	s0305m.mul	2082	2093	inherit	0.7	1	
 ginjakavasatha	place	1	s0305m.mul	2082	2093	inherit	0.7	1	
 ananda-2	with	0	s0305m.mul	2082	2093	nidana	0.85	1	
 savatthi	place	0	s0305m.mul	2094	2097	nidana	0.95	1	
@@ -4848,7 +4848,7 @@ madhura	place	0	s0402m3.mul	597	618	nidana	0.95	1
 veranja	place	1	s0402m3.mul	597	618	nidana	0.95	1	
 bhagga	place	0	s0402m3.mul	638	648	nidana	0.95	1	
 susumaragira	place	1	s0402m3.mul	638	648	nidana	0.95	1	
-bhesakalavana-2	place	2	s0402m3.mul	638	648	nidana	0.95	1	
+bhesakalavana	place	2	s0402m3.mul	638	648	nidana	0.95	1	
 migadaya-2	place	3	s0402m3.mul	638	648	nidana	0.95	1	
 nakulapitar	with	0	s0402m3.mul	638	648	nidana	0.85	1	
 koliya	place	0	s0402m3.mul	656	669	nidana	0.95	1	
@@ -4992,7 +4992,7 @@ mahavana-1	place	1	s0403m1.mul	986	992	nidana	0.95	1
 kutagarasala-2	place	2	s0403m1.mul	986	992	nidana	0.95	1	
 licchavi	with	0	s0403m1.mul	986	992	nidana	0.85	1	
 saketa	place	0	s0403m1.mul	992	1000	nidana	0.95	1	
-tikandakivana	place	1	s0403m1.mul	992	1000	nidana	0.95	1	
+kandakivana	place	1	s0403m1.mul	992	1000	nidana	0.95	1	
 kosambi	place	0	s0403m1.mul	1079	1082	nidana	0.95	1	
 ghositarama	place	1	s0403m1.mul	1079	1082	nidana	0.95	1	
 ananda-2	with	0	s0403m1.mul	1079	1082	nidana	0.85	1	
@@ -5025,7 +5025,7 @@ kapilavatthu	place	1	s0403m2.mul	35	45	nidana	0.95	1
 nigrodharama	place	2	s0403m2.mul	35	45	nidana	0.95	1	
 bhagga	place	0	s0403m2.mul	88	98	nidana	0.95	1	
 susumaragira	place	1	s0403m2.mul	88	98	nidana	0.95	1	
-bhesakalavana-2	place	2	s0403m2.mul	88	98	nidana	0.95	1	
+bhesakalavana	place	2	s0403m2.mul	88	98	nidana	0.95	1	
 migadaya-2	place	3	s0403m2.mul	88	98	nidana	0.95	1	
 savatthi	place	0	s0403m2.mul	98	104	nidana	0.95	1	
 jetavana	place	1	s0403m2.mul	98	104	nidana	0.95	1	
@@ -5061,7 +5061,7 @@ ananda-2	with	0	s0403m2.mul	295	332	nidana	0.85	1
 ananda-2	with	0	s0403m2.mul	332	351	nidana	0.85	1	
 migasala	with	1	s0403m2.mul	332	351	nidana	0.85	1	
 ceti	place	0	s0403m2.mul	392	399	nidana	0.95	1	
-sayamjati	place	1	s0403m2.mul	392	399	nidana	0.95	1	
+sahajati	place	1	s0403m2.mul	392	399	nidana	0.95	1	
 mahacunda	teacher	0	s0403m2.mul	392	399	nidana	0.9	1	
 moliyasivaka	with	0	s0403m2.mul	399	404	nidana	0.85	1	
 savatthi	place	0	s0403m2.mul	409	416	nidana	0.95	1	
@@ -5117,7 +5117,7 @@ janussoni	with	0	s0403m3.mul	326	333	nidana	0.85	1
 campa	place	0	s0403m3.mul	339	347	nidana	0.95	1	
 gaggara-1	place	1	s0403m3.mul	339	347	nidana	0.95	1	
 sariputta	with	0	s0403m3.mul	339	347	nidana	0.85	1	
-dakkhinagiri-2	place	0	s0403m3.mul	347	363	nidana	0.95	1	
+dakkhinagiri	place	0	s0403m3.mul	347	363	nidana	0.95	1	
 sariputta	teacher	0	s0403m3.mul	347	363	nidana	0.9	1	
 mahamoggallana	teacher	1	s0403m3.mul	347	363	nidana	0.9	1	
 rajagaha	place	0	s0403m3.mul	384	398	nidana	0.95	1	
@@ -5130,7 +5130,7 @@ niculavana	place	1	s0403m3.mul	415	419	nidana	0.95	1
 kimila-1	with	0	s0403m3.mul	415	419	nidana	0.85	1	
 bhagga	place	0	s0403m3.mul	421	435	nidana	0.95	1	
 susumaragira	place	1	s0403m3.mul	421	435	nidana	0.95	1	
-bhesakalavana-2	place	2	s0403m3.mul	421	435	nidana	0.95	1	
+bhesakalavana	place	2	s0403m3.mul	421	435	nidana	0.95	1	
 migadaya-2	place	3	s0403m3.mul	421	435	nidana	0.95	1	
 anathapindika-1	with	0	s0403m3.mul	459	507	nidana	0.85	1	
 vesali	place	0	s0403m3.mul	557	576	nidana	0.95	1	
@@ -5178,8 +5178,8 @@ jivakambavana	place	1	s0404m1.mul	301	306	nidana	0.95	1
 jivaka	with	0	s0404m1.mul	301	306	nidana	0.85	1	
 sariputta	with	0	s0404m1.mul	308	316	nidana	0.85	1	
 bhagga	place	0	s0404m1.mul	347	378	nidana	0.95	1	
-sumsumaragira	place	1	s0404m1.mul	347	378	nidana	0.95	1	
-bhesakalavana-2	place	2	s0404m1.mul	347	378	nidana	0.95	1	
+susumaragira	place	1	s0404m1.mul	347	378	nidana	0.95	1	
+bhesakalavana	place	2	s0404m1.mul	347	378	nidana	0.95	1	
 migadaya-1	place	3	s0404m1.mul	347	378	nidana	0.95	1	
 savatthi	place	0	s0404m1.mul	463	473	nidana	0.95	1	
 jetavana	place	1	s0404m1.mul	463	473	nidana	0.95	1	
@@ -5199,8 +5199,8 @@ savatthi	place	0	s0404m1.mul	597	609	nidana	0.95	1
 pubbarama	place	1	s0404m1.mul	597	609	nidana	0.95	1	
 migaramatupasada	place	2	s0404m1.mul	597	609	nidana	0.95	1	
 bhagga	place	0	s0404m1.mul	609	628	nidana	0.95	1	
-sumsumaragira	place	1	s0404m1.mul	609	628	nidana	0.95	1	
-bhesakalavana-2	place	2	s0404m1.mul	609	628	nidana	0.95	1	
+susumaragira	place	1	s0404m1.mul	609	628	nidana	0.95	1	
+bhesakalavana	place	2	s0404m1.mul	609	628	nidana	0.95	1	
 migadaya-1	place	3	s0404m1.mul	609	628	nidana	0.95	1	
 nakulamatar	with	0	s0404m1.mul	609	628	nidana	0.85	1	
 savatthi	place	0	s0404m1.mul	628	649	nidana	0.95	1	
@@ -5305,7 +5305,7 @@ mahakaccana	teacher	0	s0404m3.mul	197	213	nidana	0.9	1
 mahakaccana	with	0	s0404m3.mul	197	213	nidana	0.85	1	
 savatthi	place	0	s0404m3.mul	213	233	nidana	0.95	1	
 jetavana	place	1	s0404m3.mul	213	233	nidana	0.95	1	
-kajangala	place	0	s0404m3.mul	233	245	nidana	0.95	1	
+gajangala	place	0	s0404m3.mul	233	245	nidana	0.95	1	
 veluvana	place	1	s0404m3.mul	233	245	nidana	0.95	1	
 savatthi	place	0	s0404m3.mul	267	282	nidana	0.95	1	
 jetavana	place	1	s0404m3.mul	267	282	nidana	0.95	1	
@@ -5381,7 +5381,7 @@ jetavana	place	1	s0404m3.mul	842	860	nidana	0.95	1
 anathapindika-1	with	0	s0404m3.mul	842	860	nidana	0.85	1	
 campa	place	0	s0404m3.mul	860	875	nidana	0.95	1	
 gaggara-1	place	1	s0404m3.mul	860	875	nidana	0.95	1	
-vajjiyamahita-2	with	0	s0404m3.mul	860	875	nidana	0.85	1	
+vajjiyamahita	with	0	s0404m3.mul	860	875	nidana	0.85	1	
 uttiya-1	with	0	s0404m3.mul	875	887	nidana	0.85	1	
 rajagaha	place	0	s0404m3.mul	887	903	nidana	0.95	1	
 tapodarama	place	1	s0404m3.mul	887	903	nidana	0.95	1	
@@ -5416,7 +5416,7 @@ nigrodharama	place	2	s0404m4.mul	109	121	nidana	0.95	1
 subhuti-1	with	0	s0404m4.mul	121	149	nidana	0.85	1	
 saddha-3	with	1	s0404m4.mul	121	149	nidana	0.85	1	
 vesali	place	0	s0404m4.mul	152	164	nidana	0.95	1	
-beluvagamaka	place	1	s0404m4.mul	152	164	nidana	0.95	1	
+veluvagamaka	place	1	s0404m4.mul	152	164	nidana	0.95	1	
 ananda-2	teacher	0	s0404m4.mul	152	164	nidana	0.9	1	
 dasama-2	with	0	s0404m4.mul	152	164	nidana	0.85	1	
 sariputta	with	0	s0404m4.mul	206	211	nidana	0.85	1	
@@ -5536,7 +5536,7 @@ belatthasisa	about	0	s0502m.mul	208	209	atta	0.81	1	3. Belaṭṭhasīsattherava
 jetavana	place	0	s0502m.mul	208	209	atta	0.86	1	3. Belaṭṭhasīsattheravatthu
 anuruddha-1	about	0	s0502m.mul	211	212	atta	0.81	1	4. Anuruddhattheravatthu
 veluvana	place	0	s0502m.mul	211	212	atta	0.86	1	4. Anuruddhattheravatthu
-mahakaccayana	about	0	s0502m.mul	214	215	atta	0.81	1	5. Mahākaccāyanattheravatthu
+mahakaccana	about	0	s0502m.mul	214	215	atta	0.81	1	5. Mahākaccāyanattheravatthu
 pubbarama	place	0	s0502m.mul	214	215	atta	0.86	1	5. Mahākaccāyanattheravatthu
 jetavana	place	0	s0502m.mul	216	217	atta	0.86	1	6. Sāriputtattheravatthu
 tissatthera-1	about	0	s0502m.mul	218	219	atta	0.81	1	7. Kosambivāsītissattherasāmaṇeravatthu
@@ -5585,7 +5585,7 @@ jetavana	place	0	s0502m.mul	294	295	atta	0.86	1	1. Chabbaggiyabhikkhuvatthu
 jetavana	place	0	s0502m.mul	296	297	atta	0.86	1	2. Chabbaggiyabhikkhuvatthu
 pahasambahula	about	0	s0502m.mul	298	301	atta	0.81	1	3. Sabbahulakumārakavatthu
 jetavana	place	0	s0502m.mul	298	301	atta	0.86	1	3. Sabbahulakumārakavatthu
-kondadhana	about	0	s0502m.mul	302	305	atta	0.81	1	4. Koṇḍadhānattheravatthu
+kundadhana	about	0	s0502m.mul	302	305	atta	0.81	1	4. Koṇḍadhānattheravatthu
 jetavana	place	0	s0502m.mul	302	305	atta	0.86	1	4. Koṇḍadhānattheravatthu
 pubbarama	place	0	s0502m.mul	306	307	atta	0.86	1	5. Uposathikaitthīnaṃ vatthu
 veluvana	place	0	s0502m.mul	308	309	atta	0.86	1	6. Ajagarapetavatthu
@@ -5605,7 +5605,7 @@ laludayi	about	0	s0502m.mul	343	344	atta	0.81	1	7. Lāḷudāyittheravatthu
 jetavana	place	0	s0502m.mul	343	344	atta	0.86	1	7. Lāḷudāyittheravatthu
 isipatana	place	0	s0502m.mul	350	353	atta	0.86	1	9. Mahādhanaseṭṭhiputtavatthu
 migadaya-1	place	1	s0502m.mul	350	353	atta	0.86	1	9. Mahādhanaseṭṭhiputtavatthu
-bhesakalavana-2	place	0	s0502m.mul	356	357	atta	0.86	1	1. Bodhirājakumāravatthu
+bhesakalavana	place	0	s0502m.mul	356	357	atta	0.86	1	1. Bodhirājakumāravatthu
 upananda-1	about	0	s0502m.mul	358	359	atta	0.81	1	2. Upanandasakyaputtattheravatthu
 jetavana	place	0	s0502m.mul	358	359	atta	0.86	1	2. Upanandasakyaputtattheravatthu
 jetavana	place	0	s0502m.mul	360	361	atta	0.86	1	3. Padhānikatissattheravatthu
@@ -5845,7 +5845,7 @@ veluvana	place	0	s0502m.mul	925	926	atta	0.86	1	33. Jaṭilattheravatthu
 veluvana	place	0	s0502m.mul	925	926	atta	0.86	1	34. Jotikattheravatthu
 veluvana	place	0	s0502m.mul	927	928	atta	0.86	1	35. Naṭaputtakattheravatthu
 veluvana	place	0	s0502m.mul	929	930	atta	0.86	1	36. Naṭaputtakattheravatthu
-vangisa-2	about	0	s0502m.mul	931	934	atta	0.81	1	37. Vaṅgīsattheravatthu
+vangisa	about	0	s0502m.mul	931	934	atta	0.81	1	37. Vaṅgīsattheravatthu
 jetavana	place	0	s0502m.mul	931	934	atta	0.86	1	37. Vaṅgīsattheravatthu
 dhammadinna-2	about	0	s0502m.mul	935	936	atta	0.81	1	38. Dhammadinnattherīvatthu
 veluvana	place	0	s0502m.mul	935	936	atta	0.86	1	38. Dhammadinnattherīvatthu
@@ -6053,7 +6053,7 @@ savatthi	place	0	s0505m.mul	5	38	atta	0.86	1	1. Uragasuttavaṇṇanā
 gaggara-1	place	1	s0505m.mul	5	38	atta	0.86	1	1. Uragasuttavaṇṇanā
 jetavana	place	0	s0505m.mul	41	87	atta	0.86	1	2. Dhaniyasuttavaṇṇanā
 magadha	place	0	s0505m.mul	174	199	nidana	0.95	1	
-dakkhinagiri-2	place	1	s0505m.mul	174	199	nidana	0.95	1	
+dakkhinagiri	place	1	s0505m.mul	174	199	nidana	0.95	1	
 ekanala	place	2	s0505m.mul	174	199	nidana	0.95	1	
 brahmanagama	place	3	s0505m.mul	174	199	nidana	0.95	1	
 kasibharadvaja	with	0	s0505m.mul	174	199	nidana	0.85	1	
@@ -6078,7 +6078,7 @@ pahasambahula	with	0	s0505m.mul	691	766	nidana	0.85	1
 savatthi	place	0	s0505m.mul	805	815	atta	0.86	1	10. Uṭṭhānasuttavaṇṇanā
 alavi-1	place	0	s0505m.mul	832	869	nidana	0.95	1	
 aggalava	place	1	s0505m.mul	832	869	nidana	0.95	1	
-vangisa-2	with	0	s0505m.mul	832	869	nidana	0.85	1	
+vangisa	with	0	s0505m.mul	832	869	nidana	0.85	1	
 savatthi	place	0	s0505m.mul	909	971	nidana	0.95	1	
 jetavana	place	1	s0505m.mul	909	971	nidana	0.95	1	
 dhammika-4	with	0	s0505m.mul	909	971	nidana	0.85	1	
@@ -6684,7 +6684,7 @@ kosala-3	about	0	s0513m.mul	3929	3938	atta	0.81	1	Maṇikuṇḍalajātakavaṇ�
 jetavana	place	0	s0513m.mul	3929	3938	atta	0.86	1	Maṇikuṇḍalajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3939	3956	atta	0.86	1	Sujātajātakavaṇṇanā
 bhagga	place	0	s0513m.mul	3957	3968	atta	0.86	1	Venasākhajātakavaṇṇanā
-bhesakalavana-2	place	1	s0513m.mul	3957	3968	atta	0.86	1	Venasākhajātakavaṇṇanā
+bhesakalavana	place	1	s0513m.mul	3957	3968	atta	0.86	1	Venasākhajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3969	3992	atta	0.86	1	Uragajātakavaṇṇanā
 kosala-3	about	0	s0513m.mul	3993	4003	atta	0.81	1	Ghaṭajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3993	4003	atta	0.86	1	Ghaṭajātakavaṇṇanā
@@ -7044,7 +7044,7 @@ belatthasisa	about	0	s0502a.att	1644	1653	formula	0.85	0
 jetavana	place	0	s0502a.att	1644	1653	formula	0.9	0	
 anuruddha-1	about	0	s0502a.att	1653	1663	formula	0.85	0	
 veluvana	place	0	s0502a.att	1653	1663	formula	0.9	0	
-mahakaccayana	about	0	s0502a.att	1663	1673	formula	0.85	0	
+mahakaccana	about	0	s0502a.att	1663	1673	formula	0.85	0	
 pubbarama	place	0	s0502a.att	1663	1673	formula	0.9	0	
 jetavana	place	0	s0502a.att	1673	1685	formula	0.9	0	
 tissatthera-1	about	0	s0502a.att	1685	1695	formula	0.85	0	
@@ -7093,7 +7093,7 @@ jetavana	place	0	s0502a.att	2071	2079	formula	0.9	0
 jetavana	place	0	s0502a.att	2079	2087	formula	0.9	0	
 pahasambahula	about	0	s0502a.att	2087	2097	formula	0.85	0	
 jetavana	place	0	s0502a.att	2087	2097	formula	0.9	0	
-kondadhana	about	0	s0502a.att	2097	2111	formula	0.85	0	
+kundadhana	about	0	s0502a.att	2097	2111	formula	0.85	0	
 jetavana	place	0	s0502a.att	2097	2111	formula	0.9	0	
 pubbarama	place	0	s0502a.att	2111	2119	formula	0.9	0	
 veluvana	place	0	s0502a.att	2119	2130	formula	0.9	0	
@@ -7113,7 +7113,7 @@ laludayi	about	0	s0502a.att	2286	2302	formula	0.85	0
 jetavana	place	0	s0502a.att	2286	2302	formula	0.9	0	
 isipatana	place	0	s0502a.att	2312	2325	formula	0.9	0	
 migadaya-1	place	1	s0502a.att	2312	2325	formula	0.9	0	
-bhesakalavana-2	place	0	s0502a.att	2326	2337	formula	0.9	0	
+bhesakalavana	place	0	s0502a.att	2326	2337	formula	0.9	0	
 upananda-1	about	0	s0502a.att	2337	2351	formula	0.85	0	
 jetavana	place	0	s0502a.att	2337	2351	formula	0.9	0	
 jetavana	place	0	s0502a.att	2351	2362	formula	0.9	0	
@@ -7353,7 +7353,7 @@ veluvana	place	0	s0502a.att	4677	4708	formula	0.9	0
 veluvana	place	0	s0502a.att	4708	4718	formula	0.9	0	
 veluvana	place	0	s0502a.att	4718	4726	formula	0.9	0	
 veluvana	place	0	s0502a.att	4726	4733	formula	0.9	0	
-vangisa-2	about	0	s0502a.att	4733	4744	formula	0.85	0	
+vangisa	about	0	s0502a.att	4733	4744	formula	0.85	0	
 jetavana	place	0	s0502a.att	4733	4744	formula	0.9	0	
 dhammadinna-2	about	0	s0502a.att	4744	4753	formula	0.85	0	
 veluvana	place	0	s0502a.att	4744	4753	formula	0.9	0	
@@ -7922,7 +7922,7 @@ kosala-3	about	0	s0513a1.att	6356	6375	formula	0.85	0	Maṇikuṇḍalajātakava
 jetavana	place	0	s0513a1.att	6356	6375	formula	0.9	0	Maṇikuṇḍalajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6375	6401	formula	0.9	0	Sujātajātakavaṇṇanā
 bhagga	place	0	s0513a1.att	6401	6426	formula	0.9	0	Venasākhajātakavaṇṇanā
-bhesakalavana-2	place	1	s0513a1.att	6401	6426	formula	0.9	0	Venasākhajātakavaṇṇanā
+bhesakalavana	place	1	s0513a1.att	6401	6426	formula	0.9	0	Venasākhajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6426	6463	formula	0.9	0	Uragajātakavaṇṇanā
 kosala-3	about	0	s0513a1.att	6463	6483	formula	0.85	0	Ghaṭajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6463	6483	formula	0.9	0	Ghaṭajātakavaṇṇanā

@@ -261,6 +261,64 @@ type NodeRef struct {
 	// the parent's title (context for titles like "1. 1. 1")
 	ParentPali string `json:"parentPali"`
 	ParentSinh string `json:"parentSinh"`
+	// the book and its group (nikāya, piṭaka part) of the node: the name page groups the suttas by book
+	BookPali  string `json:"bookPali"`
+	BookSinh  string `json:"bookSinh"`
+	GroupPali string `json:"groupPali"`
+	GroupSinh string `json:"groupSinh"`
+	Atta      bool   `json:"atta"`
+}
+
+// bookKeys: the keys of the group (nikāya, piṭaka part) and the book of a node key: mn-2-4-1 -> mn, mn-2;
+// atta-mn-2-4-1 -> atta-mn, atta-mn-2; kn-dhp-1 -> kn, kn-dhp
+func bookKeys(key string) (group, book string) {
+	parts := strings.Split(key, "-")
+	n := 1
+	if parts[0] == "atta" {
+		n = 2
+	}
+	if len(parts) <= n {
+		return key, key
+	}
+	return strings.Join(parts[:n], "-"), strings.Join(parts[:n+1], "-")
+}
+
+// addBooks fills the book and group titles of node refs (one query for all their keys).
+func (e *Engine) addBooks(ctx context.Context, lists ...[]NodeRef) error {
+	keys := map[string][2]string{}
+	for _, l := range lists {
+		for _, n := range l {
+			g, b := bookKeys(n.Key)
+			keys[g], keys[b] = [2]string{}, [2]string{}
+		}
+	}
+	if len(keys) == 0 {
+		return nil
+	}
+	args, marks := []any{}, []string{}
+	for k := range keys {
+		args, marks = append(args, k), append(marks, "?")
+	}
+	rows, err := e.text.QueryContext(ctx, `SELECT key, pali, sinh FROM node WHERE key IN (`+strings.Join(marks, ",")+`)`, args...)
+	if err != nil {
+		return err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var k, pali, sinh string
+		if err := rows.Scan(&k, &pali, &sinh); err != nil {
+			return err
+		}
+		keys[k] = [2]string{pali, sinh}
+	}
+	for _, l := range lists {
+		for i := range l {
+			g, b := bookKeys(l[i].Key)
+			l[i].GroupPali, l[i].GroupSinh, l[i].BookPali, l[i].BookSinh = keys[g][0], keys[g][1], keys[b][0], keys[b][1]
+			l[i].Atta = strings.HasPrefix(l[i].Key, "atta-")
+		}
+	}
+	return rows.Err()
 }
 
 // EntityPage is an entity with the suttas it is the setting of and the suttas that name it.
@@ -360,7 +418,10 @@ func (e *Engine) EntityInfo(ctx context.Context, slug string) (*EntityPage, erro
 		IFNULL(p.pali, ''), IFNULL(p.sinh, '')
 		FROM entry_mention m JOIN entity e ON e.id = m.entity_id JOIN entry t ON t.id = m.entry_id JOIN node n ON n.id = t.node_id
 		LEFT JOIN node p ON p.id = n.parent_id WHERE e.slug = ? GROUP BY n.id ORDER BY n.id LIMIT 500`, slug)
-	return p, err
+	if err != nil {
+		return nil, err
+	}
+	return p, e.addBooks(ctx, p.Settings, p.Mentions)
 }
 
 // ParaNames lists the entities named in an entry.

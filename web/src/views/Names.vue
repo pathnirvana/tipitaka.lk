@@ -39,20 +39,41 @@
           </template>
         </p>
         <PlaceMap v-if="hasCoords(page)" class="mb-3 h-64" compact :places="[mapPlace(page, 'main', { label: true })]" fit-main />
+        <!-- the suttas by book (tipitaka.app): a dot for mūla / aṭṭhakathā, the count, the suttas folded in; in the
+             interface face, the size of the text around them -->
         <section v-for="g in settingGroups" :key="g.role" class="mb-4" :data-testid="`name-settings-${g.role}`">
           <div class="section-title">{{ SETTING_TITLE[g.role] }} · {{ g.nodes.length }}</div>
-          <ul class="flex flex-wrap">
-            <li v-for="n in g.nodes" :key="n.key" class="w-full py-0.5 pr-2 text-sm sm:w-1/2"><RouterLink :to="'/' + n.key" class="pali hover:text-primary"><span v-if="n.parentPali" class="text-xs text-muted">{{ tree.nameOf(parentOf(n)) }} › </span>{{ tree.nameOf(n) }}</RouterLink></li>
-          </ul>
+          <details v-for="b in byBook(g.nodes)" :key="b.key" class="mb-0.5" :open="g.nodes.length <= 30">
+            <summary class="book-row flex cursor-pointer items-center py-1 text-sm">
+              <span :class="['coll-dot mr-2.5', b.atta ? 'coll-atta' : 'coll-mula']" />
+              <span class="min-w-0 flex-1 truncate"><span class="text-muted">{{ b.group }} · </span>{{ b.book }}</span>
+              <span class="ml-3 text-muted">{{ b.count }}</span>
+            </summary>
+            <ul class="mb-2 ml-5">
+              <li v-for="n in b.items" :key="n.key">
+                <RouterLink :to="'/' + n.key" class="flex items-baseline py-0.5 text-sm hover:text-primary">
+                  <span class="min-w-0 flex-1 truncate">{{ tree.nameOf(n) }}</span><span v-if="(n.count ?? 0) > 1" class="ml-3 text-muted">×{{ n.count }}</span>
+                </RouterLink>
+              </li>
+            </ul>
+          </details>
         </section>
         <section v-if="page.mentionNodes.length" class="mb-4" data-testid="name-mentions">
-          <div class="section-title">සඳහන් වන සූත්‍ර · {{ page.mentionNodes.length }}</div>
-          <ul class="flex flex-wrap">
-            <li v-for="n in page.mentionNodes" :key="n.key" class="w-full py-0.5 pr-2 text-sm sm:w-1/2">
-              <RouterLink :to="`/${n.key}/${n.page}-${n.entry}`" class="pali hover:text-primary"><span v-if="n.parentPali" class="text-xs text-muted">{{ tree.nameOf(parentOf(n)) }} › </span>{{ tree.nameOf(n) }}</RouterLink>
-              <span v-if="(n.count ?? 0) > 1" class="ml-1 text-xs text-muted">×{{ n.count }}</span>
-            </li>
-          </ul>
+          <div class="section-title">සඳහන් වන තැන් · {{ mentionTotal }}</div>
+          <details v-for="b in byBook(page.mentionNodes)" :key="b.key" class="mb-0.5" :open="page.mentionNodes.length <= 30">
+            <summary class="book-row flex cursor-pointer items-center py-1 text-sm">
+              <span :class="['coll-dot mr-2.5', b.atta ? 'coll-atta' : 'coll-mula']" />
+              <span class="min-w-0 flex-1 truncate"><span class="text-muted">{{ b.group }} · </span>{{ b.book }}</span>
+              <span class="ml-3 text-muted">{{ b.count }}</span>
+            </summary>
+            <ul class="mb-2 ml-5">
+              <li v-for="n in b.items" :key="n.key">
+                <RouterLink :to="`/${n.key}/${n.page}-${n.entry}`" class="flex items-baseline py-0.5 text-sm hover:text-primary">
+                  <span class="min-w-0 flex-1 truncate">{{ tree.nameOf(n) }}</span><span v-if="(n.count ?? 0) > 1" class="ml-3 text-muted">×{{ n.count }}</span>
+                </RouterLink>
+              </li>
+            </ul>
+          </details>
         </section>
         <section v-if="page.comentions?.length" class="mb-4" data-testid="name-comentions">
           <div class="section-title">බොහෝ විට සමඟ සඳහන් වන නම්</div>
@@ -88,7 +109,7 @@ import { useHead } from '@unhead/vue'
 import PlaceMap from '@/components/PlaceMap.vue'
 import DictView from '@/components/DictView.vue'
 import IconMap from '~icons/mdi/map-outline'
-import { searchNames, entityPage, mapPlace, hasCoords, parentOf, TYPE_LABEL, ROLE_LABEL, type Entity, type Related, type SettingRole, type EntityPage, type EntityType } from '@/data/names'
+import { searchNames, entityPage, mapPlace, hasCoords, TYPE_LABEL, ROLE_LABEL, type Entity, type Related, type SettingRole, type NodeRef, type EntityPage, type EntityType } from '@/data/names'
 import { usePaliSinh } from '@/composables/dict'
 import { useTree } from '@/stores/tree'
 import { toRoman } from '@/data/dictionary'
@@ -103,6 +124,19 @@ const related = computed(() => (['place', 'teacher', 'with', 'about'] as Setting
   .map(role => ({ role, items: (page.value?.related ?? []).filter((r: Related) => r.role === role).slice(0, 20) })).filter(g => g.items.length))
 // the category, unless it only repeats the type (පුද්ගලයන් · පුද්ගලයෝ)
 const showFamily = computed(() => !!page.value?.family && page.value.family.slice(0, 3) !== TYPE_LABEL[page.value.type].slice(0, 3))
+// suttas grouped by book (in tree order), the book's count: the mentions (the suttas of a setting)
+function byBook(nodes: NodeRef[]) {
+  const out: { key: string; group: string; book: string; atta: boolean; count: number; items: NodeRef[] }[] = []
+  for (const n of nodes) {
+    const key = `${n.groupPali}|${n.bookPali}`
+    let b = out.find(x => x.key === key)
+    if (!b) out.push(b = { key, group: tree.nameOf({ pali: n.groupPali, sinh: n.groupSinh }), book: tree.nameOf({ pali: n.bookPali, sinh: n.bookSinh }), atta: n.atta, count: 0, items: [] })
+    b.items.push(n)
+    b.count += n.count || 1
+  }
+  return out
+}
+const mentionTotal = computed(() => (page.value?.mentionNodes ?? []).reduce((t, n) => t + (n.count || 1), 0))
 const settingGroups = computed(() => ['place', 'teacher', 'with', 'about'].map(role => ({ role, nodes: (page.value?.settingNodes ?? []).filter(n => n.role === role) })).filter(g => g.nodes.length))
 // all the names once (most settings / mentions first), filtered here (tipitaka.app): a Sinhala name is matched in Roman
 watch(slug, async s => {

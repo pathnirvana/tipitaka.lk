@@ -15,6 +15,8 @@
 @font-face { font-family: 'pali-sinh'; src: url('../assets/fonts/AbhayaUni-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; unicode-range: U+0D80-0DFF, U+200C-200D; size-adjust: 110.1%; }
 .ui-app { font-family: 'ui-sinh', 'sinhala', serif; }
 .ui-app .pali { font-family: 'pali-sinh', 'sinhala', serif; }
+/* a cut line (truncate: overflow hidden) keeps the enlarged vowel signs below the letters (ු ූ) */
+.ui-app .truncate { line-height: 1.6; }
 
 /* colour themes (tipitaka.app): light (:root), sepia, green, dark; "auto" picks light or dark (composables/themes.ts).
    info / success / warning / align / star are lk's own (icons, footnote pointers, alignment words, bookmarks) */
@@ -124,6 +126,13 @@ input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-co
 .gl-atta { --gl-c: var(--gl-atta); }
 .gl-lemma { --gl-c: var(--gl-mula); }
 .gl.gl-hover { background: var(--c-highlight); border-bottom-style: solid; border-radius: 2px; }
+/* the collection of a text (tipitaka.app): mūla, aṭṭhakathā */
+.coll-dot { display: inline-block; width: 0.55em; height: 0.55em; border-radius: 9999px; flex-shrink: 0; }
+.coll-mula { background: #c2410c; } .coll-atta { background: #4338ca; }
+.dark .coll-mula { background: #fb923c; } .dark .coll-atta { background: #a5b4fc; }
+/* a <details> row without the marker (the dot shows the row) */
+.book-row { list-style: none; }
+.book-row::-webkit-details-marker { display: none; }
 /* a column of a phone (columns view): a little smaller text */
 .narrow-col .entry-text { font-size: 1em; }
 [data-w].chanting, [data-w].chanting-target { background: var(--c-align); border-radius: 3px; box-shadow: 0 2px 0 var(--c-primary); } /* the word being chanted and its sinhala words */

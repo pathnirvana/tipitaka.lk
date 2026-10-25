@@ -32,9 +32,7 @@ abhibhu-3	person	Abhibhū	abhibhū 3	DPPN: bodhisatta	The name of a Bodhisatta w
 abhibhusambhava	person	Abhibhūsambhava	abhibhūsambhava	names of monks	names of Sikhī Buddha's pair of chief disciples; Abhibhū and Sambhava				0	4
 abhibhuta-3	person	Abhibhūta	abhibhūta 3	names of monks; names of arahants	name of an arahant monk				0	1
 abhijika	person	Abhijika	abhijika	names of monks	name of a monk				0	2
-abhijjika	person	Ābhijjika	ābhijjika	names of monks	name of a monk				0	0
 abhimarapayojana	person	Abhimārapayojanā	abhimārapayojanā	DPPN: buddha	Name given to the conspiracy into which Devadatta and Ajātasattu entered, to have archers shoot at Gotama Buddha and so kill him (Ja.i.141; vi.130f.;				0	1
-abhinjika	person	Ābhiñjika	ābhiñjika	names of monks	name of a monk				0	0
 abhiparaka	person	Abhipāraka	abhipāraka	names of laypeople	name of the general of king Sivi				0	30
 abhiradhana	person	Abhirādhana	abhirādhana	DPPN: friend	A friend of Sambhūta Sītavaniya.				0	2
 abhirupananda	person	Abhirūpanandā	abhirūpanandā	names of nuns; names of arahants	name of an arahant nun				0	11
@@ -278,7 +276,6 @@ angulimala-1	person	Aṅgulimāla	aṅgulimāla 1	names of monks; names of araha
 anguttarapa	place	Aṅguttarāpa	aṅguttarāpa	names of countries	name of a country	25.4656	87.1326	1	4	24
 anguttarapa-2	group	Aṅguttarāpā	aṅguttarāpā	people	people of Aṅguttarāpa	25.4656	87.1326	3	0	0
 anigha-2	person	Anīgha	anīgha 2	names of paccekabuddhas	name of a privately awakened Buddha				0	0
-anikadatta	person	Aṇīkadatta	aṇīkadatta	names of royalty	name of a king				0	0
 anikaratta	person	Anīkaratta	anīkaratta	names of royalty	name of a king				0	8
 anikaratta-2	person	Anikaratta	anikaratta	DPPN: ruler	Ruler of Vāranavatī.				0	13
 animisacetiya	place	Animisacetiya	animisacetiya	DPPN: shrine	The shrine built on the spot where the Buddha spent a week after the Awakening, gazing unwinking at the seat at the foot of the Bodhi-tree, the seat of his great victory.				0	7
@@ -300,7 +297,6 @@ annakondanna	person	Aññākoṇḍañña	aññākoṇḍañña	great disciples;
 annasamsavaka-1	person	Annasaṃsāvaka	annasaṃsāvaka 1	DPPN: arahant	An Arahant Four kappas ago he had given a meal to Siddhattha Buddha.				0	4
 annasikondanna	person	Aññāsikoṇḍañña	aññāsikoṇḍañña	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in long standing; the Buddha's first monastic disciple; first person to realize the Buddha's teaching				1	52
 annatakondanna	person	Aññātakoṇḍañña	aññātakoṇḍañña	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in long standing; the Buddha's first monastic disciple; first person to realize the Buddha's teaching				0	5
-annataratissa	person	Aññatarātissā	aññatarātissā	names of nuns; names of arahants	name of an arahant nun				0	0
 anoja-1	person	Anojā	anojā 1	DPPN: wife	Wife of Mahā Kappina, while he was king, before he entered the Saṅgha.				0	2
 anoma	place	Anomā	anomā	names of rivers	name of a river				0	7
 anoma-10	place	Anoma	anoma 10	DPPN: city	The city in whose park Atthadassī preached his first sermon.				0	0
@@ -371,9 +367,7 @@ aparajita-3	person	Aparājita	aparājita 3	DPPN: householder	A householder of Ba
 aparajita-4	person	Aparājita	aparājita 4	DPPN: nephew	Nephew of the foregoing.				0	0
 aparanna	animal	Aparaṇṇa	aparaṇṇa	DPPN: vulture	A vulture who lived in Gijjhapabbata.				0	0
 aparantaka	place	Aparantaka	aparantaka	DPPN: countries	One of the countries to which Asoka sent missionaries after the Third Council.				0	5
-aparasama	person	Aparāsāmā	aparāsāmā	names of nuns; names of arahants	name of an arahant nun				0	0
 aparaseliya	group	Aparaseliyā	aparaseliyā	DPPN: sect	A sub-sect of the Andhakā.				0	3
-aparauttama	person	Aparāuttamā	aparāuttamā	names of nuns; names of arahants	name of an arahant nun				0	0
 apassena	person	Apassena	apassena	DPPN: thera	A Cakkavatti who lived six kappas ago; a previous birth of Ārakkhadāyaka Thera.				0	0
 appacinti	animal	Appacintī	appacintī	DPPN: fish	A fish who lived in the Ganges with his brothers Bahucintī and Mitacintī.				0	6
 appamanabha	deity	Appamāṇābhā	appamāṇābhā	DPPN: class of devas	A class of Devas of the Rūpaloka, belonging to the plane of second jhāna (Abhs., p.21).				0	11
@@ -407,7 +401,6 @@ ariya-4	person	Ariya	ariya 4	names of paccekabuddhas	name of a privately awakene
 ariyavamsa-1	group	Ariyavaṃsa	ariyavaṃsa 1	DPPN: people	A compilation, probably of the life-histories of men eminent in the Buddhist Saṅgha, made in Ceylon and read aloud publicly for the edification of the people.				0	0
 ariyavamsa-2	person	Ariyavaṃsa	ariyavaṃsa 2	DPPN: teacher	A celebrated teacher and author of the fifteenth century.				0	0
 arohanta	person	Ārohanta	ārohanta	names of monks	name of a former minister who became a monk				0	38
-arohaputta	person	Ārohaputta	ārohaputta	names of monks; names of arahants	name of an arahant monk				0	1
 aruna	deity	Aruṇā	aruṇā	names of deities	name of a group of deities				0	2
 aruna-2	person	Aruṇa	aruṇa 2	DPPN: king	The Assaka king of Potali in the Assaka country.				0	0
 aruna-3	person	Aruṇa	aruṇa 3	names of royalty	name of Sikhī Buddha's father				0	9
@@ -519,8 +512,7 @@ aviha-1	place	Aviha	aviha 1	names of heavens	name of a heavenly realm				0	41
 ayagadayaka-thera	person	Āyāgadāyaka Thera	āyāgadāyaka thera	DPPN: thera	An Arahant.				0	2
 ayasmanta	person	Āyasmanta	āyasmanta	DPPN: general	A general of King Sāhasamalla. Āyasmanta deposed the king and installed Kalyāṇavatī, chief queen of Kittinissaṅka, on the throne of Ceylon.				0	0
 ayoghara	person	Ayoghara	ayoghara	DPPN: bodhisatta	The Bodhisatta was once born as the son of the king of Benares.				0	23
-ayojjha	place	Ayojjhā	ayojjhā	villages, towns and cities	name of a town	25.6143	83.6719	1	0	0
-ayojjha-2	place	Ayojjhā	ayojjhā	DPPN: capital	Capital of Siam.				0	0
+ayojjha	place	Ayojjhā	ayojjhā	DPPN: capital	Capital of Siam.				0	0
 ayujjha	place	Ayujjhā	ayujjhā	villages, towns and cities	name of a town	25.6143	83.6719	1	1	1
 ayupala	person	Āyupāla	āyupāla	DPPN: thera	A Thera who lived in the Saṅkheyya Pariveṇa near Sāgala.				0	16
 ayupala-2	person	Āyupālā	āyupālā	DPPN: arahant	An Arahant Therī, preceptor of Saṅghamittā.				0	0
@@ -536,33 +528,26 @@ bahiya-2-2	person	Bāhiya	bāhiya 2	DPPN: person	A Damiḷa usurper who reigned 
 bahiya-4	person	Bāhiya	bāhiya 4	DPPN: monk	A monk, fellow dweller of Anuruddha at the Ghositārāma.				0	2
 bahiya-5	place	Bāhiya	bāhiya 5	DPPN: country	The name of a country, residence of Bharata, the hunter mentioned in the Aṭṭhasaddajātaka (Ja.iii.432).				0	2
 bahucinti	animal	Bahucintī	bahucintī	DPPN: fish	A fish.				0	8
-bahudanti	person	Bahudantī	bahudantī	names of arahants	name of an arahant				0	0
-bahudanti-2	person	Bāhudantī	bāhudantī	names of arahants	name of an arahant				0	0
+bahudanti	person	Bāhudantī	bāhudantī	names of arahants	name of an arahant				0	0
 bahudhanasetthi	person	Bahudhanaseṭṭhi	bahudhanaseṭṭhi	DPPN: king	The name conferred by the king of Rājagaha on Puṇṇa, when the latter was raised to the rank of seṭṭhi (Dhp-a.iii.307).				0	1
 bahuka	place	Bāhukā	bāhukā	place names; names of rivers; holy sites	name of a river				0	24
 bahulika	group	Bahulikā	bahulikā	DPPN: sect	A heretical sect among the Buddhists, an offshoot or Gokulikā (Mhv.v.5;				0	0
 bahumati	place	Bāhumatī	bāhumatī	place names; names of rivers; holy sites	name of a holy river				0	2
 bahuna	person	Bāhuna	bāhuna	DPPN: monk	A monk who is said to have asked the Buddha, while on the banks of the Gaggarā Lake in Campā, about the conditions from which the Tathāgata is released and emancipated.				0	0
 bahuputta	person	Bāhuputta	bāhuputta	DPPN: king	King of Benares and husband of Khemā.				0	1
-bahuputta-1	place	Bahuputta	bahuputta 1	place names; holy sites	name of a pagoda	26.0818	85.1152	1	0	13
-bahuputtaka	place	Bahuputtaka	bahuputtaka	place names; holy sites	name of a pagoda				0	2
+bahuputta-1	place	Bahuputta	bahuputta 1	place names; holy sites	name of a pagoda	26.0818	85.1152	1	0	15
 bahuputtakacetiya	place	Bahuputtakacetiya	bahuputtakacetiya	place names; holy sites	name of a pagoda				0	0
 bahuraggi	person	Bāhuraggi	bāhuraggi	names of arahants	name of an arahant				0	4
 baka-1	deity	Baka	baka 1	names of deities	name of a god				0	45
 baka-2	person	Baka	baka 2	DPPN: bodhisatta	The Bodhisatta, born as the king of Benares.				0	0
 bakabrahma	deity	Bakabrahma	bakabrahma	names of deities	name of a god				1	6
-bakkula	person	Bakkula	bakkula	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in health				0	2
-bakkula-2	person	Bākkula	bākkula	names of monks; names of arahants	name of an arahant monk				0	0
-bakula	person	Bakulā	bakulā	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in clairvoyance				0	3
-bakula-1	person	Bākula	bākula 1	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in health				1	70
+bakula-1	person	Bākula	bākula 1	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in health				1	72
 balakalonaka	place	Bālakaloṇaka	bālakaloṇaka	villages, towns and cities	name of a village				0	0
-balakalonakagama	place	Bālakaloṇakagāma	bālakaloṇakagāma	villages, towns and cities	name of a village				0	5
-balakalonakaragama	place	Bālakaloṇakāragāma	bālakaloṇakāragāma	villages, towns and cities	name of a village	25.3522	81.4774	3	0	7
+balakalonakaragama	place	Bālakaloṇakāragāma	bālakaloṇakāragāma	villages, towns and cities	name of a village	25.3522	81.4774	3	0	12
 balakkara	person	Balakkāra	balakkāra	DPPN: prince	A Kāliṅga prince, kinsman of Tilokasundarī.				0	0
 balanakkhatta	group	Bālanakkhatta	bālanakkhatta	DPPN: people	A festival lasting for seven days, during which people smeared their bodies with ashes and cow dung and went about talking coarsely.				0	2
 baliharana	place	Baliharaṇa	baliharaṇa	DPPN: forest	A forest tract (vanasaṇḍa) near Kusinārā where the Buddha is said to have stayed (AN.i.274;v.79).	26.7517	83.8957	1	3	8
 ballika	person	Ballika	ballika	names of royalty	name of a king				0	4
-bandhana-7	person	Bandhana	bandhana 7	names of monks; names of arahants	name of an arahant monk				0	0
 bandhujivaka-thera-1	person	Bandhujīvaka Thera	bandhujīvaka thera 1	DPPN: thera	Bandhujīvaka Thera.				0	3
 bandhula	person	Bandhula	bandhula	names of laypeople	name of a general				0	24
 bandhuma-1	person	Bandhumā	bandhumā 1	DPPN: king	King of Bandhumatī and father of Vipassī Buddha.				0	9
@@ -576,34 +561,27 @@ bandhura-2	person	Bandhura	bandhura	DPPN: chief	The chief groom of the elephant 
 baranasi	place	Bārāṇasī	bārāṇasī	villages, towns and cities	name of a city; modern Varanasi	25.2993	83.0045	1	56	1271
 bavari	person	Bāvarī	bāvarī	names of Brahmans	name of a Brahman ascetic; teacher of the sixteen ascetics in Pārāyanavagga				0	74
 baveru	place	Bāveru	bāveru	villages, towns and cities	Babylon; city of Babylon; kingdom of Babylon				0	1
-begabbhari	deity	Begabbhari	begabbhari	names of deities	name of a deity				0	1
 belattha	person	Belaṭṭha	belaṭṭha	DPPN: father	Father of Sañjaya (q.v.).				0	23
 belatthanika	person	Belaṭṭhānika	belaṭṭhānika	names of monks; names of arahants	name of an arahant monk				0	4
 belatthaputta	group	Belaṭṭhaputta	belaṭṭhaputta	family names; six ascetic teachers	name of an ascetic teacher; Sañcaya Belaṭṭhaputta				1	25
-belatthasisa	person	Belaṭṭhasīsa	belaṭṭhasīsa	names of monks; names of arahants	name of an arahant monk; Ānanda's preceptor				1	15
-belatthi	person	Belaṭṭhi	belaṭṭhi	names of monks; names of arahants	name of an arahant monk				0	1
-belatthisisa	person	Belaṭṭhisīsa	belaṭṭhisīsa	names of monks	name of an arahant monk; Ānanda's preceptor				0	0
+belatthasisa	person	Belaṭṭhasīsa	belaṭṭhasīsa	names of monks; names of arahants	name of an arahant monk; Ānanda's preceptor				1	16
 bellatthiputta	person	Bellaṭṭhiputta	bellaṭṭhiputta	six ascetic teachers; family names	family name of an ascetic teacher				0	0
 beluva	place	Beluva	beluva	DPPN: village	A village near Vesālī, where Gotama Buddha spent his last vassa.	25.8639	85.1506	1	0	0
-beluvagamaka	place	Beluvagāmaka	beluvagāmaka	villages, towns and cities	name of a village	25.8639	85.1506	1	2	8
-beluvagamaka-2	place	Beḷuvagāmaka	beḷuvagāmaka	villages, towns and cities	name of a village; small village of Beḷuva	25.8639	85.1506	1	0	2
 bhadda-1	person	Bhaddā	bhaddā 1	DPPN: chief	One of the two chief women disciples of Revata Buddha.				0	0
 bhadda-2	deity	Bhaddā	bhaddā 2	names of deities	name of a female demigod				0	5
 bhadda-2-2	person	Bhaddā	bhaddā 2	DPPN: chief	One of the chief women patrons of Kassapa Buddha.				0	1
 bhadda-3	person	Bhaddā	bhaddā 3	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in remembering previous lives; Bhaddā Kāpilānī				0	73
 bhadda-3-2	person	Bhaddā	bhaddā 3	DPPN: wife	Wife of King Muṇḍa.				0	0
 bhadda-4	person	Bhadda	bhadda 4	names of laypeople	name of a lay disciple				3	5
-bhadda-4-2	person	Bhaddā	bhaddā 4	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in quick realization; Bhaddā Kuṇḍalakesā				0	35
+bhadda-4-2	person	Bhaddā	bhaddā 4	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in quick realization; Bhaddā Kuṇḍalakesā				0	54
 bhadda-4-3	person	Bhadda	bhadda 4	DPPN: chief	One of the two chief disciples of Koṇḍañña Buddha.				0	0
 bhadda-4-4	person	Bhaddā	bhaddā 4	DPPN: woman	A woman of Kimbila; she was the wife of Rohaka.				0	0
 bhadda-5	person	Bhadda	bhadda 5	names of monks; names of arahants	name of an arahant monk				1	43
 bhadda-5-2	person	Bhadda	bhadda 5	DPPN: chief	Commander-in-chief of Sena I. He built the Bhaddasenāpati pariveṇa and endowed it with servants and revenues.				0	0
-bhaddaji	person	Bhaddaji	bhaddaji	names of monks; names of arahants	name of an arahant monk				1	35
-bhaddajitthera	person	Bhaddajitthera	bhaddajitthera	names of monks; names of arahants	name of an arahant monk				0	14
+bhaddaji	person	Bhaddaji	bhaddaji	names of monks; names of arahants	name of an arahant monk				1	49
 bhaddakaccana-1	person	Bhaddakaccānā	bhaddakaccānā 1	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in attaining powerful direct knowledge				0	1
 bhaddakapilani	person	Bhaddākāpilānī	bhaddākāpilānī	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in remembering previous lives; Bhaddā Kāpilānī				0	4
 bhaddakappa	person	Bhaddakappa	bhaddakappa	DPPN: buddhas	A kappa such as the present in which five Buddhas are born.				0	0
-bhaddakundalakesa	person	Bhaddākuṇḍalakesā	bhaddākuṇḍalakesā	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in quick realization; Bhaddā Kuṇḍalakesā				0	4
 bhaddali	person	Bhaddāli	bhaddāli	names of monks	name of a monk				1	138
 bhaddasala-1	person	Bhaddasāla	bhaddasāla 1	DPPN: chief	One of the chief disciples of Nārada Buddha (Ja.i.37;				0	20
 bhaddasala-4	place	Bhaddasāla	bhaddasāla 4	DPPN: forest	A tree in the Rakkhitavanasaṇḍa in the Pārileyyaka forest where the Buddha stayed during his retirement.	25.4079	81.6274	4	0	2
@@ -629,7 +607,6 @@ bhadraka-2	person	Bhadraka	bhadraka 2	names of laypeople	name of a chieftain				
 bhadrakara	person	Bhadrakāra	bhadrakāra	DPPN: son	Son of Vidhura and eldest brother of Sambhava (the Bodhisatta).				0	8
 bhadravanasanda	place	Bhadravanasaṇḍa	bhadravanasaṇḍa	DPPN: grove	The name given to the grove near the Bodhi-tree where the Buddha took his noonday rest after the meal of milk-rice provided by Sujātā.				0	1
 bhadravudha	person	Bhadrāvudha	bhadrāvudha	names of Brahmans	name of a Brahman ascetic				0	30
-bhagalavati-1	place	Bhagalavatī	bhagalavatī 1	place names	name of a heavenly meeting hall				0	0
 bhagalavati-2	deity	Bhagalavatī	bhagalavatī 2	names of deities	name of a deity				0	0
 bhagga	group	Bhaggā	bhaggā	people	people of Bhagga; Bhaggans				12	39
 bhaggava-1	group	Bhaggava	bhaggava 1	family names	family name				0	102
@@ -680,9 +657,7 @@ bhavitatta-2	person	Bhāvitatta	bhāvitatta 2	DPPN: king	A king who heard Paduma
 bherapasanavihara	place	Bherapāsāṇavihāra	bherapāsāṇavihāra	DPPN: monastery	A monastery in Rohaṇa.				5	0
 bheravaya	place	Bheravāya	bheravāya	DPPN: rock	A rock cave, near Himavā, where Sambula Kaccāna dwelt in meditation.				0	1
 bheri	person	Bherī	bherī	DPPN: ascetic	A female ascetic who was often invited to the palace of King Videha, where she heard of the wisdom of Mahosadha and wished to meet him.				0	0
-bhesakalavana	place	Bhesakalāvana	bhesakalāvana	place names	name of a wood in the Bhagga country				0	3
-bhesakalavana-2	place	Bhesakaḷāvana	bhesakaḷāvana	place names	name of a wood in the Bhagga country				13	37
-bhesika	person	Bhesika	bhesika	names of laypeople	name of a washroom attendant				0	0
+bhesakalavana	place	Bhesakaḷāvana	bhesakaḷāvana	place names	name of a wood in the Bhagga country				13	40
 bhikkhadayaka	person	Bhikkhādāyaka	bhikkhādāyaka	DPPN: man	Once a man of Rājagaha had just sat down to eat when he saw a monk, who had travelled far, standing outside his house.				0	1
 bhikkhadayaka-thera	person	Bhikkhadāyaka Thera	bhikkhadāyaka thera	DPPN: thera	An Arahant.				0	1
 bhikkhadayika-1	person	Bhikkhādāyikā	bhikkhādāyikā 1	DPPN: woman	A woman of Uttaramadhurā.				0	0
@@ -706,14 +681,12 @@ bhoja-2	person	Bhoja	bhoja 2	DPPN: physician	A physician of old.				0	0
 bhojanadayaka-thera	person	Bhojanadāyaka Thera	bhojanadāyaka thera	DPPN: thera	An Arahant.				0	2
 bhojanasuddhika	person	Bhojanasuddhika	bhojanasuddhika	DPPN: bodhisatta	The Bodhisatta born as the king of Benares.				0	1
 bhojaputta	place	Bhojaputta	bhojaputta	DPPN: country	Evidently the name for a resident of the Bhoja country.				0	0
-bhujagi	deity	Bhujagī	bhujagī	names of deities	name of a female deity; attendant of king Vessavaṇa				0	0
 bhujaka	place	Bhujaka	bhujaka	DPPN: wood	A tree with fragrant wood, found only in Gandhamādana.				0	1
 bhujati	deity	Bhūjati	bhūjati	names of deities	name of a female deity; attendant of king Vessavaṇa				0	5
 bhumajaka	person	Bhūmajaka	bhūmajaka	names of monks	name of one of the leaders of the notorious group of six monks				0	1
 bhumija	person	Bhūmija	bhūmija	names of monks	name of a monk				2	66
 bhumiya	person	Bhūmiya	bhūmiya	DPPN: king	A king of fifteen kappas ago; a previous birth of Nāgasamāla.				0	0
 bhumma	deity	Bhummā	bhummā	DPPN: class of devas	A class of Devas, earth-bound deities.				0	0
-bhunjati	deity	Bhuñjatī	bhuñjatī	names of deities	name of a female deity; attendant of king Vessavaṇa				0	0
 bhuridatta	person	Bhūridatta	bhūridatta	DPPN: bodhisatta	The Bodhisatta born as the son of the Nāga king, Dhataraṭṭha.				0	82
 bhuripanna	person	Bhūripañña	bhūripañña	DPPN: kings	One hundred and seven kappas ago there were four kings of this name, previous births of Paccupaṭṭhānasaññaka (Ekūdāniya).				0	0
 bhuta-09	person	Bhūta	bhūta 09	names of monks; names of arahants	name of an arahant monk				0	1
@@ -789,7 +762,6 @@ buddhasiri	person	Buddhasiri	buddhasiri	DPPN: monk	A monk of the Mahā Vihāra, 
 buddhija	person	Buddhija	buddhija	names of monks	name of Kakusandha Buddha's attendant				0	7
 buddhupatthaka	person	Buddhupaṭṭhāka	buddhupaṭṭhāka	names of monks	name of a monk				0	13
 buli	group	Buli	buli	family names	name of clan who received a portion of the Buddha's relics				0	3
-bumu	group	Bumū	bumū	people	name of a people				0	0
 byagghapajja-2	place	Byagghapajja	byagghapajja 2	villages, towns and cities	name of a Koliyan city				0	26
 cakkana	person	Cakkana	cakkana	names of laypeople	name of a Sri Lankan lay disciple				0	12
 cakkapani	deity	Cakkapāṇī	cakkapāṇī	names of deities					0	0
@@ -870,7 +842,6 @@ candima-2-2	person	Candimā	candimā 2	DPPN: person	One of the descendants of Ok
 candimasa	deity	Candimasa	candimasa	names of deities	name of a deity				1	23
 candupama	person	Candūpama	candūpama	DPPN: king	A king of twenty-three kappas ago, a previous birth of Vaṇṇakāraka Thera.				0	0
 canki-1	person	Caṅkī	caṅkī 1	names of Brahmans	name of a Brahman				1	46
-canura	person	Cānura	cānura	names of laypeople	name of a wrestler in a Jātaka story				0	0
 capa	person	Cāpā	cāpā	names of nuns; names of arahants	name of an arahant nun				0	31
 capala	place	Cāpāla	cāpāla	place names; holy sites	name of a pagoda				0	28
 capala-2	deity	Cāpāla	cāpāla	DPPN: yakkha	A Yakkha.				3	0
@@ -984,8 +955,6 @@ cula-sumana-1	person	Cūḷa Sumana	cūḷa sumana 1	DPPN: elder	An Elder of Cey
 cula-tapasa	person	Cūḷa Tāpasa	cūḷa tāpasa	DPPN: son	Nārada, the son of the Bodhisatta in the Cūḷa Nāradakassapajātaka (Ja 477), is referred to by this title.				0	2
 cula-tundila	person	Cūḷa Tuṇḍila	cūḷa tuṇḍila	DPPN: brother	A pig, brother of the Bodhisatta.				0	14
 culabhaya-1	person	Cūḷābhaya	cūḷābhaya 1	DPPN: king	King of Ceylon (92-93 CE.).				0	5
-culagavaccha	person	Cūlagavaccha	cūlagavaccha	names of monks; names of arahants	name of an arahant monk				0	0
-culaka	person	Cūlaka	cūlaka	names of monks; names of arahants	name of an arahant monk				0	0
 culaka-2	person	Cūḷaka	cūḷaka 2	names of monks; names of arahants	name of an arahant monk				0	5
 culakasetthi	person	Cūḷakaseṭṭhi	cūḷakaseṭṭhi	DPPN: bodhisatta	The Bodhisatta, born as a Treasurer in Benares.				0	2
 culakokanada	deity	Cūḷakokanadā	cūḷakokanadā	names of deities	name of a goddess				1	2
@@ -996,8 +965,6 @@ culaniputta	person	Cūḷanīputta	cūḷanīputta	names of royalty	name of a pr
 culantevasika	person	Cūḷantevāsika	cūḷantevāsika	names of laypeople	name of a man in a Jātaka story				0	6
 culapanthaka	person	Cūḷapanthaka	cūḷapanthaka	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in creating a mind-made body; foremost monk among those skilled in the expansion of mind				2	184
 culavaccha	person	Cūḷavaccha	cūḷavaccha	names of monks; names of arahants	name of an arahant monk				0	5
-cullakokanada	deity	Cullakokanadā	cullakokanadā	names of deities	name of a goddess				0	0
-cullapanthaka	person	Cullapanthaka	cullapanthaka	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in creating a mind-made body; foremost monk among those skilled in the expansion of mind				0	0
 culodara	deity	Cūḷodara	cūḷodara	DPPN: nāga	A Nāga king of Ceylon, nephew of Mahodara.				0	2
 cunda-1	person	Cunda	cunda 1	names of monks	name of a monk				0	220
 cunda-2	person	Cunda	cunda 2	names of laypeople	name of the lay disciple who gave Buddha his last meal				0	0
@@ -1013,8 +980,7 @@ daddara-1	place	Daddara	daddara 1	DPPN: mountain	A mountain in Himavā (Ja.ii.8,
 dadhimala	place	Dadhimāla	dadhimāla	DPPN: sea	A sea, so-called because it gleams like milk or curds.				0	3
 dadhimukha	deity	Dadhimukha	dadhimukha	names of deities	name of a daemon				0	2
 dadhivahana	person	Dadhivāhana	dadhivāhana	DPPN: king	King of Benares.				0	8
-dakkhinagiri	place	Dakkhiṇagiri	dakkhiṇagiri	place names	southern mountains; hills to the south (of Rājagaha)	22.5988	79.6454	1	0	2
-dakkhinagiri-2	place	Dakkhiṇāgiri	dakkhiṇāgiri	names of mountains; place names	southern mountains; hills to the south (of Rājagaha)	22.5988	79.6454	1	3	27
+dakkhinagiri	place	Dakkhiṇāgiri	dakkhiṇāgiri	names of mountains; place names	southern mountains; hills to the south (of Rājagaha)	22.5988	79.6454	1	3	29
 dakkhinamalayajanapada	place	Dakkhiṇamalayajanapada	dakkhiṇamalayajanapada	DPPN: country	The mountainous country in South Ceylon; difficult of access and providing only a hard living.				0	1
 dalhadhamma	person	Daḷhadhamma	daḷhadhamma	DPPN: king	King of Benares.				0	11
 dalhanemi	person	Daḷhanemi	daḷhanemi	names of royalty	name of a mythological king				0	8
@@ -1028,10 +994,9 @@ danaveghasa	deity	Dānaveghasā	dānaveghasā	names of deities	name of group of 
 dandadayaka-thera	person	Daṇḍadāyaka Thera	daṇḍadāyaka thera	DPPN: thera	An Arahant.				0	2
 dandakahirannapabbata	place	Daṇḍakahiraññapabbata	daṇḍakahiraññapabbata	DPPN: mountain	A golden mountain in the Himālaya.				0	3
 dandakappaka	place	Daṇḍakappaka	daṇḍakappaka	villages, towns and cities	name of a Kosalan town	27.9313	81.7575	4	1	2
-dandakaranna	place	Daṇḍakārañña	daṇḍakārañña	place names	name of a forest				0	1
 dandaki	person	Daṇḍakī	daṇḍakī	DPPN: king	King of Kumbhavatī in Kaliṅga (MN.i.378;				0	0
 dandaki-2	place	Daṇḍakī	daṇḍakī 2	place names	name of a forest				0	8
-dandakiranna	place	Daṇḍakīrañña	daṇḍakīrañña	place names	name of a forest	20.525	86.475	4	0	5
+dandakiranna	place	Daṇḍakīrañña	daṇḍakīrañña	place names	name of a forest	20.525	86.475	4	0	6
 dandapani-2	person	Daṇḍapāṇī	daṇḍapāṇī 2	names of laypeople	name of a Sakyan layman				0	9
 dandasena	person	Daṇḍasena	daṇḍasena	DPPN: king	A king of seventy-four kappas ago, a previous birth of Asanabodhiya.				0	1
 danta	person	Danta	danta	DPPN: householder	A householder of Nāgakāragāma.				0	0
@@ -1162,10 +1127,9 @@ dhananjani-1	person	Dhanañjāni	dhanañjāni 1	names of Brahmans	name of a Brah
 dhananjaya-1	person	Dhanañjaya	dhanañjaya 1	DPPN: king	King of Benares.				0	9
 dhananjaya-9	place	Dhanañjaya	dhanañjaya 9	DPPN: city	A city in the time of Sikhī Buddha.				0	0
 dhanantevasi	person	Dhanantevāsī	dhanantevāsī	DPPN: attendant	An attendant of Chalaṅgakumāra.				0	2
-dhanapala	animal	Dhanapāla	dhanapāla	names of animals	name of an elephant				0	17
+dhanapala	animal	Dhanapāla	dhanapāla	names of animals	name of an elephant				0	33
 dhanapala-2	person	Dhanapāla	dhanapāla 2	DPPN: seṭṭhi	A seṭṭhi of Erakaccha in Dasanna.				0	0
-dhanapalaka	animal	Dhanapālaka	dhanapālaka	names of animals	name of an elephant				0	16
-dhanapalaka-2	person	Dhanapālaka	dhanapālaka	DPPN: householder	A householder of Dhanañjaya, who was converted by Sikhī Buddha.				0	0
+dhanapalaka	person	Dhanapālaka	dhanapālaka	DPPN: householder	A householder of Dhanañjaya, who was converted by Sikhī Buddha.				0	0
 dhanapali	person	Dhanapālī	dhanapālī	DPPN: slave	A slave-girl who, in spite of her name meaning, Wealth-protector, was ill-treated by her master and mistress.				0	7
 dhanapitthi	place	Dhanapiṭṭhi	dhanapiṭṭhi	DPPN: locality	A locality in Ceylon.				0	2
 dhanavati	person	Dhanavatī	dhanavatī	names of Brahmans	name of Kassapa Buddha's mother				0	9
@@ -1188,7 +1152,6 @@ dhatarattha-5	animal	Dhataraṭṭha	dhataraṭṭha 5	DPPN: bodhisatta	The Bodh
 dhatarattha-6	group	Dhataraṭṭha	dhataraṭṭha 6	DPPN: family	The family of haṁsas to which belonged Dhataraṭṭha, king of the haṁsas.				0	0
 dhatarattha-7	group	Dhataraṭṭha	dhataraṭṭha 7	DPPN: class of devas	A class of Nāgas (DN.ii.259), descendants of the Nāga king Dhataraṭṭha and of Samuddajā (Ja.vi.219), and possessed great power.				0	0
 dhatupujaka-1	person	Dhātupūjaka	dhātupūjaka 1	DPPN: arahant	An Arahant Thera.				0	2
-dhavajalika	place	Dhavajālikā	dhavajālikā	names of monasteries	name of a monastery				0	0
 dhira	person	Dhīrā	dhīrā	names of nuns; names of arahants	name of an arahant nun				0	0
 dhotaka	person	Dhotaka	dhotaka	names of Brahmans	name of a Brahman ascetic				0	52
 dhotodana	person	Dhotodana	dhotodana	DPPN: son	Son of Sīhahanu and brother of Suddhodana (Mhv.ii.20;				0	3
@@ -1217,7 +1180,6 @@ dighavu-1	person	Dīghāvu	dīghāvu 1	names of laypeople	name of a lay disciple
 dighavu-1-2	person	Dīghāvu	dīghāvu 1	DPPN: son	Eldest son of King Arindama I. He is identified with Rāhula.				0	0
 dighavu-2	person	Dīghāvu	dīghāvu 2	names of royalty	name of prince; son of king Dīghīti				0	87
 dighavu-3	person	Dīghāvu	dīghāvu 3	DPPN: son	Son of King Mahā Janaka and his queen Sīvalī.				0	0
-dighayu-2	person	Dīghāyu	dīghāyu 2	names of royalty	name of prince; son of king Dīghīti				0	0
 dighayu-3	person	Dīghāyu	dīghāyu 3	DPPN: sākiyan	A Sākiyan prince, grandson of Amitodana and brother of Bhaddakaccānā.				0	0
 dighayuka-2	person	Dīghāyuka	dīghāyuka 2	previous Buddhas	name of an unknown Buddha coming between Kassapa and Gotama				0	0
 dighiti	person	Dīghīti	dīghīti	DPPN: king	A king of Kosala.				0	41
@@ -1252,7 +1214,6 @@ dusi-2	deity	Dūsī	dūsī 2	names of deities	name of a Māra; previous incarnat
 dussadayaka-thera	person	Dussadāyaka Thera	dussadāyaka thera	DPPN: thera	An Arahant.				0	3
 dussapavarika	person	Dussapāvārika	dussapāvārika	DPPN: seṭṭhi	A seṭṭhi of Nālandā who owned a mango-grove near the city.				0	1
 dussavudha	place	Dussāvudha	dussāvudha	DPPN: world	One of the four most effective weapons found in the world.				0	10
-dutiyakutivihari	person	Dutiyakuṭivihārī	dutiyakuṭivihārī	names of monks; names of arahants	name of an arahant monk				0	0
 dutiyakutiviharitthera	person	Dutiyakuṭivihāritthera	dutiyakuṭivihāritthera	names of monks; names of arahants	name of an arahant monk				0	1
 duttha-1	person	Duṭṭha	duṭṭha 1	DPPN: king	called Duṭṭhakumāra king of Benares.				0	0
 dutthagamani	person	Duṭṭhagāmaṇi	duṭṭhagāmaṇi	names of royalty; Sri Lanka	name of a renowned ancient king in Sri Lanka who reigned from 161 to 137 BCE				0	4
@@ -1268,9 +1229,8 @@ ekacampakapupphiya-thera	person	Ekacampakapupphiya Thera	ekacampakapupphiya ther
 ekacariya-thera	person	Ekacāriya Thera	ekacāriya thera	DPPN: thera	An Arahant.				0	1
 ekachattiya-thera	person	Ekachattiya Thera	ekachattiya thera	DPPN: thera	An Arahant.				0	2
 ekacintita-1	person	Ekacintita	ekacintita 1	DPPN: kings	Sixteen kappas ago there were eighteen kings of this name.				0	2
-ekadhammasavaniya	person	Ekadhammasavanīya	ekadhammasavanīya	names of monks; names of arahants	name of an arahant monk				0	2
+ekadhammasavaniya	person	Ekadhammasavanīya	ekadhammasavanīya	names of monks; names of arahants	name of an arahant monk				0	3
 ekadhammasavaniya-thera-1	person	Ekadhammasavaṇiya Thera	ekadhammasavaṇiya thera 1	DPPN: thera	He was the son of a banker in Setavyā and he went to see the Buddha who was visiting the town and staying in the Siṁsapā-wood.				0	0
-ekadhammika	person	Ekadhammika	ekadhammika	names of monks; names of arahants	name of an arahant monk				0	1
 ekadipi	place	Ekadīpi	ekadīpi	DPPN: abode	The abode of Ekadīpiya when he was born in the Deva-world.				0	3
 ekadipiya-thera-1	person	Ekadīpiya Thera	ekadīpiya thera 1	DPPN: thera	An Arahant.				0	4
 ekadussadayaka-thera	person	Ekadussadāyaka Thera	ekadussadāyaka thera	DPPN: thera	An Arahant.				0	2
@@ -1320,7 +1280,7 @@ gaggara-2	person	Gaggarā	gaggarā 2	DPPN: queen	The queen for whom the lotus po
 gahvaratira	place	Gahvaratīra	gahvaratīra	DPPN: place	The name of the place where the Thera Gahvaratīriya lived (Thag-a.i.91f).				0	1
 gahvaratiriya	person	Gahvaratīriya	gahvaratīriya	names of monks; names of arahants	name of an arahant monk				0	3
 gajabahu	person	Gajabāhu	gajabāhu	names of royalty; Sri Lanka	name of an ancient Sri Lankan king who reigned from 113 to 135 CE				0	0
-gajangala	place	Gajaṅgalā	gajaṅgalā	villages, towns and cities	name of a town	25.0489	87.838	1	1	19
+gajangala	place	Gajaṅgalā	gajaṅgalā	villages, towns and cities	name of a town	25.0489	87.838	1	2	30
 gamakasetthi	person	Gāmakaseṭṭhi	gāmakaseṭṭhi	DPPN: treasurer	The name, of the treasurer whose daughter was married by Ghosakaseṭṭhi.				0	5
 gamani-1	person	Gāmaṇī	gāmaṇī 1	DPPN: general	A Tamil general and his stronghold, subdued by Duṭṭhagāmaṇī.				2	0
 gamanicanda	person	Gāmaṇicanda	gāmaṇicanda	DPPN: servant	A servant of Janasandha, king of Benares.				0	22
@@ -1413,14 +1373,12 @@ gocariya	animal	Gocariya	gocariya	DPPN: elephants	One of the ten families of ele
 godatta	person	Godatta	godatta	names of monks; names of arahants	name of an arahant monk				1	13
 godatta-thera-2	person	Godatta Thera	godatta thera 2	DPPN: thera	His full name was Ābhidhammika Godatta, showing that he was considered expert in Abhidhamma.				0	0
 godatta-thera-3	person	Godatta Thera	godatta thera 3	DPPN: thera	An incumbent of Kalyāṇi Mahā Vihāra in Ceylon.				0	0
-godavari	place	Godāvarī	godāvarī	names of rivers	name of a river				0	0
 godha-2	person	Godhā	godhā 2	names of laypeople	name of a Sakyan man				0	23
 godhavari	place	Godhāvarī	godhāvarī	names of rivers	name of a river	18.9128	77.6445	1	0	11
 godhavari-2	place	Godhāvarī	godhāvarī	DPPN: canal	A canal, built by Parakkamabāhu I., connecting the Kāragaṅgā and the Parakkamasāgara (Cv.lxxix.57).				0	0
 godhika	person	Godhika	godhika	names of monks; names of arahants	name of an arahant monk				2	45
 gokanna-1	place	Gokaṇṇa	gokaṇṇa 1	DPPN: locality	A locality in Ceylon and a vihāra founded by Mahā Sena, on the site of a Hindu temple (Mhv.xxxvii.41).				0	0
 gokanna-2	person	Gokaṇṇa	gokaṇṇa 2	DPPN: general	A general of Gajabāhu who defeated Kittisirimegha; he had his headquarters in Kālavāpi, of which place he was Nagaragiri.				0	0
-golissani	person	Golissāni	golissāni	names of monks	name of a monk				0	0
 goliyani	person	Goliyāni	goliyāni	names of monks	name of a monk				0	2
 gona	place	Goṇa	goṇa	DPPN: river	A river to the south of Anurādhapura.				0	0
 gonaddha	place	Gonaddha	gonaddha	villages, towns and cities	name of a town	23.7602	77.0801	1	0	4
@@ -1466,10 +1424,8 @@ gotamatthera	person	Gotamatthera	gotamatthera	names of monks	name of a monk				0
 gotami-2	person	Gotamī	gotamī 2	names of nuns; names of arahants	name of an arahant nun				0	0
 govinda	person	Govinda	govinda	names of Brahmans	name of a Brahman				0	63
 goyogapilakkha	person	Goyogapilakkha	goyogapilakkha	DPPN: buddha	A spot near Benares, visited by the Buddha on his begging rounds (AN.i.280).				0	3
-grimekhala	animal	Grīmekhala	grīmekhala	names of animals					0	0
 gula-4	deity	Guḷa	guḷa 4	names of deities	name of a daemon				0	0
 gulavanna	animal	Guḷavaṇṇa	guḷavaṇṇa	DPPN: horse	A horse belonging to King Kuṭakaṇṇatissa.				0	1
-gulissani	person	Gulissāni	gulissāni	names of monks	name of a monk				0	0
 gumbika	deity	Gumbika	gumbika	DPPN: yakkha	A Yakkha; see the Gumbiyajātaka (Ja 366).				0	6
 guna	person	Guṇa	guṇa	DPPN: king	An Ājīvaka of the Kassapagotta, who was consulted by Aṅgati, king of Videha.				0	0
 gunagandha	person	Guṇagandha	guṇagandha	DPPN: monk	A scholarly monk of Burma.				0	2
@@ -1482,10 +1438,8 @@ gutta-2	person	Gutta	gutta	DPPN: person	A Tamil usurper.				0	0
 gutta-2-2	person	Guttā	guttā 2	DPPN: king	The third of the seven daughters of Kikī, king of Benares.				0	0
 guttijita	person	Guttijita	guttijita	names of paccekabuddhas	name of a privately awakened Buddha				0	1
 guttila	person	Guttila	guttila	names of laypeople	name of a musician; previous incarnation of the Buddha				0	8
-haliddakani	person	Hāliddakāni	hāliddakāni	names of laypeople	name of a householder				0	3
 haliddavasana	place	Haliddavasana	haliddavasana	villages, towns and cities	name of a Koliyan town	27.4291	83.7117	3	2	9
-haliddikani	person	Haliddikāni	haliddikāni	names of laypeople	name of a householder				0	0
-haliddikani-2	person	Hāliddikāni	hāliddikāni	names of laypeople	name of a householder				3	8
+haliddikani	person	Hāliddikāni	hāliddikāni	names of laypeople	name of a householder				3	11
 hamsa	place	Haṃsā	haṃsā	DPPN: palace	A palace occupied by Dīpaṅkara Buddha before his renunciation.				0	0
 hamsa-1	place	Haṃsa	haṃsa 1	DPPN: palace	A palace occupied by Kassapa Buddha in his last lay life, before his renunciation.				0	0
 hamsavaha	animal	Haṃsavaha	haṃsavaha	DPPN: horse	The horse on which Sujāta Buddha left household life.				0	1
@@ -1508,7 +1462,7 @@ hatthaka	person	Hatthaka	hatthaka	DPPN: monk	A monk.				0	0
 hatthaka-1	person	Hatthaka	hatthaka 1	great disciples; names of laypeople	name of a layman in Āḷavī; great disciple of the Buddha; foremost layman in supporting a group with the four bases for sustaining relationships				0	83
 hatthaka-2	deity	Hatthaka	hatthaka 2	names of deities	name of a deity				1	8
 hattharoha	person	Hatthāroha	hatthāroha	DPPN: buddha	A gāmaṇi of Rājagaha who visited the Buddha and asked him what destiny awaited him after death.				0	0
-hattharohaputta-2	person	Hatthārohaputta	hatthārohaputta 2	names of monks; names of arahants	name of an arahant monk				0	11
+hattharohaputta-2	person	Hatthārohaputta	hatthārohaputta 2	names of monks; names of arahants	name of an arahant monk				0	12
 hatthidayaka-thera	person	Hatthidāyaka Thera	hatthidāyaka thera	DPPN: thera	An Arahant.				0	1
 hatthigama	place	Hatthigāma	hatthigāma	villages, towns and cities	name of a village				2	5
 hatthinika	person	Hatthinika	hatthinika	names of royalty	name of one of the sons of king Okkāka				0	3
@@ -1541,8 +1495,7 @@ inda-1	person	Inda	inda 1	DPPN: king	Given in the Āṭānāṭiyasutta as the n
 indaka	deity	Indaka	indaka	names of deities	name of a daemon				1	30
 indaka-2	deity	Indaka	indaka 2	DPPN: deva	A Deva.				0	0
 indakuta	place	Indakūṭa	indakūṭa	names of mountains	name of a mountain	25.0209	85.4626	1	1	1
-indapatta	place	Indapatta	indapatta	villages, towns and cities	name of a city; capital of the Kurus; modern-day Delhi	28.7038	77.1041	1	0	2
-indapattha	place	Indapattha	indapattha	villages, towns and cities	name of a city; capital of the Kurus; modern Delhi				0	12
+indapattha	place	Indapattha	indapattha	villages, towns and cities	name of a city; capital of the Kurus; modern Delhi	28.7038	77.1041	1	0	14
 indasalaguha	place	Indasālaguhā	indasālaguhā	place names	name of a cave	25.0248	85.5178	1	2	19
 indasama	person	Indasama	indasama	DPPN: king	A king of thirteen kappas ago; a previous birth of Setuccha Thera (Thag-a.i.207), also called Khajjakadāyaka (Ap.i.182).				0	7
 indasamanagotta	person	Indasamānagotta	indasamānagotta	DPPN: hermit	A hermit who lived, with a large number of other anchorites, in the Himālaya.				0	10
@@ -1572,8 +1525,8 @@ jagatikaraka-thera	person	Jagatikāraka Thera	jagatikāraka thera	DPPN: thera	An
 jagatipala	person	Jagatipāla	jagatipāla	DPPN: king	King of Ceylon (1047-51 CE.).				0	3
 jahi	person	Jahī	jahī	DPPN: buddha	A Pacceka Buddha, given in a nominal list.				0	0
 jalasikha	person	Jalasikha	jalasikha	DPPN: kings	Seventy-four kappas ago there were eight kings of this name, all previous births of Pupphacchattiya Thera (Ap.i.265).				0	1
-jali-2-2	person	Jālī	jālī 2.2	names of paccekabuddhas	name of two privately awakened Buddhas				0	3
-jali-2-3	person	Jālī	jālī 2.3	names of royalty	name of a prince				0	3
+jali-2-2	person	Jālī	jālī 2.2	names of paccekabuddhas	name of two privately awakened Buddhas				0	2
+jali-2-3	person	Jālī	jālī 2.3	names of royalty	name of a prince				0	14
 jalina	person	Jālina	jālina	DPPN: buddha	A Pacceka Buddha.				0	2
 jalini-1	person	Jālinī	jālinī 1	DPPN: king	One of the five queens of the third Okkāka king.				1	0
 jaliya	person	Jāliya	jāliya	names of ascetics	name of an ascetic's student				1	11
@@ -1591,18 +1544,13 @@ jambukhadaka	person	Jambukhādaka	jambukhādaka	names of ascetics	name of a wand
 janaka-1	person	Janaka	janaka 1	DPPN: king	King of Mithilā, a previous birth of the Bodhisatta.				0	4
 janapada	place	Janapada	janapada	DPPN: district	A district in Northern Malaya in Ceylon, near the frontier of the Dakkhiṇadesa.				0	0
 janasandha-1	person	Janasandha	janasandha 1	DPPN: king	King of Benares, father of Ādāsamukha.				0	21
-janavasabha	deity	Janavasabha	janavasabha	names of deities	name of a supernatural being				0	14
-janesabha	deity	Janesabha	janesabha	names of deities	name of a demigod				0	5
+janavasabha	deity	Janavasabha	janavasabha	names of deities	name of a supernatural being				0	19
 janogha	place	Janogha	janogha	villages, towns and cities	name of a heavenly city				0	1
-janosabha	deity	Janosabha	janosabha	names of deities	name of a demigod				0	0
 jantu-2	deity	Jantu	jantu 2	names of deities	name of a deity				1	1
 jantu-2-2	person	Jantu	jantu 2	DPPN: dynasty	One of the five queens of Okkāka, founder of the third Okkāka dynasty.				0	0
 jantu-3	person	Jantu	jantu 3	DPPN: son	Son of the third Okkāka, by a woman whom he appointed to be his chief queen when his first one, Hatthā, died.				0	0
 jantugama	place	Jantugāma	jantugāma	villages, towns and cities	name of a village	25.7338	81.9443	1	0	16
-janusoni	person	Jāṇusoṇi	jāṇusoṇi	names of Brahmans	name of a rich Brahman				0	2
-janussoni	person	Jāṇussoṇi	jāṇussoṇi	names of Brahmans	name of a rich Brahman				8	54
-janussoni-2	person	Jāṇussoṇī	jāṇussoṇī	names of Brahmans	name of a rich Brahman				0	0
-janussoni-3	person	Jānussoni	jānussoni	names of Brahmans	name of a rich Brahman				0	0
+janussoni	person	Jāṇussoṇi	jāṇussoṇi	names of Brahmans	name of a rich Brahman				8	56
 januttama	person	Januttama	januttama	DPPN: king	A king of fifty-one kappas ago, a previous birth of Meṇḍasira Thera, also called Gaṇṭhipupphiya.				0	2
 jara	person	Jarā	jarā	DPPN: hunter	A hunter who killed Vāsudeva.				0	0
 jatabharadvaja	person	Jaṭābhāradvāja	jaṭābhāradvāja	names of Brahmans	name of a Brahman				1	4
@@ -1613,8 +1561,6 @@ jatimanta	person	Jātimanta	jātimanta	DPPN: brahmin	A Brahmin of Vettavatī.			
 jatipujaka-thera	person	Jātipūjaka Thera	jātipūjaka thera	DPPN: thera	An Arahant.				0	3
 jatipupphiya-thera	person	Jātipupphiya Thera	jātipupphiya thera	DPPN: thera	An Arahant.				0	1
 jatiyavana	place	Jātiyāvana	jātiyāvana	place names	name of a wood	25.8975	86.7934	1	2	9
-jattugama	place	Jattugāma	jattugāma	villages, towns and cities	name of a village				0	0
-jatugama	place	Jatugāma	jatugāma	villages, towns and cities	name of a village				0	0
 jatukanni-2	person	Jatukaṇṇī	jatukaṇṇī 2	names of Brahmans	name of a Brahman ascetic				0	23
 java	deity	Java	java	DPPN: devaputta	A Devaputta.				0	0
 javahamsaka-thera	person	Javahaṃsaka Thera	javahaṃsaka thera	DPPN: thera	An Arahant.				0	1
@@ -1669,20 +1615,18 @@ junha-1	person	Juṇha	juṇha 1	DPPN: elder	An Elder of Kosala.				0	19
 jutideva	person	Jutideva	jutideva	DPPN: king	A king of seventeen kappas ago, a previous birth of Sappidāyaka.				0	1
 jutindhara-1	person	Jutindhara	jutindhara 1	DPPN: king	A king of fifty-one kappas ago, a former birth of Salaḷamāliya (Ap.i.206) or Samiddhi (Thag-a.i.117).				0	4
 kacaragama	place	Kācaragāma	kācaragāma	DPPN: village	A village in South Ceylon, on the Maṇigaṅgā (Mānik-gaṅga), about ten miles to the north of Tissamahārāma, on the old road from Mahā Gāma to Guttasāla.				0	1
-kaccana	group	Kaccāna	kaccāna	family names	family name				2	259
+kaccana	group	Kaccāna	kaccāna	family names	family name				2	319
 kaccana-1	person	Kaccānā	kaccānā 1	DPPN: sākiyan	A Sākiyan princess, daughter of Devadahasakka of Devadaha and sister of Añjanasakka.				0	0
 kaccanagotta-1	group	Kaccānagotta	kaccānagotta 1	family names	name of a respected family clan				0	2
 kaccanagotta-2	person	Kaccānagotta	kaccānagotta 2	names of monks	name of a monk				1	4
 kaccani-1	person	Kaccānī	kaccānī 1	DPPN: woman	The old woman whose story is related in the story of the past in the Kaccānijātaka (Ja 417).				0	6
-kaccayana-1	group	Kaccāyana	kaccāyana 1	family names	family name				0	41
-kaccayana-1-2	person	Kaccāyana	kaccāyana 1	DPPN: author	Author of the Kaccāyanavyākaraṇa, the oldest of the Pāli grammars extant.				0	1
+kaccayana-1	person	Kaccāyana	kaccāyana 1	DPPN: author	Author of the Kaccāyanavyākaraṇa, the oldest of the Pāli grammars extant.				0	1
 kaccayana-2	person	Kaccāyana	kaccāyana 2	DPPN: arahant	An Arahant.				0	0
 kaccayana-3	deity	Kaccāyana	kaccāyana 3	DPPN: yakkha	In the Vidhurapaṇḍitajātaka (Ja 545), the Yakkha Puṇṇaka calls himself and is addressed as Kaccāyana (Ja.vi.273), Kaccāna (Ja.vi.283, 286, 301, 327) and Kātiyāna (Ja.vi.299, 306, 308).				0	0
 kacchakatittha	place	Kacchakatittha	kacchakatittha	DPPN: ford	A ford in the Mahā Vālukagaṅgā, near the Dhūmarakkha mountain.				0	1
 kadamba-1	place	Kadamba	kadamba 1	DPPN: river	The river that flows past Anurādhapura, on the eastern side, now called the Malvatu Oya (Mhv.vii.43; and				0	0
 kadambapupphiya-thera-1	person	Kadambapupphiya Thera	kadambapupphiya thera 1	DPPN: thera	An Arahant.				0	3
-kajangala	place	Kajaṅgalā	kajaṅgalā	villages, towns and cities	name of a town	25.0489	87.838	1	1	11
-kajangala-2	person	Kajaṅgalā	kajaṅgalā	DPPN: nun	A nun who lived in Kajaṅgala.				0	0
+kajangala	person	Kajaṅgalā	kajaṅgalā	DPPN: nun	A nun who lived in Kajaṅgala.				0	0
 kaka	person	Kāka	kāka	DPPN: slave	Slave of King Caṇḍappajjota.				0	7
 kakanda	person	Kākanda	kākanda	DPPN: sage	The commentaries speak of Kākaṇḍa as a sage of yore and mention him in the company of Savattha and Kusumba.				0	4
 kakandaka	person	Kākaṇḍaka	kākaṇḍaka	DPPN: brahmin	A Brahmin, father of Yasa Thera, the latter being generally referred to as Yasa Kākaṇḍakaputta (q.v.).				0	1
@@ -1694,7 +1638,7 @@ kakkata-1	person	Kakkaṭa	kakkaṭa 1	DPPN: monk	An eminent monk mentioned, wit
 kakkata-2	person	Kakkaṭa	kakkaṭa 2	names of laypeople	name of a lay disciple				0	2
 kakkhala	person	Kakkhaḷa	kakkhaḷa	DPPN: father	A nickname given to Jeṭṭhatissa I. When certain of his ministers shewed reluctance to accompany his father’s funeral procession, he finally persuaded them; but when they were assembled he had the gates shut on them, put them to death, and h				0	0
 kakola	place	Kākola	kākola	DPPN: hell	A hell; beings born there are dragged about by flocks of ravens, vultures and hawks, and eaten alive.				0	0
-kakudha	place	Kakudhā	kakudhā	names of rivers	name of a river	26.7371	83.8835	4	0	6
+kakudha	place	Kakudhā	kakudhā	names of rivers	name of a river	26.7371	83.8835	4	0	10
 kakudha-1	deity	Kakudha	kakudha 1	names of deities	name of a deity				2	18
 kakudha-4	person	Kakudha	kakudha 4	DPPN: buddha	A Pacceka Buddha of thirty-one kappas ago, to whom Uddāladāyaka Thera, in a previous birth, gave a flower.				0	0
 kakudha-5	person	Kakudha	kakudha 5	names of laypeople	name of a lay disciple				0	13
@@ -1720,10 +1664,7 @@ kaladighavapi	place	Kāḷadīghavāpi	kāḷadīghavāpi	DPPN: lake	A lake, evi
 kalahatthi	person	Kāḷahatthi	kāḷahatthi	DPPN: chief	Commander-in-chief of the Porisāda, the man-eating king, mentioned in the Sutasomajātaka (Ja 537).				0	27
 kalaka-1	person	Kāḷaka	kāḷaka 1	DPPN: seṭṭhi	A seṭṭhi of Sāketa.				0	2
 kalakabhikkhu	person	Kāḷakabhikkhu	kāḷakabhikkhu	names of monks	name of a monk				0	0
-kalakanca	deity	Kālakañcā	kālakañcā	names of deities	name of a group of daemons				0	3
-kalakancika	deity	Kālakañcikā	kālakañcikā	names of deities	name of a group of daemons				0	13
-kalakanja	deity	Kālakañjā	kālakañjā	names of deities	name of a group of daemons				0	0
-kalakanjika	deity	Kālakañjikā	kālakañjikā	names of deities	name of a group of daemons				0	4
+kalakancika	deity	Kālakañcikā	kālakañcikā	names of deities	name of a group of daemons				0	20
 kalakanni-1	person	Kāḷakaṇṇī	kāḷakaṇṇī 1	DPPN: friend	A friend of Anāthapiṇḍika.				0	33
 kalakarama	place	Kāḷakārāma	kāḷakārāma	names of monasteries	name of a monastery				1	3
 kalakhemaka	person	Kāḷakhemaka	kāḷakhemaka	names of laypeople	name of a Sakyan layman				1	8
@@ -1752,7 +1693,6 @@ kalavallimandapa	place	Kāḷavallimaṇḍapa	kāḷavallimaṇḍapa	names of 
 kali	place	Kāli	kāli	DPPN: tank	A tank in Ceylon, built by King Vasabha (Mhv.xxxv.95).				0	0
 kali-2	person	Kāḷī	kāḷī 2	names of laypeople	name of a female slave in Sāvatthī				0	0
 kali-3	deity	Kāḷī	kāḷī 3	names of deities	name of Mahāmoggallāna's sister in a previous incarnation				0	0
-kali-4	person	Kāḷī	kāḷī 4	names of nuns; names of arahants	name of an arahant nun				0	0
 kali-5	person	Kāḷī	kāḷī 5	great disciples; names of laypeople	name of a female lay disciple; great disciple of the Buddha; foremost laywoman among those whose faith is based on hearsay; Kāḷī Kulagharikā				0	0
 kali-5-2	person	Kāḷī	kāḷī 5	DPPN: person	A crematrix (chavadāhikā) of Sāvatthī.				0	0
 kali-6	deity	Kāḷī	kāḷī 6	DPPN: deity	A Yakkhinī.				0	0
@@ -1760,9 +1700,7 @@ kali-7	person	Kāḷī	kāḷī 7	DPPN: wife	Wife of Kotūhalaka (q.v.) and moth
 kali-8	person	Kāḷī	kāḷī 8	DPPN: seṭṭhi	A maidservant of the seṭṭhi of Kosambī.				0	0
 kali-9	person	Kāḷī	kāḷī 9	DPPN: courtesan	A courtesan of Benares, sister of Tuṇḍila.				0	0
 kalibha	person	Kaḷibha	kaḷibha	names of laypeople	name of a lay disciple				0	2
-kaligodha	person	Kāḷigodhā	kāḷigodhā	names of laypeople	name of a Sakyan laywoman				1	13
-kaligodha-2	person	Kāḷīgodhā	kāḷīgodhā	names of royalty	name of a Sakyan princess				0	13
-kaligodhaputtabhaddiya	person	Kāḷigodhāputtabhaddiya	kāḷigodhāputtabhaddiya	names of monks; names of arahants	name of an arahant monk				0	0
+kaligodha	person	Kāḷigodhā	kāḷigodhā	names of laypeople	name of a Sakyan laywoman				1	26
 kaligodhayaputta	person	Kāḷigodhāyaputta	kāḷigodhāyaputta	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk among those from an eminent family				0	1
 kalimba	person	Kāḷimba	kāḷimba	names of laypeople	name of a lay disciple				0	2
 kalimbha-2	person	Kaḷimbha	kaḷimbha 2	names of monks	name of a monk				0	2
@@ -1771,8 +1709,7 @@ kalinga-2	person	Kāliṅga	kāliṅga 2	names of laypeople	name of a lay discip
 kalinga-2-2	place	Kāliṅga	kāliṅga 2	DPPN: country	A country: the Kāliṅgaraṭṭha.				0	0
 kalinga-3	place	Kāliṅga	kāliṅga 3	place names	name of a forest	20.525	86.475	1	0	0
 kalinga-3-2	person	Kāliṅga	kāliṅga 3	DPPN: kings	Various kings of Kāliṅga are mentioned either as Kāliṅgarājā or simply as Kāliṅga.				0	0
-kalinga-4	group	Kaliṅgā	kaliṅgā	people	people of Kaliṅga	20.525	86.475	3	0	0
-kalinga-4-2	person	Kāliṅga	kāliṅga 4	DPPN: son	Son of Cūḷa Kāliṅga.				0	0
+kalinga-4	person	Kāliṅga	kāliṅga 4	DPPN: son	Son of Cūḷa Kāliṅga.				0	0
 kalinga-5	group	Kāliṅgā	kāliṅgā	people	people of Kaliṅga	20.525	86.475	3	0	2
 kalinga-5-2	person	Kāliṅga	kāliṅga 5	DPPN: chief	A Damiḷa chief, ally of Kulasekhara (Cv.lxxvi.174, 214, 217, 222).				0	0
 kalinga-6	person	Kāliṅga	kāliṅga 6	DPPN: chief	Another Damiḷa chief, conquered by Bhuvenakabāhu I.				0	0
@@ -1799,8 +1736,7 @@ kamboja	place	Kamboja	kamboja	names of countries	name of a country; part of mode
 kamboja-2	group	Kambojā	kambojā	people	people of Kamboja; Iranian speaking people; Kambojans	35.3219	46.9862	3	0	0
 kammaradhitar	person	Kammāradhītar	kammāradhītar	names of nuns; names of arahants	smith's daughter; epithet of Subhā Therī				0	8
 kammaragama	place	Kammāragāma	kammāragāma	DPPN: village	A village in Rohaṇa, identified with modern Kamburugamuva.				0	10
-kammasadamma	place	Kammāsadamma	kammāsadamma	villages, towns and cities	name of a town in the Kuru country	29.17	78.02	4	0	3
-kammasadhamma	place	Kammāsadhamma	kammāsadhamma	villages, towns and cities	name of a town in the Kuru country	29.17	78.02	1	8	22
+kammasadhamma	place	Kammāsadhamma	kammāsadhamma	villages, towns and cities	name of a town in the Kuru country	29.17	78.02	1	8	25
 kamsa-1	person	Kaṃsa	kaṃsa 1	DPPN: king	Another name, according to the scholiast, for Brahmadatta, king of Benares and father of Samuddajā.				0	8
 kamsavamsa	group	Kaṃsavaṃsa	kaṃsavaṃsa	DPPN: race	The race of Mahā Kaṁsa; this race was destroyed by the sons of Devagabbhā.				0	1
 kana	person	Kāṇā	kāṇā	DPPN: daughter	Daughter of Kāṇamātā.				0	45
@@ -1817,7 +1753,7 @@ kancanapabbata-1	place	Kañcanapabbata	kañcanapabbata 1	DPPN: mountain	A mounta
 kancanapatti	person	Kañcanapattī	kañcanapattī	DPPN: ascetic	The hut in the Kañcanapabbata, where lived the ascetic Jotirasa, friend of Vessavaṇa.				0	1
 kancanavela	person	Kañcanavela	kañcanavela	DPPN: son	Son of Piyadassī Buddha, his mother being Vimalā (Bv.xiv.17).				0	0
 kandagalaka	animal	Kandagalaka	kandagalaka	DPPN: bird	A bird, a former birth of Devadatta.				0	8
-kandakivana	place	Kaṇḍakīvana	kaṇḍakīvana	place names	name of a forest	26.7974	82.2148	1	4	3
+kandakivana	place	Kaṇḍakīvana	kaṇḍakīvana	place names	name of a forest	26.7974	82.2148	1	5	4
 kandalipupphiya-thera	person	Kandalīpupphiya Thera	kandalīpupphiya thera	DPPN: thera	An Arahant.				0	3
 kandamba	person	Kaṇḍamba	kaṇḍamba	DPPN: chief	A Damiḷa chief, ally of Kulasekhara.				0	2
 kandaraka	person	Kandaraka	kandaraka	names of ascetics	name of a wandering ascetic				1	17
@@ -1848,9 +1784,7 @@ kannakatthala	place	Kaṇṇakatthala	kaṇṇakatthala	place names	name of a pa
 kannakujja	place	Kaṇṇakujja	kaṇṇakujja	villages, towns and cities	name of a town	26.0224	80.2041	3	0	6
 kantaka	person	Kaṇṭakā	kaṇṭakā	DPPN: nun	A nun who was guilty of unchastity with the novice Kaṇṭaka (Vin.i.85).				0	4
 kantaka-5	person	Kaṇṭaka	kaṇṭaka 5	names of monks	name of a novice monk				0	8
-kantakivana	place	Kaṇṭakīvana	kaṇṭakīvana	place names	name of a forest				0	0
 kapallapuva	place	Kapallapūva	kapallapūva	DPPN: cave	A cave near the gateway of Jetavana, into which Macchariya Kosiya (q.v.) and his wife threw away the cakes which were left over after they had fed the Buddha and five hundred monks.	27.5095	82.0401	4	0	0
-kapathika	person	Kāpaṭhika	kāpaṭhika	names of Brahmans	name of a young Brahman				0	0
 kapatika	person	Kāpaṭika	kāpaṭika	names of Brahmans	name of a young Brahman				0	17
 kapi	person	Kāpi	kāpi	DPPN: son	Son of Kotūhalaka and his wife Kāḷī.				0	1
 kapila-1	person	Kapila	kapila 1	DPPN: father	Father of Pippalimāṇava, who is better known as Mahā Kassapa.				0	5
@@ -1877,9 +1811,7 @@ kappina	person	Kappina	kappina	great disciples; names of arahants; names of monk
 kappitaka	person	Kappitaka	kappitaka	names of monks	name of a monk				0	20
 karadipa	place	Kāradīpa	kāradīpa	place names; Sri Lanka	name of an island				0	5
 karaka	place	Kāraka	kāraka	DPPN: village	A village in Ceylon, near Serisara.				0	0
-karakanda	person	Karakaṇḍa	karakaṇḍa	names of royalty	name of one of the sons of king Okkāka				0	1
-karakandu	person	Karakaṇḍu	karakaṇḍu	names of royalty	name of one of the sons of king Okkāka				0	2
-karalimba	person	Kāraḷimba	kāraḷimba	names of laypeople	name of a lay disciple				0	0
+karakandu	person	Karakaṇḍu	karakaṇḍu	names of royalty	name of one of the sons of king Okkāka				0	3
 karambha	deity	Karambhā	karambhā	names of deities	name of a goddess; name of a group of deities				0	2
 karambiya	place	Karambiya	karambiya	DPPN: seaport	A seaport.				0	4
 karanapali	person	Kāraṇapālī	kāraṇapālī	names of Brahmans	name of a Brahman				0	6
@@ -1891,7 +1823,6 @@ karatiya-1	deity	Karatiya	karatiya 1	names of deities	name of a daemon				0	2
 karavika	place	Karavīka	karavīka	DPPN: mountains	One of the seven mountains surrounding Sineru (Snp-a.ii.443;				0	8
 karayana	person	Kārāyana	kārāyana	names of laypeople	name of king Pasenadi's charioteer				0	16
 karoti	deity	Karoṭi	karoṭi	DPPN: nāgas	A class of spirits, associated with the Nāgas and forming one of the five defences of the Devas against the Asuras.				0	9
-karumha	deity	Karumhā	karumhā	names of deities	name of a group of deities				0	0
 kasi	place	Kāsi	kāsi	names of countries	name of a kingdom	25.3291	82.4139	1	1	327
 kasi-2	group	Kāsī	kāsī	people	people of Kāsi; Kāsians	25.3291	82.4139	3	0	0
 kasi-2-2	place	Kāsi	kāsi 2	DPPN: city	A city, the birthplace of Phussa Buddha (Bv.xix.14;				0	0
@@ -1899,7 +1830,6 @@ kasibharadvaja	person	Kasibhāradvāja	kasibhāradvāja	names of Brahmans	name o
 kasigama	place	Kāsigāma	kāsigāma	DPPN: village	Probably the actual name of the village in Kāsi which was given by Mahā Kosala to his daughter when she married Bimbisāra.	25.3291	82.4139	4	0	17
 kasika	group	Kāsika	kāsika	DPPN: tribe	The name of a tribe; probably the inhabitants of Kāsi.				0	0
 kasika-2	place	Kāsika	kāsika	DPPN: city	A city.				0	0
-kasikabharadvaja	person	Kasikabhāradvāja	kasikabhāradvāja	names of Brahmans	name of a Brahman				0	0
 kasikosala	place	Kāsikosala	kāsikosala	names of countries	kingdoms of Kāsi and Kosala	25.3291	82.4139	4	0	23
 kasikosala-2	group	Kāsikosalā	kāsikosalā	people	people of Kāsi and Kosala; Kāsians and Kosalans				0	0
 kasipura	place	Kāsipura	kāsipura	villages, towns and cities	capital of Kāsi; Bārāṇasī; modern Varanasi	25.3291	82.4139	4	0	7
@@ -1941,17 +1871,12 @@ kassapakarama	place	Kassapakārāma	kassapakārāma	DPPN: monastery	A monastery 
 kassapasammasambuddha	person	Kassapasammāsambuddha	kassapasammāsambuddha	previous Buddhas					0	27
 katahaka	person	Kaṭāhakā	kaṭāhakā	names of laypeople	name of a female slave				0	14
 kataka	place	Kaṭaka	kaṭaka	DPPN: village	A village in Ceylon granted by Aggabodhi IV. for the maintenance of the padhanāghara, which he built for the Elder Dāṭhāsiva.				0	0
-katamodakatissaka	person	Kaṭamodakatissaka	kaṭamodakatissaka	names of monks	name of a monk				0	7
-katamodakatissaka-2	person	Katamodakatissaka	katamodakatissaka	names of monks	name of a monk				0	1
-katamorakatissaka	person	Kaṭamorakatissaka	kaṭamorakatissaka	names of monks	name of a monk				0	0
-katamorakatissaka-2	person	Katamorakatissaka	katamorakatissaka	names of monks	name of a monk				0	0
+katamodakatissaka	person	Kaṭamodakatissaka	kaṭamodakatissaka	names of monks	name of a monk				0	8
 katattha	deity	Kaṭattha	kaṭattha	DPPN: yakkhas	One of the Yakkhas who guarded Jotika’s palace.				0	1
-katissabha	person	Kaṭissabha	kaṭissabha	names of laypeople	name of a lay disciple				0	0
 katissaha	person	Kaṭissaha	kaṭissaha	names of laypeople	name of a lay disciple				0	7
 katissaha-1	person	Kaṭissaha	kaṭissaha 1	DPPN: arahant	An Arahant.				0	0
 katissaha-2	person	Kaṭissaha	kaṭissaha 2	DPPN: chief	One of the chief supporters of Dhammadassī Buddha.				0	0
-katiyana-1	group	Kātiyāna	kātiyāna 1	family names	family name				0	19
-katiyana-1-2	deity	Kātiyāna	kātiyāna 1	DPPN: yakkha	A name by which the Yakkha Puṇṇaka (q.v.) is addressed (Ja.vi.299, 306, 308).				0	0
+katiyana-1	deity	Kātiyāna	kātiyāna 1	DPPN: yakkha	A name by which the Yakkha Puṇṇaka (q.v.) is addressed (Ja.vi.299, 306, 308).				0	0
 katiyana-2	person	Kātiyāna	kātiyāna 2	names of monks; names of arahants	name of an arahant monk				0	3
 katiyani	person	Kātiyānī	kātiyānī	names of laypeople; great disciples	name of a female lay disciple; great disciple of the Buddha; foremost laywomen in unwavering confidence				0	14
 katthaka	deity	Kaṭṭhakā	kaṭṭhakā	names of deities	name of a group of deities				0	2
@@ -1959,7 +1884,6 @@ katthaka-2	deity	Katthakā	katthakā	DPPN: class of devas	A class of Devas prese
 katthanagara	place	Kaṭṭhanagara	kaṭṭhanagara	villages, towns and cities	name of a town				0	1
 katthavahana-1	person	Kaṭṭhavāhana	kaṭṭhavāhana 1	DPPN: king	A king.				0	10
 katthavahananagara	place	Kaṭṭhavāhananagara	kaṭṭhavāhananagara	DPPN: city	The city of king Kaṭṭhavāhana (1) (Snp-a.ii.576).				0	2
-kavimbha	person	Kavimbha	kavimbha	names of monks	name of a monk				0	0
 keka	place	Keka	keka	DPPN: kingdom	A kingdom in Mahiṁsakaraṭṭha.				0	0
 kekaka	place	Kekaka	kekaka	names of countries	name of a country				0	10
 kekaka-2	group	Kekakā	kekakā	DPPN: people	The people of Kekaka.				0	0
@@ -1973,7 +1897,6 @@ kesadhatu	person	Kesadhātu	kesadhātu	DPPN: kings	A very high rank bestowed by 
 kesakambala-1	group	Kesakambala	kesakambala 1	family names; six ascetic teachers	family name of an ascetic teacher				0	17
 kesakari	person	Kesakārī	kesakārī	DPPN: brahmin	A Brahmin maiden of Bārāṇasī.				0	1
 kesamutta	place	Kesamutta	kesamutta	villages, towns and cities	name of a town of the Kālāmas in Kosala	27.5171	82.0506	4	1	4
-kesaputta	place	Kesaputta	kesaputta	villages, towns and cities	name of a town of the Kālāmas in Kosala	27.5171	82.0506	4	0	0
 kesarama	place	Kesārāma	kesārāma	DPPN: park	A park in the city of Sīlavatī.	27.6835	83.1253	4	0	1
 kesarapupphiya-thera	person	Kesarapupphiya Thera	kesarapupphiya thera	DPPN: thera	An Arahant.				0	1
 kesava	person	Kesava	kesava	names of ascetics	name of a man in a Petavatthu story				0	39
@@ -2053,24 +1976,18 @@ khujjasobhita	person	Khujjasobhita	khujjasobhita	names of monks; names of arahan
 khujjasobhita-thera-2	person	Khujjasobhita Thera	khujjasobhita thera 2	DPPN: thera	One of the Pācīnaka (“Eastern”) monks who proclaimed the ten indulgences at Vesālī.				0	0
 khujjuttara	person	Khujjuttarā	khujjuttarā	great disciples; names of laypeople	name of a lay disciple; great disciple of the Buddha; foremost laywoman in great learning				0	49
 khuramala	place	Khuramāla	khuramāla	DPPN: sea	A sea.				0	3
-ki-1-1	person	Kī	kī 1.1	names of royalty	name of the reigning king at the time of Kassapa Buddha				0	0
 kiki-2	person	Kikī	kikī 2	names of royalty	name of the reigning king of Kāsi at the time of Kassapa Buddha				0	68
 kikibrahmadatta	person	Kikībrahmadatta	kikībrahmadatta	DPPN: son	Son of Suyāma and great grandson of King Kikī; see Ekadhammasavaniya Thera (1).				0	1
 kilanjadayaka-thera	person	Kilañjadāyaka Thera	kilañjadāyaka thera	DPPN: thera	An Arahant.				0	1
-kimbila	place	Kimbilā	kimbilā	villages, towns and cities	name of a town				0	0
-kimbila-1	person	Kimbila	kimbila 1	names of monks; names of arahants	name of an arahant monk; associate of Anuruddha				0	0
 kimbila-2	person	Kimbila	kimbila 2	names of monks; names of arahants	name of an arahant monk				0	0
 kimikala	place	Kimikāḷā	kimikāḷā	names of rivers	name of a river				0	10
 kimikala-2	place	Kimikālā	kimikālā	DPPN: river	A river near Jantugāma.	25.7338	81.9443	4	0	1
 kimila	place	Kimilā	kimilā	villages, towns and cities	name of a town	25.6143	83.6719	4	5	16
 kimila-1	person	Kimila	kimila 1	names of monks; names of arahants	name of an arahant monk; associate of Anuruddha				4	46
-kimila-2	person	Kimila	kimila 2	names of monks; names of arahants	name of an arahant monk				0	0
-kimmila	place	Kimmilā	kimmilā	villages, towns and cities	name of a town				0	0
 kimsukapujaka-thera	person	Kiṃsukapūjaka Thera	kiṃsukapūjaka thera	DPPN: thera	An Arahant.				0	1
 kimsukapupphiya-thera	person	Kiṃsukapupphiya Thera	kiṃsukapupphiya thera	DPPN: thera	An Arahant.				0	1
 kinjakesara	person	Kiñjakesara	kiñjakesara	DPPN: kings	Sixty-eight kappas ago there were four kings of this name, all previous births of Bimbijāliya Thera.				0	1
-kinnighandu	deity	Kinnighaṇḍu	kinnighaṇḍu	names of deities	name of a deity				0	3
-kinnughandu	deity	Kinnughaṇḍu	kinnughaṇḍu	names of deities	name of a deity				0	3
+kinnughandu	deity	Kinnughaṇḍu	kinnughaṇḍu	names of deities	name of a deity				0	6
 kirapatika	person	Kirapatika	kirapatika	names of laypeople	name of a layman				0	6
 kisa-2	person	Kisa	kisa 2	names of ascetics	name of an ascetic; Kisa Saṃkicca				0	0
 kisa-gotami-2	person	Kisā Gotamī	kisā gotamī 2	DPPN: person	A Khattiya-maiden of Kapilavatthu.				0	0
@@ -2105,17 +2022,13 @@ kolapattana	place	Kolapaṭṭana	kolapaṭṭana	DPPN: harbour	A harbour mentio
 kolikarama	place	Koḷikārāma	koḷikārāma	names of monasteries	name of a monastery				0	0
 kolita	person	Kolita	kolita	names of monks; names of arahants	Mahāmoggallāna's first name; Kolita Moggallāna				0	74
 kolitagama	place	Kolitagāma	kolitagāma	DPPN: village	The village in which Mahā Moggallāna was born.				0	0
-kolivisa	group	Koḷivīsa	koḷivīsa	family names					0	2
-kolivisa-1	group	Koḷivisa	koḷivisa 1	family names	name of a family clan				0	1
+kolivisa	group	Koḷivīsa	koḷivīsa	family names					0	3
 kolivisa-2	person	Koḷivisa	koḷivisa 2	great disciples; names of arahants; names of monks; family names	family name of an arahant monk; great disciple of the Buddha; foremost monk in having energy aroused; Soṇa Koḷivisa				0	22
-koliya	group	Koliya	koliya	people	name of a clan neighbouring the Sakyans	27.4632	83.6691	1	6	57
+koliya	group	Koliya	koliya	people	name of a clan neighbouring the Sakyans	27.4632	83.6691	1	6	67
 koliya-2	group	Koliyā	koliyā	people	people of the clan neighbouring the Sakyans; Koliyans	27.4632	83.6691	3	0	0
-koliya-3	group	Koḷiya	koḷiya	family names	name of a clan neighbouring the Sakyans	27.4632	83.6691	3	0	10
-koliya-4	group	Koḷīya	koḷīya	people	name of a clan neighbouring the Sakyans	27.4632	83.6691	3	0	0
 konagamana	person	Koṇāgamana	koṇāgamana	previous Buddhas	name of the 2nd previous Buddha				0	116
 konca	person	Koñcā	koñcā	DPPN: buddha	One of the palaces occupied by Dīpaṅkara Buddha in his last lay life.				0	0
 konca-3	person	Koñca	koñca 3	DPPN: king	King of Mantāvatī, and father of Sumedhā.				0	5
-kondadhana	person	Koṇḍadhāna	koṇḍadhāna	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in taking lots first				1	3
 kondanna-1	person	Koṇḍañña	koṇḍañña 1	names of monks; names of arahants	name of a monk; seniormost of the five ascetics; first monastic disciple of the Buddha				0	41
 kondanna-2	group	Koṇḍañña	koṇḍañña 2	family names	name of a family clan				0	0
 kondanna-3	person	Koṇḍañña	koṇḍañña 3	previous Buddhas	name of the 23rd previous Buddha				0	11
@@ -2169,7 +2082,6 @@ kukkutamitta	person	Kukkuṭamitta	kukkuṭamitta	names of laypeople	name of a h
 kukkutarama	place	Kukkuṭārāma	kukkuṭārāma	names of monasteries	name of a monastery near Pāṭaliputta; (comm) monastery built by Kukkuṭa	25.535	85.2003	1	5	19
 kukkutarama-1	place	Kukkuṭārāma	kukkuṭārāma 1	DPPN: monastery	A monastery in Kosambī, built by the seṭṭhi Kukkuṭa (q.v.).				0	0
 kukkutavati	place	Kukkuṭavatī	kukkuṭavatī	villages, towns and cities	name of a town				0	0
-kukuttha	place	Kukuṭṭhā	kukuṭṭhā	names of rivers	name of a river	26.7371	83.8835	4	0	4
 kula-4	person	Kula	kula 4	names of monks; names of arahants	name of an arahant monk				0	3
 kulavaddhana	person	Kulavaddhana	kulavaddhana	DPPN: merchant	A rich merchant of Sudassana (Benares) who tried to stop his king, Sutasoma, from renouncing the world by offering him all his wealth.				0	1
 kulinga	group	Kuliṅga	kuliṅga	DPPN: clan	The name of a clan, probably Sinhalese.				0	2
@@ -2195,19 +2107,15 @@ kunala	place	Kuṇālā	kuṇālā	DPPN: river	The name of a river (mahānadī) 
 kunala-1	place	Kuṇāla	kuṇāla 1	DPPN: region	One of the seven great lakes in the region of the Himālaya.				0	8
 kunala-2	person	Kuṇāla	kuṇāla 2	DPPN: bodhisatta	The Bodhisatta, born as the king of the Citrakokilas.				0	73
 kunda	deity	Kuṇḍa	kuṇḍa	DPPN: yakkha	A Yakkha who once inhabited a forest, called Kuṇḍadhāna (Ud-a.122) after him.				0	1
-kundadhana	person	Kuṇḍadhāna	kuṇḍadhāna	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in taking lots first				0	30
+kundadhana	person	Kuṇḍadhāna	kuṇḍadhāna	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in taking lots first				1	33
 kundadhanavana	place	Kuṇḍadhānavana	kuṇḍadhānavana	place names	name of a forest				3	5
 kundala	person	Kuṇḍalā	kuṇḍalā	DPPN: daughter	Daughter of the king of Devaputta.				0	7
-kundala-3	person	Kuṇḍala	kuṇḍala 3	names of monks; names of arahants	name of an arahant monk				0	0
-kundalakesa	person	Kuṇḍalakesā	kuṇḍalakesā	names of nuns; names of arahants	name of an arahant nun				0	15
 kundali-1	animal	Kuṇḍalī	kuṇḍalī 1	DPPN: bird	The sārikā-bird of the Mahā Ummaggajātaka is identified with Kuṇḍalī (Ja.vi.478).				0	0
 kundali-3	place	Kuṇḍalī	kuṇḍalī 3	DPPN: vimāna	The name of a vimāna in Tāvatiṁsa.				0	0
 kundali-4	person	Kuṇḍalī	kuṇḍalī 4	DPPN: brahmin	A Brahmin, importer of foreign goods.				0	0
 kundalini	animal	Kuṇḍalinī	kuṇḍalinī	DPPN: bird	The name given to the offspring of the sārikā-bird (myna) in the Tesakuṇajātaka (Ja 521).				0	14
 kundaliya	person	Kuṇḍaliya	kuṇḍaliya	names of ascetics	name of a wandering ascetic				1	24
-kundika-2	place	Kuṇḍikā	kuṇḍikā 2	villages, towns and cities	name of a Koliyan town				1	5
-kunditthanavana	place	Kuṇḍiṭṭhānavana	kuṇḍiṭṭhānavana	place names	name of a forest				0	0
-kundiya	place	Kuṇḍiyā	kuṇḍiyā	villages, towns and cities	name of a Koliyan town				0	2
+kundika-2	place	Kuṇḍikā	kuṇḍikā 2	villages, towns and cities	name of a Koliyan town				1	7
 kunjara-1	animal	Kuñjara	kuñjara 1	DPPN: elephant	Devānampiyatissa’s elephant, tied to the plough which marked the sīmā of the Mahā Vihāra.				0	0
 kunjara-2	person	Kuñjara	kuñjara 2	DPPN: chief	One of the chief lay patrons of Revata Buddha.				0	0
 kunti	person	Kuntī	kuntī	DPPN: mother	A kinnarī, mother of the Theras Tissa and Sumitta.				0	7
@@ -2217,7 +2125,6 @@ kuru	place	Kuru	kuru	names of countries	name of a country	29.17	78.02	1	9	138
 kuru-2	group	Kurū	kurū	people	people of Kuru; Kurus	29.17	78.02	3	0	0
 kurundi	place	Kurundī	kurundī	DPPN: village	A village in Ceylon.				0	75
 kurupancala	group	Kurupañcālā	kurupañcālā	people	people of Kuru and Pañcala; Kurus and Pañcālas				0	4
-kururaghara	place	Kururaghara	kururaghara	villages, towns and cities	name of a town in Avanti	22.6748	75.6244	4	0	0
 kuruvakatittha	place	Kuruvakatittha	kuruvakatittha	DPPN: bathing-place	A secluded bathing-place in a large pond near the Cittalapabbatavihāra (MN-a.ii.1025).				0	1
 kusa	person	Kusa	kusa	DPPN: bodhisatta	The Bodhisatta, son of Okkāka, king of Mahā Sammata and of his queen Sīlavatī.				0	26
 kusamba	person	Kusamba	kusamba	DPPN: sage	A sage (Isi), on the site of whose hermitage was built the city which came, for that reason, to be called Kosambī.				0	4
@@ -2248,8 +2155,7 @@ lakkhana-2	person	Lakkhaṇa	lakkhaṇa 2	DPPN: brahmins	One of the eight Brahmi
 lakkhana-4	animal	Lakkhaṇa	lakkhaṇa 4	DPPN: deer	A deer, son of the Bodhisatta, identified with Sāriputta.				0	7
 lakkhana-6	person	Lakkhaṇa	lakkhaṇa 6	names of monks; names of arahants	name of an arahant monk				0	39
 lakkhi-1	deity	Lakkhī	lakkhī 1	DPPN: goddess	The Pāli equivalent of Lakṣmī, goddess of beauty and fortune.				0	10
-lakundabhaddiya	person	Lakuṇḍabhaddiya	lakuṇḍabhaddiya	names of monks; names of arahants	name of an arahant monk				0	2
-lakundakabhaddiya	person	Lakuṇḍakabhaddiya	lakuṇḍakabhaddiya	names of monks; names of arahants	name of an arahant monk				6	37
+lakundakabhaddiya	person	Lakuṇḍakabhaddiya	lakuṇḍakabhaddiya	names of monks; names of arahants	name of an arahant monk				6	39
 lakuntaka-bhaddiya-thera	person	Lakuṇṭaka Bhaddiya Thera	lakuṇṭaka bhaddiya thera	DPPN: thera	He was born in a wealthy family of Sāvatthī and was given the title of Lakuṇṭaka (Dwarf) owing to his very small stature.				0	0
 lala	place	Lāla	lāla	DPPN: country	A country in India, the capital of which was Sīhapura; it was the birthplace of Vijaya, founder of the Sinhalese dynasty (Dpv.ix.5;				0	2
 laludayi	person	Lāḷudāyī	lāḷudāyī	names of monks	name of a monk				3	29
@@ -2276,14 +2182,11 @@ lokissara	person	Lokissara	lokissara	DPPN: chief	A Damiḷa chief who came from 
 lola	person	Lolā	lolā	DPPN: sister	A Paribbājikā, sister of Saccaka (Ja.iii.1), see also the Cūḷa Kāliṅgajātaka (Ja 301).				0	0
 lomahamsa-2	person	Lomahaṃsa	lomahaṃsa 2	names of paccekabuddhas	name of a privately awakened Buddha				0	0
 lomasa-kassapa	person	Lomasa Kassapa	lomasa kassapa	DPPN: bodhisatta	The Bodhisatta born as an ascetic.				0	17
-lomasakambhiya	person	Lomasakaṃbhiya	lomasakaṃbhiya	names of monks	name of a monk				1	4
-lomasakangiya	person	Lomasakaṅgiya	lomasakaṅgiya	names of monks; names of arahants	name of an arahant monk				1	17
+lomasakangiya	person	Lomasakaṅgiya	lomasakaṅgiya	names of monks; names of arahants	name of an arahant monk				2	21
 lomasavangisa	person	Lomasavaṅgisa	lomasavaṅgisa	names of monks	name of a monk				0	0
 lumbini	place	Lumbini	lumbini	place names	name of a grove where the Buddha was born	27.4672	83.2749	1	0	16
 maccha	group	Macchā	macchā	people	people of Maccha; Macchas	27.45	76.18	3	0	0
 macchari-kosiya-1	person	Macchari Kosiya	macchari kosiya 1	DPPN: seṭṭhi	A seṭṭhi, worth eighty crores, of Sakkhara near Rājagaha.				0	0
-macchasurasena	group	Macchasurasenā	macchasurasenā	people	people of Maccha and Surasena; Macchas and Surasenas				0	0
-macchasurasena-2	group	Macchasūrasenā	macchasūrasenā	people	people of Maccha and Sūrasena				0	0
 macchikasanda	place	Macchikāsaṇḍa	macchikāsaṇḍa	place names	name of a forest in Kāsi	25.3291	82.4139	4	10	32
 madda	group	Maddā	maddā	people	people of Madda				0	10
 madda-2-1	place	Madda	madda 2.1	names of countries	name of a country				0	50
@@ -2304,7 +2207,6 @@ magadha-4	group	Māgadhā	māgadhā	DPPN: people	The people of Magadha.	24.7269	
 magadhakhetta	place	Magadhakhetta	magadhakhetta	DPPN: field	Mention is made in the books of the Magadhakhetta, probably an extensive rice field which at once caught the eye on account of its terraces.	24.7269	84.9133	4	0	4
 magandi	person	Māgaṇḍi	māgaṇḍi	names of ascetics; names of monks; names of arahants	name of a wandering ascetic				0	1
 magandiya	person	Māgaṇḍiya	māgaṇḍiya	names of ascetics; names of monks; names of arahants	name of a wandering ascetic				1	184
-magandiya-2	person	Māgandiya	māgandiya	names of ascetics	name of a wandering ascetic				0	0
 magandiya-3	person	Māgandiyā	māgandiyā	DPPN: daughter	Daughter of the Brahmin Māgandiya.				0	0
 magandiyabrahmana	person	Māgaṇḍiyabrāhmaṇa	māgaṇḍiyabrāhmaṇa	names of Brahmans					0	9
 maggadattika-thera	person	Maggadattika Thera	maggadattika thera	DPPN: thera	An Arahant.				0	2
@@ -2316,8 +2218,7 @@ magha-1-2	person	Māgha	māgha 1	DPPN: sage	A sage of old.				0	0
 magha-2	person	Māgha	māgha 2	DPPN: youth	A youth of Rājagaha.				0	0
 magha-4	person	Māgha	māgha 4	DPPN: king	A usurper from Kāliṅga who came to Ceylon with a band of Keraḷa warriors in about 1215 CE., deposed the reigning king, Parakkamapaṇḍu II., blinded him, and occupied the throne at Pulatthipura.				0	0
 maghadeva-1	person	Maghadeva	maghadeva 1	names of royalty	name of a king; previous incarnation of Sakka				0	42
-maghadevaambavana	place	Maghadevaambavana	maghadevaambavana	names of monasteries	name of a monastery	26.7199	85.9447	1	1	12
-maghadevambavana	place	Maghadevambavana	maghadevambavana	names of monasteries	name of a monastery				0	4
+maghadevaambavana	place	Maghadevaambavana	maghadevaambavana	names of monasteries	name of a monastery	26.7199	85.9447	1	1	16
 maghavapupphiya-thera	person	Maghavapupphiya Thera	maghavapupphiya thera	DPPN: thera	An Arahant.				0	1
 maha-anula-thera	person	Mahā Anula Thera	mahā anula thera	DPPN: thera	He once saw a number of monks, who had obtained only dry food, eating it on the banks of a river.				0	0
 maha-arittha	person	Mahā Ariṭṭha	mahā ariṭṭha	DPPN: nephew	Nephew of Devānampiyatissa.				0	1
@@ -2427,17 +2328,14 @@ maha-vana-4	place	Mahā Vana	mahā vana 4	DPPN: forest	A forest on the banks of 
 maha-vihara	place	Mahā Vihāra	mahā vihāra	DPPN: monastery	The great monastery at Anurādhapura, for many centuries the chief seat of Buddhism in Ceylon.				1	40
 maha-vittharika	place	Mahā Vitthārika	mahā vitthārika	DPPN: palace	A palace in heaven, occupied by Tīnipadumiya Thera in a previous birth.				0	1
 maha-yasa-thera	person	Mahā Yasa Thera	mahā yasa thera	DPPN: thera	Of Thāton, author of the Kaccāyanabheda and the Kaccāyanasāra.				0	0
-mahabyuha	place	Mahābyūha	mahābyūha	place names	name of king Mahāsudassana's peak-roofed hall				0	2
 mahacunda	person	Mahācunda	mahācunda	names of monks; names of arahants	name of an arahant monk				8	48
 mahadatta-1	person	Mahādatta	mahādatta 1	names of laypeople	name of a military general				0	0
 mahadatta-2	person	Mahādatta	mahādatta 2	names of monks	name of an eminent Sri Lankan monk				0	3
 mahaganga	place	Mahāgaṅgā	mahāgaṅgā	names of rivers	great Ganges river				0	28
-mahagavaccha	person	Mahāgavaccha	mahāgavaccha	names of monks; names of arahants	name of an arahant monk				0	0
 mahagirigama	place	Mahāgirigāma	mahāgirigāma	villages, towns and cities; Sri Lanka	name of a village in Sri Lanka				0	3
 mahaka	person	Mahaka	mahaka	names of monks	name of a monk				0	24
 mahaka-2	person	Mahaka	mahaka	DPPN: novice	A novice, pupil of Upananda, who is mentioned as having been guilty of an unnatural offence with Kaṇḍaka, another novice.				0	0
-mahakaccana	person	Mahākaccāna	mahākaccāna	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in explaining a brief instruction in detail				9	253
-mahakaccayana	person	Mahākaccāyana	mahākaccāyana	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in explaining a brief instruction in detail				1	63
+mahakaccana	person	Mahākaccāna	mahākaccāna	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in explaining a brief instruction in detail				10	316
 mahakala	person	Mahākāḷa	mahākāḷa	names of monks; names of arahants	name of an arahant monk				0	21
 mahakappina	person	Mahākappina	mahākappina	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in instructing the monks				3	78
 mahakassapa	person	Mahākassapa	mahākassapa	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in preaching ascetic practices				20	409
@@ -2448,8 +2346,7 @@ mahali-3	person	Mahāli	mahāli 3	DPPN: sākiyan	A Sākiyan prince, one of seven
 mahamahi-2	place	Mahāmahī	mahāmahī 2	names of rivers	great Mahī river				0	1
 mahamahinda	person	Mahāmahinda	mahāmahinda	names of monks					0	7
 mahameru	place	Mahāmeru	mahāmeru	place names; names of mountains	name of a mountain				0	3
-mahamoggalana	person	Mahāmoggalāna	mahāmoggalāna	great disciples; names of arahants; names of monks	name of an arahant monk chief disciple; great disciple of the Buddha; foremost monk in psychic power				0	2
-mahamoggallana	person	Mahāmoggallāna	mahāmoggallāna	great disciples; names of arahants; names of monks	name of an arahant monk; chief disciple; great disciple of the Buddha; foremost monk in psychic power				23	651
+mahamoggallana	person	Mahāmoggallāna	mahāmoggallāna	great disciples; names of arahants; names of monks	name of an arahant monk; chief disciple; great disciple of the Buddha; foremost monk in psychic power				23	653
 mahanaga-4	person	Mahānāga	mahānāga 4	names of monks; names of arahants	name of an arahant monk				0	1
 mahanaga-5	person	Mahānāga	mahānāga 5	names of monks; Sri Lanka	name of a Sri Lankan monk				0	4
 mahanama-1	person	Mahānāma	mahānāma 1	great disciples; names of laypeople	name of a Sakyan layman; great disciple of the Buddha; foremost layman in giving fine things				1	285
@@ -2457,7 +2354,6 @@ mahanama-2	person	Mahānāma	mahānāma 2	names of paccekabuddhas	name of a priv
 mahanama-3	person	Mahānāma	mahānāma 3	names of monks; names of arahants	name of an arahant monk				0	1
 mahanta	person	Mahanta	mahanta	DPPN: buddha	A stone image of the Buddha set up in the Paṭimāvihāra in Kāṇagāma by Aggabodhi, son of Mahā Tissa and ruler of Rohaṇa.				0	0
 mahapajapati	person	Mahāpajāpati	mahāpajāpati	great disciples; names of arahants; names of nuns	name of an arahant nun; Buddha's foster-mother; first Bhikkhunī; great disciple of the Buddha; foremost nun in long-standing				4	134
-mahapajapati-2	person	Mahāpajāpatī	mahāpajāpatī	great disciples; names of arahants; names of nuns	name of an arahant nun; Buddha's foster-mother; first Bhikkhunī; great disciple of the Buddha; foremost nun in long-standing				0	0
 mahapajapatigotami	person	Mahāpajāpatigotamī	mahāpajāpatigotamī	great disciples; names of arahants; names of nuns	name of an arahant nun; Buddha's foster-mother; first Bhikkhunī; great disciple of the Buddha; foremost nun in long-standing				1	45
 mahapanada	person	Mahāpanāda	mahāpanāda	names of royalty	name of a king of Mithilā				0	21
 mahapanthaka	person	Mahāpanthaka	mahāpanthaka	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk among those skilled in the expansion of perception				1	53
@@ -2474,7 +2370,7 @@ mahavana-1	place	Mahāvana	mahāvana 1	place names	name of a forest outside Ves�
 mahavana-2	place	Mahāvana	mahāvana 2	place names	name of a forest outside Kapilavatthu	27.5704	83.0209	1	2	18
 mahavana-3	place	Mahāvana	mahāvana 3	place names	great forest; large forest	26.0145	85.1095	4	0	0
 mahavijita	person	Mahāvijita	mahāvijita	names of royalty	name of a legendary king				0	35
-mahaviyuha	place	Mahāviyūha	mahāviyūha	place names	name of king Mahāsudassana's peaked roof house				0	13
+mahaviyuha	place	Mahāviyūha	mahāviyūha	place names	name of king Mahāsudassana's peaked roof house				0	15
 mahesaya	place	Mahesaya	mahesaya	villages, towns and cities	name of a town				0	1
 mahi-2	place	Mahī	mahī 2	names of rivers	name of a river; one of the five great rivers of ancient India				0	46
 mahi-2-2	person	Mahī	mahī 2	DPPN: person	A Laṅkāgiri, an officer of Parakkamabāhu I., stationed at Assamaṇḍalatittha.				0	0
@@ -2519,11 +2415,9 @@ majjhima	person	Majjhima	majjhima	DPPN: arahant	An Arahant.				0	3
 majjhimabhanaka	group	Majjhimabhāṇakā	majjhimabhāṇakā	DPPN: school	The “reciters” of the Majjhimanikāya (q.v.), those who learned it and handed it down, probably the “school” of Sāriputta.				0	0
 majjhimadesa	place	Majjhimadesa	majjhimadesa	DPPN: country	The country of Central India which was the birthplace of Buddhism and the region of its early activities.				0	42
 makara	place	Makara	makara	DPPN: canal	A floodgate in the Parakkamasamudda from which ran the Gambhīra Canal.				0	0
-makhadevaambavana	place	Makhādevaambavana	makhādevaambavana	names of monasteries	name of a monastery in Mithilā	26.7199	85.9447	1	0	0
 makhila-1	place	Makhilā	makhilā 1	DPPN: city	A city near the Deer Park at Isipatana close to where Kakusandha Buddha preached his first sermon.	25.3975	83.0342	4	0	1
 makhila-2	person	Makhilā	makhilā 2	DPPN: chief	One of the two chief women disciples of Sikhī Buddha.				0	0
-makkarakata	place	Makkarakaṭa	makkarakaṭa	villages, towns and cities	name of a town	22.6748	75.6244	4	0	0
-makkarakata-2	place	Makkarakata	makkarakata	villages, towns and cities	name of a town	22.6748	75.6244	4	1	3
+makkarakata	place	Makkarakata	makkarakata	villages, towns and cities	name of a town	22.6748	75.6244	4	1	3
 makkhali	person	Makkhali	makkhali	names of ascetics; six ascetic teachers	name of a ascetic teacher; Makkhali Gosāla				0	40
 makkhaligosala	person	Makkhaligosāla	makkhaligosāla	six ascetic teachers; names of ascetics	name of an ascetic teacher; Makkhali Gosāla				1	5
 makkhalipurana	person	Makkhalipūraṇā	makkhalipūraṇā	names of ascetics; six ascetic teachers	Makkhali Gosāla and Pāraṇa Kassapa				0	2
@@ -2544,7 +2438,6 @@ mallika-2-2	person	Mallikā	mallikā 2	DPPN: wife	Wife of Bandhula.				0	0
 mallikadevi	person	Mallikādevī	mallikādevī	names of royalty	queen Mallikā				0	0
 malukya	person	Mālukya	mālukya	names of monks; names of arahants	name of an arahant monk				0	2
 malukyaputta-1	person	Mālukyaputta	mālukyaputta 1	names of monks; names of arahants	name of an arahant monk				3	107
-malunkyaputta	person	Māluṅkyaputta	māluṅkyaputta	names of monks; names of arahants	name of an arahant monk				0	0
 maluta	person	Māluta	māluta	DPPN: kings	Twenty-nine thousand kappas ago there were eight kings of this name, previous births of Nalamāliya (Kuṭivihāriya) Thera.				0	0
 mana-1	person	Māna	māna 1	DPPN: brother	Youngest brother and viceroy of Aggabodhi III. (Sirisaṅghabodhi).				0	0
 manadinna	person	Mānadinna	mānadinna	names of laypeople	name of a lay disciple				0	3
@@ -2586,7 +2479,6 @@ mangalapokkharani	place	Maṅgalapokkharaṇī	maṅgalapokkharaṇī	DPPN: plac
 mangalavithi	place	Maṅgalavīthi	maṅgalavīthi	DPPN: street	A street in Mahā Gāma.				0	1
 mani-2	deity	Maṇi	maṇi 2	names of deities	name of a daemon				0	0
 manibhadda	deity	Maṇibhadda	maṇibhadda	names of deities	name of a daemon				1	5
-manicara	deity	Mānicara	mānicara	names of deities	name of a daemon				0	0
 maniculaka	person	Maṇicūḷaka	maṇicūḷaka	names of laypeople	name of a chieftain				1	10
 manikantha	deity	Maṇikaṇṭha	maṇikaṇṭha	names of deities	name of a dragon				0	18
 manimalika	place	Maṇimālika	maṇimālika	place names; holy sites	name of a shrine in Magadha	24.7269	84.9133	4	1	1
@@ -2623,11 +2515,9 @@ matanga-3-2	person	Mātaṅga	mātaṅga 3	DPPN: hermit	A hermit.				0	0
 matanga-4	place	Mātaṅga	mātaṅga 4	place names	name of a forest				0	0
 matanga-4-2	person	Mātaṅga	mātaṅga 4	DPPN: father	Father of Mātaṅgaputta (q.v.).				0	0
 matangaputta	person	Mātaṅgaputta	mātaṅgaputta	names of monks; names of arahants	name of an arahant monk				0	3
-matangaranna	place	Mātaṅgarañña	mātaṅgarañña	place names	name of a forest				0	22
-matangaranna-2	place	Mātaṅgārañña	mātaṅgārañña	place names	name of a forest				0	6
-mathura	place	Mathurā	mathurā	villages, towns and cities	name of a town; capital of Surasena	27.5521	77.3163	4	0	0
+matangaranna	place	Mātaṅgarañña	mātaṅgarañña	place names	name of a forest				0	28
 matta-2	person	Matta	matta 2	DPPN: householder	A householder in the Vihāravāpi village near the Tulādhāra Mountain; he was the father of Labhiya Vasabha.				1	0
-matula	person	Matula	matula	names of paccekabuddhas	name of a privately awakened Buddha				0	1
+matula	person	Matula	matula	names of paccekabuddhas	name of a privately awakened Buddha				0	2
 matula-2	place	Mātulā	mātulā	villages, towns and cities	name of Magadhan town	24.7269	84.9133	4	1	2
 matulagiri	place	Mātulagiri	mātulagiri	DPPN: place	A place in Sunāparanta where Puṇṇa Thera lived for some time.	22.8369	71.6162	4	0	2
 matulungaphaladayaka-thera	person	Mātuluṅgaphaladāyaka Thera	mātuluṅgaphaladāyaka thera	DPPN: thera	Named at				0	1
@@ -2659,8 +2549,7 @@ mendaka-2	person	Meṇḍaka	meṇḍaka 2	names of laypeople	name of a lay disc
 mendakanattar	person	Meṇḍakanattar	meṇḍakanattar	names of laypeople	name of a man; Meṇḍaka's grandson				1	7
 mendasira	person	Meṇḍasira	meṇḍasira	names of monks; names of arahants	name of an arahant monk				0	5
 mendissara	person	Meṇḍissara	meṇḍissara	DPPN: chief	One of the chief disciples of Jotipāla (Sarabhaṅga).				0	8
-meru	place	Meru	meru	place names; names of mountains	mythical mountain at the centre of the universe				0	12
-methula	person	Methula	methula	names of paccekabuddhas	name of a privately awakened Buddha				0	1
+meru	place	Meru	meru	place names; names of mountains	mythical mountain at the centre of the universe				0	14
 metta-theri	person	Mettā Therī	mettā therī	DPPN: therī	She belonged to a Sākyan family of Kapilavatthu and renounced the world with Pajāpatī Gotamī, gaining Arahant-ship in due course.				0	7
 mettagu	person	Mettagū	mettagū	names of ascetics; names of Brahmans	name of a Brahman ascetic				0	32
 mettaji	person	Mettaji	mettaji	names of monks; names of arahants	name of an arahant monk				0	3
@@ -2689,11 +2578,9 @@ migaramatupasada	place	Migāramātupāsāda	migāramātupāsāda	names of monast
 migarasetthi	person	Migāraseṭṭhi	migāraseṭṭhi	names of laypeople					0	32
 migasala	person	Migasālā	migasālā	names of laypeople	name of a female lay disciple				2	23
 migasammata	place	Migasammatā	migasammatā	DPPN: river	A river which rose in Himavā and flowed into the Ganges.				0	7
-migasana	person	Migasāṇā	migasāṇā	names of laypeople	name of a female lay disciple				0	0
 migasira	person	Migasira	migasira	names of monks; names of arahants	name of an arahant monk				0	6
 migava-3	person	Migava	migava 3	names of laypeople	name of a park-keeper				0	0
 milakkha	group	Milakkha	milakkha	people	barbarian; non-Indo-Aryan speaker				0	13
-milakkhaka-1	group	Milakkhaka	milakkhaka 1	people	barbarian; non-Indo-Aryan speaker				0	0
 milidaraja	person	Milidarāja	milidarāja	names of royalty	name of a king; Menander				0	0
 milinda	person	Milinda	milinda	names of royalty	name of a king; Menander				0	95
 missaka	deity	Missakā	missakā	names of deities	name of a group of deities				0	0
@@ -2750,7 +2637,6 @@ muduka	person	Mudukā	mudukā	DPPN: musician	A celebrated musician or, perhaps, 
 mudulakkhana	person	Mudulakkhaṇā	mudulakkhaṇā	DPPN: queen	Queen of Brahmadatta.				0	16
 mudusitala	person	Mudusītala	mudusītala	DPPN: kings	Thirty-seven kappas ago there were seven kings of this name, previous births of Arāmadāyaka Thera.				0	3
 mugapakkha	person	Mūgapakkha	mūgapakkha	names of ascetics	name of a teacher of old				0	10
-mukheluvana	place	Mukheluvana	mukheluvana	place names	name of a wood	25.0116	87.8321	1	0	0
 mula	person	Mūla	mūla	DPPN: minister	A minister of King Vaṭṭagāmaṇī.				0	0
 muladeva	person	Mūladeva	mūladeva	DPPN: robber	A robber, mentioned as having great power.				0	5
 munda-2	person	Muṇḍa	muṇḍa 2	names of royalty	name of a king				0	7
@@ -2759,15 +2645,12 @@ mundanigama	place	Muṇḍanigama	muṇḍanigama	DPPN: village	A village on the
 mundiya-2	person	Muṇḍiya	muṇḍiya 2	names of ascetics	name of an ascetic				1	3
 munina	person	Munina	munina	names of paccekabuddhas	name of a privately awakened Buddha				0	0
 musika	person	Mūsikā	mūsikā	DPPN: slave	A slave woman of King Yava (see the Mūsikajātaka, Ja 373).				0	0
-musila	person	Musila	musila	names of monks	name of a monk				1	25
-musila-2	person	Musīla	musīla	names of monks	name of a monk				0	0
-musila-3	person	Mūsila	mūsila	names of monks	name of a monk				0	16
+musila	person	Musila	musila	names of monks	name of a monk				1	41
 mutta-2	person	Muttā	muttā 2	names of nuns; names of arahants	name of an arahant nun				0	2
 mutta-3	person	Muttā	muttā 3	names of nuns; names of arahants	name of an arahant nun				0	0
 mutta-3-2	person	Muttā	muttā 3	DPPN: list	An eminent upāsikā, mentioned in a list of such.				0	0
 mutthipujaka-thera	person	Muṭṭhipūjaka Thera	muṭṭhipūjaka thera	DPPN: thera	An Arahant.				0	1
 mutthipupphiya-thera	person	Muṭṭhipupphiya Thera	muṭṭhipupphiya thera	DPPN: thera	An Arahant.				0	2
-nadika-1	place	Nādika	nādika 1	villages, towns and cities	name of a village	25.7356	85.2113	1	0	0
 nadikassapa	person	Nadīkassapa	nadīkassapa	names of monks; names of arahants	name of an arahant monk				0	21
 naga-1	person	Nāga	nāga 1	DPPN: thera	An eminent Thera of Ceylon, a teacher of the Vinaya.				0	0
 naga-1-2	person	Nāgā	nāgā 1	DPPN: chief	Chief woman disciple of Sujāta Buddha.				0	0
@@ -2782,7 +2665,6 @@ nagapalivethana	place	Nāgapaliveṭhana	nāgapaliveṭhana	DPPN: mountain	One o
 nagapupphiya-thera-1	person	Nāgapupphiya Thera	nāgapupphiya thera 1	DPPN: thera	An Arahant.				0	4
 nagara	person	Nagara	nagara	DPPN: king	The name of King Madda’s capital (?)				0	0
 nagaraka	place	Nagaraka	nagaraka	villages, towns and cities	name of town	27.6069	82.9344	3	2	10
-nagaraka-2	place	Nāgaraka	nāgaraka	villages, towns and cities	name of a town	27.6069	82.9344	3	0	0
 nagaravinda	place	Nagaravinda	nagaravinda	villages, towns and cities	name of a Kosalan village	27.5171	82.0506	4	1	2
 nagasa	deity	Nāgasā	nāgasā	names of deities	names of a group of nāgas				0	2
 nagasamala	person	Nāgasamāla	nāgasamāla	names of monks; names of arahants	name of an arahant monk; personal attendant of the Buddha				1	50
@@ -2821,9 +2703,8 @@ nalakutidayaka-thera	person	Naḷakuṭidāyaka Thera	naḷakuṭidāyaka thera	
 nalamala	place	Naḷamāla	naḷamāla	DPPN: ocean	An ocean passed by Suppāraka and his crew on their way from Bharukaccha.	21.7245	73.0024	4	0	14
 nalamalika-theri	person	Naḷamālika Therī	naḷamālika therī	DPPN: therī	An Arahant.				0	2
 nalamaliya-thera-1	person	Naḷamāliya Thera	naḷamāliya thera 1	DPPN: thera	An Arahant.				0	3
-nalanda	place	Nālandā	nālandā	villages, towns and cities	name of a village near Rājagaha	25.137	85.4435	1	1	8
-nalanda-2	place	Nāḷandā	nāḷandā	villages, towns and cities	name of a town near Rājagaha; modern day Nalanda	25.137	85.4435	1	9	67
-nalanda-2-2	place	Nālandā	nālandā 2	DPPN: village	A village in the central province of Ceylon.				0	0
+nalanda	place	Nāḷandā	nāḷandā	villages, towns and cities	name of a town near Rājagaha; modern day Nalanda	25.137	85.4435	1	10	75
+nalanda-2	place	Nālandā	nālandā 2	DPPN: village	A village in the central province of Ceylon.				0	0
 naleru	deity	Naḷeru	naḷeru	names of deities	(comm) name of a daemon; (or) growing in the hollow of a tree; (or) growing in a thicket of reeds				0	1
 nalerupucimanda	place	Naḷerupucimanda	naḷerupucimanda	DPPN: grove	A grove near Verañjā where the Buddha spent part of his time on his visit to Nerañjā (Vin.iii.1;	26.8829	78.8137	1	3	11
 nalijangha	person	Nāḷijaṅgha	nāḷijaṅgha	names of Brahmans	name of a Brahman				1	4
@@ -2836,7 +2717,6 @@ naloraja	deity	Naḷorāja	naḷorāja	names of deities	name of a demigod				0	2
 nammada-1	place	Nammadā	nammadā 1	DPPN: river	A river in India, (Ja.ii.314; iv.392,397) the modern Nerbudda Narmadā.				0	0
 nammada-2	deity	Nammadā	nammadā 2	DPPN: nāga	A Nāga king who dwelt in the river Nammadā.				0	1
 namuci	deity	Namuci	namuci	names of deities	name of Māra				0	32
-namuci-2	deity	Namucī	namucī	names of deities	name of Māra				0	0
 nanadhara	person	Ñāṇadhara	ñāṇadhara	DPPN: king	A king of sixty-one kappas ago, a previous birth of Tiraṁsiya.				0	9
 nanasagara	person	Ñāṇasāgara	ñāṇasāgara	DPPN: monk	A monk of Pagan, author of the Liṅgatthavivaraṇappakāsana.				0	4
 nanasannaka-thera-1	person	Ñāṇasaññaka Thera	ñāṇasaññaka thera 1	DPPN: thera	An arahant.				0	2
@@ -2948,16 +2828,11 @@ narivahana-2	place	Nārivāhana	nārivāhana 2	DPPN: city	A city, capital of Kin
 narivana	place	Nārivana	nārivana	DPPN: grove	A grove in Himavā where grew flowers shaped like the bodies of women.				0	1
 naruttama	person	Naruttama	naruttama	DPPN: kings	Seventy-three kappas ago there were four kings of this name, all previous births of Tikaṇṇapupphiya.				0	0
 natakuvera	person	Naṭakuvera	naṭakuvera	DPPN: musician	A musician of the king of Benares, whose queen was Kākātī.				0	5
-natapariya	place	Nāṭapariyā	nāṭapariyā	villages, towns and cities	name of a heavenly city				0	0
 natapubbaka	person	Naṭapubbaka	naṭapubbaka	DPPN: monks	The name given to two monks who were once mimes.				0	0
-natapuriya	place	Nāṭapuriyā	nāṭapuriyā	villages, towns and cities	name of a heavenly city				0	0
 nataputta	group	Nāṭaputta	nāṭaputta	family names; six ascetic teachers	family name of Mahavira; leader of the Jains				5	169
-nataputta-2	group	Nātaputta	nātaputta	family names; six ascetic teachers	family name of Mahavira, leader of the Jains				0	0
 natasuriya	place	Nāṭasuriyā	nāṭasuriyā	villages, towns and cities	name of a heavenly city				0	2
 natha-1	person	Nātha	nātha 1	DPPN: general	Called Adhikārī, a general of King Māṇābharaṇa.				0	0
-nathaputta	group	Nāthaputta	nāthaputta	family names; six ascetic teachers	family name of Mahavira; leader of the Jains				0	0
-natika	place	Nātika	nātika	villages, towns and cities	name of a village	25.7356	85.2113	1	13	34
-natika-2	place	Ñātika	ñātika	villages, towns and cities	name of a village	25.7356	85.2113	1	12	18
+natika	place	Nātika	nātika	villages, towns and cities	name of a village	25.7356	85.2113	1	25	52
 natika-3	place	Ñātikā	ñātikā	DPPN: pond	The name, probably of a pond (taḷāka) near the village of Ñātika, and/or of the clan who lived in the village.	25.7356	85.2113	1	0	0
 navakammikabharadvaja	person	Navakammikabhāradvāja	navakammikabhāradvāja	names of Brahmans	name of a Brahman				1	6
 navanavatiya	place	Navanavatiya	navanavatiya	DPPN: city	A city in Uttarakuru (DN.iii.201).				0	2
@@ -2970,15 +2845,12 @@ nemindhara	place	Nemindhara	nemindhara	DPPN: mountain	One of the seven mountain 
 nemisa	person	Nemisa	nemisa	names of paccekabuddhas	name of a privately awakened Buddha				0	2
 neranjara	place	Nerañjarā	nerañjarā	names of rivers	name of a river	24.7216	85.0057	1	15	78
 neranjara-2	place	Nerañjarā	nerañjarā 2	DPPN: channel	A channel that branched northwards from the Puṇṇavaḍḍhana tank.				0	0
-neru-1	place	Neru	neru 1	place names	name of a mythical mountain at the centre of the universe				0	2
-neru-1-2	person	Neru	neru 1	DPPN: king	The name of a king of India, descendant of Mahā Sammata.				0	0
+neru-1	person	Neru	neru 1	DPPN: king	The name of a king of India, descendant of Mahā Sammata.				0	0
 neru-2	place	Neru	neru 2	place names	name of a Himalayan peak				0	0
 nesada	person	Nesāda	nesāda	DPPN: brahmin	A Brahmin, a previous birth of Sattapaduminiya.				0	0
 nesadaka	place	Nesādaka	nesādaka	names of mountains	name of a mountain				0	4
 netti-1-5	deity	Netti	netti 1.5	names of deities	name of a daemon				0	4
-nhatakamuni	person	Nhātakamuni	nhātakamuni	names of monks; names of arahants	name of an arahant monk				0	1
-nhatakamunitthera	person	Nhātakamunitthera	nhātakamunitthera	names of monks; names of arahants	name of an arahant monk				0	1
-nhatamuni	person	Nhātamuni	nhātamuni	names of monks; names of arahants	name of an arahant monk				0	1
+nhatakamunitthera	person	Nhātakamunitthera	nhātakamunitthera	names of monks; names of arahants	name of an arahant monk				0	3
 nibbinda	place	Nibbindā	nibbindā	DPPN: channel	A channel, branching eastwards from the Aciravatī canal of the Mahā Vālukagaṅgā.	27.9313	81.7575	4	0	0
 niculavana	place	Niculavana	niculavana	place names	Barringtonia acutangula grove				2	4
 nigantha-2	person	Nigaṇṭha	nigaṇṭha 2	names of ascetics	epithet of Mahāvīra				5	126
@@ -2995,8 +2867,7 @@ nigrodha-7	person	Nigrodha	nigrodha 7	DPPN: person	Called Māragiri.				0	0
 nigrodhakappa	person	Nigrodhakappa	nigrodhakappa	names of monks	name of a monk; preceptor of Vaṅgīsa				0	25
 nigrodharama	place	Nigrodhārāma	nigrodhārāma	place names	name of a park in Kapilavatthu	27.5326	83.0917	1	77	72
 nigrodharama-2	place	Nigrodhārāma	nigrodhārāma 2	DPPN: grove	A grove in Rājagaha.				0	0
-nika	deity	Nika	nika	names of deities	name of a deity				0	0
-nika-2	deity	Nīka	nīka	names of deities	name of a deity				1	3
+nika	deity	Nīka	nīka	names of deities	name of a deity				1	3
 nikata-2	person	Nikaṭa	nikaṭa 2	DPPN: theras	One of several eminent Theras mentioned as staying in the Kūṭāgārasāla in Vesālī.				0	0
 nikata-3	person	Nikaṭa	nikaṭa 3	names of laypeople	name of a lay disciple				0	4
 nila-1	person	Nīla	nīla 1	DPPN: friend	A friend of Mahinda I. He died early, and Mahinda refused the kingship out of sorrow for his friend.				0	0
@@ -3010,7 +2881,6 @@ nimittasannaka-thera	person	Nimittasaññaka Thera	nimittasaññaka thera	DPPN: 
 nimmanarati	deity	Nimmānaratī	nimmānaratī	DPPN: class of devas	A class of Devas, inhabiting the fifth of the six Deva-worlds (DN.i.218;				0	33
 nimmanaratino	deity	Nimmānaratino	nimmānaratino	names of deities	name of a group of devas				0	61
 nimmita	person	Nimmita	nimmita	DPPN: kings	Nineteen kappas ago there were sixteen kings of this name, all previous births of Vataṁsakiya Thera (Abhaya Thera).				0	0
-ninka	deity	Niṅka	niṅka	names of deities	name of a deity				0	0
 nirabbuda-2	person	Nirabbuda	nirabbuda 2	DPPN: kings	Twenty-five thousand kappas ago there were eight kings of this name, all previous births of Nigguṇḍipupphiya.				0	0
 nirabbudaniraya	place	Nirabbudaniraya	nirabbudaniraya	names of hells	(comm) part of the Avīci hell where one must stay a nirabbuda-count in duration				0	1
 nisabha	place	Nisabhā	nisabhā	DPPN: buddha	One of the palaces occupied by Tissa Buddha in his last lay life.				0	0
@@ -3066,7 +2936,6 @@ pacceka-buddha	place	Pacceka Buddha	pacceka buddha	DPPN: world	The name given to
 pacchabhumma	place	Pacchābhumma	pacchābhumma	DPPN: district	The name given to the district to the west (of the Majjhimadesa) (SN.iii.5, 6;				0	0
 pacchimadesa	place	Pacchimadesa	pacchimadesa	DPPN: province	A province in Ceylon, probably in the west.				0	35
 paccupatthanasannaka-thera	person	Paccupaṭṭhānasaññaka Thera	paccupaṭṭhānasaññaka thera	DPPN: thera	An Arahant.				0	2
-pacetana	person	Pacetana	pacetana	names of royalty	name of a king				0	0
 pacinaka	person	Pācīnakā	pācīnakā	DPPN: monks	By this name are described the Vajjiputtaka monks who raised the Ten Points which occasioned the Second Council (Mhv.iv.47,48).				0	2
 pacinakhandaraji	place	Pācīnakhaṇḍarājī	pācīnakhaṇḍarājī	DPPN: district	A district in Ceylon near Cittapabbata in which was the Vettavāsavihāra, given by Aggabodhi II. to the Kaliṅga minister who was ordained by Jotipāla Thera (Mhv.xxiii.4; see Mhv.Trs.155, n.3 and Cv.Trs.i.71, n.2,				0	1
 pacinavamsa	place	Pācīnavaṃsa	pācīnavaṃsa	place names; names of mountains	previous name of Vepulla mountain	25.3813	81.5474	1	0	3
@@ -3114,7 +2983,6 @@ paharada	deity	Pahārāda	pahārāda	names of deities	name of a daemon				1	47
 pahasa-1	place	Pahāsa	pahāsa 1	names of hells	name of a hell				0	0
 pahasambahula	person	Pahasambahula	pahasambahula	DPPN: kings	Thirty-one kappas ago there were three kings of this name, all previous births of Nisseṇidāyaka Thera (Ap.i.187).				15	0
 pajapati-2	person	Pajāpatī	pajāpatī 2	DPPN: kings	One of the kings of the Devas, mentioned with Sakka, Varuṇa, Isāna, etc.				0	1
-pajjanela	place	Pajjanela	pajjanela	villages, towns and cities	name of a Koliyan town				0	0
 pajjanika	place	Pajjanika	pajjanika	villages, towns and cities	name of a Koliyan town	27.3083	83.7131	3	1	2
 pajjaraka	place	Pajjaraka	pajjaraka	DPPN: capital	The name of a disease which afflicted Abhayapura (capital of Ceylon) in the time of Kakusandha Buddha.				0	6
 pajjota	place	Pajjota	pajjota	DPPN: tank	A tank near Kāsapabbata, built by Duṭṭhagāmaṇī.				0	0
@@ -3122,10 +2990,8 @@ pajjota-3	person	Pajjota	pajjota 3	names of royalty	name of a king, friend of Bi
 pajjunna-1	deity	Pajjunna	pajjunna 1	names of deities	name of a deity; god of rain; rain cloud				2	8
 pajjunna-2	deity	Pajjunna	pajjunna 2	names of deities	name of a daemon				0	0
 pakkha-7	person	Pakkha	pakkha 7	names of monks; names of arahants	name of an arahant monk				0	1
-pakuddha-1	person	Pakuddha	pakuddha 1	names of ascetics; six ascetic teachers	name of an ascetic teacher; Pakuddha Kaccāyana				0	0
-pakudha	person	Pakudha	pakudha	names of ascetics; six ascetic teachers	name of an ascetic teacher				1	27
+pakudha	person	Pakudha	pakudha	names of ascetics; six ascetic teachers	name of an ascetic teacher				1	29
 pakudha-kaccayana	group	Pakudha Kaccāyana	pakudha kaccāyana	DPPN: sects	Head of one of the six heretical sects of the Buddha’s time.				0	1
-pakudhaka	person	Pakudhaka	pakudhaka	names of ascetics; six ascetic teachers	name of an ascetic teacher				0	2
 palaganda-2	person	Palagaṇḍa	palagaṇḍa 2	names of arahants	name of an arahant				0	3
 palasavana	place	Palāsavana	palāsavana	place names	name of a wood	27.5171	82.0506	4	3	4
 palileyyaka-1	place	Pālileyyaka	pālileyyaka 1	villages, towns and cities	name of a town near Kosambī	25.339	81.3929	4	1	27
@@ -3158,7 +3024,6 @@ pancalacanda-4	person	Pañcālacaṇḍa	pañcālacaṇḍa 4	DPPN: son	Son of C
 pancalacandi	person	Pañcālacaṇḍī	pañcālacaṇḍī	DPPN: daughter	Daughter of Cūḷanī Brahmadatta.				0	0
 pancalaputta	person	Pañcālaputta	pañcālaputta	names of monks; names of arahants	name of an arahant monk				0	10
 pancali	person	Pañcālī	pañcālī	names of royalty	name of a queen; (comm) the king of Pañcala's daughter				0	14
-pancaliputta	person	Pañcāliputta	pañcāliputta	names of monks	name of a monk				0	0
 pancanguliya-thera	person	Pañcaṅguliya Thera	pañcaṅguliya thera	DPPN: thera	An Arahant.				0	2
 pancanikayamandala	place	Pañcanikāyamaṇḍala	pañcanikāyamaṇḍala	DPPN: hall	An assembly hall in the Lohapāsāda, where the monks living to the north of the Mahā Vālukanadī used regularly to assemble at the end of the rainy season.				0	1
 pancasala	place	Pañcasālā	pañcasālā	villages, towns and cities	name of a Magadhan village	24.7269	84.9133	4	2	10
@@ -3187,7 +3052,6 @@ panduraja-2	person	Paṇḍurājā	paṇḍurājā 2	DPPN: king	A king of Madhur
 panduvasudeva	person	Paṇḍuvāsudeva	paṇḍuvāsudeva	names of royalty	name of a Sri Lankan king who ruled from 504 BC to 474 BC				0	2
 panga	person	Paṅga	paṅga	names of paccekabuddhas	name of a privately awakened Buddha				0	2
 panhamandapatthana	place	Pañhamaṇḍapaṭṭhāna	pañhamaṇḍapaṭṭhāna	DPPN: place	A place near the Abhayavāpi in Anurādhapura.				0	1
-pankadha	place	Paṅkadhā	paṅkadhā	villages, towns and cities	name of a Kosalan town	27.5171	82.0506	4	0	0
 pannadayaka-thera-1	person	Paṇṇadāyaka Thera	paṇṇadāyaka thera 1	DPPN: thera	An Arahant.				0	2
 pannaka	deity	Paṇṇaka	paṇṇaka	DPPN: nāga	A Nāga king living in Anotatta lake.				0	2
 pannasalaka	place	Paṇṇasālaka	paṇṇasālaka	DPPN: village	A village in Ceylon.				0	0
@@ -3208,9 +3072,7 @@ paranimmita	deity	Paranimmitā	paranimmitā	names of deities	name of a group of 
 paranimmitavasavatti	deity	Paranimmitavasavattī	paranimmitavasavattī	DPPN: class of devas	A class of Devas, inhabitants of the highest stage of the sensuous universe (kāmaloka).				0	79
 parantapa-1	person	Parantapa	parantapa 1	DPPN: king	King of Kosambī and father of Udena.				0	1
 parapariya-1	person	Pārāpariya	pārāpariya 1	names of monks; names of arahants	name of an arahant monk				0	1
-parapariya-3	person	Pārāpariya	pārāpariya 3	names of monks; names of arahants	name of an arahant monk				0	0
 parappasadaka-thera	person	Parappasādaka Thera	parappasādaka thera	DPPN: thera	An Arahant.				0	2
-parasariya-1	person	Pārāsariya	pārāsariya 1	names of monks; names of arahants	name of an arahant monk				0	0
 parasariya-2	person	Pārāsariya	pārāsariya 2	names of monks; names of arahants	name of an arahant monk				0	0
 parasariya-2-2	person	Pārāsariya	pārāsariya 2	DPPN: brahmin	A Brahmin teacher mentioned in the Indriyabhāvanāsutta.				0	0
 parasariya-3	person	Pārāsariya	pārāsariya 3	DPPN: brahmin	A Brahmin teacher of Takkasilā, mentioned in the Cūḷa Nandiyajātaka.				0	0
@@ -3219,7 +3081,6 @@ parasiviya	person	Pārāsiviya	pārāsiviya	names of Brahmans	name of a Brahman 
 paribbajaka	person	Paribbājakā	paribbājakā	DPPN: ascetics	The name given to the ascetics and recluses (not otherwise classified) of the Buddha’s time.				0	0
 paribhutta	place	Paribhutta	paribhutta	DPPN: city	A city in the time of Sikhī Buddha, where the Bodhisatta was born as King Arindama.				0	0
 parika	person	Pārikā	pārikā	DPPN: hunter	A hunter’s daughter, wife of Dukūlaka and mother of Suvaṇṇāsama (the Bodhisatta).				0	26
-parileyyaka	place	Pārileyyaka	pārileyyaka	villages, towns and cities	name of a town near Kosambī	25.339	81.3929	4	0	0
 paripunnaka	person	Paripuṇṇaka	paripuṇṇaka	names of monks; names of arahants	name of an arahant monk				0	4
 parisuddha	person	Parisuddha	parisuddha	DPPN: king	A king of sixty-seven kappas ago, a previous birth of Dussadāyaka Thera.				0	0
 parisuddhabha	deity	Parisuddhābhā	parisuddhābhā	DPPN: class of devas	A class of Devas included among the Ābhā gods.				0	5
@@ -3231,7 +3092,6 @@ pasanakacetiya	place	Pāsāṇakacetiya	pāsāṇakacetiya	DPPN: shrine	A shrine
 pasanapabbata	place	Pāsāṇapabbata	pāsāṇapabbata	DPPN: hill	A hill near Anurādhapura, to the north of the Nīcasusāna, laid out by Paṇḍukābhaya.				0	1
 pasenadi	person	Pasenadi	pasenadi	names of royalty	name of the king of Kosala				27	379
 passi-2	person	Passi	passi 2	names of paccekabuddhas	name of a privately awakened Buddha				0	1
-passika	person	Passika	passika	names of monks; names of arahants	name of an arahant monk				0	0
 pasura	person	Pasūra	pasūra	names of ascetics	name of a wandering ascetic famed for debate				0	21
 patacara	person	Paṭācārā	paṭācārā	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in upholding monastic law				2	75
 patacara-2	person	Paṭācārā	paṭācārā 2	DPPN: man	One of the five children of two Jain disputants, a man and a woman, of Vesālī; they married at the suggestion of the Licchavīs in order that their children might inherit the skill of both.				0	0
@@ -3252,7 +3112,6 @@ patihirasannaka-thera	person	Pāṭihīrasaññaka Thera	pāṭihīrasaññaka t
 patijagga	person	Paṭijagga	paṭijagga	DPPN: kings	Sixty-seven kappas ago there were seven kings of this name, all previous incarnations of Citakapūjaka Thera.				0	0
 patika-1	person	Pāṭika	pāṭika 1	names of ascetics	name of a wandering ascetic				0	0
 patika-2	person	Pāṭika	pāṭika 2	DPPN: chief	Chief of the Vinayadharas in the time of Padumuttama Buddha.				0	0
-patikaputta	person	Pāṭikaputta	pāṭikaputta	names of ascetics	name of a naked ascetic				0	0
 patikarama	place	Pāṭikārāma	pāṭikārāma	DPPN: park	A park near Vesālī, where the Buddha was staying, when Sunakkhatta, having failed to impress him as to the greatness of Korakkhattiya, left the Saṅgha and went about abusing the Buddha.	26.0145	85.1095	4	1	1
 patikolamba	person	Patikolamba	patikolamba	DPPN: cook	A cook.				0	6
 patipujika	person	Patipūjikā	patipūjikā	DPPN: woman	A woman of Sāvatthī, who once had belonged to the retinue of the god Mālābhārī, and passed out of her Deva existence while sitting on the branch of a tree picking flowers for him.				1	4
@@ -3265,8 +3124,6 @@ patthodanadayaka-thera	person	Patthodanadāyaka Thera	patthodanadāyaka thera	DP
 patti	person	Patti	patti	DPPN: chieftain	A Damiḷa chieftain, ally of Kulasekhara.				0	0
 pattunna-1	place	Pattuṇṇa	pattuṇṇa 1	names of countries	name of a country				0	0
 pava	place	Pāvā	pāvā	villages, towns and cities	name of a city of the Mallas	26.6839	84.0552	1	5	74
-pavala	place	Pāvāla	pāvāla	place names; holy sites	name of a pagoda				0	0
-pavalacetiya	place	Pāvālacetiya	pāvālacetiya	place names; holy sites	name of a pagoda				0	0
 pavarika-1	person	Pāvārika	pāvārika 1	DPPN: king	A king.				0	0
 pavarika-2	person	Pāvārika	pāvārika 2	names of laypeople	name of a layman who offered a monastery to the Buddha				0	6
 pavarikambavana	place	Pāvārikambavana	pāvārikambavana	names of monasteries	name of a monastery	25.1577	85.4599	1	9	24
@@ -3276,12 +3133,10 @@ pavatta-6	place	Pavatta	pavatta 6	place names	name of a mountain				1	0
 pavattar-2	person	Pavattar	pavattar 2	names of paccekabuddhas	name of a privately awakened Buddha				0	0
 paveyyaka	animal	Pāveyyaka	pāveyyaka	DPPN: elephant	An elephant.				0	0
 paveyyaka-2	group	Pāveyyakā	pāveyyakā	DPPN: inhabitants	The name given to the inhabitants of Pāvā – e.g., Pāveyyakā Mallā (e.g.,				0	0
-pavittha-2	person	Paviṭṭha	paviṭṭha 2	names of monks; names of arahants	name of an arahant monk				0	13
+pavittha-2	person	Paviṭṭha	paviṭṭha 2	names of monks; names of arahants	name of an arahant monk				0	17
 payaga	deity	Pāyāgā	pāyāgā	names of deities	name of a group of nāgas				0	2
-payaga-1	place	Payāga	payāga 1	place names; holy sites	name of a holy bathing place; modern day Allahabad	25.45	81.85	1	0	8
-payaga-1-2	place	Payāgā	payāgā 1	place names; holy sites	name of a holy bathing place	25.45	81.85	1	0	0
-payaga-2	deity	Payāgā	payāgā 2	names of deities	name of a group of nāgas				0	0
-payagapatitthana	place	Payāgapatiṭṭhāna	payāgapatiṭṭhāna	villages, towns and cities	name of a town				0	8
+payaga-1	place	Payāga	payāga 1	place names; holy sites	name of a holy bathing place; modern day Allahabad	25.45	81.85	1	0	12
+payagapatitthana	place	Payāgapatiṭṭhāna	payāgapatiṭṭhāna	villages, towns and cities	name of a town				0	4
 payasi-2	person	Pāyāsi	pāyāsi 2	names of laypeople	name of a young nobleman				0	58
 payasidevaputta	deity	Pāyāsidevaputta	pāyāsidevaputta	names of deities	young deity Pāyāsi				0	4
 pessa-2	person	Pessa	pessa 2	names of laypeople	name of a layman				0	22
@@ -3310,8 +3165,7 @@ pilakkhaguha	place	Pilakkhaguhā	pilakkhaguhā	place names	name of a cave near K
 pilakkhaphaladayaka-thera	person	Pilakkhaphaladāyaka Thera	pilakkhaphaladāyaka thera	DPPN: thera	An Arahant.				0	2
 pilinda	group	Pilinda	pilinda	family names	name of a family clan				0	4
 pilinda-2	person	Pilinda	pilinda	DPPN: person	The personal name of Pilindavaccha (q.v.).				0	1
-pilindavaccha	person	Pilindavaccha	pilindavaccha	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk among those beloved by the gods				2	110
-pilindivaccha	person	Pilindivaccha	pilindivaccha	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk among those beloved by the gods				0	1
+pilindavaccha	person	Pilindavaccha	pilindavaccha	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk among those beloved by the gods				2	111
 pilotika-1	person	Pilotika	pilotika 1	names of ascetics	name of a wandering ascetic				0	4
 pilotika-2	person	Pilotika	pilotika 2	DPPN: youth	Ānanda once saw a poor youth going along in a ragged garment, a potsherd in his hand. Ānanda took him to the monastery and ordained him.				0	0
 pindapatika-thera	person	Piṇḍapātika Thera	piṇḍapātika thera	DPPN: thera	An Arahant.				0	9
@@ -3324,17 +3178,15 @@ pingala-3	person	Piṅgala	piṅgala 3	DPPN: king	King of Suraṭṭha, contempo
 pingala-4	group	Piṅgala	piṅgala 4	DPPN: race	A race of elephants (MN-a.i.262;				0	0
 pingalakoccha-1	person	Piṅgalakoccha	piṅgalakoccha 1	names of Brahmans	name of a Brahman				1	2
 pingalakoccha-2	person	Piṅgalakoccha	piṅgalakoccha 2	names of Brahmans	in reference to MN30 Cūḷasāropamasutta				0	1
-pingaya	person	Piṅgaya	piṅgaya	names of monks; names of arahants	name of an arahant				0	0
-pingiya-1	person	Piṅgiya	piṅgiya 1	names of monks; names of arahants	name of an arahant				0	43
+pingiya-1	person	Piṅgiya	piṅgiya 1	names of monks; names of arahants	name of an arahant				0	48
 pingiya-1-2	person	Piṅgiya	piṅgiya 1	DPPN: chaplain	Chaplain to Brahmadatta, king of Benares.				0	0
 pingiya-2	person	Piṅgiya	piṅgiya 2	names of Brahmans	name of a Brahman ascetic				0	4
 pingiya-4	animal	Piṅgiya	piṅgiya 4	DPPN: dog	A dog, mentioned in the Pūtimaṁsajātaka.				0	0
 pingiyani	person	Piṅgiyāni	piṅgiyāni	names of Brahmans	name of a Brahman				0	20
 pingiyani-2	person	Piṅgiyānī	piṅgiyānī 2	DPPN: wife	Wife of Brahmadatta.				0	0
 pinguttara	person	Piṅguttara	piṅguttara	DPPN: teacher	A lad of Mithilā who studied in Takkasilā and was given in marriage his teacher’s beautiful daughter.				0	3
-pippaliguha	place	Pippaliguhā	pippaliguhā	place names	name of a cave	25.019	85.4302	1	0	10
+pippaliguha	place	Pippaliguhā	pippaliguhā	place names	name of a cave	25.019	85.4302	1	0	11
 pippalivana	place	Pippalivana	pippalivana	villages, towns and cities	name of a town				0	1
-pipphaliguha	place	Pipphaliguhā	pipphaliguhā	place names	name of a cave				0	1
 pisinara	place	Pisinārā	pisinārā	place names	name of an area				1	2
 piya	person	Piyā	piyā	DPPN: mother	The eldest of the five daughters of the third Okkāka, her mother being Hatthā.				0	0
 piyadassi-1	person	Piyadassī	piyadassī 1	names of paccekabuddhas	name of a privately awakened Buddha				0	6
@@ -3369,14 +3221,13 @@ potthapada-3-2	animal	Poṭṭhapāda	poṭṭhapāda 3	DPPN: parrot	A parrot, y
 potthapada-4	animal	Poṭṭhapāda	poṭṭhapāda 4	DPPN: parrot	A parrot born as the younger brother of the Bodhisatta and identified with Ānanda.				0	0
 potthila	person	Poṭṭhila	poṭṭhila	names of monks	name of a monk				1	8
 pottika	person	Pottika	pottika	DPPN: son	The son of a tailor and the friend of Nigrodhakumāra and Sākhakumāra.				0	15
-pubbajira	place	Pubbajira	pubbajira	villages, towns and cities	name of a Vajjian village				0	1
+pubbajira	place	Pubbajira	pubbajira	villages, towns and cities	name of a Vajjian village				0	2
 pubbakotthaka	place	Pubbakoṭṭhaka	pubbakoṭṭhaka	place names	name of a bathing place outside Sāvatthī	27.5101	82.0912	1	1	16
 pubbarama	place	Pubbārāma	pubbārāma	names of monasteries	name of a monastery outside Sāvatthī	27.5253	82.0898	1	36	97
 pubbarama-2	place	Pubbārāma	pubbārāma 2	DPPN: monastery	A monastery in Ceylon, built by Sena I. and his consort Saṅghā (Cv.l.69; see also Cv.Trs.i.144, n.4).				0	0
 pubbaseliya	group	Pubbaseliyā	pubbaseliyā	DPPN: sects	One of the seventeen heterodox sects which arose in Jambudīpa in the second century after the Buddha’s death (Mhv.v.12;				0	18
 pubbavideha	place	Pubbavideha	pubbavideha	names of continents	name of the eastern continent in Buddhist cosmology				0	33
 pubbavideha-2	group	Pubbavidehā	pubbavidehā	people	people of Pubbavideha				0	0
-pubbavijjana	place	Pubbavijjana	pubbavijjana	villages, towns and cities	name of a Vajjian village				0	1
 pukkusa-1	person	Pukkusa	pukkusa 1	DPPN: counsellor	A counsellor of Maddava, king of Benares.				0	0
 pukkusa-2	person	Pukkusa	pukkusa 2	names of laypeople	name of a young Mallan man				0	35
 pukkusa-2-2	person	Pukkusa	pukkusa 2	DPPN: king	One of the four ministers of Vedeha, king of Mithilā.				0	0
@@ -3441,7 +3292,6 @@ purana-1-2	person	Purāṇa	purāṇa 1	DPPN: monk	A monk who lived in Dakkhiṇ
 purana-7	person	Purāṇa	purāṇa 7	names of laypeople	name of one of king Pasenadi's architects				0	3
 purana-kassapa	person	Pūraṇa Kassapa	pūraṇa kassapa	DPPN: well	One of the six well-known teachers, contemporaneous with the Buddha.				0	1
 purohitaputta-2	person	Purohitaputta	purohitaputta 2	names of monks; names of arahants	name of an arahant monk				0	8
-purohitaputtajenta	person	Purohitaputtajenta	purohitaputtajenta	names of monks; names of arahants	name of an arahant monk				0	0
 puthujjana	person	Puthujjana	puthujjana	DPPN: king	A king of old, who, though he gave great gifts, could not attain to beyond the realms of sense.				0	0
 putimamsa	animal	Pūtimaṃsa	pūtimaṃsa	DPPN: jackal	A jackal, the mate of Veṇī.				0	11
 putimukha	deity	Pūtimukha	pūtimukha	DPPN: peta	A Peta who had been a monk in the time of Kassapa Buddha and who had brought a dissension between two holy monks by carrying tales from one to the other.				0	0
@@ -3498,8 +3348,7 @@ ramaka	place	Rāmaka	rāmaka	DPPN: vihāra	A vihāra in Ceylon, built by Gajabā
 ramana	group	Ramaṇā	ramaṇā	DPPN: inhabitants	The Pāli name for the inhabitants of Rāmañña.				0	0
 ramaneyyaka-3	person	Rāmaṇeyyaka	rāmaṇeyyaka 3	names of monks; names of arahants	name of an arahant monk				0	3
 ramaniyakutika	person	Ramaṇīyakuṭika	ramaṇīyakuṭika	names of monks; names of arahants	name of an arahant monk				0	3
-ramaniyavihari	person	Ramaṇīyavihārī	ramaṇīyavihārī	names of monks; names of arahants	name of an arahant monk				0	1
-ramaniyaviharitthera	person	Ramaṇīyavihāritthera	ramaṇīyavihāritthera	names of monks; names of arahants	name of an arahant monk				0	3
+ramaniyaviharitthera	person	Ramaṇīyavihāritthera	ramaṇīyavihāritthera	names of monks; names of arahants	name of an arahant monk				0	4
 ramaputta	group	Rāmaputta	rāmaputta	family names; six ascetic teachers	family names of the Buddha's second teacher; Udaka Rāmaputta				0	73
 ramma	person	Rammā	rammā	DPPN: chief	One of the chief lay women supporters of Siddhattha Buddha.				0	0
 ramma-1	person	Ramma	ramma 1	DPPN: chief	One of the chief lay patrons of Sobhita Buddha.				0	4
@@ -3596,8 +3445,7 @@ sabbadinna	person	Sabbadinna	sabbadinna	DPPN: king	One of the attendants of King
 sabbagandhiya-thera	person	Sabbagandhiya Thera	sabbagandhiya thera	DPPN: thera	An Arahant.				0	1
 sabbakama	person	Sabbakāmā	sabbakāmā	DPPN: wife	Wife of Sikhī Buddha before his renunciation.				0	3
 sabbakama-1	person	Sabbakāma	sabbakāma 1	DPPN: chief	One of the chief disciples of Sumedha Buddha.				0	6
-sabbakami	person	Sabbakāmi	sabbakāmi	names of monks; names of arahants	name of an arahant monk				0	19
-sabbakamitthera	person	Sabbakāmitthera	sabbakāmitthera	names of monks; names of arahants	name of an arahant monk				0	3
+sabbakami	person	Sabbakāmi	sabbakāmi	names of monks; names of arahants	name of an arahant monk				0	22
 sabbakittika-thera	person	Sabbakittika Thera	sabbakittika thera	DPPN: thera	An Arahant.				0	1
 sabbamitta-1	person	Sabbamitta	sabbamitta 1	names of monks	name of Kassapa Buddha's attendant				0	4
 sabbamitta-2	person	Sabbamitta	sabbamitta 2	names of monks; names of arahants	name of an arahant monk				0	0
@@ -3645,15 +3493,13 @@ sagga	person	Sagga	sagga	DPPN: king	A minstrel of Tamba, king of Benares.				0	0
 sahabhu-2	deity	Sahabhū	sahabhū 2	names of deities	name of a class of deities				0	4
 sahadeva-1	person	Sahadeva	sahadeva 1	DPPN: arahant	An Arahant.				0	3
 sahadhamma	deity	Sahadhammā	sahadhammā	names of deities	name of a group of deities				0	2
-sahajaniya	place	Sahajaniya	sahajaniya	villages, towns and cities	name of a Cetan town				0	0
-sahajati	place	Sahajāti	sahajāti	villages, towns and cities	name of a town in Ceta	24.9155	78.3705	4	2	8
+sahajati	place	Sahajāti	sahajāti	villages, towns and cities	name of a town in Ceta	24.9155	78.3705	4	3	10
 sahaka	person	Sahaka	sahaka	names of monks	name of a monk in the time of Kassapa Buddha				0	6
 sahali	deity	Sahali	sahali	names of deities	name of a deity				1	4
 sahali-2	deity	Sahalī	sahalī	names of deities	name of a group of deities				0	0
 sahampati	deity	Sahampati	sahampati	names of deities	name of the Brahma who implored the Buddha to teach				3	129
 sahancanika	place	Sahañcanika	sahañcanika	villages, towns and cities	name of a Cetan town				1	2
 sahassara	person	Sahassāra	sahassāra	DPPN: king	A king of eleven kappas ago, a previous birth of Sumanāveliya Thera.				0	0
-sajjanela	place	Sajjanela	sajjanela	villages, towns and cities	name of a Koliyan town				0	0
 sajjha-2	person	Sajjha	sajjha 2	names of ascetics	name of a wandering ascetic				1	7
 saka	group	Sakā	sakā	DPPN: tribe	A tribe, mentioned in a list.				0	0
 sakata	deity	Sakaṭa	sakaṭa	DPPN: yakkha	A Yakkha who, with five thousand others, guarded the fifth door of Jotiya’s palace.				0	0
@@ -3662,19 +3508,18 @@ sakha-1	animal	Sākha	sākha 1	DPPN: deer	A deer, a previous birth of Devadatta.
 sakimsammajjaka-thera	person	Sakiṃsammajjaka Thera	sakiṃsammajjaka thera	DPPN: thera	An Arahant.				0	3
 sakiyavamsavihara	place	Sākiyavaṃsavihāra	sākiyavaṃsavihāra	DPPN: monastery	A monastery in Ceylon.				0	1
 sakka-2	deity	Sakka	sakka 2	names of deities	name of the king of the Devas; Sakka				15	1854
-sakka-2-2	group	Sakkā	sakkā 2	people	people of Sakya; Sakyans				107	13
+sakka-2-2	group	Sakkā	sakkā 2	people	people of Sakya; Sakyans	27.5673	83.1912	3	107	16
 sakka-2-3	deity	Sakka	sakka 2	DPPN: yakkha	A Yakkha.				0	0
 sakkanamaka	deity	Sakkanāmaka	sakkanāmaka	names of deities	name of a daemon				1	2
 sakkata	deity	Sakkaṭa	sakkaṭa	DPPN: yakkha	A Yakkha who, with five hundred others, stood guard over the fifth gate of Jotiya’s palace.				0	1
 sakkhara	person	Sakkhara	sakkhara	DPPN: sākiyans	A township of the Sākiyans where the Buddha once stayed with Ānanda (SN.v.2).				0	0
 sakkodana	person	Sakkodana	sakkodana	DPPN: sākiyan	A Sākiyan, one of the five sons of Sīhahanu and Kaccānā (Mhv.ii.20;				0	3
 sakota-thera	person	Sakoṭa Thera	sakoṭa thera	DPPN: thera	An Arahant.				0	1
-sakula-1	person	Sakulā	sakulā 1	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in clairvoyance				0	3
+sakula-1	person	Sakulā	sakulā 1	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in clairvoyance				0	6
 sakula-1-2	place	Sakula	sakula 1	DPPN: city	A city in Mahiṁsakaraṭṭha.				0	0
 sakula-2	person	Sakulā	sakulā 2	names of laypeople	name of a laywoman, sister of king Pasenadi's queen				0	9
 sakula-2-2	person	Sakula	sakula 2	DPPN: king	A king of Sakula.				0	0
 sakuludayi	person	Sakuludāyī	sakuludāyī	names of ascetics	name of a wandering ascetic				2	28
-sakya	group	Sakyā	sakyā	people	people of Sakya; Sakyans	27.5673	83.1912	3	0	3
 sakya-1	group	Sakya	sakya 1	family names	name of the family into which the Buddha was born	27.5673	83.1912	1	1	196
 sakyaputtiya	person	Sakyaputtiyā	sakyaputtiyā	DPPN: monks	The name given to the monks of the Buddha’s Saṅgha, as followers of Sakyamuni, e.g.,				0	0
 sala	person	Sāla	sāla	DPPN: brother	Brother of Paduma Buddha and, later, his Chief Disciple.				0	53
@@ -3725,8 +3570,7 @@ samanagutta	person	Samaṇaguttā	samaṇaguttā	DPPN: king	The second of the se
 samanaguttaka	person	Samaṇaguttaka	samaṇaguttaka	DPPN: thera	A bandit, employed by the heretics to kill Moggallāna Thera.				0	1
 samanakolanna	person	Samaṇakolañña	samaṇakolañña	DPPN: king	A king of Kāliṅga.				0	1
 samanamundikaputta	person	Samaṇamuṇḍikāputta	samaṇamuṇḍikāputta	names of ascetics	son of the ascetic Muṇḍikā				1	21
-samandaka	person	Sāmaṇḍaka	sāmaṇḍaka	names of ascetics	name of a wandering ascetic				1	3
-samandakani	person	Sāmaṇḍakāni	sāmaṇḍakāni	names of ascetics	name of a wandering ascetic				2	4
+samandakani	person	Sāmaṇḍakāni	sāmaṇḍakāni	names of ascetics	name of a wandering ascetic				3	7
 samanga-1	person	Samaṅga	samaṅga 1	DPPN: attendant	The constant attendant of Tissa Buddha.				0	5
 samangi	person	Samaṅgī	samaṅgī	DPPN: wife	The wife of Sobhita Buddha before his renunciation (Bv.vii.18).				0	0
 samannakani	person	Sāmaññakāni	sāmaññakāni	names of monks; names of arahants	name of an arahant monk				0	4
@@ -3740,7 +3584,6 @@ samavati-1	person	Sāmāvatī	sāmāvatī 1	names of laypeople; great disciples	
 samavati-2	person	Sāmāvatī	sāmāvatī 2	names of royalty	name of King Udena's first queen				0	20
 samavattakkhandha	person	Samavattakkhandha	samavattakkhandha	DPPN: son	The son of Vipassī Buddha in his last lay life.				0	2
 sambahula	person	Sambahula	sambahula	DPPN: chief	A chief of Amaranagara, where he and his brother, Sumitta, ruled.				0	0
-sambahulakaccana	person	Sambahulakaccāna	sambahulakaccāna	names of monks; names of arahants	name of an arahant monk				0	0
 sambala-1	person	Sambala	sambala 1	DPPN: chief	One of the chief disciples of Siddhattha Buddha.				0	15
 sambara	deity	Sambara	sambara	names of deities	name of an asura lord				1	12
 sambhava-2	person	Sambhava	sambhava 2	DPPN: attendant	The constant attendant of Revata Buddha.				0	0
@@ -3787,7 +3630,7 @@ samyama	person	Saṃyama	saṃyama	DPPN: king	A king of Benares, mentioned in th
 sana-1-3	person	Sāṇa	sāṇa 1.3	names of laypeople	name of a layman				0	1
 sanankumara	deity	Sanaṅkumāra	sanaṅkumāra	names of deities	name of a god				1	78
 sanankumarabrahma	deity	Sanaṅkumārabrahma	sanaṅkumārabrahma	names of deities	name of a god				0	1
-sancaya-2-1	person	Sañcaya	sañcaya 2.1	names of ascetics; six ascetic teachers	name of an ascetic teacher; Sañcaya Belaṭṭhaputta				0	72
+sancaya-2-1	person	Sañcaya	sañcaya 2.1	names of ascetics; six ascetic teachers	name of an ascetic teacher; Sañcaya Belaṭṭhaputta				0	81
 sandaka	person	Sandaka	sandaka	names of ascetics	name of a wandering ascetic				0	61
 sandeha	person	Sandeha	sandeha	DPPN: elder	An Elder in direct pupillary succession in Jambudīpa, of teachers of the Abhidhamma.				0	1
 sandhana-1	person	Sandhāna	sandhāna 1	names of laypeople	name of a lay disciple				1	20
@@ -3819,10 +3662,7 @@ sangharakkhita-5	person	Saṅgharakkhita	saṅgharakkhita 5	DPPN: thera	A Thera 
 sangharakkhita-6	person	Saṅgharakkhita	saṅgharakkhita 6	DPPN: elder	An Elder, who lived in the time of Vijayabāhu III. The king made him head of the Saṅgha and entrusted him with the Tooth Relic and the Alms Bowl; he also gave into his charge the education of the heir to the throne.				0	0
 sangharakkhita-7	person	Saṅgharakkhita	saṅgharakkhita 7	DPPN: monk	An eminent monk in the time of Kittisirirājasīha.				0	0
 sanghupatthaka-thera	person	Saṅghupaṭṭhāka Thera	saṅghupaṭṭhāka thera	DPPN: thera	An Arahant.				0	2
-sangiya	person	Saṅgiya	saṅgiya	names of arahants	name of an arahant				0	2
-sanjati-2	place	Sañjāti	sañjāti 2	villages, towns and cities	name of a town in Ceta				0	0
-sanjaya-1	person	Sañjaya	sañjaya 1	names of ascetics; six ascetic teachers	name of an ascetic teacher; Sañjaya Belaṭṭhaputta				0	9
-sanjaya-1-2	person	Sañjaya	sañjaya 1	DPPN: gardener	A gardener (uyyānapāla) of Brahmadatta, king of Benares.				0	0
+sanjaya-1	person	Sañjaya	sañjaya 1	DPPN: gardener	A gardener (uyyānapāla) of Brahmadatta, king of Benares.				0	0
 sanjaya-2	person	Sañjaya	sañjaya 2	names of Brahmans	name of a Brahman				0	0
 sanjaya-2-2	person	Sañjaya	sañjaya 2	DPPN: person	A rājā of Tagara.				0	0
 sanjaya-3	person	Sañjaya	sañjaya 3	names of monks; names of arahants	name of an arahant monk				0	3
@@ -3835,7 +3675,7 @@ sanjiva-2	person	Sañjīva	sañjīva 2	names of monks; chief disciples	name of o
 sanjiva-3	person	Sañjīva	sañjīva 3	DPPN: brahmin	A Brahmin who could bring the dead to life; see the Sañjīvajātaka (Ja 150).				0	0
 sankantika	group	Saṅkantikā	saṅkantikā	DPPN: sect	A heretical sect, a division of the Kassapiyā.				0	3
 sankassa	place	Saṅkassa	saṅkassa	villages, towns and cities	name of a town	26.2135	79.8659	3	0	6
-sankava	place	Saṅkavā	saṅkavā	villages, towns and cities	name of a Kosalan town				1	10
+sankava	place	Saṅkavā	saṅkavā	villages, towns and cities	name of a Kosalan town	27.5171	82.0506	4	1	10
 sankha-1	person	Saṅkha	saṅkha 1	DPPN: bodhisatta	The Bodhisatta, born as a Brahmin in Molinī nagara (Benares).				0	0
 sankha-2	person	Saṅkha	saṅkha 2	DPPN: bodhisatta	The Bodhisatta, born as a seṭṭhi of Rājagaha.				0	0
 sankha-3	person	Saṅkha	saṅkha 3	names of royalty	name of a mythological future king				0	27
@@ -3846,7 +3686,6 @@ sankha-8	person	Saṅkha	saṅkha 8	DPPN: general	A Sinhalese general who mainta
 sankhapala-1	person	Saṅkhapāla	saṅkhapāla 1	DPPN: bodhisatta	The Bodhisatta born as a Nāga king.				0	15
 sankhapala-3	place	Saṅkhapāla	saṅkhapāla 3	DPPN: lake	A lake in the Mahiṁsakaraṭṭha.				0	0
 sankheyyaka	place	Saṅkheyyaka	saṅkheyyaka	names of mountains; place names	name of a mountain				1	5
-sankicca	group	Saṅkicca	saṅkicca	family names	family name of an ascetic; Kisa Saṅkicca				0	0
 sankicca-1	person	Saṅkicca	saṅkicca 1	DPPN: brahmin	He was born in a very eminent Brahmin family of Sāvatthī.				0	0
 sankicca-3	person	Saṅkicca	saṅkicca 3	DPPN: bodhisatta	The Bodhisatta, born as an ascetic.				0	0
 sankiccathera	person	Saṅkiccathera	saṅkiccathera	names of monks; names of arahants	name of an arahant monk				0	0
@@ -3857,10 +3696,9 @@ santakaya-thera	person	Santakāya Thera	santakāya thera	DPPN: thera	He was neve
 santana-thera	person	Santāna Thera	santāna thera	DPPN: thera	An Elder who came to Ceylon from Rakkhaṅga, at the head of thirty-three monks, at the invitation of Vimaladhammasuriya II.				0	0
 santati	person	Santati	santati	DPPN: minister	A minister of Pasenadi.				0	0
 santhita-thera	person	Saṇṭhita Thera	saṇṭhita thera	DPPN: thera	An Arahant.				0	0
-santusita-2	deity	Santusita	santusita 2	names of deities	name of a deity; lord of Tusita heaven				0	9
+santusita-2	deity	Santusita	santusita 2	names of deities	name of a deity; lord of Tusita heaven				0	10
 santusita-2-2	place	Santusita	santusita 2	DPPN: buddha	One of the palaces of Koṇāgamana Buddha before his renunciation.				0	0
 santusita-3	person	Santusita	santusita 3	DPPN: king	A king.				0	0
-santussita-1	deity	Santussita	santussita 1	names of deities	name of a deity				0	1
 santuttha-2	person	Santuṭṭha	santuṭṭha 2	names of laypeople	name of a lay disciple				0	0
 santuttha-2-2	place	Santuṭṭha	santuṭṭha 2	DPPN: palace	A palace of Koṇāgamana Buddha in his last lay life.				0	0
 sanu-2	person	Sānu	sānu 2	names of laypeople	name of a boy possessed by a daemon				1	8
@@ -3877,9 +3715,7 @@ sappadasaka	person	Sappadāsaka	sappadāsaka	names of monks; names of arahants	n
 sappaka	person	Sappaka	sappaka	names of monks; names of arahants	name of an arahant monk				0	4
 sappasondikapabbhara	place	Sappasoṇḍikapabbhāra	sappasoṇḍikapabbhāra	place names	name of a rock overhang outside Rājagaha	24.9755	85.3404	1	5	7
 sappidayaka-thera-1	person	Sappidāyaka Thera	sappidāyaka thera 1	DPPN: thera	An Arahant.				0	3
-sappini-2	place	Sappinī	sappinī 2	names of rivers	name of a river				0	0
-sappinika	place	Sappinikā	sappinikā	names of rivers	name of a river				0	2
-sapuga	place	Sāpūga	sāpūga	villages, towns and cities	name of a Koliyan town	27.3279	83.4576	3	0	0
+sappinika	place	Sappinikā	sappinikā	names of rivers	name of a river				0	4
 sarabha-2	person	Sarabha	sarabha 2	names of ascetics	name of a wandering ascetic				1	47
 sarabhanga-2	person	Sarabhaṅga	sarabhaṅga 2	names of paccekabuddhas	name of a privately awakened Buddha				0	0
 sarabhanga-3	person	Sarabhaṅga	sarabhaṅga 3	names of monks; names of arahants	name of an arahant monk				0	5
@@ -3891,7 +3727,6 @@ sarada-1	person	Sarada	sarada 1	DPPN: buddha	The name of Sāriputta in the time 
 saradassi-1	person	Sāradassī	sāradassī 1	DPPN: person	He lived in Nayyinyua in Ava, in the seventeenth century.				0	3
 saradatapasa	person	Saradatāpasa	saradatāpasa	names of ascetics	name of an ascetic				0	59
 saragga	person	Sāragga	sāragga	names of laypeople	name of a lay disciple				0	2
-sarakani	person	Sarakāni	sarakāni	names of laypeople	name of a Sakyan lay disciple				0	0
 sarakappa	person	Sārakappa	sārakappa	DPPN: buddha	The name given to a kappa in which only one Buddha is born.				0	9
 saramandakappa	person	Sāramaṇḍakappa	sāramaṇḍakappa	DPPN: buddhas	The name given to a kappa in which four Buddhas are born.				0	3
 sarambha	person	Sārambha	sārambha	DPPN: bodhisatta	The Bodhisatta, born as an ox.				0	0
@@ -3900,8 +3735,7 @@ sarana-4	place	Saraṇa	saraṇa 4	DPPN: city	The city of birth of Dhammadassī 
 saranani	person	Saraṇāni	saraṇāni	names of laypeople	name of a Sakyan lay disciple				0	3
 saranankara	person	Saraṇaṅkara	saraṇaṅkara	previous Buddhas	name of the 25th previous Buddha				0	14
 saranankara-2	person	Saraṇaṅkara	saraṇaṅkara 2	DPPN: monk	An eminent monk of Ceylon.				0	0
-saranda	place	Sāranda	sāranda	place names; holy sites	name of a pagoda				0	1
-sarandada	place	Sārandada	sārandada	place names; holy sites	name of a pagoda				1	25
+sarandada	place	Sārandada	sārandada	place names; holy sites	name of a pagoda				1	26
 sarassati	place	Sarassatī	sarassatī	names of rivers	name of a river				0	9
 sarassati-2	place	Sarassatī	sarassatī 2	DPPN: channel	A channel branching off from the Toyavāpi to the Punnavaḍḍhanavāpi.				0	0
 sari	person	Sārī	sārī	DPPN: mother	A Brāhmiṇī, mother of Sāriputta (1) (q.v.).				0	7
@@ -3928,7 +3762,6 @@ sattagodavara	place	Sattagodāvara	sattagodāvara	names of rivers	seven Godāvar
 sattahapabbajita-thera	person	Sattāhapabbajita Thera	sattāhapabbajita thera	DPPN: thera	An Arahant.				0	2
 sattakadambapupphiya-thera	person	Sattakadambapupphiya Thera	sattakadambapupphiya thera	DPPN: thera	An Arahant.				0	1
 sattamba	place	Sattamba	sattamba	place names; holy sites	name of a pagoda	26.0195	85.0524	1	0	13
-sattambaka	place	Sattambaka	sattambaka	place names; holy sites	name of a pagoda				0	0
 sattapanniguha	place	Sattapaṇṇiguhā	sattapaṇṇiguhā	place names	name of a cave on mount Vebhāra outside Rājagaha	25.0071	85.4108	1	0	8
 sattapanniya-thera	person	Sattapaṇṇiya Thera	sattapaṇṇiya thera	DPPN: thera	An Arahant.				0	2
 sattapataliya-thera	person	Sattapāṭaliya Thera	sattapāṭaliya thera	DPPN: thera	An Arahant.				0	1
@@ -3944,11 +3777,9 @@ satulakayi	person	Satulakāyī	satulakāyī	names of laypeople	name of Jotika's 
 satullapakayika	deity	Satullapakāyikā	satullapakāyikā	DPPN: class of devas	A class of Devas.				6	8
 savattha	person	Savattha	savattha	DPPN: sage	A sage.				0	5
 savatthi	place	Sāvatthī	sāvatthī	villages, towns and cities	name of a city; capital of Kosala	27.5195	82.063	1	1612	3075
-savittha	person	Saviṭṭha	saviṭṭha	names of monks	name of a monk				0	4
 savitthaka-1	group	Saviṭṭhaka	saviṭṭhaka 1	DPPN: family	An example of a low family name.				0	16
 savitthaka-2	animal	Saviṭṭhaka	saviṭṭhaka 2	DPPN: crow	Devadatta born as a crow.				0	1
 savitti	person	Sāvitti	sāvitti	DPPN: chief	A hymn, mentioned as chief of the Vedas (chandato mukhaṁ) (Snp.vs.568).				0	0
-sayamjati	place	Sayaṃjāti	sayaṃjāti	villages, towns and cities	name of a town in Ceta				1	2
 sayampabha	person	Sayampabha	sayampabha	DPPN: king	A king of seventy-two kappas ago, a previous birth of Pañcaṅguliya Thera.				0	1
 sayampabha-2	deity	Sayampabhā	sayampabhā	DPPN: class of devas	A class of Devas, among whom virtuous men, such as those that maintain their parents and engage in harmless trades, are born (Snp.vs.404).				0	0
 sayanadayaka-thera-1	person	Sayanadāyaka Thera	sayanadāyaka thera 1	DPPN: thera	An Arahant.				0	4
@@ -3964,7 +3795,6 @@ sela-3	place	Sela	sela 3	DPPN: mountain	A mountain in Himavā.				0	12
 sela-3-2	person	Selā	selā 3	DPPN: arahant	An Arahant.				0	0
 sela-4	person	Sela	sela 4	names of arahants; names of monks; names of Brahmans	name of a Brahman teacher; name of an arahant monk				0	122
 sela-4-2	person	Sela	sela 4	DPPN: son	Son of Atthadassī Buddha in his last lay life.				0	0
-selissariya	person	Selissariya	selissariya	names of monks; names of arahants	name of an arahant monk				0	0
 sena-1	person	Sena	sena 1	DPPN: king	King of Ceylon (Sena I., 831-51 CE.).				0	0
 sena-1-2	person	Senā	senā 1	DPPN: queen	Queen of Udaya I.				0	0
 senaka-1	person	Senaka	senaka 1	DPPN: minister	A minister of King Vedeha.				0	0
@@ -3996,7 +3826,6 @@ seyyasaka	person	Seyyasaka	seyyasaka	names of monks	name of a monk infamous for 
 sida	place	Sīdā	sīdā	names of rivers	name of a Himalayan river				0	4
 sida-2	place	Sīdā	sīdā 2	DPPN: ocean	An ocean, probably identical with Sīdantara.				0	0
 sida-3	place	Sīdā	sīdā 3	DPPN: canal	A canal flowing eastwards from the Aciravatī (Cv.lxxix.53) (the channel of the Mahā Vālukanadī).				0	0
-sidari	person	Sīdarī	sīdarī	names of paccekabuddhas	name of a privately awakened Buddha				0	0
 siddhattha-2	person	Siddhattha	siddhattha 2	DPPN: buddha	The personal name of Gotama Buddha.				0	0
 siddhattha-3	person	Siddhattha	siddhattha 3	DPPN: monk	An eminent monk in the time of Duṭṭhagāmaṇī.				0	0
 siddhattha-4	person	Siddhattha	siddhattha 4	previous Buddhas	name of the 9th previous Buddha				0	282
@@ -4005,10 +3834,7 @@ siddhattha-5	person	Siddhattha	siddhattha 5	DPPN: monk	A monk of the Uposathār�
 siddhattha-6	place	Siddhattha	siddhattha 6	DPPN: buddha	One of the palaces which will be occupied by Metteyya Buddha in his last lay life.				0	0
 siddhattha-7	person	Siddhattha	siddhattha 7	DPPN: monk	A monk of Ceylon of the thirteenth century; he was a pupil of Buddhappiya and wrote the Sāraṭṭhasaṅgaha.				0	0
 siddhatthika	group	Siddhatthikā	siddhatthikā	DPPN: sects	One of the seven heterodox sects which branched off in the second century after the Buddha’s death (Mhv.v.12;				0	5
-sigalaka-2	person	Sigālaka	sigālaka 2	names of laypeople	name of a lay disciple				0	0
 sigalakapita-thera	person	Sigālakapitā Thera	sigālakapitā thera	DPPN: thera	He was a householder of Sāvatthī and had a son called Sigālaka.				0	1
-sigalamatar	person	Sigālamātar	sigālamātar	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in unwavering confidence				0	0
-sigalapitar	person	Sīgālapitar	sīgālapitar	names of monks; names of arahants	name of an arahant monk				0	0
 siggava-1	person	Siggava	siggava 1	DPPN: king	A king of long ago, who was destroyed by the gods because be insulted holy ascetics.				0	15
 siha	person	Sīhā	sīhā	names of nuns; names of arahants	name of an arahant nun				0	3
 siha-2	person	Sīha	sīha 2	names of laypeople	name of a military general in Vesālī				0	126
@@ -4037,7 +3863,7 @@ silava-2	animal	Sīlava	sīlava 2	DPPN: bodhisatta	The Bodhisatta, born as an el
 silava-3	person	Sīlava	sīlava 3	DPPN: son	Son of Maṅgala Buddha, in his last lay life.				0	0
 silavati	place	Silāvati	silāvati	villages, towns and cities	name of a Sakyan village	27.6835	83.1253	3	2	2
 silavati-1	person	Sīlavati	sīlavati 1	DPPN: chief	The chief queen of Okkāka, king of Mahā Sammata, and mother of Kusa.				0	12
-silavati-2-2	place	Sīlavatī	sīlavatī 2	DPPN: city	The city in which Sikhī Buddha died, in the Dussārāma (Assārāma).	27.6835	83.1253	3	0	1
+silavati-2	place	Sīlavatī	sīlavatī 2	DPPN: city	The city in which Sikhī Buddha died, in the Dussārāma (Assārāma).	27.6835	83.1253	3	0	1
 simbalivana	place	Simbalivana	simbalivana	DPPN: abode	The abode of Garuḍas.				0	10
 simsapavana-1	place	Siṃsapāvana	siṃsapāvana 1	DPPN: grove	A grove in Āḷavi, where the Buddha stayed in the Gomagga and was visited by Hatthaka of Āḷavi.	26.927	80.1909	4	4	16
 sindhaka	person	Sindhaka	sindhaka	DPPN: servant	A servant of Aṅkura.				0	9
@@ -4045,15 +3871,9 @@ sindhu-1	place	Sindhu	sindhu 1	names of countries	name of a country around the I
 sindhusovirabhumi	place	Sindhusovīrabhūmi	sindhusovīrabhūmi	names of countries	lands of Sindh and Sovīra				0	10
 sineru	place	Sineru	sineru	DPPN: mountain	A mountain, forming the center of the world.				0	167
 singalaka-2	person	Siṅgālaka	siṅgālaka 2	names of laypeople	name of a lay disciple				0	18
-singalakamatar	person	Siṅgālakamātar	siṅgālakamātar	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in unwavering confidence				0	3
-singalamatar	person	Siṅgālamātar	siṅgālamātar	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in unwavering confidence				0	2
-singalapitar	person	Siṅgālapitar	siṅgālapitar	names of monks; names of arahants	name of an arahant monk				0	1
-singalapitika	person	Siṅgālapitika	siṅgālapitika	names of monks; names of arahants	name of an arahant monk				0	1
-singiya	person	Siṅgiya	siṅgiya	names of arahants	name of an arahant				0	3
-sinipura	person	Sinipura	sinipura	names of royalty	name of one of the sons of king Okkāka				0	1
-sinisura	person	Sinisūra	sinisūra	names of royalty	name of one of the sons of king Okkāka				0	2
-sippini	place	Sippinī	sippinī	names of rivers	name of a river				0	1
-sippinika	place	Sippinikā	sippinikā	names of rivers	name of a river				0	1
+singalakamatar	person	Siṅgālakamātar	siṅgālakamātar	great disciples; names of arahants; names of nuns	name of an arahant nun; great disciple of the Buddha; foremost nun in unwavering confidence				0	5
+singalapitar	person	Siṅgālapitar	siṅgālapitar	names of monks; names of arahants	name of an arahant monk				0	2
+sinisura	person	Sinisūra	sinisūra	names of royalty	name of one of the sons of king Okkāka				0	3
 siri-1	place	Siri	siri 1	DPPN: buddha	One of the palaces of Anomadassī Buddha in his last lay life.				0	1
 siri-1-2	deity	Sirī	sirī 1	DPPN: goddess	The goddess of Luck; she was the daughter of Dhataraṭṭha (Ja.iii.257).				0	0
 siri-2	person	Sirī	sirī 2	names of royalty	name of a former king				0	0
@@ -4066,8 +3886,7 @@ sirigutta-2	animal	Sirigutta	sirigutta 2	DPPN: horse	The name of Eḷāra’s se
 sirika	animal	Sirika	sirika	DPPN: elephant	The name of the elephant which Sunanda (Upāli in this life) was riding when he insulted the Pacceka Buddha Devala by driving the elephant at him.				0	7
 sirikudda	person	Sirikuḍḍa	sirikuḍḍa	DPPN: king	Evidently another name for Mahā Nāma, king of Ceylon, who was Buddhaghosa’s patron.				0	1
 sirima-1	person	Sirimā	sirimā 1	DPPN: person	He was born in the family of a householder of Sāvatthī and was called Sirimā on account of the unfailing success of his family.				0	26
-sirimanda	person	Sirimanda	sirimanda	names of monks; names of arahants	name of an arahant monk				0	0
-sirimanda-2	person	Sirimaṇḍa	sirimaṇḍa	names of monks; names of arahants	name of an arahant monk				0	4
+sirimanda	person	Sirimaṇḍa	sirimaṇḍa	names of monks; names of arahants	name of an arahant monk				0	4
 sirimant-2	person	Sirimant	sirimant 2	names of monks; names of arahants	name of an arahant monk				0	3
 sirimitta	person	Sirimitta	sirimitta	names of monks; names of arahants	name of an arahant monk				0	5
 sirinanda	place	Sirinanda	sirinanda	DPPN: palace	A palace of Kassapa Buddha, before his renunciation.				0	4
@@ -4078,8 +3897,7 @@ sirivaddha-1-2	person	Sirivaḍḍha	sirivaḍḍha 1	DPPN: buddha	The name of M
 sirivaddha-11	person	Sirivaḍḍha	sirivaḍḍha 11	DPPN: seṭṭhi	A seṭṭhi of Mithilā, father of Mahosadha.				0	0
 sirivaddha-14	person	Sirivaḍḍha	sirivaḍḍha 14	DPPN: father	Father of Siggava Thera (q.v.).				0	0
 sirivaddha-15	person	Sirivaḍḍha	sirivaḍḍha 15	DPPN: buddha	The name by which Soṇa Koḷivisa (q.v.) was known in the time of Padumuttara Buddha.				0	0
-sirivaddha-2	person	Sirivaḍḍha	sirivaḍḍha 2	names of laypeople	name of a lay disciple				0	0
-sirivaddha-2-2	person	Sirivaḍḍha	sirivaḍḍha 2	DPPN: chief	Chief lay supporter of Sikhī Buddha.				0	0
+sirivaddha-2	person	Sirivaḍḍha	sirivaḍḍha 2	DPPN: chief	Chief lay supporter of Sikhī Buddha.				0	0
 sirivaddha-3	person	Sirivaḍḍha	sirivaḍḍha 3	names of monks; names of arahants	name of an arahant monk				0	3
 sirivaddha-3-2	person	Sirivaḍḍha	sirivaḍḍha 3	DPPN: buddha	An Ājīvaka, who gave grass for his seat to Sumedha Buddha.				0	0
 sirivaddha-4	person	Sirivaḍḍhā	sirivaḍḍhā	DPPN: seṭṭhi	A seṭṭhi’s daughter who gave milk-rice to Phussa Buddha.				0	0
@@ -4090,8 +3908,7 @@ sirivaddha-7	place	Sirivaḍḍha	sirivaḍḍha 7	DPPN: palace	A palace occupie
 sirivaddha-8	place	Sirivaḍḍha	sirivaḍḍha 8	DPPN: palace	A palace that will be occupied by Metteyya Buddha before his renunciation.				0	0
 sirivaddhaka	place	Sirivaḍḍhaka	sirivaḍḍhaka	DPPN: thūpa	The name of the architect of the Mahā Thūpa.				0	6
 sirivaddhana	person	Sirivaḍḍhanā	sirivaḍḍhanā	DPPN: girl	A girl of Sucitta nigama, who gave milk-rice to Vessabhū Buddha.				0	3
-sisupacala	person	Sīsupacālā	sīsupacālā	names of nuns	name of an arahant nun; Sāriputta's sister				1	5
-sisupacala-2	person	Sīsūpacālā	sīsūpacālā	names of nuns; names of arahants	name of an arahant nun; Sāriputta's sister				0	14
+sisupacala	person	Sīsupacālā	sīsupacālā	names of nuns	name of an arahant nun; Sāriputta's sister				1	19
 sita	person	Sitā	sitā	DPPN: daughter	Daughter of King Dasaratha and sister of Rāmapaṇḍita and Lakkhaṇa.				0	0
 sitaluka-brahmadatta	person	Sītāluka Brahmadatta	sītāluka brahmadatta	DPPN: king	King of Benares.				0	2
 sitavalahaka	deity	Sītavalāhakā	sītavalāhakā	DPPN: class of devas	A class of Devas.				0	12
@@ -4104,9 +3921,7 @@ siva-5	person	Siva	siva 5	DPPN: person	One of the ten sons of Muṭasiva (Dpv.xi
 sivaka-1	deity	Sivaka	sivaka 1	names of deities	name of a daemon				0	20
 sivaka-1-2	person	Sīvaka	sīvaka 1	names of ascetics	name of a wandering ascetic				0	29
 sivaka-2	person	Sivaka	sivaka 2	names of monks; names of arahants	name of an arahant monk				0	1
-sivaka-2-2	person	Sīvaka	sīvaka 2	names of monks; names of arahants	name of an arahant monk				0	0
 sivaka-3	person	Sivaka	sivaka 3	names of monks; names of arahants	name of an arahant monk				0	0
-sivaka-3-2	deity	Sīvaka	sīvaka 3	names of deities	name of a daemon				0	0
 sivaka-3-3	person	Sīvaka	sīvaka 3	DPPN: physician	The physician of King Sivi.				0	0
 sivaka-4	person	Sīvaka	sīvaka 4	DPPN: nephew	The nephew of Vanavaccha.				0	0
 sivala	person	Sīvala	sīvala	DPPN: son	Son of Maṅgala Buddha in his last lay life.				0	4
@@ -4179,7 +3994,6 @@ sonakayana	person	Soṇakāyana	soṇakāyana	names of Brahmans	name of a young 
 sonakolivisa	person	Soṇakoḷivisa	soṇakoḷivisa	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in having energy aroused; Soṇa Koḷivisa				0	0
 sonakutikanna	person	Soṇakuṭikaṇṇa	soṇakuṭikaṇṇa	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in eloquence; Soṇa Kuṭikaṇṇa				0	0
 sonamatar	person	Soṇamātar	soṇamātar	names of laypeople	name of a laywoman				0	0
-sonapotiriya	person	Soṇapoṭiriya	soṇapoṭiriya	names of monks; names of arahants	name of an arahant monk				0	0
 sonnabha	person	Soṇṇābha	soṇṇābha	DPPN: kings	Twenty kappas ago there were eight kings of this name, previous births of Kaṇikāracchadaniya.				0	1
 sonuttara	person	Sonuttara	sonuttara	DPPN: hunter	Devadatta born as a hunter.				0	13
 sonuttara-1	person	Soṇuttara	soṇuttara 1	names of monks; names of arahants	names of Vessabhū Buddha's pair of chief disciples; Soṇa and Uttara				0	1
@@ -4233,7 +4047,6 @@ subhadda-8	person	Subhaddā	subhaddā 8	DPPN: person	One of the five daughters o
 subhaga	person	Subhaga	subhaga	DPPN: son	A son of the Nāga king, Dhataraṭṭha.				0	0
 subhagavana	place	Subhagavana	subhagavana	place names	name of a wood in Ukkaṭṭhā	27.6081	82.8252	1	2	17
 subhajivakambavanika	person	Subhājīvakambavanikā	subhājīvakambavanikā	names of nuns; names of arahants	name of an arahant nun				0	0
-subhakammaradhitar	person	Subhākammāradhītar	subhākammāradhītar	names of nuns; names of arahants	name of an arahant nun				0	0
 subhakinha-1	place	Subhakiṇha	subhakiṇha 1	names of heavens	name of a heavenly realm; name of a class of deities				0	75
 subhakinha-2	deity	Subhakiṇha	subhakiṇha 2	names of deities	epithet of a class of devas				0	2
 subhakuta	place	Subhakūṭa	subhakūṭa	DPPN: mountain	The name of Missaka Mountain (Sīlakūṭa) in the time of Kassapa Buddha.				0	1
@@ -4251,8 +4064,7 @@ sucidayaka-thera	person	Sūcidāyaka Thera	sūcidāyaka thera	DPPN: thera	An Ara
 suciloma-2	deity	Sūciloma	sūciloma 2	names of deities	name of a daemon				2	37
 sucima	person	Sucimā	sucimā	DPPN: buddha	One of the palaces occupied by Maṅgala Buddha in his last lay life.				0	4
 sucimati	person	Sucīmatī	sucīmatī	DPPN: mother	Mother of Bhaddā Kāpilānī, when she was born in Sāgala as the daughter of the Brahmin Kapila.				0	2
-sucimukhi	person	Sucimukhī	sucimukhī	names of ascetics	name of female wandering ascetic				0	1
-sucimukhi-2	person	Sūcimukhī	sūcimukhī	names of ascetics	name of female wandering ascetic				1	3
+sucimukhi	person	Sūcimukhī	sūcimukhī	names of ascetics	name of female wandering ascetic				1	4
 sucindhara	person	Sucindhara	sucindhara	DPPN: buddha	A pleasance near Sobhana, where Atthadassī Buddha was born.				0	1
 sucindhara-2	person	Sucindharā	sucindharā	DPPN: buddha	A Nāgī who gave a meal of milk-rice to Atthadassī Buddha just before his Awakening.				0	0
 sucintita-1	person	Sucintita	sucintita 1	DPPN: buddha	A Pacceka Buddha to whom, when very ill, Ajina Thera (Ghatamaṇḍadāyaka Thera), in a former birth, gave ghee.				0	4
@@ -4325,7 +4137,6 @@ sudhamma-1	place	Sudhamma	sudhamma 1	DPPN: city	The city of birth of Sobhita Bud
 sudhamma-1-2	person	Sudhammā	sudhammā 1	DPPN: buddha	An Aggasāvikā of Atthadassī Buddha.				0	16
 sudhamma-2	person	Sudhamma	sudhamma 2	DPPN: king	A king, father of Sobhita Buddha.				0	6
 sudhammasabha	place	Sudhammasabhā	sudhammasabhā	place names	name of the meeting hall of the gods				0	7
-sudhana	person	Sudhanā	sudhanā	names of laypeople	name of a laywoman				0	0
 sudhanna-1	person	Sudhañña	sudhañña 1	DPPN: seṭṭhi	A seṭṭhi, father of Dhaññavatī (q.v.).				0	4
 sudhanna-2	place	Sudhañña	sudhañña 2	DPPN: city	The city of birth of Piyadassī Buddha; but see Anoma (11).				0	0
 sudhannaka	place	Sudhaññaka	sudhaññaka	DPPN: city	The city of birth of Revata Buddha.				0	5
@@ -4450,7 +4261,6 @@ sumedha-9	person	Sumedha	sumedha 9	DPPN: elder	An Elder of Ceylon, at whose requ
 sumekhala	person	Sumekhala	sumekhala	DPPN: king	A king whose country was destroyed because he ill-treated holy men.				0	3
 sumitta-1	person	Sumitta	sumitta 1	DPPN: buddha	An Ājīvaka who gave grass for his seat to Padumuttara Buddha.				0	18
 sumittarama	place	Sumittārāma	sumittārāma	DPPN: monastery	The monastery in which Vipassī Buddha died.				0	1
-sumsumaragira	place	Suṃsumāragira	suṃsumāragira	villages, towns and cities	name of the capital city of Bhagga				3	6
 sumsumaragiri	place	Suṃsumāragiri	suṃsumāragiri	DPPN: city	A city in the Bhagga country, of which it was probably the capital (see e.g.,				0	0
 sumukha-2	deity	Sumukha	sumukha 2	names of deities	name of a daemon				0	5
 sumukha-2-2	animal	Sumukha	sumukha 2	DPPN: crow	A crow, general of Supatta.				0	69
@@ -4485,7 +4295,6 @@ sunetta-3	person	Sunetta	sunetta 3	DPPN: buddha	A Pacceka Buddha.				0	0
 sunidha	person	Sunīdha	sunīdha	names of laypeople	names of a minister of Magadha				0	0
 sunidha-2	person	Sunidha	sunidha	DPPN: minister	A minister of Magadha, who, with Vassakāra, was in charge of the fortifications of Pāṭaligāma, built in order to repel the Vajjians.				0	3
 sunidhavassakara	person	Sunidhavassakārā	sunidhavassakārā	names of Brahmans	names of two ministers of Magadha; Sunidha and Vassakāra				0	44
-sunidhavassakara-2	person	Sunīdhavassakārā	sunīdhavassakārā	names of Brahmans	names of two ministers of Magadha; Sunīdha and Vassakāra				0	0
 sunimmita-2	deity	Sunimmita	sunimmita 2	names of deities	name of a deity; lord of the gods who delight in creation				0	16
 sunita-2	person	Sunīta	sunīta 2	names of monks; names of arahants	name of an arahant monk				0	11
 supabba	person	Supabbā	supabbā	names of laypeople	name of a lay disciple				0	2
@@ -4500,14 +4309,12 @@ suppabuddha	person	Suppabuddha	suppabuddha	names of laypeople	name of a leper			
 suppabuddha-1	person	Suppabuddha	suppabuddha 1	DPPN: sākiyan	A Sākiyan prince, son of Añjana and Yasodharā.				0	0
 suppabuddha-3	person	Suppabuddha	suppabuddha 3	DPPN: son	Son of Vessabhū Buddha in his last lay life.				0	0
 suppabuddha-4	person	Suppabuddha	suppabuddha 4	DPPN: king	A king of fifty-seven kappas ago, a former birth of Eraka Thera (Maggadāyaka).				0	0
-suppagedha	deity	Suppagedha	suppagedha	names of deities	name of a daemon				0	0
 suppala	person	Suppala	suppala	DPPN: buddha	One of the palaces of Siddhattha Buddha before his renunciation.				0	1
 supparaka	place	Suppāraka	suppāraka	villages, towns and cities	name of western seaport; modern day Nala Sopara				0	25
 supparaka-2	person	Suppāraka	suppāraka 2	DPPN: bodhisatta	The Bodhisatta born as a master mariner (niyyāmakajeṭṭha) of Bhārukaccha.				0	1
 supparodha	deity	Supparodha	supparodha	names of deities	name of a daemon				0	2
 suppasanna	person	Suppasanna	suppasanna	DPPN: king	A king of eight kappas ago, a previous birth of Rattipupphiya Thera.				0	0
-suppatita	person	Suppatita	suppatita	names of royalty	name of Vessabhū Buddha's father				0	2
-suppatita-1	person	Suppatīta	suppatīta 1	names of royalty	name of Vessabhū Buddha's father				0	8
+suppatita-1	person	Suppatīta	suppatīta 1	names of royalty	name of Vessabhū Buddha's father				0	10
 suppatitthita-1	place	Suppatiṭṭhita	suppatiṭṭhita 1	DPPN: ford	A ford, across the Nerañjarā, where the Buddha bathed just before eating the meal given by Sujātā.				0	1
 suppatitthita-2	person	Suppatiṭṭhita	suppatiṭṭhita 2	DPPN: king	A nigrodha tree belonging to king Koravya.				0	1
 suppavasa	person	Suppavāsā	suppavāsā	names of laypeople; great disciples	name of a female lay disciple; foremost laywoman in giving fine things; Suppavāsā Koliyadhītā				3	87
@@ -4530,34 +4337,29 @@ surama-1-2	person	Surāmā	surāmā 1	DPPN: buddha	An Aggasāvikā of Siddhattha
 surambattha	person	Sūrambaṭṭha	sūrambaṭṭha	names of laypeople; great disciples	name of a lay disciple; great disciple of the Buddha; foremost layman in unwavering confidence				0	15
 suramma	place	Suramma	suramma	DPPN: palace	A seven-storeyed palace, occupied by Gotama Buddha before his Renunciation.				0	17
 suramma-2	person	Surammā	surammā	DPPN: chief	One of the chief lay women supporters of Siddhattha Buddha.				0	1
-surasena	group	Surasenā	surasenā	people	people of Surasena; Surasenas	27.5521	77.3163	3	0	1
-surasena-2	group	Sūrasenā	sūrasenā	people	people of Surasena; Surasenas	27.5521	77.3163	3	0	6
-surasena-2-2	place	Surasena	surasena 2	DPPN: city	A city in the time of Siddhattha Buddha, where the Bodhisatta was born as the Brahmin Maṅgala.	27.5521	77.3163	1	0	1
+surasena	group	Sūrasenā	sūrasenā	people	people of Surasena; Surasenas	27.5521	77.3163	3	0	7
+surasena-2	place	Surasena	surasena 2	DPPN: city	A city in the time of Siddhattha Buddha, where the Bodhisatta was born as the Brahmin Maṅgala.	27.5521	77.3163	1	0	1
 surasena-2-3	person	Sūrasena	sūrasena 2	DPPN: person	Another name for Dhanañjaya Korabba.				0	0
 surattha	place	Suraṭṭha	suraṭṭha	DPPN: country	A country (Mil.331, 359;				0	21
 suravamagotta	person	Sūravāmagotta	sūravāmagotta	DPPN: son	A son of Ekarāja and step-brother of Candakumāra.				0	1
-suriya-2	deity	Suriya	suriya 2	names of deities	name of the sun deity				0	3
-suriya-2-2	deity	Sūriya	sūriya 2	names of deities	name of the sun deity				0	7
+suriya-2	deity	Sūriya	sūriya 2	names of deities	name of the sun deity				0	10
 suriya-2-3	deity	Suriya	suriya 2	DPPN: son	A son of Sakka (q.v.).				0	0
 suriyakumara	person	Sūriyakumāra	sūriyakumāra	names of royalty	name of a prince; previous incarnation of Ānanda				0	18
 suriyavaccasa	deity	Suriyavaccasa	suriyavaccasa	names of deities	name of a demigod				0	0
-suriyavaccasa-2	deity	Sūriyavaccasā	sūriyavaccasā	names of deities	name of a demigod				0	1
-suriyavacchasa	deity	Sūriyavacchasā	sūriyavacchasā	names of deities	name of a female demigod				0	17
+suriyavacchasa	deity	Sūriyavacchasā	sūriyavacchasā	names of deities	name of a female demigod				0	18
 suruci-1	person	Suruci	suruci 1	DPPN: bodhisatta	The Bodhisatta born as a Brahmin in the time of Maṅgala Buddha.				0	25
 suruci-4	place	Suruci	suruci 4	DPPN: palace	A palace, occupied by Vessabhū Buddha before his renunciation.				0	3
 surundhana	place	Surundhana	surundhana	DPPN: city	A city in Kāsī; an old name for Benares.	25.3291	82.4139	4	0	3
 susarada	person	Susārada	susārada	names of monks; names of arahants	name of an arahant monk				0	4
 susima	person	Susīmā	susīmā	DPPN: mother	Mother of Sīhabāhu and Sīhasīvalī.				0	0
-susima-1	deity	Susima	susima 1	names of deities	name of a deity				1	60
-susima-1-2	deity	Susīma	susīma 1	names of deities	name of a deity				0	45
+susima-1	deity	Susima	susima 1	names of deities	name of a deity				1	105
 susima-1-3	person	Susīma	susīma 1	DPPN: bodhisatta	The Bodhisatta in the time of Atthadassī Buddha.				0	0
 susima-2	person	Susima	susima 2	names of monks	name of a monk, former wandering ascetic				0	6
-susima-2-2	person	Susīma	susīma 2	names of monks	name of a monk, former wandering ascetic				0	0
 susima-2-3	person	Susīma	susīma 2	DPPN: bodhisatta	The Bodhisatta, son of the chaplain of the king of Benares.				0	0
 susima-3	person	Susīma	susīma 3	DPPN: king	A king of Benares.				0	0
 susima-7	person	Susīma	susīma 7	DPPN: brahmin	A Brahmin of Takkasilā and son of Saṅkha.				0	0
 susuddha	person	Susuddha	susuddha	DPPN: king	A king of thirty-two kappas ago, a previous birth of Pabbhāradāyaka Thera.				0	1
-susumaragira	place	Susumāragira	susumāragira	villages, towns and cities	name of the capital city of Bhagga				8	20
+susumaragira	place	Susumāragira	susumāragira	villages, towns and cities	name of the capital city of Bhagga				11	26
 susunaga	person	Susunāga	susunāga	DPPN: king	King of Magadha and father of Kāḷāsoka.				0	1
 suta-brahmadatta	person	Suta Brahmadatta	suta brahmadatta	DPPN: king	A king of Benares, so-called because he never tired of learning (suta).				0	2
 sutana	person	Sutanā	sutanā	names of laypeople	name of a laywoman				0	11
@@ -4582,7 +4384,7 @@ suvannapupphiya-thera	person	Suvaṇṇapupphiya Thera	suvaṇṇapupphiya thera
 suvannasama	person	Suvaṇṇasāma	suvaṇṇasāma	DPPN: bodhisatta	The Bodhisatta born as the son of Dukūlaka and Pārikā.				0	14
 suvannatthambha	place	Suvaṇṇatthambha	suvaṇṇatthambha	DPPN: ford	A ford considered dangerous on the Mahā Vālukagaṅgā.				0	2
 suvannavithi	place	Suvaṇṇavīthi	suvaṇṇavīthi	DPPN: street	A street in Tāvatiṁsa, sixty leagues in length.				0	1
-suveluvana	place	Suveḷuvana	suveḷuvana	place names	name of a wood				1	2
+suveluvana	place	Suveḷuvana	suveḷuvana	place names	name of a wood	25.0116	87.8321	1	1	2
 suvideha	group	Suvidehā	suvidehā	people	good people of Videha	26.7122	85.9217	4	0	6
 suvira	deity	Suvīra	suvīra	names of deities	name of a deity				0	18
 suyama	deity	Suyāma	suyāma	names of deities	name of a deity; lord of the Yāma deities				0	17
@@ -4594,8 +4396,7 @@ tacchaka	deity	Tacchakā	tacchakā	names of deities	name of a group of nāgas			
 tadadhimutta	person	Tadādhimutta	tadādhimutta	names of paccekabuddhas	name of a privately awakened Buddha				0	3
 tadadhimutta-2	person	Tadadhimutta	tadadhimutta	DPPN: buddha	A Pacceka Buddha.				0	0
 tagara	place	Tagara	tagara	DPPN: city	A city in the time of Dhammadassī Buddha; it was the capital of King Sañjaya.				0	0
-tagarasikhi	person	Tagarasikhī	tagarasikhī	names of paccekabuddhas	name of a privately awakened Buddha				0	12
-taggarasikhi	person	Taggarasikhī	taggarasikhī	names of paccekabuddhas	name of a privately awakened Buddha				0	3
+tagarasikhi	person	Tagarasikhī	tagarasikhī	names of paccekabuddhas	name of a privately awakened Buddha				0	15
 takka	place	Takka	takka	DPPN: city	A city in India twelve leagues from Kāvīrapaṭṭana.				0	0
 takkapandita	person	Takkapaṇḍita	takkapaṇḍita	DPPN: bodhisatta	The name given to the Bodhisatta in the Takkajātaka (Ja 63).				0	9
 takkara	place	Takkarā	takkarā	DPPN: city	A city in the time of Sumana Buddha.				0	5
@@ -4622,9 +4423,7 @@ tanha	person	Taṇhā	taṇhā	DPPN: buddha	One of the three daughters of Māra,
 tanhankara	person	Taṇhaṅkara	taṇhaṅkara	previous Buddhas	name of the 27th previous Buddha				0	14
 tankitamanca	place	Ṭaṅkitamañca	ṭaṅkitamañca	place names	(comm) stone slab mounted on four stone pillars	24.7381	85.0781	3	2	11
 tapana	person	Tāpanā	tāpanā	DPPN: sister	The younger sister of Kapila and Sodhana, in the time of Kassapa Buddha.				0	0
-tapassa	person	Tapassa	tapassa	great disciples; names of laypeople	name of a laymen; great disciple of the Buddha; foremost layman in first taking refuge in the Buddha				0	0
 tapassi	person	Tapassī	tapassī	DPPN: envoy	An envoy sent by the king of Rāmañña to Parakkamabāhu I.				0	0
-tapassubhallika	person	Tapassubhallikā	tapassubhallikā	great disciples; names of laypeople	name of two laymen; great disciples of the Buddha; foremost laymen in first taking refuge in the Buddha				0	0
 tapoda-2	place	Tapoda	tapoda 2	names of monasteries	name of monastery	25.0128	85.4183	1	0	40
 tapodakandara	place	Tapodakandarā	tapodakandarā	place names	name of a gorge outside Rājagaha	25.03	85.42	4	0	2
 tapodarama	place	Tapodārāma	tapodārāma	names of monasteries	hot spring park; place name	25.0094	85.4242	1	5	15
@@ -4644,7 +4443,6 @@ tavakannika	person	Tavakaṇṇika	tavakaṇṇika	names of laypeople	name of a 
 tavatimsa	deity	Tāvatiṃsa	tāvatiṃsa	DPPN: deva	The second of the six Deva-worlds, the first being the Cātummahārājika world.				0	333
 tayana-1	deity	Tāyana	tāyana 1	names of deities	name of a deity				1	8
 tejasi	deity	Tejasi	tejasi	names of deities	name of a daemon				0	3
-tekicchakani	person	Tekicchakāni	tekicchakāni	names of monks; names of arahants	name of an arahant monk				0	0
 tekicchakari	person	Tekicchakārī	tekicchakārī	names of monks; names of arahants	name of an arahant monk				0	5
 tela	person	Tela	tela	DPPN: person	One of the ambassadors sent by Devānampiyatissa to Asoka.				0	0
 telakani	person	Telakāni	telakāni	names of monks; names of arahants	name of an arahant monk				0	4
@@ -4653,21 +4451,17 @@ telapanali	place	Telapanāḷi	telapanāḷi	villages, towns and cities	name of 
 temiya	person	Temiya	temiya	DPPN: bodhisatta	The name of the Bodhisatta in the Mūgapakkhajātaka (Ja 538).				0	12
 thera	person	Thera	thera	DPPN: monk	Name of a monk in Rājagaha.				0	7
 thitanjaliya	person	Ṭhitañjaliya	ṭhitañjaliya	DPPN: arahant	An Arahant Thera.				0	2
-thulakotthika	place	Thūlakoṭṭhika	thūlakoṭṭhika	villages, towns and cities	name of a town in the Kuru country; birthplace of Raṭṭhapāla	29.17	78.02	4	0	0
-thuli	group	Thūli	thūli	family names	name of clan who received a portion of the Buddha's relics				0	0
 thullakotthika-1	place	Thullakoṭṭhika	thullakoṭṭhika 1	villages, towns and cities	name of a town in the Kuru country; birthplace of Raṭṭhapāla	29.17	78.02	4	1	26
 thullakotthita-1	place	Thullakoṭṭhita	thullakoṭṭhita 1	DPPN: country	A township in the Kuru country.	29.17	78.02	4	0	3
 thullananda	person	Thullanandā	thullanandā	names of nuns	name of a notorious nun				1	343
 thullatissa	person	Thullatissā	thullatissā	names of nuns	name of a nun				0	4
 thulu	group	Thūlū	thūlū	people	name of a people				0	5
-thuna	place	Thūnā	thūnā	villages, towns and cities	name of a Brahman village	29.9696	76.8198	3	0	0
 thuna-2	place	Thūṇā	thūṇā 2	villages, towns and cities	name of a Brahman village	29.9696	76.8198	3	1	17
 thuneyyaka	group	Thūṇeyyakā	thūṇeyyakā	DPPN: people	The people of Thūṇa.				0	13
 thuparama-1	place	Thūpārāma	thūpārāma 1	DPPN: monastery	A monastery near the southern wall of Anurādhapura, erected by Devānampiyatissa.				0	24
 ticampakapupphiya-thera	person	Ticampakapupphiya Thera	ticampakapupphiya thera	DPPN: thera	An Arahant.				0	1
 tidasa-3	place	Tidasa	tidasa 3	names of heavens	Tavatimsa heaven				0	2
 tikanda	place	Tikaṇḍa	tikaṇḍa	place names	name of a wood				0	1
-tikandakivana	place	Tikaṇḍakīvana	tikaṇḍakīvana	place names	name of a wood				1	1
 tikanikarapupphiya-thera	person	Tikaṇikārapupphiya Thera	tikaṇikārapupphiya thera	DPPN: thera	An Arahant.				0	1
 tikanna	person	Tikaṇṇa	tikaṇṇa	names of Brahmans	name of a Brahman				1	5
 tikannipupphiya	person	Tikaṇṇipupphiya	tikaṇṇipupphiya	DPPN: arahant	An Arahant Thera.				0	1
@@ -4770,18 +4564,16 @@ todeyyagama	place	Todeyyagāma	todeyyagāma	DPPN: village	A village between Sāv
 todeyyakappa	person	Todeyyakappā	todeyyakappā	names of Brahmans	names of two Brahman ascetics; Todeyya and Kappa				0	3
 toranavatthu	place	Toraṇavatthu	toraṇavatthu	villages, towns and cities	name of a town located between Sāvatthī and Sāketa	27.1459	82.1255	2	0	8
 tudigama	place	Tudigāma	tudigāma	DPPN: residence	The residence of Subha Todeyyaputta.				0	2
-tudu	deity	Tudu	tudu	names of deities	name of a solitary Brahma				0	0
 tuladhara	place	Tulādhāra	tulādhāra	DPPN: mountain	A mountain in the village of Vihāravāpi (Mhv.xxiii.90).				0	0
 tundila-1	person	Tuṇḍila	tuṇḍila 1	DPPN: brother	Brother of the courtesan Kāḷī.				0	8
 tundila-2	animal	Tuṇḍila	tuṇḍila 2	DPPN: parrot	A parrot, who had a tiger as friend.				0	0
 turu	deity	Turū	turū	names of deities	name of a solitary Brahma				1	13
 tusita	deity	Tusitā	tusitā	names of deities	name of a group of deities; from Tusita heaven				0	102
 tusita-1	place	Tusita	tusita 1	DPPN: buddha	One of the palaces occupied by Koṇāgamana Buddha in his last lay life.				0	79
-tusita-2-2	place	Tusita	tusita 2	DPPN: deva	The fourth of the six Deva worlds (AN.i.210, etc.).				0	0
+tusita-2	place	Tusita	tusita 2	DPPN: deva	The fourth of the six Deva worlds (AN.i.210, etc.).				0	0
 tuttha-2	person	Tuṭṭha	tuṭṭha 2	names of laypeople	name of a lay disciple				0	0
 tuvaradayaka-thera	person	Tuvaradāyaka Thera	tuvaradāyaka thera	DPPN: thera	An Arahant.				0	1
-tuvataka	person	Tuvaṭaka	tuvaṭaka	names of ascetics	name of an ascetic				0	1
-tuvattaka	person	Tuvaṭṭaka	tuvaṭṭaka	names of ascetics	name of an ascetic				0	1
+tuvataka	person	Tuvaṭaka	tuvaṭaka	names of ascetics	name of an ascetic				0	2
 ubbari-1	person	Ubbarī	ubbarī 1	DPPN: princess	A princess.				0	23
 ubbhataka	place	Ubbhataka	ubbhataka	place names	name of a Mallan council hall	26.6839	84.0552	4	0	3
 ubbiri	person	Ubbirī	ubbirī	names of nuns; names of arahants	name of an arahant nun				0	8
@@ -4789,7 +4581,7 @@ uccangamaya	person	Uccaṅgamāya	uccaṅgamāya	names of paccekabuddhas	name of
 ucchangapupphiya-thera	person	Ucchaṅgapupphiya Thera	ucchaṅgapupphiya thera	DPPN: thera	An Arahant.				0	2
 ucchukhandika	person	Ucchukhaṇḍika	ucchukhaṇḍika	DPPN: thera	A Thera.				0	9
 ucchuvimana-1	person	Ucchuvimāna	ucchuvimāna 1	DPPN: girl	A girl, who belonged to a pious family in Rājagaha, used to give to holy men half of anything she received.				0	5
-udaka-2-1	person	Udaka	udaka 2.1	names of ascetics	name of the Buddha's second teacher; Udaka Rāmaputta				0	46
+udaka-2-1	person	Udaka	udaka 2.1	names of ascetics	name of the Buddha's second teacher; Udaka Rāmaputta				0	47
 udakadayaka-thera-1	person	Udakadāyaka Thera	udakadāyaka thera 1	DPPN: thera	An Arahant.				0	4
 udakadayika-theri	person	Udakadāyikā Therī	udakadāyikā therī	DPPN: therī	An Arahant.				0	1
 udakapabbata	place	Udakapabbata	udakapabbata	DPPN: mountain	A mountain in the region of Himavā.				0	1
@@ -4799,7 +4591,6 @@ udakasanadayaka-thera	person	Udakāsanadāyaka Thera	udakāsanadāyaka thera	DPP
 udakasecana	person	Udakāsecana	udakāsecana	DPPN: kings	Thirty-three kappas ago there were eight kings of this name, all previous births of Bodhisaññaka Thera (Bodhisiñcaka Thera).				0	1
 udana	person	Udāna	udāna	DPPN: buddha	A short collection of eighty stories, in eight vaggas, containing solemn utterances of the Buddha, made on special occasions.				0	9
 udangana-2	place	Udaṅgaṇa	udaṅgaṇa 2	names of mountains	name of a mountain				0	3
-udanna	place	Udaññā	udaññā	villages, towns and cities	name of a town in Kosala	27.5171	82.0506	4	0	0
 udapanadayaka-thera	person	Udapānadāyaka Thera	udapānadāyaka thera	DPPN: thera	An Arahant.				0	2
 udaya-1	person	Udaya	udaya 1	DPPN: brahmin	A Brahmin of Sāvatthī.				0	0
 udaya-10	person	Udaya	udaya 10	DPPN: king	King of Ceylon, Udaya IV. (A.C. 945-953).				0	0
@@ -4820,11 +4611,9 @@ udayi-1	person	Udāyī	udāyī 1	great disciples; names of arahants; names of mo
 udayi-2	person	Udāyī	udāyī 2	names of monks	name of a monk; Paṇḍitaudāyi				0	1
 udayi-2-2	person	Udāyī	udāyī 2	DPPN: thera	A Thera.				0	0
 udayi-3	person	Udāyī	udāyī 3	names of Brahmans	name of a Brahman interested in sacrifice				1	3
-udayibhadda	person	Udāyibhadda	udāyibhadda	names of royalty	name of a prince; Ajātasattu's son				0	0
-uddaka	person	Uddaka	uddaka	names of ascetics	name of the Buddha's second teacher; Uddaka Rāmaputta				0	1
 uddaka-ramaputta	place	Uddaka Rāmaputta	uddaka rāmaputta	DPPN: world	One of the teachers under whom Gotama, after leaving the world and before he became the Buddha, received instruction (Ja.i.66, 81).				0	4
 uddalaka	person	Uddālaka	uddālaka	DPPN: son	Son of the Bodhisatta (then chaplain of the king of Benares) and a slave-girl, whom he first met in the royal park.				0	14
-udena-1	person	Udena	udena 1	names of royalty	name of a king				4	42
+udena-1	person	Udena	udena 1	names of royalty	name of a king				4	71
 udena-2	place	Udena	udena 2	place names; holy sites	name of a pagoda				0	0
 udena-3	person	Udena	udena 3	names of monks	name of a monk				0	52
 udena-3-2	person	Udena	udena 3	DPPN: upāsaka	An upāsaka of Kosala.				0	0
@@ -4872,12 +4661,9 @@ ujjeni-3	place	Ujjenī	ujjenī 3	DPPN: nigama	A township (nigama), the residence
 ujjhanasanni	person	Ujjhānasaññī	ujjhānasaññī	DPPN: thera	A Thera.				1	1
 ujjhanasannika	deity	Ujjhānasaññikā	ujjhānasaññikā	DPPN: devas	The name given to a group of Devas who once visited the Buddha at Jetavana late at night.				1	2
 ujjuhana	place	Ujjuhāna	ujjuhāna	names of mountains	(comm) name of a mountain; (or) name of a bird				0	7
-ujunna	place	Ujuññā	ujuññā	villages, towns and cities	name of a town in Kosala	27.5171	82.0506	4	0	0
 ukkacela	place	Ukkacelā	ukkacelā	villages, towns and cities	name of a Vajjian town	25.7232	85.0397	2	4	12
-ukkaka	person	Ukkāka	ukkāka	names of royalty	name of a king				0	0
 ukkala	place	Ukkalā	ukkalā	DPPN: district	A district (janapada) in the region identified with modern Orissa (CAG., p.733).				0	5
 ukkamsika	person	Ukkaṃsika	ukkaṃsika	DPPN: king	A king of Rāmañña, a great patron of learning.				0	4
-ukkamukha-2	person	Ukkāmukha	ukkāmukha 2	names of royalty	name of one of the sons of king Okkāka				0	0
 ukkasatika-thera	person	Ukkāsatika Thera	ukkāsatika thera	DPPN: thera	An Arahant.				0	1
 ukkattha	place	Ukkaṭṭhā	ukkaṭṭhā	villages, towns and cities	name of town	27.5935	82.8172	1	3	27
 ukkhepakatavaccha	person	Ukkhepakatavaccha	ukkhepakatavaccha	names of monks; names of arahants	name of an arahant monk				0	7
@@ -4957,9 +4743,8 @@ upatissa-9	person	Upatissa	upatissa 9	DPPN: person	He lived in Ceylon, probably 
 upatissagama-1	person	Upatissagāma	upatissagāma 1	DPPN: brahmin	A Brahmin village near Rājagaha.				0	7
 upatthayaka-thera	person	Upaṭṭhāyaka Thera	upaṭṭhāyaka thera	DPPN: thera	An Arahant.				0	3
 upavala	person	Upavāḷa	upavāḷa	names of monks	name of a monk				0	11
-upavana	person	Upavāṇa	upavāṇa	names of monks; names of arahants	name of an arahant monk; attendant of the Buddha				4	73
-upavana-2	person	Upavāna	upavāna	names of monks	name of a monk; attendant of the Buddha				1	29
-upavana-2-2	person	Upavāṇa	upavāṇa 2	DPPN: son	Son of Anomadassī Buddha.				0	0
+upavana	person	Upavāṇa	upavāṇa	names of monks; names of arahants	name of an arahant monk; attendant of the Buddha				5	102
+upavana-2	person	Upavāṇa	upavāṇa 2	DPPN: son	Son of Anomadassī Buddha.				0	0
 upavattana-1	place	Upavattana	upavattana 1	place names	name of a place outside Kusinārā	26.7301	83.8986	1	4	32
 uposatha	person	Uposathā	uposathā	DPPN: person	A pious lay-devotee of Sāketa.				0	0
 uposatha-1	person	Uposatha	uposatha 1	DPPN: king	King, son of Varakaḷyāna and an ancestor of the Sākyan tribe.				0	0
@@ -4967,9 +4752,8 @@ uposatha-3	animal	Uposatha	uposatha 3	names of animals	name of a king Mahāsudas
 uposatha-3-2	person	Uposatha	uposatha 3	DPPN: person	Known as Uposathakumāra.				0	0
 uposatha-5	person	Uposatha	uposatha 5	names of paccekabuddhas	name of a privately awakened Buddha				0	0
 uposathagara	place	Uposathāgāra	uposathāgāra	DPPN: building	A building connected with the Thūpārāma.				0	0
-uppala	person	Uppāla	uppāla	names of monks	name of a monk				0	0
-uppala-2	person	Uppalā	uppalā	DPPN: chief	One of the chief women supporters of Anomadassī Buddha.				0	0
-uppala-2-2	deity	Uppala	uppala 2	DPPN: yakkhas	One of the Yakkhas who guarded Jotiya’s palace.				0	0
+uppala	person	Uppalā	uppalā	DPPN: chief	One of the chief women supporters of Anomadassī Buddha.				0	0
+uppala-2	deity	Uppala	uppala 2	DPPN: yakkhas	One of the Yakkhas who guarded Jotiya’s palace.				0	0
 uppala-3	person	Uppala	uppala 3	DPPN: father	Father of the warrior Ummādaphussadeva.				0	0
 uppala-4	person	Uppala	uppala 4	names of paccekabuddhas	name of a privately awakened Buddha				0	0
 uppala-4-2	place	Uppala	uppala 4	DPPN: place	A Niraya (SN.i.152;				0	0
@@ -4980,15 +4764,13 @@ uppalavanna-2-2	person	Uppalavaṇṇā	uppalavaṇṇā 2	DPPN: person	One of t
 uppalavapi	place	Uppalavāpī	uppalavāpī	DPPN: village	A village in Ceylon where king Kuṭakaṇṇa spent some time.				0	1
 uracchada	person	Uracchadā	uracchadā	DPPN: king	One of the nine daughters of King Kikī.				0	2
 urunna	place	Uruññā	uruññā	villages, towns and cities	name of a town in Kosala	27.5171	82.0506	4	2	8
-uruvela	place	Uruvelā	uruvelā	villages, towns and cities	name of a town in Magadha	24.6951	84.9913	1	15	109
-uruvela-2	place	Uruveḷā	uruveḷā	villages, towns and cities	name of a town in Magadha	24.6951	84.9913	1	0	10
-uruvela-2-2	place	Uruvelā	uruvelā 2	DPPN: place	A township in Ceylon, founded by one of the ministers of Vijaya (Dpv.ix.35;				0	0
+uruvela	place	Uruvelā	uruvelā	villages, towns and cities	name of a town in Magadha	24.6951	84.9913	1	15	119
+uruvela-2	place	Uruvelā	uruvelā 2	DPPN: place	A township in Ceylon, founded by one of the ministers of Vijaya (Dpv.ix.35;				0	0
 uruvela-3	person	Uruveḷa	uruveḷa	DPPN: chief	One of the chief lay supporters of Sumedha Buddha.				0	0
 uruvela-3-2	place	Uruvelā	uruvelā 3	DPPN: village	A village to which Queen Sugalā (q.v.) fled, taking the sacred relics, the Alms Bowl and the Tooth Relic (Cv.lxxiv.88).				0	0
 uruvela-4	person	Uruveḷā	uruveḷā	DPPN: chief	One of the two chief women disciples of Kassapa Buddha.				0	0
 uruvelakappa	place	Uruvelakappa	uruvelakappa	villages, towns and cities	name of a Mallan town	26.9857	84.0509	3	4	9
-uruvelakassapa	person	Uruvelakassapa	uruvelakassapa	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk among those with a large following				0	159
-uruvelakassapa-2	person	Uruveḷakassapa	uruveḷakassapa	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk among those with a large following				0	6
+uruvelakassapa	person	Uruvelakassapa	uruvelakassapa	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk among those with a large following				0	165
 usabha-4	person	Usabha	usabha 4	names of paccekabuddhas	name of a privately awakened Buddha				0	0
 usabha-4-2	person	Usabha	usabha 4	DPPN: seṭṭhi	A seṭṭhi of Kāḷa Campā, father of Soṇa Koḷivisa (AN-a.i.131;				0	0
 usabha-5	person	Usabha	usabha 5	names of monks; names of arahants	name of an arahant monk				0	0
@@ -4997,7 +4779,6 @@ usabhakkhandha	person	Usabhakkhandha	usabhakkhandha	DPPN: son	Son of Dīpaṅkar
 usabhamukha	place	Usabhamukha	usabhamukha	DPPN: lake	One of the four channels leading out of the Anotatta lake.				0	4
 usabhavati-1	place	Usabhavatī	usabhavatī 1	DPPN: city	A city where, in the pleasaunce near by, Paduma Buddha spent a rainy season.				0	1
 usiraddhaja	place	Usīraddhaja	usīraddhaja	DPPN: mountain	A mountain range forming the northern boundary of Majjhimadesa.				0	6
-utena	person	Utena	utena	names of royalty	name of a king				0	29
 utta-1	person	Utta	utta 1	DPPN: thera	A Thera.				0	0
 uttama-1	person	Uttamā	uttamā 1	names of nuns; names of arahants	name of an arahant nun				0	0
 uttama-1-2	person	Uttama	uttama 1	DPPN: author	Author of the Bālāvatāra-ṭīkā and the Liṅgatthavivaraṇa-ṭīkā.				0	0
@@ -5118,8 +4899,7 @@ vajjiputta-1	person	Vajjiputta	vajjiputta 1	names of monks; names of arahants	na
 vajjiputta-2	person	Vajjiputta	vajjiputta 2	names of monks; names of arahants	name of an arahant monk				0	0
 vajjiputtaka	person	Vajjiputtakā	vajjiputtakā	DPPN: monks	The name of a large group of monks belonging to the Vajjī clan and dwelling in Vesālī, who, one century after Gotama Buddha’s death, brought forward Ten Points (dasa vatthūni) as being permissible for members of the Saṅgha.				0	46
 vajjita-3	person	Vajjita	vajjita 3	names of monks; names of arahants	name of an arahant monk				0	1
-vajjiyamahita	person	Vajjiyamahita	vajjiyamahita	names of laypeople	name of a lay disciple				0	0
-vajjiyamahita-2	person	Vajjiyamāhita	vajjiyamāhita	names of laypeople	name of a lay disciple				1	15
+vajjiyamahita	person	Vajjiyamāhita	vajjiyamāhita	names of laypeople	name of a lay disciple				1	15
 vakkali	person	Vakkali	vakkali	great disciples; names of arahants; names of monks	name of an arahant monk; former ascetic; great disciple of the Buddha; foremost monk among those firm in faith				2	129
 vakkali-2	person	Vakkali	vakkali 2	DPPN: monk	A monk in the time of Padumuttara Buddha, declared chief of those having implicit faith.				0	0
 vala	animal	Vāla	vāla	DPPN: horse	A horse belonging to King Kappina.				0	0
@@ -5152,8 +4932,7 @@ vanga	place	Vaṅga	vaṅga	names of countries	country of eastern Bengal				0	10
 vanga-2	group	Vaṅgā	vaṅgā	people	people of eastern Bengal; eastern Bengalis				0	0
 vanganta	person	Vaṅganta	vaṅganta	names of Brahmans	name of a Brahman; Sāriputta's father				0	2
 vangantaputta	person	Vaṅgantaputta	vaṅgantaputta	great disciples; names of arahants; names of monks	name of an arahant monk; Sāriputta's younger brother; great disciple of the Buddha; foremost monk in inspiring complete confidence; Upasena Vaṅgantaputta				0	30
-vangisa	person	Vaṅgisa	vaṅgisa	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in spontaneous expression				0	2
-vangisa-2	person	Vaṅgīsa	vaṅgīsa	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in spontaneous expression				6	189
+vangisa	person	Vaṅgīsa	vaṅgīsa	great disciples; names of arahants; names of monks	name of an arahant monk; great disciple of the Buddha; foremost monk in spontaneous expression				6	191
 vanka	person	Vaṅka	vaṅka	DPPN: king	A king of Sāvatthī.				0	0
 vankagiri	place	Vaṅkagiri	vaṅkagiri	DPPN: mountain	A mountain in Himavā to which Vessantara was banished with his family.				0	17
 vankahara	place	Vaṅkahāra	vaṅkahāra	villages, towns and cities	name of a village				0	0
@@ -5187,8 +4966,7 @@ varuna-16	person	Varuṇa	varuṇa 16	DPPN: ascetic	An ascetic who, together wit
 varuna-17	deity	Varuṇa	varuṇa 17	DPPN: nāga	A Nāga king.				0	0
 varuna-2	deity	Varuṇā	varuṇā	names of deities	name of a group of deities				0	0
 varuna-2-2	person	Varuṇa	varuṇa 2	DPPN: son	Son of Revata Buddha and also his chief disciple.				0	0
-varuna-3	deity	Vāruṇā	vāruṇā	names of deities	name of a group of nāgas				0	0
-varuna-3-2	person	Varuṇa	varuṇa 3	DPPN: attendant	The personal attendant of Anomadassī Buddha.				0	0
+varuna-3	person	Varuṇa	varuṇa 3	DPPN: attendant	The personal attendant of Anomadassī Buddha.				0	0
 varuna-4	person	Varuṇa	varuṇa 4	DPPN: attendant	The personal attendant of Paduma Buddha.				0	0
 varuna-5	person	Varuṇa	varuṇa 5	DPPN: kings	Sixteen kappas ago there were eight kings of this name, all previous births of Malitavambha (Kumudadāyaka) Thera.				0	0
 varuna-6	person	Varuṇa	varuṇa 6	DPPN: disciple	A disciple of Piyadassī Buddha.				0	0
@@ -5225,11 +5003,9 @@ vasetthi	person	Vāseṭṭhī	vāseṭṭhī	names of nuns; names of arahants	n
 vasetthi-2	person	Vāseṭṭhī	vāseṭṭhī	DPPN: wife	A brahminee, wife of King Esukī’s chaplain.				0	0
 vasidayaka-thera	person	Vāsidāyaka Thera	vāsidāyaka thera	DPPN: thera	An Arahant.				0	1
 vassa	group	Vassa	vassa	DPPN: dwellers	Mentioned with Bhañña in the compound Vassabhaññā, as dwellers of Ukkala and as “denying cause, consequence and reality.” There were certain aspects of the Buddha’s teaching which even they would accept (e.g.,				0	0
-vassabhanna	person	Vassabhaññā	vassabhaññā	names of ascetics	name of two proponents of the doctrine of non-causality; Vassa and Bhañña				0	9
-vassabhinna	person	Vassabhiññā	vassabhiññā	names of ascetics	name of two proponents of the doctrine of non-causality; Vassa and Bhiñña				0	0
+vassabhanna	person	Vassabhaññā	vassabhaññā	names of ascetics	name of two proponents of the doctrine of non-causality; Vassa and Bhañña				0	10
 vassakara	person	Vassakāra	vassakāra	names of Brahmans	name of a Brahman; Ajātasattu's chief minister				5	47
 vassavalahaka	deity	Vassavalāhakā	vassavalāhakā	DPPN: devas	One of the Valāhaka Devas (q.v.).				0	8
-vassavati	person	Vassavatī	vassavatī	names of royalty	name of Vessabhū Buddha's mother				0	1
 vassika-3	person	Vassika	vassika 3	names of monks; names of arahants	name of an arahant monk				0	5
 vasu	deity	Vasū	vasū	names of deities	name of a group of deities				0	3
 vasudatta	deity	Vāsudatta	vāsudatta	names of deities	name of a deity				1	2
@@ -5246,10 +5022,8 @@ vatamsaka	person	Vataṃsaka	vataṃsaka	DPPN: buddha	A Pacceka Buddha of the fu
 vatasama	person	Vātasama	vātasama	DPPN: thera	A Cakkavatti of long ago, a previous birth of Māṇava (Sammukhāthavika) Thera.				0	3
 vatra	deity	Vatra	vatra	DPPN: asura	An Asura.				0	1
 vatrabhu	deity	Vatrabhū	vatrabhū	names of deities	(comm) name of Sakka; (or) epithet of Sakka				0	6
-vattajalika	place	Vaṭṭajālikā	vaṭṭajālikā	names of monasteries	name of a monastery				0	0
 vattaniya	place	Vattaniya	vattaniya	DPPN: hermitage	A hermitage (senāsana) where lived Rohaṇa Nāgasena’s teacher, by whom he was ordained, and Assagutta, with whom he spent a vassa in order to train himself for debate.				0	5
 vatthadayaka-thera	person	Vatthadāyaka Thera	vatthadāyaka thera	DPPN: thera	An Arahant.				0	4
-vayabhinna	person	Vayabhiññā	vayabhiññā	names of ascetics	name of two proponents of the doctrine of non-causality; Vaya and Bhiñña				0	1
 vayu	deity	Vāyu	vāyu	DPPN: deity	A deity, whose son was a Vijjādhara.				0	0
 vebhara	place	Vebhāra	vebhāra	names of mountains	name of a mountain outside Rājagaha	24.9964	85.389	1	0	19
 vebhara-2	place	Vebhāra	vebhāra 2	DPPN: city	A city in which Padumuttara Buddha preached and ordained ninety crores of men.				0	0
@@ -5267,7 +5041,7 @@ vedhanna	group	Vedhaññā	vedhaññā	family names	name of a Sakyan family clan
 vedikaraka-thera	person	Vedikāraka Thera	vedikāraka thera	DPPN: thera	An Arahant.				0	4
 vedisa	place	Vedisā	vedisā	villages, towns and cities	name of a town				0	10
 vediyaka	place	Vediyaka	vediyaka	names of mountains	name of a mountain	25.0044	85.5042	4	1	15
-vegabbhari	deity	Vegabbhari	vegabbhari	names of deities	name of a deity				1	2
+vegabbhari	deity	Vegabbhari	vegabbhari	names of deities	name of a deity				1	3
 vegalinga	place	Vegaḷiṅga	vegaḷiṅga	villages, towns and cities	name of an ancient town				0	12
 veghanasa	deity	Veghanasā	veghanasā	names of deities	name of a group of deities				0	3
 vehapphala-1	place	Vehapphala	vehapphala 1	names of heavens	name of a heavenly realm; name of a class of heavenly beings				0	59
@@ -5276,19 +5050,16 @@ vejayanta-3	person	Vejayanta	vejayanta 3	DPPN: chief	The chief of the eighty-fou
 vejayantapasada	place	Vejayantapāsāda	vejayantapāsāda	place names	name of Sakka's Palace				0	27
 vekalinga	place	Vekaḷiṅga	vekaḷiṅga	villages, towns and cities	name of a village	27.5171	82.0506	4	0	4
 vekhanasa	person	Vekhanasa	vekhanasa	names of ascetics	name of a wandering ascetic				1	6
-vekhanassa	person	Vekhanassa	vekhanassa	names of ascetics	name of a wandering ascetic				0	0
 vela	person	Veḷa	veḷa	DPPN: friend	A friend of Vasabha and father of Veḷusumana, who was named after his father and his father’s friend Sumana, governor of Girijanapada.				0	0
 velama	person	Velāma	velāma	names of laypeople	name of the Buddha in a previous incarnation				0	20
-velatthasisa	person	Veḷaṭṭhasīsa	veḷaṭṭhasīsa	names of monks	name of a monk				0	0
 veludvara	place	Veḷudvāra	veḷudvāra	villages, towns and cities	name of a Brahman village	27.5171	82.0506	4	1	3
 velugama	place	Veḷugāma	veḷugāma	DPPN: village	A village in Avanti, birthplace of Isidatta Thera.	22.6748	75.6244	4	0	1
 velukandaka	place	Veḷukaṇḍaka	veḷukaṇḍaka	villages, towns and cities	name of a town				0	3
-velukandaki	person	Veḷukaṇḍakī	veḷukaṇḍakī	names of laypeople	name of a lay disciple				0	6
-velukandakiya	person	Veḷukaṇḍakiyā	veḷukaṇḍakiyā	names of laypeople	name of a lay disciple				0	6
+velukandaki	person	Veḷukaṇḍakī	veḷukaṇḍakī	names of laypeople	name of a lay disciple				0	12
 veluriya	place	Veḷuriya	veḷuriya	DPPN: village	A village and a rock near which are found veḷuriyā (sapphires).				0	0
 veluva	place	Veḷuva	veḷuva	villages, towns and cities	name of a village				0	0
 veluvagama	place	Veḷuvagāma	veḷuvagāma	villages, towns and cities	name of a village				0	7
-veluvagamaka	place	Veḷuvagāmaka	veḷuvagāmaka	villages, towns and cities	name of a village	25.8639	85.1506	1	3	18
+veluvagamaka	place	Veḷuvagāmaka	veḷuvagāmaka	villages, towns and cities	name of a village	25.8639	85.1506	1	5	28
 veluvana	place	Veḷuvana	veḷuvana	place names	name of a park outside Rājagaha	25.0183	85.4049	1	339	436
 veluvana-2	place	Veḷuvana	veḷuvana 2	DPPN: grove	A bamboo grove in Kajaṅgalā, where the Buddha once stayed.				0	0
 veluvana-3	place	Veḷuvana	veḷuvana 3	DPPN: grove	A bamboo grove in Kimbilā, where the Buddha stayed and was visited by Kimbila.				0	0
@@ -5298,8 +5069,6 @@ venagapura	place	Venāgapura	venāgapura	villages, towns and cities	name of a to
 venateyya	deity	Venateyya	venateyya	names of deities	descendant of Vinatā				0	20
 vendu	deity	Veṇḍu	veṇḍu	names of deities	name of a deity; Vishnu				1	5
 vendudeva	deity	Veṇḍudevā	veṇḍudevā	names of deities	name of a group of deities				0	1
-venhu	deity	Veṇhu	veṇhu	names of deities	name of a deity; Vishnu				0	0
-venhu-2	deity	Veṇhū	veṇhū	names of deities	name of a group of deities				0	0
 veni	animal	Veṇī	veṇī	DPPN: jackal	A she-jackal, wife of Pūtimaṁsa.				0	3
 venu	place	Veṇu	veṇu	DPPN: river	A river in Ceylon, on the way from Anurādhapura to Dakkhiṇadesa.				0	0
 vepacitti	deity	Vepacitti	vepacitti	names of deities	name of a daemon lord				3	66
@@ -5323,10 +5092,8 @@ vessamitta-2-2	person	Vessāmitta	vessāmitta 2	DPPN: king	A king of old who led
 vessantara-1	animal	Vessantara	vessantara 1	DPPN: owl	An owl, identified with Sāriputta (Ja.v.125).				0	0
 vessantara-2	person	Vessantara	vessantara 2	names of royalty	name of a prince; previous incarnation of the Buddha				0	338
 vessavana	deity	Vessavaṇa	vessavaṇa	names of deities	name of one of the Four Great Kings				1	143
-vetambari	deity	Veṭambarī	veṭambarī	names of deities	name of a deity				0	0
 vetarani	place	Vetaraṇī	vetaraṇī	names of rivers	name of a river in hell				0	37
 vetarani-2	person	Vetaraṇī	vetaraṇī 2	DPPN: physician	A physician of old, famous for curing snake bites.				0	0
-vetendu	deity	Veṭeṇḍu	veṭeṇḍu	names of deities	name of a deity				0	1
 vethadipa	person	Veṭhadīpa	veṭhadīpa	DPPN: brahmin	A Brahmin settlement, the chieftain of which claimed a part of the Buddha’s relics; having obtained the relics, he built at Thūpa over them (DN.ii.165, 167;				0	2
 vethadipaka-1	person	Veṭhadīpaka	veṭhadīpaka 1	DPPN: brahmin	The Brahmin of Veṭhadīpa, who claimed an eighth share of the Buddha’s relics.				0	2
 vetthadipa	place	Veṭṭhadīpa	veṭṭhadīpa	villages, towns and cities	name of a town				0	1
@@ -5348,7 +5115,6 @@ vidhura-1-2	person	Vidhura	vidhura 1	DPPN: brahmin	A Brahmin, chaplain of the ki
 vidhura-2	person	Vidhura	vidhura 2	DPPN: bodhisatta	The Bodhisatta born as the minister of Dhanañjaya Korabba.				0	0
 vidhura-3	person	Vidhura	vidhura 3	DPPN: bodhisatta	The Milindapañha (p.202) refers to a birth of the Bodhisatta in which he was a wise man (paṇḍita) named Vidhura.				0	0
 vidhurasanjiva	person	Vidhurasañjīva	vidhurasañjīva	names of monks; chief disciples	Vidhura and Sañjīva; Kakusandha Buddha's pair of chief disciples				0	5
-vidudabha	person	Viḍūḍabha	viḍūḍabha	names of laypeople	name of king Pasenadi's general				0	0
 vigatananda	person	Vigatānanda	vigatānanda	DPPN: king	A king of twenty-four kappas ago, a former birth of Ekanandiya Thera.				0	1
 vijaya	person	Vijayā	vijayā	names of nuns; names of arahants	name of an arahant nun				1	16
 vijaya-1	person	Vijaya	vijaya 1	DPPN: king	The first Ariyan king of Ceylon.				0	0
@@ -5430,19 +5196,17 @@ visakha-4-2	person	Visākha	visākha 4	DPPN: chief	One of the chief lay supporte
 visakha-5	person	Visākha	visākha 5	DPPN: chief	One of the chief lay supporters of Phussa Buddha.				0	0
 visakha-6	person	Visākhā	visākhā 6	DPPN: world	One of the women who will renounce the world at the same time as the future Metteyya Buddha.				0	0
 visakha-6-2	person	Visākha	visākha 6	DPPN: minister	A minister of Duṭṭhagāmaṇī.				0	0
-visakhapancalaputta	person	Visākhapañcālaputta	visākhapañcālaputta	names of monks; names of arahants	name of an arahant monk				0	0
 visala	place	Visāla	visāla	DPPN: capital	The capital of Ceylon (then known as Maṇḍadīpa) in the time of Kassapa Buddha.				0	0
 visana	place	Visāṇā	visāṇā	villages, towns and cities	name of a royal capital				0	7
 visayha	person	Visayha	visayha	DPPN: bodhisatta	The Bodhisatta born as a seṭṭhi of Benares.				0	3
 vissakamma	deity	Vissakamma	vissakamma	names of deities	name of Sakka's architect				0	65
 vissasena	person	Vissasena	vissasena	DPPN: king	A king of Benares.				0	4
 visuddhimagga	person	Visuddhimagga	visuddhimagga	DPPN: buddha	An encyclopedia of the Buddha’s teaching, written by Buddhaghosa at the request of Saṅghapāla Thera.				0	332
-visukamma	deity	Visukamma	visukamma	names of deities	name of Sakka's architect				0	0
 vitamsa	place	Vītaṃsā	vītaṃsā	DPPN: rivers	One of the ten rivers flowing from Himālaya.				0	1
 vitaraga	person	Vītarāga	vītarāga	DPPN: buddha	A Pacceka Buddha.				0	0
 vitasoka-2	person	Vītasoka	vītasoka 2	names of monks; names of arahants	name of an arahant monk				0	5
 vitatubha	person	Viṭaṭūbha	viṭaṭūbha	names of laypeople	name of king Pasenadi's general				1	49
-vitendu	deity	Viṭeṇḍu	viṭeṇḍu	names of deities	name of a deity				0	3
+vitendu	deity	Viṭeṇḍu	viṭeṇḍu	names of deities	name of a deity				0	4
 vithisammajjaka-thera	person	Vīthisammajjaka Thera	vīthisammajjaka thera	DPPN: thera	An Arahant.				0	2
 vitinna	person	Vitiṇṇa	vitiṇṇa	DPPN: chief	One of the chief lay supporters of Padumuttara Buddha.				0	1
 vitu	deity	Viṭū	viṭū	names of deities	name of a deity				0	0
@@ -5453,13 +5217,12 @@ yagudayaka-thera	person	Yāgudāyaka Thera	yāgudāyaka thera	DPPN: thera	An Ara
 yama	deity	Yāmā	yāmā	names of deities	name of a group of deities				0	43
 yama-2	deity	Yama	yama	DPPN: god	The god of death (see, e.g.,				0	108
 yama-2-2	place	Yāmā	yāmā 2	DPPN: king	In some contexts, Yāmā seems to have been derived from Yama, king of the underworld – e.g in such expressions as “Yāmato yāva Akaniṭṭhaṁ” (from the underworld to the highest heaven).				0	0
-yamadaggi	person	Yamadaggi	yamadaggi	names of Brahmans	name of a Vedic sage				0	5
 yamahanu	place	Yāmahanu	yāmahanu	DPPN: world	One of the seven sages who lived the holy life and were reborn in the Brahma world.				0	2
 yamaka-2	person	Yamaka	yamaka 2	names of monks	name of a monk				1	28
 yamaka-4	person	Yamaka	yamaka 4	names of laypeople	name of a minister				0	3
 yamakapatihariya	person	Yamakapāṭihāriya	yamakapāṭihāriya	DPPN: buddha	The miracle of the “double appearances.” When the Buddha laid down a rule forbidding the exercise of supernatural powers by monks – following on the miracle performed by Piṇḍola Bhāradvāja (q.v.) – the heretics went about saying that hencef				0	0
 yamakoli	deity	Yamakoḷī	yamakoḷī	DPPN: yakkha	A Yakkha who, with one thousand others, stood guard over the first gate of Jotika’s palace (Dhp-a.iv.208).				0	2
-yamataggi	person	Yamataggi	yamataggi	names of Brahmans	name of a Vedic sage				0	15
+yamataggi	person	Yamataggi	yamataggi	names of Brahmans	name of a Vedic sage				0	20
 yamuna	place	Yamunā	yamunā	names of rivers	name of a river; one of the five great rivers of ancient India				0	85
 yamuna-2	deity	Yāmunā	yāmunā	names of deities	name of a group of deities				0	13
 yamuna-2-2	place	Yamunā	yamunā 2	DPPN: channel	A channel branching off westward from the Puṇṇavaḍḍhana Tank.				0	0
@@ -5477,7 +5240,7 @@ yasapani	person	Yasapāṇī	yasapāṇī	DPPN: king	King of Benares.				0	1
 yasassi-2	person	Yasassī	yasassī 2	names of paccekabuddhas	name of a privately awakened Buddha				0	0
 yasava	person	Yasava	yasava	DPPN: chief	One of the chief lay supporters of Sumedha Buddha.				0	1
 yasava-1	person	Yasavā	yasavā 1	DPPN: father	A Khattiya of Candavatī, father of Anomadassī Buddha.				0	10
-yasavati	person	Yasavatī	yasavatī	names of royalty	name of Vessabhū Buddha's mother				0	15
+yasavati	person	Yasavatī	yasavatī	names of royalty	name of Vessabhū Buddha's mother				0	16
 yasavati-2	person	Yasavatī	yasavatī 2	DPPN: wife	Wife of Maṅgala Buddha in his last lay life.				0	0
 yasavati-3	person	Yasavatī	yasavatī 3	DPPN: chief	Chief of the women patrons of Revata Buddha.				0	0
 yasavati-4	person	Yasavatī	yasavatī 4	DPPN: sister	Sister of Akitti (q.v.).				0	0
