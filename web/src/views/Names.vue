@@ -30,8 +30,14 @@
       <div v-if="!page && !loading" class="banner mt-2 border-error">මෙම නම හමු නොවිණි.</div>
       <template v-if="page">
         <h1 class="pali mb-1 text-2xl font-semibold" data-testid="name-title">{{ ps(page.name.toLowerCase()) }}</h1>
-        <div class="mb-2 text-xs text-muted">{{ page.name }} · {{ TYPE_LABEL[page.type] }}<template v-if="page.family"> · {{ page.family }}</template></div>
+        <div class="mb-2 text-xs text-muted">{{ page.name }} · {{ TYPE_LABEL[page.type] }}<template v-if="showFamily"> · {{ page.family }}</template></div>
         <p v-if="page.meaning" class="mb-3 text-sm">{{ page.meaning }}</p>
+        <p v-if="page.homonyms?.length" class="mb-3 text-sm" data-testid="name-homonyms">
+          මෙම නමින්ම තවත්:
+          <template v-for="(h, i) in page.homonyms" :key="h.slug">
+            <span v-if="i">, </span><RouterLink :to="'/names/' + h.slug" class="underline hover:text-primary">{{ h.meaning || h.lemma }}</RouterLink>
+          </template>
+        </p>
         <PlaceMap v-if="hasCoords(page)" class="mb-3 h-64" compact :places="[mapPlace(page, 'main', { label: true })]" fit-main />
         <section v-for="g in settingGroups" :key="g.role" class="mb-4" :data-testid="`name-settings-${g.role}`">
           <div class="section-title">{{ SETTING_TITLE[g.role] }} · {{ g.nodes.length }}</div>
@@ -48,6 +54,27 @@
             </li>
           </ul>
         </section>
+        <section v-if="page.comentions?.length" class="mb-4" data-testid="name-comentions">
+          <div class="section-title">බොහෝ විට සමඟ සඳහන් වන නම්</div>
+          <div class="-m-0.5 flex flex-wrap">
+            <RouterLink v-for="r in page.comentions.slice(0, 30)" :key="r.slug" :to="'/names/' + r.slug" class="chip m-0.5 text-sm hover:border-primary" :title="r.meaning">
+              <span class="pali">{{ ps(r.name.toLowerCase()) }}</span><span class="ml-1 text-xs text-muted">{{ r.count }}</span>
+            </RouterLink>
+          </div>
+        </section>
+        <section v-if="related.length" class="mb-4" data-testid="name-related">
+          <div class="section-title">එම සූත්‍රවලම</div>
+          <div v-for="g in related" :key="g.role" class="mb-1 flex flex-wrap items-center">
+            <span class="mr-1.5 text-xs text-muted">{{ ROLE_LABEL[g.role] }}</span>
+            <RouterLink v-for="r in g.items" :key="r.slug" :to="'/names/' + r.slug" class="chip m-0.5 text-sm hover:border-primary" :title="r.meaning">
+              <span class="pali">{{ ps(r.name.toLowerCase()) }}</span><span class="ml-1 text-xs text-muted">{{ r.count }}</span>
+            </RouterLink>
+          </div>
+        </section>
+        <section class="mb-4" data-testid="name-dict">
+          <div class="section-title">ශබ්දකෝෂය</div>
+          <DictView :word="ps(page.lemma ? page.lemma.replace(/ [\d.]+$/, '') : page.name.toLowerCase())" mode="dict" compact />
+        </section>
         <p class="mt-6 text-xs text-muted">නම් සහ අර්ථ: Digital Pāḷi Dictionary, DPPN (Malalasekera); ස්ථාන: SuttaCentral, tipitaka.app.</p>
       </template>
     </template>
@@ -59,8 +86,9 @@ import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import PlaceMap from '@/components/PlaceMap.vue'
+import DictView from '@/components/DictView.vue'
 import IconMap from '~icons/mdi/map-outline'
-import { searchNames, entityPage, mapPlace, hasCoords, parentOf, TYPE_LABEL, type Entity, type EntityPage, type EntityType } from '@/data/names'
+import { searchNames, entityPage, mapPlace, hasCoords, parentOf, TYPE_LABEL, ROLE_LABEL, type Entity, type Related, type SettingRole, type EntityPage, type EntityType } from '@/data/names'
 import { usePaliSinh } from '@/composables/dict'
 import { useTree } from '@/stores/tree'
 import { toRoman } from '@/data/dictionary'
@@ -70,6 +98,11 @@ const route = useRoute(), ps = usePaliSinh(), tree = useTree()
 const slug = computed(() => (route.params.slug as string) || '')
 const q = ref(''), type = ref<EntityType>('place'), all = ref<Entity[]>([]), page = ref<EntityPage | null>(null), loading = ref(false)
 const SETTING_TITLE: Record<string, string> = { place: 'මෙහිදී දේශනා කළ සූත්‍ර', teacher: 'දේශනා කළ සූත්‍ර', with: 'සහභාගී වූ සූත්‍ර', about: 'අරභයා දේශනා කළ සූත්‍ර' }
+// the names of the same suttas' settings, by role
+const related = computed(() => (['place', 'teacher', 'with', 'about'] as SettingRole[])
+  .map(role => ({ role, items: (page.value?.related ?? []).filter((r: Related) => r.role === role).slice(0, 20) })).filter(g => g.items.length))
+// the category, unless it only repeats the type (පුද්ගලයන් · පුද්ගලයෝ)
+const showFamily = computed(() => !!page.value?.family && page.value.family.slice(0, 3) !== TYPE_LABEL[page.value.type].slice(0, 3))
 const settingGroups = computed(() => ['place', 'teacher', 'with', 'about'].map(role => ({ role, nodes: (page.value?.settingNodes ?? []).filter(n => n.role === role) })).filter(g => g.nodes.length))
 // all the names once (most settings / mentions first), filtered here (tipitaka.app): a Sinhala name is matched in Roman
 watch(slug, async s => {

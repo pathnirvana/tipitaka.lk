@@ -499,6 +499,19 @@ func TestNamesOps(t *testing.T) {
 	if page.Slug != "rajagaha" || len(page.Settings) == 0 || page.Settings[0].ParentPali == "" {
 		t.Errorf("entity rajagaha: %+v", page)
 	}
+	var more struct {
+		Mentions   int                           `json:"mentions"`
+		Related    []struct{ Slug, Role string } `json:"related"`
+		Comentions []struct {
+			Slug  string
+			Count int
+		} `json:"comentions"`
+		Homonyms []struct{ Slug string } `json:"homonyms"`
+	}
+	decode("/api/entity?slug=rajagaha", &more)
+	if more.Mentions == 0 || more.Related == nil || more.Comentions == nil || more.Homonyms == nil {
+		t.Errorf("entity rajagaha: counts, related, comentions, homonyms: %+v", more)
+	}
 	if rec := get(t, h, "/api/entity?slug=no-such-name"); rec.Code != 404 {
 		t.Errorf("unknown entity: %d", rec.Code)
 	}

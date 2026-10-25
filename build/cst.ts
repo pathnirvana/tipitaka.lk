@@ -7,6 +7,7 @@
  *   entry_mention  the names in an entry
  *   gloss          word level: an aṭṭhakathā lemma (entry, word .. entry, word), the mūla words it quotes and the last word
  *                  of its explanation; words are shared/tokenize numbers (placed through the map's word runs)
+ *   comention      names often named in the same entries (tipitaka.app's rule)
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -15,13 +16,15 @@ import type Database from 'better-sqlite3'
 import { fold } from '../shared/normalize'
 
 export const CST_MAP_DIR = 'dev/cst-map', CST_DATA_DIR = 'dev/cst-data'
+/** lk's Sinhala translations of the names' English descriptions and categories (dev/names-si/translate.ts) */
+export const NAMES_SI_DIR = 'dev/names-si'
 
 export const CST_SCHEMA = `
 CREATE TABLE entry_link (mula INTEGER NOT NULL, atta INTEGER NOT NULL, src INTEGER NOT NULL, PRIMARY KEY (mula, atta)) WITHOUT ROWID;
 CREATE INDEX entry_link_atta ON entry_link(atta, mula);
 CREATE TABLE entity (id INTEGER PRIMARY KEY, slug TEXT NOT NULL UNIQUE, type TEXT NOT NULL, name TEXT NOT NULL, name_fold TEXT NOT NULL,
   lemma TEXT NOT NULL, family TEXT NOT NULL, meaning TEXT NOT NULL, lat REAL NOT NULL, lon REAL NOT NULL, prec INTEGER NOT NULL,
-  mentions INTEGER NOT NULL, settings INTEGER NOT NULL);
+  mentions INTEGER NOT NULL, settings INTEGER NOT NULL, meaning_en TEXT NOT NULL, family_en TEXT NOT NULL);
 CREATE INDEX entity_fold ON entity(name_fold);
 CREATE TABLE node_setting (node_id INTEGER NOT NULL, entity_id INTEGER NOT NULL, role TEXT NOT NULL, ord INTEGER NOT NULL,
   source TEXT NOT NULL, conf REAL NOT NULL, listed INTEGER NOT NULL, PRIMARY KEY (node_id, role, entity_id)) WITHOUT ROWID;
@@ -35,6 +38,7 @@ CREATE INDEX gloss_a ON gloss(a_entry);
 CREATE INDEX gloss_ae ON gloss(a_eentry);
 CREATE INDEX gloss_m ON gloss(m_entry);
 CREATE INDEX gloss_me ON gloss(m_eentry);
+CREATE TABLE comention (entity_id INTEGER NOT NULL, other_id INTEGER NOT NULL, n INTEGER NOT NULL, PRIMARY KEY (entity_id, other_id)) WITHOUT ROWID;
 `
 
 type MapRecord = [string, number, string, string?]
@@ -60,6 +64,7 @@ export class CstData {
     if (this.available) for (const n of ['links.tsv', 'entities.tsv', 'settings.tsv', 'mentions.tsv', 'glosses.tsv']) {
       if (fs.existsSync(path.join(dataDir, n))) h.update(fs.readFileSync(path.join(dataDir, n)))
     }
+    for (const n of ['meanings.tsv', 'families.tsv']) if (fs.existsSync(path.join(NAMES_SI_DIR, n))) h.update(fs.readFileSync(path.join(NAMES_SI_DIR, n)))
     this.hash = h.digest('hex').slice(0, 12)
   }
 
@@ -100,12 +105,19 @@ export class CstData {
       for (const m of ms) for (const a of as) links += insLink.run(m, a, l.source === 'paranum' ? 1 : 2).changes
     }
 
-    // entities
+    // entities: the meaning and category in Sinhala where translated (the English kept in meaning_en, family_en)
     const ents = readTsv(path.join(this.dataDir, 'entities.tsv'))
+    const si = (n: string) => new Map(fs.existsSync(path.join(NAMES_SI_DIR, n)) ? readTsv(path.join(NAMES_SI_DIR, n)).map(r => [r.en, r.si]) : [])
+    const meaningSi = si('meanings.tsv'), familySi = si('families.tsv')
+    let translated = 0
     const entityId = new Map(ents.map((e, i) => [e.slug, i + 1]))
-    const insEnt = db.prepare('INSERT INTO entity VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
-    ents.forEach((e, i) => insEnt.run(i + 1, e.slug, e.type, e.name, fold(e.name), e.lemma, e.family, e.meaning,
-      e.lat ? Number(e.lat) : 0, e.lon ? Number(e.lon) : 0, e.prec ? Number(e.prec) : 0, 0, 0))
+    const insEnt = db.prepare('INSERT INTO entity VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+    ents.forEach((e, i) => {
+      const meaning = meaningSi.get(e.meaning) ?? e.meaning
+      if (!e.meaning || meaningSi.has(e.meaning)) translated++
+      insEnt.run(i + 1, e.slug, e.type, e.name, fold(e.name), e.lemma, familySi.get(e.family) ?? e.family, meaning,
+        e.lat ? Number(e.lat) : 0, e.lon ? Number(e.lon) : 0, e.prec ? Number(e.prec) : 0, 0, 0, e.meaning, e.family)
+    })
 
     // settings: the lk nodes most of the unit's entries belong to
     const insSet = db.prepare('INSERT OR IGNORE INTO node_setting VALUES (?, ?, ?, ?, ?, ?, ?)')
@@ -141,11 +153,28 @@ export class CstData {
       glosses += insGloss.run(+g.id, +g.conf, g.src, a.entry, a.w, ae.entry, ae.w, x.entry, x.w, m.entry, m.w, me.entry, me.w).changes
     }
 
+    // names named together: per entry with 2-30 names (long lists say little about each other), the 40 most frequent
+    // others of each name, named together more than once (tipitaka.app write-db.ts)
+    const byEntry = new Map<number, number[]>()
+    for (const r of db.prepare('SELECT entry_id, entity_id FROM entry_mention').all() as { entry_id: number; entity_id: number }[]) {
+      const l = byEntry.get(r.entry_id); if (l) l.push(r.entity_id); else byEntry.set(r.entry_id, [r.entity_id])
+    }
+    const pairs = new Map<number, Map<number, number>>()
+    for (const set of byEntry.values()) {
+      if (set.length < 2 || set.length > 30) continue
+      for (const a of set) {
+        const m = pairs.get(a) ?? new Map<number, number>()
+        pairs.set(a, m)
+        for (const b of set) if (a !== b) m.set(b, (m.get(b) ?? 0) + 1)
+      }
+    }
+    const insCo = db.prepare('INSERT INTO comention VALUES (?, ?, ?)')
+    for (const [a, m] of pairs) for (const [b, n] of [...m].sort((x, y) => y[1] - x[1]).slice(0, 40)) if (n > 1) insCo.run(a, b, n)
     db.exec(`UPDATE entity SET mentions = (SELECT count(*) FROM entry_mention m WHERE m.entity_id = entity.id),
       settings = (SELECT count(*) FROM node_setting s WHERE s.entity_id = entity.id)`)
     return ['## tipitaka.app data (commentary links, places and people)', '',
       `- entries mapped to CST paragraphs: ${fresh} (stale, text changed since mapping: ${stale} - rerun dev/cst-map/map.ts)`,
-      `- mūla <-> aṭṭhakathā entry links: ${links}`, `- entities: ${ents.length}, settings of nodes: ${settings} (units not placed: ${unplaced}), mentions: ${mentions}`,
+      `- mūla <-> aṭṭhakathā entry links: ${links}`, `- entities: ${ents.length} (meanings in Sinhala: ${translated}), settings of nodes: ${settings} (units not placed: ${unplaced}), mentions: ${mentions}`,
       `- glosses (aṭṭhakathā lemma -> mūla words): ${glosses} of ${glossTotal} placed`, '']
   }
 }

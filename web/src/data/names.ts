@@ -17,7 +17,13 @@ export interface LinkTarget { key: string; file: string; page: number; entry: nu
 export interface NodeRef { key: string; pali: string; sinh: string; role?: string; count?: number; page: number; entry: number; parentPali: string; parentSinh: string }
 /** the parent of a node ref as a tree item (its title: context for titles like "1. 1. 1") */
 export const parentOf = (n: NodeRef) => ({ pali: n.parentPali, sinh: n.parentSinh })
-export interface EntityPage extends Entity { settingNodes: NodeRef[]; mentionNodes: NodeRef[] }
+export interface Related extends Entity { role?: SettingRole; count: number }
+export interface EntityPage extends Entity {
+  settingNodes: NodeRef[]; mentionNodes: NodeRef[]
+  related: Related[] // in the settings of the same suttas, with their role
+  homonyms: Entity[] // others of the same name
+  comentions: Related[] // often named in the same paragraphs
+}
 
 /**
  * a commentary lemma and the mūla words it quotes (tipitaka.app's word alignment), seen from a file: side 't' when the

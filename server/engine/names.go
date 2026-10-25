@@ -266,19 +266,74 @@ type NodeRef struct {
 // EntityPage is an entity with the suttas it is the setting of and the suttas that name it.
 type EntityPage struct {
 	Entity
-	Settings []NodeRef `json:"settingNodes"`
-	Mentions []NodeRef `json:"mentionNodes"`
+	Settings   []NodeRef `json:"settingNodes"`
+	Mentions   []NodeRef `json:"mentionNodes"`
+	Related    []Related `json:"related"`    // names in the settings of the same suttas, with their role
+	Homonyms   []Entity  `json:"homonyms"`   // other names of the same spelling
+	Comentions []Related `json:"comentions"` // names often named in the same paragraphs (role "")
+}
+
+// Related is a name named with another one, how often (the same suttas' settings, the same paragraphs).
+type Related struct {
+	Entity
+	Role  string `json:"role,omitempty"`
+	Count int    `json:"count"`
+}
+
+// related runs a query of entityCols, role, count.
+func (e *Engine) related(ctx context.Context, q string, args ...any) ([]Related, error) {
+	rows, err := e.text.QueryContext(ctx, q, args...)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := []Related{}
+	for rows.Next() {
+		var r Related
+		en := &r.Entity
+		if err := rows.Scan(&en.Slug, &en.Type, &en.Name, &en.Lemma, &en.Family, &en.Meaning, &en.Lat, &en.Lon, &en.Prec, &en.Mentions, &en.Settings, &r.Role, &r.Count); err != nil {
+			return nil, err
+		}
+		out = append(out, r)
+	}
+	return out, rows.Err()
 }
 
 // EntityInfo returns an entity's page.
 func (e *Engine) EntityInfo(ctx context.Context, slug string) (*EntityPage, error) {
 	p := &EntityPage{Settings: []NodeRef{}, Mentions: []NodeRef{}}
-	err := scanEntity(e.text.QueryRowContext(ctx, `SELECT `+entityCols+` FROM entity e WHERE e.slug = ?`, slug), &p.Entity)
+	var id int
+	en := &p.Entity // (the page's Settings / Mentions lists shadow the entity's counts)
+	err := e.text.QueryRowContext(ctx, `SELECT e.id, `+entityCols+` FROM entity e WHERE e.slug = ?`, slug).Scan(&id, &en.Slug, &en.Type, &en.Name,
+		&en.Lemma, &en.Family, &en.Meaning, &en.Lat, &en.Lon, &en.Prec, &en.Mentions, &en.Settings)
 	if err == sql.ErrNoRows {
 		return nil, ErrNotFound
 	} else if err != nil {
 		return nil, err
 	}
+	if p.Related, err = e.related(ctx, `SELECT `+entityCols+`, s2.role, count(*) AS c FROM node_setting s1
+		JOIN node_setting s2 ON s2.node_id = s1.node_id AND s2.entity_id != s1.entity_id JOIN entity e ON e.id = s2.entity_id
+		WHERE s1.entity_id = ? GROUP BY s2.entity_id, s2.role ORDER BY c DESC, e.name_fold LIMIT 60`, id); err != nil {
+		return nil, err
+	}
+	if p.Comentions, err = e.related(ctx, `SELECT `+entityCols+`, '', c.n FROM comention c JOIN entity e ON e.id = c.other_id
+		WHERE c.entity_id = ? ORDER BY c.n DESC LIMIT 40`, id); err != nil {
+		return nil, err
+	}
+	homonyms, err := e.text.QueryContext(ctx, `SELECT `+entityCols+` FROM entity e WHERE e.name = ? AND e.id != ? ORDER BY e.settings DESC, e.mentions DESC, e.lemma`, p.Name, id)
+	if err != nil {
+		return nil, err
+	}
+	p.Homonyms = []Entity{}
+	for homonyms.Next() {
+		var h Entity
+		if err := scanEntity(homonyms, &h); err != nil {
+			homonyms.Close()
+			return nil, err
+		}
+		p.Homonyms = append(p.Homonyms, h)
+	}
+	homonyms.Close()
 	nodes := func(q string, args ...any) ([]NodeRef, error) {
 		rows, err := e.text.QueryContext(ctx, q, args...)
 		if err != nil {

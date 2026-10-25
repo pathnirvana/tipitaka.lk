@@ -76,10 +76,11 @@ for (const g of db.prepare(`SELECT id, src, conf, c_book, c_idx, c_s, c_eidx, c_
 tsv('glosses.tsv', ['id', 'conf', 'src', 'a_book', 'a_idx', 'a_w', 'a_eidx', 'a_ew', 'x_idx', 'x_w', 'm_book', 'm_idx', 'm_w', 'm_eidx', 'm_ew'], glossRows)
 console.log(`glosses not converted (no word at an offset): ${glossDropped}`)
 
-// the entities used
+// the entities used, and their namesakes (the name page lists the others of the same name)
 const used = new Set([...settings.map(s => s.slug as string), ...lkMentions.map(m => m.slug)])
-const entities = (db.prepare(`SELECT slug, type, name, lemma, family, meaning, lat, lon, prec, units, mentions FROM entity ORDER BY slug`).all() as Record<string, unknown>[])
-  .filter(e => used.has(e.slug as string))
+const allEntities = db.prepare(`SELECT slug, type, name, lemma, family, meaning, lat, lon, prec, units, mentions FROM entity ORDER BY slug`).all() as Record<string, unknown>[]
+const usedNames = new Set(allEntities.filter(e => used.has(e.slug as string)).map(e => e.name))
+const entities = allEntities.filter(e => used.has(e.slug as string) || usedNames.has(e.name))
 tsv('entities.tsv', ['slug', 'type', 'name', 'lemma', 'family', 'meaning', 'lat', 'lon', 'prec', 'units', 'mentions'],
   entities.map(e => [e.slug, e.type, e.name, e.lemma, e.family, e.meaning, e.lat, e.lon, e.prec, e.units, e.mentions]))
 fs.writeFileSync(`${OUT}/README.md`, `Exported from tipitaka.app (tipitaka-xml ${upstream}) by dev/cst-map/export.ts - see that file.\n` +

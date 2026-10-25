@@ -68,7 +68,6 @@ savatthi	place	0	vin01m.mul	2115	2142	nidana	0.95	1
 jetavana	place	1	vin01m.mul	2115	2142	nidana	0.95	1	
 alavi-1	place	0	vin01m.mul	2143	2153	nidana	0.95	1	
 aggalava	place	1	vin01m.mul	2143	2153	nidana	0.95	1	
-cetiya-3	place	2	vin01m.mul	2143	2153	nidana	0.95	1	
 vesali	place	0	vin01m.mul	2153	2164	nidana	0.95	1	
 mahavana-1	place	1	vin01m.mul	2153	2164	nidana	0.95	1	
 kutagarasala-2	place	2	vin01m.mul	2153	2164	nidana	0.95	1	
@@ -122,7 +121,6 @@ savatthi	place	0	vin02m1.mul	158	172	nidana	0.95	1
 jetavana	place	1	vin02m1.mul	158	172	nidana	0.95	1	
 alavi-1	place	0	vin02m1.mul	172	188	nidana	0.95	1	
 aggalava	place	1	vin02m1.mul	172	188	nidana	0.95	1	
-cetiya-3	place	2	vin02m1.mul	172	188	nidana	0.95	1	
 savatthi	place	0	vin02m1.mul	188	202	nidana	0.95	1	
 jetavana	place	1	vin02m1.mul	188	202	nidana	0.95	1	
 savatthi	place	0	vin02m1.mul	202	224	nidana	0.95	1	
@@ -134,10 +132,8 @@ savatthi	place	0	vin02m1.mul	300	326	nidana	0.95	1
 jetavana	place	1	vin02m1.mul	300	326	nidana	0.95	1	
 alavi-1	place	0	vin02m1.mul	326	345	nidana	0.95	1	
 aggalava	place	1	vin02m1.mul	326	345	nidana	0.95	1	
-cetiya-3	place	2	vin02m1.mul	326	345	nidana	0.95	1	
 alavi-1	place	0	vin02m1.mul	346	359	nidana	0.95	1	
 aggalava	place	1	vin02m1.mul	346	359	nidana	0.95	1	
-cetiya-3	place	2	vin02m1.mul	346	359	nidana	0.95	1	
 kosambi	place	0	vin02m1.mul	359	379	nidana	0.95	1	
 ghositarama	place	1	vin02m1.mul	359	379	nidana	0.95	1	
 rajagaha	place	0	vin02m1.mul	379	389	nidana	0.95	1	
@@ -157,7 +153,6 @@ kosambi	place	0	vin02m1.mul	465	480	nidana	0.95	1
 ghositarama	place	1	vin02m1.mul	465	480	nidana	0.95	1	
 alavi-1	place	0	vin02m1.mul	480	494	nidana	0.95	1	
 aggalava	place	1	vin02m1.mul	480	494	nidana	0.95	1	
-cetiya-3	place	2	vin02m1.mul	480	494	nidana	0.95	1	
 savatthi	place	0	vin02m1.mul	495	529	nidana	0.95	1	
 jetavana	place	1	vin02m1.mul	495	529	nidana	0.95	1	
 savatthi	place	0	vin02m1.mul	529	544	nidana	0.95	1	
@@ -718,7 +713,7 @@ magadha	place	0	s0102m.mul	1129	1340	nidana	0.95	1
 rajagaha	place	1	s0102m.mul	1129	1340	nidana	0.95	1	
 ambasanda	place	2	s0102m.mul	1129	1340	nidana	0.95	1	
 brahmanagama	place	3	s0102m.mul	1129	1340	nidana	0.95	1	
-vediya	place	4	s0102m.mul	1129	1340	nidana	0.95	1	
+vediyaka	place	4	s0102m.mul	1129	1340	nidana	0.95	1	
 indasalaguha	place	5	s0102m.mul	1129	1340	nidana	0.95	1	
 kuru	place	0	s0102m.mul	1340	1475	nidana	0.95	1	
 kammasadhamma	place	1	s0102m.mul	1340	1475	nidana	0.95	1	
@@ -744,7 +739,7 @@ pavarikambavana	place	1	s0103m.mul	325	389	nidana	0.95	1
 sariputta	with	0	s0103m.mul	325	389	nidana	0.85	1	
 sakka-2-2	place	0	s0103m.mul	389	468	nidana	0.95	1	
 ambavana-2	place	1	s0103m.mul	389	468	nidana	0.95	1	
-samagama-2	with	0	s0103m.mul	389	468	nidana	0.85	1	
+ananda-2	with	0	s0103m.mul	389	468	nidana	0.85	1	
 savatthi	place	0	s0103m.mul	468	900	nidana	0.95	1	
 jetavana	place	1	s0103m.mul	468	900	nidana	0.95	1	
 rajagaha	place	0	s0103m.mul	900	1021	nidana	0.95	1	
@@ -840,7 +835,7 @@ mahakassapa	with	1	s0201m.mul	1122	1139	nidana	0.85	1
 savatthi	place	0	s0201m.mul	1139	1169	nidana	0.95	1	
 jetavana	place	1	s0201m.mul	1139	1169	nidana	0.95	1	
 vajji-1	place	0	s0201m.mul	1169	1187	nidana	0.95	1	
-ukkacela-2	place	1	s0201m.mul	1169	1187	nidana	0.95	1	
+ukkacela	place	1	s0201m.mul	1169	1187	nidana	0.95	1	
 ganga-1	place	2	s0201m.mul	1169	1187	nidana	0.95	1	
 vesali	place	0	s0201m.mul	1187	1216	nidana	0.95	1	
 mahavana-1	place	1	s0201m.mul	1187	1216	nidana	0.95	1	
@@ -1049,7 +1044,6 @@ jetavana	place	1	s0202m.mul	1601	1646	nidana	0.95	1
 subha-3	with	0	s0202m.mul	1601	1646	nidana	0.85	1	
 cancalikappa	place	0	s0202m.mul	1646	1677	nidana	0.95	1	
 dhamma-1-11	place	1	s0202m.mul	1646	1677	nidana	0.95	1	
-sangha-5	place	2	s0202m.mul	1646	1677	nidana	0.95	1	
 dhananjani-1	with	0	s0202m.mul	1646	1677	nidana	0.85	1	
 sangarava	with	1	s0202m.mul	1646	1677	nidana	0.85	1	
 sakka-2-2	place	0	s0203m.mul	4	48	nidana	0.95	1	
@@ -1060,7 +1054,7 @@ pisinara	place	0	s0203m.mul	65	82	nidana	0.95	1
 baliharana	place	1	s0203m.mul	65	82	nidana	0.95	1	
 sakka-2-2	place	0	s0203m.mul	82	110	nidana	0.95	1	
 samagama	place	1	s0203m.mul	82	110	nidana	0.95	1	
-samagama-2	with	0	s0203m.mul	82	110	nidana	0.85	1	
+ananda-2	with	0	s0203m.mul	82	110	nidana	0.85	1	
 vesali	place	0	s0203m.mul	110	129	nidana	0.95	1	
 mahavana-1	place	1	s0203m.mul	110	129	nidana	0.95	1	
 kutagarasala-2	place	2	s0203m.mul	110	129	nidana	0.95	1	
@@ -1677,15 +1671,12 @@ sakka-2-2	place	0	s0301m.mul	2651	2664	nidana	0.95	1
 khomadussa-2	place	1	s0301m.mul	2651	2664	nidana	0.95	1	
 alavi-1	place	0	s0301m.mul	2665	2677	nidana	0.95	1	
 aggalava	place	1	s0301m.mul	2665	2677	nidana	0.95	1	
-cetiya-3	place	2	s0301m.mul	2665	2677	nidana	0.95	1	
 vangisa-2	teacher	0	s0301m.mul	2665	2677	nidana	0.9	1	
 alavi-1	place	0	s0301m.mul	2677	2689	nidana	0.95	1	
 aggalava	place	1	s0301m.mul	2677	2689	nidana	0.95	1	
-cetiya-3	place	2	s0301m.mul	2677	2689	nidana	0.95	1	
 vangisa-2	teacher	0	s0301m.mul	2677	2689	nidana	0.9	1	
 alavi-1	place	0	s0301m.mul	2689	2699	nidana	0.95	1	
 aggalava	place	1	s0301m.mul	2689	2699	nidana	0.95	1	
-cetiya-3	place	2	s0301m.mul	2689	2699	nidana	0.95	1	
 vangisa-2	teacher	0	s0301m.mul	2689	2699	nidana	0.9	1	
 savatthi	place	0	s0301m.mul	2699	2711	nidana	0.95	1	
 jetavana	place	1	s0301m.mul	2699	2711	nidana	0.95	1	
@@ -1727,9 +1718,12 @@ jetavana	place	1	s0301m.mul	2865	2879	inherit	0.7	1
 anuruddha-1	teacher	0	s0301m.mul	2865	2879	nidana	0.9	1	
 jalini-1	with	0	s0301m.mul	2865	2879	nidana	0.85	1	
 anuruddha-1	with	1	s0301m.mul	2865	2879	nidana	0.85	1	
-nagadatta-1	place	0	s0301m.mul	2879	2886	nidana	0.95	1	
+savatthi	place	0	s0301m.mul	2879	2886	inherit	0.7	1	
+jetavana	place	1	s0301m.mul	2879	2886	inherit	0.7	1	
+nagadatta	teacher	0	s0301m.mul	2879	2886	nidana	0.9	1	
 nagadatta	with	0	s0301m.mul	2879	2886	nidana	0.85	1	
-nagadatta-1	place	0	s0301m.mul	2886	2894	inherit	0.7	1	
+savatthi	place	0	s0301m.mul	2886	2894	inherit	0.7	1	
+jetavana	place	1	s0301m.mul	2886	2894	inherit	0.7	1	
 vesali	place	0	s0301m.mul	2894	2904	nidana	0.95	1	
 vesali	place	0	s0301m.mul	2904	2911	inherit	0.7	1	
 vesali	place	0	s0301m.mul	2911	2919	inherit	0.7	1	
@@ -1747,7 +1741,6 @@ tankitamanca	place	1	s0301m.mul	2978	2995	nidana	0.95	1
 suciloma-2	with	0	s0301m.mul	2978	2995	nidana	0.85	1	
 magadha	place	0	s0301m.mul	2995	3003	nidana	0.95	1	
 manimalika	place	1	s0301m.mul	2995	3003	nidana	0.95	1	
-cetiya-3	place	2	s0301m.mul	2995	3003	nidana	0.95	1	
 manibhadda	with	0	s0301m.mul	2995	3003	nidana	0.85	1	
 savatthi	place	0	s0301m.mul	3003	3027	nidana	0.95	1	
 jetavana	place	1	s0301m.mul	3003	3027	nidana	0.95	1	
@@ -2796,7 +2789,6 @@ savatthi	place	0	s0303m.mul	1296	1298	abbrev	0.95	1
 savatthi	place	0	s0303m.mul	1298	1302	abbrev	0.95	1	
 savatthi	place	0	s0303m.mul	1306	1308	nidana	0.95	1	
 jetavana	place	1	s0303m.mul	1306	1308	nidana	0.95	1	
-gandhabba	place	2	s0303m.mul	1306	1308	nidana	0.95	1	
 savatthi	place	0	s0303m.mul	1308	1310	abbrev	0.95	1	
 savatthi	place	0	s0303m.mul	1310	1312	abbrev	0.95	1	
 savatthi	place	0	s0303m.mul	1312	1314	abbrev	0.95	1	
@@ -3493,13 +3485,13 @@ magadha	place	0	s0304m.mul	1557	1559	inherit	0.7	1
 magadha	place	0	s0304m.mul	1559	1561	inherit	0.7	1	
 magadha	place	0	s0304m.mul	1561	1564	inherit	0.7	1	
 vajji-1	place	0	s0304m.mul	1570	1575	nidana	0.95	1	
-ukkacela-2	place	1	s0304m.mul	1570	1575	nidana	0.95	1	
+ukkacela	place	1	s0304m.mul	1570	1575	nidana	0.95	1	
 ganga-1	place	2	s0304m.mul	1570	1575	nidana	0.95	1	
 sariputta	teacher	0	s0304m.mul	1570	1575	nidana	0.9	1	
 samandaka	with	0	s0304m.mul	1570	1575	nidana	0.85	1	
 sariputta	with	1	s0304m.mul	1570	1575	nidana	0.85	1	
 vajji-1	place	0	s0304m.mul	1575	1579	inherit	0.7	1	
-ukkacela-2	place	1	s0304m.mul	1575	1579	inherit	0.7	1	
+ukkacela	place	1	s0304m.mul	1575	1579	inherit	0.7	1	
 ganga-1	place	2	s0304m.mul	1575	1579	inherit	0.7	1	
 savatthi	place	0	s0304m.mul	1580	1584	nidana	0.95	1	
 jetavana	place	1	s0304m.mul	1580	1584	nidana	0.95	1	
@@ -3869,28 +3861,28 @@ rajagaha	place	0	s0305m.mul	547	551	inherit	0.7	1
 veluvana	place	1	s0305m.mul	547	551	inherit	0.7	1	
 kalandakanivapa	place	2	s0305m.mul	547	551	inherit	0.7	1	
 sumbha-2	place	0	s0305m.mul	551	561	nidana	0.95	1	
-sumbha-2-2	place	1	s0305m.mul	551	561	nidana	0.95	1	
+sedaka-1	place	1	s0305m.mul	551	561	nidana	0.95	1	
 udayi-1	with	0	s0305m.mul	551	561	nidana	0.85	1	
 sumbha-2	place	0	s0305m.mul	562	565	inherit	0.7	1	
-sumbha-2-2	place	1	s0305m.mul	562	565	inherit	0.7	1	
+sedaka-1	place	1	s0305m.mul	562	565	inherit	0.7	1	
 sumbha-2	place	0	s0305m.mul	565	568	inherit	0.7	1	
-sumbha-2-2	place	1	s0305m.mul	565	568	inherit	0.7	1	
+sedaka-1	place	1	s0305m.mul	565	568	inherit	0.7	1	
 sumbha-2	place	0	s0305m.mul	568	571	inherit	0.7	1	
-sumbha-2-2	place	1	s0305m.mul	568	571	inherit	0.7	1	
+sedaka-1	place	1	s0305m.mul	568	571	inherit	0.7	1	
 sumbha-2	place	0	s0305m.mul	571	573	inherit	0.7	1	
-sumbha-2-2	place	1	s0305m.mul	571	573	inherit	0.7	1	
+sedaka-1	place	1	s0305m.mul	571	573	inherit	0.7	1	
 sumbha-2	place	0	s0305m.mul	573	575	inherit	0.7	1	
-sumbha-2-2	place	1	s0305m.mul	573	575	inherit	0.7	1	
+sedaka-1	place	1	s0305m.mul	573	575	inherit	0.7	1	
 sumbha-2	place	0	s0305m.mul	575	577	inherit	0.7	1	
-sumbha-2-2	place	1	s0305m.mul	575	577	inherit	0.7	1	
+sedaka-1	place	1	s0305m.mul	575	577	inherit	0.7	1	
 sumbha-2	place	0	s0305m.mul	577	579	inherit	0.7	1	
-sumbha-2-2	place	1	s0305m.mul	577	579	inherit	0.7	1	
+sedaka-1	place	1	s0305m.mul	577	579	inherit	0.7	1	
 sumbha-2	place	0	s0305m.mul	579	585	inherit	0.7	1	
-sumbha-2-2	place	1	s0305m.mul	579	585	inherit	0.7	1	
+sedaka-1	place	1	s0305m.mul	579	585	inherit	0.7	1	
 sumbha-2	place	0	s0305m.mul	585	589	inherit	0.7	1	
-sumbha-2-2	place	1	s0305m.mul	585	589	inherit	0.7	1	
+sedaka-1	place	1	s0305m.mul	585	589	inherit	0.7	1	
 sumbha-2	place	0	s0305m.mul	589	596	inherit	0.7	1	
-sumbha-2-2	place	1	s0305m.mul	589	596	inherit	0.7	1	
+sedaka-1	place	1	s0305m.mul	589	596	inherit	0.7	1	
 savatthi	place	0	s0305m.mul	597	599	abbrev	0.95	1	
 savatthi	place	0	s0305m.mul	599	602	inherit	0.7	1	
 savatthi	place	0	s0305m.mul	602	604	inherit	0.7	1	
@@ -3973,7 +3965,7 @@ savatthi	place	0	s0305m.mul	945	953	nidana	0.95	1
 jetavana	place	1	s0305m.mul	945	953	nidana	0.95	1	
 sariputta	with	0	s0305m.mul	945	953	nidana	0.85	1	
 vajji-1	place	0	s0305m.mul	953	957	nidana	0.95	1	
-ukkacela-2	place	1	s0305m.mul	953	957	nidana	0.95	1	
+ukkacela	place	1	s0305m.mul	953	957	nidana	0.95	1	
 ganga-1	place	2	s0305m.mul	953	957	nidana	0.95	1	
 savatthi	place	0	s0305m.mul	957	961	abbrev	0.95	1	
 bahiya-1	with	0	s0305m.mul	957	961	nidana	0.85	1	
@@ -3984,10 +3976,8 @@ uruvela	place	0	s0305m.mul	967	975	nidana	0.95	1
 neranjara	place	1	s0305m.mul	967	975	nidana	0.95	1	
 sumbha-2	place	0	s0305m.mul	975	978	nidana	0.95	1	
 sedaka-1	place	1	s0305m.mul	975	978	nidana	0.95	1	
-sumbha-2-2	place	2	s0305m.mul	975	978	nidana	0.95	1	
 sumbha-2	place	0	s0305m.mul	978	986	nidana	0.95	1	
 sedaka-1	place	1	s0305m.mul	978	986	nidana	0.95	1	
-sumbha-2-2	place	2	s0305m.mul	978	986	nidana	0.95	1	
 pataliputta	place	0	s0305m.mul	987	991	nidana	0.95	1	
 kukkutarama	place	1	s0305m.mul	987	991	nidana	0.95	1	
 bhadda-4	with	0	s0305m.mul	987	991	nidana	0.85	1	
@@ -4816,7 +4806,6 @@ anathapindika-1	with	0	s0402m2.mul	1042	1049	nidana	0.85	1
 kusinara	place	0	s0402m2.mul	1121	1127	nidana	0.95	1	
 baliharana	place	1	s0402m2.mul	1121	1127	nidana	0.95	1	
 vesali	place	0	s0402m2.mul	1130	1134	nidana	0.95	1	
-cetiya-3	place	1	s0402m2.mul	1130	1134	nidana	0.95	1	
 kapilavatthu	place	0	s0402m2.mul	1134	1142	nidana	0.95	1	
 bharandu	with	0	s0402m2.mul	1134	1142	nidana	0.85	1	
 kalama	with	1	s0402m2.mul	1134	1142	nidana	0.85	1	
@@ -5041,7 +5030,6 @@ migadaya-2	place	3	s0403m2.mul	88	98	nidana	0.95	1
 savatthi	place	0	s0403m2.mul	98	104	nidana	0.95	1	
 jetavana	place	1	s0403m2.mul	98	104	nidana	0.95	1	
 sariputta	with	0	s0403m2.mul	98	104	nidana	0.85	1	
-maccha-2	place	0	s0403m2.mul	104	109	nidana	0.95	1	
 natika	place	0	s0403m2.mul	109	124	nidana	0.95	1	
 ginjakavasatha	place	1	s0403m2.mul	109	124	nidana	0.95	1	
 natika	place	0	s0403m2.mul	124	133	nidana	0.95	1	
@@ -5108,7 +5096,6 @@ savatthi	place	0	s0403m3.mul	12	19	nidana	0.95	1
 jetavana	place	1	s0403m3.mul	12	19	nidana	0.95	1	
 vesali	place	0	s0403m3.mul	115	125	nidana	0.95	1	
 sarandada	place	1	s0403m3.mul	115	125	nidana	0.95	1	
-cetiya-3	place	2	s0403m3.mul	115	125	nidana	0.95	1	
 pahasambahula	with	0	s0403m3.mul	115	125	nidana	0.85	1	
 licchavi	with	1	s0403m3.mul	115	125	nidana	0.85	1	
 rajagaha	place	0	s0403m3.mul	125	138	nidana	0.95	1	
@@ -5181,10 +5168,8 @@ vajji-1	place	0	s0404m1.mul	272	285	nidana	0.95	1
 hatthigama	place	1	s0404m1.mul	272	285	nidana	0.95	1	
 alavi-1	place	0	s0404m1.mul	285	293	nidana	0.95	1	
 aggalava	place	1	s0404m1.mul	285	293	nidana	0.95	1	
-cetiya-3	place	2	s0404m1.mul	285	293	nidana	0.95	1	
 alavi-1	place	0	s0404m1.mul	293	296	nidana	0.95	1	
 aggalava	place	1	s0404m1.mul	293	296	nidana	0.95	1	
-cetiya-3	place	2	s0404m1.mul	293	296	nidana	0.95	1	
 sakka-2-2	place	0	s0404m1.mul	296	301	nidana	0.95	1	
 kapilavatthu	place	1	s0404m1.mul	296	301	nidana	0.95	1	
 nigrodharama	place	2	s0404m1.mul	296	301	nidana	0.95	1	
@@ -5577,6 +5562,7 @@ patacara	about	0	s0502m.mul	256	257	atta	0.81	1	12. Paṭācārātherīvatthu
 jetavana	place	0	s0502m.mul	256	257	atta	0.86	1	12. Paṭācārātherīvatthu
 kisagotami	about	0	s0502m.mul	258	259	atta	0.81	1	13. Kisāgotamīvatthu
 jetavana	place	0	s0502m.mul	258	259	atta	0.86	1	13. Kisāgotamīvatthu
+sona	about	0	s0502m.mul	260	261	atta	0.81	1	14. Bahuputtikattherīvatthu
 jetavana	place	0	s0502m.mul	260	261	atta	0.86	1	14. Bahuputtikattherīvatthu
 jetavana	place	0	s0502m.mul	264	265	atta	0.86	1	1. Cūḷekasāṭakabrāhmaṇavatthu
 seyyasaka	about	0	s0502m.mul	266	267	atta	0.81	1	2. Seyyasakattheravatthu
@@ -5641,7 +5627,6 @@ jetavana	place	0	s0502m.mul	390	391	atta	0.86	1	5. Sammajjanattheravatthu
 angulimala-1	about	0	s0502m.mul	392	393	atta	0.81	1	6. Aṅgulimālattheravatthu
 jetavana	place	0	s0502m.mul	392	393	atta	0.86	1	6. Aṅgulimālattheravatthu
 aggalava	place	0	s0502m.mul	394	395	atta	0.86	1	7. Pesakāradhītāvatthu
-cetiya-3	place	1	s0502m.mul	394	395	atta	0.86	1	7. Pesakāradhītāvatthu
 jetavana	place	0	s0502m.mul	396	397	atta	0.86	1	8. Tiṃsabhikkhuvatthu
 jetavana	place	0	s0502m.mul	398	399	atta	0.86	1	9. Ciñcamāṇavikāvatthu
 asadisadana	about	0	s0502m.mul	400	401	atta	0.81	1	10. Asadisadānavatthu
@@ -5653,7 +5638,7 @@ ananda-2	about	0	s0502m.mul	414	419	atta	0.81	1	4. Ānandattherapañhavatthu
 jetavana	place	0	s0502m.mul	414	419	atta	0.86	1	4. Ānandattherapañhavatthu
 jetavana	place	0	s0502m.mul	421	424	atta	0.86	1	5. Anabhiratabhikkhuvatthu
 aggidatta	about	0	s0502m.mul	425	434	atta	0.81	1	6. Aggidattabrāhmaṇavatthu
-kosala-2	about	1	s0502m.mul	425	434	atta	0.81	1	6. Aggidattabrāhmaṇavatthu
+kosala-3	about	1	s0502m.mul	425	434	atta	0.81	1	6. Aggidattabrāhmaṇavatthu
 jetavana	place	0	s0502m.mul	425	434	atta	0.86	1	6. Aggidattabrāhmaṇavatthu
 ananda-2	about	0	s0502m.mul	435	436	atta	0.81	1	7. Ānandattherapañhavatthu
 jetavana	place	0	s0502m.mul	435	436	atta	0.86	1	7. Ānandattherapañhavatthu
@@ -5662,7 +5647,7 @@ sakka-2-2	place	0	s0502m.mul	445	450	atta	0.86	1	1. Ñāātikalahavūpasamanavat
 mara	about	0	s0502m.mul	451	452	atta	0.81	1	2. Māravatthu
 pancasala	place	0	s0502m.mul	451	452	atta	0.86	1	2. Māravatthu
 brahmanagama	place	1	s0502m.mul	451	452	atta	0.86	1	2. Māravatthu
-kosala-2	about	0	s0502m.mul	453	454	atta	0.81	1	3. Kosalarañño parājayavatthu
+kosala-3	about	0	s0502m.mul	453	454	atta	0.81	1	3. Kosalarañño parājayavatthu
 jetavana	place	0	s0502m.mul	453	454	atta	0.86	1	3. Kosalarañño parājayavatthu
 jetavana	place	0	s0502m.mul	455	456	atta	0.86	1	4. Aññatarakuladārikāvatthu
 alavi-1	place	0	s0502m.mul	457	458	atta	0.86	1	5. Ekaupāsakavatthu
@@ -5685,7 +5670,6 @@ isipatana	place	0	s0502m.mul	493	496	atta	0.86	1	9. Nandiyavatthu
 rohini-2	about	0	s0502m.mul	499	500	atta	0.81	1	1. Rohinīkhattiyakaññāvatthu
 nigrodharama	place	0	s0502m.mul	499	500	atta	0.86	1	1. Rohinīkhattiyakaññāvatthu
 aggalava	place	0	s0502m.mul	501	502	atta	0.86	1	2. Aññatarabhikkhuvatthu
-cetiya-3	place	1	s0502m.mul	501	502	atta	0.86	1	2. Aññatarabhikkhuvatthu
 uttara-2-10	about	0	s0502m.mul	503	504	atta	0.81	1	3. Uttarāupāsikāvatthu
 veluvana	place	0	s0502m.mul	503	504	atta	0.86	1	3. Uttarāupāsikāvatthu
 mahamoggallana	about	0	s0502m.mul	505	506	atta	0.81	1	4. Mahāmoggallānattherapañhavatthu
@@ -5748,6 +5732,7 @@ jetavana	place	0	s0502m.mul	659	662	atta	0.86	1	4. Lakuṇḍakabhaddiyattherava
 veluvana	place	0	s0502m.mul	663	674	atta	0.86	1	5. Dārusākaṭikaputtavatthu
 vesali	place	0	s0502m.mul	675	676	atta	0.86	1	6. Vajjiputtakabhikkhuvatthu
 mahavana-1	place	1	s0502m.mul	675	676	atta	0.86	1	6. Vajjiputtakabhikkhuvatthu
+citta-2-4	about	0	s0502m.mul	678	679	atta	0.81	1	7. Cittagahapativatthu
 jetavana	place	0	s0502m.mul	678	679	atta	0.86	1	7. Cittagahapativatthu
 cula-subhadda-2	about	0	s0502m.mul	680	681	atta	0.81	1	8. Cūḷasubhaddāvatthu
 jetavana	place	0	s0502m.mul	680	681	atta	0.86	1	8. Cūḷasubhaddāvatthu
@@ -5770,7 +5755,7 @@ savatthi	place	0	s0502m.mul	725	726	atta	0.86	1	3. Parijiṇṇabrāhmaṇaputta
 jetavana	place	0	s0502m.mul	727	728	atta	0.86	1	4. Pasenadikosalavatthu
 sanu-2	about	0	s0502m.mul	729	730	atta	0.81	1	5. Sānusāmaṇeravatthu
 jetavana	place	0	s0502m.mul	729	730	atta	0.86	1	5. Sānusāmaṇeravatthu
-kosala-2	about	0	s0502m.mul	731	732	atta	0.81	1	6. Pāveyyakahatthivatthu
+kosala-3	about	0	s0502m.mul	731	732	atta	0.81	1	6. Pāveyyakahatthivatthu
 jetavana	place	0	s0502m.mul	731	732	atta	0.86	1	6. Pāveyyakahatthivatthu
 palileyyaka-1	place	0	s0502m.mul	733	738	atta	0.86	1	7. Sambahulabhikkhuvatthu
 rakkhitavanasanda	place	1	s0502m.mul	733	738	atta	0.86	1	7. Sambahulabhikkhuvatthu
@@ -5883,7 +5868,6 @@ rajagaha	place	0	s0503m.mul	44	50	nidana	0.95	1
 veluvana	place	1	s0503m.mul	44	50	nidana	0.95	1	
 kalandakanivapa	place	2	s0503m.mul	44	50	nidana	0.95	1	
 pava	place	0	s0503m.mul	50	55	nidana	0.95	1	
-cetiya-3	place	1	s0503m.mul	50	55	nidana	0.95	1	
 ajakalapaka-2	with	0	s0503m.mul	50	55	nidana	0.85	1	
 savatthi	place	0	s0503m.mul	55	65	nidana	0.95	1	
 jetavana	place	1	s0503m.mul	55	65	nidana	0.95	1	
@@ -6094,7 +6078,6 @@ pahasambahula	with	0	s0505m.mul	691	766	nidana	0.85	1
 savatthi	place	0	s0505m.mul	805	815	atta	0.86	1	10. Uṭṭhānasuttavaṇṇanā
 alavi-1	place	0	s0505m.mul	832	869	nidana	0.95	1	
 aggalava	place	1	s0505m.mul	832	869	nidana	0.95	1	
-cetiya-3	place	2	s0505m.mul	832	869	nidana	0.95	1	
 vangisa-2	with	0	s0505m.mul	832	869	nidana	0.85	1	
 savatthi	place	0	s0505m.mul	909	971	nidana	0.95	1	
 jetavana	place	1	s0505m.mul	909	971	nidana	0.95	1	
@@ -6158,7 +6141,6 @@ savatthi	place	0	s0507m.mul	133	140	atta	0.86	1	9. Mahāpesakārapetivatthuvaṇ
 savatthi	place	0	s0507m.mul	144	174	atta	0.86	1	10. Khallāṭiyapetivatthuvaṇṇanā
 jetavana	place	0	s0507m.mul	177	201	atta	0.86	1	11. Nāgapetavatthuvaṇṇanā
 jetavana	place	0	s0507m.mul	204	223	atta	0.86	1	12. Uragapetavatthuvaṇṇanā
-magadha-3	about	0	s0507m.mul	232	274	atta	0.81	1	1. Saṃsāramocakapetivatthuvaṇṇanā
 veluvana	place	0	s0507m.mul	232	274	atta	0.86	1	1. Saṃsāramocakapetivatthuvaṇṇanā
 sariputta	about	0	s0507m.mul	277	304	atta	0.81	1	2. Sāriputtattheramātupetivatthuvaṇṇanā
 veluvana	place	0	s0507m.mul	277	304	atta	0.86	1	2. Sāriputtattheramātupetivatthuvaṇṇanā
@@ -6256,7 +6238,7 @@ ananda-2	about	0	s0513m.mul	409	1351	atta	0.81	1	Mahāhaṃsajātakavaṇṇanā
 veluvana	place	0	s0513m.mul	409	1351	atta	0.86	1	Mahāhaṃsajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	426	1327	atta	0.86	1	Soṇanandajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	438	655	atta	0.86	1	Alambusājātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	442	3661	atta	0.81	1	Seyyajātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	442	3661	atta	0.81	1	Seyyajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	442	3661	atta	0.86	1	Seyyajātakavaṇṇanā
 dhanuggahatissa	about	0	s0513m.mul	446	455	atta	0.81	1	Vaḍḍhakīsūkarajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	446	455	atta	0.86	1	Vaḍḍhakīsūkarajātakavaṇṇanā
@@ -6279,13 +6261,13 @@ jetavana	place	0	s0513m.mul	568	6539	atta	0.86	1	Mahājanakajātakavaṇṇanā
 rahulamata	about	0	s0513m.mul	572	581	atta	0.81	1	Supattajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	572	581	atta	0.86	1	Supattajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	572	1325	atta	0.86	1	Mahābodhijātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	576	589	atta	0.81	1	Rathalaṭṭhijātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	576	589	atta	0.81	1	Rathalaṭṭhijātakavaṇṇanā
 jetavana	place	0	s0513m.mul	576	589	atta	0.86	1	Rathalaṭṭhijātakavaṇṇanā
 jetavana	place	0	s0513m.mul	584	593	atta	0.86	1	Kāyanibbindajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	588	614	atta	0.86	1	Vaṭṭakajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	592	610	atta	0.86	1	Pakkagodhajātakavaṇṇanā
 veluvana	place	0	s0513m.mul	596	610	atta	0.86	1	Jambukhādakajātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	613	4907	atta	0.81	1	Dhūmakārijātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	613	4907	atta	0.81	1	Dhūmakārijātakavaṇṇanā
 jetavana	place	0	s0513m.mul	613	622	atta	0.86	1	Antajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	613	626	atta	0.86	1	Rājovādajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	613	4907	atta	0.86	1	Dhūmakārijātakavaṇṇanā
@@ -6331,7 +6313,7 @@ devadatta	about	0	s0513m.mul	1255	1264	atta	0.81	1	Vānarajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	1255	1258	atta	0.86	1	Upāhanajātakavaṇṇanā
 veluvana	place	0	s0513m.mul	1255	1264	atta	0.86	1	Vānarajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	1261	1264	atta	0.86	1	Vīṇāthūṇajātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	1267	1276	atta	0.81	1	Kuntinījātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	1267	1276	atta	0.81	1	Kuntinījātakavaṇṇanā
 jetavana	place	0	s0513m.mul	1267	1270	atta	0.86	1	Vikaṇṇakajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	1267	1276	atta	0.86	1	Kuntinījātakavaṇṇanā
 jetavana	place	0	s0513m.mul	1273	1276	atta	0.86	1	Asitābhūjātakavaṇṇanā
@@ -6509,7 +6491,7 @@ laludayi	about	0	s0513m.mul	3013	3014	atta	0.81	1	Naṅgalīsajātakavaṇṇan�
 jetavana	place	0	s0513m.mul	3013	3014	atta	0.86	1	Naṅgalīsajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3015	3016	atta	0.86	1	Ambajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3017	3018	atta	0.86	1	Kaṭāhakajātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	3020	3021	atta	0.81	1	Asilakkhaṇajātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	3020	3021	atta	0.81	1	Asilakkhaṇajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3020	3021	atta	0.86	1	Asilakkhaṇajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3022	3023	atta	0.86	1	Kalaṇḍukajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3026	3027	atta	0.86	1	Biḷāravatajātakavaṇṇanā
@@ -6557,7 +6539,7 @@ jetavana	place	0	s0513m.mul	3169	3174	atta	0.86	1	Makkaṭajātakavaṇṇanā
 devadatta	about	0	s0513m.mul	3175	3178	atta	0.81	1	Dubbhiyamakkaṭajātakavaṇṇanā
 veluvana	place	0	s0513m.mul	3175	3178	atta	0.86	1	Dubbhiyamakkaṭajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3179	3182	atta	0.86	1	Ādiccupaṭṭhānajātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	3183	3186	atta	0.81	1	Kaḷāyamuṭṭhijātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	3183	3186	atta	0.81	1	Kaḷāyamuṭṭhijātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3183	3186	atta	0.86	1	Kaḷāyamuṭṭhijātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3187	3192	atta	0.86	1	Tindukajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3193	3196	atta	0.86	1	Kacchapajātakavaṇṇanā
@@ -6581,7 +6563,7 @@ jetavana	place	0	s0513m.mul	3257	3260	atta	0.86	1	Ruhakajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3267	3270	atta	0.86	1	Cūḷapadumajātakavaṇṇanā
 devadatta	about	0	s0513m.mul	3271	3274	atta	0.81	1	Maṇicorajātakavaṇṇanā
 veluvana	place	0	s0513m.mul	3271	3274	atta	0.86	1	Maṇicorajātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	3275	3281	atta	0.81	1	Pabbatūpattharajātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	3275	3281	atta	0.81	1	Pabbatūpattharajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3275	3281	atta	0.86	1	Pabbatūpattharajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3282	3285	atta	0.86	1	Valāhakassajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3286	3289	atta	0.86	1	Mittāmittajātakavaṇṇanā
@@ -6604,7 +6586,7 @@ veluvana	place	0	s0513m.mul	3345	3348	atta	0.86	1	Kandagalakajātakavaṇṇanā
 laludayi	about	0	s0513m.mul	3351	3354	atta	0.81	1	Somadattajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3351	3354	atta	0.86	1	Somadattajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3355	3359	atta	0.86	1	Ucchiṭṭhabhattajātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	3360	3363	atta	0.81	1	Bharujātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	3360	3363	atta	0.81	1	Bharujātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3360	3363	atta	0.86	1	Bharujātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3364	3369	atta	0.86	1	Puṇṇanadījātakavaṇṇanā
 kokalika	about	0	s0513m.mul	3370	3381	atta	0.81	1	Seggujātakavaṇṇanā
@@ -6620,9 +6602,9 @@ veluvana	place	0	s0513m.mul	3402	3405	atta	0.86	1	Cūḷanandiyajātakavaṇṇa
 jetavana	place	0	s0513m.mul	3406	3409	atta	0.86	1	Puṭabhattajātakavaṇṇanā
 devadatta	about	0	s0513m.mul	3410	3413	atta	0.81	1	Kumbhilajātakavaṇṇanā
 veluvana	place	0	s0513m.mul	3410	3413	atta	0.86	1	Kumbhilajātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	3414	3417	atta	0.81	1	Khantivaṇṇajātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	3414	3417	atta	0.81	1	Khantivaṇṇajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3414	3417	atta	0.86	1	Khantivaṇṇajātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	3418	3421	atta	0.81	1	Kosiyajātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	3418	3421	atta	0.81	1	Kosiyajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3418	3421	atta	0.86	1	Kosiyajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3422	3427	atta	0.86	1	Gūthapāṇajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3428	3431	atta	0.86	1	Kāmanītajātakavaṇṇanā
@@ -6632,14 +6614,13 @@ jetavana	place	0	s0513m.mul	3451	3456	atta	0.86	1	Saṅkapparāgajātakavaṇṇ
 jetavana	place	0	s0513m.mul	3457	3462	atta	0.86	1	Tilamuṭṭhijātakavaṇṇanā
 alavi-1	place	0	s0513m.mul	3463	3468	atta	0.86	1	Maṇikaṇṭhajātakavaṇṇanā
 aggalava	place	1	s0513m.mul	3463	3468	atta	0.86	1	Maṇikaṇṭhajātakavaṇṇanā
-cetiya-3	place	2	s0513m.mul	3463	3468	atta	0.86	1	Maṇikaṇṭhajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3471	3477	atta	0.86	1	Kuṇḍakakucchisindhavajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3478	3483	atta	0.86	1	Sukajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3484	3491	atta	0.86	1	Jarūdapānajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3492	3497	atta	0.86	1	Gāmaṇicandajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3498	3503	atta	0.86	1	Mandhātujātakavaṇṇanā
 ananda-2	about	0	s0513m.mul	3504	3511	atta	0.81	1	Tirīṭavacchajātakavaṇṇanā
-kosala-2	about	1	s0513m.mul	3504	3511	atta	0.81	1	Tirīṭavacchajātakavaṇṇanā
+kosala-3	about	1	s0513m.mul	3504	3511	atta	0.81	1	Tirīṭavacchajātakavaṇṇanā
 hattha	about	2	s0513m.mul	3504	3511	atta	0.81	1	Tirīṭavacchajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3504	3511	atta	0.86	1	Tirīṭavacchajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3512	3517	atta	0.86	1	Dūtajātakavaṇṇanā
@@ -6654,7 +6635,7 @@ jetavana	place	0	s0513m.mul	3577	3584	atta	0.86	1	Ulūkajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3585	3590	atta	0.86	1	Udapānadūsakajātakavaṇṇanā
 kokalika	about	0	s0513m.mul	3591	3596	atta	0.81	1	Byagghajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3591	3596	atta	0.86	1	Byagghajātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	3598	3611	atta	0.81	1	Lolajātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	3598	3611	atta	0.81	1	Lolajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3598	3611	atta	0.86	1	Lolajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3612	3617	atta	0.86	1	Rucirajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3618	3625	atta	0.86	1	Kurudhammajātakavaṇṇanā
@@ -6678,7 +6659,7 @@ mahamoggallana	about	0	s0513m.mul	3761	3768	atta	0.81	1	Pucimandajātakavaṇṇ
 veluvana	place	0	s0513m.mul	3761	3768	atta	0.86	1	Pucimandajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3769	3776	atta	0.86	1	Kassapamandiyajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3779	3786	atta	0.86	1	Khantivādījātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	3787	3794	atta	0.81	1	Lohakumbhijātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	3787	3794	atta	0.81	1	Lohakumbhijātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3787	3794	atta	0.86	1	Lohakumbhijātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3795	3804	atta	0.86	1	Sabbamaṃsalābhajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3805	3812	atta	0.86	1	Sasapaṇḍitajātakavaṇṇanā
@@ -6693,20 +6674,19 @@ jetavana	place	0	s0513m.mul	3850	3857	atta	0.86	1	Kuṭidūsakajātakavaṇṇan
 jetavana	place	0	s0513m.mul	3858	3867	atta	0.86	1	Duddubhajātakavaṇṇanā
 alavi-1	place	0	s0513m.mul	3868	3875	atta	0.86	1	Brahmadattajātakavaṇṇanā
 aggalava	place	1	s0513m.mul	3868	3875	atta	0.86	1	Brahmadattajātakavaṇṇanā
-cetiya-3	place	2	s0513m.mul	3868	3875	atta	0.86	1	Brahmadattajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3876	3885	atta	0.86	1	Cammasāṭakajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3886	3893	atta	0.86	1	Godharājajātakavaṇṇanā
 devadatta	about	0	s0513m.mul	3894	3901	atta	0.81	1	Kakkārujātakavaṇṇanā
 veluvana	place	0	s0513m.mul	3894	3901	atta	0.86	1	Kakkārujātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3904	3911	atta	0.86	1	Kākavatījātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3912	3919	atta	0.86	1	Ananusociyajātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	3929	3938	atta	0.81	1	Maṇikuṇḍalajātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	3929	3938	atta	0.81	1	Maṇikuṇḍalajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3929	3938	atta	0.86	1	Maṇikuṇḍalajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3939	3956	atta	0.86	1	Sujātajātakavaṇṇanā
 bhagga	place	0	s0513m.mul	3957	3968	atta	0.86	1	Venasākhajātakavaṇṇanā
 bhesakalavana-2	place	1	s0513m.mul	3957	3968	atta	0.86	1	Venasākhajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3969	3992	atta	0.86	1	Uragajātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	3993	4003	atta	0.81	1	Ghaṭajātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	3993	4003	atta	0.81	1	Ghaṭajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	3993	4003	atta	0.86	1	Ghaṭajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	4005	4014	atta	0.86	1	Koraṇḍiyajātakavaṇṇanā
 devadatta	about	0	s0513m.mul	4018	4027	atta	0.81	1	Laṭukikajātakavaṇṇanā
@@ -6759,7 +6739,6 @@ jetavana	place	0	s0513m.mul	4703	4717	atta	0.86	1	Paṇṇakajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	4719	4736	atta	0.86	1	Sattubhastajātakavaṇṇanā
 alavi-1	place	0	s0513m.mul	4737	4750	atta	0.86	1	Aṭṭhisenajātakavaṇṇanā
 aggalava	place	1	s0513m.mul	4737	4750	atta	0.86	1	Aṭṭhisenajātakavaṇṇanā
-cetiya-3	place	2	s0513m.mul	4737	4750	atta	0.86	1	Aṭṭhisenajātakavaṇṇanā
 devadatta	about	0	s0513m.mul	4753	4766	atta	0.81	1	Kapijātakavaṇṇanā
 jetavana	place	0	s0513m.mul	4753	4766	atta	0.86	1	Kapijātakavaṇṇanā
 bakabrahma	about	0	s0513m.mul	4767	4784	atta	0.81	1	Bakajātakavaṇṇanā
@@ -6774,7 +6753,7 @@ jetavana	place	0	s0513m.mul	4845	4864	atta	0.86	1	Somadattajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	4865	4878	atta	0.86	1	Susīmajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	4882	4896	atta	0.86	1	Koṭasimbalijātakavaṇṇanā
 jetavana	place	0	s0513m.mul	4915	4932	atta	0.86	1	Kaccānijātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	4933	4951	atta	0.81	1	Aṭṭhasaddajātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	4933	4951	atta	0.81	1	Aṭṭhasaddajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	4933	4951	atta	0.86	1	Aṭṭhasaddajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	4952	4969	atta	0.86	1	Sulasājātakavaṇṇanā
 jetavana	place	0	s0513m.mul	4972	4989	atta	0.86	1	Sumaṅgalajātakavaṇṇanā
@@ -6843,7 +6822,7 @@ jetavana	place	0	s0513m.mul	8127	8150	atta	0.86	1	Kāmajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	8151	8176	atta	0.86	1	Janasandhajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	8177	8201	atta	0.86	1	Mahākaṇhajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	8269	8294	atta	0.86	1	Mahāpadumajātakavaṇṇanā
-kosala-2	about	0	s0513m.mul	8294	8319	atta	0.81	1	Mittāmittajātakavaṇṇanā
+kosala-3	about	0	s0513m.mul	8294	8319	atta	0.81	1	Mittāmittajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	8294	8319	atta	0.86	1	Mittāmittajātakavaṇṇanā
 devadatta	about	0	s0513m.mul	8440	8468	atta	0.81	1	Ambajātakavaṇṇanā
 jetavana	place	0	s0513m.mul	8440	8468	atta	0.86	1	Ambajātakavaṇṇanā
@@ -6927,7 +6906,6 @@ baranasi	place	0	vin02a2.att	67	88	formula	0.9	0
 indasalaguha	place	0	s0102a.att	1201	1213	formula	0.9	1	
 savatthi	place	0	s0103a.att	174	183	formula	0.9	1	
 vesali	place	0	s0201a.att	323	355	formula	0.9	1	
-cetiya-3	place	1	s0201a.att	323	355	formula	0.9	1	
 savatthi	place	0	s0201a.att	2480	2500	formula	0.9	1	
 nagaraka	place	0	s0203a.att	429	442	formula	0.9	1	
 savatthi	place	0	s0301a.att	968	977	formula	0.9	1	
@@ -7092,6 +7070,7 @@ patacara	about	0	s0502a.att	1883	1909	formula	0.85	0
 jetavana	place	0	s0502a.att	1883	1909	formula	0.9	0	
 kisagotami	about	0	s0502a.att	1909	1923	formula	0.85	0	
 jetavana	place	0	s0502a.att	1909	1923	formula	0.9	0	
+sona	about	0	s0502a.att	1923	1935	formula	0.85	0	
 jetavana	place	0	s0502a.att	1923	1935	formula	0.9	0	
 jetavana	place	0	s0502a.att	1938	1948	formula	0.9	0	
 seyyasaka	about	0	s0502a.att	1948	1956	formula	0.85	0	
@@ -7156,7 +7135,6 @@ jetavana	place	0	s0502a.att	2470	2478	formula	0.9	0
 angulimala-1	about	0	s0502a.att	2478	2489	formula	0.85	0	
 jetavana	place	0	s0502a.att	2478	2489	formula	0.9	0	
 aggalava	place	0	s0502a.att	2489	2501	formula	0.9	0	
-cetiya-3	place	1	s0502a.att	2489	2501	formula	0.9	0	
 jetavana	place	0	s0502a.att	2501	2509	formula	0.9	0	
 jetavana	place	0	s0502a.att	2509	2525	formula	0.9	0	
 asadisadana	about	0	s0502a.att	2525	2539	formula	0.85	0	
@@ -7168,7 +7146,7 @@ ananda-2	about	0	s0502a.att	2708	2725	formula	0.85	0
 jetavana	place	0	s0502a.att	2708	2725	formula	0.9	0	
 jetavana	place	0	s0502a.att	2725	2738	formula	0.9	0	
 aggidatta	about	0	s0502a.att	2738	2758	formula	0.85	0	
-kosala-2	about	1	s0502a.att	2738	2758	formula	0.85	0	
+kosala-3	about	1	s0502a.att	2738	2758	formula	0.85	0	
 jetavana	place	0	s0502a.att	2738	2758	formula	0.9	0	
 ananda-2	about	0	s0502a.att	2758	2766	formula	0.85	0	
 jetavana	place	0	s0502a.att	2758	2766	formula	0.9	0	
@@ -7177,7 +7155,7 @@ sakka-2-2	place	0	s0502a.att	2791	2805	formula	0.9	0
 mara	about	0	s0502a.att	2805	2813	formula	0.85	0	
 pancasala	place	0	s0502a.att	2805	2813	formula	0.9	0	
 brahmanagama	place	1	s0502a.att	2805	2813	formula	0.9	0	
-kosala-2	about	0	s0502a.att	2813	2821	formula	0.85	0	
+kosala-3	about	0	s0502a.att	2813	2821	formula	0.85	0	
 jetavana	place	0	s0502a.att	2813	2821	formula	0.9	0	
 jetavana	place	0	s0502a.att	2821	2829	formula	0.9	0	
 alavi-1	place	0	s0502a.att	2829	2839	formula	0.9	0	
@@ -7200,7 +7178,6 @@ isipatana	place	0	s0502a.att	2967	2982	formula	0.9	0
 rohini-2	about	0	s0502a.att	2983	2996	formula	0.85	0	
 nigrodharama	place	0	s0502a.att	2983	2996	formula	0.9	0	
 aggalava	place	0	s0502a.att	2996	3006	formula	0.9	0	
-cetiya-3	place	1	s0502a.att	2996	3006	formula	0.9	0	
 uttara-2-10	about	0	s0502a.att	3006	3026	formula	0.85	0	
 veluvana	place	0	s0502a.att	3006	3026	formula	0.9	0	
 mahamoggallana	about	0	s0502a.att	3026	3035	formula	0.85	0	
@@ -7263,6 +7240,7 @@ jetavana	place	0	s0502a.att	3571	3583	formula	0.9	0
 veluvana	place	0	s0502a.att	3583	3603	formula	0.9	0	
 vesali	place	0	s0502a.att	3603	3619	formula	0.9	0	
 mahavana-1	place	1	s0502a.att	3603	3619	formula	0.9	0	
+citta-2-4	about	0	s0502a.att	3619	3627	formula	0.85	0	
 jetavana	place	0	s0502a.att	3619	3627	formula	0.9	0	
 cula-subhadda-2	about	0	s0502a.att	3627	3657	formula	0.85	0	
 jetavana	place	0	s0502a.att	3627	3657	formula	0.9	0	
@@ -7285,7 +7263,7 @@ savatthi	place	0	s0502a.att	3782	3807	formula	0.9	0
 jetavana	place	0	s0502a.att	3807	3819	formula	0.9	0	
 sanu-2	about	0	s0502a.att	3819	3859	formula	0.85	0	
 jetavana	place	0	s0502a.att	3819	3859	formula	0.9	0	
-kosala-2	about	0	s0502a.att	3859	3867	formula	0.85	0	
+kosala-3	about	0	s0502a.att	3859	3867	formula	0.85	0	
 jetavana	place	0	s0502a.att	3859	3867	formula	0.9	0	
 palileyyaka-1	place	0	s0502a.att	3867	3888	formula	0.9	0	
 rakkhitavanasanda	place	1	s0502a.att	3867	3888	formula	0.9	0	
@@ -7434,7 +7412,6 @@ savatthi	place	0	s0507a.att	271	290	formula	0.9	0
 savatthi	place	0	s0507a.att	290	348	formula	0.9	0	
 jetavana	place	0	s0507a.att	348	394	formula	0.9	0	
 jetavana	place	0	s0507a.att	394	434	formula	0.9	0	
-magadha-3	about	0	s0507a.att	435	511	formula	0.85	0	
 veluvana	place	0	s0507a.att	435	511	formula	0.9	0	
 sariputta	about	0	s0507a.att	511	550	formula	0.85	0	
 veluvana	place	0	s0507a.att	511	550	formula	0.9	0	
@@ -7660,7 +7637,7 @@ laludayi	about	0	s0513a1.att	2504	2515	formula	0.85	0	Naṅgalīsajātakavaṇ�
 jetavana	place	0	s0513a1.att	2504	2515	formula	0.9	0	Naṅgalīsajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	2515	2524	formula	0.9	0	Ambajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	2524	2537	formula	0.9	0	Kaṭāhakajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	2537	2549	formula	0.85	0	Asilakkhaṇajātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	2537	2549	formula	0.85	0	Asilakkhaṇajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	2537	2549	formula	0.9	0	Asilakkhaṇajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	2549	2558	formula	0.9	0	Kalaṇḍukajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	2558	2568	formula	0.9	0	Biḷāravatajātakavaṇṇanā
@@ -7724,7 +7701,7 @@ jetavana	place	0	s0513a1.att	3153	3166	formula	0.9	0	Makkaṭajātakavaṇṇan�
 devadatta	about	0	s0513a1.att	3166	3179	formula	0.85	0	Dubbhiyamakkaṭajātakavaṇṇanā
 veluvana	place	0	s0513a1.att	3166	3179	formula	0.9	0	Dubbhiyamakkaṭajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3179	3192	formula	0.9	0	Ādiccupaṭṭhānajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	3192	3205	formula	0.85	0	Kaḷāyamuṭṭhijātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	3192	3205	formula	0.85	0	Kaḷāyamuṭṭhijātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3192	3205	formula	0.9	0	Kaḷāyamuṭṭhijātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3205	3219	formula	0.9	0	Tindukajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3219	3232	formula	0.9	0	Kacchapajātakavaṇṇanā
@@ -7748,7 +7725,7 @@ jetavana	place	0	s0513a1.att	3403	3416	formula	0.9	0	Ruhakajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3419	3435	formula	0.9	0	Cūḷapadumajātakavaṇṇanā
 devadatta	about	0	s0513a1.att	3435	3452	formula	0.85	0	Maṇicorajātakavaṇṇanā
 veluvana	place	0	s0513a1.att	3435	3452	formula	0.9	0	Maṇicorajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	3452	3465	formula	0.85	0	Pabbatūpattharajātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	3452	3465	formula	0.85	0	Pabbatūpattharajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3452	3465	formula	0.9	0	Pabbatūpattharajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3465	3478	formula	0.9	0	Valāhakassajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3478	3489	formula	0.9	0	Mittāmittajātakavaṇṇanā
@@ -7771,7 +7748,7 @@ veluvana	place	0	s0513a1.att	3670	3684	formula	0.9	0	Kandagalakajātakavaṇṇa
 laludayi	about	0	s0513a1.att	3690	3709	formula	0.85	0	Somadattajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3690	3709	formula	0.9	0	Somadattajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3709	3722	formula	0.9	0	Ucchiṭṭhabhattajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	3722	3738	formula	0.85	0	Bharujātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	3722	3738	formula	0.85	0	Bharujātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3722	3738	formula	0.9	0	Bharujātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3738	3750	formula	0.9	0	Puṇṇanadījātakavaṇṇanā
 kokalika	about	0	s0513a1.att	3750	3784	formula	0.85	0	Seggujātakavaṇṇanā
@@ -7787,9 +7764,9 @@ veluvana	place	0	s0513a1.att	3882	3896	formula	0.9	0	Cūḷanandiyajātakavaṇ�
 jetavana	place	0	s0513a1.att	3896	3910	formula	0.9	0	Puṭabhattajātakavaṇṇanā
 devadatta	about	0	s0513a1.att	3910	3918	formula	0.85	0	Kumbhilajātakavaṇṇanā
 veluvana	place	0	s0513a1.att	3910	3918	formula	0.9	0	Kumbhilajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	3918	3931	formula	0.85	0	Khantivaṇṇajātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	3918	3931	formula	0.85	0	Khantivaṇṇajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3918	3931	formula	0.9	0	Khantivaṇṇajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	3931	3943	formula	0.85	0	Kosiyajātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	3931	3943	formula	0.85	0	Kosiyajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3931	3943	formula	0.9	0	Kosiyajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3943	3958	formula	0.9	0	Gūthapāṇajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	3958	3972	formula	0.9	0	Kāmanītajātakavaṇṇanā
@@ -7825,14 +7802,13 @@ jetavana	place	0	s0513a1.att	4305	4324	formula	0.9	0	Saṅkapparāgajātakavaṇ
 jetavana	place	0	s0513a1.att	4324	4351	formula	0.9	0	Tilamuṭṭhijātakavaṇṇanā
 alavi-1	place	0	s0513a1.att	4351	4368	formula	0.9	0	Maṇikaṇṭhajātakavaṇṇanā
 aggalava	place	1	s0513a1.att	4351	4368	formula	0.9	0	Maṇikaṇṭhajātakavaṇṇanā
-cetiya-3	place	2	s0513a1.att	4351	4368	formula	0.9	0	Maṇikaṇṭhajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4368	4390	formula	0.9	0	Kuṇḍakakucchisindhavajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4390	4415	formula	0.9	0	Sukajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4415	4429	formula	0.9	0	Jarūdapānajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4429	4481	formula	0.9	0	Gāmaṇicandajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4481	4499	formula	0.9	0	Mandhātujātakavaṇṇanā
 ananda-2	about	0	s0513a1.att	4499	4517	formula	0.85	0	Tirīṭavacchajātakavaṇṇanā
-kosala-2	about	1	s0513a1.att	4499	4517	formula	0.85	0	Tirīṭavacchajātakavaṇṇanā
+kosala-3	about	1	s0513a1.att	4499	4517	formula	0.85	0	Tirīṭavacchajātakavaṇṇanā
 hattha	about	2	s0513a1.att	4499	4517	formula	0.85	0	Tirīṭavacchajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4499	4517	formula	0.9	0	Tirīṭavacchajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4517	4531	formula	0.9	0	Dūtajātakavaṇṇanā
@@ -7847,7 +7823,7 @@ jetavana	place	0	s0513a1.att	4733	4750	formula	0.9	0	Ulūkajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4756	4773	formula	0.9	0	Udapānadūsakajātakavaṇṇanā
 kokalika	about	0	s0513a1.att	4773	4788	formula	0.85	0	Byagghajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4773	4788	formula	0.9	0	Byagghajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	4788	4824	formula	0.85	0	Lolajātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	4788	4824	formula	0.85	0	Lolajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4788	4824	formula	0.9	0	Lolajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4824	4836	formula	0.9	0	Rucirajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4836	4879	formula	0.9	0	Kurudhammajātakavaṇṇanā
@@ -7856,7 +7832,7 @@ jetavana	place	0	s0513a1.att	4896	4910	formula	0.9	0	Mahiṃsarājajātakavaṇ�
 jetavana	place	0	s0513a1.att	4910	4932	formula	0.9	0	Satapattajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4932	4947	formula	0.9	0	Puṭadūsakajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4952	4975	formula	0.9	0	Abbhantarajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	4975	4992	formula	0.85	0	Seyyajātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	4975	4992	formula	0.85	0	Seyyajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4975	4992	formula	0.9	0	Seyyajātakavaṇṇanā
 dhanuggahatissa	about	0	s0513a1.att	4992	5016	formula	0.85	0	Vaḍḍhakīsūkarajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	4992	5016	formula	0.9	0	Vaḍḍhakīsūkarajātakavaṇṇanā
@@ -7894,7 +7870,7 @@ mahamoggallana	about	0	s0513a1.att	5539	5561	formula	0.85	0	Pucimandajātakava�
 veluvana	place	0	s0513a1.att	5539	5561	formula	0.9	0	Pucimandajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	5561	5580	formula	0.9	0	Kassapamandiyajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	5580	5604	formula	0.9	0	Khantivādījātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	5604	5629	formula	0.85	0	Lohakumbhijātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	5604	5629	formula	0.85	0	Lohakumbhijātakavaṇṇanā
 jetavana	place	0	s0513a1.att	5604	5629	formula	0.9	0	Lohakumbhijātakavaṇṇanā
 jetavana	place	0	s0513a1.att	5629	5650	formula	0.9	0	Sabbamaṃsalābhajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	5650	5675	formula	0.9	0	Sasapaṇḍitajātakavaṇṇanā
@@ -7909,7 +7885,6 @@ jetavana	place	0	s0513a1.att	5765	5791	formula	0.9	0	Kuṭidūsakajātakavaṇ�
 jetavana	place	0	s0513a1.att	5791	5813	formula	0.9	0	Duddubhajātakavaṇṇanā
 alavi-1	place	0	s0513a1.att	5813	5831	formula	0.9	0	Brahmadattajātakavaṇṇanā
 aggalava	place	1	s0513a1.att	5813	5831	formula	0.9	0	Brahmadattajātakavaṇṇanā
-cetiya-3	place	2	s0513a1.att	5813	5831	formula	0.9	0	Brahmadattajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	5831	5851	formula	0.9	0	Cammasāṭakajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	5851	5871	formula	0.9	0	Godharājajātakavaṇṇanā
 devadatta	about	0	s0513a1.att	5871	5894	formula	0.85	0	Kakkārujātakavaṇṇanā
@@ -7921,7 +7896,7 @@ veluvana	place	0	s0513a1.att	5935	5956	formula	0.9	0	Kāḷabāhujātakavaṇṇ
 jetavana	place	0	s0513a1.att	5956	5976	formula	0.9	0	Sīlavīmaṃsajātakavaṇṇanā
 kokalika	about	0	s0513a1.att	5978	5995	formula	0.85	0	Kokilajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	5978	5995	formula	0.9	0	Kokilajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	5995	6011	formula	0.85	0	Rathalaṭṭhijātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	5995	6011	formula	0.85	0	Rathalaṭṭhijātakavaṇṇanā
 jetavana	place	0	s0513a1.att	5995	6011	formula	0.9	0	Rathalaṭṭhijātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6011	6033	formula	0.9	0	Pakkagodhajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6033	6052	formula	0.9	0	Rājovādajātakavaṇṇanā
@@ -7935,7 +7910,7 @@ jetavana	place	0	s0513a1.att	6136	6152	formula	0.9	0	Bāverujātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6152	6172	formula	0.9	0	Visayhajātakavaṇṇanā
 devadatta	about	0	s0513a1.att	6177	6192	formula	0.85	0	Vānarajātakavaṇṇanā
 veluvana	place	0	s0513a1.att	6177	6192	formula	0.9	0	Vānarajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	6192	6213	formula	0.85	0	Kuntinījātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	6192	6213	formula	0.85	0	Kuntinījātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6192	6213	formula	0.9	0	Kuntinījātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6213	6234	formula	0.9	0	Ambajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6234	6253	formula	0.9	0	Rājakumbhajātakavaṇṇanā
@@ -7943,13 +7918,13 @@ jetavana	place	0	s0513a1.att	6253	6277	formula	0.9	0	Kesavajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6277	6295	formula	0.9	0	Ayakūṭajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6295	6313	formula	0.9	0	Araññajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6313	6330	formula	0.9	0	Sandhibhedajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	6356	6375	formula	0.85	0	Maṇikuṇḍalajātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	6356	6375	formula	0.85	0	Maṇikuṇḍalajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6356	6375	formula	0.9	0	Maṇikuṇḍalajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6375	6401	formula	0.9	0	Sujātajātakavaṇṇanā
 bhagga	place	0	s0513a1.att	6401	6426	formula	0.9	0	Venasākhajātakavaṇṇanā
 bhesakalavana-2	place	1	s0513a1.att	6401	6426	formula	0.9	0	Venasākhajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6426	6463	formula	0.9	0	Uragajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	6463	6483	formula	0.85	0	Ghaṭajātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	6463	6483	formula	0.85	0	Ghaṭajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6463	6483	formula	0.9	0	Ghaṭajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	6483	6508	formula	0.9	0	Koraṇḍiyajātakavaṇṇanā
 devadatta	about	0	s0513a1.att	6508	6536	formula	0.85	0	Laṭukikajātakavaṇṇanā
@@ -8006,7 +7981,6 @@ jetavana	place	0	s0513a1.att	7797	7841	formula	0.9	0	Paṇṇakajātakavaṇṇa
 jetavana	place	0	s0513a1.att	7841	7888	formula	0.9	0	Sattubhastajātakavaṇṇanā
 alavi-1	place	0	s0513a1.att	7888	7917	formula	0.9	0	Aṭṭhisenajātakavaṇṇanā
 aggalava	place	1	s0513a1.att	7888	7917	formula	0.9	0	Aṭṭhisenajātakavaṇṇanā
-cetiya-3	place	2	s0513a1.att	7888	7917	formula	0.9	0	Aṭṭhisenajātakavaṇṇanā
 devadatta	about	0	s0513a1.att	7917	7940	formula	0.85	0	Kapijātakavaṇṇanā
 jetavana	place	0	s0513a1.att	7917	7940	formula	0.9	0	Kapijātakavaṇṇanā
 bakabrahma	about	0	s0513a1.att	7940	7980	formula	0.85	0	Bakajātakavaṇṇanā
@@ -8020,14 +7994,14 @@ ghositarama	place	1	s0513a1.att	8093	8120	formula	0.9	0	Daḷhadhammajātakava�
 jetavana	place	0	s0513a1.att	8120	8153	formula	0.9	0	Somadattajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	8153	8185	formula	0.9	0	Susīmajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	8185	8212	formula	0.9	0	Koṭasimbalijātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	8212	8238	formula	0.85	0	Dhūmakārijātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	8212	8238	formula	0.85	0	Dhūmakārijātakavaṇṇanā
 jetavana	place	0	s0513a1.att	8212	8238	formula	0.9	0	Dhūmakārijātakavaṇṇanā
 jetavana	place	0	s0513a1.att	8238	8265	formula	0.9	0	Jāgarajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	8265	8335	formula	0.9	0	Kummāsapiṇḍijātakavaṇṇanā
 devadatta	about	0	s0513a1.att	8335	8369	formula	0.85	0	Parantapajātakavaṇṇanā
 veluvana	place	0	s0513a1.att	8335	8369	formula	0.9	0	Parantapajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	8378	8419	formula	0.9	0	Kaccānijātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	8419	8460	formula	0.85	0	Aṭṭhasaddajātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	8419	8460	formula	0.85	0	Aṭṭhasaddajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	8419	8460	formula	0.9	0	Aṭṭhasaddajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	8460	8490	formula	0.9	0	Sulasājātakavaṇṇanā
 jetavana	place	0	s0513a1.att	8490	8522	formula	0.9	0	Sumaṅgalajātakavaṇṇanā
@@ -8090,7 +8064,7 @@ jetavana	place	0	s0513a1.att	10427	10476	formula	0.9	0	Kāmajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	10476	10511	formula	0.9	0	Janasandhajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	10511	10551	formula	0.9	0	Mahākaṇhajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	10557	10614	formula	0.9	0	Mahāpadumajātakavaṇṇanā
-kosala-2	about	0	s0513a1.att	10614	10650	formula	0.85	0	Mittāmittajātakavaṇṇanā
+kosala-3	about	0	s0513a1.att	10614	10650	formula	0.85	0	Mittāmittajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	10614	10650	formula	0.9	0	Mittāmittajātakavaṇṇanā
 devadatta	about	0	s0513a1.att	10657	10709	formula	0.85	0	Ambajātakavaṇṇanā
 jetavana	place	0	s0513a1.att	10657	10709	formula	0.9	0	Ambajātakavaṇṇanā

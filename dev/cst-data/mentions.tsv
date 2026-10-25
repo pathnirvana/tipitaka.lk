@@ -45,7 +45,7 @@ vin01m.mul	28	sariputta	0
 vin01m.mul	29	sariputta	0
 vin01m.mul	30	ananda-2	0
 vin01m.mul	30	gotama-1	0
-vin01m.mul	30	veranja-2	0
+vin01m.mul	30	veranja	0
 vin01m.mul	31	baranasi	0
 vin01m.mul	31	ganga-1	0
 vin01m.mul	31	kannakujja	0
@@ -55,7 +55,6 @@ vin01m.mul	31	payagapatitthana	0
 vin01m.mul	31	sankassa	0
 vin01m.mul	31	soreyya	0
 vin01m.mul	31	veranja	0
-vin01m.mul	31	veranja-2	0
 vin01m.mul	31	vesali	0
 vin01m.mul	36	kalandagama	0
 vin01m.mul	36	sudinna-2	0
@@ -233,7 +232,7 @@ vin01m.mul	534	vesali	0
 vin01m.mul	550	ananda-2	0
 vin01m.mul	733	kassapa-1	2
 vin01m.mul	735	rajagaha	0
-vin01m.mul	735	tapoda	0
+vin01m.mul	735	tapoda-2	0
 vin01m.mul	736	sobhita-4	0
 vin01m.mul	767	gijjhakuta	0
 vin01m.mul	767	kalandakanivapa	0
@@ -284,7 +283,7 @@ vin01m.mul	785	kassapa-5	0
 vin01m.mul	785	moggallana-1	0
 vin01m.mul	786	mahamoggallana	0
 vin01m.mul	786	moggallana-1	0
-vin01m.mul	786	tapoda	0
+vin01m.mul	786	tapoda-2	0
 vin01m.mul	787	bimbisara	0
 vin01m.mul	787	licchavi	0
 vin01m.mul	787	mahamoggallana	0
@@ -561,8 +560,6 @@ vin01m.mul	2116	upananda-3	0
 vin01m.mul	2117	upananda-3	0
 vin01m.mul	2118	upananda-3	0
 vin01m.mul	2119	upananda-1	0
-vin01m.mul	2119	upananda-1	2
-vin01m.mul	2119	upananda-1-2	0
 vin01m.mul	2144	aggalava	0
 vin01m.mul	2144	alavi-1	1
 vin01m.mul	2144	chabbaggiya	0
@@ -617,7 +614,6 @@ vin01m.mul	2279	savatthi	0
 vin01m.mul	2279	upananda-3	0
 vin01m.mul	2280	upananda-1	2
 vin01m.mul	2280	upananda-1	0
-vin01m.mul	2280	upananda-1-2	0
 vin01m.mul	2295	anathapindika-1	0
 vin01m.mul	2295	chabbaggiya	0
 vin01m.mul	2295	jetavana	0
@@ -1054,7 +1050,7 @@ vin02m1.mul	1090	sumsumaragira	0
 vin02m1.mul	1111	bimbisara	0
 vin02m1.mul	1111	kalandakanivapa	0
 vin02m1.mul	1111	rajagaha	0
-vin02m1.mul	1111	tapoda	0
+vin02m1.mul	1111	tapoda-2	0
 vin02m1.mul	1111	veluvana	0
 vin02m1.mul	1142	anathapindika-1	0
 vin02m1.mul	1142	jetavana	0
@@ -2113,7 +2109,7 @@ vin02m2.mul	142	mara	0
 vin02m2.mul	142	migadaya-1	0
 vin02m2.mul	142	nimmanarati	0
 vin02m2.mul	142	paranimmitavasavatti	0
-vin02m2.mul	142	tusita-2	0
+vin02m2.mul	142	tusita	0
 vin02m2.mul	142	yama	0
 vin02m2.mul	143	annasikondanna	0
 vin02m2.mul	144	bhaddiya-1	3
@@ -2400,9 +2396,9 @@ vin02m2.mul	843	devadatta	0
 vin02m2.mul	844	chabbaggiya	0
 vin02m2.mul	847	rajagaha	0
 vin02m2.mul	852	rajagaha	0
-vin02m2.mul	898	gagga-1	0
-vin02m2.mul	900	gagga-1	0
-vin02m2.mul	901	gagga-1	0
+vin02m2.mul	898	gagga	0
+vin02m2.mul	900	gagga	0
+vin02m2.mul	901	gagga	0
 vin02m2.mul	902	gagga	0
 vin02m2.mul	916	chabbaggiya	0
 vin02m2.mul	917	chabbaggiya	0
@@ -2635,11 +2631,10 @@ vin02m2.mul	1711	mahavana-1	2
 vin02m2.mul	1711	mahavana-1	0
 vin02m2.mul	1711	natika	0
 vin02m2.mul	1711	vesali	0
-vin02m2.mul	1712	licchavi-2	0
+vin02m2.mul	1712	licchavi	0
 vin02m2.mul	1715	gotama-1	0
 vin02m2.mul	1715	licchavi	0
 vin02m2.mul	1715	nataputta	0
-vin02m2.mul	1715	nigantha	0
 vin02m2.mul	1715	nigantha-2	0
 vin02m2.mul	1715	siha-2	0
 vin02m2.mul	1716	gotama-1	0
@@ -2715,12 +2710,15 @@ vin02m2.mul	1762	ananda-2	0
 vin02m2.mul	1762	kosinaraka	0
 vin02m2.mul	1762	kusinara	0
 vin02m2.mul	1762	malla	0
-vin02m2.mul	1762	roja-2	0
-vin02m2.mul	1763	roja-2	0
+vin02m2.mul	1762	roja	0
+vin02m2.mul	1762	roja-1	0
+vin02m2.mul	1763	roja	0
+vin02m2.mul	1763	roja-1	0
 vin02m2.mul	1764	ananda-2	1
 vin02m2.mul	1764	ananda-2	0
 vin02m2.mul	1764	kusinara	0
-vin02m2.mul	1764	roja-2	0
+vin02m2.mul	1764	roja	0
+vin02m2.mul	1764	roja-1	0
 vin02m2.mul	1767	atuma	0
 vin02m2.mul	1767	kusinara	0
 vin02m2.mul	1768	atuma	0
@@ -2747,7 +2745,7 @@ vin02m2.mul	2028	veluvana	0
 vin02m2.mul	2028	vesali	0
 vin02m2.mul	2029	bimbisara	0
 vin02m2.mul	2029	rajagaha	0
-vin02m2.mul	2029	salavati-1	0
+vin02m2.mul	2029	salavatika	0
 vin02m2.mul	2029	vesali	0
 vin02m2.mul	2030	abhaya-4	0
 vin02m2.mul	2030	jivaka	0
@@ -2853,7 +2851,7 @@ vin02m2.mul	2173	belatthasisa	0
 vin02m2.mul	2174	visakha-1	2
 vin02m2.mul	2174	visakha-1	0
 vin02m2.mul	2175	ananda-2	0
-vin02m2.mul	2175	roja-2	0
+vin02m2.mul	2175	roja-1	0
 vin02m2.mul	2181	mahakassapa	0
 vin02m2.mul	2187	andhavana-1	0
 vin02m2.mul	2188	ananda-2	0
@@ -3415,10 +3413,10 @@ vin02m3.mul	994	dabba-1-2	0
 vin02m3.mul	994	dabba-mallaputta-thera	0
 vin02m3.mul	995	dabba-1-2	0
 vin02m3.mul	995	dabba-mallaputta-thera	0
-vin02m3.mul	998	gagga-1	0
+vin02m3.mul	998	gagga	0
 vin02m3.mul	999	gagga	0
-vin02m3.mul	1000	gagga-1	0
-vin02m3.mul	1001	gagga-1	0
+vin02m3.mul	1000	gagga	0
+vin02m3.mul	1001	gagga	0
 vin02m3.mul	1003	gagga	0
 vin02m3.mul	1013	chabbaggiya	0
 vin02m3.mul	1029	upavala	0
@@ -3469,7 +3467,8 @@ vin02m3.mul	1239	nigantha-2	0
 vin02m3.mul	1239	pakudha	0
 vin02m3.mul	1239	purana-1	0
 vin02m3.mul	1239	sancaya-2-1	0
-vin02m3.mul	1240	bharadvaja-3-2	0
+vin02m3.mul	1240	bharadvaja-1	4
+vin02m3.mul	1240	bharadvaja-1	0
 vin02m3.mul	1240	mahamoggallana	0
 vin02m3.mul	1240	moggallana-1	0
 vin02m3.mul	1240	pindolabharadvaja	0
@@ -3536,15 +3535,18 @@ vin02m3.mul	1317	licchavi	0
 vin02m3.mul	1318	licchavi	0
 vin02m3.mul	1319	bhagga	0
 vin02m3.mul	1319	bhesakalavana-2	0
+vin02m3.mul	1319	bodhi-4	0
 vin02m3.mul	1319	gotama-1	0
 vin02m3.mul	1319	kokanada-2	0
 vin02m3.mul	1319	migadaya-2	0
 vin02m3.mul	1319	sanjikaputta	0
 vin02m3.mul	1319	susumaragira	0
 vin02m3.mul	1319	vesali	0
+vin02m3.mul	1320	bodhi-4	1
 vin02m3.mul	1320	gotama-1	0
 vin02m3.mul	1320	kokanada	0
 vin02m3.mul	1321	ananda-2	0
+vin02m3.mul	1321	bodhi-4	0
 vin02m3.mul	1321	kokanada-2	0
 vin02m3.mul	1322	kokanada-2	0
 vin02m3.mul	1326	anathapindika-1	0
@@ -3801,7 +3803,7 @@ vin02m3.mul	1884	ananda-2	0
 vin02m3.mul	1884	devadatta	0
 vin02m3.mul	1889	devadatta	0
 vin02m3.mul	1889	gotama-1	0
-vin02m3.mul	1889	nalagiri-2	0
+vin02m3.mul	1889	nalagiri	0
 vin02m3.mul	1889	rajagaha	0
 vin02m3.mul	1890	nalagiri	0
 vin02m3.mul	1895	nalagiri	0
@@ -4189,7 +4191,7 @@ vin02m3.mul	2773	vesali	0
 vin02m3.mul	2774	ananda-2	0
 vin02m3.mul	2774	revata-1	2
 vin02m3.mul	2774	sabbakami	0
-vin02m3.mul	2774	sambhuta-3	0
+vin02m3.mul	2774	sambhuta-2	0
 vin02m3.mul	2774	vesali	0
 vin02m3.mul	2775	metta-theri	0
 vin02m3.mul	2775	revata-1	2
@@ -4385,7 +4387,6 @@ vin02m4.mul	150	upananda-3	0
 vin02m4.mul	151	savatthi	0
 vin02m4.mul	151	upananda-3	0
 vin02m4.mul	152	savatthi	0
-vin02m4.mul	152	upananda-1-2	0
 vin02m4.mul	152	upananda-3	0
 vin02m4.mul	155	alavi-1	1
 vin02m4.mul	155	chabbaggiya	0
@@ -4403,7 +4404,6 @@ vin02m4.mul	162	upananda-3	0
 vin02m4.mul	163	chabbaggiya	0
 vin02m4.mul	163	savatthi	0
 vin02m4.mul	164	savatthi	0
-vin02m4.mul	164	upananda-1-2	0
 vin02m4.mul	164	upananda-3	0
 vin02m4.mul	167	chabbaggiya	0
 vin02m4.mul	167	savatthi	0
@@ -5915,14 +5915,14 @@ s0101m.mul	688	gotama-1	0
 s0101m.mul	688	jaliya	0
 s0101m.mul	688	kosambi	0
 s0101m.mul	688	mahali	0
-s0101m.mul	688	mandissa	0
+s0101m.mul	688	mundiya-2	0
 s0101m.mul	689	licchavi	0
 s0101m.mul	689	otthaddha	0
 s0101m.mul	693	ghositarama	0
 s0101m.mul	693	gotama-1	0
 s0101m.mul	693	jaliya	0
 s0101m.mul	693	kosambi	0
-s0101m.mul	693	mandissa	0
+s0101m.mul	693	mundiya-2	0
 s0101m.mul	699	gotama-1	0
 s0101m.mul	699	kannakatthala	0
 s0101m.mul	699	kassapa-1	2
@@ -6185,7 +6185,7 @@ s0101m.mul	941	sakka-2	0
 s0101m.mul	941	santussita-1	0
 s0101m.mul	941	sunimmita-2	0
 s0101m.mul	941	suyama	0
-s0101m.mul	941	tusita-2	0
+s0101m.mul	941	tusita	0
 s0101m.mul	941	yama	0
 s0101m.mul	942	kevatta-2	0
 s0101m.mul	942	vasavatti-2	0
@@ -6205,7 +6205,7 @@ s0101m.mul	966	salavatika	0
 s0101m.mul	967	lohicca	0
 s0101m.mul	968	gotama-1	0
 s0101m.mul	968	lohicca	0
-s0101m.mul	968	salavatika-2	0
+s0101m.mul	968	salavatika	0
 s0101m.mul	969	gotama-1	0
 s0101m.mul	969	lohicca	0
 s0101m.mul	969	rosika	0
@@ -6222,7 +6222,7 @@ s0101m.mul	973	salavatika	0
 s0101m.mul	974	lohicca	0
 s0101m.mul	976	gotama-1	0
 s0101m.mul	976	lohicca	0
-s0101m.mul	976	salavatika-2	0
+s0101m.mul	976	salavatika	0
 s0101m.mul	977	gotama-1	0
 s0101m.mul	977	lohicca	0
 s0101m.mul	978	gotama-1	0
@@ -6232,7 +6232,7 @@ s0101m.mul	978	pasenadi	0
 s0101m.mul	979	gotama-1	0
 s0101m.mul	979	lohicca	0
 s0101m.mul	980	lohicca	0
-s0101m.mul	980	salavatika-2	0
+s0101m.mul	980	salavatika	0
 s0101m.mul	981	kasikosala	0
 s0101m.mul	981	lohicca	0
 s0101m.mul	981	pasenadi	0
@@ -6248,7 +6248,7 @@ s0101m.mul	992	aciravati	0
 s0101m.mul	992	manasakata	0
 s0101m.mul	993	canki-1	0
 s0101m.mul	993	janusoni	0
-s0101m.mul	993	manasakata-2	0
+s0101m.mul	993	manasakata	0
 s0101m.mul	993	pokkharasati	0
 s0101m.mul	993	tarukkha	0
 s0101m.mul	993	todeyya	0
@@ -6649,7 +6649,7 @@ s0102m.mul	190	purohitaputta-2	0
 s0102m.mul	190	vipassi-1	0
 s0102m.mul	192	bandhumati-1	0
 s0102m.mul	192	khanda-5	0
-s0102m.mul	192	khema-5-2	0
+s0102m.mul	192	khema-4	0
 s0102m.mul	192	migadaya-1	1
 s0102m.mul	192	migadaya-1	0
 s0102m.mul	192	purohitaputta-2	0
@@ -6658,7 +6658,7 @@ s0102m.mul	193	vipassi-1	0
 s0102m.mul	194	vipassi-1	0
 s0102m.mul	195	vipassi-1	0
 s0102m.mul	197	bandhumati-1	0
-s0102m.mul	197	khema-5-2	0
+s0102m.mul	197	khema-4	0
 s0102m.mul	197	migadaya-1	1
 s0102m.mul	197	migadaya-1	0
 s0102m.mul	197	vipassi-1	0
@@ -7524,15 +7524,15 @@ s0102m.mul	747	janavasabha	0
 s0102m.mul	748	ananda-2	1
 s0102m.mul	748	bimbisara	0
 s0102m.mul	748	janavasabha	0
-s0102m.mul	748	vessavana-2	0
+s0102m.mul	748	vessavana	0
 s0102m.mul	751	ginjakavasatha	0
 s0102m.mul	751	janavasabha	0
-s0102m.mul	751	vessavana-2	0
+s0102m.mul	751	vessavana	0
 s0102m.mul	751	virulhaka	0
 s0102m.mul	753	dhatarattha-2	0
 s0102m.mul	753	sakka-2	0
 s0102m.mul	753	tavatimsa	0
-s0102m.mul	753	vessavana-2	0
+s0102m.mul	753	vessavana	0
 s0102m.mul	753	virulhaka	0
 s0102m.mul	753	virupakkha-2	0
 s0102m.mul	765	sakka-2	0
@@ -7547,7 +7547,7 @@ s0102m.mul	781	nimmanaratino	0
 s0102m.mul	781	paranimmitavasavatti	0
 s0102m.mul	781	sanankumara	0
 s0102m.mul	781	tavatimsa	0
-s0102m.mul	781	tusita-2	0
+s0102m.mul	781	tusita	0
 s0102m.mul	782	sanankumara	0
 s0102m.mul	787	sakka-2	0
 s0102m.mul	787	sanankumara	0
@@ -7559,10 +7559,10 @@ s0102m.mul	794	tavatimsa	0
 s0102m.mul	796	sanankumara	0
 s0102m.mul	796	tavatimsa	0
 s0102m.mul	802	sanankumara	0
-s0102m.mul	802	vessavana-2	0
+s0102m.mul	802	vessavana	0
 s0102m.mul	803	sanankumara	0
 s0102m.mul	803	tavatimsa	0
-s0102m.mul	803	vessavana-2	0
+s0102m.mul	803	vessavana	0
 s0102m.mul	804	ananda-2	0
 s0102m.mul	804	janavasabha	0
 s0102m.mul	804	vessavana	0
@@ -7571,7 +7571,7 @@ s0102m.mul	807	pancasikha-1	0
 s0102m.mul	807	rajagaha	0
 s0102m.mul	807	tavatimsa	0
 s0102m.mul	809	dhatarattha-2	0
-s0102m.mul	809	vessavana-2	0
+s0102m.mul	809	vessavana	0
 s0102m.mul	809	virulhaka	0
 s0102m.mul	809	virupakkha-2	0
 s0102m.mul	811	sakka-2	0
@@ -7780,27 +7780,27 @@ s0102m.mul	1107	paramatta	0
 s0102m.mul	1107	subrahma-1	1
 s0102m.mul	1108	sanankumara	0
 s0102m.mul	1112	harita-1	0
-s0102m.mul	1130	ambasanda-2	0
+s0102m.mul	1130	ambasanda	0
 s0102m.mul	1130	indasalaguha	0
 s0102m.mul	1130	magadha	0
 s0102m.mul	1130	rajagaha	0
 s0102m.mul	1130	sakka-2	0
 s0102m.mul	1130	tavatimsa	0
-s0102m.mul	1130	vediya	0
-s0102m.mul	1131	ambasanda-2	0
+s0102m.mul	1130	vediyaka	0
+s0102m.mul	1131	ambasanda	0
 s0102m.mul	1131	indasalaguha	0
 s0102m.mul	1131	magadha	0
 s0102m.mul	1131	pancasikha-1	0
 s0102m.mul	1131	rajagaha	0
 s0102m.mul	1131	sakka-2	0
-s0102m.mul	1131	vediya	0
-s0102m.mul	1132	ambasanda-2	0
+s0102m.mul	1131	vediyaka	0
+s0102m.mul	1132	ambasanda	0
 s0102m.mul	1132	magadha	0
 s0102m.mul	1132	pancasikha-1	0
 s0102m.mul	1132	rajagaha	0
 s0102m.mul	1132	sakka-2	0
 s0102m.mul	1132	tavatimsa	0
-s0102m.mul	1132	vediya	0
+s0102m.mul	1132	vediyaka	0
 s0102m.mul	1133	indasalaguha	0
 s0102m.mul	1133	pancasikha-1	0
 s0102m.mul	1133	sakka-2	0
@@ -7834,9 +7834,9 @@ s0102m.mul	1174	sakka-2	0
 s0102m.mul	1174	salalagaraka	0
 s0102m.mul	1174	savatthi	0
 s0102m.mul	1174	tavatimsa	0
-s0102m.mul	1174	vessavana-2	0
+s0102m.mul	1174	vessavana	0
 s0102m.mul	1176	gopaka-4	0
-s0102m.mul	1176	gopi	0
+s0102m.mul	1176	gopika-1	0
 s0102m.mul	1176	kapilavatthu	0
 s0102m.mul	1176	sakka-2	0
 s0102m.mul	1176	tavatimsa	0
@@ -7953,7 +7953,7 @@ s0102m.mul	1545	kassapa-1	2
 s0102m.mul	1547	payasi-2	0
 s0102m.mul	1547	uttara-2-04	0
 s0102m.mul	1548	payasi-2	0
-s0102m.mul	1548	serissaka-2	0
+s0102m.mul	1548	serisaka-2	0
 s0102m.mul	1548	tavatimsa	0
 s0102m.mul	1548	uttara-2-04	0
 s0102m.mul	1550	gavampati-2	0
@@ -7964,7 +7964,7 @@ s0102m.mul	1550	tavatimsa	0
 s0102m.mul	1550	uttara-2-04	0
 s0102m.mul	1551	gavampati-2	0
 s0102m.mul	1551	payasi-2	0
-s0102m.mul	1551	serissaka-2	0
+s0102m.mul	1551	serisaka-2	0
 s0102m.mul	1551	tavatimsa	0
 s0102m.mul	1551	uttara-2-04	0
 s0102m.mul	1556	govinda	0
@@ -7988,7 +7988,7 @@ s0103m.mul	13	sunakkhatta-2	0
 s0103m.mul	14	bhaggava-1	0
 s0103m.mul	14	sunakkhatta-2	0
 s0103m.mul	16	bhaggava-1	0
-s0103m.mul	16	korakkhatta	0
+s0103m.mul	16	korakkhattiya	0
 s0103m.mul	16	sunakkhatta-2	0
 s0103m.mul	16	thulu	0
 s0103m.mul	16	uttaraka	0
@@ -8524,8 +8524,8 @@ s0103m.mul	905	singalaka-2	0
 s0103m.mul	1019	singalaka-2	0
 s0103m.mul	1023	gijjhakuta	0
 s0103m.mul	1023	rajagaha	0
-s0103m.mul	1024	vessavana-2	0
-s0103m.mul	1025	vessavana-2	0
+s0103m.mul	1024	vessavana	0
+s0103m.mul	1025	vessavana	0
 s0103m.mul	1026	vipassi-1	0
 s0103m.mul	1027	sikhi-3	1
 s0103m.mul	1028	vessabhu-1	1
@@ -8554,14 +8554,14 @@ s0103m.mul	1113	alakamanda	0
 s0103m.mul	1114	kuvera	0
 s0103m.mul	1114	visana	0
 s0103m.mul	1115	kuvera	0
-s0103m.mul	1115	vessavana-2	0
+s0103m.mul	1115	vessavana	0
 s0103m.mul	1116	tatola	0
 s0103m.mul	1116	tatotala	0
 s0103m.mul	1116	tattala	0
 s0103m.mul	1117	ojasi	0
 s0103m.mul	1117	tatojasi	0
 s0103m.mul	1117	tejasi	0
-s0103m.mul	1119	salavati-1	0
+s0103m.mul	1119	salavatika	0
 s0103m.mul	1129	kuvera	0
 s0103m.mul	1138	gotama-1	0
 s0103m.mul	1139	gotama-1	0
@@ -8597,7 +8597,7 @@ s0103m.mul	1152	dadhimukha	0
 s0103m.mul	1152	manivara	0
 s0103m.mul	1152	serisaka-2	0
 s0103m.mul	1158	gijjhakuta	0
-s0103m.mul	1159	vessavana-2	0
+s0103m.mul	1159	vessavana	0
 s0103m.mul	1160	vipassi-1	0
 s0103m.mul	1161	sikhi-3	1
 s0103m.mul	1162	vessabhu-1	1
@@ -8627,7 +8627,7 @@ s0103m.mul	1249	alakamanda	0
 s0103m.mul	1250	kuvera	0
 s0103m.mul	1250	visana	0
 s0103m.mul	1251	kuvera	0
-s0103m.mul	1251	vessavana-2	0
+s0103m.mul	1251	vessavana	0
 s0103m.mul	1252	tatola	0
 s0103m.mul	1252	tatotala	0
 s0103m.mul	1252	tattala	0
@@ -8635,7 +8635,7 @@ s0103m.mul	1253	arittha-1-3	0
 s0103m.mul	1253	ojasi	0
 s0103m.mul	1253	tatojasi	0
 s0103m.mul	1253	tejasi	0
-s0103m.mul	1255	salavati-1	0
+s0103m.mul	1255	salavatika	0
 s0103m.mul	1265	kuvera	0
 s0103m.mul	1274	gotama-1	0
 s0103m.mul	1275	gotama-1	0
@@ -8695,7 +8695,7 @@ s0103m.mul	1381	paranimmitavasavatti	0
 s0103m.mul	1382	abhassara	0
 s0103m.mul	1382	subhakinha-1	0
 s0103m.mul	1382	tusita	0
-s0103m.mul	1485	aviha	0
+s0103m.mul	1485	aviha-1	0
 s0103m.mul	1485	sudassa	0
 s0103m.mul	1485	sudassi	0
 s0103m.mul	1485	suddhavasa-1	0
@@ -8978,11 +8978,10 @@ s0201m.mul	549	khara-3	0
 s0201m.mul	549	mahanama-1	2
 s0201m.mul	549	mahanama-1	0
 s0201m.mul	549	nataputta	0
-s0201m.mul	549	nigantha	0
 s0201m.mul	549	nigantha-2	0
 s0201m.mul	549	rajagaha	0
 s0201m.mul	550	mahanama-1	2
-s0201m.mul	550	nigantha	0
+s0201m.mul	550	nigantha-2	0
 s0201m.mul	551	bimbisara	0
 s0201m.mul	551	gotama-1	0
 s0201m.mul	552	bimbisara	0
@@ -9294,7 +9293,7 @@ s0201m.mul	1118	nandiya	0
 s0201m.mul	1118	nimmanarati	0
 s0201m.mul	1118	parajana-1	0
 s0201m.mul	1118	paranimmitavasavatti	0
-s0201m.mul	1118	tusita-2	0
+s0201m.mul	1118	tusita	0
 s0201m.mul	1118	vajji-1	0
 s0201m.mul	1118	yama	0
 s0201m.mul	1120	parajana-1	0
@@ -9366,7 +9365,7 @@ s0201m.mul	1140	anathapindika-1	0
 s0201m.mul	1140	jetavana	0
 s0201m.mul	1140	savatthi	0
 s0201m.mul	1170	ganga-1	0
-s0201m.mul	1170	ukkacela-2	0
+s0201m.mul	1170	ukkacela	0
 s0201m.mul	1170	vajji-1	0
 s0201m.mul	1171	ganga-1	0
 s0201m.mul	1171	suvideha	0
@@ -9611,7 +9610,7 @@ s0201m.mul	1428	gotama-1	0
 s0201m.mul	1456	nimmanaratino	0
 s0201m.mul	1456	paranimmitavasavatti	0
 s0201m.mul	1456	tavatimsa	0
-s0201m.mul	1456	tusita-2	0
+s0201m.mul	1456	tusita	0
 s0201m.mul	1458	abhassara	0
 s0201m.mul	1458	appamanasubha	0
 s0201m.mul	1458	parittasubha	0
@@ -9628,7 +9627,7 @@ s0201m.mul	1466	gotama-1	0
 s0201m.mul	1480	nimmanaratino	0
 s0201m.mul	1480	paranimmitavasavatti	0
 s0201m.mul	1480	tavatimsa	0
-s0201m.mul	1480	tusita-2	0
+s0201m.mul	1480	tusita	0
 s0201m.mul	1482	abhassara	0
 s0201m.mul	1482	appamanasubha	0
 s0201m.mul	1482	parittasubha	0
@@ -9818,7 +9817,7 @@ s0202m.mul	5	gaggara-1	0
 s0202m.mul	5	gotama-1	0
 s0202m.mul	5	hattharohaputta-2	0
 s0202m.mul	5	kandaraka	0
-s0202m.mul	5	pessa	0
+s0202m.mul	5	pessa-2	0
 s0202m.mul	6	kandaraka	0
 s0202m.mul	7	kandaraka	0
 s0202m.mul	8	campa	0
@@ -9829,8 +9828,8 @@ s0202m.mul	11	hattharohaputta-2	0
 s0202m.mul	11	pessa-2	0
 s0202m.mul	12	hattharohaputta-2	0
 s0202m.mul	12	pessa-2	0
-s0202m.mul	29	ananda	0
 s0202m.mul	29	ananda-2	0
+s0202m.mul	29	ananda-9	0
 s0202m.mul	29	beluvagamaka	0
 s0202m.mul	29	kukkutarama	0
 s0202m.mul	29	pataliputta	0
@@ -10044,7 +10043,6 @@ s0202m.mul	249	abhaya-4	0
 s0202m.mul	249	devadatta	0
 s0202m.mul	249	gotama-1	0
 s0202m.mul	249	nataputta	0
-s0202m.mul	249	nigantha	0
 s0202m.mul	249	nigantha-2	0
 s0202m.mul	250	abhaya-4	0
 s0202m.mul	257	abhaya-4	0
@@ -10087,7 +10085,7 @@ s0202m.mul	283	ganga-1	0
 s0202m.mul	284	ganga-1	0
 s0202m.mul	286	ganga-1	0
 s0202m.mul	301	gotama-1	0
-s0202m.mul	305	potaliya-1	0
+s0202m.mul	305	potana	0
 s0202m.mul	309	ambalatthika	0
 s0202m.mul	309	kalandakanivapa	0
 s0202m.mul	309	rahula	0
@@ -10910,11 +10908,14 @@ s0202m.mul	937	kaccana	0
 s0202m.mul	937	mahakaccana	0
 s0202m.mul	940	bhagga	0
 s0202m.mul	940	bhesakalavana-2	0
+s0202m.mul	940	bodhi-4	0
 s0202m.mul	940	gotama-1	0
 s0202m.mul	940	kokanada-2	0
 s0202m.mul	940	migadaya-2	0
 s0202m.mul	940	sanjikaputta	0
 s0202m.mul	940	susumaragira	0
+s0202m.mul	941	bodhi-4	1
+s0202m.mul	941	bodhi-4	0
 s0202m.mul	941	gotama-1	0
 s0202m.mul	941	kokanada	0
 s0202m.mul	941	kokanada-2	0
@@ -11408,14 +11409,14 @@ s0202m.mul	1430	gotama-1	0
 s0202m.mul	1432	esukari-1	0
 s0202m.mul	1432	gotama-1	0
 s0202m.mul	1435	dakkhinagiri-2	0
-s0202m.mul	1435	dhananjani-1-2	0
+s0202m.mul	1435	dhananjani-1	0
 s0202m.mul	1435	kalandakanivapa	0
 s0202m.mul	1435	rajagaha	0
 s0202m.mul	1435	sariputta	0
 s0202m.mul	1435	tandulapalidvara	0
 s0202m.mul	1435	veluvana	0
 s0202m.mul	1436	dakkhinagiri-2	0
-s0202m.mul	1436	dhananjani-1-2	0
+s0202m.mul	1436	dhananjani-1	0
 s0202m.mul	1436	kalandakanivapa	0
 s0202m.mul	1436	rajagaha	0
 s0202m.mul	1436	sariputta	0
@@ -11592,7 +11593,7 @@ s0202m.mul	1644	pasenadi	0
 s0202m.mul	1647	cancalikappa	0
 s0202m.mul	1647	dhananjani-1	0
 s0202m.mul	1648	cancalikappa	0
-s0202m.mul	1648	dhananjani	0
+s0202m.mul	1648	dhananjani-1	0
 s0202m.mul	1648	gotama-1	0
 s0202m.mul	1648	sangarava	0
 s0202m.mul	1649	cancalikappa	0
@@ -11601,7 +11602,7 @@ s0202m.mul	1649	sangarava	0
 s0202m.mul	1649	todeyya	0
 s0202m.mul	1650	bharadvaja-1	4
 s0202m.mul	1650	bharadvaja-1	0
-s0202m.mul	1650	dhananjani	0
+s0202m.mul	1650	dhananjani-1	0
 s0202m.mul	1650	gotama-1	0
 s0202m.mul	1650	sangarava	0
 s0202m.mul	1651	alara	0
@@ -12009,14 +12010,14 @@ s0203m.mul	506	jetavana	0
 s0203m.mul	506	savatthi	0
 s0203m.mul	510	nimmanaratino	0
 s0203m.mul	510	paranimmitavasavatti	0
-s0203m.mul	510	tusita-2	0
+s0203m.mul	510	tusita	0
 s0203m.mul	510	yama	0
 s0203m.mul	515	abhassara	0
 s0203m.mul	515	appamanabha	0
 s0203m.mul	515	parittabha	0
 s0203m.mul	516	parittasubha	0
 s0203m.mul	516	subhakinha-1	0
-s0203m.mul	517	aviha	0
+s0203m.mul	517	aviha-1	0
 s0203m.mul	517	sudassa	0
 s0203m.mul	517	sudassi	0
 s0203m.mul	517	vehapphala-1	0
@@ -12303,11 +12304,9 @@ s0203m.mul	888	ananda-2	0
 s0203m.mul	891	ananda-2	1
 s0203m.mul	894	rajagaha	0
 s0203m.mul	894	samiddhi-2	0
-s0203m.mul	894	tapoda	0
 s0203m.mul	894	tapoda-2	0
 s0203m.mul	894	tapodarama	0
 s0203m.mul	895	samiddhi-2	0
-s0203m.mul	896	tapoda	0
 s0203m.mul	896	tapoda-2	0
 s0203m.mul	897	samiddhi-2	0
 s0203m.mul	916	mahakaccana	0
@@ -12323,7 +12322,7 @@ s0203m.mul	941	mahakaccana	0
 s0203m.mul	953	mahakaccana	0
 s0203m.mul	954	mahakaccana	0
 s0203m.mul	958	anathapindika-1	0
-s0203m.mul	958	candana-2-2	0
+s0203m.mul	958	candana-2	0
 s0203m.mul	958	jetavana	0
 s0203m.mul	958	kapilavatthu	0
 s0203m.mul	958	lomasakangiya	0
@@ -12403,6 +12402,7 @@ s0203m.mul	1098	anathapindika-1	0
 s0203m.mul	1098	jetavana	0
 s0203m.mul	1098	savatthi	0
 s0203m.mul	1128	subhuti-1	0
+s0203m.mul	1132	bhaggava-1	0
 s0203m.mul	1132	bhaggava-1-2	0
 s0203m.mul	1132	magadha	0
 s0203m.mul	1132	rajagaha	0
@@ -12639,13 +12639,13 @@ s0301m.mul	94	savatthi	0
 s0301m.mul	104	savatthi	0
 s0301m.mul	150	rajagaha	0
 s0301m.mul	150	samiddhi-2	0
-s0301m.mul	150	tapoda	0
+s0301m.mul	150	tapoda-2	0
 s0301m.mul	150	tapodarama	0
 s0301m.mul	155	samiddhi-2	0
 s0301m.mul	158	rajagaha	0
 s0301m.mul	158	tapodarama	0
 s0301m.mul	159	samiddhi-2	0
-s0301m.mul	160	tapoda	0
+s0301m.mul	160	tapoda-2	0
 s0301m.mul	168	rajagaha	0
 s0301m.mul	168	tapodarama	0
 s0301m.mul	170	samiddhi-2	0
@@ -12771,7 +12771,7 @@ s0301m.mul	926	tayana-1	0
 s0301m.mul	927	jetavana	0
 s0301m.mul	927	tayana-1	0
 s0301m.mul	938	tayana-1	0
-s0301m.mul	940	candima-2	0
+s0301m.mul	940	candimasa	0
 s0301m.mul	940	rahu-1	0
 s0301m.mul	940	savatthi	0
 s0301m.mul	943	candima-2	0
@@ -13153,7 +13153,7 @@ s0301m.mul	1718	papimant-3	0
 s0301m.mul	1718	rajagaha	0
 s0301m.mul	1735	mara	0
 s0301m.mul	1735	papimant-3	0
-s0301m.mul	1737	ekasala-2	0
+s0301m.mul	1737	ekasala	0
 s0301m.mul	1738	gotama-1	0
 s0301m.mul	1738	mara	0
 s0301m.mul	1738	papimant-3	0
@@ -13186,9 +13186,9 @@ s0301m.mul	1767	papimant-3	0
 s0301m.mul	1769	gotama-1	0
 s0301m.mul	1769	magadha	0
 s0301m.mul	1769	mara	0
-s0301m.mul	1769	pancasala-2	0
+s0301m.mul	1769	pancasala	0
 s0301m.mul	1770	mara	0
-s0301m.mul	1770	pancasala-2	0
+s0301m.mul	1770	pancasala	0
 s0301m.mul	1770	papimant-3	0
 s0301m.mul	1771	mara	0
 s0301m.mul	1772	papimant-3	0
@@ -13516,7 +13516,7 @@ s0301m.mul	2305	ananda-2	0
 s0301m.mul	2308	anuruddha-1	0
 s0301m.mul	2315	arunavati	0
 s0301m.mul	2315	devadatta	0
-s0301m.mul	2321	dhananjani-1-2	0
+s0301m.mul	2321	dhananjani-1	0
 s0301m.mul	2321	kalandakanivapa	0
 s0301m.mul	2321	rajagaha	0
 s0301m.mul	2321	veluvana	0
@@ -13545,7 +13545,8 @@ s0301m.mul	2349	veluvana	0
 s0301m.mul	2358	asurindakabharadvaja	0
 s0301m.mul	2358	bharadvaja-1	4
 s0301m.mul	2358	gotama-1	0
-s0301m.mul	2360	bharadvaja-3-2	0
+s0301m.mul	2360	bharadvaja-1	4
+s0301m.mul	2360	bharadvaja-1	0
 s0301m.mul	2360	bilangika-1	0
 s0301m.mul	2360	bilangikabharadvaja	0
 s0301m.mul	2360	gotama-1	0
@@ -16205,7 +16206,7 @@ s0304m.mul	1562	sariputta	0
 s0304m.mul	1571	ganga-1	0
 s0304m.mul	1571	samandaka	0
 s0304m.mul	1571	sariputta	0
-s0304m.mul	1571	ukkacela-2	0
+s0304m.mul	1571	ukkacela	0
 s0304m.mul	1571	vajji-1	0
 s0304m.mul	1572	sariputta	0
 s0304m.mul	1573	sariputta	0
@@ -16884,7 +16885,7 @@ s0305m.mul	951	sariputta	0
 s0305m.mul	952	ananda-2	0
 s0305m.mul	954	ganga-1	0
 s0305m.mul	954	sariputtamoggallana-2	0
-s0305m.mul	954	ukkacela-2	0
+s0305m.mul	954	ukkacela	0
 s0305m.mul	954	vajji-1	0
 s0305m.mul	955	sariputtamoggallana-2	0
 s0305m.mul	958	bahiya-1	1
@@ -18034,7 +18035,7 @@ s0402m2.mul	755	visakha-1	2
 s0402m2.mul	763	visakha-1	2
 s0402m2.mul	763	visakha-1	0
 s0402m2.mul	764	assaka	0
-s0402m2.mul	764	avanti-3	0
+s0402m2.mul	764	avanti-1	1
 s0402m2.mul	764	ceti	0
 s0402m2.mul	764	gandhara-1	0
 s0402m2.mul	764	kamboja	0
@@ -18055,7 +18056,7 @@ s0402m2.mul	766	visakha-1	2
 s0402m2.mul	766	visakha-1	0
 s0402m2.mul	767	visakha-1	2
 s0402m2.mul	767	visakha-1	0
-s0402m2.mul	768	tusita-2	0
+s0402m2.mul	768	tusita	0
 s0402m2.mul	768	visakha-1	2
 s0402m2.mul	768	visakha-1	0
 s0402m2.mul	769	nimmanaratino	0
@@ -18149,7 +18150,7 @@ s0402m2.mul	860	nimmanaratino	0
 s0402m2.mul	860	paranimmitavasavatti	0
 s0402m2.mul	860	pubbavideha	0
 s0402m2.mul	860	tavatimsa	0
-s0402m2.mul	860	tusita-2	0
+s0402m2.mul	860	tusita	0
 s0402m2.mul	860	uttarakuru	0
 s0402m2.mul	863	ananda-2	1
 s0402m2.mul	864	ananda-2	1
@@ -18367,7 +18368,7 @@ s0402m3.mul	859	ananda-2	1
 s0402m3.mul	859	ananda-2	0
 s0402m3.mul	859	kamboja	0
 s0402m3.mul	863	kamboja	0
-s0402m3.mul	962	potaliya-1	0
+s0402m3.mul	962	potana	0
 s0402m3.mul	963	potaliya-1	0
 s0402m3.mul	964	gotama-1	0
 s0402m3.mul	965	potaliya-1	0
@@ -18993,7 +18994,7 @@ s0403m1.mul	1319	karanapali	0
 s0403m1.mul	1319	kutagarasala-2	0
 s0403m1.mul	1319	licchavi	0
 s0403m1.mul	1319	mahavana-1	0
-s0403m1.mul	1319	pingiyani-1	0
+s0403m1.mul	1319	pingiyani	0
 s0403m1.mul	1319	vesali	0
 s0403m1.mul	1320	gotama-1	0
 s0403m1.mul	1320	pingiyani	0
@@ -19004,6 +19005,7 @@ s0403m1.mul	1324	gotama-1	0
 s0403m1.mul	1325	gotama-1	0
 s0403m1.mul	1326	karanapali	0
 s0403m1.mul	1330	gotama-1	0
+s0403m1.mul	1330	pingiya-1	0
 s0403m1.mul	1330	pingiyani	0
 s0403m1.mul	1332	kutagarasala-2	0
 s0403m1.mul	1332	licchavi	0
@@ -19197,7 +19199,7 @@ s0403m2.mul	296	pubbarama	0
 s0403m2.mul	296	savatthi	0
 s0403m2.mul	297	ananda-2	0
 s0403m2.mul	297	migaramatupasada	0
-s0403m2.mul	297	pubbakotthaka-2	0
+s0403m2.mul	297	pubbakotthaka	0
 s0403m2.mul	297	pubbarama	0
 s0403m2.mul	298	pasenadi	0
 s0403m2.mul	298	pubbakotthaka	0
@@ -19587,18 +19589,18 @@ s0403m3.mul	348	nandamatar	0
 s0403m3.mul	348	sariputta	0
 s0403m3.mul	348	velukandaki	0
 s0403m3.mul	349	nandamatar	0
-s0403m3.mul	349	vessavana-2	0
+s0403m3.mul	349	vessavana	0
 s0403m3.mul	350	nandamatar	0
 s0403m3.mul	350	velukandaka	0
-s0403m3.mul	350	vessavana-2	0
+s0403m3.mul	350	vessavana	0
 s0403m3.mul	351	nandamatar	0
 s0403m3.mul	351	velukandaka	0
 s0403m3.mul	352	nandamatar	0
 s0403m3.mul	352	sariputta	0
 s0403m3.mul	353	velukandaka	0
-s0403m3.mul	353	vessavana-2	0
+s0403m3.mul	353	vessavana	0
 s0403m3.mul	354	nandamatar	0
-s0403m3.mul	354	vessavana-2	0
+s0403m3.mul	354	vessavana	0
 s0403m3.mul	355	nandamatar	0
 s0403m3.mul	356	nandamatar	0
 s0403m3.mul	357	nandamatar	0
@@ -19764,7 +19766,7 @@ s0404m1.mul	90	mahisavatthu	0
 s0404m1.mul	90	sankheyyaka	0
 s0404m1.mul	90	uttara-2-10	4
 s0404m1.mul	90	vatajalika	0
-s0404m1.mul	90	vessavana-2	0
+s0404m1.mul	90	vessavana	0
 s0404m1.mul	91	mahisavatthu	0
 s0404m1.mul	91	sakka-2	0
 s0404m1.mul	91	sankheyyaka	0
@@ -19829,7 +19831,7 @@ s0404m1.mul	157	nigantha-2	0
 s0404m1.mul	158	gotama-1	0
 s0404m1.mul	158	siha-2	0
 s0404m1.mul	159	licchavi	0
-s0404m1.mul	159	nigantha	0
+s0404m1.mul	159	nigantha-2	0
 s0404m1.mul	160	vesali	0
 s0404m1.mul	161	gotama-1	0
 s0404m1.mul	162	gotama-1	0
@@ -20013,7 +20015,7 @@ s0404m1.mul	464	anathapindika-1	0
 s0404m1.mul	464	jetavana	0
 s0404m1.mul	464	savatthi	0
 s0404m1.mul	476	assaka	0
-s0404m1.mul	476	avanti-3	0
+s0404m1.mul	476	avanti-1	1
 s0404m1.mul	476	ceti	0
 s0404m1.mul	476	gandhara-1	0
 s0404m1.mul	476	kamboja	0
@@ -20036,7 +20038,7 @@ s0404m1.mul	507	visakha-1	2
 s0404m1.mul	507	visakha-1	0
 s0404m1.mul	508	visakha-1	2
 s0404m1.mul	509	assaka	0
-s0404m1.mul	509	avanti-3	0
+s0404m1.mul	509	avanti-1	1
 s0404m1.mul	509	ceti	0
 s0404m1.mul	509	gandhara-1	0
 s0404m1.mul	509	kamboja	0
@@ -20070,7 +20072,7 @@ s0404m1.mul	541	anathapindika-1	0
 s0404m1.mul	541	jetavana	0
 s0404m1.mul	541	savatthi	0
 s0404m1.mul	544	assaka	0
-s0404m1.mul	544	avanti-3	0
+s0404m1.mul	544	avanti-1	1
 s0404m1.mul	544	ceti	0
 s0404m1.mul	544	gandhara-1	0
 s0404m1.mul	544	kamboja	0
@@ -20247,7 +20249,7 @@ s0404m1.mul	863	ananda-2	1
 s0404m1.mul	863	ananda-2	0
 s0404m1.mul	864	ananda-2	1
 s0404m1.mul	864	ananda-2	0
-s0404m1.mul	864	tusita-2	0
+s0404m1.mul	864	tusita	0
 s0404m1.mul	865	ananda-2	1
 s0404m1.mul	865	ananda-2	0
 s0404m1.mul	866	ananda-2	1
@@ -20591,7 +20593,7 @@ s0404m3.mul	247	nimmanaratino	0
 s0404m3.mul	247	paranimmitavasavatti	0
 s0404m3.mul	247	pubbavideha	0
 s0404m3.mul	247	tavatimsa	0
-s0404m3.mul	247	tusita-2	0
+s0404m3.mul	247	tusita	0
 s0404m3.mul	247	uttarakuru	0
 s0404m3.mul	248	abhassara	0
 s0404m3.mul	266	gotama-1	0
@@ -20756,7 +20758,7 @@ s0404m3.mul	601	ananda-2	1
 s0404m3.mul	601	ananda-2	0
 s0404m3.mul	601	isidatta-1	1
 s0404m3.mul	601	isidatta-1	0
-s0404m3.mul	627	nigantha	0
+s0404m3.mul	627	nigantha-2	0
 s0404m3.mul	634	migasala	0
 s0404m3.mul	638	campa	0
 s0404m3.mul	638	gaggara-1	0
@@ -20866,7 +20868,7 @@ s0404m3.mul	888	ananda-2	1
 s0404m3.mul	888	ananda-2	0
 s0404m3.mul	888	kokanuda	0
 s0404m3.mul	888	rajagaha	0
-s0404m3.mul	888	tapoda	0
+s0404m3.mul	888	tapoda-2	0
 s0404m3.mul	888	tapodarama	0
 s0404m3.mul	889	ananda-2	0
 s0404m3.mul	889	kokanuda	0
@@ -21112,8 +21114,8 @@ s0404m4.mul	153	ananda-2	0
 s0404m4.mul	153	beluvagamaka	0
 s0404m4.mul	153	pataliputta	0
 s0404m4.mul	153	vesali	0
-s0404m4.mul	154	ananda	0
 s0404m4.mul	154	ananda-2	0
+s0404m4.mul	154	ananda-9	0
 s0404m4.mul	154	beluvagamaka	0
 s0404m4.mul	154	kukkutarama	0
 s0404m4.mul	154	vesali	0
@@ -21800,7 +21802,7 @@ s0503m.mul	787	savatthi	0
 s0503m.mul	788	mahakaccana	0
 s0503m.mul	797	gotama-1	0
 s0503m.mul	797	malla	0
-s0503m.mul	797	thuna-3	0
+s0503m.mul	797	thuna-2	0
 s0503m.mul	797	thuneyyaka	0
 s0503m.mul	798	ananda-2	0
 s0503m.mul	799	ananda-2	0
@@ -22302,7 +22304,7 @@ s0505m.mul	2359	metteyya-2	0
 s0505m.mul	2359	pasura	0
 s0505m.mul	2360	tuvattaka	0
 s0505m.mul	2367	alaka	0
-s0505m.mul	2367	assaka-4	0
+s0505m.mul	2367	assaka	0
 s0505m.mul	2375	bavari	0
 s0505m.mul	2382	bavari	0
 s0505m.mul	2386	bavari	0
@@ -22477,6 +22479,7 @@ s0506m.mul	380	sakka-2	0
 s0506m.mul	382	alamba-1	0
 s0506m.mul	382	sadhuvadi	0
 s0506m.mul	383	pokkhara-5	0
+s0506m.mul	383	supassa	0
 s0506m.mul	384	nanda-2-2	0
 s0506m.mul	384	sonadinna	0
 s0506m.mul	384	sunanda-1-2	0
@@ -22519,7 +22522,7 @@ s0506m.mul	631	tavatimsa	0
 s0506m.mul	633	ularavimana	0
 s0506m.mul	655	nandana-2	0
 s0506m.mul	658	ucchuvimana-1	0
-s0506m.mul	683	vessavana-2	0
+s0506m.mul	683	vessavana	0
 s0506m.mul	708	kosiya-2	0
 s0506m.mul	717	moggallana-1	0
 s0506m.mul	780	kassapa-1	0
@@ -22550,6 +22553,7 @@ s0506m.mul	1162	nimmanaratino	0
 s0506m.mul	1163	sunimmita-2	0
 s0506m.mul	1164	sati	0
 s0506m.mul	1177	sudinna-2	0
+s0506m.mul	1206	sumana-2	1
 s0506m.mul	1242	matali	0
 s0506m.mul	1242	tavatimsa	0
 s0506m.mul	1243	matali	0
@@ -22561,6 +22565,7 @@ s0506m.mul	1305	rajjumala	0
 s0506m.mul	1323	rajjumala	0
 s0506m.mul	1337	sadhuvadi	0
 s0506m.mul	1338	pokkhara-5	0
+s0506m.mul	1338	supassa	0
 s0506m.mul	1339	nanda-2-2	0
 s0506m.mul	1339	sonadinna	0
 s0506m.mul	1339	sunanda-1-2	0
@@ -22578,6 +22583,7 @@ s0506m.mul	1386	baranasi	0
 s0506m.mul	1386	nandiya	0
 s0506m.mul	1397	revata-1	2
 s0506m.mul	1403	revata-1	2
+s0506m.mul	1427	revati	0
 s0506m.mul	1435	phussa-2-4	1
 s0506m.mul	1490	moggallana-1	0
 s0506m.mul	1506	moggallana-1	0
@@ -22612,7 +22618,7 @@ s0506m.mul	1944	nandana-2	0
 s0506m.mul	1973	punnamasa-1	1
 s0506m.mul	2000	kapilavatthu	0
 s0506m.mul	2001	suddhodana	0
-s0506m.mul	2003	jali-1	0
+s0506m.mul	2003	jali-2-2	1
 s0506m.mul	2031	sunimmita-2	0
 s0506m.mul	2040	sumedha-4	0
 s0506m.mul	2046	anekavannavimana	0
@@ -22623,7 +22629,7 @@ s0506m.mul	2104	magadha	0
 s0506m.mul	2105	sindhusovirabhumi	0
 s0506m.mul	2129	vessavana	0
 s0506m.mul	2132	serisaka-2	0
-s0506m.mul	2133	vessavana-2	0
+s0506m.mul	2133	vessavana	0
 s0506m.mul	2140	payasi-2	0
 s0506m.mul	2142	kumarakassapa	0
 s0506m.mul	2165	sindhusovirabhumi	0
@@ -22742,7 +22748,7 @@ s0507m.mul	1109	rajagaha	0
 s0507m.mul	1144	narada-1	1
 s0507m.mul	1154	giribbaja-2	0
 s0507m.mul	1154	rajagaha	0
-s0507m.mul	1172	kundi-1	0
+s0507m.mul	1172	kundiya	0
 s0507m.mul	1177	licchavi	0
 s0507m.mul	1177	vajji-1	0
 s0507m.mul	1177	vesali	0
@@ -22769,7 +22775,7 @@ s0507m.mul	1373	magadha	0
 s0507m.mul	1374	sindhusovirabhumi	0
 s0507m.mul	1398	vessavana	0
 s0507m.mul	1401	serisaka-2	0
-s0507m.mul	1402	vessavana-2	0
+s0507m.mul	1402	vessavana	0
 s0507m.mul	1409	payasi-2	0
 s0507m.mul	1411	kumarakassapa	0
 s0507m.mul	1434	sindhusovirabhumi	0
@@ -22788,7 +22794,7 @@ s0507m.mul	1519	arindama-1	0
 s0507m.mul	1521	surattha	0
 s0507m.mul	1543	mahakappina	0
 s0507m.mul	1562	arindama-1	0
-s0507m.mul	1575	vessavana-2	0
+s0507m.mul	1575	vessavana	0
 s0507m.mul	1576	arindama-1	0
 s0507m.mul	1578	arindama-1	0
 s0507m.mul	1580	arindama-1	0
@@ -22911,7 +22917,7 @@ s0508m.mul	248	revata-1	2
 s0508m.mul	248	sirivaddha	0
 s0508m.mul	248	sumangala-3	0
 s0508m.mul	249	ramaniyavihari	0
-s0508m.mul	250	ramaneyya-thera	0
+s0508m.mul	250	ramaneyyaka-3	0
 s0508m.mul	250	vimala-4	0
 s0508m.mul	255	godhika	0
 s0508m.mul	259	subahu-2	0
@@ -22954,7 +22960,7 @@ s0508m.mul	364	susarada	0
 s0508m.mul	368	piyanjaha	0
 s0508m.mul	372	hattharohaputta-2	0
 s0508m.mul	376	mendasira	0
-s0508m.mul	380	rakkhita-3	1
+s0508m.mul	380	rakkhita-3	0
 s0508m.mul	387	atuma-2	0
 s0508m.mul	387	vacchapala	0
 s0508m.mul	388	piyanjaha	0
@@ -23715,6 +23721,7 @@ s0510m1.mul	1006	gotama-1	0
 s0510m1.mul	1023	sabbosadha	0
 s0510m1.mul	1044	cittalatavana	0
 s0510m1.mul	1060	padumuttarabuddha	0
+s0510m1.mul	1064	kapilavatthu	0
 s0510m1.mul	1105	dhamma-1-11	0
 s0510m1.mul	1115	sariputta	0
 s0510m1.mul	1117	kolita	0
@@ -23864,13 +23871,13 @@ s0510m1.mul	2145	kundadhana	0
 s0510m1.mul	2158	kundadhana	0
 s0510m1.mul	2161	sobhita-5	0
 s0510m1.mul	2175	padumuttara-1	1
-s0510m1.mul	2179	tusita-2	0
+s0510m1.mul	2179	tusita	0
 s0510m1.mul	2180	gotama-1	0
 s0510m1.mul	2182	sagata-2	0
 s0510m1.mul	2188	sagata-2	0
 s0510m1.mul	2206	pabhassara	0
 s0510m1.mul	2210	gotama-1	0
-s0510m1.mul	2211	tusita-2	0
+s0510m1.mul	2211	tusita	0
 s0510m1.mul	2212	kaccana	0
 s0510m1.mul	2214	gotama-1	0
 s0510m1.mul	2224	mahakaccana	0
@@ -23887,6 +23894,7 @@ s0510m1.mul	2283	atthadassi-2	0
 s0510m1.mul	2292	gotama-1	0
 s0510m1.mul	2294	mogharaja	0
 s0510m1.mul	2296	gotama-1	0
+s0510m1.mul	2300	mogharaja	0
 s0510m1.mul	2319	vipassi-1	0
 s0510m1.mul	2324	lasunadayaka-thera	0
 s0510m1.mul	2327	sikhi-3	1
@@ -23901,7 +23909,7 @@ s0510m1.mul	2388	samogadha	0
 s0510m1.mul	2399	padumuttara-1	1
 s0510m1.mul	2401	padumuttara-1	1
 s0510m1.mul	2410	gotama-1	0
-s0510m1.mul	2411	tusita-2	0
+s0510m1.mul	2411	tusita	0
 s0510m1.mul	2412	upali-1	2
 s0510m1.mul	2415	gotama-1	0
 s0510m1.mul	2427	upali-2	1
@@ -23938,6 +23946,7 @@ s0510m1.mul	2646	subhadda-1	2
 s0510m1.mul	2649	siddhattha-4	0
 s0510m1.mul	2672	sari	0
 s0510m1.mul	2672	vanganta	0
+s0510m1.mul	2674	cunda-2	1
 s0510m1.mul	2687	cunda-1	2
 s0510m1.mul	2691	bhaddiya-1	3
 s0510m1.mul	2691	sona-5	0
@@ -23970,6 +23979,7 @@ s0510m1.mul	2891	dandasena	0
 s0510m1.mul	2898	asanabodhiya-thera	0
 s0510m1.mul	2903	padumapujaka-thera-1	0
 s0510m1.mul	2924	sikhi-3	1
+s0510m1.mul	2936	sindhu-1	0
 s0510m1.mul	2961	siddhattha-4	0
 s0510m1.mul	2969	parappasadaka-thera	0
 s0510m1.mul	2972	vessabhu-1	1
@@ -24058,6 +24068,7 @@ s0510m1.mul	3545	upali-1	2
 s0510m1.mul	3546	nagasamala	0
 s0510m1.mul	3554	siddhattha-4	0
 s0510m1.mul	3564	bhikkhadayaka-thera	0
+s0510m1.mul	3581	tivara	0
 s0510m1.mul	3582	siddhattha-4	0
 s0510m1.mul	3595	siddhattha-4	0
 s0510m1.mul	3604	padapujaka-thera-1	0
@@ -24068,6 +24079,7 @@ s0510m1.mul	3635	padumuttarabuddha	0
 s0510m1.mul	3637	nalamala	0
 s0510m1.mul	3656	nalamaliya-thera-1	0
 s0510m1.mul	3661	atthadassi-2	0
+s0510m1.mul	3676	kalamba	0
 s0510m1.mul	3678	padumuttara-1	1
 s0510m1.mul	3691	bilalidayaka-thera-1	0
 s0510m1.mul	3703	renupujaka-thera	0
@@ -24195,6 +24207,7 @@ s0510m1.mul	4667	phussa-2-4	1
 s0510m1.mul	4676	sappidayaka-thera-1	0
 s0510m1.mul	4680	sala	0
 s0510m1.mul	4688	yuthikapupphiya-1	0
+s0510m1.mul	4691	tivara	0
 s0510m1.mul	4694	siddhattha-4	0
 s0510m1.mul	4702	dussadayaka-thera	0
 s0510m1.mul	4705	bandhumati-1	0
@@ -24248,6 +24261,7 @@ s0510m1.mul	5030	siddhattha-4	0
 s0510m1.mul	5040	mahavana-1	2
 s0510m1.mul	5040	phussa-2-5	0
 s0510m1.mul	5049	khandaphulliya-thera	0
+s0510m1.mul	5052	tivara	0
 s0510m1.mul	5054	paduma-5	0
 s0510m1.mul	5063	asokapujaka-thera	0
 s0510m1.mul	5068	siddhattha-4	0
@@ -24334,6 +24348,7 @@ s0510m1.mul	5572	arunavati	0
 s0510m1.mul	5573	sikhi-3	0
 s0510m1.mul	5578	amitanjala	0
 s0510m1.mul	5581	salapupphiya-thera	0
+s0510m1.mul	5584	tivara	0
 s0510m1.mul	5585	siddhattha-4	0
 s0510m1.mul	5593	kilanjadayaka-thera	0
 s0510m1.mul	5596	vipassi-1	0
@@ -24343,6 +24358,7 @@ s0510m1.mul	5621	piyalapupphiya-thera	0
 s0510m1.mul	5629	ambayagadayaka-thera-1	0
 s0510m1.mul	5632	atthadassi-2	0
 s0510m1.mul	5637	jagatikaraka-thera	0
+s0510m1.mul	5640	tivara	0
 s0510m1.mul	5645	vasidayaka-thera	0
 s0510m1.mul	5660	tuvaradayaka-thera	0
 s0510m1.mul	5666	tissa-2-4	4
@@ -24405,7 +24421,7 @@ s0510m1.mul	6029	ekanjalika	0
 s0510m1.mul	6047	citakapujaka-thera-1	0
 s0510m1.mul	6057	aluvadayaka-thera	0
 s0510m1.mul	6060	romasa-1	0
-s0510m1.mul	6065	ekapundarika-3-2	0
+s0510m1.mul	6065	ekapundarika-2	0
 s0510m1.mul	6072	samogadha	0
 s0510m1.mul	6087	siddhattha-4	0
 s0510m1.mul	6093	pannadayaka-thera-1	0
@@ -24479,6 +24495,7 @@ s0510m1.mul	6553	saddasannaka	0
 s0510m1.mul	6557	siddhattha-4	0
 s0510m1.mul	6568	nanadhara	0
 s0510m1.mul	6571	tiramsiya-thera	0
+s0510m1.mul	6574	sindhu-1	0
 s0510m1.mul	6576	siddhattha-4	0
 s0510m1.mul	6591	vipassi-1	0
 s0510m1.mul	6597	kumudamaliya-thera-1	0
@@ -24653,6 +24670,7 @@ s0510m1.mul	8586	padumuttara-1	1
 s0510m1.mul	8588	padumuttara-1	1
 s0510m1.mul	8595	gotama-1	0
 s0510m1.mul	8612	sabbakittika-thera	0
+s0510m1.mul	8615	sindhu-1	0
 s0510m1.mul	8621	sumedha-4	0
 s0510m1.mul	8623	sumedha-4	0
 s0510m1.mul	8632	gotama-1	0
@@ -24703,6 +24721,7 @@ s0510m1.mul	8995	sela-4	0
 s0510m1.mul	8996	bakula-1	0
 s0510m1.mul	8997	ajita-5	0
 s0510m1.mul	9001	bodhivandaka-thera	0
+s0510m1.mul	9002	pilinda-2	0
 s0510m1.mul	9012	padumuttara-1	1
 s0510m1.mul	9040	padumuttara-1	1
 s0510m1.mul	9064	tissametteyya	0
@@ -24913,7 +24932,7 @@ s0510m1.mul	11263	padumuttara-1	1
 s0510m1.mul	11273	padumuttara-1	1
 s0510m1.mul	11304	manipujaka-thera-1	0
 s0510m1.mul	11308	cittakuta	0
-s0510m1.mul	11308	kosika-1	0
+s0510m1.mul	11308	kosika-2	0
 s0510m1.mul	11311	kosika-2	0
 s0510m1.mul	11314	kosika-2	0
 s0510m1.mul	11324	vissakamma	0
@@ -25066,7 +25085,7 @@ s0510m1.mul	12869	gotama-1	0
 s0510m1.mul	12871	kaccana	0
 s0510m1.mul	12880	ujjeni	0
 s0510m1.mul	12881	pajjota-3	0
-s0510m1.mul	12883	candima-1	0
+s0510m1.mul	12883	candimasa	0
 s0510m1.mul	12896	mahakaccayana	0
 s0510m1.mul	12901	padumuttara-1	1
 s0510m1.mul	12905	padumuttara-1	1
@@ -25227,6 +25246,7 @@ s0510m1.mul	13921	nandaka-1	3
 s0510m1.mul	13925	padumuttara-1	1
 s0510m1.mul	13952	gotama-1	0
 s0510m1.mul	13954	udayi-1	2
+s0510m1.mul	13959	kapilavatthu	0
 s0510m1.mul	13961	siddhattha-4	0
 s0510m1.mul	13967	mara	0
 s0510m1.mul	13969	pancavaggiya	0
@@ -25248,6 +25268,7 @@ s0510m1.mul	14070	suddhodana	0
 s0510m1.mul	14075	candana-2	0
 s0510m1.mul	14096	lomasakangiya	0
 s0510m1.mul	14101	kassapa-1	2
+s0510m1.mul	14120	kapilavatthu	0
 s0510m1.mul	14121	vacchagotta-1	1
 s0510m1.mul	14123	vanavasa	0
 s0510m1.mul	14126	siddhattha-4	0
@@ -25313,6 +25334,7 @@ s0510m1.mul	14673	nimmanarati	0
 s0510m1.mul	14688	sumedha	0
 s0510m1.mul	14691	siddhattha-4	0
 s0510m1.mul	14693	maha-thupa	0
+s0510m1.mul	14703	konagamana	0
 s0510m1.mul	14710	mandapadayika-theri	0
 s0510m1.mul	14713	vipassi-1	0
 s0510m1.mul	14728	nalamala	0
@@ -25675,7 +25697,7 @@ s0511m.mul	311	uppalavanna	0
 s0511m.mul	314	citta-2-4	0
 s0511m.mul	315	nandamatar	0
 s0511m.mul	326	dipankara	0
-s0511m.mul	367	candima-1	0
+s0511m.mul	367	candimasa	0
 s0511m.mul	367	visakha-1	2
 s0511m.mul	525	dipankara	0
 s0511m.mul	534	dipankara	0
@@ -25683,6 +25705,7 @@ s0511m.mul	560	dipankara	0
 s0511m.mul	569	dipankara	0
 s0511m.mul	577	dipankara	0
 s0511m.mul	579	naradakuta	0
+s0511m.mul	581	sudassanakuta	0
 s0511m.mul	586	dipankara	0
 s0511m.mul	588	dipankara	0
 s0511m.mul	593	rammavati	0
@@ -25754,7 +25777,7 @@ s0511m.mul	747	dhammasena-1	0
 s0511m.mul	747	sudeva-1	0
 s0511m.mul	748	mangala-7	0
 s0511m.mul	748	palita-1	0
-s0511m.mul	749	sivala	0
+s0511m.mul	749	sivali-2	0
 s0511m.mul	751	visakha-2	0
 s0511m.mul	752	anula-1	0
 s0511m.mul	752	sutana	0
@@ -26027,7 +26050,7 @@ s0511m.mul	1535	sambala-1	0
 s0511m.mul	1535	sumitta-1	0
 s0511m.mul	1536	revata-1	2
 s0511m.mul	1536	siddhattha-4	0
-s0511m.mul	1537	sivala	0
+s0511m.mul	1537	sivali-2	0
 s0511m.mul	1537	suramma	0
 s0511m.mul	1539	suppiya-1	1
 s0511m.mul	1547	anomarama-2	0
@@ -26173,7 +26196,7 @@ s0511m.mul	1953	bhiyyasa	0
 s0511m.mul	1954	konagamana	0
 s0511m.mul	1954	sotthija	0
 s0511m.mul	1957	somadeva-1	0
-s0511m.mul	1958	sivala	0
+s0511m.mul	1958	sivali-2	0
 s0511m.mul	1963	dhammaceti	0
 s0511m.mul	1967	konagamana	0
 s0511m.mul	1967	pabbatarama	0
@@ -26298,6 +26321,7 @@ s0512m.mul	95	nimi	0
 s0512m.mul	96	catussala	0
 s0512m.mul	106	ekaraja-1	0
 s0512m.mul	107	pupphavati	0
+s0512m.mul	118	candakumara	0
 s0512m.mul	124	sakka-2	0
 s0512m.mul	126	sivi	0
 s0512m.mul	144	sivaka-1	0
@@ -26347,6 +26371,7 @@ s0512m.mul	434	ganga-1	0
 s0512m.mul	435	ganga-1	0
 s0512m.mul	436	ganga-1	0
 s0512m.mul	438	ganga-1	0
+s0512m.mul	488	pancala	0
 s0512m.mul	489	jayaddisa	0
 s0512m.mul	491	alinasatta	0
 s0512m.mul	512	sankhapala-1	0
@@ -26396,6 +26421,7 @@ s0513m.mul	360	illisa	0
 s0513m.mul	368	bhimasena-1	0
 s0513m.mul	372	varuna	0
 s0513m.mul	373	illisa	0
+s0513m.mul	380	sadamatta	0
 s0513m.mul	446	dhanapali	0
 s0513m.mul	446	jivaka	0
 s0513m.mul	447	panthaka	0
@@ -26443,6 +26469,7 @@ s0513m.mul	1058	kanhagotamaka	0
 s0513m.mul	1072	viraka	0
 s0513m.mul	1073	savitthaka-2	0
 s0513m.mul	1075	savitthaka-1	0
+s0513m.mul	1078	yamuna-2	0
 s0513m.mul	1113	kandagalaka	0
 s0513m.mul	1116	savitthaka-1	0
 s0513m.mul	1122	somadatta-1	0
@@ -26451,6 +26478,7 @@ s0513m.mul	1193	parasariya-1	1
 s0513m.mul	1222	kosiya-2	0
 s0513m.mul	1227	angamagadha	0
 s0513m.mul	1232	kekaka	0
+s0513m.mul	1232	kuru	0
 s0513m.mul	1232	pancala	0
 s0513m.mul	1233	kamanita	0
 s0513m.mul	1235	kamanita	0
@@ -26549,6 +26577,7 @@ s0513m.mul	2516	subahu-1	1
 s0513m.mul	2557	jagatipala	0
 s0513m.mul	2560	sumukha-2-2	0
 s0513m.mul	2573	gumbika	0
+s0513m.mul	2610	sadamatta	0
 s0513m.mul	2651	sakka-2	0
 s0513m.mul	2685	jambuka-1	1
 s0513m.mul	2689	jambuka-1	1
@@ -26719,18 +26748,18 @@ s0513m.mul	4136	savittha	0
 s0513m.mul	4169	dhammapala	0
 s0513m.mul	4187	senaka-2	0
 s0513m.mul	4245	ganga-1	0
-s0513m.mul	4310	kesava	0
+s0513m.mul	4310	kesi	0
 s0513m.mul	4311	kesava	0
 s0513m.mul	4311	rohineyya	0
 s0513m.mul	4313	dvaravati-1	0
-s0513m.mul	4320	kesava	0
+s0513m.mul	4320	kesi	0
 s0513m.mul	4342	dhananjaya-1	0
 s0513m.mul	4367	kasi	0
 s0513m.mul	4368	kasi	0
 s0513m.mul	4372	junha-1	0
 s0513m.mul	4471	kasi	0
 s0513m.mul	4471	surundhana	0
-s0513m.mul	4523	rammaka-1	0
+s0513m.mul	4523	rammavati	0
 s0513m.mul	4524	sabbadatta	0
 s0513m.mul	4527	yudhitthila	0
 s0513m.mul	4532	bharata-1	1
@@ -26747,6 +26776,7 @@ s0513m.mul	4601	supparaka	0
 s0513m.mul	4606	supparaka	0
 s0513m.mul	4616	dasaratha-2	0
 s0513m.mul	4616	samvara-1	0
+s0513m.mul	4628	kamboja	0
 s0513m.mul	4647	bhaddasala-1	0
 s0513m.mul	4673	jambudipa	0
 s0513m.mul	4681	uttara-2-04	0
@@ -26755,7 +26785,7 @@ s0513m.mul	4728	janasandha-1	0
 s0513m.mul	4783	kosiya-2	0
 s0513m.mul	4787	kosiya-2	0
 s0513m.mul	4791	kosiya-2	0
-s0513m.mul	4793	bahuka-2	0
+s0513m.mul	4793	bahuka	0
 s0513m.mul	4793	gaya-1	1
 s0513m.mul	4794	timbarutittha	0
 s0513m.mul	4797	kosiya-2	0
@@ -26921,6 +26951,7 @@ s0513m.mul	6317	tikuta	0
 s0513m.mul	6388	kuru	0
 s0513m.mul	6457	meru	0
 s0513m.mul	6466	suppiya-1	1
+s0513m.mul	6468	kamboja	0
 s0513m.mul	6470	uggasena	0
 s0513m.mul	6471	payasi-2	0
 s0513m.mul	6474	campeyya	0
@@ -26951,12 +26982,12 @@ s0513m.mul	6758	kosiki	0
 s0513m.mul	6789	arindama-1	0
 s0513m.mul	6859	sabbamitta-1	1
 s0513m.mul	6872	jayaddisa	0
-s0513m.mul	6901	candima-1	0
+s0513m.mul	6901	candimasa	0
 s0513m.mul	6901	soma-2-2	0
 s0513m.mul	6901	varuna	0
 s0513m.mul	6913	jayaddisa	0
 s0513m.mul	6914	jayaddisa	0
-s0513m.mul	6931	candima-2	0
+s0513m.mul	6931	candimasa	0
 s0513m.mul	6945	nandana-2	0
 s0513m.mul	6960	sela-3	0
 s0513m.mul	6979	sela-3	0
@@ -27315,7 +27346,7 @@ s0513m.mul	9508	dhatarattha-1	0
 s0513m.mul	9515	kosiya-2	0
 s0513m.mul	9519	kosiya-2	0
 s0513m.mul	9523	kosiya-2	0
-s0513m.mul	9525	bahuka-2	0
+s0513m.mul	9525	bahuka	0
 s0513m.mul	9525	gaya-1	1
 s0513m.mul	9526	timbarutittha	0
 s0513m.mul	9529	kosiya-2	0
@@ -27417,6 +27448,7 @@ s0513m.mul	9780	punnamukha-2	0
 s0513m.mul	9804	baka-1	0
 s0513m.mul	9806	brahmadatta-1	4
 s0513m.mul	9806	pingiyani	0
+s0513m.mul	9817	kamboja	0
 s0513m.mul	9832	ananda-2	1
 s0513m.mul	9832	kunala-1	0
 s0513m.mul	9861	ananda-2	1
@@ -27619,7 +27651,7 @@ s0513m.mul	11554	mahosadha	0
 s0513m.mul	11561	brahmadatta-1	4
 s0513m.mul	11569	brahmadatta-1	4
 s0513m.mul	11579	brahmadatta-1	4
-s0513m.mul	11596	silava-thera	0
+s0513m.mul	11596	silava	0
 s0513m.mul	11602	mahosadha	0
 s0513m.mul	11620	mahosadha	0
 s0513m.mul	11623	senaka-2	0
@@ -27664,6 +27696,7 @@ s0513m.mul	11851	senaka-2	0
 s0513m.mul	11853	mahosadha	0
 s0513m.mul	11856	mahosadha	0
 s0513m.mul	11876	varuna	0
+s0513m.mul	11876	yamuna-2	0
 s0513m.mul	11877	dhatarattha-2	0
 s0513m.mul	11878	dhatarattha-1	0
 s0513m.mul	11880	samuddaja	0
@@ -27710,7 +27743,8 @@ s0513m.mul	12092	baranasi	0
 s0513m.mul	12094	kasi	0
 s0513m.mul	12111	dhatarattha-1	0
 s0513m.mul	12111	yamuna	0
-s0513m.mul	12119	candima-1	0
+s0513m.mul	12112	yamuna-2	0
+s0513m.mul	12119	candimasa	0
 s0513m.mul	12119	kuvera	0
 s0513m.mul	12119	soma-2-2	0
 s0513m.mul	12119	varuna	0
@@ -27726,6 +27760,7 @@ s0513m.mul	12137	malagiri	0
 s0513m.mul	12137	nisabha-5	0
 s0513m.mul	12137	sudassana-4	0
 s0513m.mul	12165	sabbabhibhu	0
+s0513m.mul	12185	kamboja	0
 s0513m.mul	12211	malagiri	0
 s0513m.mul	12211	nisabha-5	0
 s0513m.mul	12211	sudassana-4	0
@@ -27880,6 +27915,7 @@ s0513m.mul	12985	narada-1	1
 s0513m.mul	12986	atthaka-1-4	0
 s0513m.mul	12986	dhatarattha-1	0
 s0513m.mul	12986	vessamitta-1	0
+s0513m.mul	12986	yamataggi	0
 s0513m.mul	12987	sivi-1	0
 s0513m.mul	13017	alata	0
 s0513m.mul	13017	bhaddaji	0
@@ -27922,6 +27958,7 @@ s0513m.mul	13159	malla	0
 s0513m.mul	13164	nika-2	0
 s0513m.mul	13177	videha	0
 s0513m.mul	13178	jambudipa	0
+s0513m.mul	13178	kuru	0
 s0513m.mul	13179	suriya-2-2	0
 s0513m.mul	13180	sineru	0
 s0513m.mul	13181	sineru	0
@@ -27977,8 +28014,10 @@ s0513m.mul	13578	kuru	0
 s0513m.mul	13619	varuna	0
 s0513m.mul	13621	varuna	0
 s0513m.mul	13624	varuna	0
+s0513m.mul	13628	kuru	0
 s0513m.mul	13629	punnaka-1	0
 s0513m.mul	13630	kuru	0
+s0513m.mul	13632	kuru	0
 s0513m.mul	13633	kaccana	0
 s0513m.mul	13635	kuru	0
 s0513m.mul	13635	punnaka-1	0
@@ -27988,6 +28027,7 @@ s0513m.mul	13638	kuru	0
 s0513m.mul	13638	punnaka-1	0
 s0513m.mul	13641	kuru	0
 s0513m.mul	13641	punnaka-2	0
+s0513m.mul	13645	kuru	0
 s0513m.mul	13648	kuvera	0
 s0513m.mul	13648	punnaka-1	0
 s0513m.mul	13649	varuna	0
@@ -28001,6 +28041,7 @@ s0513m.mul	13717	sivi-1	0
 s0513m.mul	13720	sivi	0
 s0513m.mul	13722	vessantara-2	0
 s0513m.mul	13732	sivi-1	0
+s0513m.mul	13732	udena-1	1
 s0513m.mul	13733	sanjaya-1	2
 s0513m.mul	13733	vessantara-2	0
 s0513m.mul	13734	sivi-1	0
@@ -28027,6 +28068,7 @@ s0513m.mul	13795	maddi	0
 s0513m.mul	13797	maddi	0
 s0513m.mul	13799	maddi	0
 s0513m.mul	13805	maddi	0
+s0513m.mul	13844	sindhu-1	0
 s0513m.mul	13870	vessantara-2	0
 s0513m.mul	13874	vessantara-2	0
 s0513m.mul	13876	vessantara-2	0
@@ -28152,7 +28194,7 @@ s0513m.mul	14555	niliya	0
 s0513m.mul	14555	padumuttara-1	1
 s0513m.mul	14614	vessantara-2	0
 s0513m.mul	14618	vessantara-2	0
-s0513m.mul	14621	jali-1	0
+s0513m.mul	14621	jali-2-2	1
 s0513m.mul	14622	nandiya	0
 s0513m.mul	14664	jali-2-2	1
 s0513m.mul	14664	kanhajina	0
@@ -28246,13 +28288,13 @@ s0513m.mul	15097	avaruddhaka	0
 s0513m.mul	15099	vessantara-2	0
 s0513m.mul	15107	rohini-1	0
 s0513m.mul	15124	kanhajina	0
-s0513m.mul	15137	jali-1	0
+s0513m.mul	15137	jali-2-2	1
 s0513m.mul	15158	sivi-1	0
 s0513m.mul	15160	sivirattha	0
 s0513m.mul	15160	vessantara-2	0
 s0513m.mul	15171	gandhamadana	0
-s0513m.mul	15203	jali-1	0
-s0513m.mul	15209	jali-1	0
+s0513m.mul	15203	jali-2-2	1
+s0513m.mul	15209	jali-2-2	1
 s0513m.mul	15215	vessantara-2	0
 s0513m.mul	15218	vessantara-2	0
 s0513m.mul	15220	maddi	0
@@ -28278,7 +28320,7 @@ s0513m.mul	15284	vessantara-2	0
 s0513m.mul	15290	sivi-1	0
 s0513m.mul	15293	vessantara-2	0
 s0513m.mul	15299	maddi	0
-s0513m.mul	15300	jali-1	0
+s0513m.mul	15300	jali-2-2	1
 s0513m.mul	15300	kanhajina	0
 s0513m.mul	15300	vessantara-2	0
 s0513m.mul	15301	sanjaya-1	2
@@ -28467,7 +28509,7 @@ s0515m.mul	2538	sariputta	0
 s0515m.mul	2575	mara	0
 s0515m.mul	2575	namuci	0
 s0515m.mul	2606	magadha	0
-s0516m.mul	7	assaka-4	0
+s0516m.mul	7	assaka	0
 s0516m.mul	15	bavari	0
 s0516m.mul	22	bavari	0
 s0516m.mul	26	bavari	0
@@ -28761,7 +28803,7 @@ s0516m.mul	1377	bhadravudha	0
 s0516m.mul	1379	sumedha-4	0
 s0516m.mul	1382	anga	0
 s0516m.mul	1382	assaka	0
-s0516m.mul	1382	avanti-3	0
+s0516m.mul	1382	avanti-1	1
 s0516m.mul	1382	cetiya-2	0
 s0516m.mul	1382	kalinga	0
 s0516m.mul	1382	kamboja	0
@@ -28973,7 +29015,7 @@ s0516m.mul	2431	udaya-3	0
 s0516m.mul	2432	mogharaja	0
 s0516m.mul	2432	pingiya-1	1
 s0517m.mul	651	maha-papata	0
-s0517m.mul	904	candima-2	0
+s0517m.mul	904	candimasa	0
 s0517m.mul	1005	anathapindika-1	0
 s0517m.mul	1005	jetavana	0
 s0517m.mul	1005	savatthi	0
@@ -28999,7 +29041,7 @@ s0517m.mul	1603	mara	0
 s0517m.mul	1603	migadaya-1	0
 s0517m.mul	1603	nimmanarati	0
 s0517m.mul	1603	paranimmitavasavatti	0
-s0517m.mul	1603	tusita-2	0
+s0517m.mul	1603	tusita	0
 s0517m.mul	1603	yama	0
 s0517m.mul	1605	annasikondanna	0
 s0517m.mul	1605	kondanna-1	1
@@ -29042,7 +29084,7 @@ s0517m.mul	1980	anathapindika-1	0
 s0517m.mul	1980	jetavana	0
 s0517m.mul	1980	savatthi	0
 s0518m.nrf	3	milinda	0
-s0518m.nrf	3	sagala-2	0
+s0518m.nrf	3	sagala	0
 s0518m.nrf	4	ganga-1	0
 s0518m.nrf	4	nagasena	0
 s0518m.nrf	13	alakamanda	0
@@ -29051,7 +29093,7 @@ s0518m.nrf	19	ganga-1	0
 s0518m.nrf	19	kassapa-1	0
 s0518m.nrf	22	jambudipa	0
 s0518m.nrf	22	milinda	0
-s0518m.nrf	22	sagala-2	0
+s0518m.nrf	22	sagala	0
 s0518m.nrf	23	milinda	0
 s0518m.nrf	24	ajita-1	0
 s0518m.nrf	24	belatthaputta	0
@@ -29075,7 +29117,7 @@ s0518m.nrf	26	milinda	0
 s0518m.nrf	27	jambudipa	0
 s0518m.nrf	27	milinda	0
 s0518m.nrf	28	milinda	0
-s0518m.nrf	29	sagala-2	0
+s0518m.nrf	29	sagala	0
 s0518m.nrf	30	assagutta-2	0
 s0518m.nrf	30	milinda	0
 s0518m.nrf	30	rakkhitatala	0
@@ -29089,7 +29131,7 @@ s0518m.nrf	32	sakka-2	0
 s0518m.nrf	33	assagutta-2	0
 s0518m.nrf	33	jambudipa	0
 s0518m.nrf	33	milinda	0
-s0518m.nrf	33	sagala-2	0
+s0518m.nrf	33	sagala	0
 s0518m.nrf	34	assagutta-2	0
 s0518m.nrf	34	maha-sena-1	0
 s0518m.nrf	34	milinda	0
@@ -29180,7 +29222,7 @@ s0518m.nrf	73	nagasena	0
 s0518m.nrf	73	rakkhitatala	0
 s0518m.nrf	74	milinda	0
 s0518m.nrf	74	nagasena	0
-s0518m.nrf	74	sagala-2	0
+s0518m.nrf	74	sagala	0
 s0518m.nrf	75	ayupala	0
 s0518m.nrf	75	milinda	0
 s0518m.nrf	76	ayupala	0
@@ -29197,7 +29239,7 @@ s0518m.nrf	79	milinda	0
 s0518m.nrf	80	milinda	0
 s0518m.nrf	81	giri-1	0
 s0518m.nrf	81	nagasena	0
-s0518m.nrf	81	sagala-2	0
+s0518m.nrf	81	sagala	0
 s0518m.nrf	85	nagasena	0
 s0518m.nrf	87	nagasena	0
 s0518m.nrf	89	sagala	0
@@ -29254,7 +29296,7 @@ s0518m.nrf	131	anantakaya	0
 s0518m.nrf	131	devamantiya	0
 s0518m.nrf	131	milinda	0
 s0518m.nrf	131	nagasena	0
-s0518m.nrf	131	sagala-2	0
+s0518m.nrf	131	sagala	0
 s0518m.nrf	132	anantakaya	0
 s0518m.nrf	132	nagasena	0
 s0518m.nrf	135	milinda	0
@@ -29562,7 +29604,7 @@ s0518m.nrf	748	nagasena	0
 s0518m.nrf	751	nagasena	0
 s0518m.nrf	751	sivi	0
 s0518m.nrf	752	nagasena	0
-s0518m.nrf	752	sivi-1-2	0
+s0518m.nrf	752	sivi	0
 s0518m.nrf	753	nagasena	0
 s0518m.nrf	753	sivi	0
 s0518m.nrf	758	ganga-1	0
@@ -29577,7 +29619,7 @@ s0518m.nrf	760	mahaganga	0
 s0518m.nrf	761	ganga-1	0
 s0518m.nrf	761	mahaganga	0
 s0518m.nrf	762	nagasena	0
-s0518m.nrf	762	sivi-1-2	0
+s0518m.nrf	762	sivi	0
 s0518m.nrf	765	dukula	0
 s0518m.nrf	765	matanga-3	0
 s0518m.nrf	765	nagasena	0
@@ -29667,16 +29709,17 @@ s0518m.nrf	847	nagasena	0
 s0518m.nrf	848	nagasena	0
 s0518m.nrf	852	nagasena	0
 s0518m.nrf	855	nagasena	0
+s0518m.nrf	858	angulimala-1	0
 s0518m.nrf	858	nagasena	0
 s0518m.nrf	862	nagasena	0
 s0518m.nrf	863	nagasena	0
 s0518m.nrf	868	nagasena	0
 s0518m.nrf	869	nagasena	0
 s0518m.nrf	872	nagasena	0
-s0518m.nrf	872	pancasala-2	0
+s0518m.nrf	872	pancasala	0
 s0518m.nrf	873	mara	0
 s0518m.nrf	873	nagasena	0
-s0518m.nrf	873	pancasala-2	0
+s0518m.nrf	873	pancasala	0
 s0518m.nrf	873	papimant-3	0
 s0518m.nrf	874	mara	0
 s0518m.nrf	874	papimant-3	0
@@ -29994,7 +30037,9 @@ s0518m.nrf	1273	nagasena	0
 s0518m.nrf	1276	mahapajapati	0
 s0518m.nrf	1276	nagasena	0
 s0518m.nrf	1277	mahapajapati	0
+s0518m.nrf	1283	manavagamiya	0
 s0518m.nrf	1286	candima-2	0
+s0518m.nrf	1288	manavagamiya	0
 s0518m.nrf	1288	sariputta	0
 s0518m.nrf	1291	nagasena	0
 s0518m.nrf	1294	nagasena	0
@@ -30084,7 +30129,7 @@ s0518m.nrf	1465	vessantara-2	0
 s0518m.nrf	1466	vessantara-2	0
 s0518m.nrf	1467	vessantara-2	0
 s0518m.nrf	1468	vessantara-2	0
-s0518m.nrf	1469	jali-1	0
+s0518m.nrf	1469	jali-2-3	0
 s0518m.nrf	1469	kanhajina	0
 s0518m.nrf	1469	vessantara-2	0
 s0518m.nrf	1471	kanhajina	0
@@ -30619,6 +30664,7 @@ s0520m.nrf	892	rajagaha	0
 s0520m.nrf	894	mahanama-1	2
 s0520m.nrf	894	mahanama-1	0
 s0520m.nrf	894	sakka-2	0
+s0520m.nrf	895	bhaddiya-1	2
 s0520m.nrf	906	mahanama-1	2
 s0520m.nrf	922	ananda-2	1
 s0520m.nrf	959	sariputta	0
@@ -30629,7 +30675,7 @@ s0520m.nrf	964	sariputta	0
 s0520m.nrf	965	sariputta	0
 s0520m.nrf	966	sariputta	0
 s0520m.nrf	967	sariputta	0
-s0520m.nrf	1046	bahiya-5	0
+s0520m.nrf	1046	bahiya-2-2	0
 s0520m.nrf	1137	mahakaccayana	0
 s0520m.nrf	1185	nandiyavatta	0
 s0520m.nrf	1187	nandiyavatta	0
@@ -30648,9 +30694,9 @@ abh02m.mul	3286	paranimmitavasavatti	0
 abh02m.mul	3300	nimmanaratino	0
 abh02m.mul	3300	paranimmitavasavatti	0
 abh02m.mul	3300	tavatimsa	0
-abh02m.mul	3300	tusita-2	0
+abh02m.mul	3300	tusita	0
 abh02m.mul	3304	tavatimsa	0
-abh02m.mul	3306	tusita-2	0
+abh02m.mul	3306	tusita	0
 abh02m.mul	3307	nimmanaratino	0
 abh02m.mul	3308	paranimmitavasavatti	0
 abh02m.mul	3318	abhassara	0
@@ -30709,7 +30755,7 @@ abh03m3.mul	1133	paranimmitavasavatti	0
 abh03m3.mul	1133	parittasubha	0
 abh03m3.mul	1133	subhakinha-1	0
 abh03m3.mul	1133	tavatimsa	0
-abh03m3.mul	1133	tusita-2	0
+abh03m3.mul	1133	tusita	0
 abh03m3.mul	1133	vehapphala-1	0
 abh03m3.mul	1141	kukkula-2	0
 abh03m3.mul	1142	kukkula-2	0
@@ -30783,7 +30829,7 @@ abh03m3.mul	2150	ananda-2	1
 abh03m3.mul	2150	ananda-2	0
 abh03m3.mul	2152	ananda-2	1
 abh03m3.mul	2152	ananda-2	0
-abh03m3.mul	2152	pataliputta-2	0
+abh03m3.mul	2152	pataliputta	0
 abh03m3.mul	2152	samiddhi-2	0
 abh03m3.mul	2448	ananda-2	1
 abh03m3.mul	2449	mara	0
@@ -30815,7 +30861,7 @@ abh03m3.mul	3072	ananda-2	0
 abh03m3.mul	3073	sariputta	0
 abh03m3.mul	3263	vessabhu-1	1
 abh03m3.mul	3264	soma-2-2	0
-abh03m3.mul	3264	vessavana-2	0
+abh03m3.mul	3264	vessavana	0
 abh03m3.mul	3264	yama-2	0
 abh03m3.mul	3278	eravana	0
 abh03m3.mul	3293	subhadda-1	2
@@ -31292,7 +31338,7 @@ vin01a.att	376	majjhima	0
 vin01a.att	378	sona-1	3
 vin01a.att	378	suvannabhumi	0
 vin01a.att	378	uttara-2-10	1
-vin01a.att	379	sonuttara-3	0
+vin01a.att	379	sonuttara-1	1
 vin01a.att	379	suvannabhumi	0
 vin01a.att	381	asokarama	0
 vin01a.att	381	sanghamitta	0
@@ -31382,6 +31428,7 @@ vin01a.att	444	abhayavapi	0
 vin01a.att	445	anuradhapura	0
 vin01a.att	445	savatthi	0
 vin01a.att	449	abhaya-4	0
+vin01a.att	450	bodhi-4	1
 vin01a.att	450	pataliputta	0
 vin01a.att	450	sanghamitta	0
 vin01a.att	451	arittha-1-1	1
@@ -31439,7 +31486,7 @@ vin01a.att	507	ganga-1	0
 vin01a.att	507	nalerupucimanda	0
 vin01a.att	507	veranja	0
 vin01a.att	507	yamuna	0
-vin01a.att	508	lumbini-2	0
+vin01a.att	508	lumbini	0
 vin01a.att	508	upalitthera	0
 vin01a.att	509	sariputta	0
 vin01a.att	510	veranja	0
@@ -31592,8 +31639,8 @@ vin01a.att	832	veranja	0
 vin01a.att	836	ananda-2	1
 vin01a.att	838	ananda-2	0
 vin01a.att	840	mara	0
-vin01a.att	842	veranja-2	0
-vin01a.att	844	veranja-2	0
+vin01a.att	842	veranja	0
+vin01a.att	844	veranja	0
 vin01a.att	845	baranasi	0
 vin01a.att	845	ganga-1	0
 vin01a.att	845	mahavana-1	0
@@ -31640,6 +31687,7 @@ vin01a.att	951	vajjiputtaka	0
 vin01a.att	951	vesali	0
 vin01a.att	953	ananda-2	1
 vin01a.att	953	ananda-2	0
+vin01a.att	953	bodhi-4	1
 vin01a.att	954	ananda-2	1
 vin01a.att	954	vajji-1	0
 vin01a.att	988	dasaka-2	0
@@ -31785,7 +31833,7 @@ vin01a.att	1995	moggallana-1	0
 vin01a.att	1996	mahamoggallana	0
 vin01a.att	2012	khara-3	0
 vin01a.att	2015	rajagahanagara	0
-vin01a.att	2015	tapoda	0
+vin01a.att	2015	tapoda-2	0
 vin01a.att	2016	licchavi	0
 vin01a.att	2016	moggallana-1	0
 vin01a.att	2017	moggallana-1	0
@@ -32213,7 +32261,7 @@ vin02a2.att	680	tissatthera-1	0
 vin02a2.att	683	gotama-1	0
 vin02a2.att	685	kurundi	0
 vin02a2.att	687	ananda-2	1
-vin02a2.att	687	roja-2	0
+vin02a2.att	687	roja-1	0
 vin02a2.att	689	jambudipa	0
 vin02a2.att	691	kurundi	0
 vin02a2.att	693	kurundi	0
@@ -32221,7 +32269,7 @@ vin02a2.att	700	kosala-1	0
 vin02a2.att	709	padumuttara-1	1
 vin02a2.att	709	sujata-1	1
 vin02a2.att	713	kurundi	0
-vin02a2.att	738	salavati-1	0
+vin02a2.att	738	salavatika	0
 vin02a2.att	740	buddhupatthaka	0
 vin02a2.att	740	padumuttara-1	0
 vin02a2.att	741	jivaka	0
@@ -32415,13 +32463,13 @@ vin02a4.att	493	mahapajapati	0
 vin02a4.att	496	kurundi	0
 vin02a4.att	521	channa-2-2	1
 vin02a4.att	521	devadatta	0
-vin02a4.att	526	buddharakkhita-1	0
 vin02a4.att	526	dhammarakkhita-2	0
+vin02a4.att	526	maha-buddharakkhita	0
 vin02a4.att	527	dhammarakkhita-2	0
-vin02a4.att	528	buddharakkhita-1	0
 vin02a4.att	528	dhammarakkhita-2	0
-vin02a4.att	531	buddharakkhita-1	0
+vin02a4.att	528	maha-buddharakkhita	0
 vin02a4.att	531	dhammarakkhita-2	0
+vin02a4.att	531	maha-buddharakkhita	0
 vin02a4.att	536	buddharakkhita-1	0
 vin02a4.att	541	kurundi	0
 vin02a4.att	550	channa-2-2	0
@@ -32541,7 +32589,7 @@ s0101a.att	222	savatthi	0
 s0101a.att	240	visuddhimagga	0
 s0101a.att	244	nalanda-2	0
 s0101a.att	244	rajagaha	0
-s0101a.att	244	tapoda	0
+s0101a.att	244	tapoda-2	0
 s0101a.att	245	nalanda-2	0
 s0101a.att	245	rajagaha	0
 s0101a.att	248	sanjaya-1	0
@@ -32866,7 +32914,7 @@ s0101a.att	1086	mahasammata	0
 s0101a.att	1086	mandhata	0
 s0101a.att	1086	mandhatar	0
 s0101a.att	1086	okkamukha	0
-s0101a.att	1086	roja-2	0
+s0101a.att	1086	roja-1	0
 s0101a.att	1086	sinisura	0
 s0101a.att	1086	suppiya-1	1
 s0101a.att	1086	varamandhata	0
@@ -32923,7 +32971,6 @@ s0101a.att	1162	campa	0
 s0101a.att	1162	sonadanda	0
 s0101a.att	1163	bimbisara	0
 s0101a.att	1163	gaggara-1	0
-s0101a.att	1163	gaggara-2	0
 s0101a.att	1163	magadha	0
 s0101a.att	1166	gotama-1	0
 s0101a.att	1166	sonadanda	0
@@ -32933,7 +32980,7 @@ s0101a.att	1177	gotama-1	0
 s0101a.att	1177	sonadanda	0
 s0101a.att	1178	gotama-1	0
 s0101a.att	1178	sineru	0
-s0101a.att	1180	pundarika-3	0
+s0101a.att	1180	pundarika-6	0
 s0101a.att	1182	gotama-1	0
 s0101a.att	1182	rajagaha	0
 s0101a.att	1186	rahu-1	0
@@ -32980,13 +33027,13 @@ s0101a.att	1291	ghositarama	0
 s0101a.att	1291	licchavi	0
 s0101a.att	1291	otthaddha	0
 s0101a.att	1296	allakappa	0
-s0101a.att	1296	ghosakasetthi-2	0
+s0101a.att	1296	ghosakasetthi	0
 s0101a.att	1296	ghositarama	0
 s0101a.att	1296	kosambi	0
 s0101a.att	1296	kukkuta-2	0
 s0101a.att	1297	anathapindika-1	0
 s0101a.att	1297	savatthi	0
-s0101a.att	1298	ghosakasetthi-2	0
+s0101a.att	1298	ghosakasetthi	0
 s0101a.att	1298	ghositarama	0
 s0101a.att	1298	kosambi	0
 s0101a.att	1298	kukkuta-2	0
@@ -33227,6 +33274,7 @@ s0102a.att	37	upavana-2	0
 s0102a.att	38	jantugama	0
 s0102a.att	38	mahamoggallana	0
 s0102a.att	38	meghiya	0
+s0102a.att	38	pacinavamsadaya	0
 s0102a.att	38	sariputta	0
 s0102a.att	38	savatthi	0
 s0102a.att	39	ananda-2	0
@@ -33333,7 +33381,7 @@ s0102a.att	205	vipassi-1	0
 s0102a.att	205	visuddhimagga	0
 s0102a.att	219	mucalinda-4-2	0
 s0102a.att	222	vipassi-1	0
-s0102a.att	246	isipatana-2	0
+s0102a.att	246	isipatana	0
 s0102a.att	246	khema-4	0
 s0102a.att	246	migadaya-1	1
 s0102a.att	246	migadaya-1	0
@@ -33367,6 +33415,7 @@ s0102a.att	286	kuru	0
 s0102a.att	286	mandhatar	0
 s0102a.att	286	pubbavideha	0
 s0102a.att	286	uttarakuru	0
+s0102a.att	287	kammasadamma	0
 s0102a.att	287	kammasadhamma	0
 s0102a.att	287	kuru	0
 s0102a.att	288	jayaddisa	0
@@ -33535,7 +33584,7 @@ s0102a.att	544	rahula	0
 s0102a.att	544	sariputta	0
 s0102a.att	544	savatthi	0
 s0102a.att	544	tavatimsa	0
-s0102a.att	544	ukkacela-2	0
+s0102a.att	544	ukkacela	0
 s0102a.att	544	veluvagamaka	0
 s0102a.att	544	vesali	0
 s0102a.att	551	magadha	0
@@ -33557,7 +33606,7 @@ s0102a.att	558	jetavana	0
 s0102a.att	558	mahamoggallana	0
 s0102a.att	558	rajagaha	0
 s0102a.att	558	sariputtamoggallana-2	0
-s0102a.att	558	ukkacela-2	0
+s0102a.att	558	ukkacela	0
 s0102a.att	558	vesali	0
 s0102a.att	559	udena-cetiya	0
 s0102a.att	560	mahasivatthera	0
@@ -33636,6 +33685,7 @@ s0102a.att	667	ananda-2	0
 s0102a.att	668	ananda-2	1
 s0102a.att	674	ananda-2	1
 s0102a.att	674	upavana	0
+s0102a.att	675	kassapa-1	0
 s0102a.att	676	vipassi-1	0
 s0102a.att	677	kassapa-1	2
 s0102a.att	678	ananda-2	1
@@ -33646,6 +33696,7 @@ s0102a.att	683	maha-vihara	0
 s0102a.att	683	pancanikayamandala	0
 s0102a.att	683	tissa-maha-vihara	0
 s0102a.att	685	ananda-2	1
+s0102a.att	687	bodhi-4	1
 s0102a.att	689	ananda-2	1
 s0102a.att	689	ananda-2	0
 s0102a.att	693	ananda-2	1
@@ -33791,6 +33842,7 @@ s0102a.att	874	ananda-2	1
 s0102a.att	875	ananda-2	1
 s0102a.att	875	ananda-2	0
 s0102a.att	875	vissakamma	0
+s0102a.att	883	kassapa-1	0
 s0102a.att	885	kusavati	0
 s0102a.att	885	mahasudassana	0
 s0102a.att	888	mahaviyuha	0
@@ -33813,7 +33865,7 @@ s0102a.att	912	kasikosala	0
 s0102a.att	912	kosalarattha	0
 s0102a.att	917	ananda-2	1
 s0102a.att	920	vessavana	0
-s0102a.att	921	vessavana-2	0
+s0102a.att	921	vessavana	0
 s0102a.att	930	anuradhapura	0
 s0102a.att	931	pancasikha-1	0
 s0102a.att	934	visuddhimagga	0
@@ -33825,7 +33877,7 @@ s0102a.att	945	visuddhimagga	0
 s0102a.att	951	visuddhimagga	0
 s0102a.att	953	vessavana	0
 s0102a.att	958	pancasikha-1	0
-s0102a.att	959	candima-1	0
+s0102a.att	959	candimasa	0
 s0102a.att	962	dhatarattha-1	0
 s0102a.att	963	virulhaka	0
 s0102a.att	964	virupakkha-2	0
@@ -33841,7 +33893,7 @@ s0102a.att	973	sakka-2	0
 s0102a.att	978	tusita-1	0
 s0102a.att	979	tusita-1	0
 s0102a.att	980	isipatana	0
-s0102a.att	980	lumbini-2	0
+s0102a.att	980	lumbini	0
 s0102a.att	981	sakka-2	0
 s0102a.att	984	isipatana	0
 s0102a.att	984	rajagaha	0
@@ -34060,9 +34112,9 @@ s0102a.att	1195	mahavana-1	2
 s0102a.att	1196	jambudipa	0
 s0102a.att	1196	maha-gama	0
 s0102a.att	1196	mahavana-1	2
-s0102a.att	1202	ambasanda-2	0
+s0102a.att	1202	ambasanda	0
 s0102a.att	1202	indasalaguha	0
-s0102a.att	1202	vediya	0
+s0102a.att	1202	vediyaka	0
 s0102a.att	1203	sakka-2	0
 s0102a.att	1204	cittalatavana	0
 s0102a.att	1204	missakavana	0
@@ -34211,7 +34263,8 @@ s0103a.att	7	bhaggava-1	0
 s0103a.att	8	sunakkhatta-2	0
 s0103a.att	10	sunakkhatta-2	0
 s0103a.att	11	sunakkhatta-2	0
-s0103a.att	14	korakkhatta	0
+s0103a.att	11	vajji-3	0
+s0103a.att	14	korakkhattiya	0
 s0103a.att	14	thulu	0
 s0103a.att	14	uttaraka	0
 s0103a.att	15	sunakkhatta-2	0
@@ -34390,6 +34443,8 @@ s0103a.att	342	laludayi	0
 s0103a.att	342	nalanda-2	0
 s0103a.att	342	udayi-1	2
 s0103a.att	342	udayi-1	0
+s0103a.att	342	udayi-2	1
+s0103a.att	342	udayi-2	0
 s0103a.att	343	udayi-1	2
 s0103a.att	343	udayi-1	0
 s0103a.att	352	nataputta	0
@@ -34458,7 +34513,7 @@ s0103a.att	584	sakka-2	0
 s0103a.att	588	gotama-1	0
 s0103a.att	589	gotama-1	0
 s0103a.att	590	anuruddha-1	0
-s0103a.att	590	bahiya-5	0
+s0103a.att	590	bahiya-4	0
 s0103a.att	591	gijjhakuta	0
 s0103a.att	591	gotama-1	0
 s0103a.att	591	veluvana	0
@@ -34488,7 +34543,7 @@ s0103a.att	609	janogha	0
 s0103a.att	609	kasivanta	0
 s0103a.att	609	navanavatiya	0
 s0103a.att	610	kuvera	0
-s0103a.att	610	vessavana-2	0
+s0103a.att	610	vessavana	0
 s0103a.att	610	visana	0
 s0103a.att	611	ojasi	0
 s0103a.att	611	tatojasi	0
@@ -34496,7 +34551,7 @@ s0103a.att	611	tatola	0
 s0103a.att	611	tatotala	0
 s0103a.att	611	tattala	0
 s0103a.att	611	tejasi	0
-s0103a.att	612	salavati-1	0
+s0103a.att	612	salavatika	0
 s0103a.att	615	kuvera	0
 s0103a.att	615	sati	0
 s0103a.att	616	vessavana	0
@@ -34533,6 +34588,7 @@ s0103a.att	708	siddhattha-4	0
 s0103a.att	713	khiddapadosika	0
 s0103a.att	713	manopadosika	0
 s0103a.att	715	mittavindaka-2	0
+s0103a.att	721	kassapa-1	0
 s0103a.att	732	dhamma-1-11	0
 s0103a.att	737	anuruddha-1	0
 s0103a.att	737	manapakayika	0
@@ -34565,7 +34621,7 @@ s0103a.att	873	upananda-3	0
 s0103a.att	873	vakkali	0
 s0103a.att	879	visuddhimagga	0
 s0103a.att	894	suddhavasa-1	0
-s0103a.att	895	aviha	0
+s0103a.att	895	aviha-1	0
 s0103a.att	895	suddhavasa-1	0
 s0103a.att	911	visuddhimagga	0
 s0103a.att	925	visuddhimagga	0
@@ -34689,6 +34745,8 @@ s0201a.att	447	maha-gama	0
 s0201a.att	448	cittalapabbata	0
 s0201a.att	448	khara-3	0
 s0201a.att	472	anga-5	0
+s0201a.att	472	bodhi-4	1
+s0201a.att	474	bodhi-4	1
 s0201a.att	494	cunda-1	2
 s0201a.att	494	cunda-1	0
 s0201a.att	498	jivaka	0
@@ -34853,6 +34911,7 @@ s0201a.att	1090	aparagoyana	0
 s0201a.att	1090	kuru	0
 s0201a.att	1090	pubbavideha	0
 s0201a.att	1090	uttarakuru	0
+s0201a.att	1091	kammasadamma	0
 s0201a.att	1091	kammasadhamma	0
 s0201a.att	1091	kuru	0
 s0201a.att	1092	jayaddisa	0
@@ -34926,6 +34985,7 @@ s0201a.att	1489	chaddanta-4	0
 s0201a.att	1489	cittakutapabbata	0
 s0201a.att	1489	dhatarattha-1	0
 s0201a.att	1489	gadrabhakula	0
+s0201a.att	1489	sindhu-1	0
 s0201a.att	1497	abhassara	0
 s0201a.att	1497	subhakinha-1	0
 s0201a.att	1499	anuruddha-1	0
@@ -35256,6 +35316,7 @@ s0201a.att	2133	ratanacankamacetiya	0
 s0201a.att	2133	ratanagharacetiya	0
 s0201a.att	2134	pacchimadesa	0
 s0201a.att	2134	vehapphala-2	0
+s0201a.att	2135	mucalinda-4	1
 s0201a.att	2135	mucalinda-4-2	0
 s0201a.att	2136	sakka-2	0
 s0201a.att	2136	tapussabhallika	0
@@ -35276,12 +35337,15 @@ s0201a.att	2145	isipatana	0
 s0201a.att	2145	migadaya-1	1
 s0201a.att	2145	migadaya-1	0
 s0201a.att	2146	baranasi	0
+s0201a.att	2146	bodhi-4	1
 s0201a.att	2146	gaya-1	1
 s0201a.att	2146	gaya-1	0
 s0201a.att	2146	upaka-1	1
 s0201a.att	2148	kasi	0
+s0201a.att	2149	capa	0
 s0201a.att	2149	upaka-1	1
 s0201a.att	2149	upaka-1	0
+s0201a.att	2150	capa	0
 s0201a.att	2150	upaka-1	1
 s0201a.att	2151	aviha-1	0
 s0201a.att	2151	jetavana	0
@@ -35345,7 +35409,7 @@ s0201a.att	2278	devadatta	0
 s0201a.att	2284	kassapa-1	2
 s0201a.att	2284	kassapa-1	0
 s0201a.att	2284	pingalakoccha-1	1
-s0201a.att	2284	pingalakoccha-1	0
+s0201a.att	2284	pingalakoccha-2	0
 s0201a.att	2284	purana-1	0
 s0201a.att	2285	gosala-1	0
 s0201a.att	2285	makkhali	0
@@ -35580,7 +35644,7 @@ s0201a.att	2494	moggallana-1	0
 s0201a.att	2494	sakka-2	0
 s0201a.att	2494	suvannatthambha	0
 s0201a.att	2494	vejayanta-3	0
-s0201a.att	2494	vessavana-2	0
+s0201a.att	2494	vessavana	0
 s0201a.att	2495	sakka-2	0
 s0201a.att	2496	sakka-2	0
 s0201a.att	2496	thera	0
@@ -35662,6 +35726,7 @@ s0201a.att	2668	visakha-1	2
 s0201a.att	2668	visakha-2	0
 s0201a.att	2671	visakha-1	2
 s0201a.att	2671	visakha-1	0
+s0201a.att	2672	ceti	0
 s0201a.att	2672	visakha-1	2
 s0201a.att	2674	visakha-1	2
 s0201a.att	2682	visuddhimagga	0
@@ -35692,24 +35757,25 @@ s0201a.att	2781	surambattha	0
 s0201a.att	2782	mara	0
 s0201a.att	2782	papimant-3	0
 s0201a.att	2782	surambattha	0
-s0201a.att	2786	ghosakasetthi-2	0
+s0201a.att	2786	ghosakasetthi	0
 s0201a.att	2786	ghositarama	0
 s0201a.att	2786	kosambi	0
 s0201a.att	2786	kusamba	0
 s0201a.att	2787	ajitarattha	0
 s0201a.att	2787	kotuhalaka	0
-s0201a.att	2788	ghosakasetthi-2	0
+s0201a.att	2788	ghosakasetthi	0
 s0201a.att	2788	kosambi	0
 s0201a.att	2788	kukkuta-2	0
 s0201a.att	2791	anathapindika-1	0
 s0201a.att	2792	jetavana	0
 s0201a.att	2792	savatthi	0
-s0201a.att	2793	ghosakasetthi-2	0
+s0201a.att	2793	ghosakasetthi	0
 s0201a.att	2793	ghositarama	0
 s0201a.att	2793	kosambi	0
 s0201a.att	2793	kukkuta-2	0
 s0201a.att	2793	kukkutarama	0
 s0201a.att	2793	pavarika-2	0
+s0201a.att	2793	pavarikambavana	0
 s0201a.att	2793	savatthi	0
 s0201a.att	2797	kosambi	0
 s0201a.att	2801	devatthera	0
@@ -35768,7 +35834,7 @@ s0201a.att	2906	visuddhimagga	0
 s0202a.att	5	campa	0
 s0202a.att	5	gaggara-1	0
 s0202a.att	5	kandaraka	0
-s0202a.att	5	pessa	0
+s0202a.att	5	pessa-2	0
 s0202a.att	7	moggallana-1	0
 s0202a.att	7	nandamatar	0
 s0202a.att	9	kandaraka	0
@@ -35872,6 +35938,7 @@ s0202a.att	182	kalingarattha	0
 s0202a.att	182	kisa-vaccha	0
 s0202a.att	182	kumbhapura	0
 s0202a.att	187	uyyanadvara	0
+s0202a.att	191	rama-2	0
 s0202a.att	192	dandaki-2	0
 s0202a.att	196	dandakiranna	0
 s0202a.att	197	kalingarattha	0
@@ -35896,6 +35963,7 @@ s0202a.att	225	ditthamangalika	0
 s0202a.att	226	ditthamangalika	0
 s0202a.att	228	jambudipa	0
 s0202a.att	281	ditthamangalika	0
+s0202a.att	290	ganga-1	0
 s0202a.att	291	ganga-1	0
 s0202a.att	292	ganga-1	0
 s0202a.att	294	ganga-1	0
@@ -35925,7 +35993,7 @@ s0202a.att	357	abhaya-4	0
 s0202a.att	357	gotama-1	0
 s0202a.att	357	nigantha-2	0
 s0202a.att	358	abhaya-4	0
-s0202a.att	359	nigantha	0
+s0202a.att	359	nigantha-2	0
 s0202a.att	359	nigantha-nataputta	0
 s0202a.att	371	pancakanga	0
 s0202a.att	371	udayi-1	2
@@ -36175,6 +36243,7 @@ s0202a.att	974	mahakaccana	0
 s0202a.att	981	kokanada-2	0
 s0202a.att	981	mangalapasada	0
 s0202a.att	985	pancavaggiya	0
+s0202a.att	985	saccaka	0
 s0202a.att	986	kosambi	0
 s0202a.att	986	udena-1	1
 s0202a.att	987	sakka-2	0
@@ -36288,7 +36357,7 @@ s0202a.att	1217	gotama-1	0
 s0202a.att	1221	canki-1	0
 s0202a.att	1221	gotama-1	0
 s0202a.att	1221	sineru	0
-s0202a.att	1222	pundarika-3	0
+s0202a.att	1222	pundarika-6	0
 s0202a.att	1223	gotama-1	0
 s0202a.att	1223	rajagaha	0
 s0202a.att	1224	ananda-2	1
@@ -36343,6 +36412,7 @@ s0203a.att	14	rajagaha	0
 s0203a.att	14	sariputta	0
 s0203a.att	14	sumana-3	2
 s0203a.att	15	punna-1-2	0
+s0203a.att	15	punna-3	2
 s0203a.att	15	sariputta	0
 s0203a.att	16	culaka-2	0
 s0203a.att	16	mahakassapa	0
@@ -36569,7 +36639,6 @@ s0203a.att	571	bhumija	0
 s0203a.att	577	appamanabha	0
 s0203a.att	577	parisuddhabha	0
 s0203a.att	577	parittabha	0
-s0203a.att	577	parittabha-2	0
 s0203a.att	590	balakalonakaragama	0
 s0203a.att	590	kosambi	0
 s0203a.att	590	pacinavamsadaya	0
@@ -36611,7 +36680,7 @@ s0203a.att	699	kukkulaniraya	0
 s0203a.att	702	khara-3	0
 s0203a.att	702	vetarani	0
 s0203a.att	730	rajagaha	0
-s0203a.att	730	tapoda	0
+s0203a.att	730	tapoda-2	0
 s0203a.att	730	tapodarama	0
 s0203a.att	731	samiddhi-2	0
 s0203a.att	732	mahakaccana	0
@@ -36824,9 +36893,9 @@ s0301a.att	179	cetiyapabbata	0
 s0301a.att	190	aggivessana	0
 s0301a.att	195	mara	0
 s0301a.att	205	rajagaha	0
-s0301a.att	205	tapoda	0
+s0301a.att	205	tapoda-2	0
 s0301a.att	205	tapodarama	0
-s0301a.att	206	tapoda	0
+s0301a.att	206	tapoda-2	0
 s0301a.att	207	tapodarama	0
 s0301a.att	208	samiddhi-2	0
 s0301a.att	220	visuddhimagga	0
@@ -37021,6 +37090,7 @@ s0301a.att	818	mara	0
 s0301a.att	821	abhassara	0
 s0301a.att	824	papimant-3	0
 s0301a.att	827	gotama-1	0
+s0301a.att	828	pabbata-4	0
 s0301a.att	834	samiddhi-2	0
 s0301a.att	836	isigili	0
 s0301a.att	836	kalasila	0
@@ -37114,7 +37184,7 @@ s0301a.att	1040	sundarikabharadvaja	0
 s0301a.att	1061	jetavana	0
 s0301a.att	1061	kosala-1	0
 s0301a.att	1066	dakkhinagiri-2	0
-s0301a.att	1066	ekanala-2	0
+s0301a.att	1066	ekanala	0
 s0301a.att	1066	magadha	0
 s0301a.att	1066	rajagaha	0
 s0301a.att	1067	bharadvaja-1	4
@@ -37535,6 +37605,7 @@ s0302a.att	726	sati	0
 s0302a.att	727	baranasi	0
 s0302a.att	728	baranasi	0
 s0302a.att	732	jambudipa	0
+s0302a.att	733	nanda-1	0
 s0302a.att	733	padumavati-1	0
 s0302a.att	733	sangha	0
 s0302a.att	734	maha-paduma-1	0
@@ -37542,10 +37613,10 @@ s0302a.att	736	bhadda-3	0
 s0302a.att	736	madda-2-1	0
 s0302a.att	736	magadha	0
 s0302a.att	736	rajagaha	0
-s0302a.att	736	sagala-2	0
+s0302a.att	736	sagala	0
 s0302a.att	738	bhadda-3	0
 s0302a.att	738	madda-2-1	0
-s0302a.att	738	sagala-2	0
+s0302a.att	738	sagala	0
 s0302a.att	739	bhadda-3	0
 s0302a.att	739	magadha	0
 s0302a.att	740	bhadda-3	0
@@ -37677,6 +37748,7 @@ s0303a.att	260	kosala-1	0
 s0303a.att	260	kosambi	0
 s0303a.att	262	balakalonakaragama	0
 s0303a.att	262	bhagu-3	0
+s0303a.att	262	pacinavamsadaya	0
 s0303a.att	262	palileyyaka-1	0
 s0303a.att	263	bhaddasala-4	0
 s0303a.att	263	rakkhitavanasanda	0
@@ -37872,6 +37944,8 @@ s0305a.att	19	ananda-2	1
 s0305a.att	19	ananda-2	0
 s0305a.att	43	visuddhimagga	0
 s0305a.att	53	avici-2	0
+s0305a.att	127	bodhi-4	1
+s0305a.att	127	bodhi-4	0
 s0305a.att	149	assagutta-2	0
 s0305a.att	149	lankadipa	0
 s0305a.att	149	mahakassapa	0
@@ -38059,6 +38133,7 @@ s0305a.att	795	sariputtamoggallana-2	0
 s0305a.att	817	sakka-2	0
 s0305a.att	820	mahanama-1	2
 s0305a.att	852	alavaka-1	0
+s0305a.att	852	anathapindika-1	0
 s0305a.att	852	citta-2-4	0
 s0305a.att	852	dhammadinna	0
 s0305a.att	852	hatthaka-1	0
@@ -38240,6 +38315,7 @@ s0401a.att	477	jetavana	0
 s0401a.att	477	pandukambalasila	0
 s0401a.att	477	sakka-2	0
 s0401a.att	477	sariputta	0
+s0401a.att	478	anathapindika-1	0
 s0401a.att	478	anuruddha-1	0
 s0401a.att	478	mahamoggallana	0
 s0401a.att	478	pandukambalasila	0
@@ -38397,17 +38473,18 @@ s0401a.att	634	sati	0
 s0401a.att	635	baranasi	0
 s0401a.att	636	baranasi	0
 s0401a.att	640	jambudipa	0
+s0401a.att	641	nanda-1	0
 s0401a.att	641	padumavati-1	0
 s0401a.att	642	maha-paduma-1	0
 s0401a.att	644	bhadda-3	0
 s0401a.att	644	madda-2-1	0
 s0401a.att	644	magadha	0
 s0401a.att	644	rajagaha	0
-s0401a.att	644	sagala-2	0
+s0401a.att	644	sagala	0
 s0401a.att	646	bhadda-3	0
 s0401a.att	646	kosiyagotta	0
 s0401a.att	646	madda-2-1	0
-s0401a.att	646	sagala-2	0
+s0401a.att	646	sagala	0
 s0401a.att	647	bhadda-3	0
 s0401a.att	647	magadha	0
 s0401a.att	648	bhadda-3	0
@@ -38468,6 +38545,7 @@ s0401a.att	676	bhagu-3	0
 s0401a.att	676	bhesakalavana	0
 s0401a.att	676	devadatta	0
 s0401a.att	676	kimila-1	0
+s0401a.att	676	pacinavamsadaya	0
 s0401a.att	684	anuruddha-1	0
 s0401a.att	684	jetavana	0
 s0401a.att	686	anuruddha-1	0
@@ -38496,7 +38574,7 @@ s0401a.att	695	pindolabharadvaja	0
 s0401a.att	698	bharadvaja-1	4
 s0401a.att	698	hamsavati-1	0
 s0401a.att	698	rajagahanagara	0
-s0401a.att	699	bharadvaja-3-2	0
+s0401a.att	699	bharadvaja-1	4
 s0401a.att	699	rajagaha	0
 s0401a.att	700	bharadvaja-1	4
 s0401a.att	700	bharadvaja-1	0
@@ -38644,7 +38722,7 @@ s0401a.att	811	ananda-2	0
 s0401a.att	811	mahakaccana	0
 s0401a.att	811	sona	0
 s0401a.att	811	sona-1	3
-s0401a.att	811	upavatta	0
+s0401a.att	811	upavattana-1	0
 s0401a.att	812	sona-5	0
 s0401a.att	815	gotama-1	0
 s0401a.att	815	sivali-1	1
@@ -38707,7 +38785,7 @@ s0401a.att	866	cula-subhadda-1	0
 s0401a.att	866	kundadhana	0
 s0401a.att	866	maha-subhadda-1	0
 s0401a.att	866	saketa	0
-s0401a.att	866	ugga-8	0
+s0401a.att	866	ugga-1	0
 s0401a.att	867	hamsavati-1	0
 s0401a.att	870	savatthi	0
 s0401a.att	871	kundadhana	0
@@ -38716,7 +38794,7 @@ s0401a.att	878	ananda-2	0
 s0401a.att	878	kundadhana	0
 s0401a.att	878	maha-subhadda-1	0
 s0401a.att	878	subhadda-1	2
-s0401a.att	878	ugga-8	0
+s0401a.att	878	ugga-1	0
 s0401a.att	880	vangisa-2	0
 s0401a.att	881	hamsavati-1	0
 s0401a.att	881	savatthi	0
@@ -38957,7 +39035,7 @@ s0401a.att	1065	bimbisara	0
 s0401a.att	1065	kasi	0
 s0401a.att	1065	kiki-2	0
 s0401a.att	1065	madda-2-1	0
-s0401a.att	1065	sagala-2	0
+s0401a.att	1065	sagala	0
 s0401a.att	1065	sujata-2	0
 s0401a.att	1066	khema	0
 s0401a.att	1066	rajagaha	0
@@ -39128,7 +39206,7 @@ s0401a.att	1214	surambattha	0
 s0401a.att	1216	abhaya-4	0
 s0401a.att	1216	jivaka	0
 s0401a.att	1216	rajagahanagara	0
-s0401a.att	1216	salavati-1	0
+s0401a.att	1216	salavatika	0
 s0401a.att	1217	bimbisara	0
 s0401a.att	1217	candapajjota	0
 s0401a.att	1217	gijjhakuta	0
@@ -39252,7 +39330,7 @@ s0401a.att	1289	ghosakasetthi	0
 s0401a.att	1289	samavati-2	0
 s0401a.att	1289	udena-1	0
 s0401a.att	1290	anathapindika-1	0
-s0401a.att	1290	ghosakasetthi-2	0
+s0401a.att	1290	ghosakasetthi	0
 s0401a.att	1290	kosambi	0
 s0401a.att	1290	kukkuta-2	0
 s0401a.att	1290	savatthi	0
@@ -39393,6 +39471,7 @@ s0401a.att	1475	usiraddhaja	0
 s0401a.att	1486	dhammasoka-2	0
 s0401a.att	1512	visuddhimagga	0
 s0401a.att	1522	anga-5	0
+s0401a.att	1522	bodhi-4	1
 s0401a.att	1528	sona-1	3
 s0401a.att	1535	maha-mitta	0
 s0401a.att	1536	maha-mitta	0
@@ -39486,7 +39565,7 @@ s0402a.att	144	aciravati	0
 s0402a.att	146	sariputta	0
 s0402a.att	147	abhassara	0
 s0402a.att	147	appamanabha	0
-s0402a.att	147	aviha	0
+s0402a.att	147	aviha-1	0
 s0402a.att	147	nimmanarati	0
 s0402a.att	147	parittabha	0
 s0402a.att	147	parittasubha	0
@@ -39671,6 +39750,8 @@ s0402a.att	724	metteyya-2	0
 s0402a.att	724	sankha-3	0
 s0402a.att	732	nagadipa	0
 s0402a.att	739	kassapasammasambuddha	0
+s0402a.att	744	bodhi-4	1
+s0402a.att	745	bodhi-4	1
 s0402a.att	754	visakha-1	2
 s0402a.att	754	visakha-1	0
 s0402a.att	760	visuddhimagga	0
@@ -39771,7 +39852,7 @@ s0402a.att	1105	ananda-2	0
 s0402a.att	1105	cula-subhadda-1	0
 s0402a.att	1105	saketa	0
 s0402a.att	1105	sakka-2	0
-s0402a.att	1105	vessavana-2	0
+s0402a.att	1105	vessavana	0
 s0402a.att	1105	vissakamma	0
 s0402a.att	1106	kalaka-1	0
 s0402a.att	1106	kalakarama	0
@@ -39812,7 +39893,7 @@ s0402a.att	1198	visuddhimagga	0
 s0402a.att	1201	annakondanna	0
 s0402a.att	1208	kassapasammasambuddha	0
 s0402a.att	1208	setabya	0
-s0402a.att	1208	tapoda	0
+s0402a.att	1208	tapoda-2	0
 s0402a.att	1208	ukkattha	0
 s0402a.att	1209	dona-2	0
 s0402a.att	1210	dona-2	0
@@ -39840,7 +39921,7 @@ s0402a.att	1337	ananda-2	0
 s0402a.att	1337	bakula-1	0
 s0402a.att	1337	pilindavaccha	0
 s0402a.att	1337	sivali-1	0
-s0402a.att	1385	kesi-1	0
+s0402a.att	1385	kesi	0
 s0402a.att	1408	vehapphala-1	0
 s0402a.att	1410	suddhavasa-1	0
 s0402a.att	1419	ananda-2	1
@@ -40084,7 +40165,7 @@ s0403a.att	924	anathapindika-1	0
 s0403a.att	924	sujata-1	0
 s0403a.att	924	visakha-1	2
 s0403a.att	925	khara-3	0
-s0403a.att	928	yasa-6	0
+s0403a.att	928	yasa-2	0
 s0403a.att	936	visuddhimagga	0
 s0403a.att	937	avici-2	0
 s0403a.att	951	sakka-2	0
@@ -40110,14 +40191,14 @@ s0404a.att	63	vesali	0
 s0404a.att	64	gotama-1	0
 s0404a.att	64	nataputta	0
 s0404a.att	64	siha-2	0
-s0404a.att	67	nigantha	0
+s0404a.att	67	nigantha-2	0
 s0404a.att	68	vesali	0
 s0404a.att	69	gotama-1	0
 s0404a.att	70	gotama-1	0
 s0404a.att	71	valahaka-2	0
 s0404a.att	75	sati	0
 s0404a.att	75	ukkamsika	0
-s0404a.att	76	nigantha	0
+s0404a.att	76	nigantha-2	0
 s0404a.att	88	paharada	0
 s0404a.att	88	rahu-1	0
 s0404a.att	88	vepacitti	0
@@ -40304,6 +40385,7 @@ s0501a.att	61	brahmayu-1	0
 s0501a.att	72	ananda-2	1
 s0501a.att	79	ananda-2	1
 s0501a.att	79	ananda-2	0
+s0501a.att	85	kuvera	0
 s0501a.att	86	sumitta-1	0
 s0501a.att	105	anathapindika-1	0
 s0501a.att	105	jetavana	0
@@ -40321,7 +40403,7 @@ s0501a.att	162	gotama-1	0
 s0501a.att	175	visuddhimagga	0
 s0501a.att	281	arohanta	0
 s0501a.att	316	sopaka-2	1
-s0501a.att	348	kajangala-2	0
+s0501a.att	348	kajangala	0
 s0501a.att	392	abhassara	0
 s0501a.att	392	subhakinha-1	0
 s0501a.att	392	vinnanancayatanupaga	0
@@ -40556,7 +40638,7 @@ s0501a.att	932	kasi	0
 s0501a.att	932	phussa-2-4	1
 s0501a.att	936	bimbisara	0
 s0501a.att	936	gotama-1	0
-s0501a.att	936	kassapa-1	2
+s0501a.att	936	kassapa-1	0
 s0501a.att	937	bimbisara	0
 s0501a.att	937	dhammadinna	0
 s0501a.att	937	gayasisa	0
@@ -40698,12 +40780,12 @@ s0502a.att	265	kosala-1	0
 s0502a.att	265	savatthi	0
 s0502a.att	272	setabya	0
 s0502a.att	272	simsapavana-1	0
-s0502a.att	273	cula-kala-2	0
+s0502a.att	273	cula-kala-3	0
 s0502a.att	273	jetavana	0
 s0502a.att	273	mahakala	0
 s0502a.att	273	savatthi	0
-s0502a.att	275	cula-kala-2	0
-s0502a.att	280	cula-kala-2	0
+s0502a.att	275	cula-kala-3	0
+s0502a.att	280	cula-kala-3	0
 s0502a.att	280	ghanasela	0
 s0502a.att	280	mahakala	0
 s0502a.att	280	mahamoggallana	0
@@ -40813,7 +40895,7 @@ s0502a.att	331	annatakondanna	0
 s0502a.att	331	bhaddavaggiya	0
 s0502a.att	331	pancavaggiya	0
 s0502a.att	331	veluvana	0
-s0502a.att	332	cula-kala-2	0
+s0502a.att	332	cula-kala-3	0
 s0502a.att	332	mahakala	0
 s0502a.att	332	vipassi-1	0
 s0502a.att	338	hamsavati-1	0
@@ -40958,7 +41040,7 @@ s0502a.att	440	ananda-2	0
 s0502a.att	440	devadatta	0
 s0502a.att	440	gijjhakuta	0
 s0502a.att	440	gotama-1	0
-s0502a.att	440	nalagiri-2	0
+s0502a.att	440	nalagiri	0
 s0502a.att	440	rajagaha	0
 s0502a.att	441	ananda-2	1
 s0502a.att	441	ananda-2	0
@@ -41070,7 +41152,7 @@ s0502a.att	605	ghosakasetthi	0
 s0502a.att	605	kosambi	0
 s0502a.att	605	kukkuta-2	0
 s0502a.att	606	anathapindika-1	0
-s0502a.att	609	ghosakasetthi-2	0
+s0502a.att	609	ghosakasetthi	0
 s0502a.att	609	ghositarama	0
 s0502a.att	609	kosambi	0
 s0502a.att	609	kukkuta-2	0
@@ -41245,13 +41327,13 @@ s0502a.att	825	savatthi	0
 s0502a.att	826	jetavana	0
 s0502a.att	835	savatthi	0
 s0502a.att	836	savatthi	0
-s0502a.att	844	sangharakkhita-1	0
+s0502a.att	844	sangharakkhita-2	0
 s0502a.att	844	savatthi	0
 s0502a.att	845	bhagineyya-sangharakkhita-1	0
 s0502a.att	845	sangharakkhita-2	0
 s0502a.att	845	savatthi	0
 s0502a.att	846	sangharakkhita-2	0
-s0502a.att	848	sangharakkhita-1	0
+s0502a.att	848	sangharakkhita-2	0
 s0502a.att	853	bhagineyya-sangharakkhita-1	0
 s0502a.att	856	savatthi	0
 s0502a.att	860	kalakanni-1	0
@@ -41671,6 +41753,7 @@ s0502a.att	1346	padumuttarabuddha	0
 s0502a.att	1346	savatthi	0
 s0502a.att	1346	uppalavanna	0
 s0502a.att	1347	andhavana-1	0
+s0502a.att	1347	avici-2	0
 s0502a.att	1347	savatthi	0
 s0502a.att	1358	jambuka-1	0
 s0502a.att	1358	veluvana	0
@@ -41717,6 +41800,7 @@ s0502a.att	1409	mahanama-1	1
 s0502a.att	1409	pancavaggiya	0
 s0502a.att	1410	citta-2-4	0
 s0502a.att	1410	macchikasanda	0
+s0502a.att	1411	citta-2-4	0
 s0502a.att	1417	agantuka	0
 s0502a.att	1420	savatthi	0
 s0502a.att	1421	ananda-2	0
@@ -41790,7 +41874,7 @@ s0502a.att	1510	maha-parivena	0
 s0502a.att	1511	anoja-1	0
 s0502a.att	1511	madda-2-1	0
 s0502a.att	1511	puppha-2	0
-s0502a.att	1511	sagala-2	0
+s0502a.att	1511	sagala	0
 s0502a.att	1511	supatta-1	0
 s0502a.att	1512	anoja-1	0
 s0502a.att	1512	savatthi	0
@@ -41933,7 +42017,7 @@ s0502a.att	1709	visakha-1	0
 s0502a.att	1714	sivali-1	0
 s0502a.att	1715	vipassi-1	0
 s0502a.att	1716	baranasi	0
-s0502a.att	1716	vipassi-buddha	0
+s0502a.att	1716	vipassi-1	0
 s0502a.att	1717	sivali-1	1
 s0502a.att	1723	jetavana	0
 s0502a.att	1734	veluvana	0
@@ -42034,8 +42118,11 @@ s0502a.att	1911	savatthi	0
 s0502a.att	1916	kisagotami	0
 s0502a.att	1917	kisagotami	0
 s0502a.att	1921	kisagotami	0
+s0502a.att	1922	kisagotami	0
 s0502a.att	1924	jetavana	0
+s0502a.att	1924	sona	0
 s0502a.att	1925	savatthi	0
+s0502a.att	1925	sona	0
 s0502a.att	1939	jetavana	0
 s0502a.att	1940	savatthi	0
 s0502a.att	1941	pasenadi	0
@@ -42223,6 +42310,7 @@ s0502a.att	2345	upananda-1	2
 s0502a.att	2352	jetavana	0
 s0502a.att	2363	jetavana	0
 s0502a.att	2363	kumarakassapa	0
+s0502a.att	2364	anathapindika-1	0
 s0502a.att	2364	devadatta	0
 s0502a.att	2364	jetavana	0
 s0502a.att	2364	padumuttarabuddha	0
@@ -42334,7 +42422,7 @@ s0502a.att	2584	ganga-1	0
 s0502a.att	2584	rajagaha	0
 s0502a.att	2585	nataputta	0
 s0502a.att	2585	nigantha-2	0
-s0502a.att	2586	bharadvaja-3-2	0
+s0502a.att	2586	bharadvaja-1	4
 s0502a.att	2586	mahamoggallana	0
 s0502a.att	2586	pindolabharadvaja	0
 s0502a.att	2586	rajagaha	0
@@ -42357,7 +42445,9 @@ s0502a.att	2592	gotama-1	0
 s0502a.att	2592	kandamba	0
 s0502a.att	2593	sakka-2	0
 s0502a.att	2593	suriya-2-2	0
+s0502a.att	2594	anathapindika-1	0
 s0502a.att	2594	sakka-2	0
+s0502a.att	2595	cira	0
 s0502a.att	2595	jambudipa	0
 s0502a.att	2595	sineru	0
 s0502a.att	2596	mahamoggallana	0
@@ -42373,6 +42463,7 @@ s0502a.att	2609	yugandhara-2	0
 s0502a.att	2614	anuruddha-1	0
 s0502a.att	2614	mahamoggallana	0
 s0502a.att	2614	pandukambalasila	0
+s0502a.att	2615	anathapindika-1	0
 s0502a.att	2615	mahamoggallana	0
 s0502a.att	2615	moggallana-1	0
 s0502a.att	2615	pandukambalasila	0
@@ -42459,7 +42550,7 @@ s0502a.att	2792	sakka-2	0
 s0502a.att	2793	rohini-1-2	0
 s0502a.att	2794	koliya	0
 s0502a.att	2806	mara	0
-s0502a.att	2806	pancasala-2	0
+s0502a.att	2806	pancasala	0
 s0502a.att	2807	mara	0
 s0502a.att	2807	papimant-3	0
 s0502a.att	2809	abhassara	0
@@ -42500,11 +42591,11 @@ s0502a.att	2925	kutagarasala-2	0
 s0502a.att	2925	licchavi	0
 s0502a.att	2925	vesali	0
 s0502a.att	2926	licchavi	0
-s0502a.att	2931	licchavi-2	0
+s0502a.att	2931	licchavi	0
 s0502a.att	2933	anitthigandhakumara-1	0
 s0502a.att	2933	jetavana	0
 s0502a.att	2934	madda-2-1	0
-s0502a.att	2934	sagala-2	0
+s0502a.att	2934	sagala	0
 s0502a.att	2934	savatthi	0
 s0502a.att	2935	anitthigandhakumara-1	0
 s0502a.att	2936	anitthigandhakumara-1	0
@@ -42714,6 +42805,7 @@ s0502a.att	3507	jetavana	0
 s0502a.att	3507	kisagotami	0
 s0502a.att	3510	kisagotami	0
 s0502a.att	3514	kisagotami	0
+s0502a.att	3515	kisagotami	0
 s0502a.att	3517	jetavana	0
 s0502a.att	3517	patacara	0
 s0502a.att	3520	patacara	0
@@ -42774,6 +42866,7 @@ s0502a.att	3586	rajagaha	0
 s0502a.att	3604	mahavana-1	0
 s0502a.att	3604	vesali	0
 s0502a.att	3609	vesali	0
+s0502a.att	3620	citta-2-4	0
 s0502a.att	3620	jetavana	0
 s0502a.att	3621	ananda-2	1
 s0502a.att	3628	anathapindika-1	0
@@ -42789,7 +42882,7 @@ s0502a.att	3630	cula-subhadda-2	0
 s0502a.att	3630	dhanancaya	0
 s0502a.att	3630	subhadda-1	2
 s0502a.att	3630	ugga-2-2	2
-s0502a.att	3630	ugga-8	0
+s0502a.att	3630	ugga-7	0
 s0502a.att	3630	visakha-1	2
 s0502a.att	3630	visakha-1	0
 s0502a.att	3631	visakha-1	2
@@ -42802,7 +42895,7 @@ s0502a.att	3655	sakka-2	0
 s0502a.att	3655	savatthi	0
 s0502a.att	3655	subhadda-1	2
 s0502a.att	3655	subhadda-1	0
-s0502a.att	3655	ugga-8	0
+s0502a.att	3655	ugga-1	0
 s0502a.att	3658	jetavana	0
 s0502a.att	3669	jetavana	0
 s0502a.att	3669	sundari	0
@@ -43104,6 +43197,7 @@ s0502a.att	4478	gijjhakuta	0
 s0502a.att	4478	kisagotami	0
 s0502a.att	4479	kisagotami	0
 s0502a.att	4479	sakka-2	0
+s0502a.att	4484	kisagotami	0
 s0502a.att	4486	jetavana	0
 s0502a.att	4487	gotama-1	0
 s0502a.att	4495	uggasena	0
@@ -43442,7 +43536,7 @@ s0503a.att	335	bahiya-1	1
 s0503a.att	337	bahiya-1	1
 s0503a.att	337	daruciriya	0
 s0503a.att	338	bahiya-1	1
-s0503a.att	339	candima-1	0
+s0503a.att	339	candimasa	0
 s0503a.att	340	bahiya-1	1
 s0503a.att	345	mucala	0
 s0503a.att	345	mucalinda-4	1
@@ -43461,7 +43555,7 @@ s0503a.att	377	nandana-2	0
 s0503a.att	377	tavatimsa	0
 s0503a.att	382	jetavana	0
 s0503a.att	382	savatthi	0
-s0503a.att	382	tapoda	0
+s0503a.att	382	tapoda-2	0
 s0503a.att	383	savatthi	0
 s0503a.att	390	cunda-1	2
 s0503a.att	390	cunda-1	0
@@ -43491,6 +43585,7 @@ s0503a.att	484	mangala-7	0
 s0503a.att	499	mara	0
 s0503a.att	505	sariputta	0
 s0503a.att	518	maha-papata	0
+s0503a.att	528	bodhi-4	1
 s0503a.att	537	tusita-1	0
 s0503a.att	552	sakka-2	0
 s0503a.att	553	sakka-2	0
@@ -43532,6 +43627,7 @@ s0503a.att	651	mahapajapati	0
 s0503a.att	651	rajagaha	0
 s0503a.att	651	veluvana	0
 s0503a.att	652	nanda-1	0
+s0503a.att	653	nanda-1	0
 s0503a.att	653	nanda-6	0
 s0503a.att	653	rahula	0
 s0503a.att	654	anathapindika-1	0
@@ -43661,7 +43757,7 @@ s0503a.att	927	moggallana-1	0
 s0503a.att	927	sariputta	0
 s0503a.att	928	veluvana	0
 s0503a.att	929	sariputta	0
-s0503a.att	933	ghosakasetthi-2	0
+s0503a.att	933	ghosakasetthi	0
 s0503a.att	933	ghositarama	0
 s0503a.att	933	kosambi	0
 s0503a.att	933	kusamba	0
@@ -43675,6 +43771,7 @@ s0503a.att	936	ananda-2	0
 s0503a.att	937	balakalonakaragama	0
 s0503a.att	937	bhaddasala-4	0
 s0503a.att	937	bhagu-3	0
+s0503a.att	937	pacinavamsadaya	0
 s0503a.att	937	palileyyaka-1	0
 s0503a.att	937	rakkhitavanasanda	0
 s0503a.att	939	bhaddasala-1	0
@@ -43763,7 +43860,7 @@ s0503a.att	1141	suppabuddha	0
 s0503a.att	1142	baranasi	0
 s0503a.att	1142	suppabuddha	0
 s0503a.att	1147	gandhamadana	0
-s0503a.att	1147	nandamulapabbhara	0
+s0503a.att	1147	nandamulaka	0
 s0503a.att	1147	rajagaha	0
 s0503a.att	1147	suppabuddha	0
 s0503a.att	1147	tagarasikhi	0
@@ -43798,6 +43895,8 @@ s0503a.att	1176	sarabhu	0
 s0503a.att	1176	vijjha	0
 s0503a.att	1176	yamuna	0
 s0503a.att	1177	ganga-1	0
+s0503a.att	1195	bodhi-4	1
+s0503a.att	1195	bodhi-4	0
 s0503a.att	1202	avanti-1	1
 s0503a.att	1202	kuraraghara	0
 s0503a.att	1202	kutikanna	0
@@ -43844,7 +43943,7 @@ s0503a.att	1258	jetavana	0
 s0503a.att	1258	mahamoggallana	0
 s0503a.att	1258	rajagaha	0
 s0503a.att	1258	savatthi	0
-s0503a.att	1258	ukkacela-2	0
+s0503a.att	1258	ukkacela	0
 s0503a.att	1258	veluvagamaka	0
 s0503a.att	1258	vesali	0
 s0503a.att	1259	bahuputta-1	0
@@ -44139,6 +44238,7 @@ s0504a.att	601	kondanna-1	1
 s0504a.att	601	mangala-7	0
 s0504a.att	616	mara	0
 s0504a.att	622	sariputta	0
+s0504a.att	634	bodhi-4	1
 s0504a.att	641	tusita-1	0
 s0504a.att	656	sakka-2	0
 s0504a.att	657	sakka-2	0
@@ -44189,11 +44289,11 @@ s0504a.att	1267	buddhakula	0
 s0504a.att	1267	gajangala	0
 s0504a.att	1267	majjhimadesa	0
 s0504a.att	1267	setakannika	0
-s0504a.att	1267	thuna-3	0
+s0504a.att	1267	thuna-2	0
 s0504a.att	1273	visuddhimagga	0
 s0504a.att	1282	visuddhimagga	0
 s0504a.att	1284	meghiya	0
-s0504a.att	1312	tapoda	0
+s0504a.att	1312	tapoda-2	0
 s0504a.att	1345	devadatta	0
 s0504a.att	1345	gotama-1	0
 s0504a.att	1347	devadatta	0
@@ -44295,7 +44395,7 @@ s0505a.att	166	dhaniya-1	1
 s0505a.att	166	dhaniya-1	0
 s0505a.att	168	dhaniya-1	1
 s0505a.att	168	dhaniya-1	0
-s0505a.att	168	gopi	0
+s0505a.att	168	gopika-1	0
 s0505a.att	169	dhaniya-1	1
 s0505a.att	169	mara	0
 s0505a.att	175	dhaniya-1	1
@@ -44315,7 +44415,7 @@ s0505a.att	183	dhaniya-1	0
 s0505a.att	184	dhaniya-1	1
 s0505a.att	184	dhaniya-1	0
 s0505a.att	185	dhaniya-1	1
-s0505a.att	185	gopi	0
+s0505a.att	185	gopika-1	0
 s0505a.att	186	pancasikha-1	0
 s0505a.att	186	sariputta	0
 s0505a.att	190	dhaniya-1	1
@@ -44323,7 +44423,7 @@ s0505a.att	191	mara	0
 s0505a.att	191	papimant-3	0
 s0505a.att	192	nanda-1-2	1
 s0505a.att	194	dhaniya-1	1
-s0505a.att	194	gopi	0
+s0505a.att	194	gopika-1	0
 s0505a.att	194	jetavana	0
 s0505a.att	194	mara	0
 s0505a.att	194	papimant-3	0
@@ -44362,13 +44462,13 @@ s0505a.att	252	ananda-2	0
 s0505a.att	252	candagabbha	0
 s0505a.att	252	gandhamadana	0
 s0505a.att	252	nagapalivethana	0
-s0505a.att	252	nandamulapabbhara	0
+s0505a.att	252	nandamulaka	0
 s0505a.att	252	rajataguha	0
 s0505a.att	254	kassapa-1	0
 s0505a.att	255	madda-2-1	0
 s0505a.att	256	baranasi	0
 s0505a.att	256	madda-2-1	0
-s0505a.att	256	sagala-2	0
+s0505a.att	256	sagala	0
 s0505a.att	257	baranasi	0
 s0505a.att	257	jambudipa	0
 s0505a.att	259	padumassara	0
@@ -44447,7 +44547,7 @@ s0505a.att	513	ananda-2	1
 s0505a.att	513	ananda-2	0
 s0505a.att	514	magadha	0
 s0505a.att	515	dakkhinagiri-2	0
-s0505a.att	515	ekanala-2	0
+s0505a.att	515	ekanala	0
 s0505a.att	515	rajagaha	0
 s0505a.att	516	bharadvaja-1	4
 s0505a.att	516	ekanala	0
@@ -44629,7 +44729,7 @@ s0505a.att	905	nanda-2-2	0
 s0505a.att	911	nanda-2-2	0
 s0505a.att	912	jivaka	0
 s0505a.att	912	rajagaha	0
-s0505a.att	912	salavati-1	0
+s0505a.att	912	salavatika	0
 s0505a.att	912	sirima-1	0
 s0505a.att	912	suyama	0
 s0505a.att	920	visuddhimagga	0
@@ -44641,6 +44741,7 @@ s0505a.att	947	savatthi	0
 s0505a.att	957	baranasi	0
 s0505a.att	957	gaya-1	1
 s0505a.att	957	upaka-1	1
+s0505a.att	958	capa	0
 s0505a.att	958	upaka-1	1
 s0505a.att	958	upaka-1	0
 s0505a.att	959	jetavana	0
@@ -44802,7 +44903,7 @@ s0505a.att	1175	savatthi	0
 s0505a.att	1180	gotama-1	0
 s0505a.att	1181	gotama-1	0
 s0505a.att	1182	anuruddha-1	0
-s0505a.att	1182	bahiya-5	0
+s0505a.att	1182	bahiya-4	0
 s0505a.att	1183	gotama-1	0
 s0505a.att	1183	jetavana	0
 s0505a.att	1183	veluvana	0
@@ -44870,7 +44971,7 @@ s0505a.att	1440	gotama-1	0
 s0505a.att	1452	kiki-2	0
 s0505a.att	1453	kiki-2	0
 s0505a.att	1453	kunti	0
-s0505a.att	1457	saradassi-2	0
+s0505a.att	1457	saradassi-1	0
 s0505a.att	1467	okkaka	0
 s0505a.att	1468	maha-ratha-1	0
 s0505a.att	1470	okkakaraja	0
@@ -44963,7 +45064,7 @@ s0505a.att	1576	mahasammata	0
 s0505a.att	1576	mandhata	0
 s0505a.att	1576	mandhatar	0
 s0505a.att	1576	okkamukha	0
-s0505a.att	1576	roja-2	0
+s0505a.att	1576	roja-1	0
 s0505a.att	1576	sinipura	0
 s0505a.att	1576	suppiya-1	1
 s0505a.att	1576	varamandhata	0
@@ -45012,7 +45113,7 @@ s0505a.att	1634	kuvera	0
 s0505a.att	1634	vessavana	0
 s0505a.att	1634	visana	0
 s0505a.att	1635	kuvera	0
-s0505a.att	1635	vessavana-2	0
+s0505a.att	1635	vessavana	0
 s0505a.att	1635	visana	0
 s0505a.att	1637	eravana	0
 s0505a.att	1637	magadha	0
@@ -45252,7 +45353,7 @@ s0505a.att	2079	sakka-2	0
 s0505a.att	2079	sineru	0
 s0505a.att	2084	sineru	0
 s0505a.att	2088	asita-3-2	0
-s0505a.att	2097	nala-3	0
+s0505a.att	2097	nalaka	0
 s0505a.att	2099	nalaka	0
 s0505a.att	2099	padumuttara-1	1
 s0505a.att	2100	asita-3-2	0
@@ -45365,7 +45466,7 @@ s0505a.att	2446	punna-4	0
 s0505a.att	2446	sariputta	0
 s0505a.att	2446	uppalavanna	0
 s0505a.att	2452	sariputta	0
-s0505a.att	2453	tusita-2	0
+s0505a.att	2453	tusita	0
 s0505a.att	2460	sariputta	0
 s0505a.att	2480	baranasi	0
 s0505a.att	2480	ganga-1	0
@@ -45387,18 +45488,18 @@ s0505a.att	2491	ananda-2	0
 s0505a.att	2492	kosalarattha	0
 s0505a.att	2492	savatthi	0
 s0505a.att	2493	alaka	0
-s0505a.att	2493	assaka-4	0
+s0505a.att	2493	assaka	0
 s0505a.att	2493	godhavari	0
 s0505a.att	2493	savatthi	0
 s0505a.att	2494	assaka-1	0
 s0505a.att	2495	bavari	0
 s0505a.att	2497	bavari	0
 s0505a.att	2505	gonaddha	0
-s0505a.att	2505	gonaddha-2	0
 s0505a.att	2505	kassapa-1	0
 s0505a.att	2505	kosambi	0
 s0505a.att	2505	saketa	0
 s0505a.att	2505	tissametteyya	0
+s0505a.att	2505	vanasa	0
 s0505a.att	2506	bavari	0
 s0505a.att	2506	kapilavatthu	0
 s0505a.att	2506	magadhakhetta	0
@@ -45427,6 +45528,7 @@ s0505a.att	2605	jatukanni-2	0
 s0505a.att	2610	pasanakacetiya	0
 s0505a.att	2611	mara	0
 s0505a.att	2617	udaya-3	0
+s0505a.att	2625	posala	0
 s0505a.att	2640	pasanaka	0
 s0505a.att	2641	pingiya-1	1
 s0505a.att	2642	pingiya-1	1
@@ -45597,6 +45699,7 @@ s0506a.att	629	sakka-2	0
 s0506a.att	631	alamba-1	0
 s0506a.att	631	sadhuvadi	0
 s0506a.att	632	pokkhara-5	0
+s0506a.att	632	supassa	0
 s0506a.att	633	sonadinna	0
 s0506a.att	634	alambusa	0
 s0506a.att	634	missakesi	0
@@ -45709,10 +45812,10 @@ s0506a.att	968	tavatimsa	0
 s0506a.att	1005	jetavana	0
 s0506a.att	1005	sakka-2	0
 s0506a.att	1005	savatthi	0
-s0506a.att	1005	vessavana-2	0
-s0506a.att	1006	vessavana-2	0
+s0506a.att	1005	vessavana	0
+s0506a.att	1006	vessavana	0
 s0506a.att	1007	mahamoggallana	0
-s0506a.att	1009	vessavana-2	0
+s0506a.att	1009	vessavana	0
 s0506a.att	1032	sakka-2	0
 s0506a.att	1032	vessavana	0
 s0506a.att	1033	vessavana	0
@@ -45897,6 +46000,7 @@ s0506a.att	1563	sudinna-2	0
 s0506a.att	1574	anuruddha-1	0
 s0506a.att	1577	mahamoggallana	0
 s0506a.att	1577	savatthi	0
+s0506a.att	1577	sumana-2	1
 s0506a.att	1582	kassapa-1	0
 s0506a.att	1582	mahamoggallana	0
 s0506a.att	1604	sumana-2	0
@@ -45936,6 +46040,7 @@ s0506a.att	1739	rajjumala	0
 s0506a.att	1757	rajjumala	0
 s0506a.att	1771	sadhuvadi	0
 s0506a.att	1772	pokkhara-5	0
+s0506a.att	1772	supassa	0
 s0506a.att	1773	sonadinna	0
 s0506a.att	1774	alambusa	0
 s0506a.att	1774	missakesi	0
@@ -45972,7 +46077,7 @@ s0506a.att	1839	vessavana	0
 s0506a.att	1840	nandiya	0
 s0506a.att	1840	revata-1	2
 s0506a.att	1840	revati	0
-s0506a.att	1840	vessavana-2	0
+s0506a.att	1840	vessavana	0
 s0506a.att	1841	revata-1	2
 s0506a.att	1843	revata-1	2
 s0506a.att	1844	yama-2	0
@@ -46168,7 +46273,7 @@ s0506a.att	2640	tavatimsa	0
 s0506a.att	2642	candima-2	0
 s0506a.att	2644	candima-2	0
 s0506a.att	2665	mahamoggallana	0
-s0506a.att	2666	candima-2	0
+s0506a.att	2666	candimasa	0
 s0506a.att	2666	mahamoggallana	0
 s0506a.att	2675	jetavana	0
 s0506a.att	2675	mahamoggallana	0
@@ -46226,10 +46331,10 @@ s0506a.att	2898	anga-4	0
 s0506a.att	2898	magadha	0
 s0506a.att	2898	sindhusovirabhumi	0
 s0506a.att	2922	vessavana	0
-s0506a.att	2931	vessavana-2	0
+s0506a.att	2931	vessavana	0
 s0506a.att	2932	sakka-2	0
 s0506a.att	2934	serisaka-2	0
-s0506a.att	2935	vessavana-2	0
+s0506a.att	2935	vessavana	0
 s0506a.att	2950	payasi-2	0
 s0506a.att	2952	kumarakassapa	0
 s0506a.att	2990	sindhusovirabhumi	0
@@ -46287,7 +46392,7 @@ s0507a.att	94	kuvera	0
 s0507a.att	94	virulhaka	0
 s0507a.att	94	virupakkha-2	0
 s0507a.att	101	kuvera	0
-s0507a.att	101	vessavana-2	0
+s0507a.att	101	vessavana	0
 s0507a.att	104	pasenadi	0
 s0507a.att	107	rajagaha	0
 s0507a.att	108	jayasena	0
@@ -46373,10 +46478,13 @@ s0507a.att	465	sariputta	0
 s0507a.att	482	cola	0
 s0507a.att	496	ceti	0
 s0507a.att	497	baranasi	0
+s0507a.att	497	nanda-1	0
 s0507a.att	498	baranasi	0
 s0507a.att	502	jambudipa	0
 s0507a.att	502	mahakassapa	0
+s0507a.att	502	nanda-1	0
 s0507a.att	502	padumavati-1	0
+s0507a.att	503	nanda-1	0
 s0507a.att	509	digharaji	0
 s0507a.att	509	sariputta	0
 s0507a.att	512	anuruddha-1	0
@@ -46394,6 +46502,7 @@ s0507a.att	530	sariputta	0
 s0507a.att	532	anuruddha-1	0
 s0507a.att	532	kappina	0
 s0507a.att	532	moggallana-1	0
+s0507a.att	538	mahamoggallana	0
 s0507a.att	540	mahamoggallana	0
 s0507a.att	548	mahamoggallana	0
 s0507a.att	551	jetavana	0
@@ -46433,12 +46542,12 @@ s0507a.att	709	rohineyya	0
 s0507a.att	712	dvaravati-1	0
 s0507a.att	719	dvaravati-1	0
 s0507a.att	721	kesava	0
-s0507a.att	769	dhanapalaka-2	0
+s0507a.att	769	dhanapalaka	0
 s0507a.att	769	jetavana	0
 s0507a.att	770	savatthi	0
 s0507a.att	780	erakaccha	0
 s0507a.att	781	dhanapala	0
-s0507a.att	815	dhanapala-2	0
+s0507a.att	815	dhanapala	0
 s0507a.att	815	erakaccha	0
 s0507a.att	825	savatthi	0
 s0507a.att	828	ajatasattu	0
@@ -46601,6 +46710,7 @@ s0507a.att	1277	jetavana	0
 s0507a.att	1277	savatthi	0
 s0507a.att	1278	culani-brahmadatta	0
 s0507a.att	1278	kapila-1	0
+s0507a.att	1278	pancala	0
 s0507a.att	1279	ubbari-1	0
 s0507a.att	1280	brahmadatta-1	4
 s0507a.att	1280	brahmadatta-1	0
@@ -46772,7 +46882,7 @@ s0507a.att	2109	arindama-1	0
 s0507a.att	2111	surattha	0
 s0507a.att	2133	mahakappina	0
 s0507a.att	2152	arindama-1	0
-s0507a.att	2165	vessavana-2	0
+s0507a.att	2165	vessavana	0
 s0507a.att	2166	arindama-1	0
 s0507a.att	2168	arindama-1	0
 s0507a.att	2170	arindama-1	0
@@ -46968,7 +47078,7 @@ s0508a1.att	472	sambhuta-2	0
 s0508a1.att	472	savatthi	0
 s0508a1.att	472	sitavana	0
 s0508a1.att	472	sitavaniya	0
-s0508a1.att	472	vessavana-2	0
+s0508a1.att	472	vessavana	0
 s0508a1.att	474	sambhuta-2	0
 s0508a1.att	476	atthadassi-2	0
 s0508a1.att	478	ganga-1	0
@@ -47015,6 +47125,7 @@ s0508a1.att	549	punnamasa-1	0
 s0508a1.att	549	samiddhi-2	0
 s0508a1.att	549	savatthi	0
 s0508a1.att	549	vipassi-1	0
+s0508a1.att	550	sindhu-1	0
 s0508a1.att	570	culavaccha	0
 s0508a1.att	570	kassapa-1	0
 s0508a1.att	570	kosambi	0
@@ -47060,7 +47171,7 @@ s0508a1.att	661	ananda-2	0
 s0508a1.att	661	kundadhana	0
 s0508a1.att	661	maha-subhadda-1	0
 s0508a1.att	661	subhadda-1	2
-s0508a1.att	661	ugga-8	0
+s0508a1.att	661	ugga-1	0
 s0508a1.att	664	padumuttara-1	1
 s0508a1.att	677	gotama-1	0
 s0508a1.att	681	kundadhana	0
@@ -47111,6 +47222,7 @@ s0508a1.att	808	piyadassi-1	1
 s0508a1.att	816	gotama-1	0
 s0508a1.att	830	cittaka-3	0
 s0508a1.att	830	rajagaha	0
+s0508a1.att	830	satadhamma	0
 s0508a1.att	830	veluvana	0
 s0508a1.att	830	vipassi-1	0
 s0508a1.att	832	vipassi-1	0
@@ -47134,6 +47246,7 @@ s0508a1.att	878	nandiya	0
 s0508a1.att	878	padumuttara-1	0
 s0508a1.att	879	padumuttara-1	1
 s0508a1.att	890	mara	0
+s0508a1.att	890	pacinavamsadaya	0
 s0508a1.att	890	papimant-3	0
 s0508a1.att	891	mara	0
 s0508a1.att	894	abhaya-2	0
@@ -47243,6 +47356,7 @@ s0508a1.att	1171	khadiravaniyarevata	0
 s0508a1.att	1171	magadha	0
 s0508a1.att	1171	mahaganga	0
 s0508a1.att	1171	padumuttara-1	0
+s0508a1.att	1171	payagapatitthana	0
 s0508a1.att	1171	rupasari	0
 s0508a1.att	1171	sariputta	0
 s0508a1.att	1171	upacala	0
@@ -47334,6 +47448,7 @@ s0508a1.att	1345	valliya-1	0
 s0508a1.att	1348	siddhattha-4	0
 s0508a1.att	1357	godhika	0
 s0508a1.att	1369	subahu-2	0
+s0508a1.att	1370	tivara	0
 s0508a1.att	1371	siddhattha-4	0
 s0508a1.att	1381	valliya-1	2
 s0508a1.att	1382	siddhattha-4	0
@@ -47428,7 +47543,7 @@ s0508a1.att	1683	ukkhepakatavaccha	0
 s0508a1.att	1687	kapilavatthu	0
 s0508a1.att	1687	kimikala-2	0
 s0508a1.att	1687	meghiya	0
-s0508a1.att	1687	vessavana-2	0
+s0508a1.att	1687	vessavana	0
 s0508a1.att	1687	vipassi-1	0
 s0508a1.att	1688	vipassi-1	0
 s0508a1.att	1694	vessavana	0
@@ -47704,6 +47819,7 @@ s0508a1.att	2760	nesadaka	0
 s0508a1.att	2761	mahanama-1	2
 s0508a1.att	2761	mahanama-1	0
 s0508a1.att	2761	nesadaka	0
+s0508a1.att	2762	sindhu-1	0
 s0508a1.att	2768	sumedha-4	0
 s0508a1.att	2770	sumedha-4	0
 s0508a1.att	2779	gotama-1	0
@@ -48020,7 +48136,7 @@ s0508a1.att	4167	nitaka	0
 s0508a1.att	4167	vipassi-1	0
 s0508a1.att	4168	bandhumati-1	0
 s0508a1.att	4183	nitaka	0
-s0508a1.att	4186	anupiya-2	0
+s0508a1.att	4186	anupiya	0
 s0508a1.att	4186	bhaddiya-1	3
 s0508a1.att	4186	bhaddiya-1	0
 s0508a1.att	4186	kapilavatthu	0
@@ -48106,7 +48222,7 @@ s0508a1.att	4486	sikhi-3	0
 s0508a1.att	4486	ukkattha	0
 s0508a1.att	4487	vessabhu-1	1
 s0508a1.att	4494	bharadvaja-1	4
-s0508a1.att	4494	kundi-1	0
+s0508a1.att	4494	kundiya	0
 s0508a1.att	4494	kuru	0
 s0508a1.att	4494	uggarama	0
 s0508a1.att	4497	aggi-bhagava	0
@@ -48159,9 +48275,9 @@ s0508a1.att	4709	sattapanniguha	0
 s0508a1.att	4716	khujjasobhita	0
 s0508a1.att	4719	kosalarattha	0
 s0508a1.att	4719	tissa-2-7	0
-s0508a1.att	4719	tusita-2	0
+s0508a1.att	4719	tusita	0
 s0508a1.att	4719	varana-3	0
-s0508a1.att	4733	tusita-2	0
+s0508a1.att	4733	tusita	0
 s0508a1.att	4754	atthadassi-2	0
 s0508a1.att	4754	kosalarattha	0
 s0508a1.att	4754	vassika-3	0
@@ -48172,6 +48288,7 @@ s0508a1.att	4772	yasoja	0
 s0508a1.att	4773	aciravati	0
 s0508a1.att	4773	kassapa-1	0
 s0508a1.att	4773	pasenadi	0
+s0508a1.att	4773	yasoja	0
 s0508a1.att	4774	jetavana	0
 s0508a1.att	4774	vaggumuda	0
 s0508a1.att	4774	yasoja	0
@@ -48203,6 +48320,7 @@ s0508a1.att	4911	gotama-1	0
 s0508a1.att	4928	sabbosadha	0
 s0508a1.att	4949	cittalatavana	0
 s0508a1.att	4965	padumuttarabuddha	0
+s0508a1.att	4969	kapilavatthu	0
 s0508a1.att	5008	dhamma-1-11	0
 s0508a1.att	5018	sariputta	0
 s0508a1.att	5020	kolita	0
@@ -48335,7 +48453,7 @@ s0508a1.att	5570	rajadatta	0
 s0508a1.att	5570	rajagaha	0
 s0508a1.att	5570	savatthi	0
 s0508a1.att	5570	veluvana	0
-s0508a1.att	5570	vessavana-2	0
+s0508a1.att	5570	vessavana	0
 s0508a1.att	5571	rajadatta	0
 s0508a1.att	5597	baranasi	0
 s0508a1.att	5597	kassapa-1	0
@@ -48381,7 +48499,9 @@ s0508a1.att	5844	sikhi-3	0
 s0508a1.att	5853	gaya-1	1
 s0508a1.att	5853	gayaphaggu	0
 s0508a1.att	5863	gaya-1	1
+s0508a1.att	5863	gaya-1	0
 s0508a1.att	5863	gayaphaggu	0
+s0508a1.att	5864	gaya-1	1
 s0508a1.att	5870	hamsavati-1	0
 s0508a1.att	5870	padumuttara-1	0
 s0508a1.att	5870	vakkali	0
@@ -48773,6 +48893,7 @@ s0508a1.att	7382	kosambi	0
 s0508a1.att	7422	anathapindika-1	0
 s0508a1.att	7422	gotamatthera	0
 s0508a1.att	7422	savatthi	0
+s0508a1.att	7452	bodhi-4	1
 s0508a1.att	7459	samkicca-2	0
 s0508a1.att	7459	savatthi	0
 s0508a1.att	7459	sineru	0
@@ -48853,8 +48974,10 @@ s0508a1.att	7840	kondanna-1	0
 s0508a1.att	7846	kondanna-1	0
 s0508a1.att	7868	kaludayi	0
 s0508a1.att	7868	kapilavatthu	0
+s0508a1.att	7868	laludayi	0
 s0508a1.att	7868	udayi-1	1
 s0508a1.att	7868	udayi-1	0
+s0508a1.att	7868	udayi-3	0
 s0508a1.att	7904	buddhanaga-thera	0
 s0508a1.att	7906	buddhanaga-thera	0
 s0508a1.att	7920	adhimutta-3	1
@@ -49046,6 +49169,7 @@ s0508a1.att	9024	rajagaha	0
 s0508a1.att	9024	sancaya-2-1	0
 s0508a1.att	9025	assaji-1-1	0
 s0508a1.att	9025	rajagaha	0
+s0508a1.att	9025	satadhamma	0
 s0508a1.att	9025	upatissa	0
 s0508a1.att	9026	veluvana	0
 s0508a1.att	9027	kolita	0
@@ -49173,24 +49297,25 @@ s0508a1.att	9781	khema-4	0
 s0508a1.att	9781	migadaya-1	1
 s0508a1.att	9781	vipassi-1	0
 s0508a1.att	9782	sineru	0
-s0508a1.att	9784	nala-3	0
+s0508a1.att	9784	nala-1	0
 s0508a1.att	9785	baranasi	0
 s0508a1.att	9785	konagamana	0
 s0508a1.att	9787	baranasi	0
 s0508a1.att	9789	sati	0
 s0508a1.att	9790	baranasi	0
 s0508a1.att	9793	jambudipa	0
+s0508a1.att	9793	nanda-1	0
 s0508a1.att	9793	padumavati-1	0
 s0508a1.att	9794	maha-paduma-1	0
 s0508a1.att	9796	bhadda-4-2	0
 s0508a1.att	9796	madda-2-1	0
 s0508a1.att	9796	magadha	0
 s0508a1.att	9796	rajagaha	0
-s0508a1.att	9796	sagala-2	0
+s0508a1.att	9796	sagala	0
 s0508a1.att	9798	bhadda-4-2	0
 s0508a1.att	9798	kosiyagotta	0
 s0508a1.att	9798	madda-2-1	0
-s0508a1.att	9798	sagala-2	0
+s0508a1.att	9798	sagala	0
 s0508a1.att	9799	bhadda-4-2	0
 s0508a1.att	9799	magadha	0
 s0508a1.att	9800	bhadda-4-2	0
@@ -49533,6 +49658,7 @@ s0508a1.att	10791	subhuti-1	0
 s0508a1.att	10791	tissametteyya	0
 s0508a1.att	10791	todeyya	0
 s0508a1.att	10791	udaya-3	0
+s0508a1.att	10791	udayi-2	1
 s0508a1.att	10791	upali-1	2
 s0508a1.att	10791	upasena	0
 s0508a1.att	10791	upavana-2	0
@@ -49566,7 +49692,7 @@ s0509a.att	9	kala-3	0
 s0509a.att	9	kaludayitthera	0
 s0509a.att	9	kapilavatthu	0
 s0509a.att	9	kappasikavanasanda	0
-s0509a.att	9	lumbini-2	0
+s0509a.att	9	lumbini	0
 s0509a.att	9	mahanama-1	1
 s0509a.att	9	mahapajapati	0
 s0509a.att	9	nanda-1	0
@@ -49591,6 +49717,7 @@ s0509a.att	14	vesali	0
 s0509a.att	15	dhammadinna-2	0
 s0509a.att	15	mahapajapatigotami	0
 s0509a.att	15	visakha-2	0
+s0509a.att	19	konagamana	0
 s0509a.att	37	mahapajapatigotami	0
 s0509a.att	37	mutta-2	0
 s0509a.att	37	savatthi	0
@@ -49666,6 +49793,7 @@ s0509a.att	265	bandhuma-1	0
 s0509a.att	265	bandhumati-1	0
 s0509a.att	313	jenta	0
 s0509a.att	313	vesali	0
+s0509a.att	319	bodhi-4	1
 s0509a.att	320	vakkali	0
 s0509a.att	323	savatthi	0
 s0509a.att	323	sumangalamatar	0
@@ -49818,7 +49946,7 @@ s0509a.att	888	bhadda-4-2	0
 s0509a.att	888	hamsavati-1	0
 s0509a.att	888	mahapajapatigotami	0
 s0509a.att	888	padumuttara-1	0
-s0509a.att	888	sagala-2	0
+s0509a.att	888	sagala	0
 s0509a.att	888	titthiyarama	0
 s0509a.att	889	padumuttara-1	1
 s0509a.att	891	videha	0
@@ -50436,6 +50564,7 @@ s0509a.att	3614	jinadatta	0
 s0509a.att	3630	erakaccha	0
 s0509a.att	3651	giridasa	0
 s0509a.att	3652	yasavati	0
+s0509a.att	3656	pataliputta	0
 s0509a.att	3656	pataliputta-2	0
 s0509a.att	3658	isidasi	0
 s0509a.att	3658	ujjeni	0
@@ -50536,10 +50665,12 @@ s0510a.att	119	sariputta	0
 s0510a.att	130	dipankara	0
 s0510a.att	132	dipankara	0
 s0510a.att	135	dipankara	0
+s0510a.att	135	ramma-4	0
 s0510a.att	145	dipankara	0
 s0510a.att	145	sumedha-4	0
 s0510a.att	148	dipankara	0
 s0510a.att	158	dipankara	0
+s0510a.att	177	ramma-4	0
 s0510a.att	192	sakka-2	0
 s0510a.att	194	ananda-2	1
 s0510a.att	194	buddhupatthaka	0
@@ -50568,10 +50699,13 @@ s0510a.att	268	visakha-1	2
 s0510a.att	419	mahameru	0
 s0510a.att	426	gotama-1	0
 s0510a.att	435	dipankara	0
+s0510a.att	441	ramma-4	0
 s0510a.att	445	dipankara	0
+s0510a.att	470	ramma-4	0
 s0510a.att	472	dipankara	0
 s0510a.att	489	dipankara	0
 s0510a.att	491	naradakuta	0
+s0510a.att	493	sudassanakuta	0
 s0510a.att	500	dipankara	0
 s0510a.att	502	dipankara	0
 s0510a.att	507	rammavati	0
@@ -50595,12 +50729,13 @@ s0510a.att	537	anuruddha-1	0
 s0510a.att	537	bhadda-5	0
 s0510a.att	537	dipankara	0
 s0510a.att	537	kondanna-1	1
+s0510a.att	537	kondanna-3	0
 s0510a.att	537	rammavati	0
 s0510a.att	537	subhadda-1	2
 s0510a.att	537	sujata-1	0
 s0510a.att	537	sunanda-3	0
 s0510a.att	537	tissa-1	0
-s0510a.att	537	upatissa-2	0
+s0510a.att	537	upatissa	0
 s0510a.att	538	dipankara	0
 s0510a.att	538	kondanna-1	1
 s0510a.att	540	anandakumara	0
@@ -50679,6 +50814,7 @@ s0510a.att	577	paduma-7	0
 s0510a.att	578	narada-1	1
 s0510a.att	580	ananda-2	1
 s0510a.att	580	devala	0
+s0510a.att	580	narada-2	0
 s0510a.att	580	padumuttara-1	1
 s0510a.att	580	padumuttara-1	0
 s0510a.att	581	narada-1	1
@@ -50690,7 +50826,7 @@ s0510a.att	584	sumedha-4	0
 s0510a.att	584	suramma	0
 s0510a.att	585	padumuttara-1	1
 s0510a.att	585	sumedha-4	0
-s0510a.att	588	nagasamala-2	0
+s0510a.att	588	nagasamala	0
 s0510a.att	588	narada-1	1
 s0510a.att	588	pabhavati	0
 s0510a.att	588	sudassana-5	0
@@ -50724,7 +50860,7 @@ s0510a.att	600	dhammadassi-1	0
 s0510a.att	600	khema	0
 s0510a.att	600	paduma-7	0
 s0510a.att	600	phussadeva	0
-s0510a.att	600	saccanama	0
+s0510a.att	600	saccanama-2	0
 s0510a.att	600	sakka-2	0
 s0510a.att	600	sunanda-1-2	0
 s0510a.att	600	sunetta	0
@@ -50737,9 +50873,9 @@ s0510a.att	604	sambala-1	0
 s0510a.att	604	siddhattha-4	0
 s0510a.att	604	sivala	0
 s0510a.att	604	sumitta-1	0
-s0510a.att	604	suphassa-2	0
+s0510a.att	604	suphassa	0
 s0510a.att	604	surama-1-2	0
-s0510a.att	604	vebhara-3	0
+s0510a.att	604	vebhara	0
 s0510a.att	605	dhammadassi-1	0
 s0510a.att	605	siddhattha-4	0
 s0510a.att	608	brahmadeva	0
@@ -50790,7 +50926,7 @@ s0510a.att	625	mandakappa	0
 s0510a.att	626	vessabhu-1	1
 s0510a.att	628	aggidatta	0
 s0510a.att	628	buddhija	0
-s0510a.att	628	campa-2	0
+s0510a.att	628	campa	0
 s0510a.att	628	kakusandha	0
 s0510a.att	628	kassapa-1	2
 s0510a.att	628	konagamana	0
@@ -50815,7 +50951,7 @@ s0510a.att	636	ghatikara	0
 s0510a.att	636	jotipala-1	1
 s0510a.att	636	kassapa-1	2
 s0510a.att	636	sabbamitta-1	0
-s0510a.att	636	uruvela-4	0
+s0510a.att	636	uruvela-2	0
 s0510a.att	637	konagamana	0
 s0510a.att	638	kassapa-1	2
 s0510a.att	639	tanhankara	0
@@ -50870,11 +51006,11 @@ s0510a.att	716	suvannapabbata	0
 s0510a.att	718	mudusitala	0
 s0510a.att	719	tusita-1	0
 s0510a.att	720	kapilavatthu	0
-s0510a.att	720	lumbini-2	0
+s0510a.att	720	lumbini	0
 s0510a.att	722	suyama	0
 s0510a.att	723	ananda-2	0
 s0510a.att	723	kaludayi	0
-s0510a.att	723	lumbini-2	0
+s0510a.att	723	lumbini	0
 s0510a.att	723	sakka-2	0
 s0510a.att	726	nalaka	0
 s0510a.att	726	suvannapabbata	0
@@ -51203,13 +51339,13 @@ s0510a.att	1254	ananda-2	0
 s0510a.att	1254	candagabbha	0
 s0510a.att	1254	gandhamadana	0
 s0510a.att	1254	nagapalivethana	0
-s0510a.att	1254	nandamulapabbhara	0
+s0510a.att	1254	nandamulaka	0
 s0510a.att	1254	rajataguha	0
 s0510a.att	1256	kassapa-1	0
 s0510a.att	1257	madda-2-1	0
 s0510a.att	1258	baranasi	0
 s0510a.att	1258	madda-2-1	0
-s0510a.att	1258	sagala-2	0
+s0510a.att	1258	sagala	0
 s0510a.att	1259	baranasi	0
 s0510a.att	1260	jambudipa	0
 s0510a.att	1261	kaladighavapi	0
@@ -51311,6 +51447,7 @@ s0510a.att	1449	rajagaha	0
 s0510a.att	1449	sancaya-2-1	0
 s0510a.att	1450	assaji-1-1	0
 s0510a.att	1450	rajagaha	0
+s0510a.att	1450	satadhamma	0
 s0510a.att	1450	upatissa	0
 s0510a.att	1450	veluvana	0
 s0510a.att	1451	kolita	0
@@ -51351,7 +51488,7 @@ s0510a.att	1645	aciravati	0
 s0510a.att	1645	bhagirathi-2	0
 s0510a.att	1645	ganga-1	0
 s0510a.att	1645	mahi-2	0
-s0510a.att	1645	sarabhu-1	0
+s0510a.att	1645	sarabhu	0
 s0510a.att	1645	sariputta	0
 s0510a.att	1645	yamuna	0
 s0510a.att	1647	sariputta	0
@@ -51479,16 +51616,17 @@ s0510a.att	1794	konagamana	0
 s0510a.att	1795	baranasi	0
 s0510a.att	1798	baranasi	0
 s0510a.att	1801	jambudipa	0
+s0510a.att	1802	nanda-1	0
 s0510a.att	1802	padumavati-1	0
 s0510a.att	1803	maha-paduma-1	0
 s0510a.att	1805	bhadda-3	0
 s0510a.att	1805	madda-2-1	0
 s0510a.att	1805	magadha	0
 s0510a.att	1805	rajagaha	0
-s0510a.att	1805	sagala-2	0
+s0510a.att	1805	sagala	0
 s0510a.att	1807	bhadda-3	0
 s0510a.att	1807	madda-2-1	0
-s0510a.att	1807	sagala-2	0
+s0510a.att	1807	sagala	0
 s0510a.att	1808	bhadda-3	0
 s0510a.att	1808	magadha	0
 s0510a.att	1809	bhadda-3	0
@@ -51580,6 +51718,7 @@ s0510a.att	1893	gotama-1	0
 s0510a.att	1893	sabbosadha	0
 s0510a.att	1903	cittalatavana	0
 s0510a.att	1910	padumuttara-1	0
+s0510a.att	1912	kapilavatthu	0
 s0510a.att	1915	gotama-1	0
 s0510a.att	1916	padumuttara-1	0
 s0510a.att	1932	dhamma-1-11	0
@@ -51621,7 +51760,7 @@ s0510a.att	2009	kondanna-1	0
 s0510a.att	2009	mara	0
 s0510a.att	2009	pancavaggiya	0
 s0510a.att	2009	uruvela	0
-s0510a.att	2016	tusita-2	0
+s0510a.att	2016	tusita	0
 s0510a.att	2018	baranasi	0
 s0510a.att	2018	isipatana	0
 s0510a.att	2018	kondanna-1	1
@@ -51648,6 +51787,7 @@ s0510a.att	2044	hamsavati-1	0
 s0510a.att	2044	khadiravaniya-2	0
 s0510a.att	2044	mahaganga	0
 s0510a.att	2044	padumuttara-1	0
+s0510a.att	2044	payagapatitthana	0
 s0510a.att	2045	jetavana	0
 s0510a.att	2045	magadha	0
 s0510a.att	2045	revata-1	0
@@ -51683,6 +51823,7 @@ s0510a.att	2058	revata-1	2
 s0510a.att	2061	ananda-2	0
 s0510a.att	2061	bhoganagara	0
 s0510a.att	2061	hamsavati-1	0
+s0510a.att	2061	nanda-1	0
 s0510a.att	2061	padumuttara-1	0
 s0510a.att	2066	sumanatthera	0
 s0510a.att	2068	kapilavatthu	0
@@ -51805,7 +51946,7 @@ s0510a.att	2247	siddhattha-4	0
 s0510a.att	2247	sopaka-2	1
 s0510a.att	2248	savatthi	0
 s0510a.att	2248	sopaka-2	1
-s0510a.att	2248	suppiya-3	0
+s0510a.att	2248	suppiya-1	1
 s0510a.att	2250	siddhattha-4	0
 s0510a.att	2252	siddhattha-4	0
 s0510a.att	2259	pasenadi	0
@@ -51877,7 +52018,7 @@ s0510a.att	2354	ananda-2	0
 s0510a.att	2354	kundadhana	0
 s0510a.att	2354	maha-subhadda-1	0
 s0510a.att	2354	subhadda-1	2
-s0510a.att	2354	ugga-8	0
+s0510a.att	2354	ugga-1	0
 s0510a.att	2358	gotama-1	0
 s0510a.att	2358	padumuttara-1	0
 s0510a.att	2358	sagata-2	0
@@ -52016,7 +52157,9 @@ s0510a.att	2559	sikhi-3	0
 s0510a.att	2561	sikhi-3	1
 s0510a.att	2561	sikhi-3	0
 s0510a.att	2565	ganga-1	0
+s0510a.att	2565	sindhu-1	0
 s0510a.att	2565	vipassi-1	0
+s0510a.att	2566	sindhu-1	0
 s0510a.att	2566	vipassi-1	0
 s0510a.att	2567	vipassi-1	0
 s0510a.att	2570	parappasadaka-thera	0
@@ -52122,6 +52265,7 @@ s0510a.att	2745	siddhattha-4	0
 s0510a.att	2750	siddhattha-4	0
 s0510a.att	2751	ceti	0
 s0510a.att	2754	siddhattha-4	0
+s0510a.att	2754	tivara	0
 s0510a.att	2755	tivara	0
 s0510a.att	2756	siddhattha-4	0
 s0510a.att	2759	siddhattha-4	0
@@ -52151,6 +52295,7 @@ s0510a.att	2799	padumuttara-1	0
 s0510a.att	2804	atthadassi-2	0
 s0510a.att	2804	varuna	0
 s0510a.att	2805	varuna	0
+s0510a.att	2807	bodhi-4	1
 s0510a.att	2810	suvannapupphiya-thera	0
 s0510a.att	2810	vipassi-1	0
 s0510a.att	2811	vipassi-1	0
@@ -52158,7 +52303,7 @@ s0510a.att	2815	citakapujaka-thera-1	0
 s0510a.att	2815	sikhi-3	0
 s0510a.att	2816	sikhi-3	1
 s0510a.att	2820	buddhasannaka-1	0
-s0510a.att	2820	vessavana-2	0
+s0510a.att	2820	vessavana	0
 s0510a.att	2820	vipassi-1	0
 s0510a.att	2821	vipassi-1	0
 s0510a.att	2825	maggasannaka-thera	0
@@ -52326,7 +52471,9 @@ s0510a.att	3049	candabhaga	0
 s0510a.att	3049	phussa-2-5	0
 s0510a.att	3053	dussadayaka-thera	0
 s0510a.att	3053	siddhattha-4	0
+s0510a.att	3053	tivara	0
 s0510a.att	3054	siddhattha-4	0
+s0510a.att	3054	tivara	0
 s0510a.att	3057	samadapaka-thera	0
 s0510a.att	3057	vipassi-1	0
 s0510a.att	3058	bandhumati-1	0
@@ -52519,7 +52666,7 @@ s0510a.att	3374	kappina	0
 s0510a.att	3374	mahakappina	0
 s0510a.att	3375	padumuttara-1	1
 s0510a.att	3376	padumuttara-1	0
-s0510a.att	3376	saradassi-2	0
+s0510a.att	3376	saradassi-1	0
 s0510a.att	3381	baranasi	0
 s0510a.att	3384	bahiya-1	1
 s0510a.att	3384	dabba-1-2	0
@@ -53042,7 +53189,7 @@ s0511a.att	367	yama	0
 s0511a.att	368	paranimmita	0
 s0511a.att	370	abhassara	0
 s0511a.att	370	appamanabha	0
-s0511a.att	370	aviha	0
+s0511a.att	370	aviha-1	0
 s0511a.att	370	nimmanarati	0
 s0511a.att	370	paranimmitavasavatti	0
 s0511a.att	370	parittabha	0
@@ -53167,6 +53314,8 @@ s0511a.att	815	nandarama-1	0
 s0511a.att	818	dipankara	0
 s0511a.att	822	dipankara	0
 s0511a.att	823	dipankara	0
+s0511a.att	823	ramma-4	0
+s0511a.att	824	ramma-4	0
 s0511a.att	836	dipankara	0
 s0511a.att	836	sumedha-4	0
 s0511a.att	837	kancanaguha	0
@@ -53174,6 +53323,7 @@ s0511a.att	847	dipankara	0
 s0511a.att	849	dipankara	0
 s0511a.att	859	dipankara	0
 s0511a.att	878	dipankara	0
+s0511a.att	882	ramma-4	0
 s0511a.att	899	ceti	0
 s0511a.att	911	ananda-2	1
 s0511a.att	911	dipankara	0
@@ -53200,6 +53350,7 @@ s0511a.att	932	citta-2-4	0
 s0511a.att	933	nandamatar	0
 s0511a.att	935	sumedha-4	0
 s0511a.att	939	dipankara	0
+s0511a.att	939	ramma-4	0
 s0511a.att	951	dipankara	0
 s0511a.att	992	visakha-1	2
 s0511a.att	1017	dipankara	0
@@ -53209,6 +53360,7 @@ s0511a.att	1069	sumedha-4	0
 s0511a.att	1191	gotama-1	0
 s0511a.att	1200	dipankara	0
 s0511a.att	1206	sati	0
+s0511a.att	1209	ramma-4	0
 s0511a.att	1213	dipankara	0
 s0511a.att	1241	mahavana-1	2
 s0511a.att	1241	mahavana-1	0
@@ -53218,6 +53370,7 @@ s0511a.att	1285	ganga-1	0
 s0511a.att	1285	sarabhu	0
 s0511a.att	1285	yamuna	0
 s0511a.att	1286	mahi-2	0
+s0511a.att	1299	ramma-4	0
 s0511a.att	1301	dipankara	0
 s0511a.att	1322	dipankara	0
 s0511a.att	1326	dipankara	0
@@ -53234,6 +53387,7 @@ s0511a.att	1339	naradakuta	0
 s0511a.att	1340	dipankara	0
 s0511a.att	1344	naradakuta	0
 s0511a.att	1347	dipankara	0
+s0511a.att	1348	sudassanakuta	0
 s0511a.att	1353	dipankara	0
 s0511a.att	1358	dipankara	0
 s0511a.att	1359	dipankara	0
@@ -53310,7 +53464,7 @@ s0511a.att	1420	sujata-1	0
 s0511a.att	1420	sunanda-3	0
 s0511a.att	1420	tusita-1	0
 s0511a.att	1421	kondanna-1	1
-s0511a.att	1421	rama-2	0
+s0511a.att	1421	rammavati	0
 s0511a.att	1421	rucidevi	0
 s0511a.att	1421	surama-1	0
 s0511a.att	1421	vijitasena	0
@@ -53355,11 +53509,12 @@ s0511a.att	1504	uttarakuru	0
 s0511a.att	1507	anuruddha-1	0
 s0511a.att	1507	bhadda-5	0
 s0511a.att	1507	candarama	0
+s0511a.att	1507	kondanna-3	0
 s0511a.att	1507	rammavati	0
 s0511a.att	1507	rucidevi	0
 s0511a.att	1507	subhadda-1	2
 s0511a.att	1507	sujata-1	0
-s0511a.att	1507	sunanda-1	0
+s0511a.att	1507	sunanda-3	0
 s0511a.att	1507	tissa-1	0
 s0511a.att	1507	upatissa	0
 s0511a.att	1507	vijitasena	0
@@ -53374,6 +53529,7 @@ s0511a.att	1511	kondanna-1	1
 s0511a.att	1512	tissa-1	0
 s0511a.att	1512	upatissa	0
 s0511a.att	1513	kondanna-1	1
+s0511a.att	1525	kondanna-3	0
 s0511a.att	1526	candarama	0
 s0511a.att	1526	kondanna-1	1
 s0511a.att	1527	cetiya-2	0
@@ -53424,10 +53580,10 @@ s0511a.att	1611	dhammasena-1	0
 s0511a.att	1611	sudeva-1	0
 s0511a.att	1612	mangala-7	0
 s0511a.att	1612	palita-1	0
-s0511a.att	1613	sivala	0
+s0511a.att	1613	sivali-2	0
 s0511a.att	1621	mangala-7	0
 s0511a.att	1627	mangala-7	0
-s0511a.att	1632	sirima-2	0
+s0511a.att	1632	sirima-1	0
 s0511a.att	1632	sudatta	0
 s0511a.att	1632	sumana-5-2	0
 s0511a.att	1632	tusita-1	0
@@ -53484,6 +53640,7 @@ s0511a.att	1725	sadhudevi	0
 s0511a.att	1726	revata-1	2
 s0511a.att	1726	sumana-5-2	0
 s0511a.att	1728	revata-1	2
+s0511a.att	1731	revata-3	0
 s0511a.att	1735	arindama-1	0
 s0511a.att	1736	arindama-1	0
 s0511a.att	1736	revata-1	2
@@ -53535,6 +53692,7 @@ s0511a.att	1826	rammavati	0
 s0511a.att	1826	sobhita-5	0
 s0511a.att	1829	sobhita-5	0
 s0511a.att	1834	gotama-1	0
+s0511a.att	1834	sobhita-5	0
 s0511a.att	1835	jayasena	0
 s0511a.att	1835	makhila-1	0
 s0511a.att	1835	nakula-1	0
@@ -53554,12 +53712,13 @@ s0511a.att	1858	anomadassi-2	0
 s0511a.att	1858	candavati-1	0
 s0511a.att	1858	narada-1	1
 s0511a.att	1858	paduma-7	0
+s0511a.att	1858	sobhita-5	0
 s0511a.att	1858	tusita-1	0
 s0511a.att	1858	yasava-1	0
 s0511a.att	1858	yasodhara-1	0
 s0511a.att	1859	anomadassi-2	0
 s0511a.att	1859	sirima-1	0
-s0511a.att	1859	sirivaddha-6	0
+s0511a.att	1859	sirivaddha-1	2
 s0511a.att	1859	upasiri-1	0
 s0511a.att	1859	upavana	0
 s0511a.att	1861	sobhita-5	0
@@ -53615,8 +53774,8 @@ s0511a.att	1950	maha-paduma-1	0
 s0511a.att	1950	mahavana-1	2
 s0511a.att	1951	gotama-1	0
 s0511a.att	1964	paduma-7	0
-s0511a.att	1964	radha-2	0
-s0511a.att	1964	suradha-2	0
+s0511a.att	1964	radha	0
+s0511a.att	1964	suradha	0
 s0511a.att	1964	upasala	0
 s0511a.att	1964	varuna	0
 s0511a.att	1966	paduma-7	0
@@ -53626,10 +53785,11 @@ s0511a.att	1968	varuna	0
 s0511a.att	1969	radha	0
 s0511a.att	1969	suradha	0
 s0511a.att	1970	maha-sona-1	0
-s0511a.att	1985	anoma-2-2	0
+s0511a.att	1985	anoma	0
 s0511a.att	1985	dhannavati-1	0
 s0511a.att	1985	narada-1	1
 s0511a.att	1985	narada-1	0
+s0511a.att	1985	paduma-7	0
 s0511a.att	1985	sudeva-1	0
 s0511a.att	1986	sakka-2	0
 s0511a.att	1986	vijitasena	0
@@ -53676,6 +53836,7 @@ s0511a.att	2041	vasettha-1	2
 s0511a.att	2042	phagguni	0
 s0511a.att	2043	maha-sona-1	0
 s0511a.att	2064	hamsavati-1	0
+s0511a.att	2064	narada-2	0
 s0511a.att	2064	padumuttara-1	1
 s0511a.att	2064	tusita-1	0
 s0511a.att	2065	naravahana	0
@@ -53782,7 +53943,7 @@ s0511a.att	2223	usabhakkhandha	0
 s0511a.att	2224	sujata-3	0
 s0511a.att	2225	sujata-3	0
 s0511a.att	2234	gotama-1	0
-s0511a.att	2251	nagasamala-2	0
+s0511a.att	2251	nagasamala	0
 s0511a.att	2251	narada-1	1
 s0511a.att	2251	pabhavati	0
 s0511a.att	2251	silarama	0
@@ -53812,7 +53973,7 @@ s0511a.att	2286	piyadassi-1	1
 s0511a.att	2286	piyadassi-1	0
 s0511a.att	2287	devadatta	0
 s0511a.att	2287	donamukha	0
-s0511a.att	2287	piyadassi-1	1
+s0511a.att	2287	piyadassi-2	0
 s0511a.att	2287	sona-1	3
 s0511a.att	2288	antaka	0
 s0511a.att	2289	buddhanaga-thera	0
@@ -53905,7 +54066,7 @@ s0511a.att	2434	sakka-2	0
 s0511a.att	2441	khema	0
 s0511a.att	2441	phussadeva	0
 s0511a.att	2441	punnavaddhana-2	0
-s0511a.att	2441	saccanama	0
+s0511a.att	2441	saccanama-2	0
 s0511a.att	2441	sunanda-1-2	0
 s0511a.att	2441	sunetta	0
 s0511a.att	2443	dhammadassi-1	0
@@ -53914,7 +54075,7 @@ s0511a.att	2444	phussadeva	0
 s0511a.att	2445	dhammadassi-1	0
 s0511a.att	2445	sunetta	0
 s0511a.att	2446	khema	0
-s0511a.att	2446	saccanama	0
+s0511a.att	2446	saccanama-2	0
 s0511a.att	2450	sala	0
 s0511a.att	2456	dhammadassi-1	0
 s0511a.att	2456	kesarama	0
@@ -53923,10 +54084,10 @@ s0511a.att	2460	siddhattha-4	0
 s0511a.att	2461	dhammadassi-1	0
 s0511a.att	2461	siddhattha-4	0
 s0511a.att	2463	siddhattha-4	0
-s0511a.att	2463	suphassa-2	0
+s0511a.att	2463	suphassa	0
 s0511a.att	2463	suppala	0
 s0511a.att	2463	udena-1	0
-s0511a.att	2464	sunetta-2	0
+s0511a.att	2464	sunetta	0
 s0511a.att	2464	varuna	0
 s0511a.att	2469	bhimaratha-1	0
 s0511a.att	2470	bhimaratha-1	0
@@ -53941,7 +54102,7 @@ s0511a.att	2481	siddhattha-4	0
 s0511a.att	2484	siddhattha-4	0
 s0511a.att	2491	revata-1	2
 s0511a.att	2491	sambala-1	0
-s0511a.att	2491	sivala	0
+s0511a.att	2491	sivali-2	0
 s0511a.att	2491	somanassa	0
 s0511a.att	2491	sumitta-1	0
 s0511a.att	2491	suphassa	0
@@ -53955,7 +54116,7 @@ s0511a.att	2494	sambala-1	0
 s0511a.att	2494	sumitta-1	0
 s0511a.att	2495	revata-1	2
 s0511a.att	2495	siddhattha-4	0
-s0511a.att	2496	sivala	0
+s0511a.att	2496	sivali-2	0
 s0511a.att	2496	suramma	0
 s0511a.att	2505	siddhattha-4	0
 s0511a.att	2509	janasandha-1	0
@@ -54191,7 +54352,7 @@ s0511a.att	2855	kakusandha	0
 s0511a.att	2858	khemavati	0
 s0511a.att	2861	aggidatta	0
 s0511a.att	2861	buddhija	0
-s0511a.att	2861	campa-2	0
+s0511a.att	2861	campa	0
 s0511a.att	2861	kakusandha	0
 s0511a.att	2861	sanjiva-2	0
 s0511a.att	2861	uttara-2-12	0
@@ -54205,6 +54366,7 @@ s0511a.att	2866	vidhura-1	0
 s0511a.att	2867	buddhija	0
 s0511a.att	2867	kakusandha	0
 s0511a.att	2878	kakusandha	0
+s0511a.att	2880	kakusandha	0
 s0511a.att	2886	kakusandha	0
 s0511a.att	2886	konagamana	0
 s0511a.att	2887	konagamana	0
@@ -54275,7 +54437,7 @@ s0511a.att	2998	brahmadatta-2	0
 s0511a.att	2998	dhanavati	0
 s0511a.att	2998	kassapa-1	0
 s0511a.att	2998	sabbamitta-1	0
-s0511a.att	2998	uruvela-4	0
+s0511a.att	2998	uruvela-2	0
 s0511a.att	2998	vijitasena	0
 s0511a.att	2999	baranasi	0
 s0511a.att	2999	kiki-2	0
@@ -54310,13 +54472,13 @@ s0511a.att	3080	nandanavana	0
 s0511a.att	3080	tusita-1	0
 s0511a.att	3081	tusita-1	0
 s0511a.att	3082	kapilavatthu	0
-s0511a.att	3082	lumbini-2	0
+s0511a.att	3082	lumbini	0
 s0511a.att	3084	lumbini	0
-s0511a.att	3085	lumbini-2	0
+s0511a.att	3085	lumbini	0
 s0511a.att	3088	sakka-2	0
 s0511a.att	3090	ananda-2	1
 s0511a.att	3090	kaludayi	0
-s0511a.att	3090	lumbini-2	0
+s0511a.att	3090	lumbini	0
 s0511a.att	3090	rahulamata	0
 s0511a.att	3091	kaladevala-1	0
 s0511a.att	3094	kondanna-1	1
@@ -54456,7 +54618,7 @@ s0511a.att	3244	sujata-3	0
 s0511a.att	3244	sumana-5-2	0
 s0511a.att	3244	sumedha-4	0
 s0511a.att	3244	vessabhu-1	1
-s0511a.att	3244	vipassi-buddha	0
+s0511a.att	3244	vipassi-1	0
 s0511a.att	3246	anomadassi-2	0
 s0511a.att	3246	dhammadassi-1	0
 s0511a.att	3246	dipankara	0
@@ -54753,7 +54915,7 @@ s0512a.att	357	brahmaloka	0
 s0512a.att	357	renu-3	1
 s0512a.att	359	nimmanaratino	0
 s0512a.att	359	tavatimsa	0
-s0512a.att	359	tusita-2	0
+s0512a.att	359	tusita	0
 s0512a.att	360	akitti	0
 s0512a.att	360	maha-govinda	0
 s0512a.att	363	mithila	0
@@ -54809,7 +54971,7 @@ s0512a.att	415	uppalavanna	0
 s0512a.att	415	vasula	0
 s0512a.att	416	khandahala	0
 s0512a.att	419	sivi-1	0
-s0512a.att	420	sivi-1-2	0
+s0512a.att	420	sivi	0
 s0512a.att	420	sivirattha	0
 s0512a.att	420	takkasila	0
 s0512a.att	425	sakka-2	0
@@ -54903,7 +55065,7 @@ s0512a.att	649	vessantara-2	0
 s0512a.att	650	mahavana-1	2
 s0512a.att	652	jali-2-2	1
 s0512a.att	652	kanhajina	0
-s0512a.att	654	jali-1	0
+s0512a.att	654	jali-2-2	1
 s0512a.att	654	kanhajina	0
 s0512a.att	657	jujaka	0
 s0512a.att	668	jujaka	0
@@ -54952,8 +55114,8 @@ s0512a.att	744	rahula	0
 s0512a.att	744	rahulamata	0
 s0512a.att	744	sakka-2	0
 s0512a.att	744	sariputta	0
-s0512a.att	744	uppalavanna-2	0
-s0512a.att	744	vessantara-1	0
+s0512a.att	744	uppalavanna	0
+s0512a.att	744	vessantara-2	0
 s0512a.att	751	sariputta	0
 s0512a.att	770	sakka-2	0
 s0512a.att	784	sakka-2	0
@@ -55068,12 +55230,13 @@ s0512a.att	1060	jambudipa	0
 s0512a.att	1092	devadatta	0
 s0512a.att	1096	jambudipa	0
 s0512a.att	1096	jayaddisa	0
+s0512a.att	1096	pancala	0
 s0512a.att	1097	alinasatta	0
 s0512a.att	1099	kapila-1	0
 s0512a.att	1104	takkasila	0
 s0512a.att	1109	takkasila	0
 s0512a.att	1119	sakka-2	0
-s0512a.att	1121	candima-2	0
+s0512a.att	1121	candimasa	0
 s0512a.att	1124	sakka-2	0
 s0512a.att	1133	angulimala-1	0
 s0512a.att	1133	rahulamata	0
@@ -55092,11 +55255,13 @@ s0512a.att	1166	alara	0
 s0512a.att	1166	ananda-2	0
 s0512a.att	1166	sariputta	0
 s0512a.att	1169	sankhapala-1	0
+s0512a.att	1176	ramma-4	0
 s0512a.att	1176	sabbadatta	0
 s0512a.att	1176	yuvanjaya	0
 s0512a.att	1177	baranasi	0
 s0512a.att	1177	brahmavaddhana-2	0
 s0512a.att	1177	pupphavati	0
+s0512a.att	1177	ramma-4	0
 s0512a.att	1177	sabbadatta	0
 s0512a.att	1177	sudassana-2	0
 s0512a.att	1182	yuvanjaya	0
@@ -55201,7 +55366,7 @@ s0512a.att	1455	canda	0
 s0512a.att	1455	kasi	0
 s0512a.att	1456	kasi	0
 s0512a.att	1457	sariputta	0
-s0512a.att	1457	uppalavanna-2	0
+s0512a.att	1457	uppalavanna	0
 s0512a.att	1482	devadatta	0
 s0512a.att	1486	jambudipa	0
 s0512a.att	1487	baranasi	0
@@ -55330,10 +55495,12 @@ s0513a1.att	118	sariputta	0
 s0513a1.att	129	dipankara	0
 s0513a1.att	131	dipankara	0
 s0513a1.att	134	dipankara	0
+s0513a1.att	134	ramma-4	0
 s0513a1.att	144	sumedha-4	0
 s0513a1.att	145	dipankara	0
 s0513a1.att	147	dipankara	0
 s0513a1.att	157	dipankara	0
+s0513a1.att	174	ramma-4	0
 s0513a1.att	191	ananda-2	1
 s0513a1.att	191	buddhupatthaka	0
 s0513a1.att	191	dipankara	0
@@ -55361,10 +55528,13 @@ s0513a1.att	265	visakha-1	2
 s0513a1.att	415	mahameru	0
 s0513a1.att	422	gotama-1	0
 s0513a1.att	431	dipankara	0
+s0513a1.att	437	ramma-4	0
 s0513a1.att	441	dipankara	0
+s0513a1.att	466	ramma-4	0
 s0513a1.att	468	dipankara	0
 s0513a1.att	485	dipankara	0
 s0513a1.att	487	naradakuta	0
+s0513a1.att	489	sudassanakuta	0
 s0513a1.att	496	dipankara	0
 s0513a1.att	498	dipankara	0
 s0513a1.att	503	rammavati	0
@@ -55386,7 +55556,7 @@ s0513a1.att	517	rammavati	0
 s0513a1.att	517	subhadda-1	2
 s0513a1.att	517	sunanda-3	0
 s0513a1.att	517	tissa-1	0
-s0513a1.att	517	upatissa-2	0
+s0513a1.att	517	upatissa	0
 s0513a1.att	518	dipankara	0
 s0513a1.att	518	kondanna-1	1
 s0513a1.att	520	anandakumara	0
@@ -55463,6 +55633,7 @@ s0513a1.att	551	narada-1	1
 s0513a1.att	552	amita-1	0
 s0513a1.att	552	ananda-2	1
 s0513a1.att	552	devala	0
+s0513a1.att	552	narada-2	0
 s0513a1.att	552	padumuttara-1	0
 s0513a1.att	552	padumuttarabuddha	0
 s0513a1.att	552	sujata-3	0
@@ -55475,7 +55646,7 @@ s0513a1.att	555	sumedha-4	0
 s0513a1.att	555	suramma	0
 s0513a1.att	556	padumuttara-1	1
 s0513a1.att	556	sumedha-4	0
-s0513a1.att	558	nagasamala-2	0
+s0513a1.att	558	nagasamala	0
 s0513a1.att	558	narada-1	1
 s0513a1.att	558	pabhavati	0
 s0513a1.att	558	sudeva-1	0
@@ -55503,7 +55674,7 @@ s0513a1.att	565	mandakappa	0
 s0513a1.att	567	dhammadassi-1	0
 s0513a1.att	567	khema	0
 s0513a1.att	567	phussadeva	0
-s0513a1.att	567	saccanama	0
+s0513a1.att	567	saccanama-2	0
 s0513a1.att	567	sakka-2	0
 s0513a1.att	567	sunetta	0
 s0513a1.att	568	dhammadassi-1	0
@@ -55512,11 +55683,11 @@ s0513a1.att	570	jayasena	0
 s0513a1.att	570	revata-1	2
 s0513a1.att	570	sambala-1	0
 s0513a1.att	570	siddhattha-4	0
-s0513a1.att	570	sivala-1	0
+s0513a1.att	570	sivali-1	1
 s0513a1.att	570	sumitta-1	0
-s0513a1.att	570	suphassa-2	0
+s0513a1.att	570	suphassa	0
 s0513a1.att	570	surama-1-2	0
-s0513a1.att	570	vebhara-3	0
+s0513a1.att	570	vebhara	0
 s0513a1.att	571	dhammadassi-1	0
 s0513a1.att	571	siddhattha-4	0
 s0513a1.att	573	brahmadeva	0
@@ -55587,7 +55758,7 @@ s0513a1.att	594	ghatikara-2	0
 s0513a1.att	594	jotipala-1	1
 s0513a1.att	594	kassapa-1	2
 s0513a1.att	594	sabbamitta-1	0
-s0513a1.att	594	uruvela-4	0
+s0513a1.att	594	uruvela-2	0
 s0513a1.att	595	konagamana	0
 s0513a1.att	596	kassapa-1	2
 s0513a1.att	597	dipankara	0
@@ -55630,7 +55801,7 @@ s0513a1.att	669	jambudipa	0
 s0513a1.att	669	kapilavatthu	0
 s0513a1.att	669	majjhimadesa	0
 s0513a1.att	669	setakannika	0
-s0513a1.att	669	thuna-3	0
+s0513a1.att	669	thuna-2	0
 s0513a1.att	669	usiraddhaja	0
 s0513a1.att	670	suddhodana	0
 s0513a1.att	671	buddhakula	0
@@ -55639,11 +55810,11 @@ s0513a1.att	672	tusita-1	0
 s0513a1.att	673	rajatapabbata	0
 s0513a1.att	676	tusita-1	0
 s0513a1.att	677	kapilavatthu	0
-s0513a1.att	677	lumbini-2	0
+s0513a1.att	677	lumbini	0
 s0513a1.att	679	suyama	0
 s0513a1.att	680	ananda-2	0
 s0513a1.att	680	kaludayi	0
-s0513a1.att	680	lumbini-2	0
+s0513a1.att	680	lumbini	0
 s0513a1.att	680	rahulamata	0
 s0513a1.att	680	sakka-2	0
 s0513a1.att	683	nala-3	0
@@ -55968,6 +56139,7 @@ s0513a1.att	1090	jetavana	0
 s0513a1.att	1090	kumarakassapa	0
 s0513a1.att	1090	rajagahanagara	0
 s0513a1.att	1114	devadatta	0
+s0513a1.att	1115	anathapindika-1	0
 s0513a1.att	1115	devadatta	0
 s0513a1.att	1115	gotama-1	0
 s0513a1.att	1115	jetavana	0
@@ -56388,7 +56560,7 @@ s0513a1.att	1906	jetavana	0
 s0513a1.att	1907	baranasi	0
 s0513a1.att	1907	brahmadatta-3	0
 s0513a1.att	1907	sakka-2	0
-s0513a1.att	1907	vessavana-2	0
+s0513a1.att	1907	vessavana	0
 s0513a1.att	1915	jetavana	0
 s0513a1.att	1915	kosalarattha	0
 s0513a1.att	1915	pajjunna-1	1
@@ -56486,6 +56658,7 @@ s0513a1.att	2038	sagata-2	0
 s0513a1.att	2039	baranasi	0
 s0513a1.att	2039	brahmadatta-3	0
 s0513a1.att	2048	jetavana	0
+s0513a1.att	2049	sadamatta	0
 s0513a1.att	2052	mittavindaka-2	0
 s0513a1.att	2053	mittavindaka-2	0
 s0513a1.att	2056	anathapindika-1	0
@@ -56745,15 +56918,15 @@ s0513a1.att	2525	jetavana	0
 s0513a1.att	2526	baranasi	0
 s0513a1.att	2526	brahmadatta-3	0
 s0513a1.att	2527	baranasi	0
-s0513a1.att	2527	katahaka-2	0
-s0513a1.att	2528	katahaka-2	0
-s0513a1.att	2529	katahaka-2	0
+s0513a1.att	2527	katahaka	0
+s0513a1.att	2528	katahaka	0
+s0513a1.att	2529	katahaka	0
 s0513a1.att	2530	baranasi	0
-s0513a1.att	2530	katahaka-2	0
+s0513a1.att	2530	katahaka	0
 s0513a1.att	2532	katahaka	0
 s0513a1.att	2533	katahaka	0
-s0513a1.att	2534	katahaka-2	0
-s0513a1.att	2535	katahaka-2	0
+s0513a1.att	2534	katahaka	0
+s0513a1.att	2535	katahaka	0
 s0513a1.att	2538	jetavana	0
 s0513a1.att	2538	kosala-1	0
 s0513a1.att	2539	baranasi	0
@@ -56784,10 +56957,15 @@ s0513a1.att	2594	veluvana	0
 s0513a1.att	2595	baranasi	0
 s0513a1.att	2595	magadha	0
 s0513a1.att	2595	rajagaha	0
+s0513a1.att	2595	sankha-3	0
 s0513a1.att	2596	baranasi	0
 s0513a1.att	2596	rajagahanagara	0
+s0513a1.att	2596	sankha-3	0
+s0513a1.att	2601	sankha-3	0
 s0513a1.att	2602	rajagaha	0
+s0513a1.att	2602	sankha-3	0
 s0513a1.att	2603	devadatta	0
+s0513a1.att	2603	sankha-3	0
 s0513a1.att	2606	jetavana	0
 s0513a1.att	2607	raga	0
 s0513a1.att	2610	baranasi	0
@@ -56801,7 +56979,7 @@ s0513a1.att	2628	brahmadatta-3	0
 s0513a1.att	2628	jetavana	0
 s0513a1.att	2632	brahmaloka	0
 s0513a1.att	2633	sariputta	0
-s0513a1.att	2636	abhassara-2	0
+s0513a1.att	2636	abhassara	0
 s0513a1.att	2636	baranasi	0
 s0513a1.att	2636	brahmadatta-3	0
 s0513a1.att	2636	jetavana	0
@@ -56858,7 +57036,7 @@ s0513a1.att	2724	kokalika	0
 s0513a1.att	2724	sariputta	0
 s0513a1.att	2725	baranasi	0
 s0513a1.att	2725	brahmadatta-3	0
-s0513a1.att	2725	jambuka-2-2	0
+s0513a1.att	2725	jambuka-1	1
 s0513a1.att	2725	kancanaguha	0
 s0513a1.att	2726	jambuka-1	1
 s0513a1.att	2726	jambuka-1	0
@@ -56878,16 +57056,16 @@ s0513a1.att	2745	radha	0
 s0513a1.att	2746	baranasi	0
 s0513a1.att	2746	brahmadatta-3	0
 s0513a1.att	2746	potthapada-1	1
-s0513a1.att	2746	radha-1	0
+s0513a1.att	2746	radha	0
 s0513a1.att	2747	radha	0
 s0513a1.att	2748	radha	0
 s0513a1.att	2749	kosiyayana	0
 s0513a1.att	2750	kosiyayana	0
 s0513a1.att	2750	radha	0
-s0513a1.att	2751	potthapada-3-2	0
+s0513a1.att	2751	potthapada-1	1
 s0513a1.att	2751	radha	0
 s0513a1.att	2752	ananda-2	1
-s0513a1.att	2752	potthapada-3-2	0
+s0513a1.att	2752	potthapada-1	1
 s0513a1.att	2752	radha	0
 s0513a1.att	2755	jetavana	0
 s0513a1.att	2755	savatthi	0
@@ -56907,6 +57085,7 @@ s0513a1.att	2786	mahavana-1	0
 s0513a1.att	2786	vesali	0
 s0513a1.att	2789	baranasi	0
 s0513a1.att	2789	brahmadatta-3	0
+s0513a1.att	2789	satadhamma	0
 s0513a1.att	2789	takkasila	0
 s0513a1.att	2796	ananda-2	1
 s0513a1.att	2799	ajatasattu	0
@@ -57289,7 +57468,7 @@ s0513a1.att	3491	baranasi	0
 s0513a1.att	3491	brahmadatta-3	0
 s0513a1.att	3491	potthapada-1	1
 s0513a1.att	3492	potthapada-1	1
-s0513a1.att	3492	radha-1	0
+s0513a1.att	3492	radha	0
 s0513a1.att	3495	radha	0
 s0513a1.att	3496	radha	0
 s0513a1.att	3499	kukkula-2	0
@@ -57297,7 +57476,7 @@ s0513a1.att	3499	potthapada-1	1
 s0513a1.att	3500	sakka-2	0
 s0513a1.att	3501	ananda-2	1
 s0513a1.att	3501	potthapada-1	1
-s0513a1.att	3501	radha-1	0
+s0513a1.att	3501	radha	0
 s0513a1.att	3504	jetavana	0
 s0513a1.att	3505	baranasi	0
 s0513a1.att	3505	brahmadatta-3	0
@@ -57355,6 +57534,8 @@ s0513a1.att	3604	viraka	0
 s0513a1.att	3607	jetavana	0
 s0513a1.att	3608	baranasi	0
 s0513a1.att	3608	brahmadatta-3	0
+s0513a1.att	3608	yamuna-2	0
+s0513a1.att	3609	yamuna-2	0
 s0513a1.att	3620	devadatta	0
 s0513a1.att	3620	veluvana	0
 s0513a1.att	3621	baranasi	0
@@ -57523,6 +57704,7 @@ s0513a1.att	3960	kekaka	0
 s0513a1.att	3960	uttarapancala	0
 s0513a1.att	3961	sakka-2	0
 s0513a1.att	3962	kekaka	0
+s0513a1.att	3962	kuru	0
 s0513a1.att	3962	pancala	0
 s0513a1.att	3963	kamanita	0
 s0513a1.att	3964	indapatta	0
@@ -57531,6 +57713,7 @@ s0513a1.att	3964	kekaka	0
 s0513a1.att	3964	kuru	0
 s0513a1.att	3964	pancala	0
 s0513a1.att	3964	sudassana-4	0
+s0513a1.att	3964	sudassanakuta	0
 s0513a1.att	3964	uttarapancala	0
 s0513a1.att	3965	sakka-2	0
 s0513a1.att	3967	kamanita	0
@@ -57579,13 +57762,13 @@ s0513a1.att	4051	asitabhu	0
 s0513a1.att	4056	ananda-2	1
 s0513a1.att	4056	ananda-2	0
 s0513a1.att	4056	jetavana	0
-s0513a1.att	4056	roja-2	0
+s0513a1.att	4056	roja-1	0
 s0513a1.att	4056	vacchanakha	0
 s0513a1.att	4057	baranasi	0
 s0513a1.att	4057	brahmadatta-3	0
 s0513a1.att	4058	vacchanakha	0
 s0513a1.att	4059	vacchanakha	0
-s0513a1.att	4068	roja-2	0
+s0513a1.att	4068	roja-1	0
 s0513a1.att	4071	jetavana	0
 s0513a1.att	4072	baranasi	0
 s0513a1.att	4072	brahmadatta-3	0
@@ -57708,6 +57891,7 @@ s0513a1.att	4307	baranasi	0
 s0513a1.att	4307	brahmadatta-3	0
 s0513a1.att	4307	takkasila	0
 s0513a1.att	4308	baranasi	0
+s0513a1.att	4308	satadhamma	0
 s0513a1.att	4322	ananda-2	1
 s0513a1.att	4325	jetavana	0
 s0513a1.att	4326	baranasi	0
@@ -57723,6 +57907,7 @@ s0513a1.att	4352	alavi-1	0
 s0513a1.att	4352	mahakassapa	0
 s0513a1.att	4353	baranasi	0
 s0513a1.att	4353	brahmadatta-3	0
+s0513a1.att	4353	ganga-1	0
 s0513a1.att	4353	manikantha	0
 s0513a1.att	4366	ananda-2	1
 s0513a1.att	4369	jetavana	0
@@ -57769,7 +57954,7 @@ s0513a1.att	4482	jetavana	0
 s0513a1.att	4482	savatthi	0
 s0513a1.att	4483	mahasammata	0
 s0513a1.att	4483	mandhatar	0
-s0513a1.att	4483	roja-2	0
+s0513a1.att	4483	roja-1	0
 s0513a1.att	4483	vararoja-2	0
 s0513a1.att	4485	mandhatar	0
 s0513a1.att	4485	sakka-2	0
@@ -57801,6 +57986,8 @@ s0513a1.att	4519	brahmadatta-3	0
 s0513a1.att	4519	takkasila	0
 s0513a1.att	4534	mandhatar	0
 s0513a1.att	4537	ananda-2	0
+s0513a1.att	4537	bodhi-4	1
+s0513a1.att	4537	bodhi-4	0
 s0513a1.att	4537	jetavana	0
 s0513a1.att	4537	savatthi	0
 s0513a1.att	4538	baranasi	0
@@ -58157,19 +58344,19 @@ s0513a1.att	5332	savatthi	0
 s0513a1.att	5332	vesali	0
 s0513a1.att	5333	sariputta	0
 s0513a1.att	5333	uppalavanna	0
-s0513a1.att	5334	assaka-1	0
+s0513a1.att	5334	assaka	0
 s0513a1.att	5334	jambudipa	0
 s0513a1.att	5334	kalinga-2	0
 s0513a1.att	5334	nandisena-1	0
 s0513a1.att	5336	nandisena-1	0
 s0513a1.att	5337	nandisena-1	0
-s0513a1.att	5338	assaka-1	0
+s0513a1.att	5338	assaka	0
 s0513a1.att	5338	kalinga-2	0
 s0513a1.att	5338	nandisena-1	0
 s0513a1.att	5338	sakka-2	0
 s0513a1.att	5339	kalinga-2	0
 s0513a1.att	5339	nandisena-1	0
-s0513a1.att	5340	assaka-1	0
+s0513a1.att	5340	assaka	0
 s0513a1.att	5340	kalinga-2	0
 s0513a1.att	5340	nandisena-1	0
 s0513a1.att	5341	assaka	0
@@ -58289,6 +58476,7 @@ s0513a1.att	5651	jetavana	0
 s0513a1.att	5651	savatthi	0
 s0513a1.att	5652	baranasi	0
 s0513a1.att	5652	brahmadatta-3	0
+s0513a1.att	5653	ganga-1	0
 s0513a1.att	5654	sakka-2	0
 s0513a1.att	5666	ganga-1	0
 s0513a1.att	5671	sakka-2	0
@@ -58376,7 +58564,7 @@ s0513a1.att	5936	veluvana	0
 s0513a1.att	5937	baranasi	0
 s0513a1.att	5937	dhananjaya-1	0
 s0513a1.att	5937	kalabahu	0
-s0513a1.att	5937	potthapada-3-2	0
+s0513a1.att	5937	potthapada-1	1
 s0513a1.att	5937	radha	0
 s0513a1.att	5939	dhananjaya-1	0
 s0513a1.att	5939	radha	0
@@ -58392,7 +58580,7 @@ s0513a1.att	5954	ananda-2	1
 s0513a1.att	5954	devadatta	0
 s0513a1.att	5954	kalabahu	0
 s0513a1.att	5954	potthapada-1	1
-s0513a1.att	5954	radha-1	0
+s0513a1.att	5954	radha	0
 s0513a1.att	5957	jetavana	0
 s0513a1.att	5979	jetavana	0
 s0513a1.att	5979	kokalika	0
@@ -58417,7 +58605,8 @@ s0513a1.att	6053	sariputta	0
 s0513a1.att	6053	veluvana	0
 s0513a1.att	6054	baranasi	0
 s0513a1.att	6054	brahmadatta-3	0
-s0513a1.att	6054	jambuka-2-2	0
+s0513a1.att	6054	jambuka-1	1
+s0513a1.att	6054	jambuka-1	0
 s0513a1.att	6055	jambuka-1	1
 s0513a1.att	6062	jambuka-1	1
 s0513a1.att	6066	jambuka-1	1
@@ -58693,6 +58882,8 @@ s0513a1.att	6734	brahmadatta-3	0
 s0513a1.att	6751	ananda-2	1
 s0513a1.att	6754	jetavana	0
 s0513a1.att	6754	mittavindaka-2	0
+s0513a1.att	6759	sadamatta	0
+s0513a1.att	6761	sadamatta	0
 s0513a1.att	6762	mittavindaka-2	0
 s0513a1.att	6772	mittavindaka-2	0
 s0513a1.att	6773	mittavindaka-2	0
@@ -58926,7 +59117,7 @@ s0513a1.att	7474	jetavana	0
 s0513a1.att	7475	baranasi	0
 s0513a1.att	7475	brahmadatta-3	0
 s0513a1.att	7475	sakka-2	0
-s0513a1.att	7477	nandamulapabbhara	0
+s0513a1.att	7477	nandamulaka	0
 s0513a1.att	7477	sakka-2	0
 s0513a1.att	7481	sakka-2	0
 s0513a1.att	7488	sakka-2	0
@@ -59146,14 +59337,14 @@ s0513a1.att	8091	rahula	0
 s0513a1.att	8091	rahulamata	0
 s0513a1.att	8091	uppalavanna	0
 s0513a1.att	8094	anoma	0
-s0513a1.att	8094	bhaddavati-2	0
+s0513a1.att	8094	bhaddavatika	0
 s0513a1.att	8094	dalhadhamma	0
 s0513a1.att	8094	ghositarama	0
 s0513a1.att	8094	kosambi	0
 s0513a1.att	8094	udena-1	0
 s0513a1.att	8095	bhaddavatika	0
 s0513a1.att	8096	baranasi	0
-s0513a1.att	8096	bhaddavati-2	0
+s0513a1.att	8096	bhaddavatika	0
 s0513a1.att	8096	dalhadhamma	0
 s0513a1.att	8096	udena-1	1
 s0513a1.att	8098	dalhadhamma	0
@@ -59275,7 +59466,7 @@ s0513a1.att	8421	takkasila	0
 s0513a1.att	8445	bharata-1	1
 s0513a1.att	8447	bahiya-5	0
 s0513a1.att	8447	bharata-1	1
-s0513a1.att	8448	bahiya-5	0
+s0513a1.att	8448	bahiya-2-2	0
 s0513a1.att	8458	ananda-2	1
 s0513a1.att	8458	sariputta	0
 s0513a1.att	8461	anathapindika-1	0
@@ -59334,7 +59525,7 @@ s0513a1.att	8570	korakalamba	0
 s0513a1.att	8570	mahasammata	0
 s0513a1.att	8570	mandhata	0
 s0513a1.att	8570	mandhatar	0
-s0513a1.att	8570	roja-2	0
+s0513a1.att	8570	roja-1	0
 s0513a1.att	8570	varamandhata	0
 s0513a1.att	8570	vararoja-2	0
 s0513a1.att	8571	korakalamba	0
@@ -59395,7 +59586,7 @@ s0513a1.att	8656	sivi-1	0
 s0513a1.att	8663	sivi-1	0
 s0513a1.att	8665	sarabhanga-2	1
 s0513a1.att	8667	ananda-2	1
-s0513a1.att	8667	anupiya-2	0
+s0513a1.att	8667	anupiya	0
 s0513a1.att	8667	anuruddha-1	0
 s0513a1.att	8667	kaccayana-1	0
 s0513a1.att	8667	kassapa-1	2
@@ -59544,6 +59735,7 @@ s0513a1.att	9025	kassapa-1	2
 s0513a1.att	9027	candavati-1	0
 s0513a1.att	9030	lomasa-kassapa	0
 s0513a1.att	9030	sariputta	0
+s0513a1.att	9033	anathapindika-1	0
 s0513a1.att	9033	baranasi	0
 s0513a1.att	9033	jetavana	0
 s0513a1.att	9033	kosala-1	0
@@ -59891,9 +60083,12 @@ s0513a1.att	10116	jetavana	0
 s0513a1.att	10117	baranasi	0
 s0513a1.att	10117	brahmavaddhana-2	0
 s0513a1.att	10117	pupphavati	0
+s0513a1.att	10117	ramma-4	0
 s0513a1.att	10117	sabbadatta	0
-s0513a1.att	10150	rammaka-1	0
+s0513a1.att	10149	ramma-4	0
+s0513a1.att	10150	rammavati	0
 s0513a1.att	10151	sabbadatta	0
+s0513a1.att	10154	ramma-4	0
 s0513a1.att	10156	yudhitthila	0
 s0513a1.att	10158	mara	0
 s0513a1.att	10158	yudhitthila	0
@@ -60166,7 +60361,7 @@ s0513a1.att	10893	kalingarattha	0
 s0513a1.att	10893	maha-kalinga	0
 s0513a1.att	10894	ganga-1	0
 s0513a1.att	10894	madda-2-1	0
-s0513a1.att	10894	sagala-2	0
+s0513a1.att	10894	sagala	0
 s0513a1.att	10895	cula-kalinga	0
 s0513a1.att	10895	maha-kalinga	0
 s0513a1.att	10896	kalinga-bharadvaja	0
@@ -60331,7 +60526,8 @@ s0513a1.att	11344	gandhamadana	0
 s0513a1.att	11346	gandhamadana	0
 s0513a1.att	11349	canda	0
 s0513a1.att	11349	sakka-2	0
-s0513a1.att	11353	canda-7	0
+s0513a1.att	11353	canda	0
+s0513a1.att	11353	canda-1	0
 s0513a1.att	11353	sakka-2	0
 s0513a1.att	11356	anuruddha-1	0
 s0513a1.att	11356	canda	0
@@ -60750,6 +60946,8 @@ s0513a1.att	12908	baranasi	0
 s0513a1.att	12909	baranasi	0
 s0513a1.att	12958	meru	0
 s0513a1.att	12976	suppiya-1	1
+s0513a1.att	12979	kamboja	0
+s0513a1.att	12981	kamboja	0
 s0513a1.att	12983	uggasena	0
 s0513a1.att	12985	baranasi	0
 s0513a1.att	12989	campeyya	0
@@ -60777,6 +60975,7 @@ s0513a1.att	13123	anitthigandhakumara-1	0
 s0513a1.att	13129	jetavana	0
 s0513a1.att	13130	baranasi	0
 s0513a1.att	13130	esukari-2	0
+s0513a1.att	13131	sona	0
 s0513a1.att	13132	baranasi	0
 s0513a1.att	13132	sakka-2	0
 s0513a1.att	13134	ajapala	0
@@ -60884,17 +61083,16 @@ s0513a1.att	13495	jetavana	0
 s0513a1.att	13496	vessavana	0
 s0513a1.att	13503	jayaddisa	0
 s0513a1.att	13526	takkasila	0
-s0513a1.att	13531	alinasattu	0
-s0513a1.att	13559	candima-1	0
+s0513a1.att	13531	alinasatta	0
+s0513a1.att	13559	candimasa	0
 s0513a1.att	13559	soma-2-2	0
 s0513a1.att	13559	varuna	0
 s0513a1.att	13570	alinasatta	0
-s0513a1.att	13570	alinasattu	0
 s0513a1.att	13577	jayaddisa	0
 s0513a1.att	13580	jayaddisa	0
 s0513a1.att	13607	sakka-2	0
-s0513a1.att	13609	candima-2	0
-s0513a1.att	13610	candima-2	0
+s0513a1.att	13609	candimasa	0
+s0513a1.att	13610	candimasa	0
 s0513a1.att	13610	sakka-2	0
 s0513a1.att	13622	maha-gama	0
 s0513a1.att	13623	angulimala-1	0
@@ -61590,11 +61788,11 @@ s0513a1.att	16079	sakka-2	0
 s0513a1.att	16082	okkakaraja	0
 s0513a1.att	16083	madda-2-1	0
 s0513a1.att	16083	pabhavati	0
-s0513a1.att	16083	sagala-2	0
+s0513a1.att	16083	sagala	0
 s0513a1.att	16084	kusavati	0
 s0513a1.att	16084	madda-2-1	0
 s0513a1.att	16084	pabhavati	0
-s0513a1.att	16084	sagala-2	0
+s0513a1.att	16084	sagala	0
 s0513a1.att	16084	sihassara	0
 s0513a1.att	16085	madda-2-1	0
 s0513a1.att	16085	okkakaraja	0
@@ -61609,11 +61807,11 @@ s0513a1.att	16089	pabhavati	0
 s0513a1.att	16090	pabhavati	0
 s0513a1.att	16091	baranasi	0
 s0513a1.att	16092	pabhavati	0
-s0513a1.att	16092	sagala-2	0
+s0513a1.att	16092	sagala	0
 s0513a1.att	16094	pabhavati	0
 s0513a1.att	16096	kokanuda	0
 s0513a1.att	16096	pabhavati	0
-s0513a1.att	16096	sagala-2	0
+s0513a1.att	16096	sagala	0
 s0513a1.att	16097	madda-2-1	0
 s0513a1.att	16097	pabhavati	0
 s0513a1.att	16098	pabhavati	0
@@ -61730,7 +61928,7 @@ s0513a1.att	16368	manoja-1	0
 s0513a1.att	16368	sakka-2	0
 s0513a1.att	16370	kosala-1	0
 s0513a1.att	16370	kosalarattha	0
-s0513a1.att	16370	magadha-3	0
+s0513a1.att	16370	magadha	0
 s0513a1.att	16370	manoja-1	0
 s0513a1.att	16371	manoja-1	0
 s0513a1.att	16371	uttarakuru	0
@@ -61801,7 +61999,7 @@ s0513a1.att	16629	veluvana	0
 s0513a1.att	16630	ananda-2	0
 s0513a1.att	16630	buddhanaga-thera	0
 s0513a1.att	16630	gotama-1	0
-s0513a1.att	16630	nalagiri-2	0
+s0513a1.att	16630	nalagiri	0
 s0513a1.att	16630	rajagaha	0
 s0513a1.att	16630	veluvana	0
 s0513a1.att	16631	ananda-2	0
@@ -61817,7 +62015,7 @@ s0513a1.att	16640	cittakuta	0
 s0513a1.att	16640	cittakutapabbata	0
 s0513a1.att	16640	dhatarattha-1	0
 s0513a1.att	16640	mahimsaka	0
-s0513a1.att	16640	sagala-2	0
+s0513a1.att	16640	sagala	0
 s0513a1.att	16642	sumukha-2-2	0
 s0513a1.att	16672	dhatarattha-1	0
 s0513a1.att	16693	sacetana-2	0
@@ -61964,11 +62162,11 @@ s0513a1.att	17199	sakka-2	0
 s0513a1.att	17202	kosiya-2	0
 s0513a1.att	17204	canda-2-2	0
 s0513a1.att	17204	matali	0
-s0513a1.att	17205	bahuka-2	0
+s0513a1.att	17205	bahuka	0
 s0513a1.att	17205	gaya-1	1
 s0513a1.att	17206	timbarutittha	0
 s0513a1.att	17209	kosiya-2	0
-s0513a1.att	17211	bahuka-2	0
+s0513a1.att	17211	bahuka	0
 s0513a1.att	17211	gaya-1	1
 s0513a1.att	17211	kosiya-2	0
 s0513a1.att	17212	matali	0
@@ -62062,7 +62260,7 @@ s0513a1.att	17474	narada-1	1
 s0513a1.att	17474	pancasikha-1	0
 s0513a1.att	17474	sakka-2	0
 s0513a1.att	17474	sariputta	0
-s0513a1.att	17474	uppalavanna-2	0
+s0513a1.att	17474	uppalavanna	0
 s0513a1.att	17477	rohini-1-2	0
 s0513a1.att	17478	koliya	0
 s0513a1.att	17479	savatthi	0
@@ -62152,6 +62350,7 @@ s0513a1.att	17551	kosala-1	0
 s0513a1.att	17552	baranasi	0
 s0513a1.att	17553	baranasi	0
 s0513a1.att	17553	kunala-2	0
+s0513a1.att	17553	satadhamma	0
 s0513a1.att	17554	kunala-2	0
 s0513a1.att	17555	baranasi	0
 s0513a1.att	17555	brahmadatta-1	4
@@ -62164,6 +62363,7 @@ s0513a1.att	17559	baranasi	0
 s0513a1.att	17559	kosala-1	0
 s0513a1.att	17559	pancalacanda-1	1
 s0513a1.att	17559	punnamukha-2	0
+s0513a1.att	17559	savatthi	0
 s0513a1.att	17560	brahmadatta-1	4
 s0513a1.att	17560	brahmadattakumara-1	0
 s0513a1.att	17560	kunala-2	0
@@ -62197,6 +62397,7 @@ s0513a1.att	17637	kunala-2	0
 s0513a1.att	17637	pingiyani	0
 s0513a1.att	17638	brahmadatta-1	4
 s0513a1.att	17638	pingiyani	0
+s0513a1.att	17651	kamboja	0
 s0513a1.att	17671	ananda-2	1
 s0513a1.att	17671	kunala-1	0
 s0513a1.att	17672	ananda-2	1
@@ -62357,6 +62558,7 @@ s0513a1.att	18283	sakka-2	0
 s0513a1.att	18286	sakka-2	0
 s0513a1.att	18287	kasi	0
 s0513a1.att	18313	pabbatachinna	0
+s0513a1.att	18318	citta-2-4	0
 s0513a1.att	18319	anathapindika-1	0
 s0513a1.att	18320	sunanda-1	0
 s0513a1.att	18378	sunanda-1	0
@@ -62893,7 +63095,7 @@ s0513a1.att	20472	aritthapura	0
 s0513a1.att	20472	sivirattha	0
 s0513a1.att	20473	aritthapura	0
 s0513a1.att	20473	mithila	0
-s0513a1.att	20473	sivi-1-2	0
+s0513a1.att	20473	sivi	0
 s0513a1.att	20473	sivirattha	0
 s0513a1.att	20474	sivi	0
 s0513a1.att	20493	sivi-1	0
@@ -62931,7 +63133,7 @@ s0513a1.att	20587	mangalavithi	0
 s0513a1.att	20591	pukkusa-2	0
 s0513a1.att	20591	senaka-2	0
 s0513a1.att	20597	brahmadatta-1	4
-s0513a1.att	20617	silava-thera	0
+s0513a1.att	20617	silava	0
 s0513a1.att	20628	mahosadha	0
 s0513a1.att	20635	sakka-2	0
 s0513a1.att	20646	mithila	0
@@ -63032,12 +63234,12 @@ s0513a1.att	21001	nandadevi	0
 s0513a1.att	21005	mahosadha	0
 s0513a1.att	21014	maha-culani	0
 s0513a1.att	21016	madda-2-1	0
-s0513a1.att	21016	sagala-2	0
+s0513a1.att	21016	sagala	0
 s0513a1.att	21017	madda-2-1	0
 s0513a1.att	21029	ubbari-1	0
 s0513a1.att	21030	madda-2-1	0
 s0513a1.att	21030	nandadevi	0
-s0513a1.att	21030	sagala-2	0
+s0513a1.att	21030	sagala	0
 s0513a1.att	21030	ubbari-1	0
 s0513a1.att	21036	ubbari-1	0
 s0513a1.att	21037	nandadevi	0
@@ -63091,6 +63293,7 @@ s0513a1.att	21135	yamuna	0
 s0513a1.att	21143	dhatarattha-1	0
 s0513a1.att	21143	samuddaja	0
 s0513a1.att	21147	varuna	0
+s0513a1.att	21147	yamuna-2	0
 s0513a1.att	21148	varuna	0
 s0513a1.att	21148	yamuna	0
 s0513a1.att	21148	yamuna-2	0
@@ -63225,21 +63428,24 @@ s0513a1.att	21509	kasi	0
 s0513a1.att	21512	alampayana	0
 s0513a1.att	21512	bhuridatta	0
 s0513a1.att	21512	kanarittha	0
+s0513a1.att	21512	payagapatitthana	0
 s0513a1.att	21512	yamuna	0
 s0513a1.att	21513	payaga-1	0
 s0513a1.att	21514	yamuna	0
 s0513a1.att	21515	payaga-1	0
+s0513a1.att	21515	payagapatitthana	0
 s0513a1.att	21517	baranasi	0
 s0513a1.att	21521	kasi	0
 s0513a1.att	21524	kasi	0
 s0513a1.att	21544	dhatarattha-1	0
 s0513a1.att	21544	yamuna	0
+s0513a1.att	21545	yamuna-2	0
 s0513a1.att	21548	yamuna	0
 s0513a1.att	21548	yamuna-2	0
 s0513a1.att	21552	kanarittha	0
 s0513a1.att	21555	bhuridatta	0
 s0513a1.att	21556	kanarittha	0
-s0513a1.att	21561	candima-1	0
+s0513a1.att	21561	candimasa	0
 s0513a1.att	21561	kuvera	0
 s0513a1.att	21561	soma-2-2	0
 s0513a1.att	21561	varuna	0
@@ -63268,6 +63474,7 @@ s0513a1.att	21596	arittha-1-3	0
 s0513a1.att	21604	arittha-1-3	0
 s0513a1.att	21606	arittha-1-3	0
 s0513a1.att	21647	arittha-1-3	0
+s0513a1.att	21649	kamboja	0
 s0513a1.att	21650	arittha-1-3	0
 s0513a1.att	21654	arittha-1-3	0
 s0513a1.att	21655	arittha-1-3	0
@@ -63581,11 +63788,13 @@ s0513a1.att	22712	narada-1	1
 s0513a1.att	22715	atthaka-1-4	0
 s0513a1.att	22715	dhatarattha-1	0
 s0513a1.att	22715	vessamitta-1	0
+s0513a1.att	22715	yamataggi	0
 s0513a1.att	22716	sivi-1	0
 s0513a1.att	22726	atthaka-1-4	0
 s0513a1.att	22726	dhatarattha-1	0
 s0513a1.att	22726	sivi-1	0
 s0513a1.att	22726	vessamitta-1	0
+s0513a1.att	22726	yamataggi	0
 s0513a1.att	22753	narada-1	1
 s0513a1.att	22755	uruvelakassapa	0
 s0513a1.att	22756	alata	0
@@ -63691,6 +63900,7 @@ s0513a1.att	22969	punnaka-2	0
 s0513a1.att	23023	malla	0
 s0513a1.att	23046	videha	0
 s0513a1.att	23047	jambudipa	0
+s0513a1.att	23047	kuru	0
 s0513a1.att	23049	sineru	0
 s0513a1.att	23050	sineru	0
 s0513a1.att	23054	cittalata	0
@@ -63700,6 +63910,7 @@ s0513a1.att	23056	tavatimsa	0
 s0513a1.att	23057	eravana	0
 s0513a1.att	23059	nandana-2	0
 s0513a1.att	23062	jambudipa	0
+s0513a1.att	23062	kuru	0
 s0513a1.att	23062	sineru	0
 s0513a1.att	23062	uttarakuru	0
 s0513a1.att	23062	videha	0
@@ -63802,12 +64013,14 @@ s0513a1.att	23680	varuna	0
 s0513a1.att	23682	varuna	0
 s0513a1.att	23685	varuna	0
 s0513a1.att	23688	varuna	0
+s0513a1.att	23691	kuru	0
 s0513a1.att	23692	kuru	0
 s0513a1.att	23692	punnaka-1	0
 s0513a1.att	23693	punnaka-1	0
 s0513a1.att	23693	varuna	0
 s0513a1.att	23694	punnaka-1	0
 s0513a1.att	23695	kuru	0
+s0513a1.att	23697	kuru	0
 s0513a1.att	23698	indapattha	0
 s0513a1.att	23700	kaccana	0
 s0513a1.att	23702	indapattha	0
@@ -63821,6 +64034,7 @@ s0513a1.att	23707	punnaka-2	0
 s0513a1.att	23711	punnaka-1	0
 s0513a1.att	23712	kuru	0
 s0513a1.att	23712	punnaka-2	0
+s0513a1.att	23718	kuru	0
 s0513a1.att	23720	manava-2	0
 s0513a1.att	23723	kuvera	0
 s0513a1.att	23723	punnaka-1	0
@@ -63902,11 +64116,13 @@ s0513a1.att	23862	sivirattha	0
 s0513a1.att	23866	sivi	0
 s0513a1.att	23868	vessantara-2	0
 s0513a1.att	23880	sivi-1	0
+s0513a1.att	23880	udena-1	1
 s0513a1.att	23881	sanjaya-1	2
 s0513a1.att	23881	vessantara-2	0
 s0513a1.att	23882	sivi-1	0
 s0513a1.att	23883	sivi-1	0
 s0513a1.att	23884	sivi-1	0
+s0513a1.att	23884	udena-1	1
 s0513a1.att	23885	vessantara-2	0
 s0513a1.att	23887	sivi-1	0
 s0513a1.att	23890	sivi-1	0
@@ -63942,6 +64158,8 @@ s0513a1.att	23971	maddi	0
 s0513a1.att	23976	maddi	0
 s0513a1.att	23976	sivi	0
 s0513a1.att	23980	maddi	0
+s0513a1.att	24021	sindhu-1	0
+s0513a1.att	24042	sindhu-1	0
 s0513a1.att	24043	maddi	0
 s0513a1.att	24050	vessantara-2	0
 s0513a1.att	24054	vessantara-2	0
@@ -63960,6 +64178,7 @@ s0513a1.att	24093	maddi	0
 s0513a1.att	24128	gandhara	0
 s0513a1.att	24128	vessantara-2	0
 s0513a1.att	24129	maddi	0
+s0513a1.att	24129	sati	0
 s0513a1.att	24130	sanjaya-1	2
 s0513a1.att	24140	vessantara-2	0
 s0513a1.att	24148	sivi-1	0
@@ -64167,7 +64386,7 @@ s0513a1.att	24941	vessantara-2	0
 s0513a1.att	24942	jujaka	0
 s0513a1.att	24942	maddi	0
 s0513a1.att	24942	sanupabbata	0
-s0513a1.att	24943	jali-1	0
+s0513a1.att	24943	jali-2-2	1
 s0513a1.att	24944	nandiya	0
 s0513a1.att	24945	nandiya	0
 s0513a1.att	24949	vessantara-2	0
@@ -64182,10 +64401,11 @@ s0513a1.att	25010	sivi-1	0
 s0513a1.att	25012	jujaka	0
 s0513a1.att	25018	jali-2-2	1
 s0513a1.att	25018	kanhajina	0
-s0513a1.att	25019	jali-1	0
+s0513a1.att	25019	jali-2-2	1
 s0513a1.att	25019	jujaka	0
 s0513a1.att	25019	vessantara-2	0
-s0513a1.att	25029	jali-1	0
+s0513a1.att	25029	jali-2-2	1
+s0513a1.att	25029	jali-2-2	0
 s0513a1.att	25030	jali-2-2	1
 s0513a1.att	25030	kanhajina	0
 s0513a1.att	25031	sivi-1	0
@@ -64352,12 +64572,13 @@ s0513a1.att	25563	kanhajina	0
 s0513a1.att	25563	rohini-1	0
 s0513a1.att	25588	kanhajina	0
 s0513a1.att	25589	kanhajina	0
-s0513a1.att	25606	jali-1	0
+s0513a1.att	25606	jali-2-2	1
+s0513a1.att	25626	kalamba	0
 s0513a1.att	25626	mahavana-1	2
 s0513a1.att	25633	sivi-1	0
 s0513a1.att	25635	sivirattha	0
 s0513a1.att	25635	vessantara-2	0
-s0513a1.att	25636	jali-1	0
+s0513a1.att	25636	jali-2-2	1
 s0513a1.att	25636	sivirattha	0
 s0513a1.att	25640	vessantara-2	0
 s0513a1.att	25641	sanjaya-1	2
@@ -64405,7 +64626,7 @@ s0513a1.att	25804	sivi-1	0
 s0513a1.att	25810	vessantara-2	0
 s0513a1.att	25813	vessantara-2	0
 s0513a1.att	25818	maddi	0
-s0513a1.att	25819	jali-1	0
+s0513a1.att	25819	jali-2-2	1
 s0513a1.att	25819	kanhajina	0
 s0513a1.att	25819	vessantara-2	0
 s0513a1.att	25820	sanjaya-1	2
@@ -64478,7 +64699,7 @@ s0513a1.att	25916	rahula	0
 s0513a1.att	25916	rahulamata	0
 s0513a1.att	25916	sakka-2	0
 s0513a1.att	25916	sariputta	0
-s0513a1.att	25916	uppalavanna-2	0
+s0513a1.att	25916	uppalavanna	0
 s0515a.att	6	migadaya-1	1
 s0515a.att	12	sariputta	0
 s0515a.att	15	sariputta	0
@@ -64496,6 +64717,8 @@ s0515a.att	156	mara	0
 s0515a.att	189	anga-5	0
 s0515a.att	190	sahampati	0
 s0515a.att	190	subhadda-1	2
+s0515a.att	236	bodhi-4	1
+s0515a.att	236	bodhi-4	0
 s0515a.att	241	rahu-1	0
 s0515a.att	249	ananda-2	1
 s0515a.att	249	visakha-1	2
@@ -64513,7 +64736,7 @@ s0515a.att	456	vessantara-2	0
 s0515a.att	472	uttiya-1	4
 s0515a.att	559	punnatthera	0
 s0515a.att	574	tayana-1	0
-s0515a.att	576	candima-2	0
+s0515a.att	576	candimasa	0
 s0515a.att	576	khiddapadosika	0
 s0515a.att	576	manopadosika	0
 s0515a.att	576	sitavalahaka	0
@@ -64604,7 +64827,7 @@ s0515a.att	1564	maha-malla	0
 s0515a.att	1569	pajjaraka	0
 s0515a.att	1614	avici-2	0
 s0515a.att	1633	sati	0
-s0515a.att	1671	tusita-2	0
+s0515a.att	1671	tusita	0
 s0515a.att	1672	pandukambalasila	0
 s0515a.att	1728	setaketu	0
 s0515a.att	1757	mara	0
@@ -64669,6 +64892,7 @@ s0516a.att	272	pasanakacetiya	0
 s0516a.att	276	mara	0
 s0516a.att	285	pasanaka	0
 s0516a.att	287	udaya-3	0
+s0516a.att	299	posala	0
 s0516a.att	300	kaccana	0
 s0516a.att	300	kassapa-1	2
 s0516a.att	300	phussa-2-4	1
@@ -64773,6 +64997,7 @@ s0516a.att	722	maha-vihara	0
 s0516a.att	723	maha-thupa	0
 s0516a.att	725	kittisena	0
 s0516a.att	729	upasena	0
+s0516a.att	733	bodhi-4	1
 s0517a.att	15	sariputta	0
 s0517a.att	42	ananda-2	0
 s0517a.att	42	khujjuttara	0
@@ -64824,6 +65049,8 @@ s0517a.att	472	abhassara	0
 s0517a.att	473	subhakinha-1	0
 s0517a.att	476	vinnanancayatanupaga	0
 s0517a.att	510	sariputta	0
+s0517a.att	511	bodhi-4	1
+s0517a.att	511	bodhi-4	0
 s0517a.att	554	ananda-2	1
 s0517a.att	554	visakha-1	2
 s0517a.att	593	phussa-2-4	1
@@ -64868,7 +65095,7 @@ s0517a.att	1354	subhakinha-1	0
 s0517a.att	1354	vehapphala-1	0
 s0517a.att	1355	lokabyuha	0
 s0517a.att	1355	sineru	0
-s0517a.att	1361	abhassara-2	0
+s0517a.att	1361	abhassara	0
 s0517a.att	1366	mahasammata	0
 s0517a.att	1367	subhakinha-1	0
 s0517a.att	1368	subhakinha-1	0
@@ -64888,6 +65115,7 @@ s0517a.att	1436	culapanthaka	0
 s0517a.att	1450	maha-papata	0
 s0517a.att	1484	pataliputta	0
 s0517a.att	1484	rajagaha	0
+s0517a.att	1505	ciravasi	0
 s0517a.att	1513	mara	0
 s0517a.att	1515	mara	0
 s0517a.att	1528	kaccana	0
@@ -64935,7 +65163,7 @@ s0517a.att	2047	ananda-2	1
 s0517a.att	2047	ananda-2	0
 s0517a.att	2047	kosambi	0
 s0517a.att	2047	kusamba	0
-s0517a.att	2048	ghosakasetthi-2	0
+s0517a.att	2048	ghosakasetthi	0
 s0517a.att	2048	ghositarama	0
 s0517a.att	2048	kosambi	0
 s0517a.att	2048	kukkuta-2	0
@@ -64946,6 +65174,10 @@ s0517a.att	2048	savatthi	0
 s0517a.att	2071	visuddhimagga	0
 s0517a.att	2074	visuddhimagga	0
 s0517a.att	2084	visuddhimagga	0
+s0517a.att	2107	bodhi-4	1
+s0517a.att	2107	bodhi-4	0
+s0517a.att	2108	bodhi-4	1
+s0517a.att	2110	bodhi-4	1
 s0517a.att	2114	sariputta	0
 s0517a.att	2131	visuddhimagga	0
 s0517a.att	2146	baranasi	0
@@ -64964,14 +65196,14 @@ s0517a.att	2150	avici-2	0
 s0517a.att	2150	pacchimadesa	0
 s0517a.att	2154	annatakondanna	0
 s0517a.att	2154	isipatana	0
-s0517a.att	2155	candima-2	0
+s0517a.att	2155	candimasa	0
 s0517a.att	2155	khiddapadosika	0
 s0517a.att	2155	manopadosika	0
 s0517a.att	2155	nimmanarati	0
 s0517a.att	2155	paranimmitavasavatti	0
 s0517a.att	2155	sitavalahaka	0
 s0517a.att	2155	tavatimsa	0
-s0517a.att	2155	tusita-2	0
+s0517a.att	2155	tusita	0
 s0517a.att	2155	unhavalahaka	0
 s0517a.att	2155	yama	0
 s0517a.att	2156	annasikondanna	0
@@ -65057,7 +65289,7 @@ s0517a.att	2375	uttara-2	0
 s0517a.att	2376	uttara-2	0
 s0517a.att	2377	bhaddiya-1	3
 s0517a.att	2377	candapajjota	0
-s0517a.att	2377	ghosakasetthi-2	0
+s0517a.att	2377	ghosakasetthi	0
 s0517a.att	2377	kosambi	0
 s0517a.att	2377	magandiyabrahmana	0
 s0517a.att	2377	samavati-1	0
@@ -65065,7 +65297,7 @@ s0517a.att	2377	udena-1	0
 s0517a.att	2377	vasuladatta	0
 s0517a.att	2380	kosambi	0
 s0517a.att	2380	magandiya	0
-s0517a.att	2381	ghosakasetthi-2	0
+s0517a.att	2381	ghosakasetthi	0
 s0517a.att	2381	ghositarama	0
 s0517a.att	2381	jetavana	0
 s0517a.att	2381	khujjuttara	0
@@ -65108,7 +65340,7 @@ s0517a.att	2398	vipassi-1	0
 s0517a.att	2399	kosambi	0
 s0517a.att	2399	kosambikasetthi	0
 s0517a.att	2403	corapapata	0
-s0517a.att	2409	ghosakasetthi-2	0
+s0517a.att	2409	ghosakasetthi	0
 s0517a.att	2409	mendaka-2	0
 s0517a.att	2410	bhaddiya-1	3
 s0517a.att	2410	candapaduma-1	0
@@ -65275,6 +65507,7 @@ abh01a.att	621	dipankara	0
 abh01a.att	646	dipankara	0
 abh01a.att	663	dipankara	0
 abh01a.att	665	naradakuta	0
+abh01a.att	667	sudassanakuta	0
 abh01a.att	674	dipankara	0
 abh01a.att	676	dipankara	0
 abh01a.att	681	rammavati	0
@@ -65291,9 +65524,10 @@ abh01a.att	688	sala	0
 abh01a.att	696	dipankara	0
 abh01a.att	696	kondanna-1	1
 abh01a.att	697	anuruddha-1	0
+abh01a.att	697	kondanna-3	0
 abh01a.att	697	rammavati	0
 abh01a.att	697	subhadda-1	2
-abh01a.att	697	sunanda-1	0
+abh01a.att	697	sunanda-3	0
 abh01a.att	697	tissa-1	0
 abh01a.att	697	upatissa	0
 abh01a.att	698	anandakumara	0
@@ -65357,6 +65591,7 @@ abh01a.att	723	dhannavati-1	0
 abh01a.att	723	phagguni	0
 abh01a.att	723	sudeva-1	0
 abh01a.att	723	vijitamitta	0
+abh01a.att	724	narada-2	0
 abh01a.att	724	padumuttara-1	1
 abh01a.att	724	padumuttara-1	0
 abh01a.att	725	amita-1	0
@@ -65393,14 +65628,14 @@ abh01a.att	734	dhammadassi-1	0
 abh01a.att	734	sakka-2	0
 abh01a.att	735	khema	0
 abh01a.att	735	phussadeva	0
-abh01a.att	735	saccanama	0
+abh01a.att	735	saccanama-2	0
 abh01a.att	735	sunetta	0
 abh01a.att	736	mangala-7	0
 abh01a.att	736	siddhattha-4	0
 abh01a.att	737	jayasena	0
 abh01a.att	737	revata-1	2
 abh01a.att	737	sambala-1	0
-abh01a.att	737	sivala	0
+abh01a.att	737	sivali-2	0
 abh01a.att	737	sumitta-1	0
 abh01a.att	737	suphassa	0
 abh01a.att	737	suramma	0
@@ -65447,7 +65682,7 @@ abh01a.att	748	kassapa-1	2
 abh01a.att	748	konagamana	0
 abh01a.att	749	aggidatta	0
 abh01a.att	749	buddhija	0
-abh01a.att	749	campa-2	0
+abh01a.att	749	campa	0
 abh01a.att	749	kakusandha	0
 abh01a.att	749	sanjiva-2	0
 abh01a.att	749	vidhura-1	0
@@ -65504,7 +65739,7 @@ abh01a.att	988	maha-thupa	0
 abh01a.att	1005	maha-thupa	0
 abh01a.att	1064	ananda-2	1
 abh01a.att	1064	ananda-2	0
-abh01a.att	1064	pataliputta-2	0
+abh01a.att	1064	pataliputta	0
 abh01a.att	1064	samiddhi-2	0
 abh01a.att	1132	cakkana	0
 abh01a.att	1176	nagasena	0
@@ -65541,6 +65776,8 @@ abh01a.att	1575	maha-tissa-1	0
 abh01a.att	1585	alara	0
 abh01a.att	1606	sariputta	0
 abh01a.att	1655	anga-5	0
+abh01a.att	1655	bodhi-4	1
+abh01a.att	1655	bodhi-4	0
 abh01a.att	1659	uruvela	0
 abh01a.att	1665	mahasivatthera	0
 abh01a.att	1672	rahula	0
@@ -65550,6 +65787,10 @@ abh01a.att	1703	tipitakaculanagatthera	0
 abh01a.att	1723	mahamoggallana	0
 abh01a.att	1723	moggallana-1	0
 abh01a.att	1723	sariputta	0
+abh01a.att	1759	kuvera	0
+abh01a.att	1760	kuvera	0
+abh01a.att	1761	kuvera	0
+abh01a.att	1762	kuvera	0
 abh01a.att	1849	mahasivatthera	0
 abh01a.att	1851	mahadatta-2	0
 abh01a.att	1851	tipitakaculanagatthera	0
@@ -65576,7 +65817,7 @@ abh01a.att	2021	aggimukha	0
 abh01a.att	2022	aggimukha	0
 abh01a.att	2044	visakha-1	2
 abh01a.att	2044	visakha-1	0
-abh01a.att	2085	canda-2-2	0
+abh01a.att	2085	candimasa	0
 abh01a.att	2123	avici-2	0
 abh01a.att	2131	paranimmitavasavatti	0
 abh01a.att	2135	khara-3	0
@@ -65617,7 +65858,7 @@ abh02a.att	44	tipitakaculanagatthera	0
 abh02a.att	47	tavatimsa	0
 abh02a.att	60	tipitakaculanagatthera	0
 abh02a.att	98	khara-3	0
-abh02a.att	135	saradassi-2	0
+abh02a.att	135	saradassi-1	0
 abh02a.att	205	sariputta	0
 abh02a.att	224	visuddhimagga	0
 abh02a.att	226	visuddhimagga	0
@@ -65669,6 +65910,8 @@ abh02a.att	1431	ratthapala	0
 abh02a.att	1431	sona-1	3
 abh02a.att	1432	mogharaja	0
 abh02a.att	1432	sambhuta-2	0
+abh02a.att	1447	bodhi-4	1
+abh02a.att	1447	bodhi-4	0
 abh02a.att	1501	subhadda-1	2
 abh02a.att	1501	subhadda-1	0
 abh02a.att	1531	punnatthera	0
@@ -65792,6 +66035,7 @@ abh02a.att	2092	mittavindaka-2	0
 abh02a.att	2110	anuradhapura	0
 abh02a.att	2110	cetiyapabbata	0
 abh02a.att	2110	saddhatissa-1	0
+abh02a.att	2111	bodhi-4	1
 abh02a.att	2158	cittalapabbata	0
 abh02a.att	2158	mahadatta-2	0
 abh02a.att	2158	mahanaga-4	1
@@ -65803,7 +66047,7 @@ abh02a.att	2216	gangavici	0
 abh02a.att	2255	pataliputta	0
 abh02a.att	2255	rajagaha	0
 abh02a.att	2291	avici-2	0
-abh02a.att	2302	candima-2	0
+abh02a.att	2302	candimasa	0
 abh02a.att	2302	khiddapadosika	0
 abh02a.att	2302	manopadosika	0
 abh02a.att	2302	sitavalahaka	0
@@ -65818,7 +66062,7 @@ abh02a.att	2307	appamanabha	0
 abh02a.att	2307	parittabha	0
 abh02a.att	2308	parittasubha	0
 abh02a.att	2308	subhakinha-1	0
-abh02a.att	2311	aviha	0
+abh02a.att	2311	aviha-1	0
 abh02a.att	2311	sudassa	0
 abh02a.att	2311	sudassi	0
 abh02a.att	2311	vehapphala-1	0

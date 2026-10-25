@@ -74,6 +74,13 @@ and settings of the suttas. tipitaka.lk uses them through a map of its entries t
   gloss whose paragraph is not mapped is dropped (92% placed: 105,377 of 114,833; most of the rest quote mūla
   paragraphs of SN/MN/Snp that are not mapped). The data's hash is part of `api_hash`.
 
+### The names in Sinhala (dev/names-si)
+The app's names come with English descriptions (DPD meanings such as "name of a town", the first sentence of DPPN
+entries) and categories ("villages, towns and cities", "DPPN: thera"). `GEMINI_API_KEY=… npx tsx dev/names-si/translate.ts`
+translates the ones not yet in `dev/names-si/{meanings,families}.tsv` (keyed by the English text, so re-exports keep them;
+corrected rows stay) with gemini-4-argon and its style rules (honorifics, Pāḷi name forms). The build shows the Sinhala
+(`entity.meaning`, `family`; the English in `meaning_en`, `family_en`). Run it after an export that brings new names.
+
 ## Aṭṭhakathā Pāḷi from VRI (dev/atta-vri)
 `npx tsx dev/atta-vri/reimport.ts [--file atta-dn-1] [--write]` brings the aṭṭhakathā Pāḷi up to the VRI text of
 tipitaka.app (word level diff; the base is the commit of the last sync, recorded in `report.md`). lk's pages, entry
