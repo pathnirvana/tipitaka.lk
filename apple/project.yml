@@ -1,0 +1,104 @@
+# XcodeGen spec of the App Store apps (tipitaka.app's; scripts/build-apple.sh generates Tipitaka.xcodeproj from it):
+#   Tipitaka-iOS    the app build of the web UI in a WKWebView + the gomobile engine (iPhone, iPad)
+#   Tipitaka-macOS  the Wails desktop app (server/desktop.go); the Go binary replaces the placeholder executable
+# Both use the bundle id lk.tipitaka.ios of the existing iOS app (one App Store Connect record "Sinhala Tripitaka &
+# Atuwa", id 6615068500, universal purchase: the bundle id is UNIVERSAL).
+name: Tipitaka
+options:
+  deploymentTarget: { iOS: "15.0", macOS: "13.0" }
+  createIntermediateGroups: true
+settings:
+  base:
+    PRODUCT_BUNDLE_IDENTIFIER: lk.tipitaka.ios
+    PRODUCT_NAME: Tipitaka
+    DEVELOPMENT_TEAM: ${TEAM_ID}
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: ${VERSION}
+    CURRENT_PROJECT_VERSION: ${BUILD}
+    SWIFT_VERSION: "5.0"
+    GENERATE_INFOPLIST_FILE: NO
+targets:
+  Tipitaka-iOS:
+    type: application
+    platform: iOS
+    sources:
+      - path: iOS
+      - path: Shared/PrivacyInfo.xcprivacy
+      - path: ../web/dist-app
+        type: folder
+        buildPhase: resources
+      - path: build/db
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - framework: ../server/mobile/build/Engine.xcframework
+        embed: false
+    settings:
+      base:
+        TARGETED_DEVICE_FAMILY: "1,2"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SUPPORTS_MACCATALYST: NO
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+        SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: NO
+        OTHER_LDFLAGS: -lresolv
+    info:
+      path: build/iOS-Info.plist
+      properties:
+        CFBundleDisplayName: ත්‍රිපිටකය
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        ITSAppUsesNonExemptEncryption: false
+        LSRequiresIPhoneOS: true
+        UIBackgroundModes: [audio] # the recitations go on with the screen off
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: Default
+                UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+  Tipitaka-macOS:
+    type: application
+    platform: macOS
+    sources:
+      - path: macOS/main.swift
+      - path: Shared/PrivacyInfo.xcprivacy
+      - path: build/AppIcon.icns
+        buildPhase: resources
+      - path: ../web/dist
+        type: folder
+        buildPhase: resources
+      - path: build/db
+        type: folder
+        buildPhase: resources
+    entitlements:
+      path: build/Tipitaka.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.network.client: true
+    settings:
+      base:
+        ENABLE_DEBUG_DYLIB: NO
+        STRIP_INSTALLED_PRODUCT: NO
+        DEBUG_INFORMATION_FORMAT: dwarf
+        ENABLE_HARDENED_RUNTIME: YES
+        ENABLE_USER_SCRIPT_SANDBOXING: NO # the script copies the Go binary from apple/build
+    info:
+      path: build/macOS-Info.plist
+      properties:
+        CFBundleDisplayName: ත්‍රිපිටකය
+        CFBundleIconFile: AppIcon
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSApplicationCategoryType: public.app-category.reference
+        LSMinimumSystemVersion: $(MACOSX_DEPLOYMENT_TARGET)
+        NSHighResolutionCapable: true
+        NSHumanReadableCopyright: © Path Nirvana Foundation
+        ITSAppUsesNonExemptEncryption: false
+    postBuildScripts:
+      - name: Use the Go desktop app as the executable
+        basedOnDependencyAnalysis: false
+        script: |
+          cp "$SRCROOT/build/tipitaka_lk_universal" "$TARGET_BUILD_DIR/$EXECUTABLE_PATH"
