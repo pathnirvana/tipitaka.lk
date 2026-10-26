@@ -1,0 +1,28 @@
+{
+  "name": "බුද්ධ ජයන්ති ත්‍රිපිටකය",
+  "short_name": "ත්‍රිපිටකය",
+  "description": "බුද්ධ ජයන්ති ත්‍රිපිටකය – පාළි පෙළ, සිංහල පරිවර්තනය, අටුවාව, සජ්ඣායනා සහ ශබ්දකෝෂ",
+  "lang": "si",
+  "icons": [
+    {
+      "src": "static/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "static/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "static/images/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fbf8f3",
+  "theme_color": "#7a2e14"
+}
