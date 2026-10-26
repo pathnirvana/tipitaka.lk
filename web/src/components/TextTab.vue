@@ -245,7 +245,7 @@ watch(() => [isPlayingHere.value, audio.activeEntry, audio.playingWord] as const
   if (!el) return
   const r = el.getBoundingClientRect()
   const pane = props.contained ? root.value?.closest<HTMLElement>('[data-pane]')?.getBoundingClientRect() : undefined
-  const top = (pane?.top ?? document.querySelector('[data-testid="app-bar"]')?.getBoundingClientRect().bottom ?? 0) + 8
+  const top = (pane?.top ?? (document.querySelector('[data-testid="tabs-bar"]') ?? document.querySelector('[data-testid="app-bar"]'))?.getBoundingClientRect().bottom ?? 0) + 8
   const bottom = (pane?.bottom ?? document.querySelector('[data-testid="audio-control"]')?.getBoundingClientRect().top ?? window.innerHeight) - 8
   if ((r.top >= top && r.bottom <= bottom) || Date.now() - followedAt < 800) return
   followedAt = Date.now()

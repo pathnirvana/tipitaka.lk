@@ -19,7 +19,7 @@ var opErrorStatus = map[string]int{"bad_request": 400, "not_found": 404, "too_br
 func (a *App) handleOp(w http.ResponseWriter, r *http.Request) {
 	op := r.PathValue("op")
 	var p engine.Params
-	etag := `W/"` + a.apiHash + `"`
+	etag := `W/"` + a.opsHash + `"`
 	if r.Method == http.MethodPost {
 		body, err := io.ReadAll(io.LimitReader(r.Body, maxOpBody))
 		m := map[string]any{}
@@ -60,8 +60,10 @@ func (a *App) handleOp(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("ETag", etag)
-	// responses only change with the data and the engine (api_hash): immutable when the client sends it (?v=)
-	if r.Method == http.MethodGet && a.apiHash != "" && r.URL.Query().Get("v") == a.apiHash {
+	// responses only change with the data and the engine (opsHash): immutable when the client sends it (?v=)
+	if op == "audio" { // a file of the recitations' CDN (the apps): it may be corrected
+		w.Header().Set("Cache-Control", "public, max-age=3600")
+	} else if r.Method == http.MethodGet && a.apiHash != "" && r.URL.Query().Get("v") == a.opsHash {
 		w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
 	} else {
 		w.Header().Set("Cache-Control", "public, max-age=300")

@@ -4,7 +4,7 @@
 <template>
   <aside v-if="dict.show" :class="dictSide ? 'fixed bottom-0 right-0 z-30 flex flex-col border-l border-line bg-surface'
     : 'fixed inset-x-0 bottom-0 z-40 flex flex-col rounded-t-2xl border-t border-line bg-surface shadow-2xl'"
-    :style="dictSide ? { top: `${headerHeight}px`, width: `${DICT_WIDTH}px` } : { height: `${height}vh` }" data-testid="inline-dict">
+    :style="dictSide ? { top: `${APP_BAR}px`, right: `${panelRight}px`, width: `${DICT_WIDTH}px` } : { height: `${height}vh` }" data-testid="inline-dict">
     <div v-if="!dictSide" class="flex h-5 shrink-0 cursor-row-resize items-center justify-center" role="separator" aria-orientation="horizontal"
       aria-label="උස වෙනස් කිරීමට අදින්න" data-testid="sheet-handle" @mousedown="startDrag" @touchstart="startDrag">
       <div class="h-1.5 w-12 rounded-full bg-line" />
@@ -50,7 +50,7 @@ import SettingView from './SettingView.vue'
 import { useInlineDict } from '@/stores/inlineDict'
 import { useSettings } from '@/stores/settings'
 import { smAndUp, viewport } from '@/composables/breakpoints'
-import { useLayout, DICT_WIDTH } from '@/composables/layout'
+import { useLayout, DICT_WIDTH, APP_BAR } from '@/composables/layout'
 
 // the paragraph's tabs once a paragraph is known (a clicked word, the paragraph menu)
 const tabsShown = computed(() => [
@@ -64,7 +64,7 @@ const attaLabel = computed(() => {
   const toMula = dict.glosses.length ? dict.glosses[0].side === 'c' : !!dict.ctx?.file.startsWith('atta-')
   return (toMula ? 'මූල පාළිය' : 'අටුවාව') + (dict.glosses.length ? ` (${dict.glosses.length})` : '')
 })
-const { dictSide, headerHeight } = useLayout()
+const { dictSide, panelRight } = useLayout()
 // the input follows the clicked word; an edited word is searched (debounced)
 const input = ref(dict.word)
 watch(() => dict.word, w => { input.value = w })

@@ -139,13 +139,18 @@ export class CstData {
     }
     // glosses: CST words -> lk words through the runs
     const insGloss = db.prepare('INSERT INTO gloss VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
-    let glosses = 0, glossTotal = 0
+    let glosses = 0, glossTotal = 0, glossFar = 0
+    const fileOf = new Map((db.prepare('SELECT id, file_id FROM entry').all() as { id: number; file_id: number }[]).map(r => [r.id, r.file_id]))
+    const near = (s: WordPos, e: WordPos, cstParas: number) => fileOf.get(s.entry) === fileOf.get(e.entry) && e.entry - s.entry <= cstParas + 3
     const glossFile = path.join(this.dataDir, 'glosses.tsv')
     if (fs.existsSync(glossFile)) for (const g of readTsv(glossFile)) {
       glossTotal++
       const a = place(runsOf, `${g.a_book}#${g.a_idx}`, +g.a_w, false), ae = place(runsOf, `${g.a_book}#${g.a_eidx}`, +g.a_ew, true)
       const m = place(runsOf, `${g.m_book}#${g.m_idx}`, +g.m_w, false), me = place(runsOf, `${g.m_book}#${g.m_eidx}`, +g.m_ew, true)
       if (!a || !ae || !m || !me || before(ae, a) || before(me, m)) continue
+      // both ends in one lk file, as far apart as in CST: a paragraph matched in several places of lk can place its
+      // ends far apart (2026-10: 339 glosses from one file to another, which underlined whole suttas)
+      if (!near(a, ae, +g.a_eidx - +g.a_idx) || !near(m, me, +g.m_eidx - +g.m_idx)) { glossFar++; continue }
       // the end of the explanation: its last word, else the last placed word of a paragraph before it (not before the lemma)
       let x = place(runsOf, `${g.a_book}#${g.x_idx}`, +g.x_w, true, 50)
       for (let i = +g.x_idx - 1; !x && i >= +g.a_eidx; i--) x = place(runsOf, `${g.a_book}#${i}`, Infinity, true, Infinity)
@@ -175,7 +180,7 @@ export class CstData {
     return ['## tipitaka.app data (commentary links, places and people)', '',
       `- entries mapped to CST paragraphs: ${fresh} (stale, text changed since mapping: ${stale} - rerun dev/cst-map/map.ts)`,
       `- mūla <-> aṭṭhakathā entry links: ${links}`, `- entities: ${ents.length} (meanings in Sinhala: ${translated}), settings of nodes: ${settings} (units not placed: ${unplaced}), mentions: ${mentions}`,
-      `- glosses (aṭṭhakathā lemma -> mūla words): ${glosses} of ${glossTotal} placed`, '']
+      `- glosses (aṭṭhakathā lemma -> mūla words): ${glosses} of ${glossTotal} placed (${glossFar} dropped: their ends placed far apart)`, '']
   }
 }
 

@@ -6,6 +6,7 @@ import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 import postcssPresetEnv from 'postcss-preset-env'
 import fs from 'node:fs'
+import { helpMarkdown } from './help'
 import { fileURLToPath } from 'node:url'
 
 // VITE_APP=1 -> offline Android/iOS WebView build (file:// base, hash router, no ES modules)
@@ -27,6 +28,7 @@ export default defineConfig({
   base: isApp ? './' : '/',
   plugins: [
     vue(),
+    helpMarkdown(), // web/src/help/si.md -> html at build time
     Icons({ compiler: 'vue3' }),
     legacy({ targets: browsers, modernPolyfills: true, renderModernChunks: !isApp }),
   ],

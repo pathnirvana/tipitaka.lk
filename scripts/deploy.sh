@@ -111,6 +111,12 @@ trap '[ $SWITCHED = 1 ] || { echo "removing the unfinished release $TS"; ssh "$H
 for db in text.db dict.db; do upload_db "$db" "$PREV_DB"; done
 "$RSYNC" -az server/bin/tipitaka_lk_linux_amd64 "$HOST:$REL/tipitaka_lk"
 remote "chmod +x $REL/tipitaka_lk"
+# the country database of the statistics (server/geo.go): DB-IP's country lite file of the month, fetched on the
+# server once it is out (as tipitaka.app's deploy)
+remote "mkdir -p $BASE/geo && cd $BASE/geo && f=dbip-country-lite-\$(date -u +%Y-%m).csv.gz && { [ -s \$f ] \
+  || { curl -fsS -o \$f.part https://download.db-ip.com/free/\$f && mv \$f.part \$f && ln -sfn \$f country.csv.gz \
+       && ls -1 dbip-*.csv.gz | grep -vx \$f | xargs -r rm -f; } \
+  || { rm -f \$f.part; echo 'geoip: no DB-IP file for this month yet, keeping the last one'; }; }"
 
 say "3/6 testing the new release on port $STAGE_PORT"
 remote "cd $REL && (nohup ./tipitaka_lk -no-open -listen 127.0.0.1:$STAGE_PORT < /dev/null > /tmp/tipitaka-stage.log 2>&1 & echo \$! > /tmp/tipitaka-stage.pid); sleep 2
@@ -120,6 +126,7 @@ remote "cd $REL && (nohup ./tipitaka_lk -no-open -listen 127.0.0.1:$STAGE_PORT <
   curl -fsS 'http://127.0.0.1:$STAGE_PORT/api/q/tree.node?key=dn-1-1' | grep -q 'dn-1' || ok=0
   curl -fsS http://127.0.0.1:$STAGE_PORT/sitemaps/sinh.xml | grep -q '/dn-1-1/sinh<' || ok=0
   curl -fsS http://127.0.0.1:$STAGE_PORT/robots.txt | grep -q 'Sitemap:' || ok=0
+  curl -fsS http://127.0.0.1:$STAGE_PORT/help | grep -q '<div id=\"app\"' || ok=0
   kill \$(cat /tmp/tipitaka-stage.pid) 2>/dev/null || true
   [ \$ok = 1 ] || { cat /tmp/tipitaka-stage.log; exit 1; }" || { echo "staging test failed - nothing was switched"; exit 1; }
 echo "staging ok"
@@ -143,6 +150,18 @@ if remote "grep -q 'proxy_pass http://localhost:8400;' $NGINX"; then
       || { echo "nginx change failed - restoring"; remote_tty "sudo cp /tmp/tipitaka.lk.conf.bak $NGINX"; exit 1; }
   fi
 fi
+# the statistics need the visitor's address for the country (server/geo.go: X-Real-IP from nginx on this machine)
+if remote "grep -q 'proxy_pass http://127.0.0.1:8400;' $NGINX && ! grep -q 'X-Real-IP' $NGINX"; then
+  echo "nginx does not pass the visitor's address (the countries of /stats). Proposed change:"
+  echo "    proxy_pass http://127.0.0.1:8400;  ->  proxy_pass http://127.0.0.1:8400; proxy_set_header X-Real-IP \$remote_addr;"
+  read -r -p "apply it now? [y/N] " yn
+  if [ "$yn" = y ]; then
+    remote_tty "sudo cp $NGINX /tmp/tipitaka.lk.conf.bak && sudo sed -i 's#proxy_pass http://127.0.0.1:8400;#proxy_pass http://127.0.0.1:8400; proxy_set_header X-Real-IP \$remote_addr;#' $NGINX && sudo nginx -t && sudo systemctl reload nginx" \
+      || { echo "nginx change failed - restoring"; remote_tty "sudo cp /tmp/tipitaka.lk.conf.bak $NGINX"; exit 1; }
+  fi
+fi
+# the password of /stats (any user name): ~/www/tipitaka.lk/stats.env, STATS_PASSWORD=... (made once, kept)
+remote "[ -s $BASE/stats.env ] || { umask 077; echo STATS_PASSWORD=\$(head -c 18 /dev/urandom | base64 | tr -d '/+=') > $BASE/stats.env; echo 'made $BASE/stats.env (the /stats password)'; }"
 
 say "5/6 switching to $TS"
 SWITCHED=1

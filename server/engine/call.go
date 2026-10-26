@@ -2,7 +2,6 @@ package engine
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/url"
@@ -95,7 +94,7 @@ func splitList(p Params, name string) []string {
 }
 
 // Ops are the names accepted by Call.
-var Ops = []string{"meta", "dicts", "dict", "lookup", "links", "linkcounts", "settings", "names", "places", "entity", "paranames", "glosses"}
+var Ops = []string{"meta", "dicts", "dict", "lookup", "links", "linkcounts", "settings", "names", "places", "entity", "paranames", "glosses", "audio"}
 
 // Call runs an operation. Errors are *ParamError (bad request), ErrNotFound, *ErrTooBroad or internal.
 func (e *Engine) Call(ctx context.Context, op string, p Params) (any, error) {
@@ -104,6 +103,12 @@ func (e *Engine) Call(ctx context.Context, op string, p Params) (any, error) {
 	switch op {
 	case "meta":
 		return e.MetaInfo(), nil
+	case "audio": // a timing file of the recitations, for the apps (app.go AudioFile)
+		f, err := str(p, "f")
+		if err != nil {
+			return nil, err
+		}
+		return AudioFile(ctx, f)
 	case "dicts":
 		return e.Dicts(ctx)
 	case "dict", "lookup":
@@ -219,24 +224,4 @@ func ErrorCode(err error) string {
 		return "no_dict"
 	}
 	return "internal"
-}
-
-// QueryJSON is the entry point of the native bridge: {"op": "...", ...params} -> {"ok": result} or
-// {"error": code, "message": text}.
-func (e *Engine) QueryJSON(req string) string {
-	var m map[string]any
-	if err := json.Unmarshal([]byte(req), &m); err != nil {
-		return `{"error":"bad_request","message":"invalid json"}`
-	}
-	op, _ := m["op"].(string)
-	res, err := e.Call(context.Background(), op, MapParams(m))
-	if err != nil {
-		b, _ := json.Marshal(map[string]string{"error": ErrorCode(err), "message": err.Error()})
-		return string(b)
-	}
-	b, err := json.Marshal(map[string]any{"ok": res})
-	if err != nil {
-		return `{"error":"internal","message":"encode failed"}`
-	}
-	return string(b)
 }

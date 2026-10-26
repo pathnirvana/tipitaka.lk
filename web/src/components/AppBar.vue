@@ -1,6 +1,6 @@
-<!-- top bar: tree toggle | search type + search box | reading controls (wide screens) | side panel button -->
+<!-- top bar: tree toggle | search type + search box | reading controls (wide screens) | side panel button (the tab strip is in Reader.vue) -->
 <template>
-  <header :class="['fixed inset-x-0 top-0 z-40 border-b border-line bg-surface transition-transform', { '-translate-y-full': hidden }]" data-testid="app-bar">
+  <header :class="['fixed inset-x-0 top-0 z-40 border-b border-line bg-surface transition-transform', { '-translate-y-full': ui.headerHidden }]" data-testid="app-bar">
     <div class="flex h-12 items-center px-1 sm:px-2">
       <button class="icon-btn shrink-0 text-xl" :class="{ 'text-primary': ui.showTree }" title="සූත්‍ර නාමාවලිය" data-testid="tree-toggle" @click="ui.showTree = !ui.showTree"><IconMenu /></button>
 
@@ -35,10 +35,9 @@
           <button class="icon-btn" title="ඊළඟ සූත්‍රය" data-testid="next-sutta" @click="tabs.navigate(1)"><IconNext /></button>
         </template>
         <button v-else-if="!isTextTab && tabs.tabList.length" class="icon-btn text-success" title="කියවමින් සිටි සූත්‍රයට" data-testid="exit-to-reader" @click="$router.push('/' + tabs.activeKey)"><IconBook /></button>
-        <button class="icon-btn ml-1 text-xl" :class="{ 'text-primary': ui.showPanel }" title="සැකසුම් සහ සබැඳි" data-testid="panel-toggle" @click="ui.showPanel = !ui.showPanel"><IconMore /></button>
+        <button class="icon-btn ml-1 text-xl" :class="{ 'text-primary': ui.showPanel || panelColumn }" title="සැකසුම් සහ සබැඳි" data-testid="panel-toggle" @click="togglePanel"><IconMore /></button>
       </div>
     </div>
-    <TabsBar v-if="isTextTab && !columnsView" />
   </header>
 </template>
 
@@ -59,7 +58,6 @@ import IconBook from '~icons/mdi/book-open-variant'
 import IconMore from '~icons/mdi/dots-vertical'
 import Floating from './Floating.vue'
 import ColumnSelector from './ColumnSelector.vue'
-import TabsBar from './TabsBar.vue'
 import { useUi } from '@/stores/ui'
 import { useTabs } from '@/stores/tabs'
 import { useSearch, type SearchType } from '@/stores/search'
@@ -70,7 +68,7 @@ import { useTabColumns } from '@/composables/columns'
 
 const ui = useUi(), tabs = useTabs(), search = useSearch(), settings = useSettings()
 const route = useRoute(), router = useRouter()
-const { columnsView } = useLayout()
+const { panelColumn, togglePanel } = useLayout()
 const typeBtn = ref<HTMLElement>()
 const typeOpen = ref(false)
 
@@ -91,16 +89,15 @@ const isTextTab = computed(() => route.name === 'Home' && tabs.activeInd >= 0)
 const tabColumns = useTabColumns()
 const scan = computed({ get: () => !!tabs.activeTab?.showScanPage, set: v => { if (tabs.activeTab) tabs.update(tabs.activeTab, { showScanPage: v }) } })
 
-// hide on scroll down for small screens (v2 appBarHide)
+// hide on scroll down for small screens (v2 appBarHide), not while the tree or the side panel is open below it
 const autoHide = computed(() => (viewport.height.value < 700 || !smAndUp.value) && settings.autoHideSearchBar)
-const hidden = ref(false)
 let lastY = 0
 function onScroll() {
   const y = window.scrollY
-  hidden.value = autoHide.value && y > lastY && y > 120
+  ui.headerHidden = autoHide.value && !ui.showTree && !ui.showPanel && y > lastY && y > 120
   lastY = y
 }
-watch(autoHide, a => { if (!a) hidden.value = false })
+watch([autoHide, () => ui.showTree || ui.showPanel], ([a, open]) => { if (!a || open) ui.headerHidden = false })
 onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
 onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 </script>

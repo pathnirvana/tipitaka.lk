@@ -6,7 +6,7 @@ import { parseQueries, renderSql } from '../shared/queries'
 import { buildMatch } from '../shared/fts-query'
 
 const old = process.env.SQLITE_OLD!
-const queries = parseQueries(fs.readFileSync('server/queries.sql', 'utf-8'))
+const queries = parseQueries(fs.readFileSync('server/engine/queries.sql', 'utf-8'))
 const samples = JSON.parse(fs.readFileSync('server/queries.samples.json', 'utf-8')) as Record<string, Record<string, string | number>[]>
 const dbFiles = { text: 'e2e/fixtures/db/text.db', dict: 'e2e/fixtures/db/dict.db' }
 const modern = { text: new Database(dbFiles.text, { readonly: true }), dict: new Database(dbFiles.dict, { readonly: true }) }

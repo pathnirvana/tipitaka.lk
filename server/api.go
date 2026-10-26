@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
@@ -10,44 +9,16 @@ import (
 	"net/http"
 	"strings"
 	"time"
+
+	"tipitaka.lk/server/engine"
 )
 
 const queryTimeout = 3 * time.Second
 
-func (r Row) MarshalJSON() ([]byte, error) {
-	var b bytes.Buffer
-	b.WriteByte('{')
-	for i, c := range r.cols {
-		if i > 0 {
-			b.WriteByte(',')
-		}
-		k, _ := marshalNoEscape(c)
-		v, err := marshalNoEscape(r.vals[i])
-		if err != nil {
-			return nil, err
-		}
-		b.Write(k)
-		b.WriteByte(':')
-		b.Write(v)
-	}
-	b.WriteByte('}')
-	return b.Bytes(), nil
-}
-
-func marshalNoEscape(v any) ([]byte, error) {
-	var b bytes.Buffer
-	enc := json.NewEncoder(&b)
-	enc.SetEscapeHTML(false)
-	if err := enc.Encode(v); err != nil {
-		return nil, err
-	}
-	return bytes.TrimRight(b.Bytes(), "\n"), nil
-}
-
 func writeJSON(w http.ResponseWriter, status int, v any) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(status)
-	b, err := marshalNoEscape(v)
+	b, err := engine.MarshalNoEscape(v)
 	if err != nil {
 		log.Printf("json encode: %v", err)
 		return
@@ -61,7 +32,7 @@ func jsonError(w http.ResponseWriter, status int, msg string) {
 }
 
 // RunNamed validates params and runs a named query (also used by SSR).
-func (a *App) RunNamed(ctx context.Context, name string, raw map[string]any) ([]Row, error) {
+func (a *App) RunNamed(ctx context.Context, name string, raw map[string]any) ([]engine.Row, error) {
 	q := a.queries[name]
 	if q == nil {
 		return nil, errNotFound
@@ -85,13 +56,13 @@ func (a *App) handleQuery(w http.ResponseWriter, r *http.Request) {
 	}
 	raw := map[string]any{}
 	if r.Method == http.MethodPost {
-		body, err := io.ReadAll(io.LimitReader(r.Body, 4*maxStrParam))
+		body, err := io.ReadAll(io.LimitReader(r.Body, 4*engine.MaxStrParam))
 		if err != nil || json.Unmarshal(body, &raw) != nil {
 			jsonError(w, http.StatusBadRequest, "bad json body")
 			return
 		}
 	} else {
-		if len(r.URL.RawQuery) > 4*maxStrParam {
+		if len(r.URL.RawQuery) > 4*engine.MaxStrParam {
 			jsonError(w, http.StatusBadRequest, "query string too long")
 			return
 		}
@@ -114,12 +85,12 @@ func (a *App) handleQuery(w http.ResponseWriter, r *http.Request) {
 		defer a.guard.api.release()
 	}
 	rows, err := a.RunNamed(r.Context(), name, raw)
-	var pe *ParamError
+	var pe *engine.ParamError
 	switch {
 	case errors.As(err, &pe):
 		jsonError(w, http.StatusBadRequest, pe.Error())
 		return
-	case errors.Is(err, ErrFtsSyntax):
+	case errors.Is(err, engine.ErrFtsSyntax):
 		jsonError(w, http.StatusBadRequest, "fts_syntax")
 		return
 	case errors.Is(err, context.DeadlineExceeded):
@@ -141,7 +112,7 @@ func (a *App) handleQuery(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) handleHealth(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-store")
-	writeJSON(w, http.StatusOK, map[string]any{"status": "ok", "api_hash": a.apiHash,
+	writeJSON(w, http.StatusOK, map[string]any{"status": "ok", "api_hash": a.apiHash, "ops_hash": a.opsHash,
 		"content_hash": a.meta["content_hash"], "schema_version": a.meta["schema_version"], "db_version": a.meta["db_version"],
 		"load": a.guard.snapshot()})
 }

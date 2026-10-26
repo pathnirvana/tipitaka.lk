@@ -6,9 +6,11 @@
 import type { EInd } from '@shared/routes'
 import { useTabs } from '@/stores/tabs'
 import { useSettings } from '@/stores/settings'
+import { countFeature } from './stats'
 
 export function openAlongside(key: string, eInd?: EInd) {
   const tabs = useTabs(), settings = useSettings()
+  countFeature('alongside')
   settings.tabView = 'columns'
   const from = tabs.activeInd
   void tabs.openTab({ key, eInd, afterActive: true, reuse: true })

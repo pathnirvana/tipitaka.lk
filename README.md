@@ -35,9 +35,12 @@ npm run dev              # vite dev server with hot reload on :8081 (proxies /ap
 
 ## Releases
 * Website: `scripts/deploy.sh` - pulls the latest text from GitHub, builds, uploads, tests and switches (see dev-docs/deploy.md).
-* Desktop: store builds (Windows, macOS) as for tipitaka.app - to be set up; `scripts/release-desktop.sh` builds a
-  zip for the current platform.
-* Android: `scripts/android-assets.sh /path/to/Android/Tipitaka.lk` then build the bundle in Android Studio.
-  iOS: see [dev-docs/native-bridge.md](dev-docs/native-bridge.md).
+* Apps (tipitaka.app's design: the web app build + the Go engine; dev-docs/native-bridge.md):
+  * iOS and macOS (one App Store record, lk.tipitaka.ios): `scripts/build-apple.sh all --upload`, then
+    `node scripts/asc-release.mjs listing|build|submit IOS|MAC_OS` and `node scripts/asc-screenshots.mjs IOS|MAC_OS`.
+  * Android (lk.tipitaka.main): `scripts/android-assets.sh` (into /Volumes/2TB/Android/Tipitaka.lk-v3), then
+    `./gradlew bundleRelease` there.
+  * Windows (Microsoft Store): `scripts/build-desktop.sh windows` -> `release/tipitaka_lk-<version>.msix`.
+  * Store texts: `release/*/listing.md`; icons `node scripts/make-icons.mjs`; screenshots `node scripts/store-screenshots.mjs`.
 
 **Please check the LICENSE file if you wish to extract any content from the website for redistribution.**

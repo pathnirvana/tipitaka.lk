@@ -1,6 +1,6 @@
 // Package engine answers the operations of the tipitaka.lk api (/api/{op}, and later the native apps through gomobile,
 // the same design as tipitaka.app's server/engine). The dictionary operations come from tipitaka.app (dict.go,
-// normalize.go: keep them in sync); text, tree and search are still the named queries of queries.sql (/api/q/{name}).
+// normalize.go: keep them in sync); text, tree and search are the named queries of queries.sql (queries.go; the server: /api/q/{name}).
 package engine
 
 import (
@@ -8,6 +8,10 @@ import (
 	"errors"
 	"strings"
 )
+
+// Version of the engine's answers (dictionary order and content, names, links): part of the ops' cache key
+// (App.opsHash), so browsers fetch the answers again when it changes - bump it with any change to what the ops return.
+const Version = "3"
 
 // Engine holds the read-only databases.
 type Engine struct {

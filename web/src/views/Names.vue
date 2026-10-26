@@ -32,12 +32,16 @@
         <h1 class="pali mb-1 text-2xl font-semibold" data-testid="name-title">{{ ps(page.name.toLowerCase()) }}</h1>
         <div class="mb-2 text-xs text-muted">{{ page.name }} · {{ TYPE_LABEL[page.type] }}<template v-if="showFamily"> · {{ page.family }}</template></div>
         <p v-if="page.meaning" class="mb-3 text-sm">{{ page.meaning }}</p>
-        <p v-if="page.homonyms?.length" class="mb-3 text-sm" data-testid="name-homonyms">
-          මෙම නමින්ම තවත්:
-          <template v-for="(h, i) in page.homonyms" :key="h.slug">
-            <span v-if="i">, </span><RouterLink :to="'/names/' + h.slug" class="underline hover:text-primary">{{ h.meaning || h.lemma }}</RouterLink>
-          </template>
+        <!-- the others of this name: one in the sentence, several as a list -->
+        <p v-if="page.homonyms?.length === 1" class="mb-3 text-sm" data-testid="name-homonyms">
+          මෙම නමින්ම තවත්: <RouterLink :to="'/names/' + page.homonyms[0].slug" class="underline hover:text-primary">{{ page.homonyms[0].meaning || page.homonyms[0].lemma }}</RouterLink>
         </p>
+        <div v-else-if="page.homonyms?.length" class="mb-3 text-sm" data-testid="name-homonyms">
+          <div class="mb-1">මෙම නමින්ම තවත්:</div>
+          <ul class="list-disc pl-5">
+            <li v-for="h in page.homonyms" :key="h.slug" class="mb-1"><RouterLink :to="'/names/' + h.slug" class="underline hover:text-primary">{{ h.meaning || h.lemma }}</RouterLink></li>
+          </ul>
+        </div>
         <PlaceMap v-if="hasCoords(page)" class="mb-3 h-64" compact :places="[mapPlace(page, 'main', { label: true })]" fit-main />
         <!-- the suttas by book (tipitaka.app): a dot for mūla / aṭṭhakathā, the count, the suttas folded in; in the
              interface face, the size of the text around them -->

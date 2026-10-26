@@ -14,6 +14,8 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"tipitaka.lk/server/engine"
 )
 
 const stubIndex = `<!doctype html><html><head><title>Tripitaka</title><meta name="description" content="x"></head><body><div id="app"></div></body></html>`
@@ -55,9 +57,9 @@ func TestQueriesSamples(t *testing.T) {
 				t.Errorf("%s %v: rows=%d err=%v", name, params, len(rows), err)
 			}
 			for _, r := range rows {
-				for i, v := range r.vals {
+				for i, v := range r.Vals() {
 					if v == nil {
-						t.Errorf("%s: NULL in column %s", name, r.cols[i])
+						t.Errorf("%s: NULL in column %s", name, r.Cols()[i])
 					}
 				}
 			}
@@ -94,7 +96,7 @@ func TestReadOnly(t *testing.T) {
 
 func TestTimeout(t *testing.T) {
 	a := newTestApp(t, "../e2e/fixtures")
-	a.queries["test.slow"] = &NamedQuery{Name: "test.slow", DB: "text", Params: map[string]string{}, MaxRows: 1,
+	a.queries["test.slow"] = &engine.NamedQuery{Name: "test.slow", DB: "text", Params: map[string]string{}, MaxRows: 1,
 		SQL: "WITH RECURSIVE c(x) AS (SELECT 1 UNION ALL SELECT x+1 FROM c) SELECT count(*) FROM c"}
 	start := time.Now()
 	rec := get(t, a.Handler(), "/api/q/test.slow")
@@ -360,7 +362,7 @@ func TestDictOps(t *testing.T) {
 		Entries []struct{ Dict, Word string } `json:"entries"`
 		Grammar json.RawMessage               `json:"grammar"`
 	}
-	rec := get(t, h, "/api/lookup?w=dhammaṃ&v="+a.apiHash)
+	rec := get(t, h, "/api/lookup?w=dhammaṃ&v="+a.opsHash)
 	if err := json.Unmarshal(rec.Body.Bytes(), &look); err != nil || rec.Code != 200 {
 		t.Fatalf("lookup: %d %s", rec.Code, rec.Body.String())
 	}
@@ -368,6 +370,10 @@ func TestDictOps(t *testing.T) {
 		t.Errorf("lookup dhammaṃ: %+v", look)
 	}
 	if cc := rec.Header().Get("Cache-Control"); !strings.Contains(cc, "immutable") {
+		t.Errorf("lookup with ?v=ops_hash: %q", cc)
+	}
+	// the data's hash alone is not the ops' key: answers cached before an engine change are not used again
+	if cc := get(t, h, "/api/lookup?w=dhammaṃ&v="+a.apiHash).Header().Get("Cache-Control"); strings.Contains(cc, "immutable") {
 		t.Errorf("lookup with ?v=api_hash: %q", cc)
 	}
 	var dict struct {
@@ -385,8 +391,18 @@ func TestDictOps(t *testing.T) {
 	}
 	var dicts []struct{ Code, Lang string }
 	json.Unmarshal(get(t, h, "/api/dicts").Body.Bytes(), &dicts)
-	if len(dicts) != 8 || dicts[len(dicts)-1].Lang != "si" {
+	if len(dicts) != 8 || dicts[0].Lang != "si" || dicts[1].Lang != "si" || dicts[2].Lang != "en" { // the Sinhala ones first
 		t.Errorf("dicts: %+v", dicts)
+	}
+	// the entries: the Sinhala dictionaries first, then the English ones
+	english := false
+	for _, e := range look.Entries {
+		if strings.HasPrefix(e.Dict, "en-") {
+			english = true
+		} else if english {
+			t.Errorf("a Sinhala entry after an English one: %+v", look.Entries)
+			break
+		}
 	}
 	if rec := get(t, h, "/api/nosuchop"); rec.Code != 404 {
 		t.Errorf("unknown op: %d", rec.Code)
@@ -514,5 +530,36 @@ func TestNamesOps(t *testing.T) {
 	}
 	if rec := get(t, h, "/api/entity?slug=no-such-name"); rec.Code != 404 {
 		t.Errorf("unknown entity: %d", rec.Code)
+	}
+}
+
+// the apps' bridge (engine.QueryJSON): named queries and operations, as JSON
+func TestQueryJSON(t *testing.T) {
+	e, err := engine.OpenFiles("../e2e/fixtures/db/text.db", "../e2e/fixtures/db/dict.db")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer e.Close()
+	for req, want := range map[string]string{
+		`{"query":"tree.node","key":"dn-1-1"}`:  `{"ok":[{`,
+		`{"op":"dicts"}`:                        `{"ok":[{"code":`,
+		`{"op":"lookup","w":"dhammaṃ"}`:         `"dpd":[{`,
+		`{"query":"no.such.query"}`:             `{"error":"not_found"`,
+		`{"query":"tree.node"}`:                 `{"error":"bad_request"`,
+		`{"op":"nosuchop"}`:                     `{"error":`,
+		`{"op":"audio","f":"../../etc/passwd"}`: `{"error":"bad_request"`,
+		`not json`:                              `{"error":"bad_request"`,
+		`{"query":"fts.count","q":"\"unclosed","lang":0,"groups":""}`: `{"error":"fts_syntax"`,
+	} {
+		if got := e.QueryJSON(req); !strings.Contains(got, want) {
+			t.Errorf("%s: %.200s, want %s", req, got, want)
+		}
+	}
+	// the same rows as the server's /api/q (the web app reads both)
+	a := newTestApp(t, "../e2e/fixtures")
+	rows, _ := a.RunNamed(context.Background(), "tree.node", map[string]any{"key": "dn-1-1"})
+	b, _ := engine.MarshalNoEscape(map[string]any{"ok": rows})
+	if got := e.QueryJSON(`{"query":"tree.node","key":"dn-1-1"}`); got != string(b) {
+		t.Errorf("tree.node: %.200s, server %.200s", got, b)
 	}
 }

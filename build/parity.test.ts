@@ -11,7 +11,7 @@ import { titleSearch } from '../web/src/data/title'
 import type { TitleRow } from '../web/src/data/types'
 
 const FULL = !!process.env.FULL
-const queries = parseQueries(fs.readFileSync('server/queries.sql', 'utf-8'))
+const queries = parseQueries(fs.readFileSync('server/engine/queries.sql', 'utf-8'))
 const golden = (f: string) => JSON.parse(fs.readFileSync(`e2e/legacy/goldens/${f}`, 'utf-8'))
 const DICTS = ['BUS', 'MS', 'BUE', 'ND', 'PTS', 'PN', 'VRI', 'CR']
 type Row = { word: string; dict: string | number; meaning: string }

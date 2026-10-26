@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Runs every named query (server/queries.sql) and FTS syntax case on SQLite 3.9.2 compiled like Android's
+# Runs every named query (server/engine/queries.sql) and FTS syntax case on SQLite 3.9.2 compiled like Android's
 # framework SQLite (API 24): FTS3/FTS4 but WITHOUT FTS3_PARENTHESIS. Needs the fixture db (npm run build:fixture).
 set -euo pipefail
 cd "$(dirname "$0")/.."

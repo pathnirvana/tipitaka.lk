@@ -12,6 +12,7 @@ import { useText } from './text'
 import { useSettings } from './settings'
 import { smAndUp } from '@/composables/breakpoints'
 import { isAttaFile, isPaliOnlyFile } from '@shared/constants'
+import { countFeature } from '@/composables/stats'
 
 export type Columns = 0 | 1 | 2 // 0 pali, 1 sinh, 2 both
 export interface OpenParams {
@@ -198,7 +199,10 @@ export const useTabs = defineStore('tabs', () => {
   watch(() => settings.tabView, v => { if (v === 'single' && tabList.value.length > 1) closeOthers(activeInd.value) })
 
   /** updates fields of a tab (components never mutate the tab objects directly) */
-  function update(tab: Tab, patch: Partial<Pick<Tab, 'columns' | 'showScanPage' | 'scrollY'>>) { Object.assign(tab, patch) }
+  function update(tab: Tab, patch: Partial<Pick<Tab, 'columns' | 'showScanPage' | 'scrollY'>>) {
+    if (patch.showScanPage && !tab.showScanPage) countFeature('scan')
+    Object.assign(tab, patch)
+  }
 
   return { update, closeOthers, closeAll, tabList, activeInd, openCount, activeTab, activeKey, tabColumns, isAtta, paliOnly, openTab, replaceActive, closeTab, setActive, findTab, loadNextPage, loadPrevPage, navigate }
 })

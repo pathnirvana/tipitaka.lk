@@ -1,11 +1,11 @@
 /**
- * DataSource: runs the named queries of server/queries.sql and the operations of the Go engine (server/engine).
+ * DataSource: runs the named queries of server/engine/queries.sql and the operations of the Go engine (server/engine).
  *  - HttpSource: GET/POST /api/q/<name> and /api/<op> on the Go server (website, desktop app)
- *  - AndroidSource: the offline apps' JS bridge (window.Android.runSqliteQuery) with params inlined as literals;
- *    engine operations need the engine in the app (gomobile, the next native release)
+ *  - NativeSource: the engine compiled into the Android / iOS app (gomobile), reached through the native bridge
+ *    (dev-docs/native-bridge.md; tipitaka.app's): the same JSON answers
  */
-import sqlText from '../../../server/queries.sql?raw'
-import { parseQueries, renderSql, validateParams, type QueryParams } from '@shared/queries'
+import sqlText from '../../../server/engine/queries.sql?raw'
+import { parseQueries, validateParams, type QueryParams } from '@shared/queries'
 import { cacheKey, LruCache, readSsrData } from './cache'
 
 export const QUERIES = parseQueries(sqlText)
@@ -32,7 +32,8 @@ async function httpError(res: Response): Promise<QueryError> {
 }
 
 export class HttpSource implements DataSource {
-  constructor(private apiHash: () => string, private fetchImpl: typeof fetch = (...a) => fetch(...a)) {}
+  /** apiHash: the cache key of the queries (the data); opsHash: of the engine ops (the data and the engine's version) */
+  constructor(private apiHash: () => string, private fetchImpl: typeof fetch = (...a) => fetch(...a), private opsHash: () => string = apiHash) {}
   async run<T>(name: string, params: QueryParams): Promise<T[]> {
     const qs = new URLSearchParams()
     for (const [k, v] of Object.entries(params)) qs.set(k, String(v))
@@ -52,7 +53,7 @@ export class HttpSource implements DataSource {
   async op<T>(op: string, params: OpParams): Promise<T> {
     const qs = new URLSearchParams()
     for (const k of Object.keys(params).sort()) qs.set(k, String(params[k])) // sorted: one url (http cache) per request
-    const hash = this.apiHash()
+    const hash = this.opsHash()
     if (hash) qs.set('v', hash)
     let url = `${import.meta.env.BASE_URL}api/${op}?${qs}`
     let init: RequestInit | undefined
@@ -68,53 +69,41 @@ export class HttpSource implements DataSource {
 }
 
 // ---------------- Android / iOS bridge ----------------
-let asyncCounter = 0
-/** port of v2 callAndroidAsync - the resolvers are installed BEFORE calling native (fixes a race in v2) */
-export function callAndroidAsync(funcName: string, params: unknown): Promise<string> {
-  const bridge = window.Android
-  if (!bridge) return Promise.reject(new QueryError('native bridge not available', 'not_ready'))
-  const rand = `asyncJava_${Date.now() % 1000000}${asyncCounter++}` as `asyncJava_${number}`
-  return new Promise((resolve, reject) => {
-    window[rand] = {
-      resolve, reject,
-      callback: (isSuccess: boolean) => {
-        const dataOrErr = bridge.runAsyncResult(rand)
-        delete window[rand]
-        if (isSuccess) resolve(dataOrErr)
-        else reject(new Error(dataOrErr))
-      },
+/** the apps' bridge: requests are answered asynchronously by window.__tipitakaResolve(id, response) */
+export class NativeSource implements DataSource {
+  private pending = new Map<string, (r: string) => void>()
+  private seq = 0
+  constructor(private send: (id: string, request: string) => void) {
+    window.__tipitakaResolve = (id, response) => {
+      const fn = this.pending.get(id)
+      this.pending.delete(id)
+      fn?.(response)
     }
-    bridge.runAsync(rand, funcName, JSON.stringify(params))
-  })
+  }
+  private call<T>(request: Record<string, unknown>): Promise<T> {
+    const id = `q${++this.seq}`
+    return new Promise<T>((resolve, reject) => {
+      this.pending.set(id, raw => {
+        let r: { ok?: T; error?: string; message?: string }
+        try { r = JSON.parse(raw) } catch { return reject(new QueryError('invalid response', 'server')) }
+        if (!r.error) return resolve(r.ok as T)
+        const code = r.error === 'fts_syntax' || r.error === 'timeout' || r.error === 'bad_request' ? r.error : 'server'
+        reject(new QueryError(code === 'fts_syntax' ? 'fts_syntax' : r.message ?? r.error, code))
+      })
+      try { this.send(id, JSON.stringify(request)) } catch (e) { this.pending.delete(id); reject(new QueryError(String(e), 'server')) }
+    })
+  }
+  run<T>(name: string, params: QueryParams): Promise<T[]> { return this.call<T[]>({ query: name, ...params }) }
+  op<T>(op: string, params: OpParams): Promise<T> { return this.call<T>({ op, ...params }) }
 }
 
-export class AndroidSource implements DataSource {
-  private ready: Promise<void> | null = null
-  constructor(private dbVersions: Record<string, number>, private onBusy: (busy: boolean) => void = () => {}) {}
-  open(): Promise<void> {
-    if (!this.ready) {
-      this.onBusy(true)
-      this.ready = callAndroidAsync('openDbs', this.dbVersions).then(() => undefined)
-        .finally(() => this.onBusy(false))
-      this.ready.catch(() => { this.ready = null }) // allow a retry
-    }
-    return this.ready
-  }
-  async run<T>(name: string, params: QueryParams): Promise<T[]> {
-    await this.open() // every query waits for the db copy (native throws before openDbs completes)
-    const q = QUERIES.get(name)!
-    try {
-      const json = await callAndroidAsync('runSqliteQuery', { type: q.db, sql: renderSql(q, params) })
-      return JSON.parse(json) as T[]
-    } catch (e) {
-      const msg = String((e as Error).message || e)
-      if (/malformed MATCH|fts/i.test(msg)) throw new QueryError('fts_syntax', 'fts_syntax')
-      throw new QueryError(msg, 'server')
-    }
-  }
-  async op<T>(): Promise<T> {
-    throw new QueryError('මෙම කොටස සඳහා යෙදුමේ නව සංස්කරණයක් අවශ්‍යයි.', 'not_ready') // the engine comes with the next app release
-  }
+/** the native bridge of the apps: Android's @JavascriptInterface, iOS's message handler */
+export function nativeSender(): ((id: string, request: string) => void) | null {
+  if (typeof window === 'undefined') return null
+  if (window.TipitakaNative) return (id, request) => window.TipitakaNative!.query(id, request)
+  const ios = window.webkit?.messageHandlers?.tipitaka
+  if (ios) return (id, request) => ios.postMessage({ id, request })
+  return null
 }
 
 // ---------------- cached front door used by the app ----------------
@@ -157,21 +146,20 @@ export class Data {
   }
 }
 
-export const isNativeApp = () => __IS_APP__ || typeof window.Android !== 'undefined'
+export const isNativeApp = () => __IS_APP__ || nativeSender() !== null
 
 function apiHashFromPage() {
   return document.querySelector('meta[name="tipitaka-api"]')?.getAttribute('content') || __BUILD_INFO__.api_hash || ''
 }
+/** the ops' cache key (server: opsHash); a page without it asks without one (cached for a while only) */
+const opsHashFromPage = () => document.querySelector('meta[name="tipitaka-ops"]')?.getAttribute('content') || ''
 
 let data: Data | null = null
-let busyListener: (busy: boolean) => void = () => {}
-export const onNativeBusy = (fn: (busy: boolean) => void) => { busyListener = fn }
 
 export function getData(): Data {
   if (!data) {
-    const source = isNativeApp()
-      ? new AndroidSource({ text: __BUILD_INFO__.db_version, dict: 2 }, b => busyListener(b))
-      : new HttpSource(apiHashFromPage)
+    const send = nativeSender()
+    const source = send ? new NativeSource(send) : new HttpSource(apiHashFromPage, undefined, opsHashFromPage)
     data = new Data(source, readSsrData())
   }
   return data

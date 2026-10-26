@@ -5,6 +5,7 @@ export const APP_VERSION = 3.0 // compared with the number in /tipitaka-query/ve
 export const SETTINGS_KEY = 'tipitaka.lk-settings-2'
 export const BOOKMARKS_KEY = 'tipitaka.lk-bookmarks-1'
 export const SEARCH_SETTINGS_KEY = 'tipitaka.lk-search-settings-1'
+export const HISTORY_KEY = 'tipitaka.lk-history-1'
 
 /** top level search filter groups (order matters: index == file.grp / node.grp in text.db) */
 export const FILTER_KEYS = ['vp-prj', 'vp-pct', 'vp-mv', 'vp-cv', 'vp-pv', 'dn-1', 'dn-2', 'dn-3', 'mn-1', 'mn-2', 'mn-3',

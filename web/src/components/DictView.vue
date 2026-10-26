@@ -1,7 +1,7 @@
 <!-- dictionary results (tipitaka.app DictView.vue): the DPD analysis of a clicked word or a typed word, DPD headwords,
      the other dictionaries, breakups. Cross references (<a data-dict>) are followed in place with a back button. -->
 <template>
-  <div class="text-[15px]" style="overflow-wrap: anywhere" data-testid="dict-view">
+  <div class="dict-view text-[16px]" style="overflow-wrap: anywhere" data-testid="dict-view">
     <div v-if="loading" class="space-y-2 py-2" aria-busy="true">
       <div v-for="i in 4" :key="i" class="h-4 animate-pulse rounded bg-surface2" />
     </div>
@@ -18,7 +18,11 @@
 
       <!-- DPD analysis of the form -->
       <div v-if="res.grammar?.length || res.deconstructor?.length" class="mb-3 rounded-lg bg-surface2 px-2.5 py-2" data-testid="dict-analysis">
-        <div v-for="(g, i) in uniqueGrammar" :key="i"><b class="mr-2">{{ ps(g[0]) }}</b><span class="mr-2 text-muted">{{ g[1] }}</span>{{ g[2] }}</div>
+        <!-- short forms; the full names on hover, and on a tap -->
+        <div v-for="(g, i) in uniqueGrammar" :key="i" class="cursor-help" :title="`${posSi(g[1])} · ${codesSi(g[2], ps)}`" data-testid="dict-grammar"
+          @click="fullGrammar = fullGrammar === i ? -1 : i">
+          <b class="mr-2">{{ ps(g[0]) }}</b><span class="mr-2 text-muted">{{ fullGrammar === i ? posSi(g[1]) : shortSi(g[1]) }}</span>{{ fullGrammar === i ? codesSi(g[2], ps) : codesSi(g[2], ps, ' ', true) }}
+        </div>
         <div v-for="(d, i) in res.deconstructor ?? []" :key="'d' + i"><IconSplit class="mr-1 inline text-muted" />{{ ps(d) }}</div>
       </div>
 
@@ -61,6 +65,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { codesSi, posSi, shortSi } from '@/composables/grammar'
 import IconSplit from '~icons/mdi/call-split'
 import IconBack from '~icons/mdi/arrow-left'
 import DpdHeadword from './DpdHeadword.vue'
@@ -81,6 +86,7 @@ const loading = ref(false)
 const err = ref('')
 const dicts = ref<Dict[]>([])
 const dpdAll = ref(false)
+const fullGrammar = ref(-1) // the analysis line shown with the full names (a tap)
 
 listDicts().then(d => { dicts.value = d }).catch(() => {})
 const dictShort = (code: string) => dicts.value.find(d => d.code === code)?.short ?? code
@@ -130,7 +136,7 @@ const uniqueGrammar = computed(() => {
   return (res.value?.grammar ?? []).filter(g => { const k = g.join('|'); if (seen.has(k)) return false; seen.add(k); return true }).slice(0, 8)
 })
 
-watch(() => props.word, () => { followed.value = null; back.value = [] })
+watch(() => props.word, () => { followed.value = null; back.value = []; fullGrammar.value = -1 })
 let gen = 0
 watch(() => [props.word, props.mode, followed.value, settings.dicts.join(',')] as const, async ([w, mode, f]) => {
   dpdAll.value = false

@@ -1,4 +1,4 @@
-/** row shapes returned by the named queries in server/queries.sql (all columns are non-null) */
+/** row shapes returned by the named queries in server/engine/queries.sql (all columns are non-null) */
 export interface NodeRow {
   id: number; key: string; parent_id: number; level: number; pali: string; sinh: string; file: string
   page_idx: number; entry_idx: number; child_count: number; mirror_key: string; book_id: number

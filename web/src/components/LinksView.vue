@@ -11,7 +11,7 @@
           <span class="min-w-0 flex-1 truncate text-sm text-muted">{{ r.title }}</span>
           <button class="btn ml-2 shrink-0 px-2 py-0.5 text-sm" data-testid="links-open" @click="openRun(r)"><IconOpen class="mr-1" />විවෘත කරන්න</button>
         </div>
-        <div class="rounded-lg border border-line px-3 py-2" :style="{ fontSize: `calc(${settings.fontPx} * 0.95)` }">
+        <div class="reading-size rounded-lg border border-line px-3 py-2" :style="{ fontSize: settings.fontPx }">
           <div v-for="t in r.items" :key="t.page + ':' + t.entry" class="mb-1.5 last:mb-0">
             <!-- (RichText renders no element of its own: the classes go on a wrapper) -->
             <div class="entry-text"><RichText :text="t.text" lang="pali" /></div>

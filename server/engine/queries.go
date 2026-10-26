@@ -1,9 +1,13 @@
-package main
+// Named queries: every SQL statement the app may run (queries.sql, parsed exactly like shared/queries.ts). The server
+// runs them at /api/q/{name}, the apps through Engine.QueryJSON.
+package engine
 
 import (
+	"bytes"
 	"context"
 	"database/sql"
 	_ "embed"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"math"
@@ -13,7 +17,7 @@ import (
 )
 
 //go:embed queries.sql
-var queriesSQL string
+var QueriesSQL string
 
 // NamedQuery is one statement from queries.sql (parsed exactly like shared/queries.ts).
 type NamedQuery struct {
@@ -24,7 +28,8 @@ type NamedQuery struct {
 	SQL     string
 }
 
-const maxStrParam = 64 * 1024
+// MaxStrParam is the longest string parameter of a named query.
+const MaxStrParam = 64 * 1024
 
 var (
 	paramRe  = regexp.MustCompile(`(?i):([a-z_][a-z0-9_]*)`)
@@ -94,18 +99,13 @@ func ParseQueries(text string) (map[string]*NamedQuery, error) {
 	return out, nil
 }
 
-// ParamError is a client error (HTTP 400).
-type ParamError struct{ msg string }
-
-func (e *ParamError) Error() string { return e.msg }
-
 // BindParams converts raw values (strings from a query string, or JSON values) to typed named args.
 func (q *NamedQuery) BindParams(raw map[string]any) ([]any, error) {
 	args := make([]any, 0, len(q.Params))
 	for pn, pt := range q.Params {
 		v, ok := raw[pn]
 		if !ok || v == nil {
-			return nil, &ParamError{"missing param " + pn}
+			return nil, &ParamError{Msg: "missing param " + pn}
 		}
 		switch pt {
 		case "int":
@@ -114,7 +114,7 @@ func (q *NamedQuery) BindParams(raw map[string]any) ([]any, error) {
 			case string:
 				x, err := strconv.ParseInt(t, 10, 64)
 				if err != nil {
-					return nil, &ParamError{"param " + pn + " must be an int32"}
+					return nil, &ParamError{Msg: "param " + pn + " must be an int32"}
 				}
 				n = x
 			case int:
@@ -123,20 +123,20 @@ func (q *NamedQuery) BindParams(raw map[string]any) ([]any, error) {
 				n = t
 			case float64:
 				if t != math.Trunc(t) {
-					return nil, &ParamError{"param " + pn + " must be an int32"}
+					return nil, &ParamError{Msg: "param " + pn + " must be an int32"}
 				}
 				n = int64(t)
 			default:
-				return nil, &ParamError{"param " + pn + " must be an int32"}
+				return nil, &ParamError{Msg: "param " + pn + " must be an int32"}
 			}
 			if n > math.MaxInt32 || n < -math.MaxInt32 {
-				return nil, &ParamError{"param " + pn + " must be an int32"}
+				return nil, &ParamError{Msg: "param " + pn + " must be an int32"}
 			}
 			args = append(args, sql.Named(pn, n))
 		case "str":
 			s, ok := v.(string)
-			if !ok || len(s) > maxStrParam || strings.ContainsRune(s, 0) {
-				return nil, &ParamError{"param " + pn + " must be a string"}
+			if !ok || len(s) > MaxStrParam || strings.ContainsRune(s, 0) {
+				return nil, &ParamError{Msg: "param " + pn + " must be a string"}
 			}
 			args = append(args, sql.Named(pn, s))
 		}
@@ -212,6 +212,10 @@ func (r Row) Get(col string) any {
 	}
 	return nil
 }
+
+// Cols and Vals: the columns and values in the query's order.
+func (r Row) Cols() []string        { return r.cols }
+func (r Row) Vals() []any           { return r.vals }
 func (r Row) Str(col string) string { s, _ := r.Get(col).(string); return s }
 func (r Row) Int(col string) int {
 	switch v := r.Get(col).(type) {
@@ -221,4 +225,36 @@ func (r Row) Int(col string) int {
 		return int(v)
 	}
 	return 0
+}
+
+// MarshalJSON writes the columns in the query's order, without escaping <, >, & (the texts have them).
+func (r Row) MarshalJSON() ([]byte, error) {
+	var b bytes.Buffer
+	b.WriteByte('{')
+	for i, c := range r.cols {
+		if i > 0 {
+			b.WriteByte(',')
+		}
+		k, _ := MarshalNoEscape(c)
+		v, err := MarshalNoEscape(r.vals[i])
+		if err != nil {
+			return nil, err
+		}
+		b.Write(k)
+		b.WriteByte(':')
+		b.Write(v)
+	}
+	b.WriteByte('}')
+	return b.Bytes(), nil
+}
+
+// MarshalNoEscape is json.Marshal without HTML escaping.
+func MarshalNoEscape(v any) ([]byte, error) {
+	var b bytes.Buffer
+	enc := json.NewEncoder(&b)
+	enc.SetEscapeHTML(false)
+	if err := enc.Encode(v); err != nil {
+		return nil, err
+	}
+	return bytes.TrimRight(b.Bytes(), "\n"), nil
 }

@@ -1,14 +1,15 @@
 <!-- breadcrumb link to a sutta (v2 TipitakaLink.vue): [pitaka] sutta name  parents... ☆ -->
 <template>
-  <div v-if="items.length" class="flex flex-wrap items-center">
-    <span class="cursor-pointer py-2 hover:text-info" :style="{ fontSize: settings.fontPx }" data-testid="tipitaka-link" @click="open">
+  <!-- the star stays at the end of the first line (on small screens a wrapping row gave it a line of its own) -->
+  <div v-if="items.length" class="flex items-start">
+    <span class="min-w-0 flex-1 cursor-pointer py-2 hover:text-info" :style="{ fontSize: settings.fontPx, overflowWrap: 'anywhere' }" data-testid="tipitaka-link" @click="open">
       <span class="mr-2 whitespace-nowrap rounded-full bg-surface2 px-2.5 py-0.5 align-[0.1em] text-[0.85em] text-muted" data-testid="collection-chip">{{ collection }}</span>
-      <span class="mr-2 text-[1.2em] text-primary">{{ items[items.length - 1].text.replace(/[\(\)\[\]]/g, '') }}</span>
-      <span v-for="(item, i) in items.slice(1, -1)" :key="item.key" class="text-[1.1em]">
+      <span class="mr-2 text-[1.1em] text-primary">{{ items[items.length - 1].text.replace(/[\(\)\[\]]/g, '') }}</span>
+      <span v-for="(item, i) in items.slice(1, -1)" :key="item.key" class="text-[0.95em]">
         <IconChevron v-if="i > 0" class="inline" />{{ item.text }}
       </span>
     </span>
-    <BookmarkButton :bookmark="bookmark" class="ml-1" />
+    <BookmarkButton :bookmark="bookmark" class="ml-1 mt-2 shrink-0" />
   </div>
 </template>
 

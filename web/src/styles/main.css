@@ -6,11 +6,12 @@
    Single font-weight values: ranges need Chrome 62 (WebView 53 would use the bold face for all text) */
 @font-face { font-family: 'sinhala'; src: url('../assets/fonts/AbhayaUni-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
 @font-face { font-family: 'sinhala'; src: url('../assets/fonts/AbhayaUni-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
-/* tipitaka.app's interface sizes (its fonts.css): Sinhala interface text at 141.3%, Pāḷi names at 110.1% of the font size
-   (Sinhala letters only: Latin meanings keep the size). Used by the pages from the app (.ui-app: map, names, setting) so
-   they read as in the app; browsers without size-adjust (Chrome < 92, Safari < 17) show the plain sizes */
-@font-face { font-family: 'ui-sinh'; src: url('../assets/fonts/AbhayaUni-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; unicode-range: U+0D80-0DFF, U+200C-200D; size-adjust: 141.3%; }
-@font-face { font-family: 'ui-sinh'; src: url('../assets/fonts/AbhayaUni-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; unicode-range: U+0D80-0DFF, U+200C-200D; size-adjust: 141.3%; }
+/* the interface sizes of the pages from tipitaka.app (.ui-app: map, names, setting): Sinhala text at 128.6% (the app:
+   141.3%; here its 14px text is the 18px reading size, no larger than the texts), Pāḷi names at 110.1% of the font
+   size (Sinhala letters only: Latin meanings keep the size); browsers without size-adjust (Chrome < 92, Safari < 17)
+   show the plain sizes */
+@font-face { font-family: 'ui-sinh'; src: url('../assets/fonts/AbhayaUni-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; unicode-range: U+0D80-0DFF, U+200C-200D; size-adjust: 128.6%; }
+@font-face { font-family: 'ui-sinh'; src: url('../assets/fonts/AbhayaUni-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; unicode-range: U+0D80-0DFF, U+200C-200D; size-adjust: 128.6%; }
 @font-face { font-family: 'pali-sinh'; src: url('../assets/fonts/AbhayaUni-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; unicode-range: U+0D80-0DFF, U+200C-200D; size-adjust: 110.1%; }
 @font-face { font-family: 'pali-sinh'; src: url('../assets/fonts/AbhayaUni-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; unicode-range: U+0D80-0DFF, U+200C-200D; size-adjust: 110.1%; }
 .ui-app { font-family: 'ui-sinh', 'sinhala', serif; }
@@ -111,6 +112,20 @@ input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-co
 .entry-text.centered[data-level="1"] { font-size: 1.1em; }
 .entry-text.centered[data-level="0"] { font-weight: 400; } /* level 0 is stored as missing (A31) */
 .entry-text.audio-playing { background: var(--c-highlight); }
+/* the reading text (text tab, and the passages of the aṭṭhakathā pane: .reading-size): paragraphs and verses at the
+   size of the tree (settings.fontPx, which the text size setting changes), headings and centered lines smaller in
+   proportion but never below the text */
+.text-tab .entry-text, .reading-size .entry-text { font-size: 1em; }
+.text-tab .entry-text.heading[data-level="5"], .reading-size .entry-text.heading[data-level="5"] { font-size: 1.64em; }
+.text-tab .entry-text.heading[data-level="4"], .reading-size .entry-text.heading[data-level="4"] { font-size: 1.55em; }
+.text-tab .entry-text.heading[data-level="3"], .reading-size .entry-text.heading[data-level="3"] { font-size: 1.45em; }
+.text-tab .entry-text.heading[data-level="2"], .reading-size .entry-text.heading[data-level="2"] { font-size: 1.27em; }
+.text-tab .entry-text.heading[data-level="1"], .reading-size .entry-text.heading[data-level="1"] { font-size: 1.18em; }
+.text-tab .entry-text.centered[data-level="5"], .reading-size .entry-text.centered[data-level="5"] { font-size: 1.91em; }
+.text-tab .entry-text.centered[data-level="4"], .reading-size .entry-text.centered[data-level="4"] { font-size: 1.64em; }
+.text-tab .entry-text.centered[data-level="3"], .reading-size .entry-text.centered[data-level="3"] { font-size: 1.36em; }
+.text-tab .entry-text.centered[data-level="2"], .reading-size .entry-text.centered[data-level="2"] { font-size: 1.14em; }
+.text-tab .entry-text.centered[data-level="1"], .reading-size .entry-text.centered[data-level="1"] { font-size: 1em; }
 
 .rt-bold { font-weight: 700; } /* the Abhaya Uni bold face (v2 / lk until 2026-10: blue text) */
 .rt-underline { text-decoration: underline; text-decoration-color: var(--c-error); }
@@ -134,13 +149,14 @@ input[type=radio], input[type=checkbox] { width: 1.1em; height: 1.1em; accent-co
 .book-row { list-style: none; }
 .book-row::-webkit-details-marker { display: none; }
 /* a column of a phone (columns view): a little smaller text */
-.narrow-col .entry-text { font-size: 1em; }
+.narrow-col .text-tab .entry-text { font-size: 0.91em; } /* narrow columns: the text a little smaller (as before, in proportion) */
 [data-w].chanting, [data-w].chanting-target { background: var(--c-align); border-radius: 3px; box-shadow: 0 2px 0 var(--c-primary); } /* the word being chanted and its sinhala words */
 .scan-img { width: 100%; max-width: 750px; filter: grayscale(100%) contrast(90%) brightness(95%); }
 .dark .scan-img { filter: invert(100%) contrast(70%) brightness(150%); }
-.dark .invert-dark { filter: invert(90%); }
 
 /* ---- dictionary results (tipitaka.app main.css) ---- */
+/* one size in every dictionary view (panes, dictionary page, name pages): not the enlarged interface fonts of .ui-app */
+.ui-app .dict-view, .ui-app .dict-view .pali { font-family: 'sinhala', serif; }
 .section-title { margin-bottom: 0.4rem; font-size: 13px; font-weight: 700; color: var(--c-muted); }
 .meaning-html { overflow-wrap: anywhere; }
 .meaning-html p { margin: 0.25em 0; }

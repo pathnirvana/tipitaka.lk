@@ -7,11 +7,11 @@
     </button>
     <Dialog :open="open" title="ශබ්දකෝෂ තෝරන්න" width="420px" @close="open = false">
       <DictList />
-      <div class="mt-3 flex items-center">
+      <template #footer>
         <button class="btn" data-testid="dicts-all" @click="settings.dicts = []">සියල්ල</button>
         <span class="flex-1" />
         <button class="btn-primary" data-testid="dicts-done" @click="open = false">හරි</button>
-      </div>
+      </template>
     </Dialog>
   </template>
   <DictList v-else />

@@ -2,10 +2,9 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
-	"net/url"
-	"os"
 	"path/filepath"
+
+	"tipitaka.lk/server/engine"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -16,25 +15,8 @@ type DBs struct {
 	Dict *sql.DB
 }
 
-// openRO opens an sqlite file strictly read-only. The "file:" prefix is required: without it go-sqlite3
-// ignores the query string and opens the file read-write (the v2 bug).
-func openRO(path string) (*sql.DB, error) {
-	if _, err := os.Stat(path); err != nil {
-		return nil, err
-	}
-	abs, _ := filepath.Abs(path)
-	dsn := "file:" + (&url.URL{Path: abs}).EscapedPath() + "?mode=ro&immutable=1&_query_only=1"
-	db, err := sql.Open("sqlite3", dsn)
-	if err != nil {
-		return nil, err
-	}
-	db.SetMaxOpenConns(4)
-	db.SetMaxIdleConns(4)
-	if err := db.Ping(); err != nil {
-		return nil, fmt.Errorf("open %s: %w", path, err)
-	}
-	return db, nil
-}
+// openRO: engine.OpenRO (strictly read-only)
+func openRO(path string) (*sql.DB, error) { return engine.OpenRO(path) }
 
 func OpenDBs(dir string) (*DBs, error) {
 	text, err := openRO(filepath.Join(dir, "text.db"))

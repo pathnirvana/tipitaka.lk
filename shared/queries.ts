@@ -1,6 +1,6 @@
 /**
- * Parser for server/queries.sql - the single list of SQL statements the app may run.
- * Must behave exactly like server/queries.go (tested on both sides with server/queries.samples.json).
+ * Parser for server/engine/queries.sql - the single list of SQL statements the app may run.
+ * Must behave exactly like server/engine/queries.go (tested on both sides with server/queries.samples.json).
  */
 export type ParamType = 'str' | 'int'
 export interface NamedQuery {

@@ -82,7 +82,7 @@ function main() {
   }
 
   fs.mkdirSync(outDir, { recursive: true })
-  const queriesSql = fs.readFileSync('server/queries.sql', 'utf-8')
+  const queriesSql = fs.readFileSync('server/engine/queries.sql', 'utf-8')
   const alignments = new Alignments(alignDir)
   const cst = new CstData()
   // api responses are cached for a year under api_hash: it covers everything they depend on - the texts, the

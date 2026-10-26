@@ -12,7 +12,7 @@
         </button>
       </div>
       <!-- the passage at the reader's text size (a little smaller, as in tipitaka.app) -->
-      <div class="rounded-lg border border-line px-3 py-2" :style="{ fontSize: `calc(${settings.fontPx} * 0.95)` }">
+      <div class="reading-size rounded-lg border border-line px-3 py-2" :style="{ fontSize: settings.fontPx }">
         <!-- (RichText renders no element of its own: the classes go on a wrapper) -->
         <div v-for="p in it.paras" :key="p.k" class="entry-text mb-1.5 last:mb-0"><RichText :text="p.text" lang="pali" index-words :gloss-words="p.marks" /></div>
         <div v-if="it.more" class="text-center text-muted">…</div>

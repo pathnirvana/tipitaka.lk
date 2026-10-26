@@ -24,7 +24,9 @@ const APPNAME = "Tipitaka.lk v3.0"
 // user to update when it is larger - keep 2.0 until the v3 Android/iOS/desktop builds are published (-published-version 3.0).
 var PublishedVersion = "2.0"
 
-func main() {
+// serverMain is the http server: the website, and the plain desktop zip (it opens the browser). The store apps run the
+// same handler in a Wails window (desktop.go, -tags desktop).
+func serverMain() {
 	listen := flag.String("listen", "127.0.0.1:8400", "address to listen on (use 0.0.0.0:8400 to allow LAN access)")
 	noOpen := flag.Bool("no-open", false, "do not open the browser")
 	rootPath := flag.String("root-path", "", "folder containing dist/ (or web/dist/) and db/, relative to the binary or absolute")
@@ -32,6 +34,8 @@ func main() {
 	dbDir := flag.String("db-dir", "", "folder with text.db and dict.db (default <root>/db)")
 	site := flag.String("site", "https://tipitaka.lk", "public url of the site (canonical links, sitemaps)")
 	flag.StringVar(&PublishedVersion, "published-version", PublishedVersion, "version reported to apps by /tipitaka-query/version")
+	metrics := flag.String("metrics", "", "sqlite db for the usage statistics of the website (empty: none, as in the desktop app)")
+	geo := flag.String("geoip", "", "DB-IP country csv(.gz) for the countries of the statistics")
 	flag.Parse()
 	if u := os.Getenv("TIPITAKA_LATEST_VERSION_URL"); u != "" {
 		LatestVersionURL = u
@@ -43,6 +47,9 @@ func main() {
 	}
 	app, err := NewApp(Config{Root: root, BjtPath: *bjtPath, DBDir: *dbDir, Site: *site})
 	if err != nil {
+		log.Fatal(err)
+	}
+	if err := app.stats.start(*metrics, *geo, os.Getenv("STATS_PASSWORD")); err != nil {
 		log.Fatal(err)
 	}
 	// localhost, not 127.0.0.1: the recitation CDN allows only the origins http://localhost:8400 (and tipitaka.lk) - CORS
@@ -69,7 +76,8 @@ func findRoot(rootPath, dbDir string) (string, error) {
 		candidates = append(candidates, rootPath)
 	} else {
 		if exe, err := os.Executable(); err == nil {
-			candidates = append(candidates, filepath.Join(filepath.Dir(exe), rootPath))
+			candidates = append(candidates, filepath.Join(filepath.Dir(exe), rootPath),
+				filepath.Join(filepath.Dir(exe), "..", "Resources", rootPath)) // macOS .app bundle
 		}
 		if cwd, err := os.Getwd(); err == nil {
 			candidates = append(candidates, filepath.Join(cwd, rootPath), cwd, filepath.Join(cwd, ".."))
@@ -111,8 +119,9 @@ func printBox(url, root string) {
 type App struct {
 	cfg       Config
 	dbs       *DBs
-	queries   map[string]*NamedQuery
+	queries   map[string]*engine.NamedQuery
 	apiHash   string
+	opsHash   string // apiHash and the engine's version: the cache key of /api/{op} (ops.go)
 	meta      map[string]string
 	distDir   string
 	indexHTML string
@@ -123,6 +132,7 @@ type App struct {
 	guard     *guard
 	eng       *engine.Engine
 	ssr       *ssrCache
+	stats     *stats // usage statistics of the website (stats.go)
 	// sitemap nodes, read once
 	sitemapOnce sync.Once
 	sitemap     []sitemapNode
@@ -144,9 +154,10 @@ func NewApp(cfg Config) (*App, error) {
 		a.site = "https://tipitaka.lk"
 	}
 	var err error
-	if a.queries, err = ParseQueries(queriesSQL); err != nil {
+	if a.queries, err = engine.ParseQueries(engine.QueriesSQL); err != nil {
 		return nil, err
 	}
+	a.stats = newStats(a.queries)
 	dbDir := cfg.DBDir
 	if dbDir == "" {
 		dbDir = filepath.Join(cfg.Root, "db")
@@ -158,6 +169,7 @@ func NewApp(cfg Config) (*App, error) {
 		return nil, err
 	}
 	a.apiHash = a.meta["api_hash"]
+	a.opsHash = a.apiHash + "-" + engine.Version
 	a.eng = engine.New(a.dbs.Text, a.dbs.Dict, a.meta)
 	for _, d := range []string{filepath.Join("web", "dist"), "dist"} { // repo checkout first, release layout second
 		if _, err := os.Stat(filepath.Join(cfg.Root, d, "index.html")); err == nil {
@@ -220,6 +232,7 @@ func (a *App) Handler() http.Handler {
 	if a.bjtDir != "" {
 		mux.Handle("GET /bjt-scanned-pages/", http.StripPrefix("/bjt-scanned-pages/", http.FileServer(http.Dir(a.bjtDir))))
 	}
+	a.stats.routes(mux) // /api/beacon, /stats (stats.go)
 	mux.HandleFunc("GET /", a.handleStatic)
-	return recoverMiddleware(securityHeaders(gzipMiddleware(mux)))
+	return recoverMiddleware(securityHeaders(a.stats.count(gzipMiddleware(mux))))
 }

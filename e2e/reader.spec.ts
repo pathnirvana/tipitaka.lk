@@ -176,15 +176,16 @@ test('each tab keeps its own scroll position', async ({ page }) => {
   await expect(page.getByTestId('tab')).toHaveCount(2)
   const scrollY = () => page.evaluate(() => Math.round(window.scrollY))
   await page.getByTestId('tab').first().click() // the mula (the fixture atuwa is too short to scroll)
-  await page.evaluate(() => window.scrollTo(0, 300))
-  await expect.poll(scrollY).toBe(300)
+  await page.evaluate(() => window.scrollTo(0, 200))
+  await expect.poll(scrollY).toBe(200)
   await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))) // the scroll event is delivered
-  await page.evaluate(() => window.scrollTo(0, 290)) // small screens show the app bar (with the tabs) again on scrolling up
-  await expect.poll(scrollY).toBe(290)
-  await page.getByTestId('tab').nth(1).click()
+  await page.evaluate(() => window.scrollTo(0, 190)) // small screens show the app bar (with the tabs) again on scrolling up
+  await expect.poll(scrollY).toBe(190)
+  // dispatched: before a click, WebKit scrolls the sticky tab strip "into view" (to the top of the page), which a tap does not
+  await page.getByTestId('tab').nth(1).dispatchEvent('click')
   await expect.poll(scrollY).toBe(0)
-  await page.getByTestId('tab').first().click()
-  await expect.poll(scrollY).toBe(290)
+  await page.getByTestId('tab').first().dispatchEvent('click')
+  await expect.poll(scrollY).toBe(190)
 })
 
 test('tree: keyboard, links, following the open sutta without closing other branches', async ({ page }) => {
@@ -232,6 +233,35 @@ test('side panel: dark mode, font size, links', async ({ page }) => {
   await panel.getByTestId('menu-bookmarks').click()
   await expect(page).toHaveURL(/\/bookmarks$/)
   await expect(panel).toHaveCount(0)
+})
+
+test('side panel: below the app bar, pinned as a column on wide screens', async ({ page }) => {
+  await page.goto('/dn-1-1/pali')
+  await page.getByTestId('panel-toggle').click()
+  const panel = page.getByTestId('side-panel')
+  expect((await panel.boundingBox())!.y).toBeGreaterThanOrEqual((await page.getByTestId('app-bar').boundingBox())!.height - 1)
+  if (isMobile(page)) {
+    await expect(panel.getByTestId('side-panel-pin')).toHaveCount(0) // no room for a column
+    return
+  }
+  await panel.getByTestId('side-panel-pin').click()
+  await expect(panel).toHaveAttribute('data-pinned', 'true')
+  await page.locator('main').click({ position: { x: 600, y: 300 } }) // the text can be used with the panel open
+  await expect(panel).toBeVisible()
+  await page.reload() // stays pinned
+  await expect(page.getByTestId('side-panel')).toHaveAttribute('data-pinned', 'true')
+  await page.getByTestId('side-panel-close').click() // unpins
+  await expect(page.getByTestId('side-panel')).toHaveCount(0)
+  await page.reload()
+  await expect(page.getByTestId('side-panel')).toHaveCount(0)
+})
+
+test('the tab strip is at the top of the text, left aligned', async ({ page }) => {
+  await page.goto('/dn-1-1/pali')
+  const tab = (await page.getByTestId('tab').first().boundingBox())!
+  const bar = (await page.getByTestId('tabs-bar').boundingBox())!
+  expect(tab.x - bar.x).toBeLessThan(5)
+  expect(Math.abs(bar.y - (await page.getByTestId('app-bar').boundingBox())!.height)).toBeLessThan(2)
 })
 
 test('alignment view: hovering a pali word highlights its sinhala rendering', async ({ page }) => {

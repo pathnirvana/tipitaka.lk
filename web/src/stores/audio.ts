@@ -6,9 +6,10 @@
 import { defineStore } from 'pinia'
 import { useUi } from './ui'
 import { ref, shallowRef, computed } from 'vue'
-import { getData, getStatic } from '@/data/source'
+import { getData, getStatic, isNativeApp } from '@/data/source'
 import type { AudioEntryRow } from '@/data/types'
 import type { EInd } from '@shared/routes'
+import { countFeature } from '@/composables/stats'
 
 export const AUDIO_BASE_URL = 'https://sajjha.sgp1.cdn.digitaloceanspaces.com/original/'
 export interface Label { start: number; end: number; num: number; src: string }
@@ -137,12 +138,24 @@ export const useAudio = defineStore('audio', () => {
   const activeEntry = computed(() => entries.value[curEntryInd.value])
   const playingPos = computed(() => (isPlaying.value && activeEntry.value ? `${file.value}:${activeEntry.value.page_idx}-${activeEntry.value.entry_idx}` : ''))
 
+  /** a timing file (<label>.json, .txt, .words.json), null when there is none: the CDN allows only the website's origins,
+   * so the apps (app://, file://) and the desktop app (Wails: wails://, wails.localhost) get it through the engine */
+  async function timingFile(name: string): Promise<string | null> {
+    const viaEngine = isNativeApp() || location.protocol === 'wails:' || location.hostname === 'wails.localhost'
+    try {
+      if (viaEngine) return await getData().op<string>('audio', { f: name })
+      const r = await fetch(AUDIO_BASE_URL + name)
+      return r.ok ? await r.text() : null
+    } catch { return null }
+  }
+  const timingJson = async (name: string) => { const t = await timingFile(name); try { return t === null ? null : JSON.parse(t) } catch { return null } }
+
   async function loadFile(f: string) {
     if (file.value === f) return
     const labelFiles = fileMap.value[f] || []
     const [rows, docs] = await Promise.all([
       getData().query<AudioEntryRow>('audio.entries', { file: f }),
-      Promise.all(labelFiles.map(lf => fetch(AUDIO_BASE_URL + lf + '.json').then(r => (r.ok ? r.json() : null)).catch(() => null))),
+      Promise.all(labelFiles.map(lf => timingJson(lf + '.json'))),
     ])
     if (rows.length && rows.every(r => r.audio_ph) && docs.length && docs.every(isTimingDoc)) {
       entries.value = Object.freeze(assignTimings(rows, docs.map((doc, i) => ({ src: AUDIO_BASE_URL + labelFiles[i] + '.m4a', doc })))) as AudioEntry[]
@@ -151,12 +164,12 @@ export const useAudio = defineStore('audio', () => {
     }
     // timing files before v2 (or a db without audio_ph): Audacity labels by number
     const lists = await Promise.all(labelFiles.map(async lf => {
-      const [res, words] = await Promise.all([
-        fetch(AUDIO_BASE_URL + lf + '.txt'),
+      const [txt, words] = await Promise.all([
+        timingFile(lf + '.txt'),
         // word timings are optional: without them the whole paragraph is highlighted as before
-        fetch(AUDIO_BASE_URL + lf + '.words.json').then(r => (r.ok ? r.json() : null)).catch(() => null),
+        timingJson(lf + '.words.json'),
       ])
-      const labels = parseLabels(await res.text(), AUDIO_BASE_URL + lf + '.m4a')
+      const labels = parseLabels(txt ?? '', AUDIO_BASE_URL + lf + '.m4a')
       return { labels, words: parseWordTimes(words, labels) }
     }))
     const words = new Map(lists.flatMap(l => [...l.words]))
@@ -166,6 +179,7 @@ export const useAudio = defineStore('audio', () => {
 
   async function startEntry(f: string, eInd: EInd, fromTab = 0) {
     if (!isAvailable(f)) return
+    countFeature('audio')
     tabUid.value = fromTab
     try {
       await loadFile(f)

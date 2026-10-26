@@ -14,6 +14,7 @@ export const routes = [
   { path: '/fts/:words?/:options?', name: 'fts', component: () => import('./views/FtsSearch.vue') },
   { path: '/map', name: 'map', component: () => import('./views/MapView.vue') },
   { path: '/names/:slug?', name: 'names', component: () => import('./views/Names.vue') },
+  { path: '/help', name: 'help', component: () => import('./views/Help.vue') },
   { path: '/:key/:eIndStr([0-9\\-]+)?/:language([a-z]{4})?', name: 'Home', component: Reader },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('./views/NotFound.vue') },
 ]

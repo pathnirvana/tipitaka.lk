@@ -16,7 +16,7 @@ import { buildMatch } from '../shared/fts-query'
 import { FILTER_KEYS, joinList } from '../shared/constants'
 
 const FULL = !!process.env.FULL
-const queries = parseQueries(fs.readFileSync('server/queries.sql', 'utf-8'))
+const queries = parseQueries(fs.readFileSync('server/engine/queries.sql', 'utf-8'))
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tipitaka-build-'))
 
 function buildAll(textDir: string, out: string, dropPlaceholders: boolean) {

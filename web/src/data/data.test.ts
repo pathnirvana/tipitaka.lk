@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { HttpSource, AndroidSource, Data, QueryError, callAndroidAsync, QUERIES, type DataSource } from './source'
+import { describe, it, expect, vi } from 'vitest'
+import { HttpSource, NativeSource, Data, QueryError, QUERIES, type DataSource } from './source'
 import { cacheKey } from './cache'
 import { matchHits, rankOf, runFts } from './fts'
 import { toRoman, toSinh, cleanInlineWord } from './dictionary'
@@ -27,49 +27,28 @@ describe('HttpSource', () => {
   })
 })
 
-describe('Android bridge', () => {
-  beforeEach(() => { delete (window as { Android?: unknown }).Android })
-  function fakeBridge(opts: { openDelay?: number; sync?: boolean } = {}) {
-    const results: Record<string, string> = {}
-    const log: string[] = []
-    let opened = false
-    window.Android = {
-      runAsync(rand, func, json) {
-        log.push(func)
-        const done = (ok: boolean, v: string) => { results[rand] = v; (window as any)[rand].callback(ok) }
-        const work = () => {
-          if (func === 'openDbs') { opened = true; return done(true, 'Initialized') }
-          if (!opened) return done(false, 'java.lang.NullPointerException')
-          const { sql } = JSON.parse(json)
-          if (sql.includes('MATCH')) return done(false, 'android.database.sqlite.SQLiteException: malformed MATCH expression')
-          return done(true, JSON.stringify([{ sql }]))
-        }
-        if (opts.sync) work()
-        else setTimeout(work, func === 'openDbs' ? opts.openDelay ?? 20 : 1)
-      },
-      runAsyncResult: rand => results[rand],
-    }
-    return log
+describe('native bridge (the apps: the Go engine through window.TipitakaNative / webkit)', () => {
+  /** answers out of order, like the native thread pool */
+  function fakeEngine(answer: (req: Record<string, unknown>) => unknown) {
+    const sent: Record<string, unknown>[] = []
+    const s = new NativeSource((id, request) => {
+      const req = JSON.parse(request)
+      sent.push(req)
+      setTimeout(() => window.__tipitakaResolve!(id, JSON.stringify(answer(req))), req.query === 'tree.node' ? 20 : 1)
+    })
+    return { s, sent }
   }
-  it('installs the resolvers before calling native (sync callback works)', async () => {
-    fakeBridge({ sync: true })
-    await expect(callAndroidAsync('openDbs', {})).resolves.toBe('Initialized')
+  it('sends named queries and operations, matches out of order answers', async () => {
+    const { s, sent } = fakeEngine(req => ({ ok: req.query ? [{ q: req.query, key: req.key }] : { op: req.op } }))
+    const [a, b] = await Promise.all([s.run<{ q: string; key: string }>('tree.node', { key: 'dn-1' }), s.op<{ op: string }>('dicts', {})])
+    expect(a).toEqual([{ q: 'tree.node', key: 'dn-1' }])
+    expect(b).toEqual({ op: 'dicts' })
+    expect(sent).toEqual([{ query: 'tree.node', key: 'dn-1' }, { op: 'dicts' }])
   })
-  it('gates every query on openDbs and inlines params', async () => {
-    const log = fakeBridge({ openDelay: 30 })
-    const busy: boolean[] = []
-    const s = new AndroidSource({ text: 1, dict: 2 }, b => busy.push(b))
-    const [a, b] = await Promise.all([s.run<{ sql: string }>('tree.node', { key: "it's" }), s.run<{ sql: string }>('meta.info', {})])
-    expect(log[0]).toBe('openDbs')
-    expect(log.filter(l => l === 'openDbs').length).toBe(1)
-    expect(a[0].sql).toContain("n.key = 'it''s'")
-    expect(b.length).toBe(1)
-    expect(busy).toEqual([true, false])
-  })
-  it('maps MATCH errors to fts_syntax', async () => {
-    fakeBridge()
-    const s = new AndroidSource({ text: 1, dict: 2 })
-    await expect(s.run('fts.count', { q: 'x', lang: 2, groups: '' })).rejects.toMatchObject({ code: 'fts_syntax' })
+  it('maps the engine errors', async () => {
+    const { s } = fakeEngine(req => ({ error: req.query === 'fts.count' ? 'fts_syntax' : 'internal', message: 'boom' }))
+    await expect(s.run('fts.count', { q: '"', lang: 2, groups: '' })).rejects.toMatchObject({ code: 'fts_syntax' })
+    await expect(s.op('dicts', {})).rejects.toMatchObject({ code: 'server', message: 'boom' })
   })
 })
 

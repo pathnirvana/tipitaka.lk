@@ -97,7 +97,8 @@ func (e *Engine) Dicts(ctx context.Context) ([]Dict, error) {
 	if e.dict == nil {
 		return []Dict{}, nil
 	}
-	rows, err := e.dict.QueryContext(ctx, "SELECT id, code, lang, name, short, descr, origin, entries, opt_in FROM dict ORDER BY id")
+	// the Sinhala dictionaries first (lk's readers), then the English ones
+	rows, err := e.dict.QueryContext(ctx, "SELECT id, code, lang, name, short, descr, origin, entries, opt_in FROM dict ORDER BY lang <> 'si', id")
 	if err != nil {
 		return nil, err
 	}
@@ -240,8 +241,12 @@ func (e *Engine) Dictionary(ctx context.Context, word string, dicts []string, li
 			order[d.Code] = i
 		}
 	}
+	// right after DPD: the Sinhala dictionaries, then the English ones; the closest matches first within each
 	sort.SliceStable(res.Entries, func(a, b int) bool {
 		ea, eb := res.Entries[a], res.Entries[b]
+		if sa, sb := isSinhalaDict(ea.Dict), isSinhalaDict(eb.Dict); sa != sb {
+			return sa
+		}
 		if ea.Dist != eb.Dist {
 			return ea.Dist < eb.Dist
 		}
@@ -417,6 +422,8 @@ func (e *Engine) Lookup(ctx context.Context, word string, dicts []string, limit 
 			}
 		}
 	}
+	// the forms of several headwords: the Sinhala dictionaries first again (as Dictionary orders them)
+	sort.SliceStable(exact, func(a, b int) bool { return isSinhalaDict(exact[a].Dict) && !isSinhalaDict(exact[b].Dict) })
 	if len(exact) > limit {
 		exact = exact[:limit]
 	}
@@ -430,6 +437,9 @@ func (e *Engine) Lookup(ctx context.Context, word string, dicts []string, limit 
 	}
 	return res, nil
 }
+
+// isSinhalaDict: the Sinhala dictionaries (si-buddhadatta, si-sumangala) come before the English ones
+func isSinhalaDict(code string) bool { return strings.HasPrefix(code, "si-") }
 
 // hasDpd: whether DPD is among the chosen dictionaries (none chosen: all are)
 func hasDpd(dicts []string) bool {

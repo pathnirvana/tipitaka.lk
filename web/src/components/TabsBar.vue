@@ -1,10 +1,10 @@
-<!-- open suttas: scrollable tab strip with scroll buttons and a list of all tabs; listOnly: just the list (the header of
-     the last column of the columns view, which has no tab strip) -->
+<!-- open suttas: scrollable tab strip (left aligned, at the top of the text as in tipitaka.app) with scroll buttons and a
+     list of all tabs; listOnly: just the list (the header of the last column of the columns view, which has no tab strip) -->
 <template>
-  <div :class="listOnly ? 'flex' : 'flex h-10 items-stretch border-t border-line'" :data-testid="listOnly ? 'tabs-list-only' : 'tabs-bar'">
+  <div :class="listOnly ? 'flex' : 'flex h-10 items-stretch border-b border-line bg-surface'" :data-testid="listOnly ? 'tabs-list-only' : 'tabs-bar'">
     <template v-if="!listOnly">
     <button v-show="overflow" class="icon-btn shrink-0 rounded-none" title="scroll left" @click="scrollBy(-1)"><IconLeft /></button>
-    <div ref="strip" class="no-scrollbar relative flex min-w-0 flex-1 items-end overflow-x-auto" :class="{ 'justify-center': !overflow }" role="tablist" @scroll="updateOverflow">
+    <div ref="strip" class="no-scrollbar relative flex min-w-0 flex-1 items-end overflow-x-auto" role="tablist" @scroll="updateOverflow">
       <div v-for="(tab, i) in tabs.tabList" :key="tab.uid" role="tab" :aria-selected="i === tabs.activeInd" :title="names[i]"
         :class="['group flex max-w-[200px] shrink-0 cursor-pointer items-center whitespace-nowrap border-b-2 py-1.5 pl-3 pr-1', i === tabs.activeInd ? 'border-primary text-primary' : 'border-transparent text-muted hover:text-fg']"
         data-testid="tab" @click="tabs.setActive(i)" @auxclick.prevent="$event.button === 1 && tabs.closeTab(i)">

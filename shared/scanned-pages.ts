@@ -445,7 +445,7 @@ export const bjtBooksInfo: Record<number, BjtBookInfo> = {
         name: 'පට්ඨානප්පකරණ 1',
         maxPageId: 591,
         firstPageId: 65,
-        pageNumOffset: 63,
+        pageNumOffset: 64, // an unnumbered title page precedes printed page 1 (63 opened the page before; checked 2026-10-23)
         imagePrefix: 'AP11_Page_',
         parentKey: 'ap', topSuffixes: 'pat',
     },

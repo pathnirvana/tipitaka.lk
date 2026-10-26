@@ -126,3 +126,19 @@ test('singlish full text search suggests sinhala letters; results open with the 
   if (!isMobile(page)) await expect(entries(page, 'sinh').first()).toBeVisible() // both columns (the default), not only the hit's
   await expect(entries(page, 'pali').first()).toBeVisible()
 })
+
+test('search filter dialog: parts, columns, never nothing', async ({ page }) => {
+  await page.goto('/fts/ධම්ම')
+  await page.getByTestId('filter-button').click()
+  await expect(page.getByTestId('filter-count')).toHaveText(/^(\d+) \/ \1$/)
+  await page.getByTestId('filter-all').click() // all chosen: clears them
+  await expect(page.getByTestId('filter-done')).toBeDisabled()
+  await page.locator('label', { has: page.getByTestId('filter-vp') }).click()
+  await expect(page.getByTestId('filter-done')).toBeEnabled()
+  await page.getByTestId('filter-col-0').click() // pali off (sinhala stays)
+  await expect(page.getByTestId('filter-col-0')).toHaveAttribute('aria-pressed', 'false')
+  await page.getByTestId('filter-col-1').click() // the last column can not be turned off
+  await expect(page.getByTestId('filter-col-1')).toHaveAttribute('aria-pressed', 'true')
+  await page.getByTestId('filter-done').click()
+  await expect(page.getByTestId('filter-button')).toContainText('සීමා වී ඇත')
+})

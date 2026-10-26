@@ -12,6 +12,8 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+
+	"tipitaka.lk/server/engine"
 )
 
 // SSR-lite: for sutta routes /<key>[/<p>-<e>][/<lang>] the index.html gets the page title, description,
@@ -19,7 +21,7 @@ import (
 // and <script id="ssr-data"> with the exact named query results the reader needs (pre-fills the client cache).
 
 var reservedRoutes = map[string]bool{"": true, "settings": true, "abbreviations": true, "bookmarks": true,
-	"title": true, "dict": true, "fts": true, "map": true, "names": true}
+	"title": true, "dict": true, "fts": true, "map": true, "names": true, "help": true}
 
 var (
 	eIndRe   = regexp.MustCompile(`^(\d+)-(\d+)$`)
@@ -93,8 +95,8 @@ func cacheKey(name string, params map[string]any) string {
 		if i > 0 {
 			b.WriteByte(',')
 		}
-		kj, _ := marshalNoEscape(k)
-		vj, _ := marshalNoEscape(params[k])
+		kj, _ := engine.MarshalNoEscape(k)
+		vj, _ := engine.MarshalNoEscape(params[k])
 		b.Write(kj)
 		b.WriteByte(':')
 		b.Write(vj)
@@ -112,7 +114,7 @@ var typeNames = []string{"centered", "heading", "paragraph", "gatha", "unindente
 
 func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 	index, _ := a.currentIndex()
-	base := strings.Replace(index, "</head>", fmt.Sprintf(`<meta name="tipitaka-api" content="%s"></head>`, a.apiHash), 1)
+	base := strings.Replace(index, "</head>", fmt.Sprintf(`<meta name="tipitaka-api" content="%s"><meta name="tipitaka-ops" content="%s"></head>`, a.apiHash, a.opsHash), 1)
 	r, ok := parseSuttaRoute(path)
 	if !ok {
 		first := strings.Split(strings.Trim(path, "/"), "/")[0]
@@ -121,7 +123,7 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 		}
 		return ssrPage{404, base}
 	}
-	call := func(name string, params map[string]any, data map[string]any) []Row {
+	call := func(name string, params map[string]any, data map[string]any) []engine.Row {
 		rows, err := a.RunNamed(ctx, name, params)
 		if err != nil {
 			log.Printf("ssr %s %v: %v", name, params, err)
@@ -151,7 +153,7 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 	if node.Int("pali_only") == 1 {
 		lang = "pali"
 	}
-	name := func(row Row) string {
+	name := func(row engine.Row) string {
 		if lang == "sinh" && row.Str("sinh") != "" {
 			return row.Str("sinh")
 		}
@@ -313,7 +315,7 @@ func (a *App) serveIndex(w http.ResponseWriter, r *http.Request) {
 		a.guard.stats.shedPeople.Add(1)
 		index, _ := a.currentIndex()
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
-		w.Write([]byte(strings.Replace(index, "</head>", fmt.Sprintf(`<meta name="tipitaka-api" content="%s"></head>`, a.apiHash), 1)))
+		w.Write([]byte(strings.Replace(index, "</head>", fmt.Sprintf(`<meta name="tipitaka-api" content="%s"><meta name="tipitaka-ops" content="%s"></head>`, a.apiHash, a.opsHash), 1)))
 		return
 	}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")

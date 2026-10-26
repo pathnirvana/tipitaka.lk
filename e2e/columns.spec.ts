@@ -65,7 +65,8 @@ test('the aṭṭhakathā pane: the passage justified, at the reading size', asy
   await page.getByTestId('dict-tab-atta').click()
   const p = page.getByTestId('gloss-item').first().locator('.entry-text').first()
   await expect(p).toHaveCSS('text-align', 'justify')
-  expect(parseFloat(await p.evaluate(el => getComputedStyle(el).fontSize))).toBeGreaterThan(18)
+  const size = (l: typeof p) => l.evaluate(el => getComputedStyle(el).fontSize)
+  expect(await size(p)).toBe(await size(page.locator('[data-testid="text-tab"]:visible .entry-text.paragraph').first())) // the reading size
 })
 
 test('columns: the texts side by side, the text stays active, closing a column', async ({ page }) => {

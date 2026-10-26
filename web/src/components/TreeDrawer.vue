@@ -1,12 +1,6 @@
 <!-- sutta tree (v2 TipitakaTree.vue) - children are loaded on demand -->
 <template>
   <nav class="flex h-full flex-col" aria-label="සූත්‍ර නාමාවලිය">
-    <div class="flex items-center border-b border-line py-1 pl-3 pr-1">
-      <span class="flex-1 truncate text-muted">සූත්‍ර නාමාවලිය</span>
-      <button class="icon-btn text-muted hover:text-primary" title="කියවන සූත්‍රය පෙන්වන්න (sync)" data-testid="tree-sync" @click="sync"><IconSync /></button>
-      <button class="icon-btn text-muted hover:text-primary" title="සියල්ල වසන්න (collapse)" data-testid="tree-collapse" @click="tree.openBranches = []"><IconCollapse /></button>
-      <button class="icon-btn text-muted hover:text-primary" title="close" data-testid="tree-close" @click="ui.showTree = false"><IconClose /></button>
-    </div>
     <div ref="scroller" class="min-h-0 flex-1 overflow-y-auto overscroll-contain px-1 py-1.5" :style="{ fontSize: settings.fontPx }" data-testid="tree">
       <ul v-if="roots">
         <TreeNode v-for="r in roots" :key="r.key" :item="r" :depth="0" :active-key="tabs.activeKey" @open="open" />
@@ -18,9 +12,6 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
-import IconClose from '~icons/mdi/close'
-import IconSync from '~icons/mdi/sync'
-import IconCollapse from '~icons/mdi/arrow-collapse-vertical'
 import TreeNode from './TreeNode.vue'
 import Skeleton from './Skeleton.vue'
 import { useTree } from '@/stores/tree'

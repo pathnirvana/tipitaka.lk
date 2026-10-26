@@ -149,6 +149,33 @@ describe('bookmarks', () => {
     b.toggle(entry)
     expect(Object.keys(JSON.parse(localStorage.getItem(BOOKMARKS_KEY)!))).toEqual(['dn-1:0-6:pali'])
   })
+  it('one star per sutta: its heading in the text (either column) and a list (title search, history) share it', () => {
+    localStorage.removeItem(BOOKMARKS_KEY)
+    setActivePinia(createPinia())
+    const b = useBookmarks()
+    const fromList = { key: 'an-2', language: 'pali' as const, eInd: null, type: null, text: null, hText: null, file: 'an-2' }
+    const heading = (language: 'pali' | 'sinh') => ({ key: 'an-2', language, eInd: [0, 3] as [number, number], type: 'heading', text: 'දුකනිපාතො', hText: null, file: 'an-2' })
+    const para = { ...heading('pali'), eInd: [0, 4] as [number, number], type: 'paragraph' }
+    b.toggle(fromList)
+    expect([b.isStarred(heading('pali')), b.isStarred(heading('sinh')), b.isStarred(para)]).toEqual([true, true, false])
+    b.toggle(heading('sinh')) // unstarred in the text: gone from the list too
+    expect([b.count, b.isStarred(fromList)]).toEqual([0, false])
+    b.toggle(heading('pali'))
+    b.toggle(para)
+    expect(b.isStarred(fromList)).toBe(true)
+    b.toggle(fromList)
+    expect(Object.values(b.bookmarks).map(x => x.type)).toEqual(['paragraph']) // the paragraph's own star stays
+  })
+  it('stars saved twice for a sutta (before 2026-10) are shown once, the heading kept', () => {
+    localStorage.setItem(BOOKMARKS_KEY, JSON.stringify({
+      'an-2::pali': { key: 'an-2', language: 'pali', eInd: null, type: null, text: null, hText: null },
+      'an-2:0-3:pali': { key: 'an-2', language: 'pali', eInd: [0, 3], type: 'heading', text: 'x', hText: null },
+      'an-2:0-3:sinh': { key: 'an-2', language: 'sinh', eInd: [0, 3], type: 'heading', text: 'y', hText: null },
+      'an-3::pali': { key: 'an-3', language: 'pali', eInd: null, type: null, text: null, hText: null },
+    }))
+    setActivePinia(createPinia())
+    expect(Object.keys(useBookmarks().bookmarks)).toEqual(['an-2:0-3:pali', 'an-3::pali'])
+  })
 })
 
 describe('audio timing files (v2)', () => {

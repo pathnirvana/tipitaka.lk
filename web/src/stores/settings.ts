@@ -27,9 +27,10 @@ export interface Settings {
   tabView: TabView
   glossUnderline: boolean // underline the words the aṭṭhakathā explains (and its lemmas)
   syncColumns: boolean // columns view: a mūla and its aṭṭhakathā scroll together
+  panelPinned: boolean // the side panel stays open as a column on wide screens (tipitaka.app navPinned)
 }
 const STORED: (keyof Settings)[] = ['theme', 'defaultColumns', 'treeLanguage', 'footnoteMethod', 'bandiLetters',
-  'specialLetters', 'showPageNumbers', 'fontSize', 'syncTree', 'autoHideSearchBar', 'alignmentView', 'audioFollow', 'dictSheetHeight', 'dicts', 'tabView', 'glossUnderline', 'syncColumns']
+  'specialLetters', 'showPageNumbers', 'fontSize', 'syncTree', 'autoHideSearchBar', 'alignmentView', 'audioFollow', 'dictSheetHeight', 'dicts', 'tabView', 'glossUnderline', 'syncColumns', 'panelPinned']
 
 export const BASE_FONT_PX = 18
 export const FONT_SIZE_RANGE = [-7, 8] as const
@@ -39,7 +40,7 @@ export function defaultSettings(width = typeof window !== 'undefined' ? window.i
     theme: 'light', defaultColumns: 2, treeLanguage: 'pali',
     footnoteMethod: width < 960 ? 'click' : 'hover', // v2: smAndDown ? 'click' : 'hover'
     bandiLetters: true, specialLetters: false, showPageNumbers: true, fontSize: 0, syncTree: true, autoHideSearchBar: true, alignmentView: true, audioFollow: true, dictSheetHeight: 40, dicts: [],
-    tabView: 'tabs', glossUnderline: true, syncColumns: true,
+    tabView: 'tabs', glossUnderline: true, syncColumns: true, panelPinned: false,
   }
 }
 

@@ -4,6 +4,11 @@
 declare const __IS_APP__: boolean
 declare const __BUILD_INFO__: { api_hash: string; db_version: number; content_hash?: string }
 
+/** the user guide, compiled at build time (web/help.ts) */
+declare module '*.md' {
+  const page: { html: string; toc: { id: string; title: string }[] }
+  export default page
+}
 declare module '*.sql?raw' {
   const text: string
   export default text
@@ -14,15 +19,11 @@ declare module '*.vue' {
   export default component
 }
 
-/** native bridge injected by the Android / iOS WebView apps (contract: dev-docs/native-bridge.md) */
-interface AndroidBridge {
-  runAsync(rand: string, funcName: string, jsonParams: string): void
-  runAsyncResult(rand: string): string
-  getBjtParams?(): string
-  showToast?(msg: string): void
-}
+/** the apps' native bridge (dev-docs/native-bridge.md): Android's @JavascriptInterface, iOS's message handler, and the
+ * answers through __tipitakaResolve; Wails' runtime in the desktop app */
 interface Window {
-  Android?: AndroidBridge
-  [asyncKey: `asyncJava_${number}`]: { callback?: (ok: boolean) => void; resolve?: (v: string) => void; reject?: (e: string) => void }
+  TipitakaNative?: { query(id: string, request: string): void; share?(text: string): void; setChromeColors?(top: string, bottom: string): void }
+  webkit?: { messageHandlers?: { tipitaka?: { postMessage(m: { id: string; request: string }): void } } }
+  __tipitakaResolve?: (id: string, response: string) => void
+  runtime?: { BrowserOpenURL?(url: string): void }
 }
-declare const Android: AndroidBridge

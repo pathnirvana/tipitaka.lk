@@ -3,6 +3,9 @@
      scroll together, word by word through the underlined words both have (composables/glosses.ts). -->
 <template>
   <div ref="rootEl">
+    <!-- sticky under the app bar, slides away with it (small screens, scrolling down) -->
+    <TabsBar v-if="!showColumns && tabs.activeInd >= 0" class="sticky z-20 transition-transform" :style="{ top: `${APP_BAR}px` }"
+      :class="{ '-translate-y-[89px]': ui.headerHidden }" />
     <div v-if="showColumns" class="flex" :style="{ height: columnsHeight }" data-testid="columns"
       @wheel.passive="onUserScroll" @touchstart.passive="onUserScroll" @keydown="onUserScroll" @mousedown="onUserScroll">
       <div v-for="tab in shownTabs" :key="tab.uid" :class="['flex min-w-0 flex-1 flex-col border-r border-line last:border-r-0', { 'narrow-col': colWidth < 360 }]" data-testid="column"
@@ -20,7 +23,7 @@
     <template v-else>
       <TextTab v-for="(tab, i) in tabs.tabList" v-show="i === tabs.activeInd" :key="tab.uid" :tab="tab" />
     </template>
-    <button class="fixed z-20 rounded-full bg-surface2 p-2 shadow-lg" :style="{ right: `${dictRight + 16}px`, bottom: `${dictBottom + (audio.controlsVisible ? 80 : 16)}px` }"
+    <button class="fixed z-20 rounded-full bg-surface2 p-2 shadow-lg" :style="{ right: `${contentRight + 16}px`, bottom: `${dictBottom + (audio.controlsVisible ? 80 : 16)}px` }"
       title="top" data-testid="scroll-top" @click="scrollTop"><IconTop /></button>
     <AudioControl />
     <InlineDict />
@@ -43,20 +46,27 @@ import { useAudio } from '@/stores/audio'
 import { useSettings } from '@/stores/settings'
 import { useGlosses } from '@/stores/glosses'
 import { useInlineDict } from '@/stores/inlineDict'
-import { useLayout } from '@/composables/layout'
+import { useHistory } from '@/stores/history'
+import { useLayout, APP_BAR } from '@/composables/layout'
+import { useUi } from '@/stores/ui'
 import { viewport } from '@/composables/breakpoints'
 import { collectAnchors, mapY, type Anchors } from '@/composables/glosses'
 import { removeBandi } from '@shared/beautify'
 import { isAttaFile } from '@shared/constants'
 
 const tabs = useTabs(), tree = useTree(), audio = useAudio(), settings = useSettings(), glosses = useGlosses(), inlineDict = useInlineDict()
-const { dictRight, dictBottom, headerHeight, columnsView: showColumns } = useLayout()
+const { contentRight, dictBottom, headerHeight, columnsView: showColumns } = useLayout()
+const ui = useUi(), history = useHistory()
 
 // the pane's paragraph (Setting tab: place, map) follows the active text: a tab opened, switched to, a column clicked
 watch(() => [tabs.activeTab?.uid, tabs.activeTab?.node?.file] as const, () => {
   const t = tabs.activeTab
   if (t?.node) inlineDict.follow({ file: t.node.file, page: t.eInd[0], entry: t.eInd[1], key: t.key })
 })
+// the reading history (the bookmarks page): the sutta of the active tab, once it is found
+watch(() => [tabs.activeTab?.key, !!tabs.activeTab?.node] as const, ([key, found]) => {
+  if (key && found) history.visit(key, tabs.activeTab!.language)
+}, { immediate: true })
 
 // ---- columns view ----
 const MIN_COLUMN = 300 // px; more tabs than fit: the shown ones are a window that follows the active tab

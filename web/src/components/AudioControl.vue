@@ -2,7 +2,7 @@
 <template>
   <!-- centered on the text between the tree and the dictionary column, above the dictionary sheet -->
   <div v-if="audio.controlsVisible" class="fixed z-30 w-full -translate-x-1/2 border-t border-line bg-surface shadow-2xl" data-testid="audio-control"
-    :style="{ bottom: `${dictBottom}px`, left: `calc(50% + ${(contentLeft - dictRight) / 2}px)`, maxWidth: `${Math.min(800, viewport.width.value - contentLeft - dictRight)}px` }">
+    :style="{ bottom: `${dictBottom}px`, left: `calc(50% + ${(contentLeft - contentRight) / 2}px)`, maxWidth: `${Math.min(800, viewport.width.value - contentLeft - contentRight)}px` }">
     <div class="h-[3px] bg-surface2"><div class="h-full bg-primary" :style="{ width: `${progress}%` }" /></div>
     <!-- paragraph number, sync | previous, play / pause (centered: equal width sides), next | settings, close -->
     <div class="flex items-center px-2 py-1">
@@ -53,7 +53,7 @@ import { useLayout } from '@/composables/layout'
 import { viewport } from '@/composables/breakpoints'
 
 const audio = useAudio(), tabs = useTabs(), settings = useSettings()
-const { dictRight, dictBottom, contentLeft } = useLayout()
+const { contentRight, dictBottom, contentLeft } = useLayout()
 const cog = ref<HTMLElement>()
 const showSettings = ref(false)
 const progress = computed(() => (audio.duration ? (audio.currentTime / audio.duration) * 100 : 0))

@@ -7,7 +7,7 @@ public/static/text/*.json  (ground truth, edited by proofreaders - never written
 db/text.db  files, pages, entries (pali+sinhala pairs), footnotes, tree, FTS4 index   + db/dict.db
         │
         ├── Go server (server/)  website + desktop app
-        │     GET|POST /api/q/<name>   named read-only queries from server/queries.sql
+        │     GET|POST /api/q/<name>   named read-only queries from server/engine/queries.sql
         │     GET|POST /api/<op>       operations of the Go engine (server/engine): dicts, dict, lookup, meta,
         │                              links, linkcounts, glosses, settings, names, places, entity, paranames (names.go)
         │     SSR-lite: title/meta/canonical/hreflang + <article id="ssr"> + <script id="ssr-data"> for sutta urls
@@ -36,7 +36,7 @@ shared/  pure TS used by web, build and tests (markup parser, beautify, search n
   scrolls itself; a mūla column and its aṭṭhakathā column keep in step through the underlines both show,
   `composables/glosses.ts` mapY, else through the next gloss's paragraph). "Read with the aṭṭhakathā" (paragraph menu,
   heading icon, Atta tab) opens it alongside (`composables/alongside.ts`).
-* **Named queries.** `server/queries.sql` lists every SQL statement. The server never runs client SQL
+* **Named queries.** `server/engine/queries.sql` lists every SQL statement. The server never runs client SQL
   (v2 did, and opened the dbs writable - see dev-docs/v2-bugs.md). Params are scalar; lists are one string joined
   with `\x1f` and split in SQL with a recursive CTE. Every output column is non-NULL and integers fit int32
   (Android bridge limits). All SQL must run on SQLite 3.9.2 (Android 7) - `npm run test:sqlite-compat`.
@@ -65,7 +65,7 @@ shared/  pure TS used by web, build and tests (markup parser, beautify, search n
 | area | files |
 |---|---|
 | data build | `build/cli.ts`, `corpus.ts`, `validate.ts`, `tree.ts` (exact port of dev/build-tree.js), `entry-nodes.ts`, `write-db.ts` |
-| queries | `server/queries.sql`, `shared/queries.ts`, `server/queries.go` |
+| queries | `server/engine/queries.sql`, `shared/queries.ts`, `server/engine/queries.go` |
 | server | `server/main.go`, `api.go`, `ssr.go`, `markup.go`, `static.go`, `legacy.go` |
 | web data | `web/src/data/source.ts` (HttpSource / AndroidSource / cache), `fts.ts`, `dictionary.ts`, `title.ts`, `names.ts` |
 | map, names | `web/src/map/` (tipitaka.app's drawn base map), `components/PlaceMap.vue`, `views/MapView.vue`, `views/Names.vue` |
