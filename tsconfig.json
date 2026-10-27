@@ -16,9 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "@shared/*": ["shared/*"],
-      "@/*": ["web/src/*"]
+      "@/*": ["web/src/*"],
+      "@p/*": ["web-pitaka/src/*"]
     }
   },
-  "include": ["shared/**/*.ts", "build/**/*.ts", "web/src/**/*.ts", "web/src/**/*.vue", "web/*.ts", "e2e/**/*.ts", "vitest.config.ts"],
-  "exclude": ["node_modules", "web/dist", "web/dist-app"]
+  "include": ["shared/**/*.ts", "build/**/*.ts", "web/src/**/*.ts", "web/src/**/*.vue", "web/*.ts", "web-pitaka/src/**/*.ts", "web-pitaka/src/**/*.vue", "web-pitaka/*.ts", "e2e/**/*.ts", "vitest.config.ts"],
+  "exclude": ["node_modules", "web/dist", "web/dist-app", "web-pitaka/dist", "web-pitaka/dist-app"]
 }

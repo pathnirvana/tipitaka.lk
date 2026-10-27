@@ -119,7 +119,10 @@ function main() {
   report.splice(5, 0, `- db: ${dbFile} ${(size / 1e6).toFixed(1)} MB, api_hash ${apiHash}, db_version ${meta.db_version}`)
   fs.writeFileSync(path.join(outDir, prefix + 'build-info.json'), JSON.stringify({ api_hash: apiHash, db_version: parseInt(meta.db_version), content_hash: dbCorpus.contentHash, schema_version: SCHEMA_VERSION }, null, 1) + '\n')
   fs.writeFileSync(path.join(outDir, prefix + 'build-report.md'), report.join('\n') + '\n')
-  if (pitaka) { // the web data files and the dictionary are tipitaka.lk's
+  if (pitaka) { // the dictionary is tipitaka.lk's; the web app needs the audio file map
+    const pitakaData = 'web-pitaka/public/static/data'
+    fs.mkdirSync(pitakaData, { recursive: true })
+    fs.copyFileSync('public/static/data/file-map.json', path.join(pitakaData, 'file-map.json'))
     console.log(`done in ${((Date.now() - t0) / 1000).toFixed(1)} s. See ${outDir}/${prefix}build-report.md`)
     return
   }

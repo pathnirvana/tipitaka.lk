@@ -23,7 +23,7 @@ var flavors = map[string]flavor{
 	"lk": {name: "lk", textDB: "text.db", distDirs: []string{"web/dist", "dist"}, site: "https://tipitaka.lk",
 		siteName: "බුද්ධ ජයන්ති ත්‍රිපිටකය", langs: true, legacy: true},
 	"pitaka": {name: "pitaka", textDB: "pitaka-text.db", distDirs: []string{"web-pitaka/dist", "dist"}, site: "https://pitaka.lk/main",
-		siteName: "සරල ත්‍රිපිටකය", base: "/main"},
+		siteName: "සරල සිංහල ත්‍රිපිටකය", base: "/main"},
 }
 
 // withBase serves h under the flavor's base path: /main/x is /x to h, / goes to /main/, anything else is not ours

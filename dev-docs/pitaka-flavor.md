@@ -1,6 +1,6 @@
 # pitaka.lk flavor: design and plan
 
-Status: agreed design (2026-10-27). Phase 1 done on master; Phases 2 and 3 done on `pitaka-flavor` (2026-10-27). Written in the pitaka.lk session. The implementation happens
+Status: agreed design (2026-10-27). Phase 1 done on master; Phases 2–4 done on `pitaka-flavor` (2026-10-27). Written in the pitaka.lk session. The implementation happens
 in a fresh session started in this repo, on its own branch (`pitaka-flavor`), so that it doesn't disturb
 work on master.
 
@@ -173,7 +173,21 @@ It is a **second flavor of this repo**, not a fork:
    - `npm run build:fixture` builds both fixture dbs.
 4. `web-pitaka/`: reader with the 4 modes, tree, title and full-text search, dictionary (5 dicts), audio, map,
    names, bookmarks, settings, themes. Unit tests plus Playwright for the reading modes and the narrow-screen
-   fallback.
+   fallback. **Done**:
+   - Scripts: `npm run dev:pitaka`, `build:web:pitaka` and `build:web:pitaka:app`.
+   - Reuse: `web-pitaka/vite.config.ts` resolves `@/…` to `web/src`. Its `OVERRIDES` plugin swaps four `web/src` modules for
+     every importer, including relative imports inside `web/src`:
+     - the settings store (`pitaka.lk-settings-1`, the reading mode, pitaka defaults);
+     - the storage keys (`tipitaka.lk-*` becomes `pitaka.lk-*`);
+     - the user guide;
+     - `InlineDict.vue` (no Atta tab).
+   - Pitaka's own files (`@p/…`): App, router, AppBar, SidePanel, Reader, `Text.vue` (the four modes), `Entry.vue`
+     (pitaka.lk links), Welcome, Settings and the reading-mode picker. The other views are tipitaka.lk's.
+   - Side by side needs 720 px of text, and falls back to interleaved below that. In interleaved mode an entry that is the
+     same on both sides is shown once.
+   - The name is "සරල සිංහල ත්‍රිපිටකය", as on the old app's logo. The primary colour is the logo's orange.
+   - Tests: `e2e/pitaka.spec.ts` (projects `pitaka-desktop` and `pitaka-phone`, a second server on 8411). `check.sh` builds
+     and runs them.
 5. Deploy on the tipitaka.lk droplet (`/main/` only, behind nginx), then switch pitaka.lk DNS and move the
    static sites (see the pitaka.lk repo plan).
 6. Android (reusing the id) and iOS releases.
@@ -188,6 +202,12 @@ It is a **second flavor of this repo**, not a fork:
 - Lighthouse/mobile check of the reader on a narrow phone, including the side-by-side fallback.
 
 ## Open items
+- **Audio CDN CORS**: the recitation CDN (sajjha…digitaloceanspaces.com) allows only tipitaka.lk's origins. Add
+  `https://pitaka.lk` before launch, or the website gets no audio (the apps go through the engine).
+- **Icons**: `web-pitaka/public/static/images` uses pitaka.lk's 180 px app logo, scaled up to 192 and 512 px. A
+  high-resolution logo is needed for the web manifest and the store apps.
+- The Android/iOS packaging of web-pitaka (`build:web:pitaka:app` into the app pipeline: android-assets.sh,
+  build-apple.sh) is Phase 6.
 - Visuddhimagga (`anya-vm`) is left out of the pitaka tree for now (not Tipitaka). To include it, change `isPitakaFile`.
 - The signing keystore for `lk.pitaka.saralatipitaka`.
 - Confirm the iOS bundle id of App Store app 1434955293, and that the Apple account can still publish to it.

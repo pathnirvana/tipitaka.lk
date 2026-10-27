@@ -1,0 +1,10 @@
+/* pitaka.lk's colours (the logo's orange and gold) over tipitaka.lk's light theme; the other themes are tipitaka.lk's */
+:root {
+  --c-primary: #a8410f; --c-primary-soft: #f8e4cf; --c-accent: #c97a12;
+}
+
+/* the reading modes (components/Text.vue). Interleaved: the pāḷi a little smaller and muted, its translation marked */
+.entry-pali-under .entry-text { font-size: 1em; color: var(--c-muted); }
+.entry-pali-under .entry-text.heading { color: var(--c-muted); }
+.entry-sinh-under { border-left: 3px solid var(--c-accent); margin-bottom: 0.4em; }
+.untranslated .entry-text { color: var(--c-muted); }

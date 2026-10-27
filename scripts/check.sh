@@ -12,13 +12,13 @@ step fixtures; npm run build:fixture
 step "unit tests"; npm test
 step "sqlite 3.9.2"; npm run test:sqlite-compat
 step go; (cd server && go vet ./... && go test ./...)
-step builds; npm run build:web && npm run build:web:app && npm run check:css && npm run build:server
+step builds; npm run build:web && npm run build:web:app && npm run build:web:pitaka && npm run check:css && npm run build:server
 # firefox: Playwright 1.63's Firefox 155 does not start on macOS 27 ("Could not find profile folder") - skipped with a
 # warning until a Playwright release fixes it
 PROJECTS=()
 if ! node -e "import('@playwright/test').then(async ({ firefox }) => { await (await firefox.launch()).close() }).catch(() => process.exit(1))" 2>/dev/null; then
   echo "warning: firefox does not start here - the e2e tests run without it"
-  PROJECTS=(--project desktop-chromium --project desktop-webkit --project mobile-chrome --project mobile-webkit --project android-sim)
+  PROJECTS=(--project desktop-chromium --project desktop-webkit --project mobile-chrome --project mobile-webkit --project android-sim --project pitaka-desktop --project pitaka-phone)
 fi
 step "e2e (chromium, webkit, firefox, phones, android bridge)"; npx playwright test -c e2e/playwright.config.ts "${PROJECTS[@]}"
 echo; echo "all checks passed"

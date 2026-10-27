@@ -22,7 +22,7 @@ func newPitakaApp(t testing.TB) *App {
 func TestPitakaSSR(t *testing.T) {
 	h := newPitakaApp(t).Handler()
 	body := get(t, h, "/main/dn-1-1").Body.String()
-	for _, want := range []string{`<link rel="canonical" href="https://pitaka.lk/main/dn-1-1">`, `| සරල ත්‍රිපිටකය</title>`,
+	for _, want := range []string{`<link rel="canonical" href="https://pitaka.lk/main/dn-1-1">`, `| සරල සිංහල ත්‍රිපිටකය</title>`,
 		`<article id="ssr" lang="si">`, `<a href="/main/dn-1">`, `"url":"https://pitaka.lk/main/dn`, `භාග්‍යවතුන්`,
 		`text.entries|{\"file\":\"dn-1\",\"from\":0,\"to\":1}`} {
 		if !strings.Contains(body, want) {
