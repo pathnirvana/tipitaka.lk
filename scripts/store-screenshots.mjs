@@ -40,9 +40,10 @@ const LK_SCENES = [
   { id: 'themes', title: 'ඔබ කැමති වර්ණයෙන් කියවන්න', sub: 'ආලෝකමත්, sepia, කොළ සහ අඳුරු – අකුරු ප්‍රමාණය ද ඔබට ගැලපෙන ලෙස' },
 ]
 
-// pitaka.lk: the Sinhala translation in its reading modes (the sutta nikāyas are translated, the vinaya and abhidhamma not yet)
+// pitaka.lk: the Sinhala translation in its reading modes. The first caption claims the whole tipitaka: the vinaya,
+// abhidhamma and the rest of the khuddaka nikāya are being translated, and the screenshots should outlast that
 const PITAKA_SCENES = [
-  { id: 'sinhala', title: 'සැමට තේරෙන සරල සිංහලෙන්', sub: 'දීඝ, මජ්ඣිම, සංයුත්ත සහ අංගුත්තර නිකාය සම්පූර්ණයෙන්ම, ඛුද්දක නිකායේ කොටස් සමඟ' },
+  { id: 'sinhala', title: 'සැමට තේරෙන සරල සිංහලෙන්', sub: 'මුළු බුද්ධ ජයන්ති ත්‍රිපිටකයම පහසු සිංහල භාෂාවෙන්' },
   { id: 'interleaved', title: 'පාළි පෙළ සමඟ එක යට එක', sub: 'එක් එක් පාළි ඡේදය යටින් එහි සරල සිංහල අර්ථය' },
   { id: 'modes', title: 'කියවන ආකාර හතරක්', sub: 'සිංහල පමණක්, පාළි පමණක්, එක යට එක හෝ දෙපසින් – ඔබ කැමති ලෙස' },
   { id: 'audio', title: 'සජ්ඣායනාවට සවන් දෙන්න', sub: 'සජ්ඣායනා කරන තැන පෙළෙහි ඉස්මතු වේ' },
