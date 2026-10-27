@@ -2,7 +2,7 @@
 <template>
   <div class="mx-auto max-w-3xl px-4 pb-16 pt-6" :style="{ fontSize: settings.fontPx }" data-testid="welcome">
     <div class="mb-6 flex items-center">
-      <img :src="asset('static/images/app-logo.png')" class="mr-4 h-24 w-24 shrink-0" alt="">
+      <img :src="asset('static/images/icon-192.png')" class="mr-4 h-24 w-24 shrink-0" alt="">
       <div>
         <h1 class="text-[1.5em] font-bold text-primary">{{ SITE_NAME }}</h1>
         <p class="text-muted">බුද්ධ ජයන්ති ත්‍රිපිටකයේ පාළි පාඨය, සැමට තේරුම් ගත හැකි සරල සිංහල පරිවර්තනය සමඟ.</p>

@@ -205,10 +205,9 @@ It is a **second flavor of this repo**, not a fork:
 - **Audio CDN CORS**: the recitation CDN (sajjha…digitaloceanspaces.com) allows only tipitaka.lk's origins. Add
   `https://pitaka.lk` before launch, or the website gets no audio (the apps go through the engine). Done 2026-10-27
   (pitaka.lk and localhost:8403).
-- **Icons**: `web-pitaka/public/static/images` uses pitaka.lk's 180 px app logo, scaled up to 192 and 512 px. A new
-  logo is being chosen from drawn options (cream disc, saffron, dhamma wheel, ola leaf: සරල සිංහල large, ත්‍රිපිටකය
-  under it); the icons, favicon, og image and Play feature graphic are then generated from it like
-  `scripts/make-icons.mjs` does for tipitaka.lk.
+- **Icons**: done. The A4 logo (a cream disc in a gold ring on a deep maroon tile, AbhayaUni Bold), favicon ස and
+  light og image are drawn by `scripts/make-pitaka-icons.mjs` -> `server/packaging/icons-pitaka/` (iOS, Android, Play)
+  and `web-pitaka/public/static/images`. Phase 6 copies the app icons in.
 - Store screenshots: `node scripts/store-screenshots.mjs --flavor pitaka` -> `release/store-screenshots-pitaka/`
   (Play phone and tablets, iPhone 6.9", iPad 13"). The first caption claims the whole tipitaka in simple Sinhala, so the
   screenshots need not change when the remaining translations are added.

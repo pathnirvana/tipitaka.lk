@@ -4,8 +4,22 @@
   "description": "සරල සිංහල ත්‍රිපිටකය – පාළි පාඨය සමඟ සරල සිංහල පරිවර්තනය, සජ්ඣායනා සහ ශබ්දකෝෂ",
   "lang": "si",
   "icons": [
-    { "src": "static/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "static/images/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "static/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "static/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "static/images/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ],
   "start_url": "./",
   "display": "standalone",
