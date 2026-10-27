@@ -74,3 +74,14 @@ test('tree, footnotes and static data files work offline', async ({ page }) => {
   await page.goto('http://app.local/android_asset/index.html#/abbreviations')
   await expect(page.getByTestId('abbreviations')).toContainText('මඡසං')
 })
+
+test('store apps: no download links, no section on the other apps in the guide (Microsoft Store 10.1.5, App Store 2.3.10)', async ({ page }) => {
+  await setupBridge(page)
+  await page.goto('http://app.local/android_asset/index.html#/')
+  await expect(page.getByTestId('welcome-logos')).toBeVisible()
+  await expect(page.getByTestId('downloads')).toHaveCount(0)
+  await page.goto('http://app.local/android_asset/index.html#/help')
+  await expect(page.getByTestId('help')).toBeVisible()
+  await expect(page.locator('#offline')).toHaveCount(0)
+  await expect(page.getByTestId('help-toc')).not.toContainText('අන්තර්ජාලය නැතිව')
+})

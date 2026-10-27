@@ -57,7 +57,7 @@ import { useHead } from '@unhead/vue'
 import IconUpdate from '~icons/mdi/update'
 import ColumnSelector from '@/components/ColumnSelector.vue'
 import { useDefaultColumns } from '@/composables/columns'
-import { isNativeApp } from '@/data/source'
+import { isNativeApp, isStoreApp } from '@/data/source'
 import { smAndUp } from '@/composables/breakpoints'
 import { useSettings, FONT_SIZE_RANGE } from '@/stores/settings'
 import ThemePicker from '@/components/ThemePicker.vue'
@@ -102,7 +102,8 @@ const versionText = computed(() => {
 const versionClass = computed(() => (newVersion.value === -1 ? 'text-error' : newVersion.value && newVersion.value <= APP_VERSION ? 'text-success' : 'text-accent'))
 // the website is always the latest version. Offline apps ask tipitaka.lk (file:// pages may), the desktop app asks
 // its local server which forwards the request (a cross-origin request from localhost would be blocked by CORS)
-const showUpdate = isNativeApp() || location.hostname !== 'tipitaka.lk'
+// not in the store apps (the stores update them), nor on the website (always the latest)
+const showUpdate = !isStoreApp() && location.hostname !== 'tipitaka.lk'
 const versionUrl = isNativeApp() ? 'https://tipitaka.lk/tipitaka-query/version' : `${import.meta.env.BASE_URL}tipitaka-query/latest-version`
 onMounted(() => { if (showUpdate) checkVersion() })
 </script>

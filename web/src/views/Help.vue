@@ -3,11 +3,11 @@
   <div class="mx-auto max-w-3xl px-4 pb-20 pt-5 leading-relaxed" :style="{ fontSize: settings.fontPx }" data-testid="help">
     <h1 class="mb-3 text-[1.4em] text-primary">භාවිතා කරන ආකාරය</h1>
     <nav class="mb-6 flex flex-wrap" aria-label="පටුන" data-testid="help-toc">
-      <a v-for="s in page.toc" :key="s.id" :href="`#${s.id}`" class="mb-1.5 mr-1.5 rounded-full border border-line bg-surface px-3 py-0.5 text-[0.85em] hover:border-primary hover:text-primary"
+      <a v-for="s in toc" :key="s.id" :href="`#${s.id}`" class="mb-1.5 mr-1.5 rounded-full border border-line bg-surface px-3 py-0.5 text-[0.85em] hover:border-primary hover:text-primary"
         @click.prevent="goTo(s.id)">{{ s.title }}</a>
     </nav>
     <!-- eslint-disable-next-line vue/no-v-html -- our own Markdown, compiled at build time -->
-    <article ref="article" class="help" v-html="page.html" @click="onClick" />
+    <article ref="article" class="help" v-html="html" @click="onClick" />
   </div>
 </template>
 
@@ -16,12 +16,17 @@ import { nextTick, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import page from '@/help/si.md'
+import { isStoreApp } from '@/data/source'
 import { useSettings } from '@/stores/settings'
 import { APP_BAR } from '@/composables/layout'
 
 useHead({ title: 'භාවිතා කරන ආකාරය / Help' })
 const route = useRoute(), router = useRouter(), settings = useSettings()
 const article = ref<HTMLElement | null>(null)
+// the store apps leave out the section on the other apps (the stores do not allow pointing to other ways of getting software)
+const STORE_HIDDEN = isStoreApp() ? ['offline'] : []
+const toc = page.toc.filter(s => !STORE_HIDDEN.includes(s.id))
+const html = STORE_HIDDEN.reduce((h, id) => h.replace(new RegExp(`<h2 id="${id}">[\\s\\S]*?(?=<h2 )`), ''), page.html)
 
 function goTo(id: string, smooth = true) {
   const el = article.value?.querySelector(`[id="${id}"]`)

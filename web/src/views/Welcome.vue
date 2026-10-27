@@ -17,6 +17,9 @@
       <div class="w-1/2 p-1.5 sm:w-1/4"><div class="logo-card !p-0"><img :src="asset('static/images/thripitakaya.org-logo.jpg')" class="logo-photo w-full" alt="Thripitakaya.org"></div></div>
       <div class="w-1/2 p-1.5 sm:w-1/4"><div class="logo-card"><img :src="asset('static/images/tipitaka.lk-logo.png')" class="logo-photo w-full" alt="tipitaka.lk"></div></div>
     </div>
+    <!-- the website only: the stores do not allow an app to point to other ways of getting it (Microsoft Store 10.1.5,
+         App Store 2.3.10) -->
+    <template v-if="!storeApp">
     <div class="banner mb-4 border-info">අන්තර්ජාලය නැතිව භාවිතා කළ හැකි මෘදුකාංග පහතින් බාගත කරගන්න.</div>
     <div class="-mx-1.5 flex flex-wrap" data-testid="downloads">
       <div v-for="d in downloads" :key="d.name" class="w-1/2 p-1.5 sm:w-1/4">
@@ -29,6 +32,7 @@
         </a>
       </div>
     </div>
+    </template>
   </div>
 </template>
 
@@ -40,7 +44,9 @@ import IconWindows from '~icons/mdi/microsoft-windows'
 import IconLaptop from '~icons/mdi/laptop'
 import LogoBuddhaJayanthi from '@/components/LogoBuddhaJayanthi.vue'
 import LogoBoLeaf from '@/components/LogoBoLeaf.vue'
+import { isStoreApp } from '@/data/source'
 useHead({ title: 'Welcome / පිළිගනිමු' })
+const storeApp = isStoreApp()
 const asset = (p: string) => import.meta.env.BASE_URL + p
 const downloads = [
   { name: 'Android', from: 'Google Play', icon: IconAndroid, href: 'https://play.google.com/store/apps/details?id=lk.tipitaka.main' },

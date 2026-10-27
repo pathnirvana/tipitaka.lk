@@ -147,6 +147,10 @@ export class Data {
 }
 
 export const isNativeApp = () => __IS_APP__ || nativeSender() !== null
+/** the desktop app (server/desktop.go): the website build in a Wails window (wails:// on macOS, wails.localhost on Windows) */
+export const isDesktopApp = () => typeof window !== 'undefined' && (location.protocol === 'wails:' || location.hostname === 'wails.localhost' || !!window.runtime)
+/** one of the store apps (Android, iOS, macOS, Windows) */
+export const isStoreApp = () => isNativeApp() || isDesktopApp()
 
 function apiHashFromPage() {
   return document.querySelector('meta[name="tipitaka-api"]')?.getAttribute('content') || __BUILD_INFO__.api_hash || ''

@@ -6,7 +6,7 @@
 import { defineStore } from 'pinia'
 import { useUi } from './ui'
 import { ref, shallowRef, computed } from 'vue'
-import { getData, getStatic, isNativeApp } from '@/data/source'
+import { getData, getStatic, isStoreApp } from '@/data/source'
 import type { AudioEntryRow } from '@/data/types'
 import type { EInd } from '@shared/routes'
 import { countFeature } from '@/composables/stats'
@@ -141,7 +141,7 @@ export const useAudio = defineStore('audio', () => {
   /** a timing file (<label>.json, .txt, .words.json), null when there is none: the CDN allows only the website's origins,
    * so the apps (app://, file://) and the desktop app (Wails: wails://, wails.localhost) get it through the engine */
   async function timingFile(name: string): Promise<string | null> {
-    const viaEngine = isNativeApp() || location.protocol === 'wails:' || location.hostname === 'wails.localhost'
+    const viaEngine = isStoreApp()
     try {
       if (viaEngine) return await getData().op<string>('audio', { f: name })
       const r = await fetch(AUDIO_BASE_URL + name)

@@ -108,3 +108,10 @@ test('user guide: from the menu, its contents go to a section, its links open pa
   await page.getByTestId('help').locator('a[href="/bookmarks"]').first().click()
   await expect(page).toHaveURL(/\/bookmarks$/)
 })
+
+test('the website shows the download links and the guide\'s section on the apps', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.getByTestId('downloads').getByRole('link')).toHaveCount(4)
+  await page.goto('/help')
+  await expect(page.locator('#offline')).toHaveCount(1)
+})
