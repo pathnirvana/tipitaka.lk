@@ -1,0 +1,27 @@
+# systemd unit for the pitaka.lk reader (the same Go server, -flavor pitaka: https://pitaka.lk/main/) - installed /
+# updated by scripts/deploy.sh --flavor pitaka to /etc/systemd/system/. Releases in ~/www/pitaka_lk/releases/<ts>,
+# ~/www/pitaka_lk/current points at one. The pitaka.lk static sites are ~/www/pitaka.lk (the pathnirvana/pitaka.lk repo).
+# nginx (pitaka.lk.conf in that repo): location /main/ { proxy_pass http://127.0.0.1:8403; proxy_set_header Host $host; }
+[Unit]
+Description=pitaka.lk reader (Go server, pitaka flavor)
+After=network.target
+
+[Service]
+Type=simple
+User=janaka
+WorkingDirectory=/home/janaka/www/pitaka_lk/current
+ExecStart=/home/janaka/www/pitaka_lk/current/tipitaka_lk -flavor pitaka -no-open -listen 127.0.0.1:8403
+Restart=always
+RestartSec=3
+# the 1 GB droplet is shared with tipitaka.lk and tipitaka.app; this site is smaller (a 154 MB text db, five dictionaries)
+Environment=GOMEMLIMIT=120MiB
+MemoryHigh=250M
+MemoryMax=350M
+MemorySwapMax=100M
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+
+# sudo systemctl daemon-reload && sudo systemctl restart pitaka_lk
+# journalctl -u pitaka_lk.service -f

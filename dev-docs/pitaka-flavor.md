@@ -189,7 +189,21 @@ It is a **second flavor of this repo**, not a fork:
    - Tests: `e2e/pitaka.spec.ts` (projects `pitaka-desktop` and `pitaka-phone`, a second server on 8411). `check.sh` builds
      and runs them.
 5. Deploy on the tipitaka.lk droplet (`/main/` only, behind nginx), then switch pitaka.lk DNS and move the
-   static sites (see the pitaka.lk repo plan).
+   static sites. **Prepared** (the maintainer runs these, because they need sudo):
+   1. tipitaka.lk: `scripts/deploy.sh --flavor pitaka`.
+      - It builds `pitaka-text.db` and `web-pitaka`, uploads a release to `~/www/pitaka_lk/releases/<ts>` (`dict.db`
+        is hard linked from tipitaka.lk's) and tests it on port 8498.
+      - The first run installs `server/pitaka_lk.service` (port 8403) and a sudoers rule for its passwordless restart.
+      - It checks health on the server itself, since DNS may still point at the old droplet. `--rollback` and `--list`
+        work as for tipitaka.lk.
+   2. pitaka.lk repo:
+      - `dev/migrate.sh copy`: about 6.5 GB, droplet to droplet, everything except the old `main/`.
+      - `dev/deploy.sh --go`: `robots.txt` with the sitemap, and the root page now redirects to `main/`.
+   3. `dev/migrate.sh nginx`: the new vhost (`nginx/pitaka.lk.conf`, tested locally with nginx in front of the
+      server: old `?n=` and `/<id>` links go to `/main/<key>`), the map, and the certificate together with its certbot
+      account. It then tests through the new IP.
+   4. Point the A record of pitaka.lk at 157.230.192.72 (DigitalOcean DNS, TTL 30 min), then `dev/migrate.sh check`.
+      Afterwards remove pitaka.lk from the old droplet (its vhost and `certbot delete`).
 6. Android (reusing the id) and iOS releases.
 7. After launch: the sin_apz QA and gap-fill pass.
 
