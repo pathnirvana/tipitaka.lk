@@ -10,6 +10,7 @@ import { runLegacyBuildTree } from './legacy-tree'
 import { mapEntriesToNodes } from './entry-nodes'
 import { validateCorpus, toBaseline, newWarnings } from './validate'
 import { APZ_DIR, loadApz, validateApz, type ApzFile } from './apz'
+import { pitakaTree, pitakaCorpus, isPitakaFile } from './pitaka'
 import { writeDb, fileGroup, audioHash } from './write-db'
 import { Alignments } from './align'
 import { parseQueries } from '../shared/queries'
@@ -29,6 +30,19 @@ function buildAll(textDir: string, out: string, dropPlaceholders: boolean) {
   const entryNodes = mapEntriesToNodes(corpus.files, tree, order)
   writeDb(out, { corpus, tree, order, entryNodes, meta: { schema_version: '2' }, alignments: new Alignments('e2e/fixtures/alignments') })
   return { corpus, res, tree, order, entryNodes }
+}
+
+/** the pitaka.lk flavor's db (build/pitaka.ts) */
+function buildPitaka(textDir: string, apzDir: string, out: string, dropPlaceholders: boolean) {
+  const corpus = loadCorpus(textDir), apz = loadApz(apzDir)
+  const res = pitakaTree(corpus)
+  if (dropPlaceholders) for (const [k, v] of res.tree) if (!v.length) res.tree.delete(k)
+  const tree = res.tree as Map<string, TreeTuple>
+  const order = dfsOrder(tree)
+  const pc = pitakaCorpus(corpus, apz)
+  const entryNodes = mapEntriesToNodes(pc.files, tree, order)
+  writeDb(out, { corpus: pc, tree, order, entryNodes, meta: { schema_version: '2' }, paliOnly: f => !apz.has(f) })
+  return { corpus: pc, apz, res, tree }
 }
 
 function naiveMapping(f: JFile, tree: Map<string, TreeTuple>, order: string[]) { // v2 getKeyForEInd
@@ -164,6 +178,55 @@ describe('fixture corpus', () => {
   })
 })
 
+describe('pitaka flavor (fixture corpus)', () => {
+  const dbFile = path.join(tmp, 'pitaka.db'), lkFile = path.join(tmp, 'pitaka-lk.db')
+  let p: ReturnType<typeof buildPitaka>, lk: ReturnType<typeof buildAll>
+  beforeAll(() => {
+    p = buildPitaka('e2e/fixtures/text', 'e2e/fixtures/text-apz', dbFile, true)
+    lk = buildAll('e2e/fixtures/text', lkFile, true)
+  })
+  const one = (db: Database.Database, sql: string) => db.prepare(sql).pluck().get()
+
+  it('has no aṭṭhakathā, footnotes or word alignments', () => {
+    expect(p.corpus.names.some(n => !isPitakaFile(n))).toBe(false)
+    const db = new Database(dbFile, { readonly: true })
+    expect(one(db, "SELECT count(*) FROM node WHERE key LIKE 'atta%' OR mirror_key IS NOT NULL")).toBe(0)
+    expect(one(db, 'SELECT count(*) FROM footnote')).toBe(0)
+    expect(one(db, 'SELECT count(*) FROM align')).toBe(0)
+    db.close()
+  })
+  it('the tree, its titles and the audio hashes are tipitaka.lk\'s', () => {
+    expect([...p.tree].filter(([k]) => isPitakaFile(k))).toEqual([...lk.tree].filter(([k]) => isPitakaFile(k)))
+    const db = new Database(dbFile, { readonly: true })
+    db.exec(`ATTACH '${lkFile}' AS lk`)
+    expect(one(db, `SELECT count(*) FROM entry e JOIN file f ON f.id = e.file_id JOIN lk.file lf ON lf.name = f.name
+      JOIN lk.entry le ON le.file_id = lf.id AND le.page_idx = e.page_idx AND le.entry_idx = e.entry_idx
+      WHERE e.p_text <> le.p_text OR e.audio_ph IS NOT le.audio_ph OR e.node_id IS NOT le.node_id`)).toBe(0)
+    db.close()
+  })
+  it('the Sinhala is the translation, NULL where there is none', () => {
+    roundTrip(p.corpus, dbFile)
+    const db = new Database(dbFile, { readonly: true })
+    const dhp = p.apz.get('kn-dhp')!.pages[3]
+    const row = db.prepare(`SELECT s_text, s_type, p_type FROM entry e JOIN file f ON f.id = e.file_id
+      WHERE f.name = 'kn-dhp' AND page_idx = 3 AND entry_idx = ?`).get(dhp.entries.findIndex(t => t)) as any
+    expect(row.s_text).toBe(dhp.entries.find(t => t))
+    expect(row.s_type).toBe(row.p_type)
+    expect(one(db, "SELECT count(*) FROM entry e JOIN file f ON f.id = e.file_id WHERE f.name = 'vp-prj' AND s_text IS NOT NULL")).toBe(0)
+    expect(db.prepare('SELECT name FROM file WHERE pali_only = 1 ORDER BY name').pluck().all()).toEqual(['ap-kvu', 'ap-kvu-8', 'ap-pat', 'vp-prj'])
+    db.close()
+  })
+  it('full text search finds the translation', () => {
+    const db = new Database(dbFile, { readonly: true })
+    const m = buildMatch('භාග්‍යවතුන්', { exactWord: 0, matchPhrase: 0, wordDistance: 10 })
+    expect(m.ok).toBe(true)
+    const rows = m.ok ? runQuery(db, 'fts.candidates', { q: m.match, lang: 1, groups: '', limit: 100 }) : []
+    expect(rows.length).toBeGreaterThan(0)
+    expect(rows.every(r => r.d % 2 === 1)).toBe(true)
+    db.close()
+  })
+})
+
 describe.runIf(FULL)('full corpus', () => {
   const dbFile = path.join(tmp, 'full.db')
   let b: ReturnType<typeof buildAll>
@@ -183,6 +246,11 @@ describe.runIf(FULL)('full corpus', () => {
     const apz = loadApz(APZ_DIR)
     expect(validateApz(apz, b.corpus)).toEqual([])
     for (const n of ['dn-1', 'mn-1', 'sn-1', 'an-1', 'kn-dhp', 'kn-jat']) expect(apz.has(n), n).toBe(true)
+  })
+  it('the pitaka tree is tipitaka.lk\'s without aṭṭhakathā and anya', () => {
+    const t = pitakaTree(b.corpus)
+    expect(t.errors).toEqual([])
+    expect([...t.tree]).toEqual([...b.tree].filter(([k]) => isPitakaFile(k)))
   })
   it('round trip json -> db', () => roundTrip(b.corpus, dbFile))
   it('FTS finds >= 95% of the legacy matches', () => {

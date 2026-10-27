@@ -50,9 +50,11 @@ export interface WriteDbInput {
   meta: Record<string, string>
   alignments?: Alignments
   cst?: CstData
+  /** files without a translation (default: ap-pat) */
+  paliOnly?: (filename: string) => boolean
 }
 
-export function writeDb(outFile: string, { corpus, tree, order, entryNodes, meta, alignments, cst }: WriteDbInput): string[] {
+export function writeDb(outFile: string, { corpus, tree, order, entryNodes, meta, alignments, cst, paliOnly: isPaliOnly = isPaliOnlyFile }: WriteDbInput): string[] {
   for (const f of [outFile, outFile + '-journal', outFile + '-wal']) fs.rmSync(f, { force: true })
   const db = new Database(outFile)
   db.pragma('journal_mode = OFF')
@@ -72,7 +74,7 @@ export function writeDb(outFile: string, { corpus, tree, order, entryNodes, meta
 
   db.transaction(() => {
     corpus.files.forEach((f, i) => {
-      const id = i + 1, paliOnly = isPaliOnlyFile(f.filename)
+      const id = i + 1, paliOnly = isPaliOnly(f.filename)
       insFile.run(id, f.filename, f.bookId, f.pageOffset, f.collection ?? null, paliOnly ? 1 : 0, fileGroup(f.filename), f.pages.length)
       f.pages.forEach((p, pi) => insPage.run(id, pi, p.pageNum))
     })
@@ -93,7 +95,7 @@ export function writeDb(outFile: string, { corpus, tree, order, entryNodes, meta
     // entries, footnotes, fts
     let entryId = 0
     corpus.files.forEach((f, i) => {
-      const fid = i + 1, paliOnly = isPaliOnlyFile(f.filename), nodes = entryNodes.get(f.filename)!
+      const fid = i + 1, paliOnly = isPaliOnly(f.filename), nodes = entryNodes.get(f.filename)!
       let audioIdx = 0
       f.pages.forEach((p, pi) => {
         p.pali.entries.forEach((pe, ei) => {

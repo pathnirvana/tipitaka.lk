@@ -1,6 +1,7 @@
 /**
- * npm run build:data [-- --text-dir public/static/text] [--apz-dir public/static/text-apz] [--align-dir dev/alignments] [--out db] [--fixture] [--update-baseline]
+ * npm run build:data [-- --text-dir public/static/text] [--apz-dir public/static/text-apz] [--align-dir dev/alignments] [--out db] [--fixture] [--update-baseline] [--flavor pitaka]
  * Builds db/text.db + db/build-info.json + db/build-report.md and the static web data files.
+ * --flavor pitaka: db/pitaka-text.db, pitaka-build-info.json and pitaka-build-report.md of the pitaka.lk flavor (build/pitaka.ts).
  * The text JSON files are only read. The pitaka.lk translation files (text-apz) are validated against the Pāḷi.
  */
 import fs from 'node:fs'
@@ -17,12 +18,15 @@ import { Alignments, ALIGN_DIR } from './align'
 import { CstData } from './cst'
 import { writeSitemap, writeFixtureDict } from './emit'
 import { APZ_DIR, loadApz, validateApz, apzCoverage } from './apz'
+import { pitakaTree, pitakaCorpus } from './pitaka'
 
 const args = process.argv.slice(2)
 const flag = (name: string) => args.includes(name)
 const opt = (name: string, def: string) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : def }
 
 const fixture = flag('--fixture')
+const pitaka = opt('--flavor', 'lk') === 'pitaka'
+const prefix = pitaka ? 'pitaka-' : ''
 const textDir = opt('--text-dir', fixture ? 'e2e/fixtures/text' : 'public/static/text')
 const outDir = opt('--out', fixture ? 'e2e/fixtures/db' : 'db')
 const apzDir = opt('--apz-dir', fixture ? 'e2e/fixtures/text-apz' : APZ_DIR)
@@ -43,7 +47,7 @@ function main() {
   const v = validateCorpus(corpus.files, corpus.names)
   const apz = loadApz(apzDir)
   const apzErrors = validateApz(apz, corpus)
-  const treeRes = buildTree(corpus.files)
+  const treeRes = pitaka ? pitakaTree(corpus) : buildTree(corpus.files)
   if (fixture) { // a partial corpus leaves some base tree placeholders empty - drop them
     for (const [k, val] of treeRes.tree) if (!val.length) treeRes.tree.delete(k)
     treeRes.errors = treeRes.errors.filter(e => !e.startsWith('tree placeholder'))
@@ -69,10 +73,12 @@ function main() {
 
   const tree = treeRes.tree as Map<string, TreeTuple>
   const order = dfsOrder(tree)
-  const entryNodes = mapEntriesToNodes(corpus.files, tree, order)
+  const dbCorpus = pitaka ? pitakaCorpus(corpus, apz) : corpus
+  const entryNodes = mapEntriesToNodes(dbCorpus.files, tree, order)
 
   // report: warnings + differences with the v2 heading-count key mapping (A14)
   const cov = apzCoverage(apz)
+  if (pitaka) report.push(`- pitaka flavor: ${dbCorpus.files.length} files`)
   report.push(`- tree nodes: ${tree.size}`, `- text-apz: ${cov.files} files, ${cov.translated} of ${cov.entries} entries translated, ${cov.ai} AI fill-ins`)
   report.push('', `## Validation warnings (${v.warnings.length})`, '')
   const byCode: Record<string, number> = {}
@@ -80,7 +86,7 @@ function main() {
   for (const [c, n] of Object.entries(byCode)) report.push(`- ${c}: ${n}`)
   report.push('', '<details><summary>all warnings</summary>', '', ...v.warnings.map(w => `- ${w.file} ${w.where} [${w.code}] ${w.msg}`), '', '</details>', '')
   report.push('## Entry → sutta key mapping differences vs v2 heading counting (A14)', '')
-  for (const f of corpus.files) {
+  for (const f of dbCorpus.files) {
     const legacy = legacyHeadingMapping(f, order), mine = entryNodes.get(f.filename)!
     let diff = 0
     legacy.forEach((pg, pi) => pg.forEach((k, ei) => { if (k && k !== (mine[pi][ei] >= 0 ? order[mine[pi][ei]] : '')) diff++ }))
@@ -89,29 +95,34 @@ function main() {
 
   fs.mkdirSync(outDir, { recursive: true })
   const queriesSql = fs.readFileSync('server/engine/queries.sql', 'utf-8')
-  const alignments = new Alignments(alignDir)
+  const alignments = pitaka ? undefined : new Alignments(alignDir)
   const cst = new CstData()
   // api responses are cached for a year under api_hash: it covers everything they depend on - the texts, the
   // alignments, the queries and engine code (response shapes) and the dictionary db (build/dict.ts stamps lk_built_at)
   const engineSrc = fs.existsSync('server/engine') ? fs.readdirSync('server/engine').filter(f => f.endsWith('.go') && !f.endsWith('_test.go')).sort()
     .map(f => fs.readFileSync(path.join('server/engine', f), 'utf-8')).join('\n') : ''
-  const apiHash = crypto.createHash('sha256').update(`${corpus.contentHash}|${alignments.hash}|${SCHEMA_VERSION}|${queriesSql}|${engineSrc}|${dictStamp('db/dict.db')}|${cst.hash}`).digest('hex').slice(0, 16)
+  const apiHash = crypto.createHash('sha256').update(`${dbCorpus.contentHash}|${alignments?.hash ?? ''}|${SCHEMA_VERSION}|${queriesSql}|${engineSrc}|${dictStamp('db/dict.db')}|${cst.hash}`).digest('hex').slice(0, 16)
   let gitCommit = ''
   try { gitCommit = execSync('git rev-parse --short HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim() } catch { /* not a git checkout */ }
   const meta: Record<string, string> = {
-    schema_version: SCHEMA_VERSION, content_hash: corpus.contentHash, api_hash: apiHash,
+    schema_version: SCHEMA_VERSION, content_hash: dbCorpus.contentHash, api_hash: apiHash,
     db_version: String(dbVersion()), git_commit: gitCommit, built_at: new Date().toISOString(),
   }
-  const dbFile = path.join(outDir, 'text.db')
+  if (pitaka) meta.flavor = 'pitaka'
+  const dbFile = path.join(outDir, prefix + 'text.db')
   const t1 = Date.now()
-  const cstReport = writeDb(dbFile, { corpus, tree, order, entryNodes, meta, alignments, cst })
+  const cstReport = writeDb(dbFile, { corpus: dbCorpus, tree, order, entryNodes, meta, alignments, cst, paliOnly: pitaka ? f => !apz.has(f) : undefined })
   report.push('', ...cstReport)
-  report.push('', ...alignments.report())
+  if (alignments) report.push('', ...alignments.report())
   const size = fs.statSync(dbFile).size
   console.log(`wrote ${dbFile} (${(size / 1e6).toFixed(1)} MB) in ${((Date.now() - t1) / 1000).toFixed(1)} s`)
   report.splice(5, 0, `- db: ${dbFile} ${(size / 1e6).toFixed(1)} MB, api_hash ${apiHash}, db_version ${meta.db_version}`)
-  fs.writeFileSync(path.join(outDir, 'build-info.json'), JSON.stringify({ api_hash: apiHash, db_version: parseInt(meta.db_version), content_hash: corpus.contentHash, schema_version: SCHEMA_VERSION }, null, 1) + '\n')
-  fs.writeFileSync(path.join(outDir, 'build-report.md'), report.join('\n') + '\n')
+  fs.writeFileSync(path.join(outDir, prefix + 'build-info.json'), JSON.stringify({ api_hash: apiHash, db_version: parseInt(meta.db_version), content_hash: dbCorpus.contentHash, schema_version: SCHEMA_VERSION }, null, 1) + '\n')
+  fs.writeFileSync(path.join(outDir, prefix + 'build-report.md'), report.join('\n') + '\n')
+  if (pitaka) { // the web data files and the dictionary are tipitaka.lk's
+    console.log(`done in ${((Date.now() - t0) / 1000).toFixed(1)} s. See ${outDir}/${prefix}build-report.md`)
+    return
+  }
 
   if (fixture) writeFixtureDict(path.join(outDir, 'dict.db'))
   // static data used by the web app (also needed by the e2e tests which only build the fixture dbs)

@@ -1,6 +1,6 @@
 # pitaka.lk flavor: design and plan
 
-Status: agreed design (2026-10-27). Phase 1 done on master (2026-10-27). Written in the pitaka.lk session. The implementation happens
+Status: agreed design (2026-10-27). Phase 1 done on master; Phase 2 done on `pitaka-flavor` (2026-10-27). Written in the pitaka.lk session. The implementation happens
 in a fresh session started in this repo, on its own branch (`pitaka-flavor`), so that it doesn't disturb
 work on master.
 
@@ -85,8 +85,12 @@ It is a **second flavor of this repo**, not a fork:
   - No aṭṭhakathā files or nodes in the tree, and no footnote rows.
   - The `align` table: the BJT word alignments don't apply to APZ (they're hash-checked, so they drop out).
     Leave it empty.
-  - FTS over Pali and APZ (same docid scheme `entry.id*2 + lang`), written to its own `db/pitaka-fts.db`.
-    tipitaka.lk's `fts.db` is 463 MB, so check this file's size for the apps.
+  - FTS over Pali and APZ (same docid scheme `entry.id*2 + lang`). The FTS tables are inside text.db (`db/fts.db` is a
+    v2 leftover), so there is no separate search db. `pitaka-text.db` is 154 MB; tipitaka.lk's `text.db` is 449 MB.
+  - The Pāḷi text is kept exactly as it is, `{n}` footnote markers included, so the audio hashes, word taps and search
+    tokens stay valid. The pitaka reader and SSR don't render the markers.
+  - The tree is built from the BJT files without aṭṭhakathā and `anya-` (the Visuddhimagga). So the keys, positions and
+    Sinhala titles are tipitaka.lk's, and APZ's AI-marked headings never become titles.
   - Gāthā entries: the Sinhala uses gāthā styling (indentation) but isn't split into lines the way the Pali is.
   - Keep `audio_idx/audio_ph` (the audio is aligned to the Pali entries, so it carries over unchanged).
 - **Dictionaries:** the same `db/dict.db`, with lookups limited to the five codes. Keep the full db unless size
@@ -148,7 +152,13 @@ It is a **second flavor of this repo**, not a fork:
 1. Import sin_apz into `public/static/text-apz/`, with validation (counts and coverage report). **Done**:
    `dev/apz-import/import.ts` (report.md, gaps.tsv), `build/apz.ts` (`build:data` fails on a mismatch), 108 files,
    70,684 of 70,988 entries translated, 1,755 AI fill-ins.
-2. Data build flavor: `db/pitaka-text.db`, with tests (entry counts, FTS over APZ, no aṭṭhakathā/footnotes).
+2. Data build flavor: `db/pitaka-text.db`, with tests (entry counts, FTS over APZ, no aṭṭhakathā/footnotes). **Done**:
+   `npm run build:data -- --flavor pitaka` (build/pitaka.ts). It also writes `pitaka-build-info.json` and
+   `pitaka-build-report.md`, and `--fixture` builds `e2e/fixtures/db/pitaka-text.db` from `e2e/fixtures/text-apz`
+   (`make-fixtures.ts --apz`). Checked on 2026-10-27:
+   - All 5,879 keys of `nodeid_mapping.map` exist.
+   - All 7,003 tipitaka-new keys with sin_apz exist.
+   - The only other tipitaka-new difference is kn-ps-1-1-16 there vs kn-ps-1-1-21 here, in kn-ps, which has no APZ.
 3. Server flavor and SSR-lite, with `go test`.
 4. `web-pitaka/`: reader with the 4 modes, tree, title and full-text search, dictionary (5 dicts), audio, map,
    names, bookmarks, settings, themes. Unit tests plus Playwright for the reading modes and the narrow-screen
@@ -167,6 +177,7 @@ It is a **second flavor of this repo**, not a fork:
 - Lighthouse/mobile check of the reader on a narrow phone, including the side-by-side fallback.
 
 ## Open items
+- Visuddhimagga (`anya-vm`) is left out of the pitaka tree for now (not Tipitaka). To include it, change `isPitakaFile`.
 - The signing keystore for `lk.pitaka.saralatipitaka`.
 - Confirm the iOS bundle id of App Store app 1434955293, and that the Apple account can still publish to it.
 - How to mark AI fill-ins in the UI (decide during QA).
