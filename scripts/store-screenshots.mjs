@@ -4,6 +4,7 @@
 // scripts/store-screenshots.mjs)
 //   npm run build:web && npm run build:server && node scripts/store-screenshots.mjs [output…]
 //   -> release/store-screenshots/<output>/<n>-<scene>.png
+// --flavor pitaka: pitaka.lk's (npm run build:web:pitaka, db/pitaka-text.db) -> release/store-screenshots-pitaka/<output>/…
 import { spawn } from 'node:child_process'
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -11,8 +12,10 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 import { chromium } from 'playwright'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const OUT = join(ROOT, 'release/store-screenshots')
-const PORT = 8419, BASE = `http://127.0.0.1:${PORT}`
+const args = process.argv.slice(2)
+const PITAKA = args.includes('--flavor') && args[args.indexOf('--flavor') + 1] === 'pitaka'
+const OUT = join(ROOT, PITAKA ? 'release/store-screenshots-pitaka' : 'release/store-screenshots')
+const PORT = 8419, BASE = `http://127.0.0.1:${PORT}${PITAKA ? '/main' : ''}`
 const FONTS = pathToFileURL(join(ROOT, 'web/src/assets/fonts')).href
 
 /** store image sizes; css: the width of the screen the app is shown at (phone, tablet or desktop layout) */
@@ -26,7 +29,7 @@ const OUTPUTS = {
   'microsoft-windows': { w: 3200, h: 1800, css: 1600, desktop: true },
 }
 
-const SCENES = [
+const LK_SCENES = [
   { id: 'translation', title: 'පාළි පෙළ සහ සිංහල පරිවර්තනය', phoneTitle: 'සිංහල පරිවර්තනය සමඟ', sub: 'සම්පූර්ණ බුද්ධ ජයන්ති ත්‍රිපිටකය – ඡේදයෙන් ඡේදයට එක පෙළට' },
   { id: 'audio', title: 'සජ්ඣායනාවට සවන් දෙන්න', sub: 'සජ්ඣායනා කරන තැන පෙළෙහි ඉස්මතු වේ' },
   { id: 'dictionary', title: 'වචනයක් තට්ටු කර තේරුම බලන්න', desktopTitle: 'වචනයක් ක්ලික් කර තේරුම බලන්න', sub: 'පාළි-සිංහල සහ පාළි-ඉංග්‍රීසි ශබ්දකෝෂ, DPD ව්‍යාකරණ සමඟ' },
@@ -37,10 +40,24 @@ const SCENES = [
   { id: 'themes', title: 'ඔබ කැමති වර්ණයෙන් කියවන්න', sub: 'ආලෝකමත්, sepia, කොළ සහ අඳුරු – අකුරු ප්‍රමාණය ද ඔබට ගැලපෙන ලෙස' },
 ]
 
+// pitaka.lk: the Sinhala translation in its reading modes (the sutta nikāyas are translated, the vinaya and abhidhamma not yet)
+const PITAKA_SCENES = [
+  { id: 'sinhala', title: 'සැමට තේරෙන සරල සිංහලෙන්', sub: 'දීඝ, මජ්ඣිම, සංයුත්ත සහ අංගුත්තර නිකාය සම්පූර්ණයෙන්ම, ඛුද්දක නිකායේ කොටස් සමඟ' },
+  { id: 'interleaved', title: 'පාළි පෙළ සමඟ එක යට එක', sub: 'එක් එක් පාළි ඡේදය යටින් එහි සරල සිංහල අර්ථය' },
+  { id: 'modes', title: 'කියවන ආකාර හතරක්', sub: 'සිංහල පමණක්, පාළි පමණක්, එක යට එක හෝ දෙපසින් – ඔබ කැමති ලෙස' },
+  { id: 'audio', title: 'සජ්ඣායනාවට සවන් දෙන්න', sub: 'සජ්ඣායනා කරන තැන පෙළෙහි ඉස්මතු වේ' },
+  { id: 'dictionary', title: 'පාළි වචනයක් තට්ටු කර තේරුම බලන්න', desktopTitle: 'පාළි වචනයක් ක්ලික් කර තේරුම බලන්න', sub: 'පාළි-සිංහල සහ පාළි-ඉංග්‍රීසි ශබ්දකෝෂ, DPD ව්‍යාකරණ සමඟ' },
+  { id: 'search', title: 'මුළු ත්‍රිපිටකයම සොයන්න', sub: 'සිංහල පරිවර්තනය, පාළි පෙළ සහ සූත්‍ර නාම – සිංහල හෝ singlish අකුරෙන්' },
+  { id: 'map', title: 'බුදුරජාණන් වහන්සේ වැඩ සිටි තැන්', sub: 'සූත්‍රවල ස්ථාන, පුද්ගලයන් සහ චාරිකා සිතියමක' },
+  { id: 'themes', title: 'ඔබ කැමති වර්ණයෙන් කියවන්න', sub: 'ආලෝකමත්, sepia, කොළ සහ අඳුරු – අකුරු ප්‍රමාණය ද ඔබට ගැලපෙන ලෙස' },
+]
+const SCENES = PITAKA ? PITAKA_SCENES : LK_SCENES
+
 let browser
-async function appPage(css, cssH, { theme = 'light', fontSize = 0 } = {}) {
+async function appPage(css, cssH, { theme = 'light', fontSize = 0, readingMode = 'sinh' } = {}) {
   const ctx = await browser.newContext({ viewport: { width: css, height: cssH }, deviceScaleFactor: 3, isMobile: css < 600, hasTouch: css < 600 })
-  await ctx.addInitScript(s => localStorage.setItem('tipitaka.lk-settings-2', JSON.stringify(s)),
+  if (PITAKA) await ctx.addInitScript(s => localStorage.setItem('pitaka.lk-settings-1', JSON.stringify(s)), { theme, fontSize, readingMode, panelPinned: false })
+  else await ctx.addInitScript(s => localStorage.setItem('tipitaka.lk-settings-2', JSON.stringify(s)),
     { theme, fontSize, panelPinned: false, defaultColumns: 2, tabView: 'tabs', autoHideSearchBar: false })
   // the recitation timings: the CDN allows only the tipitaka.lk origin
   await ctx.route(/^https:\/\/sajjha\.sgp1\.cdn\.digitaloceanspaces\.com\/.*\.(json|txt)$/, async r => {
@@ -74,6 +91,7 @@ const shot = async (page, file) => { await page.screenshot({ path: file }); awai
 async function render(scene, css, cssH, dir) {
   const wide = css >= 1000
   const file = join(dir, `${scene.id}.png`)
+  if (PITAKA) return renderPitaka(scene, css, cssH, dir, wide, file)
   switch (scene.id) {
     case 'translation': {
       const p = await appPage(css, cssH)
@@ -146,6 +164,70 @@ async function render(scene, css, cssH, dir) {
   }
 }
 
+async function renderPitaka(scene, css, cssH, dir, wide, file) {
+  switch (scene.id) {
+    case 'sinhala': {
+      const p = await appPage(css, cssH)
+      await open(p, '/mn-1-1')
+      return shot(p, file)
+    }
+    case 'interleaved': {
+      const p = await appPage(css, cssH, { readingMode: 'interleaved' })
+      await open(p, '/kn-dhp-1')
+      return shot(p, file)
+    }
+    case 'modes': { // wide: side by side; a phone: the panel with the mode picker over the interleaved text
+      const p = await appPage(css, cssH, { readingMode: wide ? 'side' : 'interleaved' })
+      await open(p, '/dn-2')
+      if (!wide) {
+        await p.getByTestId('panel-toggle').click()
+        await p.getByTestId('panel-mode').waitFor()
+        await p.waitForTimeout(600)
+      }
+      return shot(p, file)
+    }
+    case 'audio': {
+      const p = await appPage(css, cssH, { readingMode: 'interleaved' })
+      await open(p, '/dn-1-1')
+      await paragraphMenu(p, 1)
+      await p.locator('.menu-item', { hasText: 'අසන්න' }).click()
+      await p.getByTestId('audio-control').waitFor()
+      await p.locator('.entry-text.audio-playing').first().waitFor()
+      await p.waitForTimeout(9000)
+      await p.mouse.move(1, cssH / 2)
+      await p.waitForTimeout(500)
+      return shot(p, file)
+    }
+    case 'dictionary': {
+      const p = await appPage(css, cssH, { readingMode: 'interleaved' })
+      await open(p, '/dn-1-1')
+      await clickWord(p, 'භගවා')
+      return shot(p, file)
+    }
+    case 'search': {
+      const p = await appPage(css, cssH)
+      await open(p, '/fts/නිවන')
+      await p.waitForTimeout(800)
+      return shot(p, file)
+    }
+    case 'map': {
+      const p = await appPage(css, cssH)
+      await open(p, '/map?journey=mahaparinibbana')
+      await p.waitForTimeout(2500)
+      return shot(p, file)
+    }
+    case 'themes': {
+      const parts = []
+      for (const theme of ['light', 'sepia', 'dark']) {
+        const p = await appPage(css, cssH, { theme })
+        await open(p, '/kn-dhp-1')
+        parts.push({ file: await shot(p, join(dir, `themes-${theme}.png`)) })
+      }
+      return parts
+    }
+  }
+}
+
 /** the caption band, the side margins and the corner radius of the screen (which runs off the bottom by the radius) */
 function frameBox(o) {
   const portrait = o.h > o.w
@@ -176,10 +258,10 @@ function frameHtml(o, scene, img) {
   </style></head><body><div class="caption"><h1>${heading}</h1><p>${scene.sub}</p></div>${body}</body></html>`
 }
 
-const args = process.argv.slice(2)
 const onlyScenes = args.filter(a => a.startsWith('--scene=')).map(a => a.slice(8))
-const want = args.filter(a => !a.startsWith('--')).length ? args.filter(a => !a.startsWith('--')) : Object.keys(OUTPUTS)
-const server = spawn(join(ROOT, 'server/bin/tipitaka_lk'), ['-no-open', '-listen', `127.0.0.1:${PORT}`, '-root-path', '.', '-db-dir', 'db'], { cwd: ROOT, stdio: 'ignore' })
+const outputs = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--flavor')
+const want = outputs.length ? outputs : Object.keys(OUTPUTS)
+const server = spawn(join(ROOT, 'server/bin/tipitaka_lk'), [...(PITAKA ? ['-flavor', 'pitaka'] : []), '-no-open', '-listen', `127.0.0.1:${PORT}`, '-root-path', '.', '-db-dir', 'db'], { cwd: ROOT, stdio: 'ignore' })
 try {
   for (let i = 0; i < 50; i++) { try { if ((await fetch(BASE + '/api/health')).ok) break } catch { /* starting */ } await new Promise(r => setTimeout(r, 200)) }
   browser = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'] })

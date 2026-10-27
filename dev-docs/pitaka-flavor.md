@@ -203,12 +203,17 @@ It is a **second flavor of this repo**, not a fork:
 
 ## Open items
 - **Audio CDN CORS**: the recitation CDN (sajjha…digitaloceanspaces.com) allows only tipitaka.lk's origins. Add
-  `https://pitaka.lk` before launch, or the website gets no audio (the apps go through the engine).
-- **Icons**: `web-pitaka/public/static/images` uses pitaka.lk's 180 px app logo, scaled up to 192 and 512 px. A
-  high-resolution logo is needed for the web manifest and the store apps.
+  `https://pitaka.lk` before launch, or the website gets no audio (the apps go through the engine). The maintainer
+  will add it.
+- **Icons**: `web-pitaka/public/static/images` uses pitaka.lk's 180 px app logo, scaled up to 192 and 512 px. A new
+  logo is being chosen from drawn options (cream disc, saffron, dhamma wheel, ola leaf: සරල සිංහල large, ත්‍රිපිටකය
+  under it); the icons, favicon, og image and Play feature graphic are then generated from it like
+  `scripts/make-icons.mjs` does for tipitaka.lk.
+- Store screenshots: `node scripts/store-screenshots.mjs --flavor pitaka` -> `release/store-screenshots-pitaka/`
+  (Play phone and tablets, iPhone 6.9", iPad 13"). The Sinhala captions need the maintainer's review.
 - The Android/iOS packaging of web-pitaka (`build:web:pitaka:app` into the app pipeline: android-assets.sh,
   build-apple.sh) is Phase 6.
-- Visuddhimagga (`anya-vm`) is left out of the pitaka tree for now (not Tipitaka). To include it, change `isPitakaFile`.
+- Visuddhimagga (`anya-vm`) is left out of the pitaka tree (decided 2026-10-27: not Tipitaka).
 - The signing keystore for `lk.pitaka.saralatipitaka`.
 - Confirm the iOS bundle id of App Store app 1434955293, and that the Apple account can still publish to it.
 - How to mark AI fill-ins in the UI (decide during QA).

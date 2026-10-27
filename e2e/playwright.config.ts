@@ -4,7 +4,7 @@ import { defineConfig, devices } from '@playwright/test'
  * E2E tests run the real Go server (server/bin/tipitaka_lk) with the built web app (web/dist) and the
  * fixture databases (e2e/fixtures/db, built from e2e/fixtures/text by `npm run build:fixture`).
  * The android-sim project loads the offline app build (web/dist-app) with a simulated native bridge.
- * The pitaka-* projects test the pitaka.lk reader (web-pitaka/dist, server -flavor pitaka) under /main/.
+ * The pitaka-* projects test the pitaka.lk reader (web-pitaka/dist, server -flavor pitaka) under /main/, in chromium and webkit.
  */
 const PORT = 8410, PITAKA_PORT = 8411
 const LK = /android\.spec|pitaka\.spec/
@@ -37,5 +37,7 @@ export default defineConfig({
     { name: 'android-sim', testMatch: /android\.spec/, use: { ...devices['Pixel 5'] } },
     { name: 'pitaka-desktop', testMatch: /pitaka\.spec/, use: { ...devices['Desktop Chrome'], viewport: { width: 1400, height: 900 }, baseURL: `http://127.0.0.1:${PITAKA_PORT}/main/` } },
     { name: 'pitaka-phone', testMatch: /pitaka\.spec/, use: { ...devices['Pixel 5'], baseURL: `http://127.0.0.1:${PITAKA_PORT}/main/` } },
+    { name: 'pitaka-safari', testMatch: /pitaka\.spec/, use: { ...devices['Desktop Safari'], viewport: { width: 1400, height: 900 }, baseURL: `http://127.0.0.1:${PITAKA_PORT}/main/` } },
+    { name: 'pitaka-iphone', testMatch: /pitaka\.spec/, use: { ...devices['iPhone 12'], baseURL: `http://127.0.0.1:${PITAKA_PORT}/main/` } },
   ],
 })

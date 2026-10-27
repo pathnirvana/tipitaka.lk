@@ -18,7 +18,7 @@ step builds; npm run build:web && npm run build:web:app && npm run build:web:pit
 PROJECTS=()
 if ! node -e "import('@playwright/test').then(async ({ firefox }) => { await (await firefox.launch()).close() }).catch(() => process.exit(1))" 2>/dev/null; then
   echo "warning: firefox does not start here - the e2e tests run without it"
-  PROJECTS=(--project desktop-chromium --project desktop-webkit --project mobile-chrome --project mobile-webkit --project android-sim --project pitaka-desktop --project pitaka-phone)
+  PROJECTS=(--project desktop-chromium --project desktop-webkit --project mobile-chrome --project mobile-webkit --project android-sim --project pitaka-desktop --project pitaka-phone --project pitaka-safari --project pitaka-iphone)
 fi
 step "e2e (chromium, webkit, firefox, phones, android bridge)"; npx playwright test -c e2e/playwright.config.ts "${PROJECTS[@]}"
 echo; echo "all checks passed"
