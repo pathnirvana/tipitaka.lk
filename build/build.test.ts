@@ -9,6 +9,7 @@ import { buildTree, dfsOrder, type TreeTuple } from './tree'
 import { runLegacyBuildTree } from './legacy-tree'
 import { mapEntriesToNodes } from './entry-nodes'
 import { validateCorpus, toBaseline, newWarnings } from './validate'
+import { APZ_DIR, loadApz, validateApz, type ApzFile } from './apz'
 import { writeDb, fileGroup, audioHash } from './write-db'
 import { Alignments } from './align'
 import { parseQueries } from '../shared/queries'
@@ -142,6 +143,25 @@ describe('fixture corpus', () => {
     expect(newWarnings(w, toBaseline(w))).toEqual([])
     expect(newWarnings([...w, w[0]], toBaseline(w)).length).toBe(1)
   })
+  it('a text-apz file must match the pali of its text file', () => {
+    const corpus = loadCorpus('e2e/fixtures/text')
+    const f = corpus.files[corpus.names.indexOf('kn-khp')]
+    const good = (): ApzFile => ({ filename: 'kn-khp', pages: f.pages.map(p => ({ pageNum: p.pageNum, entries: p.pali.entries.map(() => 'x') })) })
+    const codes = (a: ApzFile, name = 'kn-khp') => validateApz(new Map([[name, a]]), corpus).map(e => e.code)
+    expect(codes(good())).toEqual([])
+    const ai = good(); ai.pages[0].ai = [0, 1]
+    expect(codes(ai)).toEqual([])
+    const fewer = good(); fewer.pages[1].entries.pop()
+    expect(codes(fewer)).toEqual(['apzEntryCount'])
+    const pages = good(); pages.pages.pop()
+    expect(codes(pages)).toEqual(['apzPages'])
+    const num = good(); num.pages[0].pageNum++
+    expect(codes(num)).toEqual(['apzPageNum'])
+    const badAi = good(); badAi.pages[0].ai = [1, 0]
+    expect(codes(badAi)).toEqual(['apzAi'])
+    expect(codes(good(), 'kn-xyz')).toEqual(['apzFile'])
+    expect(codes(good(), 'kn-dhp')).toContain('filename')
+  })
 })
 
 describe.runIf(FULL)('full corpus', () => {
@@ -158,6 +178,11 @@ describe.runIf(FULL)('full corpus', () => {
   })
   it('validation has no errors', () => {
     expect(validateCorpus(b.corpus.files, b.corpus.names).errors).toEqual([])
+  })
+  it('text-apz matches the pali and covers the four nikāyas', () => {
+    const apz = loadApz(APZ_DIR)
+    expect(validateApz(apz, b.corpus)).toEqual([])
+    for (const n of ['dn-1', 'mn-1', 'sn-1', 'an-1', 'kn-dhp', 'kn-jat']) expect(apz.has(n), n).toBe(true)
   })
   it('round trip json -> db', () => roundTrip(b.corpus, dbFile))
   it('FTS finds >= 95% of the legacy matches', () => {

@@ -1,7 +1,7 @@
 /**
- * npm run build:data [-- --text-dir public/static/text] [--align-dir dev/alignments] [--out db] [--fixture] [--update-baseline]
+ * npm run build:data [-- --text-dir public/static/text] [--apz-dir public/static/text-apz] [--align-dir dev/alignments] [--out db] [--fixture] [--update-baseline]
  * Builds db/text.db + db/build-info.json + db/build-report.md and the static web data files.
- * The text JSON files are only read.
+ * The text JSON files are only read. The pitaka.lk translation files (text-apz) are validated against the Pāḷi.
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -16,6 +16,7 @@ import { writeDb, SCHEMA_VERSION } from './write-db'
 import { Alignments, ALIGN_DIR } from './align'
 import { CstData } from './cst'
 import { writeSitemap, writeFixtureDict } from './emit'
+import { APZ_DIR, loadApz, validateApz, apzCoverage } from './apz'
 
 const args = process.argv.slice(2)
 const flag = (name: string) => args.includes(name)
@@ -24,6 +25,7 @@ const opt = (name: string, def: string) => { const i = args.indexOf(name); retur
 const fixture = flag('--fixture')
 const textDir = opt('--text-dir', fixture ? 'e2e/fixtures/text' : 'public/static/text')
 const outDir = opt('--out', fixture ? 'e2e/fixtures/db' : 'db')
+const apzDir = opt('--apz-dir', fixture ? 'e2e/fixtures/text-apz' : APZ_DIR)
 const alignDir = opt('--align-dir', fixture ? 'e2e/fixtures/alignments' : ALIGN_DIR)
 const baselineFile = 'build/validation-baseline.json'
 
@@ -39,12 +41,14 @@ function main() {
 
   const report: string[] = [`# Build report`, '', `- text dir: ${textDir}`, `- files: ${corpus.files.length}`, `- content hash: ${corpus.contentHash}`]
   const v = validateCorpus(corpus.files, corpus.names)
+  const apz = loadApz(apzDir)
+  const apzErrors = validateApz(apz, corpus)
   const treeRes = buildTree(corpus.files)
   if (fixture) { // a partial corpus leaves some base tree placeholders empty - drop them
     for (const [k, val] of treeRes.tree) if (!val.length) treeRes.tree.delete(k)
     treeRes.errors = treeRes.errors.filter(e => !e.startsWith('tree placeholder'))
   }
-  const errors = [...v.errors.map(e => `${e.file} ${e.where} [${e.code}] ${e.msg}`), ...treeRes.errors]
+  const errors = [...[...v.errors, ...apzErrors].map(e => `${e.file} ${e.where} [${e.code}] ${e.msg}`), ...treeRes.errors]
   if (errors.length) {
     console.error(`\n${errors.length} VALIDATION ERRORS:\n` + errors.slice(0, 100).join('\n'))
     process.exit(1)
@@ -68,7 +72,9 @@ function main() {
   const entryNodes = mapEntriesToNodes(corpus.files, tree, order)
 
   // report: warnings + differences with the v2 heading-count key mapping (A14)
-  report.push(`- tree nodes: ${tree.size}`, '', `## Validation warnings (${v.warnings.length})`, '')
+  const cov = apzCoverage(apz)
+  report.push(`- tree nodes: ${tree.size}`, `- text-apz: ${cov.files} files, ${cov.translated} of ${cov.entries} entries translated, ${cov.ai} AI fill-ins`)
+  report.push('', `## Validation warnings (${v.warnings.length})`, '')
   const byCode: Record<string, number> = {}
   for (const w of v.warnings) byCode[w.code] = (byCode[w.code] || 0) + 1
   for (const [c, n] of Object.entries(byCode)) report.push(`- ${c}: ${n}`)

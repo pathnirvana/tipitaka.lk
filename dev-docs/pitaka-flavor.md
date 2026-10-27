@@ -1,6 +1,6 @@
 # pitaka.lk flavor: design and plan
 
-Status: agreed design, not started (2026-10-27). Written in the pitaka.lk session. The implementation happens
+Status: agreed design (2026-10-27). Phase 1 done on master (2026-10-27). Written in the pitaka.lk session. The implementation happens
 in a fresh session started in this repo, on its own branch (`pitaka-flavor`), so that it doesn't disturb
 work on master.
 
@@ -145,7 +145,9 @@ It is a **second flavor of this repo**, not a fork:
   (in the tipitaka-new codebase; note its arbitrary-SQL hole, v2-bugs A30).
 
 ## Phases
-1. Import sin_apz into `public/static/text-apz/`, with validation (counts and coverage report).
+1. Import sin_apz into `public/static/text-apz/`, with validation (counts and coverage report). **Done**:
+   `dev/apz-import/import.ts` (report.md, gaps.tsv), `build/apz.ts` (`build:data` fails on a mismatch), 108 files,
+   70,684 of 70,988 entries translated, 1,755 AI fill-ins.
 2. Data build flavor: `db/pitaka-text.db`, with tests (entry counts, FTS over APZ, no aṭṭhakathā/footnotes).
 3. Server flavor and SSR-lite, with `go test`.
 4. `web-pitaka/`: reader with the 4 modes, tree, title and full-text search, dictionary (5 dicts), audio, map,

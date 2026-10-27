@@ -78,8 +78,8 @@ case "${1:-}" in
 esac
 
 say "0/6 getting the latest text from github (other proofreaders' commits)"
-if [ -n "$(git status --porcelain -- public/static/text)" ]; then
-  echo "public/static/text has uncommitted changes - commit or stash them first"; exit 1
+if [ -n "$(git status --porcelain -- public/static/text public/static/text-apz)" ]; then
+  echo "public/static/text or text-apz has uncommitted changes - commit or stash them first"; exit 1
 fi
 git fetch origin
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
