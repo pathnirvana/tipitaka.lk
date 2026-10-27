@@ -3,6 +3,7 @@ package engine
 import (
 	"context"
 	"encoding/json"
+	"slices"
 	"sort"
 	"strings"
 )
@@ -139,7 +140,30 @@ func (e *Engine) Dicts(ctx context.Context) ([]Dict, error) {
 			return nil, err
 		}
 	}
+	if e.Meta["flavor"] == "pitaka" {
+		out = slices.DeleteFunc(out, func(d Dict) bool { return !slices.Contains(PitakaDicts, d.Code) })
+	}
 	return out, nil
+}
+
+// PitakaDicts: the dictionaries of the pitaka.lk flavor (text.db meta flavor = pitaka, build/pitaka.ts)
+var PitakaDicts = []string{"dpd", "si-buddhadatta", "si-sumangala", "en-ncped", "en-dppn"}
+
+// dictsFor: the asked dictionaries the flavor has; pitaka: all of its own when it has none of them (or none is asked)
+func (e *Engine) dictsFor(dicts []string) []string {
+	if e.Meta["flavor"] != "pitaka" {
+		return dicts
+	}
+	var out []string
+	for _, d := range dicts {
+		if slices.Contains(PitakaDicts, d) {
+			out = append(out, d)
+		}
+	}
+	if len(out) == 0 {
+		return PitakaDicts
+	}
+	return out
 }
 
 func placeholders(n int) string { return strings.Repeat(",?", n)[1:] }

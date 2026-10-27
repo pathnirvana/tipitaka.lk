@@ -9,7 +9,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-// DBs holds read-only connections to text.db and dict.db.
+// DBs holds read-only connections to text.db (pitaka-text.db) and dict.db.
 type DBs struct {
 	Text *sql.DB
 	Dict *sql.DB
@@ -18,8 +18,8 @@ type DBs struct {
 // openRO: engine.OpenRO (strictly read-only)
 func openRO(path string) (*sql.DB, error) { return engine.OpenRO(path) }
 
-func OpenDBs(dir string) (*DBs, error) {
-	text, err := openRO(filepath.Join(dir, "text.db"))
+func OpenDBs(dir, textDB string) (*DBs, error) {
+	text, err := openRO(filepath.Join(dir, textDB))
 	if err != nil {
 		return nil, err
 	}

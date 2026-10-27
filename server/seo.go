@@ -4,13 +4,15 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"slices"
 	"strings"
 	"sync"
 )
 
 // SEO (tipitaka.app static.go): robots.txt and XML sitemaps generated from the tree in text.db. Every sutta is two
 // pages for search engines, the pali text (/<key>/pali) and the sinhala translation (/<key>/sinh), linked to each other
-// with hreflang (ssr.go). The two sitemaps hold ~16000 urls each (a sitemap holds 50000 at most).
+// with hreflang (ssr.go). The two sitemaps hold ~16000 urls each (a sitemap holds 50000 at most). The pitaka flavor
+// has one page per sutta: one sitemap, si.xml (its robots.txt is pitaka.lk's own, outside /main).
 
 func (a *App) handleRobots(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
@@ -22,7 +24,7 @@ func (a *App) handleSitemapIndex(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/xml; charset=utf-8")
 	w.Header().Set("Cache-Control", "public, max-age=86400")
 	fmt.Fprint(w, `<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`)
-	for _, l := range []string{"pali", "sinh"} {
+	for _, l := range a.sitemapLangs() {
 		fmt.Fprintf(w, "<sitemap><loc>%s/sitemaps/%s.xml</loc></sitemap>", a.site, l)
 	}
 	fmt.Fprint(w, `</sitemapindex>`)
@@ -30,7 +32,7 @@ func (a *App) handleSitemapIndex(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) handleSitemap(w http.ResponseWriter, r *http.Request) {
 	lang, _ := strings.CutSuffix(r.PathValue("file"), ".xml")
-	if lang != "pali" && lang != "sinh" {
+	if !slices.Contains(a.sitemapLangs(), lang) {
 		http.NotFound(w, r)
 		return
 	}
@@ -42,16 +44,27 @@ func (a *App) handleSitemap(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/xml; charset=utf-8")
 	w.Header().Set("Cache-Control", "public, max-age=86400")
 	fmt.Fprint(w, `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`)
-	if lang == "sinh" {
+	if lang != "pali" {
 		fmt.Fprintf(w, "<url><loc>%s/</loc></url>", a.site)
 	}
 	for _, n := range nodes {
+		if !a.fl.langs {
+			fmt.Fprintf(w, "<url><loc>%s/%s</loc></url>", a.site, n.key)
+			continue
+		}
 		if lang == "sinh" && n.paliOnly { // no translation: the page would only repeat the pali
 			continue
 		}
 		fmt.Fprintf(w, "<url><loc>%s/%s/%s</loc></url>", a.site, n.key, lang)
 	}
 	fmt.Fprint(w, `</urlset>`)
+}
+
+func (a *App) sitemapLangs() []string {
+	if !a.fl.langs {
+		return []string{"si"}
+	}
+	return []string{"pali", "sinh"}
 }
 
 type sitemapNode struct {

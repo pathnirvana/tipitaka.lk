@@ -1,6 +1,6 @@
 # pitaka.lk flavor: design and plan
 
-Status: agreed design (2026-10-27). Phase 1 done on master; Phase 2 done on `pitaka-flavor` (2026-10-27). Written in the pitaka.lk session. The implementation happens
+Status: agreed design (2026-10-27). Phase 1 done on master; Phases 2 and 3 done on `pitaka-flavor` (2026-10-27). Written in the pitaka.lk session. The implementation happens
 in a fresh session started in this repo, on its own branch (`pitaka-flavor`), so that it doesn't disturb
 work on master.
 
@@ -159,7 +159,18 @@ It is a **second flavor of this repo**, not a fork:
    - All 5,879 keys of `nodeid_mapping.map` exist.
    - All 7,003 tipitaka-new keys with sin_apz exist.
    - The only other tipitaka-new difference is kn-ps-1-1-16 there vs kn-ps-1-1-21 here, in kn-ps, which has no APZ.
-3. Server flavor and SSR-lite, with `go test`.
+3. Server flavor and SSR-lite, with `go test`. **Done** (`server/flavor.go`, `server/pitaka_test.go`):
+   - `-flavor pitaka` uses `db/pitaka-text.db`, `web-pitaka/dist` (or `dist` in a release) and the site
+     `https://pitaka.lk/main`.
+   - Everything is served under `/main`: `/` and `/main` redirect to `/main/`, and other paths are 404.
+   - There are no legacy endpoints.
+   - A sutta is one page, `/main/<key>[/<p>-<e>]`. It shows the translation, with the Pāḷi (`lang="pi"`) where an entry
+     has none. There are no hreflang pairs.
+   - There is one sitemap, `/main/sitemaps/si.xml`. pitaka.lk's own robots.txt must point to
+     `https://pitaka.lk/main/sitemap.xml` (Phase 5, in the pitaka.lk repo).
+   - The engine limits the dictionary list and lookups to the five codes when the db's `meta.flavor` is `pitaka`
+     (`engine.PitakaDicts`). The gomobile apps get the same limit.
+   - `npm run build:fixture` builds both fixture dbs.
 4. `web-pitaka/`: reader with the 4 modes, tree, title and full-text search, dictionary (5 dicts), audio, map,
    names, bookmarks, settings, themes. Unit tests plus Playwright for the reading modes and the narrow-screen
    fallback.

@@ -120,10 +120,11 @@ func (e *Engine) Call(ctx context.Context, op string, p Params) (any, error) {
 		if err != nil {
 			return nil, err
 		}
+		dicts := e.dictsFor(splitList(p, "dicts"))
 		if op == "lookup" {
-			return e.Lookup(ctx, w, splitList(p, "dicts"), limit)
+			return e.Lookup(ctx, w, dicts, limit)
 		}
-		return e.Dictionary(ctx, w, splitList(p, "dicts"), limit)
+		return e.Dictionary(ctx, w, dicts, limit)
 	case "links", "paranames":
 		file, err := str(p, "file")
 		if err != nil {

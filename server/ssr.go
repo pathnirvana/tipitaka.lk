@@ -19,6 +19,7 @@ import (
 // SSR-lite: for sutta routes /<key>[/<p>-<e>][/<lang>] the index.html gets the page title, description,
 // canonical/og tags, an <article id="ssr"> with the text (visible before the JS loads and for crawlers)
 // and <script id="ssr-data"> with the exact named query results the reader needs (pre-fills the client cache).
+// The pitaka flavor (flavor.go) has no /<lang>: its page is the translation, with the pāḷi where an entry has none.
 
 var reservedRoutes = map[string]bool{"": true, "settings": true, "abbreviations": true, "bookmarks": true,
 	"title": true, "dict": true, "fts": true, "map": true, "names": true, "help": true}
@@ -57,14 +58,15 @@ type route struct {
 	langGiven bool
 }
 
-func parseSuttaRoute(path string) (route, bool) {
+// parseSuttaRoute: langs false (pitaka) takes no /pali or /sinh
+func parseSuttaRoute(path string, langs bool) (route, bool) {
 	parts := strings.Split(strings.Trim(path, "/"), "/")
 	if len(parts) < 1 || len(parts) > 3 || reservedRoutes[parts[0]] {
 		return route{}, false
 	}
 	r := route{key: parts[0], lang: "pali"}
 	rest := parts[1:]
-	if n := len(rest); n > 0 && (rest[n-1] == "pali" || rest[n-1] == "sinh") {
+	if n := len(rest); langs && n > 0 && (rest[n-1] == "pali" || rest[n-1] == "sinh") {
 		r.lang, r.langGiven = rest[n-1], true
 		rest = rest[:n-1]
 	}
@@ -115,7 +117,7 @@ var typeNames = []string{"centered", "heading", "paragraph", "gatha", "unindente
 func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 	index, _ := a.currentIndex()
 	base := strings.Replace(index, "</head>", fmt.Sprintf(`<meta name="tipitaka-api" content="%s"><meta name="tipitaka-ops" content="%s"></head>`, a.apiHash, a.opsHash), 1)
-	r, ok := parseSuttaRoute(path)
+	r, ok := parseSuttaRoute(path, a.fl.langs)
 	if !ok {
 		first := strings.Split(strings.Trim(path, "/"), "/")[0]
 		if reservedRoutes[first] {
@@ -150,11 +152,16 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 	call("text.footnotes", pageParams, data)
 
 	lang := r.lang
-	if node.Int("pali_only") == 1 {
+	paliOnly := node.Int("pali_only") == 1
+	pitaka := !a.fl.langs
+	if pitaka && !paliOnly {
+		lang = "sinh"
+	}
+	if paliOnly {
 		lang = "pali"
 	}
 	name := func(row engine.Row) string {
-		if lang == "sinh" && row.Str("sinh") != "" {
+		if (lang == "sinh" || pitaka) && row.Str("sinh") != "" {
 			return row.Str("sinh")
 		}
 		return row.Str("pali")
@@ -171,29 +178,30 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 		if pr.Str("key") == keyRoot && keyRoot != r.key {
 			title += " < " + name(pr)
 		}
-		crumbs.WriteString(fmt.Sprintf(`<a href="/%s/%s">%s</a>`, pr.Str("key"), lang, html.EscapeString(name(pr))))
+		crumbs.WriteString(fmt.Sprintf(`<a href="%s">%s</a>`, a.pagePath(pr.Str("key"), lang), html.EscapeString(name(pr))))
 		if i > 0 {
 			crumbs.WriteString(" › ")
 		}
 	}
-	fullTitle := title + " | බුද්ධ ජයන්ති ත්‍රිපිටකය"
+	fullTitle := title + " | " + a.fl.siteName
 	// one canonical page per sutta and language (/key, /key/<p>-<e>/pali ... are the same page); hreflang pairs the
 	// pali text with its sinhala translation
-	paliOnly := node.Int("pali_only") == 1
-	pageURL := func(l string) string { return a.site + "/" + r.key + "/" + l }
+	pageURL := func(l string) string { return a.site + strings.TrimPrefix(a.pagePath(r.key, l), a.fl.base) }
 	canonical := pageURL(lang)
 	inLang := map[string]string{"pali": "pi", "sinh": "si"}[lang]
 
 	var art strings.Builder
 	art.WriteString(`<article id="ssr" lang="` + inLang + `"><nav class="ssr-crumbs">` + crumbs.String() + `</nav>`)
-	textCol, typeCol, levelCol := "p_text", "p_type", "p_level"
-	if lang == "sinh" {
-		textCol, typeCol, levelCol = "s_text", "s_type", "s_level"
-	}
 	desc := ""
 	for _, e := range entries {
 		if e.Int("page_idx") == p && e.Int("entry_idx") < startEntry {
 			continue
+		}
+		textCol, typeCol, levelCol, attr := "p_text", "p_type", "p_level", ""
+		if lang == "sinh" && (!pitaka || e.Str("s_text") != "") {
+			textCol, typeCol, levelCol = "s_text", "s_type", "s_level"
+		} else if lang == "sinh" {
+			attr = ` lang="pi"` // pitaka: not translated
 		}
 		t := e.Int(typeCol)
 		if t < 0 || t >= len(typeNames) {
@@ -202,16 +210,16 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 		if desc == "" && typeNames[t] != "heading" && typeNames[t] != "centered" {
 			desc = cut(plainText(e.Str(textCol)), 160) // the text itself describes the page best
 		}
-		art.WriteString(fmt.Sprintf(`<div class="ssr-entry %s" data-level="%d">%s</div>`, typeNames[t], e.Int(levelCol), MarkupToHTML(e.Str(textCol), true)))
+		art.WriteString(fmt.Sprintf(`<div class="ssr-entry %s" data-level="%d"%s>%s</div>`, typeNames[t], e.Int(levelCol), attr, MarkupToHTML(e.Str(textCol), true)))
 	}
 	if desc == "" {
-		desc = describe(r, node.Str("collection"), p)
+		desc = a.describe(r, lang, p)
 	}
 	// the next sutta: a link for crawlers (and rel=next)
 	next := ""
 	if rows, err := a.RunNamed(ctx, "tree.neighbor", map[string]any{"id": node.Int("id"), "dir": 1}); err == nil && len(rows) > 0 && rows[0].Str("file") != "" {
 		next = rows[0].Str("key")
-		art.WriteString(fmt.Sprintf(`<nav class="ssr-next"><a href="/%s/%s" rel="next">ඊළඟ සූත්‍රය ›</a></nav>`, next, lang))
+		art.WriteString(fmt.Sprintf(`<nav class="ssr-next"><a href="%s" rel="next">ඊළඟ සූත්‍රය ›</a></nav>`, a.pagePath(next, lang)))
 	}
 	art.WriteString(`</article>`)
 
@@ -225,22 +233,24 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 <meta property="og:title" content="%[1]s">
 <meta property="og:description" content="%[2]s">
 <meta property="og:url" content="%[3]s">
-<meta property="og:site_name" content="බුද්ධ ජයන්ති ත්‍රිපිටකය">
-<meta property="og:locale" content="si_LK">`, html.EscapeString(fullTitle), html.EscapeString(desc), html.EscapeString(canonical))
-	fmt.Fprintf(&head, `<link rel="alternate" hreflang="pi" href="%s">`, pageURL("pali"))
-	if !paliOnly {
-		fmt.Fprintf(&head, `<link rel="alternate" hreflang="si" href="%s">`, pageURL("sinh"))
+<meta property="og:site_name" content="%[4]s">
+<meta property="og:locale" content="si_LK">`, html.EscapeString(fullTitle), html.EscapeString(desc), html.EscapeString(canonical), a.fl.siteName)
+	if a.fl.langs {
+		fmt.Fprintf(&head, `<link rel="alternate" hreflang="pi" href="%s">`, pageURL("pali"))
+		if !paliOnly {
+			fmt.Fprintf(&head, `<link rel="alternate" hreflang="si" href="%s">`, pageURL("sinh"))
+		}
+		fmt.Fprintf(&head, `<link rel="alternate" hreflang="x-default" href="%s">`, pageURL("pali"))
 	}
-	fmt.Fprintf(&head, `<link rel="alternate" hreflang="x-default" href="%s">`, pageURL("pali"))
 	if next != "" {
-		fmt.Fprintf(&head, `<link rel="next" href="%s/%s/%s">`, a.site, next, lang)
+		fmt.Fprintf(&head, `<link rel="next" href="%s%s">`, a.site, strings.TrimPrefix(a.pagePath(next, lang), a.fl.base))
 	}
 	// schema.org: a book (top level) or a chapter of the book at the root of its path
 	ld := map[string]any{"@context": "https://schema.org", "@type": "Chapter", "name": title, "description": desc, "url": canonical,
 		"inLanguage": inLang, "publisher": map[string]any{"@type": "Organization", "name": "Path Nirvana Foundation", "url": a.site}}
 	if len(paths) > 1 {
 		root := paths[len(paths)-1]
-		ld["isPartOf"] = map[string]any{"@type": "Book", "name": name(root), "url": a.site + "/" + root.Str("key") + "/" + lang}
+		ld["isPartOf"] = map[string]any{"@type": "Book", "name": name(root), "url": a.site + strings.TrimPrefix(a.pagePath(root.Str("key"), lang), a.fl.base)}
 	} else {
 		ld["@type"] = "Book"
 	}
@@ -260,8 +270,23 @@ func jsonStr(s any) string {
 	return strings.TrimSpace(b.String())
 }
 
-// same text as the v2 bot renderer (GetDescription + db/template.html)
-func describe(r route, collection string, page int) string {
+// pagePath: the path of a sutta page, with the base (/main/dn-1, /dn-1/pali)
+func (a *App) pagePath(key, lang string) string {
+	if !a.fl.langs {
+		return a.fl.base + "/" + key
+	}
+	return "/" + key + "/" + lang
+}
+
+// same text as the v2 bot renderer (GetDescription + db/template.html); pitaka: its own
+func (a *App) describe(r route, lang string, page int) string {
+	if !a.fl.langs {
+		what := "සරල සිංහල පරිවර්තනය සහ පාළි පාඨය"
+		if lang == "pali" {
+			what = "පාළි පාඨය (සිංහල පරිවර්තනය ඉදිරියේදී)"
+		}
+		return fmt.Sprintf("%s - %s. Tipitaka in simple Sinhala with the Pali text.", a.fl.siteName, what)
+	}
 	col, lang, pageStr := "බුද්ධ ජයන්ති ත්‍රිපිටකය", "පාළි", ""
 	if strings.HasPrefix(r.key, "atta") {
 		col = "අටුවාව"
@@ -274,7 +299,6 @@ func describe(r route, collection string, page int) string {
 	if r.eInd != nil {
 		pageStr = fmt.Sprintf("- %d පිටුව", page+1)
 	}
-	_ = collection
 	return fmt.Sprintf("%s - %s%s පාළි සිංහල ත්‍රිපිටකය සහ අටුවාව Sri Lankan Tripitaka and Atuwa in Sinhala, Sinhala translations සිංහල පරිවර්තනය.", col, lang, pageStr)
 }
 

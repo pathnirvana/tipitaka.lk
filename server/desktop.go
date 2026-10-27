@@ -30,7 +30,7 @@ func main() {
 			return
 		}
 	}
-	root, err := findRoot("", "")
+	root, err := findRoot("", "", flavors["lk"])
 	if err != nil {
 		log.Fatal(err)
 	}

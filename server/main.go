@@ -32,7 +32,8 @@ func serverMain() {
 	rootPath := flag.String("root-path", "", "folder containing dist/ (or web/dist/) and db/, relative to the binary or absolute")
 	bjtPath := flag.String("bjt-path", "", "local folder with BJT scanned pages (e.g. /Pictures/bjt_newbooks)")
 	dbDir := flag.String("db-dir", "", "folder with text.db and dict.db (default <root>/db)")
-	site := flag.String("site", "https://tipitaka.lk", "public url of the site (canonical links, sitemaps)")
+	site := flag.String("site", "", "public url of the site (canonical links, sitemaps; default https://tipitaka.lk, pitaka: https://pitaka.lk/main)")
+	flavorName := flag.String("flavor", "lk", "lk: tipitaka.lk; pitaka: the pitaka.lk reader, served under /main (flavor.go)")
 	flag.StringVar(&PublishedVersion, "published-version", PublishedVersion, "version reported to apps by /tipitaka-query/version")
 	metrics := flag.String("metrics", "", "sqlite db for the usage statistics of the website (empty: none, as in the desktop app)")
 	geo := flag.String("geoip", "", "DB-IP country csv(.gz) for the countries of the statistics")
@@ -41,11 +42,15 @@ func serverMain() {
 		LatestVersionURL = u
 	}
 
-	root, err := findRoot(*rootPath, *dbDir)
+	fl, ok := flavors[*flavorName]
+	if !ok {
+		log.Fatalf("unknown flavor %q (lk or pitaka)", *flavorName)
+	}
+	root, err := findRoot(*rootPath, *dbDir, fl)
 	if err != nil {
 		log.Fatal(err)
 	}
-	app, err := NewApp(Config{Root: root, BjtPath: *bjtPath, DBDir: *dbDir, Site: *site})
+	app, err := NewApp(Config{Root: root, BjtPath: *bjtPath, DBDir: *dbDir, Site: *site, Flavor: fl.name})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -53,7 +58,7 @@ func serverMain() {
 		log.Fatal(err)
 	}
 	// localhost, not 127.0.0.1: the recitation CDN allows only the origins http://localhost:8400 (and tipitaka.lk) - CORS
-	url := "http://" + strings.NewReplacer("0.0.0.0", "localhost", "127.0.0.1", "localhost").Replace(*listen)
+	url := "http://" + strings.NewReplacer("0.0.0.0", "localhost", "127.0.0.1", "localhost").Replace(*listen) + fl.base
 	printBox(url, root)
 	go app.guard.logEvery(10 * time.Minute)
 	srv := &http.Server{Addr: *listen, Handler: app.Handler(), ReadHeaderTimeout: 10 * time.Second, WriteTimeout: 60 * time.Second,
@@ -70,7 +75,7 @@ func serverMain() {
 }
 
 // findRoot locates the folder holding the web build and the dbs.
-func findRoot(rootPath, dbDir string) (string, error) {
+func findRoot(rootPath, dbDir string, fl flavor) (string, error) {
 	var candidates []string
 	if filepath.IsAbs(rootPath) {
 		candidates = append(candidates, rootPath)
@@ -85,19 +90,18 @@ func findRoot(rootPath, dbDir string) (string, error) {
 	}
 	for _, c := range candidates {
 		if dbDir != "" {
-			if _, err := os.Stat(filepath.Join(c, "web", "dist", "index.html")); err == nil {
-				return filepath.Clean(c), nil
-			}
-			if _, err := os.Stat(filepath.Join(c, "dist", "index.html")); err == nil {
-				return filepath.Clean(c), nil
+			for _, d := range fl.distDirs {
+				if _, err := os.Stat(filepath.Join(c, d, "index.html")); err == nil {
+					return filepath.Clean(c), nil
+				}
 			}
 			continue
 		}
-		if _, err := os.Stat(filepath.Join(c, "db", "text.db")); err == nil {
+		if _, err := os.Stat(filepath.Join(c, "db", fl.textDB)); err == nil {
 			return filepath.Clean(c), nil
 		}
 	}
-	return "", fmt.Errorf("could not find db/text.db in %v (use -root-path)", candidates)
+	return "", fmt.Errorf("could not find db/%s in %v (use -root-path)", fl.textDB, candidates)
 }
 
 func printBox(url, root string) {
@@ -118,6 +122,7 @@ func printBox(url, root string) {
 // App holds the shared state of the server.
 type App struct {
 	cfg       Config
+	fl        flavor
 	dbs       *DBs
 	queries   map[string]*engine.NamedQuery
 	apiHash   string
@@ -128,7 +133,7 @@ type App struct {
 	indexMod  time.Time // mtime of dist/index.html when it was read (reloaded when the web app is rebuilt)
 	indexMu   sync.Mutex
 	bjtDir    string
-	site      string // https://tipitaka.lk (canonical links, sitemaps)
+	site      string // https://tipitaka.lk, https://pitaka.lk/main (canonical links, sitemaps)
 	guard     *guard
 	eng       *engine.Engine
 	ssr       *ssrCache
@@ -143,15 +148,23 @@ type Config struct {
 	Root    string
 	BjtPath string
 	DBDir   string // default <Root>/db
-	Site    string // default https://tipitaka.lk
+	Site    string // default: the flavor's (https://tipitaka.lk)
+	Flavor  string // "" or lk: tipitaka.lk, pitaka: the pitaka.lk reader (flavor.go)
 	// IndexHTML overrides dist/index.html (tests)
 	IndexHTML string
 }
 
 func NewApp(cfg Config) (*App, error) {
-	a := &App{cfg: cfg, site: strings.TrimRight(cfg.Site, "/"), guard: newGuard(), ssr: newSSRCache(32 << 20)}
+	if cfg.Flavor == "" {
+		cfg.Flavor = "lk"
+	}
+	fl, ok := flavors[cfg.Flavor]
+	if !ok {
+		return nil, fmt.Errorf("unknown flavor %q", cfg.Flavor)
+	}
+	a := &App{cfg: cfg, fl: fl, site: strings.TrimRight(cfg.Site, "/"), guard: newGuard(), ssr: newSSRCache(32 << 20)}
 	if a.site == "" {
-		a.site = "https://tipitaka.lk"
+		a.site = fl.site
 	}
 	var err error
 	if a.queries, err = engine.ParseQueries(engine.QueriesSQL); err != nil {
@@ -162,7 +175,7 @@ func NewApp(cfg Config) (*App, error) {
 	if dbDir == "" {
 		dbDir = filepath.Join(cfg.Root, "db")
 	}
-	if a.dbs, err = OpenDBs(dbDir); err != nil {
+	if a.dbs, err = OpenDBs(dbDir, fl.textDB); err != nil {
 		return nil, err
 	}
 	if a.meta, err = a.dbs.Meta(); err != nil {
@@ -171,7 +184,7 @@ func NewApp(cfg Config) (*App, error) {
 	a.apiHash = a.meta["api_hash"]
 	a.opsHash = a.apiHash + "-" + engine.Version
 	a.eng = engine.New(a.dbs.Text, a.dbs.Dict, a.meta)
-	for _, d := range []string{filepath.Join("web", "dist"), "dist"} { // repo checkout first, release layout second
+	for _, d := range fl.distDirs {
 		if _, err := os.Stat(filepath.Join(cfg.Root, d, "index.html")); err == nil {
 			a.distDir = filepath.Join(cfg.Root, d)
 			break
@@ -180,7 +193,7 @@ func NewApp(cfg Config) (*App, error) {
 	a.indexHTML = cfg.IndexHTML
 	if a.indexHTML == "" {
 		if a.distDir == "" {
-			return nil, fmt.Errorf("web build not found in %s/dist or %s/web/dist", cfg.Root, cfg.Root)
+			return nil, fmt.Errorf("web build not found in %s/%s", cfg.Root, strings.Join(fl.distDirs, " or "))
 		}
 		if _, err := a.currentIndex(); err != nil {
 			return nil, err
@@ -226,13 +239,15 @@ func (a *App) Handler() http.Handler {
 	mux.HandleFunc("GET /robots.txt", a.handleRobots)
 	mux.HandleFunc("GET /sitemap.xml", a.handleSitemapIndex)
 	mux.HandleFunc("GET /sitemaps/{file}", a.handleSitemap)
-	mux.HandleFunc("GET /tipitaka-query/version", handleVersion)
-	mux.HandleFunc("GET /tipitaka-query/bjt-params", a.handleBjtParams)
-	mux.HandleFunc("GET /tipitaka-query/latest-version", a.handleLatestVersion)
-	if a.bjtDir != "" {
-		mux.Handle("GET /bjt-scanned-pages/", http.StripPrefix("/bjt-scanned-pages/", http.FileServer(http.Dir(a.bjtDir))))
+	if a.fl.legacy {
+		mux.HandleFunc("GET /tipitaka-query/version", handleVersion)
+		mux.HandleFunc("GET /tipitaka-query/bjt-params", a.handleBjtParams)
+		mux.HandleFunc("GET /tipitaka-query/latest-version", a.handleLatestVersion)
+		if a.bjtDir != "" {
+			mux.Handle("GET /bjt-scanned-pages/", http.StripPrefix("/bjt-scanned-pages/", http.FileServer(http.Dir(a.bjtDir))))
+		}
 	}
 	a.stats.routes(mux) // /api/beacon, /stats (stats.go)
 	mux.HandleFunc("GET /", a.handleStatic)
-	return recoverMiddleware(securityHeaders(a.stats.count(gzipMiddleware(mux))))
+	return recoverMiddleware(a.fl.withBase(securityHeaders(a.stats.count(gzipMiddleware(mux)))))
 }

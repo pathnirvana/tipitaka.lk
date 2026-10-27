@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite --config web/vite.config.ts",
     "build:data": "tsx build/cli.ts",
-    "build:fixture": "tsx build/cli.ts --fixture",
+    "build:fixture": "tsx build/cli.ts --fixture && tsx build/cli.ts --fixture --flavor pitaka",
     "build:web": "vite build --config web/vite.config.ts",
     "build:web:app": "VITE_APP=1 vite build --config web/vite.config.ts",
     "build:server": "bash scripts/build-server.sh",
