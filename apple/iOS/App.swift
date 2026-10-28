@@ -72,7 +72,8 @@ final class WebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         #if DEBUG // screenshots: simctl launch … -start /dn-1-1 [-theme sepia|dark]
         if let route = UserDefaults.standard.string(forKey: "start") { start += "#" + route }
         if let theme = UserDefaults.standard.string(forKey: "theme") {
-            let js = "localStorage.setItem('tipitaka.lk-settings-2', JSON.stringify(Object.assign(JSON.parse(localStorage.getItem('tipitaka.lk-settings-2') || '{}'), { theme: '\(theme)' })))"
+            let key = Bundle.main.object(forInfoDictionaryKey: "TipitakaSettingsKey") as? String ?? "tipitaka.lk-settings-2" // project.yml
+            let js = "localStorage.setItem('\(key)', JSON.stringify(Object.assign(JSON.parse(localStorage.getItem('\(key)') || '{}'), { theme: '\(theme)' })))"
             config.userContentController.addUserScript(WKUserScript(source: js, injectionTime: .atDocumentStart, forMainFrameOnly: true))
         }
         #endif

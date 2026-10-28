@@ -3,6 +3,8 @@
 #   Tipitaka-macOS  the Wails desktop app (server/desktop.go); the Go binary replaces the placeholder executable
 # Both use the bundle id lk.tipitaka.ios of the existing iOS app (one App Store Connect record "Sinhala Tripitaka &
 # Atuwa", id 6615068500, universal purchase: the bundle id is UNIVERSAL).
+#   Pitaka-iOS      pitaka.lk's app (web-pitaka/dist-app, db/pitaka-text.db as text.db): Tipitaka-iOS's code and settings
+#                   with the bundle id com.pitaka.lk of the existing "Sarala Sinhala Tripitaka" app (id 1434955293)
 name: Tipitaka
 options:
   deploymentTarget: { iOS: "15.0", macOS: "13.0" }
@@ -34,7 +36,7 @@ targets:
       - framework: ../server/mobile/build/Engine.xcframework
         embed: false
     settings:
-      base:
+      base: &iosSettings
         TARGETED_DEVICE_FAMILY: "1,2"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SUPPORTS_MACCATALYST: NO
@@ -43,8 +45,9 @@ targets:
         OTHER_LDFLAGS: -lresolv
     info:
       path: build/iOS-Info.plist
-      properties:
+      properties: &iosInfo
         CFBundleDisplayName: ත්‍රිපිටකය
+        TipitakaSettingsKey: tipitaka.lk-settings-2 # web/src/stores/settings.ts (the debug -theme launch argument)
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         ITSAppUsesNonExemptEncryption: false
@@ -59,6 +62,35 @@ targets:
                 UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+  Pitaka-iOS:
+    type: application
+    platform: iOS
+    sources:
+      - path: iOS/App.swift
+      - path: iOS-pitaka
+      - path: Shared/PrivacyInfo.xcprivacy
+      - path: ../web-pitaka/dist-app
+        type: folder
+        buildPhase: resources
+        optional: true
+      - path: build/pitaka/db
+        type: folder
+        buildPhase: resources
+        optional: true
+    dependencies:
+      - framework: ../server/mobile/build/Engine.xcframework
+        embed: false
+    settings:
+      base:
+        <<: *iosSettings
+        PRODUCT_BUNDLE_IDENTIFIER: com.pitaka.lk
+        PRODUCT_NAME: SaralaTipitaka
+    info:
+      path: build/Pitaka-iOS-Info.plist
+      properties:
+        <<: *iosInfo
+        CFBundleDisplayName: සරල ත්‍රිපිටකය
+        TipitakaSettingsKey: pitaka.lk-settings-1 # web-pitaka/src/overrides/storage.ts
   Tipitaka-macOS:
     type: application
     platform: macOS

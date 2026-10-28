@@ -228,7 +228,10 @@ It is a **second flavor of this repo**, not a fork:
 - The Android/iOS packaging of web-pitaka (`build:web:pitaka:app` into the app pipeline: android-assets.sh,
   build-apple.sh) is Phase 6.
 - Visuddhimagga (`anya-vm`) is left out of the pitaka tree (decided 2026-10-27: not Tipitaka).
-- The signing keystore for `lk.pitaka.saralatipitaka`.
-- Confirm the iOS bundle id of App Store app 1434955293, and that the Apple account can still publish to it.
+- Apps (Phase 6, 2026-10-28): Android `/Volumes/2TB/Android/SaralaTipitaka-v3` (a copy of Tipitaka.lk-v3,
+  `lk.pitaka.saralatipitaka` versionCode 30 / 3.0.0 over the store's 22), filled by `scripts/android-assets.sh --flavor
+  pitaka`, signed with the same upload key as tipitaka.lk's app (`pitaka.lk.jks`; its certificate is the one in pitaka.lk's
+  assetlinks.json). iOS: target `Pitaka-iOS` in `apple/project.yml`, bundle id `com.pitaka.lk` (App Store app 1434955293,
+  v1.1, the same Path Nirvana Foundation account), `scripts/build-apple.sh pitaka [--upload]`.
 - How to mark AI fill-ins in the UI (decide during QA).
 - Whether the apps can ship the full `dict.db` or need a pitaka subset.

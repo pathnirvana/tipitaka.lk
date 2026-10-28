@@ -2,6 +2,7 @@
 # App Store builds of the iOS and macOS apps (apple/project.yml; tipitaka.app's script), with Xcode on this Mac:
 #   scripts/build-apple.sh ios|mac|all            archive + export -> apple/build/export-<target>/ (.ipa / .pkg)
 #   scripts/build-apple.sh ios|mac|all --upload   … and upload the packages to App Store Connect (TestFlight)
+#   scripts/build-apple.sh pitaka [--upload]      pitaka.lk's iOS app (target Pitaka-iOS, com.pitaka.lk)
 # Signing is automatic with the account signed in to Xcode: -allowProvisioningUpdates creates the
 # certificates, the app id and the profiles when they are missing (cloud-managed distribution certificates,
 # which an App Manager API key may not use, so the key only uploads the signed packages, with altool).
@@ -15,17 +16,22 @@ BUILD=${BUILD:-$(date +%y%m%d%H%M)}
 export TEAM_ID VERSION BUILD
 WHAT=${1:-all} UPLOAD=${2:-}
 B=apple/build
-[ -f db/text.db ] && [ -f db/dict.db ] || { echo "build the dbs first (npm run build:data && npm run build:dict)"; exit 1; }
+if [ "$WHAT" = pitaka ]; then TEXT_DB=pitaka-text.db DB=$B/pitaka/db; else TEXT_DB=text.db DB=$B/db; fi
+[ -f "db/$TEXT_DB" ] && [ -f db/dict.db ] || { echo "build the dbs first (npm run build:data && npm run build:dict)"; exit 1; }
 export GOTOOLCHAIN=local
 
-mkdir -p "$B/db"
-for f in text.db dict.db; do cmp -s "db/$f" "$B/db/$f" || cp -c "db/$f" "$B/db/$f"; done # APFS clone
+mkdir -p "$DB"
+cmp -s "db/$TEXT_DB" "$DB/text.db" || cp -c "db/$TEXT_DB" "$DB/text.db" # APFS clone
+cmp -s db/dict.db "$DB/dict.db" || cp -c db/dict.db "$DB/dict.db"
 
-if [ "$WHAT" != mac ]; then
+if [ "$WHAT" = pitaka ]; then
+  npm run -s build:web:pitaka:app
+  bash scripts/build-mobile.sh ios
+elif [ "$WHAT" != mac ]; then
   npm run -s build:web:app
   bash scripts/build-mobile.sh ios
 fi
-if [ "$WHAT" != ios ]; then
+if [ "$WHAT" = mac ] || [ "$WHAT" = all ]; then
   npm run -s build:web
   # macOS 13 is the minimum of Go 1.27; the flag (not MACOSX_DEPLOYMENT_TARGET) is part of the cgo cache key
   export CGO_LDFLAGS="${CGO_LDFLAGS:-} -mmacosx-version-min=13.0 -framework UniformTypeIdentifiers"
@@ -70,5 +76,6 @@ EOF
   xcrun altool --upload-app -f "$pkg" -t "$([ "${pkg##*.}" = ipa ] && echo ios || echo macos)" --api-key "$ASC_KEY_ID" \
     --api-issuer "$ASC_ISSUER_ID" --p8-file-path "$ASC_KEY_PATH" 2>&1 | grep -v -e Progress -e '^$'
 }
-if [ "$WHAT" != mac ]; then build Tipitaka-iOS 'generic/platform=iOS'; fi
-if [ "$WHAT" != ios ]; then build Tipitaka-macOS 'generic/platform=macOS'; fi
+if [ "$WHAT" = ios ] || [ "$WHAT" = all ]; then build Tipitaka-iOS 'generic/platform=iOS'; fi
+if [ "$WHAT" = mac ] || [ "$WHAT" = all ]; then build Tipitaka-macOS 'generic/platform=macOS'; fi
+if [ "$WHAT" = pitaka ]; then build Pitaka-iOS 'generic/platform=iOS'; fi
