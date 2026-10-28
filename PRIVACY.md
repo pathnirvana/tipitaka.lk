@@ -1,7 +1,8 @@
 # පෞද්ගලිකත්ව ප්‍රතිපත්තිය / Privacy Policy
 
 බුද්ධ ජයන්ති ත්‍රිපිටකය (tipitaka.lk වෙබ් අඩවිය සහ Android, iPhone, iPad, Mac, Windows සහ Linux මෘදුකාංග) Path Nirvana
-Foundation විසින් ප්‍රකාශයට පත් කෙරේ. 2026 ඔක්තෝබර් 26 සිට බලපැවැත්වේ.
+Foundation විසින් ප්‍රකාශයට පත් කෙරේ. 2026 ඔක්තෝබර් 26 සිට බලපැවැත්වේ. සරල සිංහල ත්‍රිපිටකය (pitaka.lk/main වෙබ් අඩවිය සහ
+Android, iPhone සහ iPad මෘදුකාංග) සඳහා ද මෙම ප්‍රතිපත්තියම අදාළ වේ; එහෙත් pitaka.lk/main වෙබ් අඩවියේ භාවිතය ගණන් නොකෙරේ.
 
 ## මෘදුකාංග
 - මෘදුකාංග ඔබ ගැන කිසිදු පෞද්ගලික තොරතුරක් එකතු නොකරයි. ගිණුම්, දැන්වීම්, විශ්ලේෂණ (analytics) හෝ ලුහුබැඳීම් නැත.
@@ -32,7 +33,9 @@ Foundation විසින් ප්‍රකාශයට පත් කෙරේ
 ## English
 
 The Buddha Jayanthi Tipitaka (the website tipitaka.lk and the apps for Android, iPhone, iPad, Mac, Windows and Linux) is
-published by the Path Nirvana Foundation. Effective 26 October 2026.
+published by the Path Nirvana Foundation. Effective 26 October 2026. The same policy applies to the Sarala Sinhala
+Tipitaka (the website pitaka.lk/main and its apps for Android, iPhone and iPad), except that pitaka.lk/main does not count
+its use.
 
 ### The apps
 - The apps collect no personal data. There are no accounts, no advertising, no analytics and no tracking.

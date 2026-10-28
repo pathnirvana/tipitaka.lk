@@ -46,7 +46,7 @@ targets:
     info:
       path: build/iOS-Info.plist
       properties: &iosInfo
-        CFBundleDisplayName: ත්‍රිපිටකය
+        CFBundleDisplayName: Tipitaka.lk ත්‍රිපිටකය
         TipitakaSettingsKey: tipitaka.lk-settings-2 # web/src/stores/settings.ts (the debug -theme launch argument)
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
@@ -89,7 +89,7 @@ targets:
       path: build/Pitaka-iOS-Info.plist
       properties:
         <<: *iosInfo
-        CFBundleDisplayName: සරල ත්‍රිපිටකය
+        CFBundleDisplayName: Pitaka.lk ත්‍රිපිටකය
         TipitakaSettingsKey: pitaka.lk-settings-1 # web-pitaka/src/overrides/storage.ts
   Tipitaka-macOS:
     type: application
@@ -120,7 +120,7 @@ targets:
     info:
       path: build/macOS-Info.plist
       properties:
-        CFBundleDisplayName: ත්‍රිපිටකය
+        CFBundleDisplayName: Tipitaka.lk ත්‍රිපිටකය
         CFBundleIconFile: AppIcon
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)

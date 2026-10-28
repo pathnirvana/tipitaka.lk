@@ -5,23 +5,28 @@
 //   node scripts/asc-release.mjs build IOS|MAC_OS <build>        attach an uploaded build (scripts/build-apple.sh --upload) once processed
 //   node scripts/asc-release.mjs submit IOS|MAC_OS               submit the version for review
 // Screenshots: node scripts/asc-screenshots.mjs IOS|MAC_OS
+// --flavor pitaka (first): pitaka.lk's iOS app (Sarala Sinhala Tripitaka, com.pitaka.lk), release/app-store/listing-pitaka.md
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { api } from './asc.mjs'
 
-const APP = '6615068500'
-const LOCALE = 'en-GB' // the app's primary language
+const args = process.argv.slice(2)
+const PITAKA = args[0] === '--flavor' && args[1] === 'pitaka'
+if (args[0] === '--flavor') args.splice(0, 2)
+const APP = PITAKA ? '1434955293' : '6615068500'
+const LOCALE = PITAKA ? 'en-US' : 'en-GB' // the app's primary language
+const SITE = PITAKA ? 'https://pitaka.lk' : 'https://tipitaka.lk', MARKETING = PITAKA ? 'https://pitaka.lk/main/' : SITE
 const EDITABLE = ['PREPARE_FOR_SUBMISSION', 'REJECTED', 'DEVELOPER_REJECTED', 'METADATA_REJECTED']
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const [cmd, platform, arg] = process.argv.slice(2)
+const [cmd, platform, arg] = args
 if (!['listing', 'build', 'submit'].includes(cmd) || !['IOS', 'MAC_OS'].includes(platform)) {
-  throw new Error('usage: node scripts/asc-release.mjs listing|build|submit IOS|MAC_OS [version|build]')
+  throw new Error('usage: node scripts/asc-release.mjs [--flavor pitaka] listing|build|submit IOS|MAC_OS [version|build]')
 }
 
-/** the fields of release/app-store/listing.md: "**Label** (n): text" lines and "**Label** (n):\n\ntext" blocks */
+/** the fields of release/app-store/listing.md (listing-pitaka.md): "**Label** (n): text" lines and "**Label** (n):\n\ntext" blocks */
 function listing() {
-  const md = readFileSync(join(ROOT, 'release/app-store/listing.md'), 'utf8')
+  const md = readFileSync(join(ROOT, `release/app-store/listing${PITAKA ? '-pitaka' : ''}.md`), 'utf8')
   const line = (label) => new RegExp(`\\*\\*${label}\\*\\* \\(\\d+\\): (.+)`).exec(md)?.[1].trim()
   const block = (label) => new RegExp(`\\*\\*${label}\\*\\* \\(\\d+\\):\\n\\n([\\s\\S]*?)(?=\\n\\*\\*|\\n- Support URL|\\n## )`).exec(md)?.[1].trim()
   const f = { name: line('Name'), subtitle: line('Subtitle'), promotionalText: block('Promotional text'), description: block('Description'),
@@ -61,7 +66,7 @@ if (cmd === 'listing') {
   const first = !all.some(v => v.id !== version.id)
   const loc = await versionLocalization(version.id)
   await api('PATCH', `/v1/appStoreVersionLocalizations/${loc.id}`, { data: { type: 'appStoreVersionLocalizations', id: loc.id, attributes: {
-    description: f.description, keywords: f.keywords, promotionalText: f.promotionalText, supportUrl: 'https://tipitaka.lk', marketingUrl: 'https://tipitaka.lk',
+    description: f.description, keywords: f.keywords, promotionalText: f.promotionalText, supportUrl: SITE, marketingUrl: MARKETING,
     ...(first ? {} : { whatsNew: f.whatsNew }) } } })
   // app info (shared by the platforms): name, subtitle, privacy policy, categories
   const infos = (await api('GET', `/v1/apps/${APP}/appInfos`)).data
@@ -72,9 +77,13 @@ if (cmd === 'listing') {
   await api('PATCH', `/v1/appInfos/${info.id}`, { data: { type: 'appInfos', id: info.id, relationships: {
     primaryCategory: { data: { type: 'appCategories', id: 'REFERENCE' } }, secondaryCategory: { data: { type: 'appCategories', id: 'BOOKS' } } } } })
   // App Review: the notes; the contact (name, email, phone) as on the earlier versions
-  const notes = 'No account or sign-in. The texts, search and dictionaries are bundled; the recitations stream from '
-    + 'sajjha.sgp1.cdn.digitaloceanspaces.com and the scanned book pages load from pitaka.lk. This version replaces the earlier app with a new '
-    + 'one (the same texts, with the commentaries linked to the text, dictionaries and recitations).'
+  const notes = PITAKA
+    ? 'No account or sign-in. The texts, search and dictionaries are bundled; the recitations stream from '
+      + 'sajjha.sgp1.cdn.digitaloceanspaces.com. This version replaces the earlier app with a new one (the same translation, now with '
+      + 'the Pali text, recitations and dictionaries).'
+    : 'No account or sign-in. The texts, search and dictionaries are bundled; the recitations stream from '
+      + 'sajjha.sgp1.cdn.digitaloceanspaces.com and the scanned book pages load from pitaka.lk. This version replaces the earlier app with a new '
+      + 'one (the same texts, with the commentaries linked to the text, dictionaries and recitations).'
   const detailOf = async (vid) => (await api('GET', `/v1/appStoreVersions/${vid}/appStoreReviewDetail`).catch(() => ({ data: null }))).data
   const rd = await detailOf(version.id)
   let contact = {}
