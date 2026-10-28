@@ -5,7 +5,7 @@
     <div :class="['entry-text', type, { 'audio-playing': audioPlaying }]" :data-level="level">
       <RichText :text="text" :lang="lang" :terms="terms" :wrap-words="lang === 'pali'" hide-footnotes :index-words="indexWords" />
       <template v-if="isHeading && row.node_key">
-        <ShareButton :link="pageLink(row.node_key)" />
+        <ShareButton :link="pageLink(row.node_key, lang)" />
         <BookmarkButton :bookmark="bookmark" />
       </template>
     </div>
@@ -76,7 +76,7 @@ const bookmark = computed<Bookmark>(() => ({ key: props.row.node_key, language: 
   text: text.value, hText: null, file: props.file }))
 
 async function copyLink() {
-  if (await copyText(pageLink(props.row.node_key, isHeading.value ? null : eInd.value))) ui.notifyType('link-copied')
+  if (await copyText(pageLink(props.row.node_key, props.lang, isHeading.value ? null : eInd.value))) ui.notifyType('link-copied')
 }
 async function copyContent() {
   if (await copyText(beautifyText(stripForCopy(text.value), props.lang, settings.letterOptions))) ui.notifyType('content-copied')

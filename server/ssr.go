@@ -58,15 +58,15 @@ type route struct {
 	langGiven bool
 }
 
-// parseSuttaRoute: langs false (pitaka) takes no /pali or /sinh
-func parseSuttaRoute(path string, langs bool) (route, bool) {
+// parseSuttaRoute: /<key>[/<p>-<e>][/pali|/sinh] (pitaka: the language picks the reading mode, the page is the same)
+func parseSuttaRoute(path string) (route, bool) {
 	parts := strings.Split(strings.Trim(path, "/"), "/")
 	if len(parts) < 1 || len(parts) > 3 || reservedRoutes[parts[0]] {
 		return route{}, false
 	}
 	r := route{key: parts[0], lang: "pali"}
 	rest := parts[1:]
-	if n := len(rest); langs && n > 0 && (rest[n-1] == "pali" || rest[n-1] == "sinh") {
+	if n := len(rest); n > 0 && (rest[n-1] == "pali" || rest[n-1] == "sinh") {
 		r.lang, r.langGiven = rest[n-1], true
 		rest = rest[:n-1]
 	}
@@ -117,7 +117,7 @@ var typeNames = []string{"centered", "heading", "paragraph", "gatha", "unindente
 func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 	index, _ := a.currentIndex()
 	base := strings.Replace(index, "</head>", fmt.Sprintf(`<meta name="tipitaka-api" content="%s"><meta name="tipitaka-ops" content="%s"></head>`, a.apiHash, a.opsHash), 1)
-	r, ok := parseSuttaRoute(path, a.fl.langs)
+	r, ok := parseSuttaRoute(path)
 	if !ok {
 		first := strings.Split(strings.Trim(path, "/"), "/")[0]
 		if reservedRoutes[first] {
@@ -154,7 +154,7 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 	lang := r.lang
 	paliOnly := node.Int("pali_only") == 1
 	pitaka := !a.fl.langs
-	if pitaka && !paliOnly {
+	if pitaka && !paliOnly && !(r.langGiven && lang == "pali") { // a /pali link shows the pāḷi (pitaka.lk's pali mode)
 		lang = "sinh"
 	}
 	if paliOnly {

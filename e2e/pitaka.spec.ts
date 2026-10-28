@@ -53,6 +53,29 @@ test('the mode picker and its setting', async ({ page, isMobile }) => {
   expect(await page.evaluate(() => localStorage.getItem('tipitaka.lk-settings-2'))).toBeNull()
 })
 
+test('links carry their language as on tipitaka.lk: a /pali link shows the pāḷi until a mode is picked', async ({ page, isMobile }) => {
+  await page.addInitScript(() => Object.defineProperty(navigator, 'clipboard',
+    { value: { writeText: async (t: string) => { (window as unknown as { copied: string }).copied = t } } }))
+  await page.goto('dn-1-1/pali')
+  await expect(page.locator(text)).toHaveAttribute('data-mode', 'pali')
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://pitaka.lk/main/dn-1-1')
+  expect(await page.evaluate(() => localStorage.getItem('pitaka.lk-settings-1'))).toBeNull() // the setting stays
+  // a paragraph's link: from the side it was taken from
+  const cell = page.locator(`${text} [data-lang="pali"]`).filter({ has: page.getByTestId('entry-options') }).first()
+  await cell.hover()
+  await cell.getByTestId('entry-options').click()
+  await page.getByText('link එකක් ලබාගන්න').click()
+  await expect.poll(() => page.evaluate(() => (window as unknown as { copied?: string }).copied))
+    .toMatch(/^https:\/\/pitaka\.lk\/main\/dn-1-1\/\d+-\d+\/pali$/)
+  if (isMobile) await page.getByTestId('panel-toggle').click()
+  const picker = page.getByTestId(isMobile ? 'panel-mode' : 'app-bar').getByTestId('reading-mode')
+  await expect(picker.getByTestId('mode-pali')).toHaveAttribute('aria-pressed', 'true')
+  await picker.getByTestId('mode-sinh').click()
+  await expect(page.locator(text)).toHaveAttribute('data-mode', 'sinh')
+  await page.goto('dn-1-1/0-3/sinh')
+  await expect(page.locator(text)).toHaveAttribute('data-mode', 'sinh')
+})
+
 test('a part without translation: the pāḷi with a note, no mode picker', async ({ page }) => {
   await page.goto('vp-prj')
   await expect(page.getByTestId('translation-coming')).toBeVisible()

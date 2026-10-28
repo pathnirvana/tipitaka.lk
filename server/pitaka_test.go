@@ -41,8 +41,16 @@ func TestPitakaSSR(t *testing.T) {
 	if !strings.Contains(vp, `<article id="ssr" lang="pi">`) || !strings.Contains(vp, `<link rel="canonical" href="https://pitaka.lk/main/vp-prj">`) {
 		t.Errorf("pali only page: %s", vp)
 	}
+	// a /pali link (the language as on tipitaka.lk): the pāḷi, still the one canonical page
+	pl := get(t, h, "/main/dn-1-1/pali").Body.String()
+	if !strings.Contains(pl, `<article id="ssr" lang="pi">`) || !strings.Contains(pl, `<link rel="canonical" href="https://pitaka.lk/main/dn-1-1">`) {
+		t.Errorf("/pali page: %s", pl)
+	}
+	if !strings.Contains(get(t, h, "/main/dn-1-1/sinh").Body.String(), `<article id="ssr" lang="si">`) {
+		t.Errorf("/sinh page")
+	}
 	for path, status := range map[string]int{"/main/dn-1-1/0-3": 200, "/main/": 200, "/main/settings": 200,
-		"/main/dict/abc": 200, "/main/dn-1-1/pali": 404, "/main/dn-1-1/sinh": 404, "/main/atta-dn-1-1": 404,
+		"/main/dict/abc": 200, "/main/dn-1-1/pali": 200, "/main/dn-1-1/0-3/sinh": 200, "/main/dn-1-1/x/pali": 404, "/main/atta-dn-1-1": 404,
 		"/main/tipitaka-query/version": 404, "/dn-1-1": 404, "/api/dicts": 404, "/": 301, "/main": 301} {
 		if rec := get(t, h, path); rec.Code != status {
 			t.Errorf("%s: %d want %d", path, rec.Code, status)
