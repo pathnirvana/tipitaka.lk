@@ -1,0 +1,150 @@
+<title>Pitaka Term Glossary</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Sinhala:wght@400;600&family=Noto+Sans+Sinhala:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: a filter bar, then one row per term: the Pāḷi term and its evidence on the left, the rendering to approve on the right */
+:root {
+  --bg: #f3f4f1; --surface: #ffffff; --ink: #1d2422; --muted: #5d6763; --line: #d9ddd8;
+  --accent: #2f5d50; --ok: #2f7a4a; --warn: #8a5a12; --soft: #eef2ee;
+  --sinh: "Noto Sans Sinhala", "Iskoola Pota", sans-serif;
+  --pali: "Noto Serif Sinhala", "Noto Sans Sinhala", serif;
+  --ui: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #151a19; --surface: #1d2422; --ink: #e5e9e6; --muted: #9aa5a0; --line: #33403c;
+  --accent: #8cc7b4; --ok: #7cc995; --warn: #e3b072; --soft: #233029; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #151a19; --surface: #1d2422; --ink: #e5e9e6; --muted: #9aa5a0; --line: #33403c;
+  --accent: #8cc7b4; --ok: #7cc995; --warn: #e3b072; --soft: #233029; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--ui); }
+.wrap { max-width: 1100px; margin: 0 auto; padding-block: 24px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 16px; }
+h1 { font-size: 1.5rem; margin: 0; }
+.lede { color: var(--muted); margin: 0; max-width: 72ch; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: .875rem; color: var(--muted); }
+.bar select, .bar input { font: inherit; padding: 4px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); }
+.progress { font-variant-numeric: tabular-nums; }
+.term { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px 20px; }
+.term.ok { border-color: color-mix(in srgb, var(--ok) 50%, var(--line)); }
+.term.changed { border-color: color-mix(in srgb, var(--warn) 60%, var(--line)); }
+@media (max-width: 760px) { .term { grid-template-columns: 1fr; } }
+.head { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.pali { font: 600 1.15rem var(--pali); }
+.roman { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+.freq { font-size: .75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.dpd { font-size: .85rem; color: var(--muted); margin: 2px 0 0; }
+details summary { cursor: pointer; font-size: .8rem; color: var(--accent); margin-top: 4px; }
+.ex { font-size: .9rem; margin: 6px 0 0; display: grid; gap: 2px; }
+.ex .p { font-family: var(--pali); }
+.ex .s { font-family: var(--sinh); color: var(--muted); }
+.ex .k { font-family: var(--mono); font-size: .7rem; color: var(--muted); }
+.side { display: grid; gap: 6px; align-content: start; }
+label.fld { font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+input.si { font: 1.05rem var(--sinh); padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); width: 100%; box-sizing: border-box; }
+.note { font-size: .85rem; color: var(--muted); background: var(--soft); border-radius: 6px; padding: 6px 8px; }
+.acts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.acts button { font: 500 .85rem var(--ui); padding: 5px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.acts button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.status { font-size: .75rem; color: var(--muted); }
+.more { justify-self: center; }
+</style>
+
+<div class="wrap">
+  <h1>Pitaka Term Glossary</h1>
+  <p class="lede">These are the most frequent Pāḷi terms in the books still to be translated (Vinaya, Abhidhamma and six Khuddaka books), with the Sinhala rendering Opus proposes. Approve a rendering, or change it and press Enter. Approved terms go into every translation packet that contains them.</p>
+  <div class="bar">
+    <label>Show <select id="filter"><option value="todo">not reviewed yet</option><option value="all">all terms</option><option value="ok">approved</option><option value="changed">changed by you</option><option value="note">with a note</option></select></label>
+    <label>Find <input id="q" type="search" placeholder="Pāḷi, roman or Sinhala"></label>
+    <span class="progress" id="progress"></span>
+    <span class="status" id="dbstate">Connecting to the review store…</span>
+  </div>
+  <main id="list" style="display:grid;gap:12px"></main>
+  <button class="more" id="more" type="button" hidden>Show 50 more</button>
+</div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const TERMS = JSON.parse(document.getElementById('data').textContent)
+const saved = {} // roman -> {si, status}
+let db = null, limit = 50
+const docId = r => r.replace(/[^A-Za-z0-9_-]/g, c => '_' + c.codePointAt(0).toString(16))
+
+function el(tag, attrs = {}, ...kids) {
+  const e = document.createElement(tag)
+  for (const [k, v] of Object.entries(attrs)) k === 'class' ? e.className = v : e.setAttribute(k, v)
+  e.append(...kids.filter(k => k != null)); return e
+}
+const ex = (x, label) => x ? el('div', { class: 'ex' }, el('span', { class: 'k' }, `${label} ${x.key}`), el('span', { class: 'p' }, x.pali), el('span', { class: 's' }, x.apz || x.bjt || '')) : null
+
+function visible() {
+  const f = document.getElementById('filter').value, q = document.getElementById('q').value.trim().toLowerCase()
+  return TERMS.filter(t => {
+    const s = saved[t.roman]?.status
+    if (f === 'todo' && s) return false
+    if (f === 'ok' && s !== 'ok') return false
+    if (f === 'changed' && s !== 'changed') return false
+    if (f === 'note' && !t.note) return false
+    return !q || t.pali.includes(q) || t.roman.toLowerCase().includes(q) || (saved[t.roman]?.si ?? t.si).includes(q)
+  })
+}
+
+function render() {
+  const list = document.getElementById('list'); list.replaceChildren()
+  const vs = visible()
+  for (const t of vs.slice(0, limit)) {
+    const s = saved[t.roman]
+    const input = el('input', { class: 'si', id: 'si-' + docId(t.roman), 'aria-label': `Sinhala for ${t.roman}` })
+    input.value = s?.si ?? t.si
+    input.onkeydown = ev => { if (ev.key === 'Enter') save(t, input.value.trim()) }
+    const okBtn = el('button', { type: 'button', 'aria-pressed': String(s?.status === 'ok') }, 'Approve')
+    okBtn.onclick = () => save(t, input.value.trim())
+    const resetBtn = s ? el('button', { type: 'button' }, 'Undo') : null
+    if (resetBtn) resetBtn.onclick = () => unsave(t)
+    list.append(el('article', { class: 'term' + (s ? ' ' + s.status : '') },
+      el('div', {},
+        el('div', { class: 'head' }, el('span', { class: 'pali' }, t.pali), el('span', { class: 'roman' }, t.roman), el('span', { class: 'freq' }, `${t.freq}×`)),
+        el('p', { class: 'dpd' }, t.dpd),
+        (t.example || t.apz) ? el('details', {}, el('summary', {}, 'Examples'), ex(t.example, 'BJT'), ex(t.apz, 'APZ')) : null),
+      el('div', { class: 'side' },
+        el('label', { class: 'fld', for: 'si-' + docId(t.roman) }, 'Sinhala rendering'), input,
+        t.note ? el('div', { class: 'note' }, t.note) : null,
+        el('div', { class: 'acts' }, okBtn, resetBtn, s?.status === 'changed' ? el('span', { class: 'status' }, `changed from ${t.si}`) : null))))
+  }
+  document.getElementById('more').hidden = vs.length <= limit
+  if (!vs.length) list.append(el('p', { class: 'lede' }, document.getElementById('filter').value === 'todo' ? 'Every term is reviewed.' : 'No terms in this view.'))
+  const n = Object.keys(saved).length
+  document.getElementById('progress').textContent = `${n} of ${TERMS.length} reviewed`
+}
+
+async function save(t, si) {
+  if (!si) return
+  saved[t.roman] = { si, status: si === t.si ? 'ok' : 'changed' }
+  render()
+  if (!db) { document.getElementById('dbstate').textContent = 'Not saved: the review store is not available in this view.'; return }
+  try {
+    await db.collection('terms').doc(docId(t.roman)).set({ roman: t.roman, si, status: saved[t.roman].status, at: new Date().toISOString() })
+    document.getElementById('dbstate').textContent = 'Saved'
+  } catch (err) { document.getElementById('dbstate').textContent = `Not saved (${err?.code ?? 'error'}). Try again.` }
+}
+async function unsave(t) {
+  delete saved[t.roman]; render()
+  try { await db?.collection('terms').doc(docId(t.roman)).delete() } catch {}
+}
+
+document.getElementById('filter').onchange = () => { limit = 50; render() }
+document.getElementById('q').oninput = () => { limit = 50; render() }
+document.getElementById('more').onclick = () => { limit += 50; render() }
+render()
+;(async () => {
+  db = await window.claude?.use?.('db') ?? null
+  const s = document.getElementById('dbstate')
+  if (!db) { s.textContent = 'Reviews are not saved in this view. Open the page signed in to claude.ai.'; return }
+  s.textContent = 'Reviews save automatically'
+  db.collection('terms').onSnapshot(q => {
+    for (const k of Object.keys(saved)) delete saved[k]
+    for (const d of q.docs) { const x = d.data(); if (x?.roman) saved[x.roman] = { si: x.si, status: x.status } }
+    render()
+  }, err => { s.textContent = `Could not load saved reviews (${err?.code ?? 'error'})` })
+})()
+</script>

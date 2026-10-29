@@ -1,0 +1,160 @@
+<title>Pitaka Translation Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Sinhala:wght@400;600&family=Noto+Sans+Sinhala:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: one column of entry cards; inside each, the sources stacked, then A | B side by side (stacked on phones) */
+:root {
+  --bg: #f3f4f1; --surface: #ffffff; --ink: #1d2422; --muted: #5d6763; --line: #d9ddd8;
+  --accent: #2f5d50; --a: #7a4b12; --a-soft: #f6ebdc; --b: #24507a; --b-soft: #e2ecf6;
+  --add: #f3d9a9; --add-b: #c6dcf2; --ok: #2f7a4a;
+  --sinh: "Noto Sans Sinhala", "Iskoola Pota", sans-serif;
+  --pali: "Noto Serif Sinhala", "Noto Sans Sinhala", serif;
+  --ui: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #151a19; --surface: #1d2422; --ink: #e5e9e6; --muted: #9aa5a0; --line: #33403c;
+  --accent: #8cc7b4; --a: #e3b072; --a-soft: #2d241a; --b: #93bfe8; --b-soft: #1b2733;
+  --add: #5a4321; --add-b: #24425f; --ok: #7cc995; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #151a19; --surface: #1d2422; --ink: #e5e9e6; --muted: #9aa5a0; --line: #33403c;
+  --accent: #8cc7b4; --a: #e3b072; --a-soft: #2d241a; --b: #93bfe8; --b-soft: #1b2733;
+  --add: #5a4321; --add-b: #24425f; --ok: #7cc995; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--ui); }
+.wrap { max-width: 1100px; margin: 0 auto; padding-block: 24px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 20px; }
+header { display: grid; gap: 8px; }
+h1 { font-size: 1.5rem; margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); margin: 0; max-width: 70ch; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: .875rem; color: var(--muted); }
+.bar select { font: inherit; padding: 4px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); }
+.progress { font-variant-numeric: tabular-nums; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.card.done { border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: .8rem; color: var(--muted); }
+.meta .key { font-family: var(--mono); color: var(--ink); }
+.chip { border: 1px solid var(--line); border-radius: 999px; padding: 0 8px; text-transform: uppercase; letter-spacing: .04em; font-size: .7rem; }
+.chip.ai { border-color: var(--a); color: var(--a); }
+.src { display: grid; grid-template-columns: 4.5rem 1fr; gap: 4px 12px; }
+.src dt { font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding-top: .3em; }
+.src dd { margin: 0; min-width: 0; font-family: var(--sinh); font-size: 1rem; line-height: 1.7; }
+.src dd.pali { font-family: var(--pali); }
+details summary { cursor: pointer; font-size: .8rem; color: var(--accent); }
+.gl { margin: 6px 0 0; padding-left: 1.1rem; font-family: var(--pali); font-size: .9rem; color: var(--muted); }
+.ab { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 720px) { .ab { grid-template-columns: 1fr; } .src { grid-template-columns: 1fr; } }
+.v { border-radius: 8px; padding: 10px 12px; min-width: 0; font-family: var(--sinh); font-size: 1.05rem; line-height: 1.75; }
+.v h3 { margin: 0 0 4px; font: 600 .75rem var(--ui); letter-spacing: .08em; }
+.v.a { background: var(--a-soft); } .v.a h3 { color: var(--a); }
+.v.b { background: var(--b-soft); } .v.b h3 { color: var(--b); }
+.v.a mark { background: var(--add); color: inherit; border-radius: 3px; }
+.v.b mark { background: var(--add-b); color: inherit; border-radius: 3px; }
+.pick { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pick button { font: 500 .875rem var(--ui); padding: 6px 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.pick button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.pick button:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+textarea { width: 100%; box-sizing: border-box; min-height: 2.6em; font: .9rem/1.5 var(--ui); padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); resize: vertical; }
+.status { font-size: .75rem; color: var(--muted); }
+.notice { font-size: .85rem; color: var(--muted); border-left: 3px solid var(--line); padding-left: 10px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Pitaka Translation Review</h1>
+    <p class="lede">These are the pilot entries where the two translations differ most. A and B are the two experiments, shuffled per passage. Pick the better one, or both or neither, and note any error. The words each version has that the other lacks are highlighted.</p>
+    <div class="bar">
+      <label>Show <select id="filter"><option value="all">all entries</option><option value="todo">not reviewed yet</option><option value="vinaya">Vinaya</option><option value="abhidhamma">Abhidhamma</option><option value="qa">QA of existing text</option></select></label>
+      <span class="progress" id="progress"></span>
+      <span class="status" id="dbstate">Connecting to the review store…</span>
+    </div>
+  </header>
+  <main id="list" style="display:grid;gap:20px"></main>
+</div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const ENTRIES = JSON.parse(document.getElementById('data').textContent)
+const picks = {} // id -> {pick, note}
+let db = null
+const docId = id => id.replace(/[^A-Za-z0-9_-]+/g, '_')
+
+function wordDiff(a, b) { // marks the words of a that are not in the LCS with b
+  const x = a.split(/(\s+)/), y = b.split(/\s+/).filter(Boolean)
+  const xw = x.filter((_, i) => i % 2 === 0)
+  const dp = Array.from({ length: xw.length + 1 }, () => new Array(y.length + 1).fill(0))
+  for (let i = xw.length - 1; i >= 0; i--) for (let j = y.length - 1; j >= 0; j--)
+    dp[i][j] = xw[i] === y[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1])
+  const keep = new Set(); let i = 0, j = 0
+  while (i < xw.length && j < y.length) { if (xw[i] === y[j]) { keep.add(i); i++; j++ } else if (dp[i + 1][j] >= dp[i][j + 1]) i++; else j++ }
+  const frag = document.createDocumentFragment(); let w = 0
+  x.forEach((t, k) => {
+    if (k % 2) { frag.append(t); return }
+    if (keep.has(w++) || !t) frag.append(t); else { const m = document.createElement('mark'); m.textContent = t; frag.append(m) }
+  })
+  return frag
+}
+
+function el(tag, attrs = {}, ...kids) {
+  const e = document.createElement(tag)
+  for (const [k, v] of Object.entries(attrs)) k === 'class' ? e.className = v : e.setAttribute(k, v)
+  e.append(...kids.filter(k => k != null)); return e
+}
+
+function render() {
+  const f = document.getElementById('filter').value
+  const list = document.getElementById('list'); list.replaceChildren()
+  let shown = 0
+  for (const e of ENTRIES) {
+    const p = picks[e.id]
+    if (f === 'todo' && p?.pick) continue
+    if (['vinaya', 'abhidhamma', 'qa'].includes(f) && e.group !== f) continue
+    shown++
+    const src = el('dl', { class: 'src' },
+      el('dt', {}, 'Pāḷi'), el('dd', { class: 'pali' }, e.pali),
+      el('dt', {}, 'BJT'), el('dd', {}, e.bjt || '—'),
+      ...(e.apz !== undefined ? [el('dt', {}, e.ai ? 'APZ (AI)' : 'APZ'), el('dd', {}, e.apz || '(empty)')] : []))
+    const gl = e.glosses.length ? el('details', {}, el('summary', {}, `Aṭṭhakathā glosses (${e.glosses.length})`),
+      el('ul', { class: 'gl' }, ...e.glosses.map(g => el('li', {}, g)))) : null
+    const ab = el('div', { class: 'ab' },
+      el('div', { class: 'v a' }, el('h3', {}, 'A'), el('div', {}, wordDiff(e.a, e.b))),
+      el('div', { class: 'v b' }, el('h3', {}, 'B'), el('div', {}, wordDiff(e.b, e.a))))
+    const pick = el('div', { class: 'pick', role: 'group', 'aria-label': 'Which is better' })
+    for (const [v, label] of [['A', 'A is better'], ['B', 'B is better'], ['both', 'Both fine'], ['neither', 'Neither']]) {
+      const b = el('button', { type: 'button', 'aria-pressed': String(p?.pick === v) }, label)
+      b.onclick = () => save(e.id, { pick: v })
+      pick.append(b)
+    }
+    const note = el('textarea', { id: 'note-' + docId(e.id), placeholder: 'Errors or remarks (optional)', 'aria-label': 'Note' })
+    note.value = p?.note ?? ''
+    note.onchange = () => save(e.id, { note: note.value })
+    const meta = el('div', { class: 'meta' }, el('span', { class: 'key' }, e.id), el('span', { class: 'chip' }, e.group),
+      e.ai ? el('span', { class: 'chip ai' }, 'AI fill-in') : null, el('span', {}, `word overlap ${Math.round(e.sim * 100)}%`))
+    list.append(el('article', { class: 'card' + (p?.pick ? ' done' : '') }, meta, src, gl, ab, pick, note))
+  }
+  if (!shown) list.append(el('p', { class: 'notice' }, f === 'todo' ? 'Every entry has a pick. Thank you.' : 'No entries in this view.'))
+  const n = ENTRIES.filter(e => picks[e.id]?.pick).length
+  document.getElementById('progress').textContent = `${n} of ${ENTRIES.length} reviewed`
+}
+
+async function save(id, patch) {
+  picks[id] = { ...picks[id], ...patch }
+  render()
+  if (!db) { document.getElementById('dbstate').textContent = 'Not saved: the review store is not available in this view.'; return }
+  try {
+    await db.collection('picks').doc(docId(id)).set({ id, pick: picks[id].pick ?? '', note: picks[id].note ?? '', at: new Date().toISOString() })
+    document.getElementById('dbstate').textContent = 'Saved'
+  } catch (err) { document.getElementById('dbstate').textContent = `Not saved (${err?.code ?? 'error'}). Try again.` }
+}
+
+document.getElementById('filter').onchange = render
+render()
+;(async () => {
+  db = await window.claude?.use?.('db') ?? null
+  const s = document.getElementById('dbstate')
+  if (!db) { s.textContent = 'Picks are not saved in this view. Open the page signed in to claude.ai.'; return }
+  s.textContent = 'Picks save automatically'
+  db.collection('picks').onSnapshot(q => {
+    for (const d of q.docs) { const x = d.data(); if (x?.id) picks[x.id] = { pick: x.pick || undefined, note: x.note || '' } }
+    render()
+  }, err => { s.textContent = `Could not load saved picks (${err?.code ?? 'error'})` })
+})()
+</script>
