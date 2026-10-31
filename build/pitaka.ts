@@ -35,8 +35,11 @@ export function pitakaCorpus(corpus: Corpus, apz: Map<string, ApzFile>): Corpus 
       pages: f.pages.map((p, pi) => ({
         pageNum: p.pageNum,
         pali: { ...p.pali, footnotes: [] },
-        // a sparse array: writeDb reads a missing entry as no translation
-        sinh: { entries: a ? p.pali.entries.map((pe, ei) => a.pages[pi].entries[ei] ? { type: pe.type, level: pe.level, text: a.pages[pi].entries[ei] } : undefined) as JEntry[] : [], footnotes: [] },
+        // a sparse array: writeDb reads a missing entry as no translation. The translation of a verse is prose: a
+        // paragraph, not a gatha (as in tipitaka.lk's Sinhala)
+        sinh: { entries: a ? p.pali.entries.map((pe, ei) => a.pages[pi].entries[ei] ? (pe.type === 'gatha'
+          ? { type: 'paragraph', text: a.pages[pi].entries[ei] }
+          : { type: pe.type, level: pe.level, text: a.pages[pi].entries[ei] }) : undefined) as JEntry[] : [], footnotes: [] },
       })),
     })
   })

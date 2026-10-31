@@ -211,7 +211,7 @@ describe('pitaka flavor (fixture corpus)', () => {
     const row = db.prepare(`SELECT s_text, s_type, p_type FROM entry e JOIN file f ON f.id = e.file_id
       WHERE f.name = 'kn-dhp' AND page_idx = 3 AND entry_idx = ?`).get(dhp.entries.findIndex(t => t)) as any
     expect(row.s_text).toBe(dhp.entries.find(t => t))
-    expect(row.s_type).toBe(row.p_type)
+    expect([row.p_type, row.s_type]).toEqual([3, 2]) // the translation of a gatha is prose: a paragraph
     expect(one(db, "SELECT count(*) FROM entry e JOIN file f ON f.id = e.file_id WHERE f.name = 'vp-prj' AND s_text IS NOT NULL")).toBe(0)
     expect(db.prepare('SELECT name FROM file WHERE pali_only = 1 ORDER BY name').pluck().all()).toEqual(['ap-kvu', 'ap-kvu-8', 'ap-pat', 'vp-prj'])
     db.close()
