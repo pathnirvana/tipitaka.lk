@@ -12,6 +12,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 
 	"tipitaka.lk/server/engine"
 )
@@ -25,10 +26,11 @@ var reservedRoutes = map[string]bool{"": true, "settings": true, "abbreviations"
 	"title": true, "dict": true, "fts": true, "map": true, "names": true, "help": true}
 
 var (
-	eIndRe   = regexp.MustCompile(`^(\d+)-(\d+)$`)
-	titleRe  = regexp.MustCompile(`(?s)<title>.*?</title>`)
-	descRe   = regexp.MustCompile(`<meta name="description"[^>]*>`)
-	appDivRe = regexp.MustCompile(`<div id="app"></div>`)
+	eIndRe    = regexp.MustCompile(`^(\d+)-(\d+)$`)
+	titleRe   = regexp.MustCompile(`(?s)<title>.*?</title>`)
+	descRe    = regexp.MustCompile(`<meta name="description"[^>]*>`)
+	paraNumRe = regexp.MustCompile(`^\s*\d+(\s*[-–]\s*\d+)?\s*\.\s*`)
+	appDivRe  = regexp.MustCompile(`<div id="app"></div>`)
 )
 
 var htmlTagRe = regexp.MustCompile(`<[^>]*>`)
@@ -207,11 +209,16 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 		if t < 0 || t >= len(typeNames) {
 			t = e.Int("p_type")
 		}
-		if desc == "" && typeNames[t] != "heading" && typeNames[t] != "centered" {
-			desc = cut(plainText(e.Str(textCol)), 160) // the text itself describes the page best
+		// the text itself describes the page best: the first paragraphs up to 160 letters (one is often just
+		// "1. මා විසින් මෙසේ අසන ලදී:", the same on every sutta), without the paragraph numbers
+		if utf8.RuneCountInString(desc) < 120 && typeNames[t] != "heading" && typeNames[t] != "centered" {
+			if s := paraNumRe.ReplaceAllLiteralString(plainText(e.Str(textCol)), ""); s != "" {
+				desc = strings.TrimSpace(desc + " " + s)
+			}
 		}
 		art.WriteString(fmt.Sprintf(`<div class="ssr-entry %s" data-level="%d"%s>%s</div>`, typeNames[t], e.Int(levelCol), attr, MarkupToHTML(e.Str(textCol), true)))
 	}
+	desc = cut(desc, 160)
 	if desc == "" {
 		desc = a.describe(r, lang, p)
 	}
