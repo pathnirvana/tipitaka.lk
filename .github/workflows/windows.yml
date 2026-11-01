@@ -1,0 +1,84 @@
+name: windows
+# Installs the Microsoft Store packages on a Windows runner and drives them (scripts/windows-smoke.mjs): the app opens, a
+# sutta, the search, the dictionary and the title search render; screenshots are kept as the run's artifacts.
+# scripts/test-windows.sh uploads release/*.msix to the draft release windows-test (drafts are not public) and starts it.
+on:
+  workflow_dispatch:
+    inputs:
+      tag: { description: draft release with the msix files, default: windows-test }
+
+permissions: { contents: write } # a draft release is only visible with write access
+
+jobs:
+  smoke:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { flavor: lk, exe: tipitaka_lk, app: TipitakaLk }
+          - { flavor: pitaka, exe: pitaka_lk, app: PitakaLk }
+    env: { GH_TOKEN: '${{ github.token }}', EXE: '${{ matrix.exe }}', APP: '${{ matrix.app }}' }
+    steps:
+      - uses: actions/checkout@v5
+        with: { sparse-checkout: scripts }
+      - uses: actions/setup-node@v5
+        with: { node-version: 24 }
+      - name: download
+        id: pkg
+        shell: pwsh
+        run: |
+          gh release download "${{ inputs.tag }}" -p "$env:EXE-*.msix" -D pkg
+          if (-not (Test-Path pkg\*.msix)) { echo "::notice::no $env:EXE package in ${{ inputs.tag }}"; exit 0 }
+          echo "found=1" >> $env:GITHUB_OUTPUT
+      - name: install
+        if: steps.pkg.outputs.found
+        shell: pwsh
+        run: |
+          $pkg = (Get-ChildItem pkg\*.msix)[0].FullName
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $zip = [IO.Compression.ZipFile]::OpenRead($pkg)
+          $id = ([xml](New-Object IO.StreamReader($zip.GetEntry('AppxManifest.xml').Open())).ReadToEnd()).Package.Identity
+          $zip.Dispose()
+          # the Store signs the real package; a test certificate with the manifest's publisher signs this one
+          $cert = New-SelfSignedCertificate -Type Custom -Subject $id.Publisher -KeyUsage DigitalSignature -CertStoreLocation Cert:\CurrentUser\My `
+            -TextExtension @('2.5.29.37={text}1.3.6.1.5.5.7.3.3', '2.5.29.19={text}')
+          Export-Certificate -Cert $cert -FilePath test.cer | Out-Null
+          Import-Certificate -FilePath test.cer -CertStoreLocation Cert:\LocalMachine\TrustedPeople | Out-Null
+          $signtool = (Get-ChildItem "${env:ProgramFiles(x86)}\Windows Kits\10\bin\*\x64\signtool.exe" | Sort-Object FullName | Select-Object -Last 1).FullName
+          & $signtool sign /fd SHA256 /sha1 $cert.Thumbprint $pkg
+          if ($LASTEXITCODE) { exit 1 }
+          Add-AppxPackage $pkg
+          Get-AppxPackage $id.Name | Format-List Name, Version, PackageFamilyName, InstallLocation
+          echo "FAMILY=$((Get-AppxPackage $id.Name).PackageFamilyName)" >> $env:GITHUB_ENV
+      - name: webview2
+        if: steps.pkg.outputs.found
+        shell: pwsh
+        run: |
+          $rt = 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}'
+          if (Test-Path $rt) { echo "WebView2 $((Get-ItemProperty $rt).pv)" } else {
+            Invoke-WebRequest https://go.microsoft.com/fwlink/p/?LinkId=2124703 -OutFile wv2.exe
+            Start-Process wv2.exe -ArgumentList '/silent', '/install' -Wait
+          }
+          # the app's webview opens a DevTools port for the smoke test (a WebView2 policy, keyed by the exe)
+          $k = 'HKLM:\SOFTWARE\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments'
+          New-Item $k -Force | Out-Null
+          New-ItemProperty $k -Name "$env:EXE.exe" -Value '--remote-debugging-port=9222' -Force | Out-Null
+      - name: run
+        if: steps.pkg.outputs.found
+        shell: pwsh
+        run: |
+          Start-Process "shell:AppsFolder\$env:FAMILY!$env:APP"
+          node scripts/windows-smoke.mjs ${{ matrix.flavor }} shots
+          $code = $LASTEXITCODE
+          # the whole screen: the window with its title and icon
+          Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+          $b = [Windows.Forms.Screen]::PrimaryScreen.Bounds
+          $bmp = New-Object Drawing.Bitmap $b.Width, $b.Height
+          [Drawing.Graphics]::FromImage($bmp).CopyFromScreen($b.Location, [Drawing.Point]::Empty, $b.Size)
+          $bmp.Save("shots\screen.png")
+          Get-Process $env:EXE | Format-Table Id, MainWindowTitle, WorkingSet64
+          exit $code
+      - uses: actions/upload-artifact@v5
+        if: always() && steps.pkg.outputs.found
+        with: { name: 'windows-${{ matrix.flavor }}', path: shots }
