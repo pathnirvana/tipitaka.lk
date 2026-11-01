@@ -6,6 +6,7 @@ package main
 
 import (
 	_ "embed"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -22,6 +23,9 @@ import (
 //go:embed packaging/icons/mac/AppIcon.iconset/icon_256x256.png
 var aboutIcon []byte
 
+// desktopFlavor: lk, or pitaka for the pitaka.lk app (scripts/build-desktop.sh --flavor pitaka: -ldflags -X)
+var desktopFlavor = "lk"
+
 func main() {
 	for i, a := range os.Args[1:] {
 		if a == "-server" || a == "--server" {
@@ -30,11 +34,12 @@ func main() {
 			return
 		}
 	}
-	root, err := findRoot("", "", flavors["lk"])
+	fl := flavors[desktopFlavor]
+	root, err := findRoot("", "", fl)
 	if err != nil {
 		log.Fatal(err)
 	}
-	app, err := NewApp(Config{Root: root})
+	app, err := NewApp(Config{Root: root, Flavor: fl.name})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -46,11 +51,17 @@ func main() {
 			log.Println(r.Method, r.URL)
 		}
 		r.Header.Del("Accept-Encoding")
+		// the window opens /; pitaka is served under /main (a page, not a redirect: the webviews don't follow one)
+		if fl.base != "" && r.URL.Path == "/" {
+			w.Header().Set("Content-Type", "text/html; charset=utf-8")
+			fmt.Fprintf(w, `<!doctype html><meta charset="utf-8"><script>location.replace(%q)</script>`, fl.base+"/")
+			return
+		}
 		h.ServeHTTP(w, r)
 	})
 
 	opts := &options.App{
-		Title:            "බුද්ධ ජයන්ති ත්‍රිපිටකය",
+		Title:            fl.siteName,
 		Width:            1280,
 		Height:           860,
 		MinWidth:         360,

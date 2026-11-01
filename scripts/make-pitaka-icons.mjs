@@ -2,7 +2,7 @@
 // deep maroon tile, සරල / සිංහල large and ත්‍රිපිටකය under it in AbhayaUni Bold. The favicon is ස in the disc; the og image
 // and the Play feature graphic are the logo on cream with the dhamma wheel coming in from the side. Drawn at 1024 px and
 // scaled down with ImageMagick like scripts/make-icons.mjs (tipitaka.lk's).
-//   node scripts/make-pitaka-icons.mjs  -> server/packaging/icons-pitaka/{ios,android,store}/…, the web icons, favicon
+//   node scripts/make-pitaka-icons.mjs  -> server/packaging/icons-pitaka/{ios,android,windows,store}/…, the web icons, favicon
 //                                          and og image in web-pitaka/public/static/images, web-pitaka/public/manifest.webmanifest
 import { mkdirSync, readFileSync, writeFileSync, rmSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
@@ -141,6 +141,17 @@ writeFileSync(join(OUT, 'android/values/ic_launcher_background.xml'), `<?xml ver
 `)
 icon(master.square, 512, join(OUT, 'store/play-store-512.png'), true, TILE)
 await render(share(1024, 500), 1024, 500, join(OUT, 'store/play-feature-graphic.png'), true, CREAM)
+
+// Windows (MSIX: AppxManifest.xml names the plain files) and the .ico of the exe, as scripts/make-icons.mjs
+icon(master.round, 44, join(OUT, 'windows/Square44x44Logo.png'))
+icon(master.round, 150, join(OUT, 'windows/Square150x150Logo.png'))
+icon(master.round, 50, join(OUT, 'windows/StoreLogo.png'))
+const icoSizes = [16, 24, 32, 48, 64, 256]
+for (const s of icoSizes) icon(master.round, s, join(OUT, `windows/ico/${s}.png`))
+execFileSync('magick', icoSizes.map(s => join(OUT, `windows/ico/${s}.png`)).concat(join(OUT, 'windows/app.ico')))
+rmSync(join(OUT, 'windows/ico'), { recursive: true })
+icon(master.round, 300, join(OUT, 'store/microsoft-store-300.png'))
+icon(master.square, 1080, join(OUT, 'store/microsoft-box-art-1080.png'), true, TILE) // Store listing: 1:1 box art
 
 // web: home screen icons (manifest), apple-touch-icon (opaque: iOS shows transparency as black), favicon, og:image
 rmSync(WEB, { recursive: true, force: true })
