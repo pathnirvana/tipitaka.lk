@@ -9,7 +9,8 @@
  *   soft (merged, listed for the user's spot checks): length against BJT outside 0.5–2.5, Latin letters, -පෙ- dropped
  * Translate mode: a book without a text-apz file gets one (all pages, '' where nothing merged); every new entry is
  * flagged `ai`. QA mode: "ok" changes nothing; "fixed" replaces the text and keeps the entry's ai flag; "retranslated"
- * replaces it and flags it ai (a wholly new translation). Writes out/<set>/merge-report.md and flags.tsv.
+ * replaces it and flags it ai (a wholly new translation). Align mode as QA: "moved" (APZ's own text from a neighbour)
+ * replaces the text and keeps the ai flag. Writes out/<set>/merge-report.md and flags.tsv.
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -55,7 +56,7 @@ for (const p of packets) {
   p.entries.forEach((e, i) => {
     const item = r?.items.find(x => x.i === i + 1)
     if (!item) { count.missing++; if (r) flags.push([e.key, 'hard', 'no-result', '']); return }
-    const verdict = p.mode === 'qa' ? item.verdict ?? 'fixed' : 'new'
+    const verdict = p.mode !== 'translate' ? item.verdict ?? 'fixed' : 'new'
     verdicts[verdict] = (verdicts[verdict] ?? 0) + 1
     if (verdict === 'ok') { count.unchanged++; return }
     const si = item.si.replace(/\{[^}]*\}/g, '').replace(/[ \t]{2,}/g, ' ').trim()
@@ -73,7 +74,7 @@ for (const p of packets) {
     if (e.bjt.length >= 150 && !/^\s*\d+\s*-\s*\d+/.test(bjt)) { const ratio = si.length / e.bjt.length; if (ratio < 0.5 || ratio > 2.5) flags.push([e.key, 'soft', 'length', ratio.toFixed(2)]) }
     if (/[A-Za-z]/.test(si)) flags.push([e.key, 'soft', 'latin', si.match(/[A-Za-z][A-Za-z ]*/)![0]])
     if (pali.includes('-පෙ-') && !si.includes('-පෙ-')) flags.push([e.key, 'soft', 'peyyala-expanded', ''])
-    for (const er of item.errors ?? []) if (['meaning', 'omission', 'edition', 'alignment'].includes(er.kind)) flags.push([e.key, 'soft', `qa-${er.kind}`, er.note.slice(0, 160)])
+    for (const er of item.errors ?? []) if (['meaning', 'omission', 'edition', 'alignment', 'report'].includes(er.kind)) flags.push([e.key, 'soft', `qa-${er.kind}`, er.note.slice(0, 160)])
     const a = getApz(e.file), pg = a.pages[e.page]
     pg.entries[e.entry] = si
     const isAi = (pg.ai ?? []).includes(e.entry)

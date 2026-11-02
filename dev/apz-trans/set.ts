@@ -128,7 +128,59 @@ if (stage === 'qa') {
     }
     flush()
   }
-} else throw new Error('usage: set.ts qa | book <prefix> | redo <set>')
+} else if (stage === 'align') {
+  // the stretches dev/apz-paranum found misaligned (runs.json left after fix.py), with 2 entries on each side; one packet
+  // per window, since the text may have moved anywhere inside it (overlapping windows of a file become one)
+  setName ??= 'align'
+  const runs: { file: string; entries: [number, number][] }[] = JSON.parse(fs.readFileSync('dev/apz-paranum/runs.json', 'utf-8')).runs
+  const wins: { file: string; from: number; to: number }[] = []
+  for (const r of runs) {
+    const es = allOf(r.file), at = (x: [number, number]) => es.findIndex(e => e.page === x[0] && e.entry === x[1])
+    const from = Math.max(0, at(r.entries[0]) - 2), to = Math.min(es.length - 1, at(r.entries.at(-1)!) + 2)
+    const last = wins.at(-1)
+    if (last?.file === r.file && from <= last.to + 1) last.to = Math.max(last.to, to)
+    else wins.push({ file: r.file, from, to })
+  }
+  for (const w of wins) {
+    const es = allOf(w.file).slice(w.from, w.to + 1)
+    packets.push({ ...packet(db, `${w.file}-${es[0].page}.${es[0].entry}`, 'align', es, { terms: termsFor(es, statuses), attaBudget: 3000 }), group: 'align' })
+  }
+} else if (stage === 'issues') {
+  // the readers' error reports (dev/apz-issues/items.json, located by locate.py): each located entry with one entry on
+  // each side (text may have to move), windows of a file merged and cut at MAX_PALI; --only PLK-1,PLK-2 for a pilot,
+  // --items for another list (relocate.py's items2.json)
+  setName ??= 'issues'
+  const only = arg('--only')?.split(',')
+  type It = { id: string; head: string; now: string; should: string; why: string; compare: string[]; loc: [string, number, number, number, boolean] | null }
+  const its = (JSON.parse(fs.readFileSync(arg('--items') ?? 'dev/apz-issues/items.json', 'utf-8')) as It[])
+    .filter(it => it.loc && it.loc[3] >= 0.5 && it.id !== 'PLK-473' && (!only || only.includes(it.id))) // (PLK-473 ඎ → ඍ: done by hand)
+  const byFile = new Map<string, It[]>()
+  for (const it of its) (byFile.get(it.loc![0]) ?? byFile.set(it.loc![0], []).get(it.loc![0])!).push(it)
+  for (const [file, list] of byFile) {
+    const es = allOf(file), at = (it: It) => es.findIndex(e => e.page === it.loc![1] && e.entry === it.loc![2])
+    const wins: { from: number; to: number; its: It[] }[] = []
+    for (const it of list.sort((a, b) => at(a) - at(b))) {
+      const from = Math.max(0, at(it) - 1), to = Math.min(es.length - 1, at(it) + 1), last = wins.at(-1)
+      if (last && from <= last.to + 1) { last.to = Math.max(last.to, to); last.its.push(it) } else wins.push({ from, to, its: [it] })
+    }
+    let cur: Entry[] = [], reports: Record<string, string[]> = {}, size = 0
+    const flush = () => {
+      if (!cur.length) return
+      packets.push({ ...packet(db, `${file}-${cur[0].page}.${cur[0].entry}`, 'issue', cur, { terms: termsFor(cur, statuses), attaBudget: 3000 }), reports, group: 'issues' })
+      cur = []; reports = {}; size = 0
+    }
+    for (const w of wins) {
+      const ws = es.slice(w.from, w.to + 1), wsize = ws.reduce((s, e) => s + e.pali.length, 0)
+      if (cur.length && size + wsize > MAX_PALI) flush()
+      cur.push(...ws); size += wsize
+      for (const it of w.its) {
+        const key = es[at(it)].key
+        ;(reports[key] ??= []).push(`${it.id} (${it.head.replace(/^- \[[ x]\] \*\*M?PLK-\d+\*\* · /, '').replace(/ · fix:.*/, '')}): Now: ${it.now} | Should be: ${it.should} | Why: ${it.why}${it.compare.length ? ' | ' + it.compare.join(' | ') : ''}`)
+      }
+    }
+    flush()
+  }
+} else throw new Error('usage: set.ts qa | book <prefix> | redo <set> | align | issues')
 
 const dir = path.join(OUT, setName!)
 fs.mkdirSync(dir, { recursive: true })

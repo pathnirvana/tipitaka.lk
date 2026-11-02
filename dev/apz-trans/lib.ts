@@ -26,12 +26,13 @@ export interface Entry {
 }
 export interface Atta { key: string; pali: string; sinh: string }
 export interface Packet {
-  id: string; mode: 'translate' | 'qa'
+  id: string; mode: 'translate' | 'qa' | 'align' | 'issue'
   entries: Entry[]
   glosses: Record<string, string[]> // entry key -> "mula words ⇒ explanation"
   atta: Atta[]
   prev: { key: string; si: string }[]
   terms?: string[] // the glossary rows of the terms in these entries
+  reports?: Record<string, string[]> // entry key -> error reports about it (issue mode)
 }
 export interface Item { i: number; si: string; verdict?: string; errors?: { kind: string; note: string }[] }
 export interface Result {
@@ -126,7 +127,8 @@ export function render(p: Packet, extra?: (e: Entry, i: number) => string | unde
   out.push('# ENTRIES')
   p.entries.forEach((e, i) => {
     out.push(`## i=${i + 1} (${e.type}) [${e.key}]`, `PALI: ${noFn(e.pali)}`, `BJT: ${noFn(e.bjt) || '(none)'}`)
-    if (p.mode === 'qa') out.push(`APZ${e.ai ? ' (AI fill-in)' : ''}: ${e.apz || '(empty)'}`)
+    if (p.mode !== 'translate') out.push(`APZ${e.ai ? ' (AI fill-in)' : ''}: ${e.apz || '(empty)'}`)
+    for (const r of p.reports?.[e.key] ?? []) out.push(`REPORT ${r}`)
     for (const g of p.glosses[e.key] ?? []) out.push(`gloss: ${g}`)
     const x = extra?.(e, i)
     if (x) out.push(x)
@@ -150,6 +152,36 @@ Each entry has the current Sinhala (APZ) to check against the PALI, BJT and ATTA
 - "retranslated": APZ is empty, a copy of the Pāḷi, wrong throughout, or belongs to another entry. Translate the entry anew.
 List every change in "errors" as {"kind", "note"}. kind is one of: meaning, omission, addition, number, name, edition, typo,
 style, alignment. The note is short, in English, and quotes the words concerned.
+Return {"items": [{"i", "verdict", "si", "errors"}]}: one item per entry, same i numbers, in order.`,
+  align: `## Task: realign APZ with the Pāḷi
+The PALI entries are the ground truth for where each passage belongs. In this window the APZ texts may sit beside the wrong
+entry: shifted by one or more entries, two passages run together in one entry, or one passage split over two entries. Use
+the BJT Sinhala (which follows the Pāḷi entry by entry) and the ATTA to see which APZ words translate which Pāḷi entry.
+Give every entry the APZ Sinhala of its own Pāḷi passage:
+- "ok": the APZ of this entry already matches its Pāḷi. Return "si" as "".
+- "moved": its APZ text came (wholly or partly) from neighbouring entries in the window. Return the moved APZ text: cut, join
+  and reorder APZ's own sentences, keep its wording, and change only what joining needs (and the leading paragraph number,
+  which must be the Pāḷi's).
+- "retranslated": no APZ text in the window translates this entry (APZ missed it, or translated another edition's
+  passage). Translate the entry anew.
+Each APZ passage goes to exactly one entry; drop only APZ text that translates nothing in this window's Pāḷi and say so.
+List every change in "errors" as {"kind", "note"}: kind is alignment, omission (APZ lacked it), addition (APZ text dropped)
+or edition. The note is short, in English, and says where the text came from (e.g. "from i=4").
+Return {"items": [{"i", "verdict", "si", "errors"}]}: one item per entry, same i numbers, in order.`,
+  issue: `## Task: act on error reports
+Readers reported errors in APZ (REPORT lines, each with an ID: where they saw it, "Now", "Should be", "Why"). The reports
+were made against an older copy: the APZ text here may already differ, and paragraph numbers, headings and paragraph breaks
+now follow the BJT Pāḷi entries, which are the ground truth. Entries without a REPORT are context: leave them "ok" unless a
+report moves text into or out of them, or a report is really about one of them (the place was found by its words, and
+repeated phrases mislead): then act on it there. Check each report against the PALI, BJT and ATTA. For each entry:
+- "ok": nothing to change in it. Return "si" as "".
+- "fixed": return the entry's whole APZ text with the reported errors corrected. Change only what the reports (and an
+  obvious typo next to them) require; keep APZ's wording elsewhere. Where a report asks for missing text, translate it in
+  APZ's register; where it asks to move text between entries, move it.
+- "retranslated": only where the APZ of the entry is wrong throughout. Translate it anew.
+In "errors" give one item per report, kind "report", the note starting with the report ID and one of: fixed, already
+(the error is not in the current text), moot (about numbering, headings or breaks that now follow BJT), rejected (the
+report is wrong: say why in a few words). Other changes get the usual kinds (meaning, omission, typo, ...).
 Return {"items": [{"i", "verdict", "si", "errors"}]}: one item per entry, same i numbers, in order.`,
   review: `## Task: review a draft translation
 Each entry has a DRAFT Sinhala translation made by another model from the same sources. Check it against the PALI, BJT and

@@ -51,7 +51,7 @@ const JUDGE_SCHEMA = { type: 'object', required: ['items'], properties: { items:
 async function runOne(p: P, prev: { key: string; si: string }[]): Promise<Result> {
   const pk = { ...p, prev }
   const sys = (task: string) => STYLE + '\n\n' + task
-  const withVerdict = p.mode === 'qa'
+  const withVerdict = p.mode !== 'translate'
   if (runner === 'opus' || runner === 'gemini') {
     const task = TASK[p.mode], schema = SCHEMA(withVerdict)
     const r = runner === 'opus' ? await claude(OPUS, sys(task), render(pk), schema) : await gemini(GEMINI, sys(task), render(pk), schema)

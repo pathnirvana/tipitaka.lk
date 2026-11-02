@@ -1,0 +1,1001 @@
+[
+ {
+  "id": "PLK-195",
+  "issue": 138,
+  "done": false,
+  "head": "- [ ] **PLK-195** · paragraph 26 (ජීවක කොමාරහච්ච සූත්‍රය) · fix: [vagga_3312.xml line 116]",
+  "now": "සංඝයා සරණ ගියේද, මහානාමය, මෙපමණකින්ම",
+  "should": "සංඝයා සරණ ගියේද, ජීවකය, මෙපමණකින්ම",
+  "why": "This sutta is addressed to Jīvaka, but here he is called \"Mahānāma\", the name from the previous sutta. (Line 99, in the previous sutta, rightly has \"Mahānāma\".)",
+  "compare": [
+   "Compare, Pāli of this sutta, 8. 1. 3. 6. : එත්තාවතා ඛො ජීවක",
+   "Compare, the next answer in this sutta : ජීවකය, මෙපමණකින් උපාසකයා සිල්වතෙක් වෙයි"
+  ],
+  "search": "සරණ ගියේද, මහානාමය, මෙපමණකින්ම",
+  "hits": [
+   [
+    "an-8",
+    59,
+    4
+   ],
+   [
+    "an-8",
+    60,
+    6
+   ]
+  ],
+  "loc": [
+   "an-8",
+   60,
+   6,
+   1.0,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "PLK-213",
+  "issue": 139,
+  "done": false,
+  "head": "- [ ] **PLK-213** · paragraph 45 (බොජ්ඣුපොසථ සූත්‍රය) · fix: [vagga_3314.xml line 128]",
+  "now": "අටවැනි අංගයෙන්ද යුක්තවූයේ වෙයි. මහණෙනි, අංග අටකින්",
+  "should": "අටවැනි අංගයෙන්ද යුක්තවූයේ වෙයි. බොජ්ඣාව, අංග අටකින්",
+  "why": "This sutta is spoken to the lay woman Bojjhā, but this one sentence addresses මහණෙනි (monks), copied from the earlier suttas; everywhere else in the sutta she is addressed by name. (The same words in suttas 8. 1. 5. 1. and 8. 1. 5. 2., spoken to the monks, are right.)",
+  "compare": [
+   "Compare, Pāli of this sutta : එවං උපවුත්ථො ඛො බොජ්ඣෙ",
+   "Compare, the next line of this sutta : “බොජ්ඣාව, අංග අටකින්"
+  ],
+  "search": "යුක්තවූයේ වෙයි. මහණෙනි, අංග අටකින්",
+  "hits": [
+   [
+    "an-8",
+    89,
+    0
+   ]
+  ],
+  "loc": [
+   "an-8",
+   96,
+   2,
+   0.52,
+   false,
+   true
+  ]
+ },
+ {
+  "id": "PLK-208",
+  "issue": 139,
+  "done": false,
+  "head": "- [ ] **PLK-208** · paragraph 48 (නකුලමාතු මනාපකායික සූත්‍රය) · fix: [vagga_3314.xml line 210]",
+  "now": "“නකුලමාතාවෙනි, අංග අටකින් යුත් පෙහෙවස් සමාදන්වූයේ මහත්ඵල වේ.",
+  "should": "Replace lines 210–221 (the eight-factored observance day) with this sutta's own teaching: the eight qualities by which a woman is reborn among the Manāpakāyika gods, with the verses. It is the same text as the previous sutta (lines 195–200), with නකුලමාතාවෙනි in place of විශාඛාවෙනි. Line 209 (the setting) is right.",
+  "why": "This sutta, to Nakulamātā, is about the eight qualities of a woman reborn among the Manāpakāyika gods (its own title says so), as the previous sutta to Visākhā is. The text given under it is instead the observance-day sutta, copied from the earlier suttas of this chapter.",
+  "compare": [
+   "Compare, Pāli of this sutta : අට්ඨහි ඛො නකුලමාතෙ, ධම්මෙහි සමන්නාගතො මාතුගාමො කායස්ස භෙදා පරම්මරණා මනාපකායිකානං",
+   "Compare, the same teaching in the previous sutta : කරුණු අටකින් යුත් ස්ත්‍රිය කය බිඳීමෙන් මරණින් පසු මනාපකායික"
+  ],
+  "search": "නකුලමාතාවෙනි, අංග අටකින් යුත් පෙහෙවස්",
+  "hits": [],
+  "loc": [
+   "an-8",
+   103,
+   3,
+   0.55,
+   false,
+   true
+  ]
+ },
+ {
+  "id": "PLK-237",
+  "issue": 139,
+  "done": false,
+  "head": "- [ ] **PLK-237** · paragraph 55 (උජ්ජය සූත්‍රය) · fix: vagga_3315.xml lines [96], [106]",
+  "now": "ව්‍යග්ඝපජ්ජය, මේ",
+  "should": "බ්‍රාහ්මණය, මේ",
+  "why": "This sutta is spoken to the brahmin Ujjaya, but in these two places the name Byagghapajja has been left from the previous sutta; everywhere else it says බ්‍රාහ්මණය.",
+  "compare": [
+   "Compare, Pāli of this sutta : කතමා ච බ්රාහ්මණ, සීලසම්පදා: ඉධ බ්රාහ්මණ",
+   "Compare, the next paragraph : “බ්‍රාහ්මණය, ආරක්‍ෂා සම්පත්තිය කවරේද?"
+  ],
+  "search": "ව්‍යග්ඝපජ්ජය, මේ උත්සාහ සම්පත්තියයයි",
+  "hits": [
+   [
+    "an-8-2",
+    8,
+    1
+   ]
+  ],
+  "loc": [
+   "an-8-2",
+   12,
+   0,
+   0.64,
+   false,
+   true
+  ]
+ },
+ {
+  "id": "PLK-250",
+  "issue": 140,
+  "done": false,
+  "head": "- [ ] **PLK-250** · paragraph 63 (චිත්තසණ්ඨාපන සූත්‍රය) · fix: [vagga_3316.xml line 48]",
+  "now": "එකත්පසෙක සිටියේය. එකත්පසෙක සිටියාවූ",
+  "should": "එකත්පසෙක හුන්නේය. එකත්පසෙක හුන්නාවූ",
+  "why": "The monk sat down to one side (Pāli nisīdi, nisinno), not stood; de Zoysa writes හුන්නේය for the same Pāli elsewhere in this vagga.",
+  "compare": [
+   "Compare, Pāli of this sutta : එකමන්තං නිසීදි. එකමන්තං නිසින්නො",
+   "Compare, the same phrase in sutta 8. 1. 7. 10. : එකත්පසෙක හුන්නේය. එකත්පසෙක හුන්නාවූ"
+  ],
+  "search": "එකත්පසෙක සිටියේය",
+  "hits": [
+   [
+    "an-9",
+    2,
+    7
+   ],
+   [
+    "an-9",
+    3,
+    3
+   ],
+   [
+    "sn-3-2",
+    6,
+    14
+   ],
+   [
+    "an-7-2",
+    0,
+    5
+   ],
+   [
+    "an-7-2",
+    6,
+    0
+   ],
+   [
+    "sn-1-3",
+    71,
+    5
+   ],
+   [
+    "sn-1-3",
+    73,
+    13
+   ],
+   [
+    "an-10",
+    61,
+    4
+   ],
+   [
+    "an-10",
+    76,
+    5
+   ],
+   [
+    "sn-1",
+    0,
+    9
+   ],
+   [
+    "sn-1",
+    1,
+    5
+   ],
+   [
+    "sn-1",
+    1,
+    16
+   ],
+   [
+    "sn-1",
+    2,
+    3
+   ],
+   [
+    "sn-1",
+    2,
+    10
+   ],
+   [
+    "sn-1",
+    2,
+    17
+   ],
+   [
+    "sn-1",
+    3,
+    3
+   ],
+   [
+    "sn-1",
+    3,
+    10
+   ],
+   [
+    "sn-1",
+    3,
+    17
+   ],
+   [
+    "sn-1",
+    5,
+    16
+   ],
+   [
+    "sn-1",
+    6,
+    2
+   ],
+   [
+    "sn-1",
+    6,
+    9
+   ],
+   [
+    "sn-1",
+    6,
+    16
+   ],
+   [
+    "sn-1",
+    7,
+    2
+   ],
+   [
+    "sn-1",
+    7,
+    9
+   ],
+   [
+    "sn-1",
+    11,
+    9
+   ],
+   [
+    "sn-1",
+    11,
+    16
+   ],
+   [
+    "sn-1",
+    12,
+    3
+   ],
+   [
+    "sn-1",
+    12,
+    12
+   ],
+   [
+    "sn-1",
+    12,
+    19
+   ],
+   [
+    "sn-1",
+    13,
+    10
+   ],
+   [
+    "sn-1",
+    14,
+    3
+   ],
+   [
+    "sn-1",
+    14,
+    10
+   ],
+   [
+    "sn-1",
+    15,
+    2
+   ],
+   [
+    "sn-1",
+    37,
+    21
+   ],
+   [
+    "sn-1",
+    42,
+    4
+   ],
+   [
+    "sn-1",
+    42,
+    15
+   ],
+   [
+    "sn-1",
+    43,
+    3
+   ],
+   [
+    "sn-1",
+    43,
+    10
+   ],
+   [
+    "sn-1",
+    43,
+    18
+   ],
+   [
+    "sn-1",
+    44,
+    6
+   ],
+   [
+    "sn-1",
+    45,
+    3
+   ],
+   [
+    "sn-1",
+    45,
+    9
+   ],
+   [
+    "sn-1",
+    48,
+    4
+   ],
+   [
+    "sn-1",
+    48,
+    11
+   ],
+   [
+    "sn-1",
+    48,
+    18
+   ],
+   [
+    "sn-1",
+    49,
+    3
+   ],
+   [
+    "sn-1",
+    49,
+    11
+   ],
+   [
+    "sn-1",
+    50,
+    13
+   ],
+   [
+    "sn-1",
+    52,
+    2
+   ],
+   [
+    "dn-2-3",
+    4,
+    2
+   ],
+   [
+    "dn-2-3",
+    26,
+    2
+   ],
+   [
+    "dn-2-3",
+    33,
+    5
+   ],
+   [
+    "dn-2-3",
+    34,
+    3
+   ],
+   [
+    "dn-1-6",
+    1,
+    2
+   ],
+   [
+    "an-4",
+    47,
+    4
+   ],
+   [
+    "mn-1-3",
+    23,
+    7
+   ],
+   [
+    "kn-snp",
+    10,
+    8
+   ],
+   [
+    "kn-snp",
+    14,
+    8
+   ],
+   [
+    "an-3",
+    24,
+    8
+   ],
+   [
+    "an-3",
+    25,
+    3
+   ],
+   [
+    "dn-2-4",
+    34,
+    2
+   ],
+   [
+    "an-3-2",
+    1,
+    5
+   ],
+   [
+    "an-3-2",
+    2,
+    1
+   ],
+   [
+    "an-3-2",
+    3,
+    1
+   ],
+   [
+    "an-3-2",
+    3,
+    7
+   ],
+   [
+    "an-3-2",
+    4,
+    5
+   ],
+   [
+    "an-3-2",
+    6,
+    6
+   ],
+   [
+    "an-3-2",
+    9,
+    1
+   ],
+   [
+    "an-3-2",
+    10,
+    8
+   ],
+   [
+    "kn-snp-3",
+    11,
+    2
+   ],
+   [
+    "kn-snp-3",
+    16,
+    1
+   ],
+   [
+    "kn-snp-3",
+    23,
+    0
+   ],
+   [
+    "kn-snp-3",
+    41,
+    1
+   ],
+   [
+    "an-10-3",
+    10,
+    3
+   ],
+   [
+    "an-10-3",
+    19,
+    2
+   ],
+   [
+    "an-10-3",
+    21,
+    4
+   ],
+   [
+    "an-10-3",
+    23,
+    7
+   ],
+   [
+    "an-6-2",
+    34,
+    9
+   ],
+   [
+    "an-6-2",
+    35,
+    4
+   ],
+   [
+    "vp-prj-3-4",
+    24,
+    1
+   ],
+   [
+    "sn-1-7",
+    3,
+    12
+   ],
+   [
+    "sn-1-7",
+    8,
+    0
+   ],
+   [
+    "sn-1-7",
+    16,
+    0
+   ],
+   [
+    "sn-1-7",
+    64,
+    5
+   ],
+   [
+    "sn-1-7",
+    64,
+    11
+   ],
+   [
+    "sn-1-7",
+    65,
+    6
+   ],
+   [
+    "an-8-2",
+    7,
+    4
+   ],
+   [
+    "an-8-2",
+    11,
+    9
+   ],
+   [
+    "an-8-2",
+    24,
+    5
+   ],
+   [
+    "an-4-2",
+    25,
+    2
+   ],
+   [
+    "an-10-2",
+    26,
+    2
+   ],
+   [
+    "an-10-2",
+    26,
+    7
+   ],
+   [
+    "an-10-2",
+    51,
+    3
+   ],
+   [
+    "an-10-2",
+    51,
+    10
+   ],
+   [
+    "an-10-2",
+    54,
+    5
+   ],
+   [
+    "an-10-2",
+    69,
+    5
+   ],
+   [
+    "an-10-2",
+    71,
+    3
+   ],
+   [
+    "an-10-2",
+    71,
+    4
+   ],
+   [
+    "an-10-2",
+    75,
+    3
+   ],
+   [
+    "an-10-2",
+    80,
+    6
+   ],
+   [
+    "an-10-2",
+    84,
+    0
+   ],
+   [
+    "an-10-2",
+    86,
+    3
+   ],
+   [
+    "an-10-2",
+    87,
+    5
+   ],
+   [
+    "an-10-2",
+    88,
+    4
+   ],
+   [
+    "an-10-2",
+    90,
+    3
+   ],
+   [
+    "an-10-2",
+    98,
+    4
+   ],
+   [
+    "sn-4-2",
+    55,
+    6
+   ],
+   [
+    "sn-4-2",
+    56,
+    7
+   ],
+   [
+    "sn-4-2",
+    58,
+    2
+   ],
+   [
+    "an-4-5",
+    17,
+    5
+   ],
+   [
+    "an-4-5",
+    31,
+    10
+   ],
+   [
+    "an-10-5",
+    19,
+    3
+   ],
+   [
+    "sn-3",
+    42,
+    4
+   ],
+   [
+    "an-7",
+    5,
+    3
+   ],
+   [
+    "an-7",
+    14,
+    8
+   ],
+   [
+    "an-7",
+    23,
+    4
+   ],
+   [
+    "an-7",
+    23,
+    9
+   ],
+   [
+    "an-7",
+    24,
+    3
+   ],
+   [
+    "an-7",
+    24,
+    12
+   ],
+   [
+    "an-7",
+    25,
+    3
+   ],
+   [
+    "an-6",
+    15,
+    2
+   ],
+   [
+    "an-6",
+    24,
+    4
+   ],
+   [
+    "an-6",
+    24,
+    8
+   ],
+   [
+    "an-6",
+    30,
+    4
+   ],
+   [
+    "an-6",
+    40,
+    11
+   ],
+   [
+    "an-6",
+    40,
+    15
+   ],
+   [
+    "an-6",
+    42,
+    2
+   ],
+   [
+    "an-6",
+    46,
+    8
+   ],
+   [
+    "an-6",
+    48,
+    7
+   ],
+   [
+    "an-6",
+    71,
+    0
+   ],
+   [
+    "an-6",
+    72,
+    2
+   ],
+   [
+    "kn-ud",
+    15,
+    0
+   ],
+   [
+    "kn-ud",
+    22,
+    3
+   ],
+   [
+    "kn-ud",
+    46,
+    3
+   ],
+   [
+    "kn-ud",
+    47,
+    2
+   ],
+   [
+    "an-10-4",
+    4,
+    6
+   ],
+   [
+    "an-10-4",
+    14,
+    4
+   ],
+   [
+    "an-10-4",
+    19,
+    10
+   ],
+   [
+    "an-4-4",
+    3,
+    7
+   ],
+   [
+    "an-4-4",
+    20,
+    4
+   ],
+   [
+    "an-4-4",
+    21,
+    4
+   ],
+   [
+    "an-4-4",
+    22,
+    9
+   ],
+   [
+    "an-4-4",
+    30,
+    12
+   ],
+   [
+    "an-4-4",
+    31,
+    9
+   ],
+   [
+    "an-4-4",
+    35,
+    6
+   ],
+   [
+    "an-4-4",
+    36,
+    9
+   ],
+   [
+    "an-4-4",
+    39,
+    2
+   ],
+   [
+    "an-4-4",
+    48,
+    2
+   ],
+   [
+    "an-4-4",
+    52,
+    5
+   ]
+  ],
+  "loc": [
+   "an-8-2",
+   24,
+   5,
+   1.0,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "PLK-288",
+  "issue": 141,
+  "done": false,
+  "head": "- [ ] **PLK-288** · paragraph 12 (සඋපාදිසෙස සූත්‍රය) · fix: [vagga_3411.xml line 33]",
+  "now": "ඉක්බිත්තෙන් වනාහි ආයුෂ්මත් ශාරීපුත්‍ර ස්ථවිරයන් වහන්සේ පෙරවරු කාලයෙහි",
+  "should": "Add at the start of this line the setting sentence, worded as in the previous sutta (line 9): «භාග්‍යවතුන් වහන්සේ එක් කලෙක සැවැත් නුවර ජේතවනාරාමයෙහි වැඩ වසන සේක.»",
+  "why": "The sutta begins without its setting: the Pāli first says that the Blessed One was staying at Sāvatthī in Jeta's Grove, Anāthapiṇḍika's park.",
+  "compare": [
+   "Compare, Pāli of this sutta : එකං සමයං භගවා \\*\\*සාවත්ථියං\\*\\* විහරති \\*\\*ජෙතවනෙ\\*\\* අනාථපිණ්ඩිකස්ස ආරාමෙ.",
+   "Compare, Buddha Jayanthi's Sinhala : එක් සමයෙක්හි භාග්‍යවතුන් වහන්සේ \\*\\*සැවැත් නුවර\\*\\* සමීපයෙහි \\*\\*ජේතවන\\*\\* නම් වූ අනේපිඬු සිටුහුගේ අරම්හි වැඩවසනසේක."
+  ],
+  "search": "ඉක්බිත්තෙන් වනාහි ආයුෂ්මත් ශාරීපුත්‍ර ස්ථවිරයන් වහන්සේ පෙරවරු කාලයෙහි",
+  "hits": [],
+  "loc": [
+   "an-9",
+   22,
+   4,
+   0.67,
+   false,
+   true
+  ]
+ },
+ {
+  "id": "PLK-343",
+  "issue": 144,
+  "done": false,
+  "head": "- [ ] **PLK-343** · paragraph 35 (නිස්සයදාන සූත්‍රය) · fix: [vagga_3513.xml line 50]",
+  "now": "මේ දස ධර්මයෙන් යුක්තවූ මහණහු විසින් උපසම්පදා කළ යුතුය.",
+  "should": "මේ දස ධර්මයෙන් යුක්තවූ මහණහු විසින් ඇසුරුකොට විසිය යුතුය.",
+  "why": "This sutta is about giving dependence (නිශ්‍රය), not about giving full ordination: its closing sentence was copied from the sutta before. It should end as its own question (line 49) is worded.",
+  "compare": [
+   "Compare, Pāli of this sutta, the closing sentence : ඉමෙහි ඛො උපාලි දසහි ධම්මෙහි සමන්නාගතෙන භික්ඛුනා නිස්සයො දාතබ්බොති",
+   "Compare, the question at the start of this sutta : උපාලිය, දස ධර්මයන්ගෙන් යුත් මහණ විසින් ඇසුරුකොට විසිය යුතුය"
+  ],
+  "search": "මේ දස ධර්මයෙන් යුක්තවූ මහණහු විසින් උපසම්පදා කළ යුතුය",
+  "hits": [
+   [
+    "an-10",
+    63,
+    0
+   ]
+  ],
+  "loc": [
+   "an-10",
+   63,
+   5,
+   0.71,
+   false,
+   true
+  ]
+ },
+ {
+  "id": "PLK-369",
+  "issue": 145,
+  "done": false,
+  "head": "- [ ] **PLK-369** · paragraph 68 (පලසවන සූත්‍රය) · fix: [vagga_3516.xml line 105]",
+  "now": "එක් කාලයෙක්හි භාග්‍යවතුන් වහන්සේ කොසොල් රට චාරිකාවෙහි හැසිරෙන සේක් මහත් භික්‍ෂු සමූහයක් සමග නළපාන නම් කොසොල් රට වාසීන්ගේ නියම් ගමක් වේද, එහි විසූ සේක. එහි වනාහි භාග්‍යවතුන් වහන්සේ නළපාන ගමෙහි, පලාස වනයෙහි වාසය කරණ සේක.",
+  "should": "එක් කාලයෙක්හි භාග්‍යවතුන් වහන්සේ නළකපාන ගමෙහි, පලාස වනයෙහි වාසය කරණ සේක.",
+  "why": "The first sentence of this sutta was copied from the previous sutta (the tour in Kosala with a large company of monks). This sutta simply opens with the Blessed One staying at Naḷakapāna in the Palāsa grove. (The town's name is also corrected here to «නළකපාන», as in the separate item on that spelling.)",
+  "compare": [
+   "Compare, Pāli of this sutta (10. 2. 2. 8.) : එකං සමයං භගවා \\*\\*නළකපානෙ\\*\\* විහරති \\*\\*පලාසවනෙ\\*\\*.",
+   "Compare, the previous sutta, where the tour belongs : කොසොල් රට චාරිකාවෙහි හැසිරෙන සේක් මහත් භික්‍ෂු සමූහයක් සමග"
+  ],
+  "search": "කොසොල් රට චාරිකාවෙහි හැසිරෙන සේක් මහත් භික්‍ෂු සමූහයක් සමග නළපාන",
+  "hits": [
+   [
+    "an-10-2",
+    27,
+    4
+   ],
+   [
+    "an-10-2",
+    30,
+    4
+   ]
+  ],
+  "loc": [
+   "an-10-2",
+   30,
+   4,
+   1.0,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "PLK-446",
+  "issue": 147,
+  "done": false,
+  "head": "- [ ] **PLK-446** · paragraph 218 (දුතිය සඤ්චෙතනික කම්ම සූත්‍රය) · fix: [vagga_3530.xml line 115]",
+  "now": "මහණෙනි, යම් සේ නිර්දෝෂ මැණිකක් උඩ වීසිකෙළේ නම් යම් තැනෙක පිහිටාද, මොනවට පිහිටියේ වේද, මහණෙනි, එසේම කුසල් උපදවන",
+  "should": "මහණෙනි, කුසල් උපදවන",
+  "why": "The simile of the gem thrown up belongs to the previous sutta (10. 5. 1. 7., line 96); this sutta has no simile, so it should be deleted here.",
+  "compare": [
+   "Compare, Pāli of this sutta, last paragraph: no simile : තිවිධකායකම්මන්තසම්පත්ති කුසලසඤ්චෙතනිකා හෙතු වා භික්ඛවෙ සත්තා",
+   "Compare, Buddha Jayanthi’s Sinhala of the previous sutta, where the simile belongs : මහණෙනි, යම් සේ සිවුරැස් පසැටක් උඩ ලූයේ"
+  ],
+  "search": "“මහණෙනි, යම් සේ නිර්දෝෂ මැණිකක් උඩ වීසිකෙළේ නම්",
+  "hits": [
+   [
+    "an-10-5",
+    15,
+    0
+   ]
+  ],
+  "loc": [
+   "an-10-5",
+   17,
+   1,
+   1.0,
+   false,
+   true
+  ]
+ }
+]
