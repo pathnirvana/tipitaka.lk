@@ -1945,7 +1945,8 @@
                     },
                     {
                         "type": "unindented",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1970,7 +1971,8 @@
                     {
                         "type": "centered",
                         "text": "",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "centered",
@@ -2446,7 +2448,8 @@
                     {
                         "type": "heading",
                         "text": "4. චුල්ලබොධි චරියං",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -3474,7 +3477,8 @@
                     },
                     {
                         "type": "unindented",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -3494,7 +3498,8 @@
                     {
                         "type": "centered",
                         "text": "",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "centered",
@@ -5774,7 +5779,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "centered",

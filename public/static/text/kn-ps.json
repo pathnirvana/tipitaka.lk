@@ -8,12 +8,14 @@
                     {
                         "type": "centered",
                         "text": "සුත්තන්තපිටකෙ",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "centered",
                         "text": "ඛුද්දකනිකායො",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -38,7 +40,8 @@
                     {
                         "type": "centered",
                         "text": "1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -977,7 +980,8 @@
                     {
                         "type": "centered",
                         "text": "(2)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -1026,7 +1030,8 @@
                     {
                         "type": "centered",
                         "text": "(3)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2168,7 +2173,7 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": "දස්සනට්ඨෙන සම්මාදිට්ඨි අභිඤ්ඤෙය්යා, අභිනිරොපනට්ඨෙන සම්මාසඞ්කප්පො අභිඤ්ඤෙය්යො, පරිග්ගහට්ඨෙන සම්මාවාචා අභිඤ්ඤෙය්යා, සමුට්ඨානට්ඨෙන සම්මාකම්මන්තො අභිඤ්ඤෙය්යො, වොදානට්ඨෙන සම්මාආජීවො අභිඤ්ඤෙය්යො, පග්ගහට්ඨෙන සම්මාවායාමො අභිඤ්ඤෙය්යො, උපට්ඨානට්ඨෙන සම්මාසති අභිඤ්ඤෙය්යා. අවික්ඛෙපට්ඨෙන සම්මාසමාධි අභිඤ්ඤෙය්යො."
+                        "text": "දස්සනට්ඨෙන සම්මාදිට්ඨි අභිඤ්ඤෙය්යා, අභිනිරොපනට්ඨෙන සම්මාසඞ්කප්පො අභිඤ්ඤෙය්යො, පරිග්ගහට්ඨෙන සම්මාවාචා අභිඤ්ඤෙය්යා, සමුට්ඨානට්ඨෙන සම්මාකම්මන්තො අභිඤ්ඤෙය්යො, වොදානට්ඨෙන සම්මාආජීවො අභිඤ්ඤෙය්යො, පග්ගහට්ඨෙන සම්මාවායාමො අභිඤ්ඤෙය්යො, උපට්ඨානට්ඨෙන සම්මාසති අභිඤ්ඤෙය්යා, අවික්ඛෙපට්ඨෙන සම්මාසමාධි අභිඤ්ඤෙය්යො."
                     },
                     {
                         "type": "paragraph",
@@ -2263,7 +2268,8 @@
                     {
                         "type": "centered",
                         "text": "(1)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2312,7 +2318,8 @@
                     {
                         "type": "centered",
                         "text": "(2)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2741,7 +2748,8 @@
                     {
                         "type": "centered",
                         "text": "(3)",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2897,7 +2905,8 @@
                     {
                         "type": "centered",
                         "text": "(4)",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2995,7 +3004,8 @@
                     {
                         "type": "centered",
                         "text": "(5)",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3540,7 +3550,8 @@
                     {
                         "type": "centered",
                         "text": "(6)",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3589,7 +3600,8 @@
                     {
                         "type": "centered",
                         "text": "(7)",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3715,7 +3727,8 @@
                     {
                         "type": "centered",
                         "text": "(8)",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3825,7 +3838,8 @@
                     {
                         "type": "centered",
                         "text": "(9)",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3903,7 +3917,8 @@
                     {
                         "type": "centered",
                         "text": "(10)",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4888,7 +4903,8 @@
                     {
                         "type": "heading",
                         "text": "3. සමාධිභාවනාමයඤාණං",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5064,7 +5080,8 @@
                     {
                         "type": "heading",
                         "text": "4. ධම්මට්ඨිතිඤාණං",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5272,7 +5289,7 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": "චක්ඛුං ජරාමරණං අතීතානාගතපච්චුප්පන්නං අනිච්චතො වවත්ථෙති, එකං සම්මසනං. දුක්ඛතො වවත්ථෙති, එකං සම්මසනං. අනත්තතො වවත්ථෙති, එකං සම්මසනං."
+                        "text": "චක්ඛුං -පෙ- ජරාමරණං අතීතානාගතපච්චුප්පන්නං අනිච්චතො වවත්ථෙති, එකං සම්මසනං. දුක්ඛතො වවත්ථෙති, එකං සම්මසනං. අනත්තතො වවත්ථෙති, එකං සම්මසනං."
                     }
                 ],
                 "footnotes": [

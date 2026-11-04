@@ -13,8 +13,7 @@
                     {
                         "type": "centered",
                         "text": "ඛුද්දකනිකායෙ",
-                        "level": 5,
-                        "noAudio": true
+                        "level": 5
                     },
                     {
                         "type": "heading",
@@ -24,7 +23,8 @@
                     {
                         "type": "centered",
                         "text": "පඨමො භාගො",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -44,7 +44,8 @@
                     {
                         "type": "centered",
                         "text": "1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -667,7 +668,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1135,7 +1137,8 @@
                     {
                         "type": "centered",
                         "text": "2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -13935,7 +13938,7 @@
                     },
                     {
                         "type": "gatha",
-                        "text": "1024. දන්තො අන්තපරිකිණ්ණො ඣායී ඣානරතෙහි ච,\nආතාපී පහිතත්තෙහි උපසන්තෙහි තාදිහි.",
+                        "text": "1024. දන්තො දන්තපරිකිණ්ණො ඣායී ඣානරතෙහි ච,\nආතාපී පහිතත්තෙහි උපසන්තෙහි තාදිහි.",
                         "level": 1
                     },
                     {

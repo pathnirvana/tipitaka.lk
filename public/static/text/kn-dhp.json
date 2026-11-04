@@ -18,7 +18,8 @@
                     {
                         "type": "centered",
                         "text": "(දුතියො ගන්ථො)",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",

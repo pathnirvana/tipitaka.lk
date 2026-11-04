@@ -8,7 +8,8 @@
                     {
                         "type": "centered",
                         "text": "සුත්තන්තපිටකෙ ඛුද්දකනිකායෙ",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -131,7 +132,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",

@@ -18,7 +18,8 @@
                     {
                         "type": "centered",
                         "text": "තතියො භාගො",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -540,7 +541,7 @@
                     },
                     {
                         "type": "gatha",
-                        "text": "31. **විපස්සි**ස්ස{1} භගවතො ලොකජෙට්ඨස්ස තාදිනො,\nරථියං පටිපන්නස්ස කාරයන්තස්ස පාණිනො.",
+                        "text": "31. **විපස්සි**ස්ස{1} භගවතො ලොකජෙට්ඨස්ස තාදිනො,\nරථියං පටිපන්නස්ස තාරයන්තස්ස පාණිනො.",
                         "level": 1
                     },
                     {
@@ -6813,7 +6814,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -6961,7 +6963,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -8543,7 +8546,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -8552,7 +8556,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -8566,7 +8571,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -10547,7 +10553,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -10556,7 +10563,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -14047,7 +14055,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",

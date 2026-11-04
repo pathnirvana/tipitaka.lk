@@ -13,7 +13,8 @@
                     {
                         "type": "centered",
                         "text": "2. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -240,7 +241,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -423,7 +425,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -533,7 +536,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -671,7 +675,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -822,7 +827,8 @@
                     {
                         "type": "centered",
                         "text": "2. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -947,7 +953,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1420,7 +1427,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1536,7 +1544,8 @@
                     {
                         "type": "centered",
                         "text": "2. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1651,7 +1660,8 @@
                     {
                         "type": "centered",
                         "text": "2. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1751,7 +1761,8 @@
                     {
                         "type": "centered",
                         "text": "2. 11.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1771,7 +1782,8 @@
                     {
                         "type": "centered",
                         "text": "",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1897,7 +1909,8 @@
                     {
                         "type": "centered",
                         "text": "2. 12.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2186,7 +2199,8 @@
                     {
                         "type": "centered",
                         "text": "2. 13.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2388,7 +2402,8 @@
                     {
                         "type": "centered",
                         "text": "2. 14.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2639,7 +2654,8 @@
                 "entries": [
                     {
                         "type": "unindented",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",

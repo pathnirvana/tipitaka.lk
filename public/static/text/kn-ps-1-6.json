@@ -8,7 +8,8 @@
                     {
                         "type": "centered",
                         "text": "6.",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -293,7 +294,8 @@
                     {
                         "type": "centered",
                         "text": "7.",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -377,7 +379,8 @@
                     {
                         "type": "centered",
                         "text": "8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -517,7 +520,8 @@
                     {
                         "type": "centered",
                         "text": "9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -746,7 +750,8 @@
                     {
                         "type": "centered",
                         "text": "10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",

@@ -28,7 +28,8 @@
                     {
                         "type": "centered",
                         "text": "1. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -47,7 +48,8 @@
                     {
                         "type": "centered",
                         "text": "1. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -66,7 +68,8 @@
                     {
                         "type": "centered",
                         "text": "1. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -181,7 +184,8 @@
                     {
                         "type": "centered",
                         "text": "1. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -200,7 +204,8 @@
                     {
                         "type": "centered",
                         "text": "1. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -219,7 +224,8 @@
                     {
                         "type": "centered",
                         "text": "1. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -238,7 +244,8 @@
                     {
                         "type": "centered",
                         "text": "1. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -257,7 +264,8 @@
                     {
                         "type": "centered",
                         "text": "1. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -396,7 +404,8 @@
                     {
                         "type": "centered",
                         "text": "1. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -415,7 +424,8 @@
                     {
                         "type": "centered",
                         "text": "1. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -434,7 +444,8 @@
                     {
                         "type": "centered",
                         "text": "1. 11.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -453,7 +464,8 @@
                     {
                         "type": "centered",
                         "text": "1. 12.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -472,7 +484,8 @@
                     {
                         "type": "centered",
                         "text": "1. 13.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -611,7 +624,8 @@
                     {
                         "type": "centered",
                         "text": "1. 14.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -630,7 +644,8 @@
                     {
                         "type": "centered",
                         "text": "1. 15.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -649,7 +664,8 @@
                     {
                         "type": "centered",
                         "text": "1. 16.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -668,7 +684,8 @@
                     {
                         "type": "centered",
                         "text": "1. 17.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -687,7 +704,8 @@
                     {
                         "type": "centered",
                         "text": "1. 18.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -833,7 +851,8 @@
                     {
                         "type": "centered",
                         "text": "2. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -857,7 +876,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -881,7 +901,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -998,7 +1019,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1022,7 +1044,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1046,7 +1069,8 @@
                     {
                         "type": "centered",
                         "text": "2. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1070,7 +1094,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1208,7 +1233,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1232,7 +1258,8 @@
                     {
                         "type": "centered",
                         "text": "2. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1256,7 +1283,8 @@
                     {
                         "type": "centered",
                         "text": "2. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1374,7 +1402,8 @@
                     {
                         "type": "centered",
                         "text": "3. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1403,7 +1432,8 @@
                     {
                         "type": "centered",
                         "text": "3. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1432,7 +1462,8 @@
                     {
                         "type": "centered",
                         "text": "3. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1566,7 +1597,8 @@
                     {
                         "type": "centered",
                         "text": "3. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1595,7 +1627,8 @@
                     {
                         "type": "centered",
                         "text": "3. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1624,7 +1657,8 @@
                     {
                         "type": "centered",
                         "text": "3. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1765,7 +1799,8 @@
                     {
                         "type": "centered",
                         "text": "3. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1794,7 +1829,8 @@
                     {
                         "type": "centered",
                         "text": "3. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -1908,7 +1944,8 @@
                     {
                         "type": "centered",
                         "text": "4. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -2014,11 +2051,12 @@
                     {
                         "type": "centered",
                         "text": "5. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
-                        "text": "67. පණ්ණවීසතිවස්සානි යතො පබ්බජිතා අහං\nනච්ඡරාසඞ්ඝතමත්තම්පි{1} චිත්තස්සූපසමජ්ඣගං.",
+                        "text": "67. පණ්ණවීසතිවස්සානි යතො පබ්බජිතා අහං\nනාච්ඡරාසඞ්ඝාතමත්තම්පි{1} චිත්තස්සූපසමජ්ඣගං.",
                         "level": 1
                     },
                     {
@@ -2038,7 +2076,7 @@
                     },
                     {
                         "type": "gatha",
-                        "text": "71. චෙතොපරියඤාණඤ්ච සොතධාතු විසොධිතා,\nඉදිධිපි මෙ සච්ඡිකතා පත්තො මෙ ආවක්ඛයො,\nඡළභිඤ්ඤා සච්ඡිකතා කතං බුද්ධස්ස සාසනන්ති.",
+                        "text": "71. චෙතොපරියඤාණඤ්ච සොතධාතු විසොධිතා,\nඉද්ධිපි මෙ සච්ඡිකතා පත්තො මෙ ආසවක්ඛයො,\nඡළභිඤ්ඤා සච්ඡිකතා කතං බුද්ධස්ස සාසනන්ති.",
                         "level": 1
                     },
                     {
@@ -2053,7 +2091,8 @@
                     {
                         "type": "centered",
                         "text": "5. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -2191,7 +2230,8 @@
                     {
                         "type": "centered",
                         "text": "5. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -2230,7 +2270,8 @@
                     {
                         "type": "centered",
                         "text": "5. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -2239,7 +2280,7 @@
                     },
                     {
                         "type": "gatha",
-                        "text": "83. යඡා ඉදං තථා එතං යථා එතං තථා ඉදං\nදුග්ගන්ධං පූතිකං වාති බාලානං අභිනන්දිතං.",
+                        "text": "83. යථා ඉදං තථා එතං යථා එතං තථා ඉදං\nදුග්ගන්ධං පූතිකං වාති බාලානං අභිනන්දිතං.",
                         "level": 1
                     },
                     {
@@ -2383,7 +2424,8 @@
                     {
                         "type": "centered",
                         "text": "5. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -2422,7 +2464,8 @@
                     {
                         "type": "centered",
                         "text": "5. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -2559,7 +2602,8 @@
                     {
                         "type": "centered",
                         "text": "5. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -2598,7 +2642,8 @@
                     {
                         "type": "centered",
                         "text": "5. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -2727,7 +2772,8 @@
                     {
                         "type": "centered",
                         "text": "5. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -2766,7 +2812,8 @@
                     {
                         "type": "centered",
                         "text": "5. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -2780,7 +2827,7 @@
                     },
                     {
                         "type": "gatha",
-                        "text": "114. පදෙ පක්ඛාලයිත්වාන උදකෙසු කරොමහං,\nපදොදකඤ්ච දිස්වාන ථලතො නින්නමාගතං.",
+                        "text": "114. පාදෙ පක්ඛාලයිත්වාන උදකෙසු කරොමහං,\nපාදොදකඤ්ච දිස්වාන ථලතො නින්නමාගතං.",
                         "level": 1
                     },
                     {
@@ -2886,11 +2933,12 @@
                     {
                         "type": "centered",
                         "text": "5. 11.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
-                        "text": "117. මූසලානි ගහෙත්වාන ධඤ්ඤං කොට්ටෙන්ති මානවා{1}\nපුත්තදාරානි පොසෙන්තා ධනං වින්දන්ති මානවා{1}:",
+                        "text": "117. මුසලානි ගහෙත්වාන ධඤ්ඤං කොට්ටෙන්ති මානවා{1}\nපුත්තදාරානි පොසෙන්තා ධනං වින්දන්ති මානවා{1}:",
                         "level": 1
                     },
                     {
@@ -2925,7 +2973,8 @@
                     {
                         "type": "centered",
                         "text": "5. 12.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -3065,7 +3114,8 @@
                     {
                         "type": "centered",
                         "text": "6. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -3109,7 +3159,8 @@
                     {
                         "type": "centered",
                         "text": "6. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -3276,7 +3327,8 @@
                     {
                         "type": "centered",
                         "text": "6. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -3320,7 +3372,8 @@
                     {
                         "type": "centered",
                         "text": "6. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -3470,7 +3523,8 @@
                     {
                         "type": "centered",
                         "text": "6. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -3514,7 +3568,8 @@
                     {
                         "type": "centered",
                         "text": "6. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -3664,7 +3719,8 @@
                     {
                         "type": "centered",
                         "text": "6. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -3708,7 +3764,8 @@
                     {
                         "type": "centered",
                         "text": "6. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -3856,7 +3913,8 @@
                     {
                         "type": "centered",
                         "text": "7. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -3905,7 +3963,8 @@
                     {
                         "type": "centered",
                         "text": "7. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -4035,7 +4094,8 @@
                     {
                         "type": "centered",
                         "text": "7. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -4175,7 +4235,8 @@
                     {
                         "type": "centered",
                         "text": "8. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -4308,7 +4369,8 @@
                     {
                         "type": "centered",
                         "text": "9. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -4450,7 +4512,8 @@
                     {
                         "type": "centered",
                         "text": "11. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -4628,7 +4691,8 @@
                     {
                         "type": "centered",
                         "text": "12. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -4806,7 +4870,8 @@
                     {
                         "type": "centered",
                         "text": "16. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -5029,7 +5094,8 @@
                     {
                         "type": "centered",
                         "text": "20. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -5280,7 +5346,8 @@
                     {
                         "type": "centered",
                         "text": "20. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -5477,7 +5544,8 @@
                     {
                         "type": "centered",
                         "text": "20. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -5754,7 +5822,8 @@
                     {
                         "type": "centered",
                         "text": "20. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -6055,7 +6124,8 @@
                     {
                         "type": "centered",
                         "text": "20. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -6441,7 +6511,8 @@
                     {
                         "type": "centered",
                         "text": "30. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -6856,7 +6927,8 @@
                     {
                         "type": "centered",
                         "text": "40. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
@@ -7464,7 +7536,8 @@
                     {
                         "type": "centered",
                         "text": "1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "gatha",
