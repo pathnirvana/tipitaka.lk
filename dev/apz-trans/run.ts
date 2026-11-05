@@ -17,7 +17,7 @@
  */
 import path from 'node:path'
 import fs from 'node:fs'
-import { OUT, STYLE, TASK, SCHEMA, claude, gemini, render, readJsonl, appendJsonl, opusIsA, type Item, type Packet, type Result } from './lib'
+import { OUT, REWRITE, STYLE, TASK, SCHEMA, claude, gemini, render, readJsonl, appendJsonl, opusIsA, type Item, type Packet, type Result } from './lib'
 
 type P = Packet & { group: string; after?: string }
 const arg = (n: string) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : undefined }
@@ -51,7 +51,11 @@ const JUDGE_SCHEMA = { type: 'object', required: ['items'], properties: { items:
 async function runOne(p: P, prev: { key: string; si: string }[]): Promise<Result> {
   const pk = { ...p, prev }
   const sys = (task: string) => STYLE + '\n\n' + task
-  const withVerdict = p.mode !== 'translate'
+  const withVerdict = p.mode !== 'translate' && p.mode !== 'rewrite'
+  if (runner === 'opus' && p.mode === 'rewrite') {
+    const r = await claude(OPUS, REWRITE, render(pk), SCHEMA(false))
+    return { packet: p.id, runner, model: OPUS, items: r.out.items, usage: r.usage }
+  }
   if (runner === 'opus' || runner === 'gemini') {
     const task = TASK[p.mode], schema = SCHEMA(withVerdict)
     const r = runner === 'opus' ? await claude(OPUS, sys(task), render(pk), schema) : await gemini(GEMINI, sys(task), render(pk), schema)

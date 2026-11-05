@@ -5,8 +5,10 @@
  *     the targeted QA of the existing sin_apz: the AI fill-ins, the gaps (dev/apz-import/gaps.tsv: empty, copied-pali,
  *     partly-pali), the length outliers against BJT, and a random sample of the human entries. Neighbouring picks become
  *     one window (with the entries between them); the windows of a file share packets.
- *   npx tsx dev/apz-trans/set.ts book <file prefix> [--set <name>] [--terms ok|proposed]
+ *   npx tsx dev/apz-trans/set.ts book <file prefix> [--set <name>] [--terms ok|proposed] [--mode rewrite] [--pages 0-9|7:4-9]
  *     every entry of the text files <prefix>, <prefix>-* (e.g. vp-prj), translated in order; a file's packets form one chain.
+ *     --mode rewrite: BJT Sinhala rewritten in modern Sinhala (prompt-v2.md), with short Pāḷi commentary spans and no
+ *     glossary. --pages: only those pages of the first file (a pilot).
  *
  * Packets are about MAX_PALI Pāḷi chars, ending at a heading where one is near. The glossary terms (status ok, or also
  * proposed with --terms proposed) that occur in a packet go in with it.
@@ -89,11 +91,15 @@ if (stage === 'qa') {
   const prefix = process.argv[3]
   if (!prefix) throw new Error('book <file prefix>')
   setName ??= prefix
-  for (const file of files.filter(f => f === prefix || f.startsWith(prefix + '-'))) {
+  const mode = arg('--mode') === 'rewrite' ? 'rewrite' : 'translate', pages = arg('--pages')
+  const book = files.filter(f => f === prefix || f.startsWith(prefix + '-'))
+  for (const file of pages ? book.slice(0, 1) : book) {
     let prevId: string | undefined
-    cut(allOf(file)).forEach((chunk, n) => {
+    const [p0, p1] = (pages ?? '0-99999').split('-')
+    cut(entries(db, file, p0.includes(':') ? p0 : `${p0}:0`, p1.includes(':') ? p1 : `${p1}:9999`)).forEach((chunk, n) => {
       const id = `${file}-${n + 1}`
-      packets.push({ ...packet(db, id, 'translate', chunk, { terms: termsFor(chunk, statuses) }), group: prefix, ...(prevId ? { after: prevId } : {}) })
+      const terms = mode === 'rewrite' ? undefined : termsFor(chunk, statuses)
+      packets.push({ ...packet(db, id, mode, chunk, { terms }), group: prefix, ...(prevId ? { after: prevId } : {}) })
       prevId = id
     })
   }

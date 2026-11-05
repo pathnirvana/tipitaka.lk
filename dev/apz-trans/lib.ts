@@ -26,7 +26,7 @@ export interface Entry {
 }
 export interface Atta { key: string; pali: string; sinh: string }
 export interface Packet {
-  id: string; mode: 'translate' | 'qa' | 'align' | 'issue'
+  id: string; mode: 'translate' | 'qa' | 'align' | 'issue' | 'rewrite'
   entries: Entry[]
   glosses: Record<string, string[]> // entry key -> "mula words ⇒ explanation"
   atta: Atta[]
@@ -88,6 +88,13 @@ export function packet(db: Database.Database, id: string, mode: Packet['mode'], 
   const lq = db.prepare('SELECT atta, src FROM entry_link WHERE mula = ?')
   for (const e of es) {
     const mw = words(db, e.id), lines = new Set<string>()
+    if (mode === 'rewrite') {
+      // only the commentary's own words on this entry's words: the span that starts with the quoted word, if it is short
+      for (const g of gq.all(e.id) as Record<string, number>[])
+        if (g.x_entry === g.a_entry && g.x_w - g.a_w < FOCUS_WORDS) lines.add(words(db, g.a_entry).slice(g.a_w, g.x_w + 1).join(' '))
+      if (lines.size) glosses[e.key] = [...lines]
+      continue
+    }
     for (const g of gq.all(e.id) as Record<string, number>[]) {
       const aw = words(db, g.a_entry)
       const def = g.x_entry === g.a_entry ? aw.slice(g.a_w, g.x_w + 1) : aw.slice(g.a_w, g.a_w + 40)
@@ -113,6 +120,8 @@ export function packet(db: Database.Database, id: string, mode: Packet['mode'], 
   return { id, mode, entries: es, glosses, atta: atta.map(({ order, ...a }) => a), prev: opts.prev ?? [], ...(opts.terms?.length ? { terms: opts.terms } : {}) }
 }
 
+const FOCUS_WORDS = 30
+
 const noFn = (s: string) => s.replace(/\{[^}]*\}/g, '')
 
 /** the packet as the model reads it */
@@ -127,9 +136,9 @@ export function render(p: Packet, extra?: (e: Entry, i: number) => string | unde
   out.push('# ENTRIES')
   p.entries.forEach((e, i) => {
     out.push(`## i=${i + 1} (${e.type}) [${e.key}]`, `PALI: ${noFn(e.pali)}`, `BJT: ${noFn(e.bjt) || '(none)'}`)
-    if (p.mode !== 'translate') out.push(`APZ${e.ai ? ' (AI fill-in)' : ''}: ${e.apz || '(empty)'}`)
+    if (p.mode !== 'translate' && p.mode !== 'rewrite') out.push(`APZ${e.ai ? ' (AI fill-in)' : ''}: ${e.apz || '(empty)'}`)
     for (const r of p.reports?.[e.key] ?? []) out.push(`REPORT ${r}`)
-    for (const g of p.glosses[e.key] ?? []) out.push(`gloss: ${g}`)
+    for (const g of p.glosses[e.key] ?? []) out.push(p.mode === 'rewrite' ? `ATTA: ${g}` : `gloss: ${g}`)
     const x = extra?.(e, i)
     if (x) out.push(x)
     out.push('')
@@ -138,6 +147,8 @@ export function render(p: Packet, extra?: (e: Entry, i: number) => string | unde
 }
 
 export const STYLE = fs.readFileSync(path.join(DIR, 'prompt.md'), 'utf-8')
+/** the whole system prompt of rewrite mode (BJT Sinhala in modern Sinhala), task included */
+export const REWRITE = fs.readFileSync(path.join(DIR, 'prompt-v2.md'), 'utf-8')
 
 export const TASK = {
   translate: `## Task

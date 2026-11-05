@@ -117,12 +117,13 @@ function render() {
     const qa = e.old !== undefined
     const src = el('dl', { class: 'src' },
       el('dt', {}, 'Pāḷi'), el('dd', { class: 'pali' }, e.pali),
-      ...(qa ? [el('dt', {}, 'BJT'), el('dd', {}, e.bjt || '—')] : []),
+      ...(qa && e.old !== e.bjt ? [el('dt', {}, 'BJT'), el('dd', {}, e.bjt || '—')] : []),
       ...(e.apz ? [el('dt', {}, 'APZ'), el('dd', {}, e.apz)] : []))
     const [lt, lx] = qa ? [e.oldLabel ?? (e.ai ? 'Existing (AI fill-in)' : 'Existing APZ'), e.old || '(empty)'] : ['BJT', e.bjt || '—']
     const ab = el('div', { class: 'ab' },
       el('div', { class: 'v a' }, el('h3', {}, lt.toUpperCase()), el('div', {}, qa ? wordDiff(lx, e.si) : lx)),
       el('div', { class: 'v b' }, el('h3', {}, e.newLabel ?? (qa ? 'OPUS' : 'NEW (OPUS)')), el('div', {}, qa ? wordDiff(e.si, lx) : e.si)))
+    const atta = e.atta?.length ? el('details', {}, el('summary', {}, `Aṭṭhakathā (${e.atta.length})`), el('ul', { class: 'errs' }, ...e.atta.map(a => el('li', {}, a)))) : null
     const errs = e.errors?.length ? el('ul', { class: 'errs' }, ...e.errors.map(x => el('li', {}, el('b', {}, x.kind), ' ' + x.note))) : null
     const pick = el('div', { class: 'pick', role: 'group', 'aria-label': 'Verdict' })
     for (const [v, label] of PICKS) {
@@ -133,9 +134,9 @@ function render() {
     const note = el('textarea', { id: 'note-' + docId(e.id), placeholder: 'Errors or remarks (optional)', 'aria-label': 'Note' })
     note.value = p?.note ?? ''
     note.onchange = () => save(e.id, { note: note.value })
-    const meta = el('div', { class: 'meta' }, el('span', { class: 'key' }, e.id), el('span', { class: 'chip' }, e.set === 'qa' ? 'QA' : 'Pārājika'),
+    const meta = el('div', { class: 'meta' }, el('span', { class: 'key' }, e.id), el('span', { class: 'chip' }, e.set === 'qa' ? 'QA' : e.set.startsWith('vp-pct') ? 'Pācittiya' : 'Pārājika'),
       ...e.why.map(w => el('span', { class: 'chip' + (w === 'sample' || w === 'fixed' || w === 'retranslated' ? '' : ' flag') }, WHY[w] ?? w)))
-    list.append(el('article', { class: 'card' + (p?.pick ? ' done' : '') }, meta, src, ab, errs, pick, note))
+    list.append(el('article', { class: 'card' + (p?.pick ? ' done' : '') }, meta, src, atta, ab, errs, pick, note))
   }
   if (!shown) list.append(el('p', { class: 'notice' }, f === 'todo' ? 'Every entry is checked. Thank you.' : 'No entries in this view.'))
   const n = ENTRIES.filter(e => picks[e.id]?.pick).length

@@ -4,6 +4,7 @@
  *
  *   npx tsx dev/apz-trans/spotcheck.ts qa vp-prj
  *   npx tsx dev/apz-trans/spotcheck.ts qa-redo vp-prj-redo   (every entry of a redo set against its first run: out/spotcheck-redo)
+ *   npx tsx dev/apz-trans/spotcheck.ts --bjt vp-pct-v2        (every entry of a rewrite set against BJT Sinhala: out/side-<set>)
  *
  * QA: retranslated, fixed, the flagged kinds (length, -පෙ- expanded, edition) and nothing marked ok. A translated book:
  * random entries, plus every length / latin flag and some -පෙ- expanded ones.
@@ -18,9 +19,10 @@ function rng(seed: number) { return () => (seed = (seed * 1103515245 + 12345) % 
 const strip = (s: string) => s.replace(/\{[^}]*\}/g, '')
 
 const out: any[] = []
-const REDO = process.argv[2]?.endsWith('-redo')
-for (const set of process.argv.slice(2)) {
+const REDO = process.argv[2]?.endsWith('-redo'), BJT = process.argv[2] === '--bjt'
+for (const set of process.argv.slice(BJT ? 3 : 2)) {
   if (REDO) { out.push(...redo(set)); continue }
+  if (BJT) { out.push(...sideBySide(set)); continue }
   const dir = path.join(OUT, set), rand = rng(20261029)
   const packets: Packet[] = JSON.parse(fs.readFileSync(path.join(dir, 'packets.json'), 'utf-8'))
   const results = new Map(readJsonl<Result>(path.join(dir, 'opus.jsonl')).map(r => [r.packet, r]))
@@ -67,7 +69,18 @@ function redo(set: string) {
   })).sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }))
 }
 
-const dir = path.join(OUT, REDO ? 'spotcheck-redo' : 'spotcheck')
+/** every entry of a set: BJT Sinhala against the new text, with the commentary spans it was given */
+function sideBySide(set: string) {
+  const packets: Packet[] = JSON.parse(fs.readFileSync(path.join(OUT, set, 'packets.json'), 'utf-8'))
+  const results = new Map(readJsonl<Result>(path.join(OUT, set, 'opus.jsonl')).map(r => [r.packet, r]))
+  return packets.flatMap(p => p.entries.flatMap((e, i) => {
+    const it = results.get(p.id)?.items.find(x => x.i === i + 1)
+    return it ? [{ id: e.key, set, pali: strip(e.pali), bjt: strip(e.bjt), si: it.si, old: strip(e.bjt), oldLabel: 'BJT SINHALA', newLabel: 'NEW',
+      atta: p.glosses[e.key] ?? [], errors: [], why: [] }] : []
+  }))
+}
+
+const dir = path.join(OUT, REDO ? 'spotcheck-redo' : BJT ? `side-${process.argv[3]}` : 'spotcheck')
 fs.mkdirSync(dir, { recursive: true })
 fs.writeFileSync(path.join(dir, 'page.html'), fs.readFileSync(path.join(DIR, 'spotcheck.html'), 'utf-8')
   .replace('__DATA__', () => JSON.stringify(out).replace(/</g, '\\u003c')))
