@@ -81,7 +81,7 @@
 
 ## අන්තර්ජාලය නැතිව {#offline}
 
-Android සහ iPhone / iPad සඳහා **සරල සිංහල ත්‍රිපිටකය** මෘදුකාංගය Google Play සහ App Store හි ඇත. එහි පෙළ, සෙවුම සහ ශබ්දකෝෂ අන්තර්ජාලය නැතිවම ක්‍රියා කරයි.
+Android, iPhone / iPad සහ Windows සඳහා **Pitaka.lk ත්‍රිපිටකය** මෘදුකාංගය [Google Play](https://play.google.com/store/apps/details?id=lk.pitaka.saralatipitaka), [App Store](https://apps.apple.com/app/id1434955293) සහ [Microsoft Store](https://apps.microsoft.com/detail/9N07D9M8373M) හි ඇත. එහි පෙළ, සෙවුම සහ ශබ්දකෝෂ අන්තර්ජාලය නැතිවම ක්‍රියා කරයි.
 
 ## දෝෂ සහ යෝජනා {#feedback}
 

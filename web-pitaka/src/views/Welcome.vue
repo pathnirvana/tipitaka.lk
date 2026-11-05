@@ -28,6 +28,23 @@
       <li>බොහෝ සූත්‍රවලට සජ්ඣායනා (chanting) ඇත.</li>
     </ul>
     <RouterLink to="/help" class="btn">විස්තරාත්මක උපදෙස් / Help</RouterLink>
+    <!-- the website only: the stores do not allow an app to point to other ways of getting it (Microsoft Store 10.1.5,
+         App Store 2.3.10) -->
+    <template v-if="!storeApp">
+      <h2 class="mb-2 mt-6 text-[1.15em] text-primary">අන්තර්ජාලය නැතිව</h2>
+      <p class="mb-2">අන්තර්ජාලය නැතිව භාවිතා කළ හැකි මෘදුකාංග පහතින් බාගත කරගන්න.</p>
+      <div class="-mx-1.5 flex flex-wrap" data-testid="downloads">
+        <div v-for="d in downloads" :key="d.name" class="w-full p-1.5 sm:w-1/3">
+          <a :href="d.href" target="_blank" rel="noopener" class="card flex h-full items-center hover:border-primary">
+            <component :is="d.icon" class="mr-2.5 shrink-0 text-[28px] text-primary" />
+            <span class="min-w-0 leading-tight">
+              <span class="block text-[0.8em] text-muted">{{ d.from }}</span>
+              <span class="block truncate">{{ d.name }}</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </template>
     <p class="mt-6 text-[0.85em] text-muted">
       සරල සිංහල පරිවර්තනය දැනට සූත්‍ර පිටකයේ දීඝ, මජ්ඣිම, සංයුත්ත සහ අඞ්ගුත්තර නිකාය සහ ඛුද්දක නිකායේ බොහෝ ග්‍රන්ථ සඳහා ඇත.
       විනය සහ අභිධර්ම පිටක වල පාළි පාඨය පමණක් ඇත.
@@ -38,12 +55,22 @@
 <script setup lang="ts">
 import { useHead } from '@unhead/vue'
 import IconMenu from '~icons/mdi/menu'
+import IconAndroid from '~icons/mdi/android'
+import IconApple from '~icons/mdi/apple'
+import IconWindows from '~icons/mdi/microsoft-windows'
+import { isStoreApp } from '@/data/source'
 import { useSettings } from '@/stores/settings'
 import { SITE_NAME } from '@p/site'
 
 useHead({ title: 'මුල් පිටුව / Home' })
 const settings = useSettings()
 const asset = (p: string) => import.meta.env.BASE_URL + p
+const storeApp = isStoreApp()
+const downloads = [
+  { name: 'Android', from: 'Google Play', icon: IconAndroid, href: 'https://play.google.com/store/apps/details?id=lk.pitaka.saralatipitaka' },
+  { name: 'iPhone / iPad', from: 'App Store', icon: IconApple, href: 'https://apps.apple.com/app/id1434955293' },
+  { name: 'Windows', from: 'Microsoft Store', icon: IconWindows, href: 'https://apps.microsoft.com/detail/9N07D9M8373M' },
+]
 const starts = [
   { key: 'dn', name: 'දීඝ නිකාය', desc: 'දිගු සූත්‍ර 34 - බ්‍රහ්මජාල, සාමඤ්ඤඵල, මහාපරිනිබ්බාන ආදිය' },
   { key: 'mn', name: 'මජ්ඣිම නිකාය', desc: 'මධ්‍යම ප්‍රමාණයේ සූත්‍ර 152' },
