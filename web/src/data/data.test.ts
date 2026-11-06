@@ -108,6 +108,25 @@ describe('title search', () => {
     expect((await titleSearch(index, 'වර්‍ග', { keys: [...FILTER_KEYS], columns: [1] })).map(r => r.language)).toEqual(['sinh', 'sinh'])
     expect(await titleSearch(index, 'වග්ග', { keys: [], columns: [0, 1] })).toEqual([])
   })
+
+  const g = (k: string) => FILTER_KEYS.indexOf(k as typeof FILTER_KEYS[number])
+  const suttas: TitleRow[] = [
+    { id: 1, key: 'dn-3-8', pali: 'සිගාලසුත්තං', sinh: 'සිගාලක සූත්‍රය', grp: g('dn-3'), page_idx: 61, entry_idx: 0 },
+    { id: 2, key: 'kn-jat-1-9-7', pali: '7. මඞ්ගලජාතකං', sinh: '7. මඞ්ගල ජාතකය', grp: g('kn-jat'), page_idx: 3, entry_idx: 2 },
+    { id: 3, key: 'kn-snp-2-4', pali: 'මංගලසුත්තං', sinh: 'මහාමඞ්ගල සූත්‍රය', grp: g('kn-snp'), page_idx: 5, entry_idx: 0 },
+  ]
+  const all = { keys: [...FILTER_KEYS], columns: [0, 1] }
+  it('finds a sutta by its common name, in Sinhala or roman, and shows the name', async () => {
+    for (const q of ['සිඟාලෝවාද', 'සිගාලෝවාදසූත්‍රය', 'sigalovada', 'singalovada']) {
+      expect(await titleSearch(suttas, q, all), q).toEqual([{ key: 'dn-3-8', language: 'pali', eInd: [61, 0], type: null, alias: 'සිඟාලෝවාද' }])
+    }
+    expect(await titleSearch(suttas, 'සිඟාලෝවාද', { keys: ['dn-1'], columns: [0, 1] })).toEqual([]) // the filter still applies
+  })
+  it('lists popular suttas first, without a name when the title matches', async () => {
+    const r = await titleSearch(suttas, 'මඞ්ගල', all)
+    expect(r.map(x => x.key)).toEqual(['kn-snp-2-4', 'kn-jat-1-9-7'])
+    expect(r[0].alias).toBeUndefined()
+  })
 })
 
 describe('audio labels', () => {

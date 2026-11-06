@@ -20,6 +20,13 @@ test('title search with singlish and opening a result', async ({ page }) => {
   await expect(page).toHaveURL(/\/dn-1-1$/)
 })
 
+test('title search by the common name of a sutta shows that name', async ({ page }) => {
+  await page.goto('/title/karaniyameththa')
+  const r = page.locator('[data-testid="title-result"][data-key="kn-khp-9"]')
+  await expect(r).toBeVisible()
+  await expect(r.getByTestId('title-alias')).toHaveText('(කරණීය මෙත්ත)')
+})
+
 test('title search filter an-1 does not include an-10 (A5)', async ({ page }) => {
   await seedSearch(page, { filter: { title: { keys: ['an-1'], columns: [0, 1] } } })
   await page.goto('/title/වග්ග')

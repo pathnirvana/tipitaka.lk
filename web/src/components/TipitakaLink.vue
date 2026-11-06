@@ -5,6 +5,7 @@
     <span class="min-w-0 flex-1 cursor-pointer py-2 hover:text-info" :style="{ fontSize: settings.fontPx, overflowWrap: 'anywhere' }" data-testid="tipitaka-link" @click="open">
       <span class="mr-2 whitespace-nowrap rounded-full bg-surface2 px-2.5 py-0.5 align-[0.1em] text-[0.85em] text-muted" data-testid="collection-chip">{{ collection }}</span>
       <span class="mr-2 text-[1.1em] text-primary">{{ items[items.length - 1].text.replace(/[\(\)\[\]]/g, '') }}</span>
+      <span v-if="alias" class="mr-2 text-[0.95em] text-muted" data-testid="title-alias">({{ alias }})</span>
       <span v-for="(item, i) in items.slice(1, -1)" :key="item.key" class="text-[0.95em]">
         <IconChevron v-if="i > 0" class="inline" />{{ item.text }}
       </span>
@@ -22,7 +23,8 @@ import { useTabs, type OpenParams } from '@/stores/tabs'
 import { useSettings } from '@/stores/settings'
 import type { Bookmark } from '@/stores/bookmarks'
 
-const props = defineProps<{ path: TreeItem[]; params: OpenParams & { type?: string | null; text?: string | null; hText?: string | null; file?: string } }>()
+// alias: the common name the sutta was found by (title search), shown after its title
+const props = defineProps<{ path: TreeItem[]; params: OpenParams & { type?: string | null; text?: string | null; hText?: string | null; file?: string }; alias?: string }>()
 const emit = defineEmits<{ opened: [] }>()
 const tree = useTree(), settings = useSettings()
 // the collection (root of the path): short Sinhala names, the same in both languages (v2: VP SP AP or the root's name)
