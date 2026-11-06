@@ -89,8 +89,17 @@ if (cmd === 'assemble') {
       const es = c.filter(e => pos(e.key) >= lo && pos(e.key) <= hi && text[e.key])
       if (!es.length) continue
       const size = (g: Entry[][]) => g.flat().reduce((s, x) => s + x.pali.length, 0)
-      if (groups.at(-1)!.length && size(groups.at(-1)!) + size([es]) > MAX_CHAPTER) groups.push([])
-      groups.at(-1)!.push(es)
+      // (a chapter longer than MAX_CHAPTER, e.g. a whole khandhaka, in parts: each starts at a numbered paragraph)
+      const parts: Entry[][] = [[]]
+      for (const e of es) {
+        if (size([parts.at(-1)!]) + e.pali.length > MAX_CHAPTER && parts.at(-1)!.length) parts.push([])
+        else if (size([parts.at(-1)!]) > MAX_CHAPTER * 0.8 && /^\s*\d+\.\s/.test(e.pali)) parts.push([])
+        parts.at(-1)!.push(e)
+      }
+      for (const part of parts) {
+        if (groups.at(-1)!.length && size(groups.at(-1)!) + size([part]) > MAX_CHAPTER) groups.push([])
+        groups.at(-1)!.push(part)
+      }
     }
     for (const g of groups.filter(g => g.length)) {
       const body = g.map(es => render(packet(db, `review ${es[0].key}`, 'rewrite', es), e => `NEW: ${text[e.key].si}`).replace(/^# ENTRIES\n/m, `# CHAPTER ${es[0].key}\n`))

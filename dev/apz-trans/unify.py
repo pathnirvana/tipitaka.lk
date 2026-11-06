@@ -51,6 +51,9 @@ RULES = [
     ('samanubhasana', r'සමනුභාෂණ', lambda m: 'සමනුභාසන'),
     # a word explained by itself, as left by the rules above ("දුකුළා (දුක්කට)" became "දුක්කට (දුක්කට)")
     ('self-bracket', r'(?<![඀-෿‍])([඀-෿‍]+)((?: ඇවැත්?)?) \(\1\)', lambda m: m.group(1) + m.group(2)),
+    # the Mahāvagga reviews: ukkuṭika is squatting (not kneeling, ඇණතියාගෙන); සැල කළ is the modern spelling
+    ('ukkutika', r'(උක්කුටික(?:ව|යෙන්)) \([^)]*\)', lambda m: f'{m.group(1)} (දණහිස් බිම නොතබා පතුල් මත)'),
+    ('sala', r'සැළ කළ', lambda m: 'සැල කළ'),
     # the Pārājika (vp-prj, reviewed after the Pācittiya): the Buddha's address to one monk, khittacitta, the anāpatti items
     ('address', r'(?<=[“‘])භික්ෂුව, ', lambda m: 'මහණ, '),
     ('khittacitta', r'සිත (?:විකෘති|වික්ෂිප්ත|විකල්) වූ(?:වෙකුට|වහුට| තැනැත්තාට)', lambda m: 'සිත කැළඹී ගිය තැනැත්තාට'),
