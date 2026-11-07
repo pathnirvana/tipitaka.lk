@@ -54,6 +54,15 @@ RULES = [
     # the Mahāvagga reviews: ukkuṭika is squatting (not kneeling, ඇණතියාගෙන); සැල කළ is the modern spelling
     ('ukkutika', r'(උක්කුටික(?:ව|යෙන්)) \([^)]*\)', lambda m: f'{m.group(1)} (දණහිස් බිම නොතබා පතුල් මත)'),
     ('sala', r'සැළ කළ', lambda m: 'සැල කළ'),
+    # the Parivāra's question-and-answer formulas (the form most entries have): kattha, kaṃ ārabbha, kismiṃ vatthusmiṃ
+    ('pv-kattha', r'පනවන ලද්දේ (?:කොතැනදී|කොතැනක දී|කොහේ ?දී) ද', lambda m: 'පනවන ලද්දේ කොහිදී ද'),
+    ('pv-kam', r'(?:කවරෙකු|කවුරුන්|කවරකු) අරභයා ?ද(?= යත්|,|\?)', lambda m: 'කවරෙකු අරභයා ද'),
+    ('pv-kam-2', r'කවරෙකු නිසා ද යත්: ([^.?]{1,80}?) නිසා ය', lambda m: f'කවරෙකු අරභයා ද යත්: {m.group(1)} අරභයා ය'),
+    ('pv-vatthu', r'(?:කුමන|කිනම්|කවර) (?:සිද්ධියක්|කරුණක්) නිසා', lambda m: 'කිනම් කරුණක් නිසා'),
+    ('pv-vatthu-end', r'ඒ සිද්ධිය නිසා ය', lambda m: 'ඒ කරුණ නිසා ය'),
+    ('pv-atur', r'(?<=[඀-෿] )අතුරින්', lambda m: 'අතුරෙන්'),
+    # āpatti: ඇවැත (the form most entries of every book use), not ඇවත
+    ('avaeta', r'(?<![඀-෿‍])ඇවත', lambda m: 'ඇවැත'),
     # the Pārājika (vp-prj, reviewed after the Pācittiya): the Buddha's address to one monk, khittacitta, the anāpatti items
     ('address', r'(?<=[“‘])භික්ෂුව, ', lambda m: 'මහණ, '),
     ('khittacitta', r'සිත (?:විකෘති|වික්ෂිප්ත|විකල්) වූ(?:වෙකුට|වහුට| තැනැත්තාට)', lambda m: 'සිත කැළඹී ගිය තැනැත්තාට'),
