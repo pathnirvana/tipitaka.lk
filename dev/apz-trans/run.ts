@@ -49,7 +49,7 @@ const JUDGE_SCHEMA = { type: 'object', required: ['items'], properties: { items:
   required: ['i', 'better', 'significant', 'a_errors', 'b_errors', 'note'] } } } }
 
 async function runOne(p: P, prev: { key: string; si: string }[]): Promise<Result> {
-  const pk = { ...p, prev }
+  const pk = { ...p, prev: prev.length ? prev : p.prev } // a chain's head keeps the context the packet was built with
   const sys = (task: string) => STYLE + '\n\n' + task
   const withVerdict = p.mode !== 'translate' && p.mode !== 'rewrite'
   if (runner === 'opus' && p.mode === 'rewrite') {
