@@ -76,6 +76,10 @@ if (cmd === 'listing') {
     name: f.name, subtitle: f.subtitle, privacyPolicyUrl: 'https://github.com/pathnirvana/tipitaka.lk/blob/master/PRIVACY.md' } } })
   await api('PATCH', `/v1/appInfos/${info.id}`, { data: { type: 'appInfos', id: info.id, relationships: {
     primaryCategory: { data: { type: 'appCategories', id: 'REFERENCE' } }, secondaryCategory: { data: { type: 'appCategories', id: 'BOOKS' } } } } })
+  // age rating: the questions Apple adds later have no answer on the earlier versions and block the submission (socialMedia, 2026-11)
+  const age = (await api('GET', `/v1/appInfos/${info.id}/ageRatingDeclaration`)).data
+  if (age.attributes.socialMedia == null) await api('PATCH', `/v1/ageRatingDeclarations/${age.id}`, { data: { type: 'ageRatingDeclarations',
+    id: age.id, attributes: { socialMedia: false } } })
   // App Review: the notes; the contact (name, email, phone) as on the earlier versions
   const notes = PITAKA
     ? 'No account or sign-in. The texts, search and dictionaries are bundled; the recitations stream from '

@@ -43,7 +43,7 @@ Light, sepia, green and dark themes, adjustable text size, bookmarks and a readi
 
 **What's new** (4000):
 
-Rebuilt from the ground up: the whole simple Sinhala translation with the Buddha Jayanthi Pāḷi, four reading modes, recitations, dictionaries with the Digital Pāḷi Dictionary, full-text search, the places of the suttas on a map, colour themes and bookmarks.
+Fixes the blank screen on iOS and iPadOS 15 and 16.0 – 16.3 (older iPhones and iPads).
 
 - Support URL: https://pitaka.lk · Marketing URL: https://pitaka.lk/main/
 - Copyright: 2026 Path Nirvana Foundation

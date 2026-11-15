@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Everything that must pass before a commit (CI only validates the texts - .github/workflows/ci.yml):
-# types, lint, unit tests, sqlite 3.9.2 (Android 7) compatibility, Go, the builds, old browser css, e2e in all browsers.
+# types, lint, unit tests, sqlite 3.9.2 (Android 7) compatibility, Go, the builds, old browser js and css, e2e in all browsers.
 # Needs db/text.db and db/dict.db (npm run build:data, npm run build:dict) - the e2e fixture dictionary is cut from it.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -12,7 +12,7 @@ step fixtures; npm run build:fixture
 step "unit tests"; npm test
 step "sqlite 3.9.2"; npm run test:sqlite-compat
 step go; (cd server && go vet ./... && go test ./...)
-step builds; npm run build:web && npm run build:web:app && npm run build:web:pitaka && npm run check:css && npm run build:server
+step builds; npm run build:web && npm run build:web:app && npm run build:web:pitaka && npm run build:web:pitaka:app && npm run check:js && npm run check:css && npm run build:server
 # firefox: Playwright 1.63's Firefox 155 does not start on macOS 27 ("Could not find profile folder") - skipped with a
 # warning until a Playwright release fixes it
 PROJECTS=()

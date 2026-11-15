@@ -44,7 +44,7 @@ Light, sepia, green and dark themes, adjustable text size, bookmarks and a readi
 
 **What's new** (4000):
 
-Tipitaka 3, rebuilt: the commentary linked to the text, new dictionaries with the Digital Pāḷi Dictionary, the places and people of the suttas on a map, four colour themes and a reading history.
+Fixes the blank screen on iOS and iPadOS 15 and 16.0 – 16.3 (older iPhones and iPads).
 
 - Support URL: https://tipitaka.lk · Marketing URL: https://tipitaka.lk
 - Copyright: 2026 Path Nirvana Foundation
