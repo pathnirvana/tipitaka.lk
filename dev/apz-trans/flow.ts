@@ -3,7 +3,7 @@
  * by Opus (prompt-v2.md) packet by packet, checked, then every group of packets reviewed in one call before the run moves
  * on, with a terms list the run builds for itself.
  *
- *   npx tsx dev/apz-trans/flow.ts <file prefix> [--pages 0-29] [--seed <terms.json>] [--max-usd N]
+ *   npx tsx dev/apz-trans/flow.ts <file prefix> [--pages 0-29] [--files N] [--seed <terms.json>] [--max-usd N]
  *
  * For every file <prefix>, <prefix>-* in order (--pages: only those pages of the first file):
  *  1. packets of about 4,000 Pāḷi chars (as set.ts). An entry whose Pāḷi and BJT repeat an earlier entry takes that
@@ -14,6 +14,9 @@
  *  3. after about 18,000 Pāḷi chars the group is reviewed in one call (review-prompt.md, with PALI, BJT and TERMS): its
  *     corrections are applied when they keep -පෙ-, bold and the paragraph number, and the terms it settles replace the
  *     list's rows, so a poor first wording does not spread.
+ *  4. when every file is done (not with --pages), 2% of the entries (--audit-rate), in runs of 4, are audited by Fable,
+ *     which is not told how the text was made: the log gives the error rate, and an entry with a major error takes the
+ *     auditor's correction (audit.jsonl).
  * State, all resumable: out/flow-<prefix>/rewrite.jsonl, review.jsonl, terms.json, log.txt; the text goes to
  * out/book-<file>/text.json (book.ts page shows it, book.ts write puts it into text-apz).
  */
@@ -106,7 +109,9 @@ const dupKey = (e: Entry) => stripNum(e.pali).length >= 20 ? stripNum(e.pali) + 
 const withNum = (e: Entry, body: string) => { const n = noFn(e.pali).match(/^\s*[\d.\s-–]+[.)]?\s*/)?.[0] ?? ''; return n + body }
 
 const db = openDb()
+// (in the book's order: ap-vbh, ap-vbh-2, ap-vbh-6, ap-vbh-10 …; --files N: only the first N of them)
 const files = (db.prepare(`SELECT name FROM file ORDER BY name`).pluck().all() as string[]).filter(f => f === prefix || f.startsWith(prefix + '-'))
+  .sort((x, y) => x.localeCompare(y, undefined, { numeric: true })).slice(0, Number(arg('--files') ?? 999))
 const pages = arg('--pages')
 let prev: { key: string; si: string }[] = []
 
@@ -196,3 +201,79 @@ for (const [fi, file] of files.entries()) {
   }
 }
 log(`done; $${spent.toFixed(2)} used in this run; ${ledger.size} terms`)
+
+// ---- the audit: a sample of the finished text (2%, in runs of 4 entries) checked by another model that is not told how it
+// was made. It measures the error rate of the book; an entry with a major error takes the auditor's correction.
+if (!pages) {
+  const RATE = Number(arg('--audit-rate') ?? 0.02), RUN = 4
+  const auditFile = path.join(dir, 'audit.jsonl')
+  type Au = { batch: string; keys: string[]; items: { i: number; errors: { kind: string; severity: string; note: string }[]; si?: string }[]; applied: string[]; refused: string[]; usage: { costUsd: number } }
+  const audits = new Map(readJsonl<Au>(auditFile).map(a => [a.batch, a]))
+  // (the same sample on every run: a generator seeded by the prefix)
+  let seed = [...prefix].reduce((h, c) => Math.imul(h ^ c.charCodeAt(0), 16777619), 2166136261) >>> 0
+  const rnd = () => { seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296 }
+  const byFile = files.map(f => ({ f, es: entries(db, f, '0:0', '99999:9999').filter(e => store(f)[e.key]?.si.trim()) }))
+  const total = byFile.reduce((s, x) => s + x.es.length, 0), want = Math.max(40, Math.round(total * RATE))
+  const picked = new Map<string, Set<number>>(byFile.map(x => [x.f, new Set<number>()]))
+  for (let n = 0, guard = 0; n < Math.min(want, total) && guard < 10000; guard++) {
+    let at = Math.floor(rnd() * total), x = byFile[0]
+    for (const b of byFile) { if (at < b.es.length) { x = b; break } at -= b.es.length }
+    for (let i = at; i < Math.min(at + RUN, x.es.length); i++) if (!picked.get(x.f)!.has(i)) { picked.get(x.f)!.add(i); n++ }
+  }
+  const AUDIT_TASK = `## Task: audit
+Each entry under # ENTRIES has a NEW text: a rewrite of its BJT made under the rules above. The entries are a sample of a
+book: they come in short runs, and one run does not follow from the one before it. For every entry list the errors of NEW
+against the PALI, the BJT and the rules:
+- meaning: says something different from BJT (or from the Pāḷi where BJT is wrong or silent); a term rendered wrongly.
+- omission: a clause, list item, number or explanation of BJT/Pāḷi is missing.
+- addition: content that is in neither BJT nor the Pāḷi (other than a short bracket explanation of an unknown word).
+- unknown-word: a word the ordinary reader would not know, or a word that means something else today.
+- sentence: a sentence that is unclear, garbled, ungrammatical or ambiguous.
+- not-modernised: old verb endings, old spellings or archaic number words kept from BJT.
+- form: paragraph number, bold, -පෙ-, quotes or entry boundaries handled against the rules.
+Give each error a severity: "major" (the reader is misled or loses content) or "minor". List only real errors: do not
+penalise a valid difference of wording. An entry with no errors gets an empty list. For an entry with a major error also
+give "si": the whole entry corrected, changing nothing else.
+Return {"items": [{"i", "errors": [{"kind", "severity", "note"}], "si"}]}: one item per entry. Notes are short, in English,
+and quote the words concerned.`
+  const AUDIT_SCHEMA = { type: 'object', required: ['items'], properties: { items: { type: 'array', items: { type: 'object', required: ['i', 'errors'], properties: {
+    i: { type: 'integer' }, si: { type: 'string' },
+    errors: { type: 'array', items: { type: 'object', required: ['kind', 'severity', 'note'], properties: { kind: { type: 'string' }, severity: { type: 'string' }, note: { type: 'string' } } } } } } } } }
+  for (const { f, es } of byFile) {
+    const sample = [...picked.get(f)!].sort((a, b) => a - b).map(i => es[i]), text = store(f)
+    const batches: Entry[][] = [[]]
+    for (const e of sample) {
+      if (batches.at(-1)!.length && batches.at(-1)!.reduce((s, x) => s + x.pali.length, 0) + e.pali.length > 6000) batches.push([])
+      batches.at(-1)!.push(e)
+    }
+    for (const b of batches.filter(b => b.length)) {
+      const id = `${f} ${b[0].key.split(' ')[1]}`
+      if (audits.has(id)) continue
+      if (spent >= MAX_USD) { log(`stopped before the audit of ${id}: $${spent.toFixed(2)} used`); process.exit(0) }
+      const c = await claude('claude-fable-5-2', RULES + AUDIT_TASK, render(packet(db, id, 'rewrite', b), e => `NEW: ${text[e.key].si}`), AUDIT_SCHEMA, 'high')
+      spent += c.usage.costUsd
+      const applied: string[] = [], refused: string[] = []
+      for (const it of c.out.items as any[]) {
+        const e = b[it.i - 1], old = e && text[e.key].si
+        if (!e || !it.si?.trim() || it.si === old || !it.errors?.some((x: any) => x.severity === 'major')) continue
+        const bad = faults(e, it.si) || (count(it.si, /-පෙ-/g) !== count(old, /-පෙ-/g) ? '-පෙ- changed' : count(it.si, /\*\*/g) !== count(old, /\*\*/g) ? 'bold changed' : '')
+        if (bad) { refused.push(`${e.key} (${bad})`); continue }
+        text[e.key] = { si: noFn(it.si).trim(), src: 'review-audit' }; applied.push(e.key)
+      }
+      saveStore(f)
+      const rec: Au = { batch: id, keys: b.map(e => e.key), items: c.out.items as any, applied, refused, usage: c.usage }
+      appendJsonl(auditFile, rec); audits.set(id, rec)
+      log(`audit ${id}: ${b.length} entries, $${c.usage.costUsd.toFixed(3)}`)
+    }
+  }
+  let n = 0, major = 0, minor = 0, withMajor = 0, fixed = 0
+  const kinds: Record<string, number> = {}
+  for (const a of audits.values()) {
+    n += a.keys.length; fixed += a.applied.length
+    for (const it of a.items) {
+      if (it.errors.some(x => x.severity === 'major')) withMajor++
+      for (const x of it.errors) { x.severity === 'major' ? major++ : minor++; kinds[x.kind] = (kinds[x.kind] ?? 0) + 1 }
+    }
+  }
+  log(`audit: ${n} of ${total} entries; ${withMajor} with a major error (${(withMajor / n * 100).toFixed(1)}%), ${major} major and ${minor} minor errors ${JSON.stringify(kinds)}; ${fixed} corrected; $${spent.toFixed(2)} used in this run`)
+}
