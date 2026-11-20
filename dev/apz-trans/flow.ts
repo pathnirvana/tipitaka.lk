@@ -1,0 +1,198 @@
+/**
+ * The rewrite of a book with no one checking it (the method found with exp.ts, for the Abhidhamma): BJT Sinhala rewritten
+ * by Opus (prompt-v2.md) packet by packet, checked, then every group of packets reviewed in one call before the run moves
+ * on, with a terms list the run builds for itself.
+ *
+ *   npx tsx dev/apz-trans/flow.ts <file prefix> [--pages 0-29] [--seed <terms.json>] [--max-usd N]
+ *
+ * For every file <prefix>, <prefix>-* in order (--pages: only those pages of the first file):
+ *  1. packets of about 4,000 Pāḷi chars (as set.ts). An entry whose Pāḷi and BJT repeat an earlier entry takes that
+ *     entry's text (with its own paragraph number) and is not sent again.
+ *  2. each packet is rewritten with the two entries before it (PREV) and the rows of the terms list whose Pāḷi stem
+ *     occurs in it (TERMS); the call returns the new terms it worded. A packet that fails the checks (an entry missing or
+ *     empty, a paragraph number or number changed) is run once more.
+ *  3. after about 18,000 Pāḷi chars the group is reviewed in one call (review-prompt.md, with PALI, BJT and TERMS): its
+ *     corrections are applied when they keep -පෙ-, bold and the paragraph number, and the terms it settles replace the
+ *     list's rows, so a poor first wording does not spread.
+ * State, all resumable: out/flow-<prefix>/rewrite.jsonl, review.jsonl, terms.json, log.txt; the text goes to
+ * out/book-<file>/text.json (book.ts page shows it, book.ts write puts it into text-apz).
+ */
+import fs from 'node:fs'
+import path from 'node:path'
+import { DIR, OUT, REWRITE, SCHEMA, claude, entries, openDb, packet, render, readJsonl, appendJsonl, type Entry, type Packet } from './lib'
+
+const arg = (n: string) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : undefined }
+const prefix = process.argv[2]
+if (!prefix) throw new Error('usage: flow.ts <file prefix> [--pages 0-29] [--seed terms.json] [--max-usd N]')
+const OPUS = 'claude-opus-5-5', MAX_PALI = 4000, MIN_BREAK = 2000, MAX_GROUP = 18000, MAX_USD = Number(arg('--max-usd') ?? Infinity)
+const dir = path.join(OUT, `flow-${prefix}`)
+fs.mkdirSync(dir, { recursive: true })
+const log = (s: string) => { console.log(s); fs.appendFileSync(path.join(dir, 'log.txt'), s + '\n') }
+
+// ---- prompts: prompt-v2.md's rules, the terms list, and what differs in these books
+const RULES = REWRITE.replace(/## Task[\s\S]*$/, '') + `## Terms list
+# TERMS, when present, lists Pāḷi terms with the Sinhala wording already used for them earlier in this book. Use that
+wording wherever the term has the same meaning here; where the context gives it another meaning, word it as the context
+requires.
+
+## Numbers that only point elsewhere
+Where the Pāḷi puts cross-reference numbers after an item of a list (e.g. "කුසලා ධම්මා, 989, 1383") and BJT leaves them
+out, leave them out.
+
+`
+const TERMS_OUT = `"terms": the technical terms, names and fixed phrases that will come again in the book, each as {"pali", "si"}: "pali" is the
+term as a Pāḷi stem without its case ending (e.g. වෙදනාක්ඛන්ධ), "si" the Sinhala wording for it without a case ending, and
+without a bracket that only explains it at its first use.`
+const REWRITE_TASK = `## Task
+Rewrite every entry under # ENTRIES following the rules above. Return {"items": [{"i", "si"}], "terms": [{"pali", "si"}]}.
+"items": one item per entry, same i numbers, in order; "si" is the modern Sinhala text of that entry only.
+${TERMS_OUT} Give only terms you worded in this packet that are not in # TERMS, at most 15; [] if none.`
+const REVIEW_TASK = fs.readFileSync(path.join(DIR, 'review-prompt.md'), 'utf-8')
+  .replace('Return only the entries you changed: {"items": [{"i", "si", "errors"}]}.', 'Return {"items": [{"i", "si", "errors"}], "terms": [{"pali", "si"}]}. "items": only the entries you changed.') + `
+${TERMS_OUT} Give only the rows of # TERMS whose wording you corrected, and terms you made the same across these entries
+that are not in # TERMS; [] if none.`
+const TERMS_SCHEMA = { type: 'array', items: { type: 'object', required: ['pali', 'si'], properties: { pali: { type: 'string' }, si: { type: 'string' } } } }
+const REWRITE_SCHEMA: any = SCHEMA(false)
+REWRITE_SCHEMA.properties.terms = TERMS_SCHEMA; REWRITE_SCHEMA.required = ['items', 'terms']
+const REVIEW_SCHEMA = { type: 'object', required: ['items', 'terms'], properties: { terms: TERMS_SCHEMA, items: { type: 'array', items: { type: 'object', required: ['i', 'si', 'errors'], properties: {
+  i: { type: 'integer' }, si: { type: 'string' }, errors: { type: 'array', items: { type: 'object', required: ['kind', 'note'], properties: { kind: { type: 'string' }, note: { type: 'string' } } } } } } } } }
+
+// ---- state
+type Term = { pali: string; si: string }
+type Rw = { packet: string; items: { i: number; si: string }[]; terms: Term[]; usage: { costUsd: number; output: number }; tries: number }
+const termsFile = path.join(dir, 'terms.json')
+const ledger = new Map<string, string>(fs.existsSync(termsFile) ? JSON.parse(fs.readFileSync(termsFile, 'utf-8')) : arg('--seed') ? JSON.parse(fs.readFileSync(arg('--seed')!, 'utf-8')) : [])
+const saveLedger = () => fs.writeFileSync(termsFile, JSON.stringify([...ledger], null, 1))
+const rewrites = new Map(readJsonl<Rw>(path.join(dir, 'rewrite.jsonl')).map(r => [r.packet, r]))
+const reviews = new Map(readJsonl<{ group: string }>(path.join(dir, 'review.jsonl')).map(r => [r.group, r]))
+let spent = 0
+const termsFor = (es: Entry[]) => {
+  const text = es.map(e => e.pali).join(' ')
+  return [...ledger].filter(([p]) => p.length >= 4 && text.includes(p)).sort((a, b) => b[0].length - a[0].length).slice(0, 80).map(([p, si]) => `${p} → ${si}`)
+}
+const addTerms = (ts: Term[] | undefined, replace: boolean) => {
+  for (const t of ts ?? []) { const p = t.pali?.trim(), s = t.si?.trim(); if (p && s && (replace || !ledger.has(p))) ledger.set(p, s) }
+  saveLedger()
+}
+
+// ---- checks (as merge.ts's hard flags and book.ts apply)
+const noFn = (s: string) => s.replace(/\{[^}]*\}/g, '')
+const leadNum = (s: string) => s.match(/^\s*\(?([\d.\s-–]+?)[.)]\s/)?.[1].replace(/[\s.]+/g, '').replace('–', '-')
+const digits = (s: string) => (noFn(s).replace(/(?<=[඀-෿])\d+/g, '').match(/\d+/g) ?? []).sort().join(' ')
+const count = (s: string, re: RegExp) => (s.match(re) ?? []).length
+function faults(e: Entry, si: string | undefined): string {
+  const pali = noFn(e.pali), bjt = noFn(e.bjt)
+  if (si === undefined) return 'missing'
+  if (!si.trim() && pali.replace(/^[\d.\s]+/, '').trim()) return 'empty'
+  if (leadNum(pali) !== undefined && leadNum(pali) !== leadNum(si)) return `paragraph number ${leadNum(pali)} vs ${leadNum(si) ?? '-'}`
+  // (a number list that BJT leaves out may be left out: the digits of the Pāḷi, of BJT, or of the Pāḷi's paragraph number alone)
+  const d = digits(si)
+  if (d !== digits(pali) && d !== digits(bjt) && d !== digits(pali.match(/^\s*[\d.\s-–]+/)?.[0] ?? '')) return `numbers ${digits(pali)} vs ${d}`
+  return ''
+}
+
+// ---- the text store of each file (as book.ts)
+const stores = new Map<string, Record<string, { si: string; src: string }>>()
+const store = (file: string) => {
+  if (!stores.has(file)) { const f = path.join(OUT, `book-${file}`, 'text.json'); stores.set(file, fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf-8')) : {}) }
+  return stores.get(file)!
+}
+const saveStore = (file: string) => { fs.mkdirSync(path.join(OUT, `book-${file}`), { recursive: true }); fs.writeFileSync(path.join(OUT, `book-${file}`, 'text.json'), JSON.stringify(store(file), null, 1)) }
+
+// ---- repeated entries: the same Pāḷi and BJT (but for the paragraph number) as an entry already done
+const stripNum = (s: string) => noFn(s).replace(/^\s*[\d.\s-–]+[.)]?\s*/, '').trim()
+const seen = new Map<string, string>() // Pāḷi + BJT -> text without its paragraph number
+const dupKey = (e: Entry) => stripNum(e.pali).length >= 20 ? stripNum(e.pali) + '\u0001' + stripNum(e.bjt) : ''
+const withNum = (e: Entry, body: string) => { const n = noFn(e.pali).match(/^\s*[\d.\s-–]+[.)]?\s*/)?.[0] ?? ''; return n + body }
+
+const db = openDb()
+const files = (db.prepare(`SELECT name FROM file ORDER BY name`).pluck().all() as string[]).filter(f => f === prefix || f.startsWith(prefix + '-'))
+const pages = arg('--pages')
+let prev: { key: string; si: string }[] = []
+
+for (const [fi, file] of files.entries()) {
+  if (pages && fi > 0) break
+  const [p0, p1] = (pages ?? '0-99999').split('-')
+  const all = entries(db, file, `${p0}:0`, `${p1}:9999`)
+  // packets, then groups of packets for the review
+  const chunks: Entry[][] = []
+  let cur: Entry[] = [], size = 0
+  for (const e of all) {
+    const heading = e.type === 'heading' || e.type === 'centered'
+    if (cur.length && (size + e.pali.length > MAX_PALI || (heading && size >= MIN_BREAK))) { chunks.push(cur); cur = []; size = 0 }
+    cur.push(e); size += e.pali.length
+  }
+  if (cur.length) chunks.push(cur)
+  const groups: Entry[][][] = [[]]
+  for (const c of chunks) {
+    const n = (g: Entry[][]) => g.flat().reduce((s, e) => s + e.pali.length, 0)
+    if (groups.at(-1)!.length && n(groups.at(-1)!) + n([c]) > MAX_GROUP) groups.push([])
+    groups.at(-1)!.push(c)
+  }
+  const text = store(file)
+  // (a run that starts inside a file: the entries before it give the repeats and the context)
+  if (Number(p0) > 0) {
+    const before = entries(db, file, '0:0', `${Number(p0) - 1}:9999`).filter(e => text[e.key])
+    for (const e of before) if (dupKey(e)) seen.set(dupKey(e), stripNum(text[e.key].si))
+    prev = before.slice(-2).map(e => ({ key: e.key, si: text[e.key].si }))
+  }
+  log(`${file}: ${all.length} entries, ${chunks.length} packets, ${groups.length} groups`)
+
+  for (const group of groups) {
+    for (const chunk of group) {
+      const id = `${file} ${chunk[0].key.split(' ')[1]}`
+      // (entries that repeat an earlier one are not sent)
+      const fresh = chunk.filter(e => !(dupKey(e) && seen.has(dupKey(e))))
+      let r = rewrites.get(id)
+      if (!r && fresh.length) {
+        if (spent >= MAX_USD) { log(`stopped at ${id}: $${spent.toFixed(2)} used`); process.exit(0) }
+        for (let tries = 1; tries <= 2; tries++) {
+          const terms = termsFor(fresh)
+          const c = await claude(OPUS, RULES + REWRITE_TASK, render({ ...packet(db, id, 'rewrite', fresh), prev, ...(terms.length ? { terms } : {}) }), REWRITE_SCHEMA)
+          spent += c.usage.costUsd
+          const bad = fresh.map((e, i) => [e.key, faults(e, c.out.items.find(x => x.i === i + 1)?.si)]).filter(x => x[1])
+          r = { packet: id, items: c.out.items, terms: (c.out as any).terms ?? [], usage: c.usage, tries }
+          log(`${id}: ${fresh.length} entries${chunk.length > fresh.length ? ` (+${chunk.length - fresh.length} repeated)` : ''}, terms ${terms.length} given ${r.terms.length} new, $${c.usage.costUsd.toFixed(3)}${bad.length ? `; failed checks: ${bad.map(b => b.join(' ')).join('; ')}` : ''}`)
+          if (!bad.length) break
+        }
+        appendJsonl(path.join(dir, 'rewrite.jsonl'), r); rewrites.set(id, r!)
+      }
+      if (r) addTerms(r.terms, false)
+      fresh.forEach((e, i) => { const si = r!.items.find(x => x.i === i + 1)?.si; if (si !== undefined && !text[e.key]?.src.startsWith('review')) text[e.key] = { si: noFn(si).trim(), src: 'flow' } })
+      for (const e of chunk) {
+        const k = dupKey(e)
+        if (k && seen.has(k) && !fresh.includes(e)) { if (!text[e.key]) text[e.key] = { si: withNum(e, seen.get(k)!), src: 'flow-repeat' } }
+        else if (k && text[e.key]) seen.set(k, stripNum(text[e.key].si))
+      }
+      prev = chunk.slice(-2).map(e => ({ key: e.key, si: text[e.key]?.si ?? '' }))
+      saveStore(file)
+    }
+    // the review of the group, in one call
+    const es = group.flat().filter(e => text[e.key]), gid = `${file} ${es[0].key.split(' ')[1]}`
+    if (!reviews.has(gid)) {
+      if (spent >= MAX_USD) { log(`stopped before the review of ${gid}: $${spent.toFixed(2)} used`); process.exit(0) }
+      const terms = termsFor(es)
+      const whole: Packet = { ...packet(db, gid, 'rewrite', es), ...(terms.length ? { terms } : {}) }
+      const c = await claude(OPUS, RULES + REVIEW_TASK, render(whole, e => `NEW: ${text[e.key].si}`), REVIEW_SCHEMA)
+      spent += c.usage.costUsd
+      const done: { key: string; before: string; errors: unknown }[] = [], refused: string[] = []
+      for (const it of c.out.items as any[]) {
+        const e = es[it.i - 1], old = e && text[e.key].si
+        if (!e || !it.si?.trim() || it.si === old) continue
+        const bad = faults(e, it.si) || (count(it.si, /-පෙ-/g) !== count(old, /-පෙ-/g) ? '-පෙ- changed' : count(it.si, /\*\*/g) !== count(old, /\*\*/g) ? 'bold changed' : '')
+        if (bad) { refused.push(`${e.key} (${bad})`); continue }
+        done.push({ key: e.key, before: old, errors: it.errors }); text[e.key] = { si: noFn(it.si).trim(), src: 'review-flow' }
+        if (dupKey(e)) seen.set(dupKey(e), stripNum(text[e.key].si))
+      }
+      const t: Term[] = (c.out as any).terms ?? []
+      addTerms(t, true); saveStore(file)
+      const rec = { group: gid, entries: es.length, items: done, refused, terms: t, usage: c.usage }
+      appendJsonl(path.join(dir, 'review.jsonl'), rec); reviews.set(gid, rec)
+      const kinds: Record<string, number> = {}
+      for (const d of done) for (const x of (d.errors as { kind: string }[]) ?? []) kinds[x.kind] = (kinds[x.kind] ?? 0) + 1
+      log(`review ${gid}: ${done.length} of ${es.length} entries changed ${JSON.stringify(kinds)}, ${t.length} terms settled${refused.length ? `, refused: ${refused.join('; ')}` : ''}, $${c.usage.costUsd.toFixed(3)}`)
+      prev = es.slice(-2).map(e => ({ key: e.key, si: text[e.key].si }))
+    }
+  }
+}
+log(`done; $${spent.toFixed(2)} used in this run; ${ledger.size} terms`)

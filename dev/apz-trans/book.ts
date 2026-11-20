@@ -11,8 +11,9 @@
  *     the chapters in range as review files (out/book-<book>/rev/*.txt) for a review in the Claude session.
  *   npx tsx dev/apz-trans/book.ts apply <book> <corrections.json> [--by claude]
  *     that review's corrections [{key, si, errors}] into text.json (checked: -පෙ-, bold, paragraph number) and review.jsonl.
- *   npx tsx dev/apz-trans/book.ts write <book>
- *     the book into public/static/text-apz/<book>.json, every entry flagged ai (a new translation).
+ *   npx tsx dev/apz-trans/book.ts write <book> [--partial]
+ *     the book into public/static/text-apz/<book>.json, every entry flagged ai (a new translation). --partial: a book
+ *     that is not finished; the entries without text stay empty (the reader shows their Pāḷi only).
  *   npx tsx dev/apz-trans/book.ts page <book> --from 30:0 --to 47:9999
  *     out/book-<book>/page-<from>.html: BJT Sinhala | newest text, words that differ highlighted, review changes listed.
  */
@@ -148,7 +149,7 @@ if (cmd === 'assemble') {
     // the book's text into public/static/text-apz/<book>.json (a new translation: every entry flagged ai); refuses
     // when an entry of the book has no text
     const missing = all.filter(e => !text[e.key]?.si.trim() && e.pali.replace(/^[\d.\s]+/, '').trim())
-    if (missing.length) throw new Error(`${missing.length} entries have no text, e.g. ${missing[0].key}`)
+    if (missing.length && !process.argv.includes('--partial')) throw new Error(`${missing.length} entries have no text, e.g. ${missing[0].key} (--partial leaves them empty)`)
     const pages = bjtFile(book).pages.map((p: any) => ({ pageNum: p.pageNum, entries: p.pali.entries.map(() => ''), ai: [] as number[] }))
     for (const e of all) {
       const si = (text[e.key]?.si ?? '').replace(/\{[^}]*\}/g, '').replace(/[ \t]{2,}/g, ' ').trim()
