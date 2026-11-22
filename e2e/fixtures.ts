@@ -17,7 +17,7 @@ export function silentWav(seconds = 30, rate = 8000): Buffer {
 export async function stubExternal(page: Page) {
   await page.route('https://pitaka.lk/**', r => r.fulfill({ body: PNG, contentType: 'image/png' }))
   await page.route('https://tipitaka.lk/tipitaka-query/version', r => r.fulfill({ body: 'Tipitaka.lk v3.0', headers: { 'Access-Control-Allow-Origin': '*' } }))
-  await page.route('https://sajjha.sgp1.cdn.digitaloceanspaces.com/**', r => {
+  await page.route('https://cdn.tipitaka.lk/**', r => {
     const url = r.request().url()
     if (url.endsWith('.txt')) {
       const lines = Array.from({ length: 40 }, (_, i) => `${(i * 0.5).toFixed(6)}\t${(i * 0.5 + 0.4).toFixed(6)}\t${i + 1}`)

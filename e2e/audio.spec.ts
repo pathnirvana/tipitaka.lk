@@ -51,7 +51,7 @@ test('word timings highlight the chanted word and, with the alignment view, its 
   const rows = db.prepare(`SELECT e.audio_idx, e.p_text FROM entry e JOIN file f ON f.id = e.file_id WHERE f.name = 'dn-1' AND e.audio_idx IS NOT NULL`).all() as { audio_idx: number; p_text: string }[]
   db.close()
   const entries = Object.fromEntries(rows.map(r => [r.audio_idx + 1, { ph: crypto.createHash('sha1').update(r.p_text).digest('hex').slice(0, 12), t: '0:0-10,1:10-40' }]))
-  await page.route('https://sajjha.sgp1.cdn.digitaloceanspaces.com/**/*.words.json', r =>
+  await page.route('https://cdn.tipitaka.lk/**/*.words.json', r =>
     r.fulfill({ json: { v: 1, tok: 'v1', entries }, headers: { 'Access-Control-Allow-Origin': '*' } }))
   await page.addInitScript(() => localStorage.setItem('tipitaka.lk-settings-2', JSON.stringify({ alignmentView: true })))
   await page.goto('/dn-1-1')
@@ -72,7 +72,7 @@ test('v2 timing files: paragraphs matched by text hash, with word timings', asyn
   const rows = db.prepare(`SELECT e.audio_ph FROM entry e JOIN file f ON f.id = e.file_id WHERE f.name = 'dn-1' AND e.audio_idx IS NOT NULL ORDER BY e.audio_idx`).all() as { audio_ph: string }[]
   db.close()
   const doc = { v: 2, tok: 'v1', audio: 'x.m4a', dur: 600, entries: rows.map((r, i) => ({ ph: r.audio_ph, s: i * 50, e: i * 50 + 40, t: '0:0-10,1:10-40' })) }
-  await page.route(/sajjha\.sgp1\.cdn\.digitaloceanspaces\.com\/.*[^s]\.json$/, r => r.fulfill({ json: doc, headers: { 'Access-Control-Allow-Origin': '*' } }))
+  await page.route(/cdn\.tipitaka\.lk\/.*[^s]\.json$/, r => r.fulfill({ json: doc, headers: { 'Access-Control-Allow-Origin': '*' } }))
   let txt = 0
   page.on('request', r => { if (r.url().endsWith('.txt')) txt++ })
   await page.goto('/dn-1-1')

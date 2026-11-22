@@ -8,7 +8,7 @@ Android, iPhone සහ iPad මෘදුකාංග) සඳහා ද මෙම
 - මෘදුකාංග ඔබ ගැන කිසිදු පෞද්ගලික තොරතුරක් එකතු නොකරයි. ගිණුම්, දැන්වීම්, විශ්ලේෂණ (analytics) හෝ ලුහුබැඳීම් නැත.
 - පෙළ, සෙවුම සහ ශබ්දකෝෂ ඔබේ උපාංගයේම ක්‍රියා කරයි. ඔබ කියවන, සොයන හෝ තේරුම බලන දේ කොතැනකටවත් නොයවයි.
 - ඔබේ සැකසුම්, තරු යෙදූ සූත්‍ර සහ කියවූ සූත්‍ර ලැයිස්තුව ඔබේ උපාංගයේ පමණක් ගබඩා වේ.
-- සජ්ඣායනා ඇසීමේදී එම ශබ්ද ගොනු අපගේ ගබඩාවෙන් (sajjha.sgp1.cdn.digitaloceanspaces.com), ස්කෑන් කළ පිටු බැලීමේදී එම
+- සජ්ඣායනා ඇසීමේදී එම ශබ්ද ගොනු අපගේ ගබඩාවෙන් (cdn.tipitaka.lk), ස්කෑන් කළ පිටු බැලීමේදී එම
   පිටු pitaka.lk වෙතින් ද, වර්තමාන හෝ චන්ද්‍රිකා සිතියම තෝරා ගත් විට සිතියම් රූප OpenStreetMap හෝ EOX (Sentinel-2) වෙතින් ද
   බාගත වේ. ඕනෑම වෙබ් අඩවියක් මෙන් එම සේවාදායකයන්ට ඔබේ IP ලිපිනය පෙනේ; ඔබ ගැන වෙනත් කිසිවක් නොයවයි.
 - වෙනත් වෙබ් අඩවිවලට ඇති සබැඳි ඔබේ බ්‍රවුසරයේ විවෘත වේ; ඒවාට ඔවුන්ගේම පෞද්ගලිකත්ව ප්‍රතිපත්ති ඇත.
@@ -41,7 +41,7 @@ its use.
 - The apps collect no personal data. There are no accounts, no advertising, no analytics and no tracking.
 - The texts, search and dictionaries run on your device. What you read, search or look up is not sent anywhere.
 - Your settings, bookmarks and reading history are stored only on your device.
-- When you play a recitation, the recording is downloaded from our storage (sajjha.sgp1.cdn.digitaloceanspaces.com);
+- When you play a recitation, the recording is downloaded from our storage (cdn.tipitaka.lk);
   scanned pages are downloaded from pitaka.lk; when you choose the present-day or satellite map, its images come from
   OpenStreetMap or EOX (Sentinel-2). Those servers see your IP address, as with any website; nothing else about you is sent.
 - Links to other websites open in your browser; those sites have their own privacy policies.

@@ -61,7 +61,7 @@ async function appPage(css, cssH, { theme = 'light', fontSize = 0, readingMode =
   else await ctx.addInitScript(s => localStorage.setItem('tipitaka.lk-settings-2', JSON.stringify(s)),
     { theme, fontSize, panelPinned: false, defaultColumns: 2, tabView: 'tabs', autoHideSearchBar: false })
   // the recitation timings: the CDN allows only the tipitaka.lk origin
-  await ctx.route(/^https:\/\/sajjha\.sgp1\.cdn\.digitaloceanspaces\.com\/.*\.(json|txt)$/, async r => {
+  await ctx.route(/^https:\/\/cdn\.tipitaka\.lk\/.*\.(json|txt)$/, async r => {
     const res = await r.fetch()
     await r.fulfill({ response: res, headers: { ...res.headers(), 'access-control-allow-origin': '*' } })
   })

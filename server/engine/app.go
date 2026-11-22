@@ -157,7 +157,7 @@ func (e *Engine) QueryJSON(req string) string {
 // ---- the recitations' timing files ----
 
 // AudioBaseURL is where the recitations and their timing files are (web/src/stores/audio.ts AUDIO_BASE_URL).
-const AudioBaseURL = "https://sajjha.sgp1.cdn.digitaloceanspaces.com/original/"
+const AudioBaseURL = "https://cdn.tipitaka.lk/bjt-audio/"
 
 var audioFileRe = regexp.MustCompile(`^[\w.@-]+\.(json|txt)$`)
 var audioClient = &http.Client{Timeout: 15 * time.Second}

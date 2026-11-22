@@ -11,7 +11,7 @@ import type { AudioEntryRow } from '@/data/types'
 import type { EInd } from '@shared/routes'
 import { countFeature } from '@/composables/stats'
 
-export const AUDIO_BASE_URL = 'https://sajjha.sgp1.cdn.digitaloceanspaces.com/original/'
+export const AUDIO_BASE_URL = 'https://cdn.tipitaka.lk/bjt-audio/'
 export interface Label { start: number; end: number; num: number; src: string }
 /** word timings of one chanted entry: pali word index (shared/tokenize.ts) and start times in media seconds, in order */
 export interface WordTimes { ph: string; w: number[]; s: number[] }

@@ -57,4 +57,4 @@ Fixes the blank screen on iOS and iPadOS 15 and 16.0 – 16.3 (older iPhones and
 
 ## App Review notes
 No account or sign-in. The texts, search and dictionaries are bundled; the recitations stream from
-sajjha.sgp1.cdn.digitaloceanspaces.com and the scanned pages load from pitaka.lk. Contact: pathnirvana@gmail.com
+cdn.tipitaka.lk and the scanned pages load from pitaka.lk. Contact: pathnirvana@gmail.com

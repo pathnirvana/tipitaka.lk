@@ -83,10 +83,10 @@ if (cmd === 'listing') {
   // App Review: the notes; the contact (name, email, phone) as on the earlier versions
   const notes = PITAKA
     ? 'No account or sign-in. The texts, search and dictionaries are bundled; the recitations stream from '
-      + 'sajjha.sgp1.cdn.digitaloceanspaces.com. This version replaces the earlier app with a new one (the same translation, now with '
+      + 'cdn.tipitaka.lk. This version replaces the earlier app with a new one (the same translation, now with '
       + 'the Pali text, recitations and dictionaries).'
     : 'No account or sign-in. The texts, search and dictionaries are bundled; the recitations stream from '
-      + 'sajjha.sgp1.cdn.digitaloceanspaces.com and the scanned book pages load from pitaka.lk. This version replaces the earlier app with a new '
+      + 'cdn.tipitaka.lk and the scanned book pages load from pitaka.lk. This version replaces the earlier app with a new '
       + 'one (the same texts, with the commentaries linked to the text, dictionaries and recitations).'
   const detailOf = async (vid) => (await api('GET', `/v1/appStoreVersions/${vid}/appStoreReviewDetail`).catch(() => ({ data: null }))).data
   const rd = await detailOf(version.id)

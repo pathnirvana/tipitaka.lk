@@ -55,5 +55,5 @@ Fixes the blank screen on iOS and iPadOS 15 and 16.0 – 16.3 (older iPhones and
 
 ## App Review notes
 No account or sign-in. The texts, search and dictionaries are bundled; the recitations stream from
-sajjha.sgp1.cdn.digitaloceanspaces.com. This version replaces the earlier app with a new one (the same translation, now
+cdn.tipitaka.lk. This version replaces the earlier app with a new one (the same translation, now
 with the Pāḷi text, recitations and dictionaries). Contact: pathnirvana@gmail.com
