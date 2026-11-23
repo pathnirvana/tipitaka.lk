@@ -14,7 +14,7 @@
       </div>
       <section v-for="page in pages" :key="page.pageIdx" class="page" :data-page-idx="page.pageIdx">
         <template v-if="!tab.showScanPage">
-          <div v-if="settings.showPageNumbers && !isAtta" :class="['pair text-center', gridCols]">
+          <div v-if="settings.showPageNumbers && tabs.hasScans(tab)" :class="['pair text-center', gridCols]">
             <div v-if="cols.pali"><button class="btn border-0 text-info" data-testid="page-number" @click.stop="tabs.update(tab, { showScanPage: true })">{{ page.pageNum }}</button></div>
             <div v-if="cols.sinh"><button class="btn border-0 text-info" @click.stop="tabs.update(tab, { showScanPage: true })">{{ page.pageNum + 1 }}</button></div>
           </div>
@@ -86,7 +86,6 @@ const root = ref<HTMLElement>()
 initBjtParams()
 
 const file = computed(() => props.tab.node?.file || '')
-const isAtta = computed(() => tabs.isAtta(props.tab))
 const columns = computed(() => tabs.tabColumns(props.tab, props.narrow))
 // pali only files always show the pali column (v2 showed an empty page for /ap-pat/sinh - A37)
 const cols = computed(() => ({ pali: columns.value === 0 || columns.value === 2 || tabs.paliOnly(props.tab), sinh: (columns.value === 1 || columns.value === 2) && !tabs.paliOnly(props.tab) }))

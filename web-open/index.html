@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Buddha Jayanti Tipitaka</title>
+    <meta name="description" content="The Pali Tipitaka of the Buddha Jayanti edition of Sri Lanka in Roman, Thai, Devanagari, Myanmar, Khmer, Sinhala and other scripts, with search and recitation audio.">
+    <meta property="og:type" content="article">
+    <meta name="theme-color" content="#fbf8f3">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+    <script>
+      // the colour theme before first paint (src/overrides/settings.ts, web/src/composables/themes.ts)
+      try {
+        var t = JSON.parse(localStorage.getItem('open.tipitaka.lk-settings-1') || '{}').theme || 'light'
+        if (t === 'auto') t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        if (t !== 'light') document.documentElement.className = t === 'dark' ? 'dark' : 'theme-' + t
+      } catch (e) {}
+    </script>
+    <style>
+      /* the text the server renders (server/ssr_open.go), until the app shows it: the reading text's size and font (src/styles/open.css) */
+      #ssr { max-width: 760px; margin: 56px auto 0; padding: 8px 16px; font-family: var(--font-text); font-size: 18px; line-height: 1.65; }
+      #ssr .ssr-crumbs { font-size: 14px; margin-bottom: 12px; }
+      #ssr .ssr-entry { margin: 0.6em 0; text-align: justify; }
+      #ssr .heading, #ssr .centered { text-align: center; }
+      #ssr .heading { color: var(--c-primary); font-size: 1.4em; font-weight: 600; }
+      #ssr .paragraph { text-indent: 1.4em; }
+      #ssr .gatha { padding-left: 2.4em; text-align: left; }
+      #ssr .editorial { opacity: .7; }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

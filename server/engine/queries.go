@@ -213,6 +213,15 @@ func (r Row) Get(col string) any {
 	return nil
 }
 
+// Set replaces the value of a column the row has (the open flavor blanks the Sinhala columns: server/flavor.go)
+func (r Row) Set(col string, v any) {
+	for i, c := range r.cols {
+		if c == col {
+			r.vals[i] = v
+		}
+	}
+}
+
 // Cols and Vals: the columns and values in the query's order.
 func (r Row) Cols() []string        { return r.cols }
 func (r Row) Vals() []any           { return r.vals }

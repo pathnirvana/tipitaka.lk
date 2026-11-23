@@ -1,0 +1,30 @@
+# systemd unit for open.tipitaka.lk (the same Go server, -flavor open: the BJT pāḷi in other scripts,
+# dev-docs/open-flavor.md) - installed / updated by scripts/deploy.sh --flavor open to /etc/systemd/system/.
+# Releases in ~/www/open_tipitaka_lk/releases/<ts>, ~/www/open_tipitaka_lk/current points at one.
+# It replaces tipitaka_lk_new.service (the site of 2025, port 8401, ~/www/tipitaka_lk_new): the deploy offers to point
+# nginx at this one and to stop the old one.
+# nginx: location / { proxy_pass http://127.0.0.1:8404; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; }
+[Unit]
+Description=open.tipitaka.lk (Go server, open flavor)
+After=network.target
+
+[Service]
+Type=simple
+User=janaka
+WorkingDirectory=/home/janaka/www/open_tipitaka_lk/current
+ExecStart=/home/janaka/www/open_tipitaka_lk/current/tipitaka_lk -flavor open -no-open -listen 127.0.0.1:8404
+Restart=always
+RestartSec=3
+# the 1 GB droplet is shared with tipitaka.lk, pitaka.lk and tipitaka.app. text.db is tipitaka.lk's file (hard linked
+# by the deploy when both sites have the same build), so its pages are in memory once
+Environment=GOMEMLIMIT=150MiB
+MemoryHigh=300M
+MemoryMax=400M
+MemorySwapMax=100M
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+
+# sudo systemctl daemon-reload && sudo systemctl restart open_tipitaka_lk
+# journalctl -u open_tipitaka_lk.service -f

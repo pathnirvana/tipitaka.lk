@@ -6,6 +6,9 @@
 #   scripts/deploy.sh --list      list the releases on the server
 #   scripts/deploy.sh --flavor pitaka [--rollback|--list]   the same for the pitaka.lk reader (https://pitaka.lk/main/,
 #                                 service pitaka_lk on port 8403, ~/www/pitaka_lk; nginx is in the pathnirvana/pitaka.lk repo)
+#   scripts/deploy.sh --flavor open [--rollback|--list]     the same for https://open.tipitaka.lk (service open_tipitaka_lk on
+#                                 port 8404, ~/www/open_tipitaka_lk). The first deploy offers the cut-over from the old site:
+#                                 nginx from port 8401 to 8404, then stopping tipitaka_lk_new (dev-docs/open-flavor.md)
 #
 # Server layout: ~/www/tipitaka.lk/releases/<timestamp>/{tipitaka_lk,dist,db}, ~/www/tipitaka.lk/current -> releases/<ts>
 # Unchanged files are hard linked from the previous release, so text-only updates upload little except text.db,
@@ -33,7 +36,10 @@ case "$FLAVOR" in
   pitaka) BASE=${DEPLOY_BASE:-www/pitaka_lk}
     SITE=${DEPLOY_SITE:-https://pitaka.lk/main} SERVICE=pitaka_lk STAGE_PORT=8498 PORT=8403
     TEXT_DB=pitaka-text.db BUILD_INFO=db/pitaka-build-info.json DIST=web-pitaka/dist ;;
-  *) echo "unknown flavor $FLAVOR (lk or pitaka)"; exit 1 ;;
+  open) BASE=${DEPLOY_BASE:-www/open_tipitaka_lk}
+    SITE=${DEPLOY_SITE:-https://open.tipitaka.lk} SERVICE=open_tipitaka_lk STAGE_PORT=8497 PORT=8404
+    TEXT_DB=text.db BUILD_INFO=db/build-info.json DIST=web-open/dist ;;
+  *) echo "unknown flavor $FLAVOR (lk, pitaka or open)"; exit 1 ;;
 esac
 # the url prefix of the server (pitaka.lk: everything under /main)
 PREFIX=$([ "$FLAVOR" = pitaka ] && echo /main || true)
@@ -67,10 +73,10 @@ upload_db() {
     || { echo "$name: unpacking on the server failed or the checksum differs"; exit 1; }
 }
 
-# /api/health of the live server: through the public site, or for pitaka.lk on the server itself (nginx and the DNS of
-# pitaka.lk may not point at it yet on the first deploys)
+# /api/health of the live server: through the public site, or for pitaka.lk and open.tipitaka.lk on the server itself
+# (nginx and the DNS may not point at it yet on the first deploys)
 health() {
-  if [ "$FLAVOR" = pitaka ]; then remote "curl -fsS http://127.0.0.1:$PORT$PREFIX/api/health" 2>/dev/null
+  if [ "$FLAVOR" != lk ]; then remote "curl -fsS http://127.0.0.1:$PORT$PREFIX/api/health" 2>/dev/null
   else curl -fsS "$SITE/api/health" 2>/dev/null; fi
 }
 
@@ -98,7 +104,7 @@ case "$ACTION" in
     remote "cd $BASE && ln -sfn releases/$PREV current.new && mv -T current.new current"
     restart_and_verify "" && exit 0 || { echo "health check failed"; exit 1; } ;;
   "") ;;
-  *) sed -n '2,14p' "$0"; exit 1 ;;
+  *) sed -n '2,17p' "$0"; exit 1 ;;
 esac
 
 say "0/6 getting the latest text from github (other proofreaders' commits)"
@@ -112,8 +118,9 @@ else git merge --no-edit origin/master || { git merge --abort; echo "merge of or
 git log -1 --format='deploying %h %s (%cr)'
 
 say "1/6 building data, web app and the linux server binary"
-[ -z "$(git status --porcelain -- web web-pitaka shared server build)" ] || echo "warning: uncommitted code changes are being deployed"
+[ -z "$(git status --porcelain -- web web-pitaka web-open shared server build)" ] || echo "warning: uncommitted code changes are being deployed"
 if [ "$FLAVOR" = pitaka ]; then npm run build:data -- --flavor pitaka && npm run build:web:pitaka
+elif [ "$FLAVOR" = open ]; then npm run build:data && npm run build:web:open
 else npm run build:data && npm run build:web; fi
 bash scripts/build-linux.sh
 API_HASH=$(node -p "require('./$BUILD_INFO').api_hash")
@@ -124,7 +131,7 @@ REL="$BASE/releases/$TS"
 # hard link unchanged files from the current release, or from the v2 layout on the first deploy
 PREV=$(remote "readlink $BASE/current || true")
 if [ -n "$PREV" ]; then LDIST="../../$(basename "$PREV")/dist"; PREV_DB="$BASE/releases/$(basename "$PREV")/db"
-elif [ "$FLAVOR" = pitaka ]; then LDIST="../../../../tipitaka.lk/current/dist"; PREV_DB="www/tipitaka.lk/current/db" # the first one: tipitaka.lk's dict.db
+elif [ "$FLAVOR" != lk ]; then LDIST="../../../../tipitaka.lk/current/dist"; PREV_DB="www/tipitaka.lk/current/db" # the first one: tipitaka.lk's dict.db (open: and its text.db)
 else LDIST="../../../dist"; PREV_DB="$BASE/db"; fi
 remote "mkdir -p $REL/dist $REL/db"
 SWITCHED=0
@@ -132,13 +139,13 @@ SWITCHED=0
 trap '[ $SWITCHED = 1 ] || { echo "removing the unfinished release $TS"; ssh "$HOST" "rm -rf $REL"; }' EXIT
 "$RSYNC" -az --delete --link-dest="$LDIST" $DIST/ "$HOST:$REL/dist/"
 # v2 pages cached in browsers still fetch /static/text/*.json - keep serving them for a while after the switch
-[ "$FLAVOR" = pitaka ] || "$RSYNC" -az --link-dest="../../$LDIST/static/text" public/static/text/ "$HOST:$REL/dist/static/text/"
+[ "$FLAVOR" != lk ] || "$RSYNC" -az --link-dest="../../$LDIST/static/text" public/static/text/ "$HOST:$REL/dist/static/text/"
 for db in $TEXT_DB dict.db; do upload_db "$db" "$PREV_DB"; done
 "$RSYNC" -az server/bin/tipitaka_lk_linux_amd64 "$HOST:$REL/tipitaka_lk"
 remote "chmod +x $REL/tipitaka_lk"
 # the country database of the statistics (server/geo.go): DB-IP's country lite file of the month, fetched on the
 # server once it is out (as tipitaka.app's deploy)
-[ "$FLAVOR" = pitaka ] || remote "mkdir -p $BASE/geo && cd $BASE/geo && f=dbip-country-lite-\$(date -u +%Y-%m).csv.gz && { [ -s \$f ] \
+[ "$FLAVOR" != lk ] || remote "mkdir -p $BASE/geo && cd $BASE/geo && f=dbip-country-lite-\$(date -u +%Y-%m).csv.gz && { [ -s \$f ] \
   || { curl -fsS -o \$f.part https://download.db-ip.com/free/\$f && mv \$f.part \$f && ln -sfn \$f country.csv.gz \
        && ls -1 dbip-*.csv.gz | grep -vx \$f | xargs -r rm -f; } \
   || { rm -f \$f.part; echo 'geoip: no DB-IP file for this month yet, keeping the last one'; }; }"
@@ -154,6 +161,19 @@ remote "cd $REL && (nohup ./tipitaka_lk -flavor pitaka -no-open -listen 127.0.0.
   curl -fsS http://127.0.0.1:$STAGE_PORT/main/help | grep -q '<div id=\"app\"' || ok=0
   kill \$(cat /tmp/pitaka-stage.pid) 2>/dev/null || true
   [ \$ok = 1 ] || { cat /tmp/pitaka-stage.log; exit 1; }" || { echo "staging test failed - nothing was switched"; exit 1; }
+elif [ "$FLAVOR" = open ]; then
+# a page in a script, an old url (server/old_open.go), a sitemap of a script
+remote "cd $REL && (nohup ./tipitaka_lk -flavor open -no-open -listen 127.0.0.1:$STAGE_PORT < /dev/null > /tmp/open-stage.log 2>&1 & echo \$! > /tmp/open-stage.pid); sleep 2
+  ok=1
+  curl -fsS http://127.0.0.1:$STAGE_PORT/api/health | grep -q '\"api_hash\":\"$API_HASH\"' || ok=0
+  curl -fsS http://127.0.0.1:$STAGE_PORT/thai/dn-1-1 | grep -q 'id=\"ssr\"' || ok=0
+  curl -fsS 'http://127.0.0.1:$STAGE_PORT/api/q/tree.node?key=dn-1-1' | grep -q 'dn-1' || ok=0
+  curl -fsS -o /dev/null -w '%{http_code} %{redirect_url}' http://127.0.0.1:$STAGE_PORT/sin_apz/dn-1-1 | grep -q '^301 https://pitaka.lk/main/dn-1-1\$' || ok=0
+  curl -fsS http://127.0.0.1:$STAGE_PORT/sitemaps/latn.xml | grep -q 'https://open.tipitaka.lk/latn/dn-1-1<' || ok=0
+  curl -fsS http://127.0.0.1:$STAGE_PORT/robots.txt | grep -q 'Sitemap:' || ok=0
+  curl -fsS http://127.0.0.1:$STAGE_PORT/latn/bookmarks | grep -q '<div id=\"app\"' || ok=0
+  kill \$(cat /tmp/open-stage.pid) 2>/dev/null || true
+  [ \$ok = 1 ] || { cat /tmp/open-stage.log; exit 1; }" || { echo "staging test failed - nothing was switched"; exit 1; }
 else
 remote "cd $REL && (nohup ./tipitaka_lk -no-open -listen 127.0.0.1:$STAGE_PORT < /dev/null > /tmp/tipitaka-stage.log 2>&1 & echo \$! > /tmp/tipitaka-stage.pid); sleep 2
   ok=1
@@ -169,14 +189,14 @@ fi
 echo "staging ok"
 
 say "4/6 systemd units (installed when they differ from the server's) and nginx"
-if [ "$FLAVOR" = pitaka ]; then
+if [ "$FLAVOR" != lk ]; then
   # the unit, and (once) the passwordless restart of later deploys, as tipitaka_lk has
-  "$RSYNC" -az server/pitaka_lk.service "$HOST:$REL/systemd/"
-  if ! remote "cmp -s $REL/systemd/pitaka_lk.service /etc/systemd/system/pitaka_lk.service && sudo -n -l /usr/bin/systemctl restart pitaka_lk >/dev/null 2>&1"; then
-    echo "installing the pitaka_lk unit and its passwordless restart - sudo password:"
-    remote_tty "sudo install -m 644 $REL/systemd/pitaka_lk.service /etc/systemd/system/ && sudo systemctl daemon-reload && sudo systemctl enable pitaka_lk \
-      && echo 'janaka ALL=(root) NOPASSWD: /usr/bin/systemctl restart pitaka_lk' > /tmp/pitaka_lk.sudoers && sudo visudo -cf /tmp/pitaka_lk.sudoers \
-      && sudo install -m 440 /tmp/pitaka_lk.sudoers /etc/sudoers.d/pitaka_lk; rm -f /tmp/pitaka_lk.sudoers"
+  "$RSYNC" -az server/$SERVICE.service "$HOST:$REL/systemd/"
+  if ! remote "cmp -s $REL/systemd/$SERVICE.service /etc/systemd/system/$SERVICE.service && sudo -n -l /usr/bin/systemctl restart $SERVICE >/dev/null 2>&1"; then
+    echo "installing the $SERVICE unit and its passwordless restart - sudo password:"
+    remote_tty "sudo install -m 644 $REL/systemd/$SERVICE.service /etc/systemd/system/ && sudo systemctl daemon-reload && sudo systemctl enable $SERVICE \
+      && echo 'janaka ALL=(root) NOPASSWD: /usr/bin/systemctl restart $SERVICE' > /tmp/$SERVICE.sudoers && sudo visudo -cf /tmp/$SERVICE.sudoers \
+      && sudo install -m 440 /tmp/$SERVICE.sudoers /etc/sudoers.d/$SERVICE; rm -f /tmp/$SERVICE.sudoers"
   fi
 else
 # the server unit and the watchdog (server/tipitaka_lk*.{service,timer,sh}, same scheme as tipitaka.app). Installing
@@ -218,6 +238,33 @@ if ! restart_and_verify "$API_HASH"; then
   echo "the new release is not healthy - rolling back"
   if [ -n "$PREV" ]; then remote "cd $BASE && ln -sfn $PREV current.new && mv -T current.new current"; remote_tty "sudo systemctl restart $SERVICE"; fi
   exit 1
+fi
+
+# open.tipitaka.lk: the cut-over from the site of 2025 (tipitaka_lk_new on port 8401), offered until it is done
+if [ "$FLAVOR" = open ]; then
+  NGINX=$(remote "grep -lE 'server_name[^;]*open\.tipitaka\.lk' /etc/nginx/sites-enabled/* 2>/dev/null | head -1" || true)
+  if [ -z "$NGINX" ]; then
+    echo "no nginx site with server_name open.tipitaka.lk - add one (the location block is in server/open_tipitaka_lk.service)"
+  elif remote "grep -qE 'proxy_pass http://(localhost|127\.0\.0\.1):8401' $NGINX"; then
+    echo "nginx ($NGINX) still sends open.tipitaka.lk to the old server on port 8401:"
+    remote "grep -nE 'location|proxy_|root |try_files' $NGINX" || true
+    echo "Proposed change: port 8401 -> 127.0.0.1:$PORT in every proxy_pass (Host and X-Real-IP headers added where the file has none)."
+    echo "Locations that do not proxy (a root / try_files of the old dist) are not changed - edit those by hand."
+    read -r -p "apply it now? [y/N] " yn
+    if [ "$yn" = y ]; then
+      HDRS=""
+      remote "grep -q 'proxy_set_header Host' $NGINX" || HDRS="$HDRS proxy_set_header Host \$host;"
+      remote "grep -q 'X-Real-IP' $NGINX" || HDRS="$HDRS proxy_set_header X-Real-IP \$remote_addr;"
+      remote_tty "sudo cp $NGINX /tmp/open.tipitaka.lk.conf.bak && sudo sed -i -E 's#proxy_pass http://(localhost|127\.0\.0\.1):8401(/?);#proxy_pass http://127.0.0.1:$PORT\2;$HDRS#' $NGINX && sudo nginx -t && sudo systemctl reload nginx" \
+        && sleep 1 && curl -fsS "$SITE/api/health" | grep -q "\"api_hash\":\"$API_HASH\"" \
+        || { echo "nginx change failed or $SITE does not answer with the new server - restoring"; remote_tty "sudo cp /tmp/open.tipitaka.lk.conf.bak $NGINX && sudo nginx -t && sudo systemctl reload nginx"; exit 1; }
+      echo "$SITE is the new site"
+    fi
+  fi
+  if [ -n "$NGINX" ] && ! remote "grep -q ':8401' $NGINX" && remote "systemctl is-active -q tipitaka_lk_new"; then
+    read -r -p "nginx no longer uses the old server - stop and disable tipitaka_lk_new? [y/N] " yn
+    [ "$yn" != y ] || remote_tty "sudo systemctl disable --now tipitaka_lk_new"
+  fi
 fi
 
 say "6/6 cleaning up old releases (keeping $KEEP)"

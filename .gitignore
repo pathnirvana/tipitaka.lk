@@ -71,5 +71,6 @@ server/mobile/build/
 /apple/Tipitaka.xcodeproj
 /web-pitaka/dist
 /web-pitaka/dist-app
+/web-open/dist
 /web-pitaka/public/static/data
 dev/apz-trans/out/

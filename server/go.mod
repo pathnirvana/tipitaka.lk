@@ -5,6 +5,7 @@ go 1.27
 require (
 	github.com/klauspost/compress v1.20.1
 	github.com/mattn/go-sqlite3 v1.14.52
+	github.com/pnfo/pali-converter v0.0.0-00010101000000-000000000000
 	github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966
 )
 
@@ -48,3 +49,6 @@ tool (
 	golang.org/x/mobile/cmd/gobind
 	golang.org/x/mobile/cmd/gomobile
 )
+
+// the Go port of @pnfo/pali-converter (git submodule, the commit package.json pins): the open flavor's pages (ssr_open.go)
+replace github.com/pnfo/pali-converter => ./pali-converter

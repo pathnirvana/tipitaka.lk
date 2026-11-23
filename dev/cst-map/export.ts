@@ -25,6 +25,10 @@ const tsv = (file: string, header: string[], rows: unknown[][]) => {
 const book = new Map((db.prepare('SELECT id, name, coll FROM book').all() as { id: number; name: string; coll: string }[]).map(b => [b.id, b]))
 const lkColl = (id: number) => ['mula', 'atta'].includes(book.get(id)?.coll ?? '')
 
+// the key of each book on tipitaka.app (the link of an entry to its paragraph there: https://tipitaka.app/<script>/<key>#p<idx>)
+tsv('books.tsv', ['book', 'key'], (db.prepare(`SELECT b.name, n.key FROM book b JOIN node n ON n.id = b.root_id WHERE b.coll IN ('mula', 'atta') ORDER BY b.id`).all() as
+  { name: string; key: string }[]).map(b => [b.name, b.key]))
+
 // mūla <-> aṭṭhakathā (stored aṭṭhakathā -> mūla)
 const links = (db.prepare(`SELECT from_book, from_idx, to_book, to_idx, source, conf FROM para_link WHERE kind = 'mula-atta'`).all() as
   { from_book: number; from_idx: number; to_book: number; to_idx: number; source: string; conf: number }[])

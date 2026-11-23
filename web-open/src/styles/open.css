@@ -1,0 +1,103 @@
+/* The fonts of the scripts, tipitaka.app's (cst/web/src/styles/fonts.css): each face has a size-adjust so that the
+ * scripts look the same size at the same font size. html[data-script] is the script of the page (src/main.ts); the
+ * browser only downloads the faces it uses. Abhaya Uni (Sinhala) is tipitaka.lk's file (web/src/assets/fonts). */
+@font-face { font-family: 'pali-latn'; src: url('../assets/fonts/NotoSerif-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 100.0%; }
+@font-face { font-family: 'pali-latn'; src: url('../assets/fonts/NotoSerif-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 100.0%; }
+@font-face { font-family: 'pali-deva'; src: url('../assets/fonts/NotoSerifDevanagari-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 101.1%; }
+@font-face { font-family: 'pali-deva'; src: url('../assets/fonts/NotoSerifDevanagari-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 101.1%; }
+@font-face { font-family: 'pali-beng'; src: url('../assets/fonts/NotoSerifBengali-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 100.4%; }
+@font-face { font-family: 'pali-beng'; src: url('../assets/fonts/NotoSerifBengali-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 100.4%; }
+@font-face { font-family: 'pali-guru'; src: url('../assets/fonts/NotoSansGurmukhi-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 101.4%; }
+@font-face { font-family: 'pali-guru'; src: url('../assets/fonts/NotoSansGurmukhi-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 101.4%; }
+@font-face { font-family: 'pali-gujr'; src: url('../assets/fonts/NotoSerifGujarati-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 101.8%; }
+@font-face { font-family: 'pali-gujr'; src: url('../assets/fonts/NotoSerifGujarati-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 101.8%; }
+@font-face { font-family: 'pali-telu'; src: url('../assets/fonts/NotoSerifTelugu-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 92.5%; }
+@font-face { font-family: 'pali-telu'; src: url('../assets/fonts/NotoSerifTelugu-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 92.5%; }
+@font-face { font-family: 'pali-knda'; src: url('../assets/fonts/NotoSerifKannada-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 87.9%; }
+@font-face { font-family: 'pali-knda'; src: url('../assets/fonts/NotoSerifKannada-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 87.9%; }
+@font-face { font-family: 'pali-mlym'; src: url('../assets/fonts/NotoSerifMalayalam-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 106.2%; }
+@font-face { font-family: 'pali-mlym'; src: url('../assets/fonts/NotoSerifMalayalam-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 106.2%; }
+@font-face { font-family: 'pali-taml'; src: url('../assets/fonts/NotoSerifTamil.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 106.5%; }
+@font-face { font-family: 'pali-taml'; src: url('../assets/fonts/NotoSerifTamil.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 106.5%; }
+@font-face { font-family: 'pali-khmr'; src: url('../assets/fonts/NotoSerifKhmer-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 96.2%; }
+@font-face { font-family: 'pali-khmr'; src: url('../assets/fonts/NotoSerifKhmer-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 96.2%; }
+@font-face { font-family: 'pali-thai'; src: url('../assets/fonts/THSarabunNew.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 153.3%; }
+@font-face { font-family: 'pali-thai'; src: url('../assets/fonts/THSarabunNew-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 153.3%; }
+@font-face { font-family: 'pali-mymr'; src: url('../assets/fonts/Pyidaungsu-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 120.0%; }
+@font-face { font-family: 'pali-mymr'; src: url('../assets/fonts/Pyidaungsu-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 120.0%; }
+@font-face { font-family: 'pali-laoo'; src: url('../assets/fonts/LaoPaliAlpha-Regular.woff') format('woff'); font-display: swap; size-adjust: 96.7%; }
+@font-face { font-family: 'pali-lana'; src: url('../assets/fonts/Lamphun.woff2') format('woff2'); font-display: swap; size-adjust: 185.0%; }
+@font-face { font-family: 'pali-tibt'; src: url('../assets/fonts/DDC_Uchen.woff2') format('woff2'); font-display: swap; size-adjust: 77.0%; }
+@font-face { font-family: 'pali-brah'; src: url('../assets/fonts/NotoSansBrahmi-Regular.woff2') format('woff2'); font-display: swap; size-adjust: 93.9%; }
+
+[data-script='latn'], [data-script='cyrl'] { --font-text: 'pali-latn', 'Noto Serif', Georgia, serif; }
+[data-script='deva'] { --font-text: 'pali-deva', 'Noto Serif Devanagari', serif; }
+[data-script='beng'], [data-script='asse'] { --font-text: 'pali-beng', 'Noto Serif Bengali', serif; }
+[data-script='guru'] { --font-text: 'pali-guru', 'Noto Sans Gurmukhi', sans-serif; }
+[data-script='gujr'] { --font-text: 'pali-gujr', 'Noto Serif Gujarati', serif; }
+[data-script='telu'] { --font-text: 'pali-telu', 'Noto Serif Telugu', serif; }
+[data-script='knda'] { --font-text: 'pali-knda', 'Noto Serif Kannada', serif; }
+[data-script='mlym'] { --font-text: 'pali-mlym', 'Noto Serif Malayalam', serif; }
+[data-script='taml'] { --font-text: 'pali-taml', 'Noto Serif Tamil', 'pali-latn', serif; }
+[data-script='khmr'] { --font-text: 'pali-khmr', 'Noto Serif Khmer', serif; }
+[data-script='thai'] { --font-text: 'pali-thai', 'Noto Serif Thai', serif; }
+[data-script='mymr'] { --font-text: 'pali-mymr', 'Noto Serif Myanmar', serif; }
+[data-script='laoo'] { --font-text: 'pali-laoo', 'Noto Serif Lao', serif; }
+[data-script='lana'] { --font-text: 'pali-lana', 'Noto Sans Tai Tham', serif; }
+[data-script='tibt'] { --font-text: 'pali-tibt', 'Noto Serif Tibetan', serif; }
+[data-script='brah'] { --font-text: 'pali-brah', 'Noto Sans Brahmi', sans-serif; }
+[data-script='cakm'] { --font-text: 'Noto Sans Chakma', sans-serif; }
+[data-script='java'] { --font-text: 'Noto Sans Javanese', serif; }
+[data-script='bali'] { --font-text: 'Noto Sans Balinese', serif; }
+
+/* Pāḷi labels (.pali: the tree, tab names, lists): the text font; Sinhala labels larger than the text, as tipitaka.app */
+@font-face { font-family: 'pali-sinh'; src: url('../../../web/src/assets/fonts/AbhayaUni-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 100.0%; }
+@font-face { font-family: 'pali-sinh'; src: url('../../../web/src/assets/fonts/AbhayaUni-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 100.0%; }
+@font-face { font-family: 'label-sinh'; src: url('../../../web/src/assets/fonts/AbhayaUni-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; size-adjust: 112.5%; }
+@font-face { font-family: 'label-sinh'; src: url('../../../web/src/assets/fonts/AbhayaUni-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; size-adjust: 112.5%; }
+:root, [data-script] { --font-label: var(--font-text); }
+[data-script='sinh'] { --font-text: 'pali-sinh', 'Abhaya Uni', 'Noto Serif Sinhala', serif; --font-label: 'label-sinh', 'Abhaya Uni', 'Noto Serif Sinhala', serif; }
+
+/* The interface: the system font, and for a language with its own script that script's face for its letters only
+ * (unicode-range), at tipitaka.app's sizes (cst/web/src/styles/fonts.css) */
+@font-face { font-family: 'ui-sinh'; src: url('../../../web/src/assets/fonts/AbhayaUni-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; unicode-range: U+0D80-0DFF, U+111E0-111FF, U+200C-200D, U+25CC; size-adjust: 130.0%; }
+@font-face { font-family: 'ui-sinh'; src: url('../../../web/src/assets/fonts/AbhayaUni-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; unicode-range: U+0D80-0DFF, U+111E0-111FF, U+200C-200D, U+25CC; size-adjust: 130.0%; }
+@font-face { font-family: 'ui-mymr'; src: url('../assets/fonts/Pyidaungsu-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; unicode-range: U+1000-109F, U+A9E0-A9FF, U+AA60-AA7F, U+200C-200D, U+25CC; size-adjust: 112.2%; }
+@font-face { font-family: 'ui-mymr'; src: url('../assets/fonts/Pyidaungsu-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; unicode-range: U+1000-109F, U+A9E0-A9FF, U+AA60-AA7F, U+200C-200D, U+25CC; size-adjust: 112.2%; }
+@font-face { font-family: 'ui-thai'; src: url('../assets/fonts/THSarabunNew.woff2') format('woff2'); font-weight: 400; font-display: swap; unicode-range: U+0E00-0E7F, U+200C-200D, U+25CC; size-adjust: 171.3%; }
+@font-face { font-family: 'ui-thai'; src: url('../assets/fonts/THSarabunNew-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; unicode-range: U+0E00-0E7F, U+200C-200D, U+25CC; size-adjust: 171.3%; }
+@font-face { font-family: 'ui-khmr'; src: url('../assets/fonts/NotoSerifKhmer-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; size-adjust: 112.7%; }
+@font-face { font-family: 'ui-khmr'; src: url('../assets/fonts/NotoSerifKhmer-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; size-adjust: 112.7%; }
+@font-face { font-family: 'ui-deva'; src: url('../assets/fonts/NotoSerifDevanagari-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; unicode-range: U+0900-097F, U+A8E0-A8FF, U+1CD0-1CFF, U+200C-200D, U+25CC; size-adjust: 114.5%; }
+@font-face { font-family: 'ui-deva'; src: url('../assets/fonts/NotoSerifDevanagari-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; unicode-range: U+0900-097F, U+A8E0-A8FF, U+1CD0-1CFF, U+200C-200D, U+25CC; size-adjust: 114.5%; }
+:root { --font-ui: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif; }
+html[data-ui-lang='si'] { --font-ui: 'ui-sinh', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+html[data-ui-lang='my'] { --font-ui: 'ui-mymr', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+html[data-ui-lang='th'] { --font-ui: 'ui-thai', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+html[data-ui-lang='kh'] { --font-ui: 'ui-khmr', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+html[data-ui-lang='hi'] { --font-ui: 'ui-deva', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+body { font-family: var(--font-ui); -webkit-text-size-adjust: 100%; }
+
+/* Sizes as tipitaka.app (cst/web/src/styles/main.css): the reading text at the text size (18px) with a 1.65 line
+ * height, the tree at 1rem and the tab names at 0.875rem (the root font size follows the text size: App.vue) */
+.entry-text, .footnote { font-family: var(--font-text); }
+.pali, [data-testid="tree"], [data-testid="tabs-bar"] { font-family: var(--font-label); }
+[data-testid="tree"] { font-size: 1rem !important; }
+[data-testid="tabs-bar"] { font-size: 0.875rem; }
+.entry-text { line-height: 1.65; }
+.text-tab .entry-text.heading, .reading-size .entry-text.heading { font-weight: 600; line-height: 1.35; }
+.text-tab .entry-text.heading[data-level="5"], .reading-size .entry-text.heading[data-level="5"] { font-size: 1.6em; }
+.text-tab .entry-text.heading[data-level="4"], .reading-size .entry-text.heading[data-level="4"] { font-size: 1.5em; }
+.text-tab .entry-text.heading[data-level="3"], .reading-size .entry-text.heading[data-level="3"] { font-size: 1.4em; }
+.text-tab .entry-text.heading[data-level="2"], .reading-size .entry-text.heading[data-level="2"] { font-size: 1.22em; }
+.text-tab .entry-text.heading[data-level="1"], .reading-size .entry-text.heading[data-level="1"] { font-size: 1.1em; }
+.text-tab .entry-text.centered, .reading-size .entry-text.centered { line-height: 1.35; }
+.text-tab .entry-text.centered[data-level="5"], .reading-size .entry-text.centered[data-level="5"] { font-size: 1.6em; }
+.text-tab .entry-text.centered[data-level="4"], .reading-size .entry-text.centered[data-level="4"] { font-size: 1.4em; }
+.text-tab .entry-text.centered[data-level="3"], .reading-size .entry-text.centered[data-level="3"] { font-size: 1.25em; }
+.text-tab .entry-text.centered[data-level="2"], .reading-size .entry-text.centered[data-level="2"] { font-size: 1.1em; }
+.text-tab .entry-text.centered[data-level="1"], .reading-size .entry-text.centered[data-level="1"] { font-size: 1em; }
+.page-num { color: var(--c-info); font-size: 0.85em; text-align: center; }
+/* search results: the matched words; the snippets a little smaller than the reading text, as tipitaka.app */
+.entry-text.fts-snippet { text-align: left; font-size: 0.98rem !important; line-height: 1.5; }
+.fts-snippet b { font-weight: 400; color: var(--c-muted, inherit); }

@@ -99,6 +99,17 @@ FROM footnote fn JOIN file f ON f.id = fn.file_id
 WHERE f.name = :file AND fn.page_idx BETWEEN :from AND :to
 ORDER BY fn.page_idx, fn.lang, fn.idx;
 
+-- name: text.cst
+-- db: text
+-- params: file:str page:int entry:int
+-- max_rows: 1
+-- the paragraph of tipitaka.app (Chaṭṭha Saṅgāyana edition) of an entry, or of the next entry of its file that has one
+-- (headings often have none): https://tipitaka.app/<script>/<key>#p<para>
+SELECT c.key, c.para, e.page_idx, e.entry_idx
+FROM entry e JOIN file f ON f.id = e.file_id JOIN entry_cst c ON c.entry_id = e.id
+WHERE f.name = :file AND (e.page_idx > :page OR (e.page_idx = :page AND e.entry_idx >= :entry))
+ORDER BY e.page_idx, e.entry_idx LIMIT 1;
+
 -- name: text.align
 -- db: text
 -- params: file:str from:int to:int
@@ -176,3 +187,11 @@ SELECT word, docs FROM (
     AND t.term < w.x || (CASE :prefix WHEN 1 THEN char(1114111) ELSE char(1) END)) AS docs
   FROM w WHERE w.x IS NOT NULL AND w.x <> '')
 WHERE docs > 0;
+
+-- name: old.book
+-- db: text
+-- params: book:int
+-- max_rows: 1
+-- the first text of a printed BJT book (1 to 57): the old site's /<script>/book/<n> pages
+SELECT n.key FROM file f JOIN node n ON n.key = f.name
+WHERE f.book_id = :book AND f.name NOT LIKE 'atta-%' AND f.name NOT LIKE 'anya%' ORDER BY n.id LIMIT 1;

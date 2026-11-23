@@ -7,11 +7,12 @@ export default defineConfig({
   resolve: {
     alias: {
       '@shared': fileURLToPath(new URL('./shared', import.meta.url)),
+      '@o': fileURLToPath(new URL('./web-open/src', import.meta.url)),
       '@': fileURLToPath(new URL('./web/src', import.meta.url)),
     },
   },
   test: {
-    include: ['shared/**/*.test.ts', 'build/**/*.test.ts', 'web/src/**/*.test.ts'],
+    include: ['shared/**/*.test.ts', 'build/**/*.test.ts', 'web/src/**/*.test.ts', 'web-open/src/**/*.test.ts'],
     environment: 'node',
     testTimeout: 600_000,
     hookTimeout: 600_000,

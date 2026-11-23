@@ -39,6 +39,8 @@ CREATE INDEX gloss_ae ON gloss(a_eentry);
 CREATE INDEX gloss_m ON gloss(m_entry);
 CREATE INDEX gloss_me ON gloss(m_eentry);
 CREATE TABLE comention (entity_id INTEGER NOT NULL, other_id INTEGER NOT NULL, n INTEGER NOT NULL, PRIMARY KEY (entity_id, other_id)) WITHOUT ROWID;
+-- the paragraph of tipitaka.app (the Chaṭṭha Saṅgāyana edition) an entry is: https://tipitaka.app/<script>/<key>#p<para>
+CREATE TABLE entry_cst (entry_id INTEGER PRIMARY KEY, key TEXT NOT NULL, para INTEGER NOT NULL);
 `
 
 type MapRecord = [string, number, string, string?]
@@ -61,7 +63,7 @@ export class CstData {
       h.update(raw)
       this.maps.set(n.slice(0, -5), (JSON.parse(raw) as { entries: Record<string, MapRecord> }).entries)
     }
-    if (this.available) for (const n of ['links.tsv', 'entities.tsv', 'settings.tsv', 'mentions.tsv', 'glosses.tsv']) {
+    if (this.available) for (const n of ['links.tsv', 'entities.tsv', 'settings.tsv', 'mentions.tsv', 'glosses.tsv', 'books.tsv']) {
       if (fs.existsSync(path.join(dataDir, n))) h.update(fs.readFileSync(path.join(dataDir, n)))
     }
     for (const n of ['meanings.tsv', 'families.tsv']) if (fs.existsSync(path.join(NAMES_SI_DIR, n))) h.update(fs.readFileSync(path.join(NAMES_SI_DIR, n)))
@@ -79,12 +81,17 @@ export class CstData {
     const runsOf = new Map<string, WordRun[]>() // CST paragraph -> lk words
     const nodeOf = new Map<number, number>()
     let fresh = 0, stale = 0
+    const booksFile = path.join(this.dataDir, 'books.tsv')
+    const bookKey = new Map(fs.existsSync(booksFile) ? readTsv(booksFile).map(b => [b.book, b.key]) : [])
+    const insCst = db.prepare('INSERT INTO entry_cst VALUES (?, ?, ?)')
     for (const e of entries) {
       nodeOf.set(e.id, e.node_id)
       const rec = this.maps.get(e.file)?.[`${e.page_idx}:${e.entry_idx}`]
       if (!rec) continue
       if (rec[0] !== textHash(e.p_text)) { stale++; continue }
       fresh++
+      const [cstBook, cstIdx] = rec[2].split(' ')[0].split('#') // the paragraph the entry starts in
+      if (bookKey.has(cstBook)) insCst.run(e.id, bookKey.get(cstBook), Number(cstIdx))
       for (const p of rec[2].split(' ')) { const l = byPara.get(p); if (l) l.push(e.id); else byPara.set(p, [e.id]) }
       if (rec[3]) for (const r of rec[3].split(';')) {
         const [lkW, para, cstW, len] = r.split(' ')

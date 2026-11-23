@@ -32,6 +32,8 @@ export const typeToInt = (t: string): number => {
 
 export const isPaliOnlyFile = (filename: string) => /^ap-pat/.test(filename)
 export const isAttaFile = (filename: string) => filename.startsWith('atta-')
+/** the scanned pages (and so the printed page numbers that open them) exist for the mūla books only, not for atta- / anya- */
+export const hasScanPages = (filename: string) => !/^(atta-|anya)/.test(filename)
 
 export const DictLanguage = Object.freeze({ SI: 'si', EN: 'en' })
 /** name -> [language, short code, id, info] (src/constants.js dictionaryInfo) */

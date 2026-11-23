@@ -1,3 +1,6 @@
 [submodule "dev/dicts/dict-input/sinhala"]
 	path = dev/dicts/dict-input/sinhala
 	url = https://github.com/pnfo/pali-sinhala-dictionary.git
+[submodule "server/pali-converter"]
+	path = server/pali-converter
+	url = https://github.com/pnfo/pali-converter

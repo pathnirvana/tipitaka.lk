@@ -21,16 +21,28 @@ var (
 
 // MarkupToHTML renders BJT markup as safe HTML.
 func MarkupToHTML(text string, hideFnRefs bool) string {
+	return MarkupToHTMLWith(text, hideFnRefs, nil)
+}
+
+// MarkupToHTMLWith: conv (when not nil) gets every run of text between two markup tokens and returns what is shown
+// (the open flavor: the text in another script, ssr_open.go); lineStart says the run follows a line break
+func MarkupToHTMLWith(text string, hideFnRefs bool, conv func(run string, lineStart bool) string) string {
 	var b strings.Builder
-	renderRange(&b, text, 0, len(text), hideFnRefs)
+	lineStart := true
+	renderRange(&b, text, 0, len(text), hideFnRefs, conv, &lineStart)
 	return b.String()
 }
 
-func renderRange(b *strings.Builder, s string, start, end int, hideFn bool) {
+func renderRange(b *strings.Builder, s string, start, end int, hideFn bool, conv func(string, bool) string, lineStart *bool) {
 	var buf strings.Builder
 	flush := func() {
 		if buf.Len() > 0 {
-			b.WriteString(htmlEsc.Replace(buf.String()))
+			t := buf.String()
+			if conv != nil {
+				t = conv(t, *lineStart)
+				*lineStart = false
+			}
+			b.WriteString(htmlEsc.Replace(t))
 			buf.Reset()
 		}
 	}
@@ -44,7 +56,7 @@ func renderRange(b *strings.Builder, s string, start, end int, hideFn bool) {
 					close += i + 2
 					flush()
 					b.WriteString(tags[0])
-					renderRange(b, s, i+2, close, hideFn)
+					renderRange(b, s, i+2, close, hideFn, conv, lineStart)
 					b.WriteString(tags[1])
 					i = close + 2
 				} else {
@@ -71,11 +83,13 @@ func renderRange(b *strings.Builder, s string, start, end int, hideFn bool) {
 		case ch == '\n':
 			flush()
 			b.WriteString("<br>")
+			*lineStart = true
 			i++
 			continue
 		case strings.HasPrefix(s[i:], "↴"):
 			flush()
 			b.WriteString("<br>")
+			*lineStart = true
 			i += len("↴")
 			continue
 		case ch == '<':

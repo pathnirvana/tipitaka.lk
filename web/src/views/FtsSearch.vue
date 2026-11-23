@@ -2,19 +2,20 @@
 <template>
   <div class="p-3">
     <div v-if="inputError" class="banner mb-2 border-error" data-testid="search-error">{{ inputError }}</div>
-    <div class="-m-1.5 flex flex-wrap items-start [&>*]:m-1.5">
+    <div class="-m-1.5 flex flex-wrap items-center [&>*]:m-1.5">
       <template v-if="!advanced">
-        <fieldset class="option-group">
-          <label class="block"><input v-model.number="exactWord" type="radio" :value="1" data-testid="exact-1"> එම වචනයම සොයන්න</label>
-          <label class="block"><input v-model.number="exactWord" type="radio" :value="0" data-testid="exact-0"> මේ අකුරු වලින් ඇරඹෙන ඕනෑම වචනයක්</label>
-        </fieldset>
-        <fieldset v-if="multiWord" class="option-group">
-          <label class="block"><input v-model.number="matchPhrase" type="radio" :value="1" data-testid="phrase-1"> සම්පුර්ණ වාක්‍යක් ලෙස</label>
-          <label class="block"><input v-model.number="matchPhrase" type="radio" :value="0" data-testid="phrase-0"> වෙන්වූ වචන සමූහයක් ලෙස</label>
-        </fieldset>
-        <label v-if="multiWord && !matchPhrase">වචන අතර උපරිම දුර
-          <input v-model.number="wordDistance" type="number" min="0" max="100" class="input w-20" data-testid="word-distance">
+        <!-- two check boxes, as open.tipitaka.lk (until 2026-11: four radio buttons) -->
+        <label class="inline-flex cursor-pointer items-center" title="නොතේරූ විට මේ අකුරු වලින් ඇරඹෙන ඕනෑම වචනයක් සොයයි">
+          <input v-model="exact" type="checkbox" class="mr-1.5 h-4 w-4 accent-[var(--c-primary)]" data-testid="exact-word">එම වචනයම සොයන්න
         </label>
+        <template v-if="multiWord">
+          <label class="inline-flex cursor-pointer items-center" title="නොතේරූ විට වචන එකිනෙකට ළඟින් ඇති තැන් සොයයි">
+            <input v-model="phrase" type="checkbox" class="mr-1.5 h-4 w-4 accent-[var(--c-primary)]" data-testid="exact-phrase">සම්පුර්ණ වාක්‍යක් ලෙස
+          </label>
+          <label v-if="!phrase" class="inline-flex items-center">වචන අතර උපරිම දුර
+            <input v-model.number="wordDistance" type="number" min="0" max="100" class="input ml-1.5 w-20" data-testid="word-distance">
+          </label>
+        </template>
       </template>
       <span class="flex-1" />
       <FilterDialog type="fts" />
@@ -67,7 +68,8 @@ const search = useSearch(), tree = useTree(), settings = useSettings(), route = 
 search.searchType = 'fts'
 if (route.params.words) search.searchInput = String(route.params.words)
 const opts = parseFtsOptions(route.params.options ? String(route.params.options) : null)
-const exactWord = ref(opts.exactWord), matchPhrase = ref(opts.matchPhrase), wordDistance = ref(opts.wordDistance)
+const exact = ref(!!opts.exactWord), phrase = ref(!!opts.matchPhrase), wordDistance = ref(opts.wordDistance)
+const exactWord = computed(() => (exact.value ? 1 : 0)), matchPhrase = computed(() => (phrase.value ? 1 : 0)) // as in the link (0 / 1)
 
 const input = computed(() => cleanFtsInput(search.searchInput))
 const advanced = computed(() => isAdvancedQuery(input.value))

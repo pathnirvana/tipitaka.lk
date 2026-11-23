@@ -12,6 +12,7 @@ import { validateCorpus, toBaseline, newWarnings } from './validate'
 import { APZ_DIR, loadApz, validateApz, type ApzFile } from './apz'
 import { pitakaTree, pitakaCorpus, isPitakaFile } from './pitaka'
 import { writeDb, fileGroup, audioHash } from './write-db'
+import { CstData } from './cst'
 import { Alignments } from './align'
 import { parseQueries } from '../shared/queries'
 import { buildMatch } from '../shared/fts-query'
@@ -28,7 +29,7 @@ function buildAll(textDir: string, out: string, dropPlaceholders: boolean) {
   const tree = res.tree as Map<string, TreeTuple>
   const order = dfsOrder(tree)
   const entryNodes = mapEntriesToNodes(corpus.files, tree, order)
-  writeDb(out, { corpus, tree, order, entryNodes, meta: { schema_version: '2' }, alignments: new Alignments('e2e/fixtures/alignments') })
+  writeDb(out, { corpus, tree, order, entryNodes, meta: { schema_version: '2' }, alignments: new Alignments('e2e/fixtures/alignments'), cst: new CstData() })
   return { corpus, res, tree, order, entryNodes }
 }
 

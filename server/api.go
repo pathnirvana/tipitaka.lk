@@ -43,7 +43,11 @@ func (a *App) RunNamed(ctx context.Context, name string, raw map[string]any) ([]
 	}
 	ctx, cancel := context.WithTimeout(ctx, queryTimeout)
 	defer cancel()
-	return q.Run(ctx, a.dbs.get(q.DB), args)
+	rows, err := q.Run(ctx, a.dbs.get(q.DB), args)
+	if err != nil {
+		return nil, err
+	}
+	return a.fl.scope(name, raw, rows), nil
 }
 
 var errNotFound = errors.New("not found")

@@ -11,7 +11,7 @@ import { useTree } from './tree'
 import { useText } from './text'
 import { useSettings } from './settings'
 import { smAndUp } from '@/composables/breakpoints'
-import { isAttaFile, isPaliOnlyFile } from '@shared/constants'
+import { isAttaFile, isPaliOnlyFile, hasScanPages } from '@shared/constants'
 import { countFeature } from '@/composables/stats'
 
 export type Columns = 0 | 1 | 2 // 0 pali, 1 sinh, 2 both
@@ -64,6 +64,7 @@ export const useTabs = defineStore('tabs', () => {
     return settings.treeLanguage === 'pali' ? 0 : 1
   }
   const isAtta = (tab?: Tab) => !!tab?.node && isAttaFile(tab.node.file)
+  const hasScans = (tab?: Tab) => !!tab?.node && hasScanPages(tab.node.file)
   const paliOnly = (tab?: Tab) => !!tab?.node && isPaliOnlyFile(tab.node.file)
 
   /**
@@ -204,5 +205,5 @@ export const useTabs = defineStore('tabs', () => {
     Object.assign(tab, patch)
   }
 
-  return { update, closeOthers, closeAll, tabList, activeInd, openCount, activeTab, activeKey, tabColumns, isAtta, paliOnly, openTab, replaceActive, closeTab, setActive, findTab, loadNextPage, loadPrevPage, navigate }
+  return { update, closeOthers, closeAll, tabList, activeInd, openCount, activeTab, activeKey, tabColumns, isAtta, hasScans, paliOnly, openTab, replaceActive, closeTab, setActive, findTab, loadNextPage, loadPrevPage, navigate }
 })

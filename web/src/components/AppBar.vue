@@ -31,7 +31,7 @@
         <template v-if="isTextTab && mdAndUp">
           <button class="icon-btn" title="කලින් සූත්‍රය" data-testid="prev-sutta" @click="tabs.navigate(-1)"><IconPrev /></button>
           <ColumnSelector v-model="tabColumns" class="mx-1" />
-          <button v-if="!tabs.isAtta(tabs.activeTab)" :class="['icon-btn', { 'bg-primary text-white hover:bg-primary': scan }]" :title="scan ? 'නව පිටපතට' : 'පැරණි පිටපතට (scan)'" :aria-pressed="scan" data-testid="scan-toggle" @click="scan = !scan"><IconScanner /></button>
+          <button v-if="tabs.hasScans(tabs.activeTab)" :class="['icon-btn', { 'bg-primary text-white hover:bg-primary': scan }]" :title="scan ? 'නව පිටපතට' : 'පැරණි පිටපතට (scan)'" :aria-pressed="scan" data-testid="scan-toggle" @click="scan = !scan"><IconScanner /></button>
           <button class="icon-btn" title="ඊළඟ සූත්‍රය" data-testid="next-sutta" @click="tabs.navigate(1)"><IconNext /></button>
         </template>
         <button v-else-if="!isTextTab && tabs.tabList.length" class="icon-btn text-success" title="කියවමින් සිටි සූත්‍රයට" data-testid="exit-to-reader" @click="$router.push('/' + tabs.activeKey)"><IconBook /></button>

@@ -69,7 +69,11 @@ test('full text search phrase / near / OR / prefix', async ({ page }) => {
   }
   await page.goto('/fts/එවං සුතං/0-0-5')
   await expect(page.getByTestId('word-distance')).toHaveValue('5')
-  await expect(page.getByTestId('phrase-0')).toBeChecked()
+  await expect(page.getByTestId('exact-phrase')).not.toBeChecked()
+  await expect(page.getByTestId('exact-word')).not.toBeChecked()
+  await page.getByTestId('exact-phrase').check() // a phrase: no distance to set
+  await expect(page.getByTestId('word-distance')).toHaveCount(0)
+  await expect(page).toHaveURL(/0-1-5$/)
 })
 
 test('full text search rejects NOT with a message', async ({ page }) => {

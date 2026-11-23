@@ -5,9 +5,10 @@ import { defineConfig, devices } from '@playwright/test'
  * fixture databases (e2e/fixtures/db, built from e2e/fixtures/text by `npm run build:fixture`).
  * The android-sim project loads the offline app build (web/dist-app) with a simulated native bridge.
  * The pitaka-* projects test the pitaka.lk reader (web-pitaka/dist, server -flavor pitaka) under /main/, in chromium and webkit.
+ * The open-* projects test open.tipitaka.lk (web-open/dist, server -flavor open), the urls starting with the script.
  */
-const PORT = 8410, PITAKA_PORT = 8411
-const LK = /android\.spec|pitaka\.spec/
+const PORT = 8410, PITAKA_PORT = 8411, OPEN_PORT = 8412
+const LK = /android\.spec|pitaka\.spec|open\.spec/
 export default defineConfig({
   testDir: '.',
   testIgnore: ['**/legacy/**', '**/fixtures/**'],
@@ -27,17 +28,24 @@ export default defineConfig({
     url: `http://127.0.0.1:${PITAKA_PORT}/main/api/health`,
     reuseExistingServer: !process.env.CI,
     stdout: 'ignore',
+  }, {
+    command: `../server/bin/tipitaka_lk -flavor open -no-open -listen 127.0.0.1:${OPEN_PORT} -root-path .. -db-dir fixtures/db`,
+    url: `http://127.0.0.1:${OPEN_PORT}/api/health`,
+    reuseExistingServer: !process.env.CI,
+    stdout: 'ignore',
   }],
   projects: [
     { name: 'desktop-chromium', testIgnore: LK, use: { ...devices['Desktop Chrome'], viewport: { width: 1400, height: 900 }, permissions: ['clipboard-read', 'clipboard-write'] } },
-    { name: 'desktop-webkit', testIgnore: /android\.spec|pitaka\.spec|audio\.spec|visual\.spec/, use: { ...devices['Desktop Safari'], viewport: { width: 1400, height: 900 } } },
-    { name: 'desktop-firefox', testIgnore: /android\.spec|pitaka\.spec|audio\.spec|visual\.spec/, use: { ...devices['Desktop Firefox'], viewport: { width: 1400, height: 900 } } },
-    { name: 'mobile-chrome', testIgnore: /android\.spec|pitaka\.spec|audio\.spec|visual\.spec/, use: { ...devices['Pixel 5'] } },
-    { name: 'mobile-webkit', testIgnore: /android\.spec|pitaka\.spec|audio\.spec|visual\.spec/, use: { ...devices['iPhone 12'] } },
+    { name: 'desktop-webkit', testIgnore: /android\.spec|pitaka\.spec|open\.spec|audio\.spec|visual\.spec/, use: { ...devices['Desktop Safari'], viewport: { width: 1400, height: 900 } } },
+    { name: 'desktop-firefox', testIgnore: /android\.spec|pitaka\.spec|open\.spec|audio\.spec|visual\.spec/, use: { ...devices['Desktop Firefox'], viewport: { width: 1400, height: 900 } } },
+    { name: 'mobile-chrome', testIgnore: /android\.spec|pitaka\.spec|open\.spec|audio\.spec|visual\.spec/, use: { ...devices['Pixel 5'] } },
+    { name: 'mobile-webkit', testIgnore: /android\.spec|pitaka\.spec|open\.spec|audio\.spec|visual\.spec/, use: { ...devices['iPhone 12'] } },
     { name: 'android-sim', testMatch: /android\.spec/, use: { ...devices['Pixel 5'] } },
     { name: 'pitaka-desktop', testMatch: /pitaka\.spec/, use: { ...devices['Desktop Chrome'], viewport: { width: 1400, height: 900 }, baseURL: `http://127.0.0.1:${PITAKA_PORT}/main/` } },
     { name: 'pitaka-phone', testMatch: /pitaka\.spec/, use: { ...devices['Pixel 5'], baseURL: `http://127.0.0.1:${PITAKA_PORT}/main/` } },
     { name: 'pitaka-safari', testMatch: /pitaka\.spec/, use: { ...devices['Desktop Safari'], viewport: { width: 1400, height: 900 }, baseURL: `http://127.0.0.1:${PITAKA_PORT}/main/` } },
+    { name: 'open-desktop', testMatch: /open\.spec/, use: { ...devices['Desktop Chrome'], viewport: { width: 1400, height: 900 }, baseURL: `http://127.0.0.1:${OPEN_PORT}`, locale: 'en-US', permissions: ['clipboard-read', 'clipboard-write'] } },
+    { name: 'open-phone', testMatch: /open\.spec/, use: { ...devices['Pixel 5'], baseURL: `http://127.0.0.1:${OPEN_PORT}`, locale: 'en-US' } },
     { name: 'pitaka-iphone', testMatch: /pitaka\.spec/, use: { ...devices['iPhone 12'], baseURL: `http://127.0.0.1:${PITAKA_PORT}/main/` } },
   ],
 })

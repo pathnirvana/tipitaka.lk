@@ -33,7 +33,7 @@ func serverMain() {
 	bjtPath := flag.String("bjt-path", "", "local folder with BJT scanned pages (e.g. /Pictures/bjt_newbooks)")
 	dbDir := flag.String("db-dir", "", "folder with text.db and dict.db (default <root>/db)")
 	site := flag.String("site", "", "public url of the site (canonical links, sitemaps; default https://tipitaka.lk, pitaka: https://pitaka.lk/main)")
-	flavorName := flag.String("flavor", "lk", "lk: tipitaka.lk; pitaka: the pitaka.lk reader, served under /main (flavor.go)")
+	flavorName := flag.String("flavor", "lk", "lk: tipitaka.lk; pitaka: the pitaka.lk reader, served under /main; open: open.tipitaka.lk, the pāḷi in other scripts (flavor.go)")
 	flag.StringVar(&PublishedVersion, "published-version", PublishedVersion, "version reported to apps by /tipitaka-query/version")
 	metrics := flag.String("metrics", "", "sqlite db for the usage statistics of the website (empty: none, as in the desktop app)")
 	geo := flag.String("geoip", "", "DB-IP country csv(.gz) for the countries of the statistics")
@@ -44,7 +44,7 @@ func serverMain() {
 
 	fl, ok := flavors[*flavorName]
 	if !ok {
-		log.Fatalf("unknown flavor %q (lk or pitaka)", *flavorName)
+		log.Fatalf("unknown flavor %q (lk, pitaka or open)", *flavorName)
 	}
 	root, err := findRoot(*rootPath, *dbDir, fl)
 	if err != nil {
@@ -249,5 +249,5 @@ func (a *App) Handler() http.Handler {
 	}
 	a.stats.routes(mux) // /api/beacon, /stats (stats.go)
 	mux.HandleFunc("GET /", a.handleStatic)
-	return recoverMiddleware(a.fl.withBase(securityHeaders(a.stats.count(gzipMiddleware(mux)))))
+	return recoverMiddleware(a.fl.withBase(securityHeaders(a.stats.count(gzipMiddleware(a.withOldOpenURLs(a.fl.withScripts(mux)))))))
 }

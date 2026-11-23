@@ -23,7 +23,8 @@ import (
 // The pitaka flavor (flavor.go) has no /<lang>: its page is the translation, with the pāḷi where an entry has none.
 
 var reservedRoutes = map[string]bool{"": true, "settings": true, "abbreviations": true, "bookmarks": true,
-	"title": true, "dict": true, "fts": true, "map": true, "names": true, "help": true}
+	"title": true, "dict": true, "fts": true, "map": true, "names": true, "help": true,
+	"search": true, "titles": true} // open.tipitaka.lk's search pages (web-open/src/router.ts)
 
 var (
 	eIndRe    = regexp.MustCompile(`^(\d+)-(\d+)$`)
@@ -122,6 +123,9 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 	r, ok := parseSuttaRoute(path)
 	if !ok {
 		first := strings.Split(strings.Trim(path, "/"), "/")[0]
+		if a.fl.scripts {
+			base = a.scriptShell(base, scriptOf(ctx), first == "", path)
+		}
 		if reservedRoutes[first] {
 			return ssrPage{200, base}
 		}
@@ -139,6 +143,9 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 	data := map[string]any{}
 	nodes := call("tree.node", map[string]any{"key": r.key}, data)
 	if len(nodes) == 0 {
+		if a.fl.scripts {
+			base = a.scriptShell(base, scriptOf(ctx), false, path)
+		}
 		return ssrPage{404, base}
 	}
 	node := nodes[0]
@@ -152,6 +159,9 @@ func (a *App) renderIndex(ctx context.Context, path string) ssrPage {
 	pageParams := map[string]any{"file": file, "from": p, "to": p + 1}
 	entries := call("text.entries", pageParams, data)
 	call("text.footnotes", pageParams, data)
+	if a.fl.scripts { // open.tipitaka.lk: the pāḷi in the script of the url
+		return a.renderScriptPage(ctx, base, r, node, paths, entries, data, p, startEntry)
+	}
 
 	lang := r.lang
 	paliOnly := node.Int("pali_only") == 1
@@ -312,7 +322,11 @@ func (a *App) describe(r route, lang string, page int) string {
 // render: a cached page, or a page rendered in one of the ssr slots (guard.go). ok false: no slot in time
 func (a *App) render(ctx context.Context, path string) (ssrPage, bool) {
 	a.currentIndex() // empties the cache when the web app was rebuilt
-	if p, ok := a.ssr.get(path); ok {
+	cacheAs := path
+	if s := scriptOf(ctx); s != "" { // open: a page per script
+		cacheAs = s + " " + path
+	}
+	if p, ok := a.ssr.get(cacheAs); ok {
 		a.guard.stats.cacheHits.Add(1)
 		return p, true
 	}
@@ -323,7 +337,7 @@ func (a *App) render(ctx context.Context, path string) (ssrPage, bool) {
 	a.guard.stats.renders.Add(1)
 	p := a.renderIndex(ctx, path)
 	if p.status == 200 || p.status == 404 {
-		a.ssr.put(path, p)
+		a.ssr.put(cacheAs, p)
 	}
 	return p, true
 }

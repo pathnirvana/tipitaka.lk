@@ -26,7 +26,7 @@
           <IconColumns class="panel-icon" /><span class="flex-1">තීරු</span>
           <ColumnSelector v-model="columns" />
         </div>
-        <button v-if="!tabs.isAtta(tabs.activeTab)" class="panel-row" data-testid="scan-toggle" @click="toggleScan">
+        <button v-if="tabs.hasScans(tabs.activeTab)" class="panel-row" data-testid="scan-toggle" @click="toggleScan">
           <IconText v-if="scan" class="panel-icon" /><IconScanner v-else class="panel-icon" />
           <span class="flex-1">{{ scan ? 'නව පිටපතට' : 'පැරණි පිටපතට (scan)' }}</span>
         </button>
