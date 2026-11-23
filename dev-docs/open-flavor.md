@@ -130,7 +130,8 @@ db and the deploy, and has its own small web app. tipitaka.lk and pitaka.lk must
 ### Cut-over (to run, in this order)
 1. Merge the branch; `git submodule update --init`; `npm run build:data` (for `entry_cst`, `fts_fold`).
 2. `scripts/deploy.sh` (tipitaka.lk, so its release has the same `text.db`), then `scripts/deploy.sh --flavor open`:
-   it uploads the web app and the binary, hard links tipitaka.lk's dbs when they are the same build, tests the release
+   it uploads the web app and the binary, hard links tipitaka.lk's `text.db` when the live tipitaka.lk has the same
+   build (its `api_hash`; a rebuilt db is not byte identical, so a checksum would not match), tests the release
    on port 8497, installs the unit and starts it on 8404. The old site is still the public one at this point.
 3. The same run then shows the proxy lines of `/etc/nginx/sites-enabled/open.tipitaka.lk.conf` (read 2026-11-23: one
    `location / { proxy_pass http://localhost:8401; }`, certbot's ssl lines, nothing else) and offers to change it to

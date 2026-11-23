@@ -140,7 +140,19 @@ trap '[ $SWITCHED = 1 ] || { echo "removing the unfinished release $TS"; ssh "$H
 "$RSYNC" -az --delete --link-dest="$LDIST" $DIST/ "$HOST:$REL/dist/"
 # v2 pages cached in browsers still fetch /static/text/*.json - keep serving them for a while after the switch
 [ "$FLAVOR" != lk ] || "$RSYNC" -az --link-dest="../../$LDIST/static/text" public/static/text/ "$HOST:$REL/dist/static/text/"
-for db in $TEXT_DB dict.db; do upload_db "$db" "$PREV_DB"; done
+# open.tipitaka.lk reads tipitaka.lk's text.db: when the live tipitaka.lk has this build (the api_hash of its
+# /api/health - it covers the texts and the queries) its file is hard linked, so the server holds and memory maps the
+# 460 MB once. A rebuilt db is not byte identical, so upload_db's checksum alone would upload a second copy.
+DBS="$TEXT_DB dict.db"
+if [ "$FLAVOR" = open ]; then
+  LK_HASH=$(remote "curl -fsS http://127.0.0.1:8400/api/health" 2>/dev/null | sed -n 's/.*"api_hash":"\([^"]*\)".*/\1/p' || true)
+  if [ "$LK_HASH" = "$API_HASH" ] && remote "ln www/tipitaka.lk/current/db/text.db $REL/db/text.db"; then
+    echo "text.db: tipitaka.lk's file (the same build, hard linked)"; DBS=dict.db
+  else
+    echo "text.db: tipitaka.lk serves another build (${LK_HASH:-no answer}, here $API_HASH) - uploading a copy. Deploy tipitaka.lk first to share the file"
+  fi
+fi
+for db in $DBS; do upload_db "$db" "$PREV_DB"; done
 "$RSYNC" -az server/bin/tipitaka_lk_linux_amd64 "$HOST:$REL/tipitaka_lk"
 remote "chmod +x $REL/tipitaka_lk"
 # the country database of the statistics (server/geo.go): DB-IP's country lite file of the month, fetched on the
