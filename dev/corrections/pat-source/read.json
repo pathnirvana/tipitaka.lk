@@ -1,0 +1,2800 @@
+{
+ "17": {
+  "to": null,
+  "basis": "scan",
+  "why": "the OCR spelling of the printed word is not a known word; left for a later look"
+ },
+ "18": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "24": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "28": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "30": {
+  "to": "වික්ඛම්භිතකිලෙසං,",
+  "basis": "scan"
+ },
+ "43": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "48": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "50": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "52": {
+  "to": "අහෙතුක",
+  "basis": "scan"
+ },
+ "59": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "62": {
+  "to": "අධිපති, නෙවාචයගාමි",
+  "basis": "scan"
+ },
+ "72": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "74": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "79": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "81": {
+  "to": "පච්ච-. ගොත්රභු",
+  "basis": "scan"
+ },
+ "85": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "90": {
+  "to": "සෙඛෙ",
+  "basis": "scan"
+ },
+ "99": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "103": {
+  "to": "අධිපති පච්චයා, අප්පමාණෙ",
+  "basis": "scan"
+ },
+ "105": {
+  "to": "මග්ග,",
+  "basis": "scan"
+ },
+ "110": {
+  "to": "මහග්ගතෙ",
+  "basis": "scan"
+ },
+ "116": {
+  "to": "අහෙතුක",
+  "basis": "scan"
+ },
+ "117": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "119": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "120": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "121": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "122": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "123": {
+  "to": "ධම්ම,",
+  "basis": "scan"
+ },
+ "124": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "125": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "127": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "131": {
+  "to": "වික්ඛම්භිතකිලෙසෙ",
+  "basis": "scan"
+ },
+ "133": {
+  "to": "මග්ගපච්චවෙක්ඛනං ඵල",
+  "basis": "scan"
+ },
+ "134": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "135": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "146": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "153": {
+  "to": "සහජාතපච්ච-. උපනිස්සයපච්ච-. පච්ඡාජාතපච්චයෙන",
+  "basis": "scan"
+ },
+ "159": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "161": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "162": {
+  "to": "පකතූපනිස්සයො",
+  "basis": "scan"
+ },
+ "168": {
+  "to": "කටත්තාරූපානං විප්පයුත්තපච්ච-.",
+  "basis": "scan"
+ },
+ "170": {
+  "to": "සුචිණ්ණානි පච්චවෙක්ඛති,",
+  "basis": "scan"
+ },
+ "180": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "182": {
+  "to": null,
+  "basis": "scan",
+  "why": "the OCR spelling of the printed word is not a known word; left for a later look"
+ },
+ "187": {
+  "to": "අනත්තානුපස්සනාය උපනිස්සයපච්ච-.",
+  "basis": "scan"
+ },
+ "189": {
+  "to": "අතීතාරම්මණත්තිකං",
+  "basis": "scan"
+ },
+ "192": {
+  "to": "නො",
+  "basis": "scan"
+ },
+ "194": {
+  "to": "උතු,",
+  "basis": "scan"
+ },
+ "198": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "203": {
+  "to": "මග්ගපච්ච-. සම්පයුත්තපච්ච-. විප්පයුත්තපච්චයෙන",
+  "basis": "scan"
+ },
+ "207": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "229": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "230": {
+  "to": "චිත්තඤ්ච පටිච්ච ද්වෙ ඛන්ධා, ද්වෙ-. අහෙතුකපටිසන්ධික්ඛණෙ චෙතසිකං එකං ඛන්ධඤ්ච",
+  "basis": "scan"
+ },
+ "231": {
+  "to": "චිත්තඤ්ච පටිච්ච ද්වෙ ඛන්ධා, කටත්තා ච- අහෙතුකපටිසන්ධික්ඛණෙ චෙතසිකං එකං ඛන්ධඤ්ච",
+  "basis": "scan"
+ },
+ "239": {
+  "to": "චක්ඛුං,",
+  "basis": "scan"
+ },
+ "240": {
+  "to": "අභි-. තං",
+  "basis": "scan"
+ },
+ "241": {
+  "to": "චිත්තසමුට්ඨානානඤ්ච",
+  "basis": "scan"
+ },
+ "244": {
+  "to": "උපනිස්සය-. (මූලං,) තීණි. උපනිස්සය-. චෙතසිකා ඛන්ධා චිත්තස්ස",
+  "basis": "scan"
+ },
+ "245": {
+  "to": "වත්ථුං,",
+  "basis": "scan"
+ },
+ "246": {
+  "to": "දිබ්බාය සොතධාතුයා-. රූපායතනං",
+  "basis": "scan"
+ },
+ "248": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "249": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "253": {
+  "to": "මූලපදෙ,) චිත්තසම්පයුත්තං",
+  "basis": "scan"
+ },
+ "255": {
+  "to": null,
+  "basis": "scan",
+  "why": "the OCR spelling of the printed word is not a known word; left for a later look"
+ },
+ "256": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "257": {
+  "to": "චිත්තසම්පයුත්තො-.",
+  "basis": "scan"
+ },
+ "259": {
+  "to": "අභි.",
+  "basis": "scan"
+ },
+ "261": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "266": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "267": {
+  "to": null,
+  "basis": "scan",
+  "why": "clause from the OCR has words that are not known words; left for a later look"
+ },
+ "270": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "272": {
+  "to": null,
+  "basis": "scan",
+  "why": "clause from the OCR has words that are not known words; left for a later look"
+ },
+ "274": {
+  "to": "ආකිඤ්චඤ්ඤායතනං,",
+  "basis": "scan"
+ },
+ "277": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "283": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "292": {
+  "to": "නො",
+  "basis": "scan"
+ },
+ "294": {
+  "to": "පටිච්ච සම්පයුත්තකා",
+  "basis": "scan"
+ },
+ "296": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "298": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "301": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "303": {
+  "to": "නානන්තරෙ",
+  "basis": "scan"
+ },
+ "306": {
+  "to": "චිත්තසමුට්ඨානඤ්ච,",
+  "basis": "scan"
+ },
+ "309": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "311": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "312": {
+  "to": "චිත්තං",
+  "basis": "scan"
+ },
+ "316": {
+  "to": "ද්වෙ.",
+  "basis": "scan"
+ },
+ "319": {
+  "to": "බාහිරො",
+  "basis": "scan"
+ },
+ "320": {
+  "to": "අභි-.",
+  "basis": "scan"
+ },
+ "321": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "326": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "328": {
+  "to": "බාහිරස්ස ච අත්ථි-. සහජාතං, පුරෙජාතං, පච්ඡාජාතං, සංඛිත්තං. බාහිරො",
+  "basis": "scan",
+  "note": "a clause dropped in typing"
+ },
+ "329": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "332": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "335": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "336": {
+  "to": "අභි-,",
+  "basis": "scan"
+ },
+ "337": {
+  "to": "අභි-.",
+  "basis": "scan"
+ },
+ "340": {
+  "to": "අසඤ්ඤසත්තානං එකං මහාභූතං පටිච්ච, මහාභූතෙ පටිච්ච කටත්තා, උපාදා,",
+  "basis": "scan"
+ },
+ "346": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "347": {
+  "to": null,
+  "basis": "scan",
+  "why": "the OCR spelling of the printed word is not a known word; left for a later look"
+ },
+ "349": {
+  "to": "අභි-.",
+  "basis": "scan"
+ },
+ "352": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "355": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "360": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "361": {
+  "to": "අභි-.",
+  "basis": "scan"
+ },
+ "362": {
+  "to": "",
+  "basis": "scan"
+ },
+ "363": {
+  "to": "දිට්ඨිං,",
+  "basis": "scan"
+ },
+ "364": {
+  "to": "උපනිස්සාය",
+  "basis": "scan"
+ },
+ "365": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "367": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "369": {
+  "to": "උපාදානස්ස ධම්මස්ස අත්ථි-. සහජාතං, පුරෙජාතං, පච්ඡාජාතං, ආහාරං, ඉන්ද්රියං, සංඛිත්තං. විත්ථාරෙතබ්බං. නො උපාදානො ධම්මො",
+  "basis": "scan"
+ },
+ "376": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "381": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "382": {
+  "to": "දිට්ඨිගතවිප්පයුත්තලොභසහගතෙ",
+  "basis": "scan"
+ },
+ "383": {
+  "to": "දිට්ඨිගතවිප්පයුත්තො",
+  "basis": "scan"
+ },
+ "386": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "387": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "392": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "398": {
+  "to": "උපාදානිය",
+  "basis": "scan"
+ },
+ "399": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "406": {
+  "to": "මග්ගපච්ච-. නව. සම්පයුත්තපච්ච-.",
+  "basis": "scan"
+ },
+ "407": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "408": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "410": {
+  "to": "සංකිලිට්ඨෙ",
+  "basis": "scan"
+ },
+ "411": {
+  "to": "හෙතුවිචිකිච්ඡාසහගතෙ",
+  "basis": "scan"
+ },
+ "413": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "416": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "421": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "422": {
+  "to": "නින්නානාකරණ. කිලෙසසම්පයුත්ත",
+  "basis": "scan"
+ },
+ "428": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "429": {
+  "to": "කිලෙසසම්පයුත්ත දුකං. කිලෙසඤ්චෙව",
+  "basis": "scan"
+ },
+ "432": {
+  "to": "චක්ඛු,",
+  "basis": "scan"
+ },
+ "434": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "435": {
+  "to": "ද්වෙ.",
+  "basis": "scan"
+ },
+ "447": {
+  "to": "",
+  "basis": "scan"
+ },
+ "448": {
+  "to": "පහාතබ්බහෙතුකස්ස",
+  "basis": "scan"
+ },
+ "457": {
+  "to": "විභාගොපි ගණනාපි",
+  "basis": "scan"
+ },
+ "464": {
+  "to": "චක්ඛු,",
+  "basis": "scan"
+ },
+ "465": {
+  "to": "සවිතක්කෙ",
+  "basis": "scan"
+ },
+ "466": {
+  "to": "නිරොධාවුට්ඨහන්තස්ස-. නෙවසඤ්ඤානාසඤ්ඤායතනං",
+  "basis": "scan"
+ },
+ "481": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "485": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "486": {
+  "to": "(දුතියවාරසදිසං.)",
+  "basis": "scan"
+ },
+ "488": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "494": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "498": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "505": {
+  "to": "පච්චයා-. අහෙතුක පටිසන්ධි. (යාව අසඤ්ඤසත්තා.) චක්ඛායතනං",
+  "basis": "scan"
+ },
+ "508": {
+  "to": "චිත්තසමුට්ඨානානඤ්ච",
+  "basis": "scan"
+ },
+ "510": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "512": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "513": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "514": {
+  "to": "චිත්තසමුට්ඨානානං",
+  "basis": "scan"
+ },
+ "516": {
+  "to": "පච්ඡිමානං",
+  "basis": "scan"
+ },
+ "524": {
+  "to": "උපනිස්සය,",
+  "basis": "scan"
+ },
+ "526": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "527": {
+  "to": "වත්ථුං",
+  "basis": "scan"
+ },
+ "528": {
+  "to": "",
+  "basis": "scan"
+ },
+ "533": {
+  "to": "",
+  "basis": "scan",
+  "note": "the typed text carries a clause the print does not have at this place (the rebirth-moment answer has only kaṭattārūpa)"
+ },
+ "540": {
+  "to": "දිට්ඨි-.",
+  "basis": "scan"
+ },
+ "541": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "542": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "547": {
+  "to": "නත්ථිපච්ච-. විගතපච්ච-.",
+  "basis": "scan"
+ },
+ "558": {
+  "to": "",
+  "basis": "scan",
+  "note": "typed twice; the print has it once"
+ },
+ "559": {
+  "to": "චිත්තසමුට්ඨානානං",
+  "basis": "scan"
+ },
+ "562": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "567": {
+  "to": "හනති, සඞ්ඝං",
+  "basis": "scan"
+ },
+ "569": {
+  "to": "සහජාත-. පුරෙජාත-. අරූපාවචරො",
+  "basis": "scan"
+ },
+ "571": {
+  "to": "",
+  "basis": "scan"
+ },
+ "572": {
+  "to": null,
+  "why": "kept as typed: the print matches the typed text; the OCR aligned the repeated clauses differently"
+ },
+ "573": {
+  "to": null,
+  "why": "kept as typed: the print matches the typed text; the OCR aligned the repeated clauses differently"
+ },
+ "574": {
+  "to": null,
+  "why": "kept as typed: the print matches the typed text; the OCR aligned the repeated clauses differently"
+ },
+ "577": {
+  "to": "චිත්තසමුට්ඨානානං",
+  "basis": "scan"
+ },
+ "578": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "581": {
+  "to": "චිත්තසමුට්ඨානානඤ්ච",
+  "basis": "scan"
+ },
+ "586": {
+  "to": "අනියතස්ස",
+  "basis": "scan"
+ },
+ "587": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "588": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "593": {
+  "to": "(යථාචූලන්තරදුකෙ",
+  "basis": "scan"
+ },
+ "595": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "597": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "599": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "603": {
+  "to": "අස්සාදෙති, අභි-. තං ආරබ්භ රාගො උප්පජ්ජති පුබ්බෙ-. ඣානා-.",
+  "basis": "scan"
+ },
+ "604": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "606": {
+  "to": null,
+  "why": "vowel length could not be told on the scan"
+ },
+ "608": {
+  "to": "සරණො",
+  "basis": "scan"
+ },
+ "610": {
+  "to": null,
+  "why": "place not in the crop"
+ },
+ "627": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "632": {
+  "to": "ආරම්මණ",
+  "basis": "scan"
+ },
+ "636": {
+  "to": "ගණෙතබ්බං.) පච්චනීයානුලොමං.",
+  "basis": "scan"
+ },
+ "638": {
+  "to": "වත්ථුං",
+  "basis": "scan"
+ },
+ "639": {
+  "to": "වත්ථුං",
+  "basis": "scan"
+ },
+ "641": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "644": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "645": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "646": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "649": {
+  "to": "වත්ථුපුරෙ-",
+  "basis": "scan"
+ },
+ "653": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "659": {
+  "to": "කම්ම",
+  "basis": "scan"
+ },
+ "660": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "664": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "672": {
+  "to": "ච",
+  "basis": "scan"
+ },
+ "674": {
+  "to": "ච",
+  "basis": "scan"
+ },
+ "678": {
+  "to": "හෙතුං",
+  "basis": "scan"
+ },
+ "679": {
+  "to": "හෙතූ",
+  "basis": "scan"
+ },
+ "680": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "684": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "688": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "690": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "693": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "698": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "699": {
+  "to": "හෙතූ",
+  "basis": "scan"
+ },
+ "700": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "701": {
+  "to": "නානන්තරෙ",
+  "basis": "scan"
+ },
+ "704": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "706": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "708": {
+  "to": "අනිදස්සනං",
+  "basis": "scan"
+ },
+ "711": {
+  "to": "අනිදස්සනං",
+  "basis": "scan"
+ },
+ "713": {
+  "to": "",
+  "basis": "scan"
+ },
+ "719": {
+  "to": "ඵොට්ඨබ්බායතනඤ්ච ආපොධාතුං",
+  "basis": "scan"
+ },
+ "722": {
+  "to": "අප්පටිඝා චෙතනා",
+  "basis": "scan"
+ },
+ "724": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "730": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "731": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "735": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "737": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "738": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "739": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "740": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "741": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "743": {
+  "to": "නානන්තරෙ",
+  "basis": "scan"
+ },
+ "745": {
+  "to": "චිත්තස-. ආකාසානඤ්චායතනං",
+  "basis": "scan"
+ },
+ "746": {
+  "to": "ගොත්රභූ",
+  "basis": "scan"
+ },
+ "747": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "753": {
+  "to": "ඣානා-.",
+  "basis": "scan"
+ },
+ "754": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "755": {
+  "to": "ආහාරා",
+  "basis": "scan"
+ },
+ "758": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "761": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "762": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "763": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "764": {
+  "to": "උද්ධච්චසහගතෙ",
+  "basis": "scan"
+ },
+ "765": {
+  "to": "ඛන්ධා",
+  "basis": "scan"
+ },
+ "767": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "768": {
+  "to": "ආහාරා",
+  "basis": "scan"
+ },
+ "776": {
+  "to": "චෙව නො ච ආසවෙ ඛන්ධෙ ආරබ්භ ආසවසම්පයුත්තා",
+  "basis": "scan"
+ },
+ "777": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "792": {
+  "to": "",
+  "basis": "scan"
+ },
+ "797": {
+  "to": "චිත්තං-. ආකාසා-.",
+  "basis": "scan"
+ },
+ "798": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "805": {
+  "to": "සඤ්ඤොජනසම්පයුත්තකානං ඛන්ධානං පුරෙ-. සඤ්ඤොජනවිප්පයුත්තො",
+  "basis": "scan"
+ },
+ "808": {
+  "to": "සඤ්ඤොජනවිප්පයුත්තො",
+  "basis": "scan"
+ },
+ "812": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "820": {
+  "to": "ගන්ථං",
+  "basis": "scan"
+ },
+ "828": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "831": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "833": {
+  "to": null,
+  "why": "vowel length could not be told on the scan"
+ },
+ "835": {
+  "to": "නො ගන්ථො ගන්ථස්ස ආරම්මණ-, සහජාත-. උපනිස්සය-. පුරෙජාත-.",
+  "basis": "scan"
+ },
+ "836": {
+  "to": "අවිගතෙ නව.",
+  "basis": "scan"
+ },
+ "837": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "838": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "839": {
+  "to": "ගන්ථවිප්පයුත්තො",
+  "basis": "scan"
+ },
+ "842": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "843": {
+  "to": "ගන්ථසම්පයුත්තො",
+  "basis": "scan"
+ },
+ "845": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "847": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "848": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "850": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "851": {
+  "to": "පඤ්ඤාය",
+  "basis": "scan"
+ },
+ "852": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "853": {
+  "to": "පුරෙජාතං",
+  "basis": "scan"
+ },
+ "860": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "862": {
+  "to": "ගන්ථසම්පයුත්තඤ්චෙව",
+  "basis": "scan"
+ },
+ "863": {
+  "to": "ච",
+  "basis": "scan"
+ },
+ "866": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "878": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "881": {
+  "to": "නානන්තරෙ",
+  "basis": "scan"
+ },
+ "883": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "886": {
+  "to": null,
+  "basis": "scan",
+  "why": "the OCR spelling of the printed word is not a known word; left for a later look"
+ },
+ "890": {
+  "to": null,
+  "why": "vowel length could not be told on the scan"
+ },
+ "892": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "901": {
+  "to": "ඣානා-.",
+  "basis": "scan"
+ },
+ "903": {
+  "to": "උපනිස්සය-, ආරම්මණූ-.",
+  "basis": "scan"
+ },
+ "905": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "911": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "918": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "919": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "921": {
+  "to": "අභි-.",
+  "basis": "scan"
+ },
+ "923": {
+  "to": "සහජාතං,",
+  "basis": "scan"
+ },
+ "924": {
+  "to": "අභි-.",
+  "basis": "scan"
+ },
+ "926": {
+  "to": "අභි-",
+  "basis": "scan"
+ },
+ "928": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "930": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "933": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "934": {
+  "to": "වික්ඛම්භිත-.",
+  "basis": "scan"
+ },
+ "935": {
+  "to": "අඤ්ඤමඤ්ඤපච්ච- ද්වෙ, නිස්සයපච්ච-සත්ත. උපනිස්සයපච්ච-. ආරම්මණූ,",
+  "basis": "scan"
+ },
+ "937": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "939": {
+  "to": "විප්පයුත්තෙ ද්වෙ,",
+  "basis": "scan"
+ },
+ "941": {
+  "to": "ඣානා-.",
+  "basis": "scan"
+ },
+ "942": {
+  "to": "වොදානං පච්ච-.",
+  "basis": "scan"
+ },
+ "944": {
+  "to": "පරාමාසවිප්පයුත්තපරාමට්ඨං",
+  "basis": "scan"
+ },
+ "946": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "948": {
+  "to": "අභි",
+  "basis": "scan"
+ },
+ "953": {
+  "to": "අධි-.",
+  "basis": "scan"
+ },
+ "954": {
+  "to": "ඣාන",
+  "basis": "scan"
+ },
+ "955": {
+  "to": "",
+  "basis": "scan",
+  "note": "typed twice; the print has it once"
+ },
+ "956": {
+  "to": "සහජාතං,",
+  "basis": "scan"
+ },
+ "957": {
+  "to": "",
+  "basis": "scan"
+ },
+ "967": {
+  "to": "නො",
+  "basis": "scan"
+ },
+ "971": {
+  "to": "වුට්ඨ-. අරියා",
+  "basis": "scan"
+ },
+ "972": {
+  "to": "ආකාසානඤ්චායතනං-. ආකිඤ්චඤ්ඤායතනං-.",
+  "basis": "scan"
+ },
+ "974": {
+  "to": "සහජාතා නො චිත්තා චෙතනා චිත්තස්ස කම්ම-. නානාඛණිකා",
+  "basis": "scan"
+ },
+ "977": {
+  "to": "",
+  "basis": "scan"
+ },
+ "983": {
+  "to": "",
+  "basis": "scan"
+ },
+ "990": {
+  "to": "හෙතු සුඛාය වෙදනාය සම්පයුත්තො ධම්මො උප්පජ්ජති හෙතුපච්චයා. හෙතුං සුඛාය වෙදනාය සම්පයුත්තං ච න හෙතුං සුඛාය වෙදනාය සම්පයුත්තං ච ධම්මං පටිච්ච න",
+  "basis": "scan",
+  "note": "a whole answer dropped in typing: the “hetu” answer before the “na hetu” one"
+ },
+ "992": {
+  "to": "පටිච්චවාර",
+  "basis": "scan"
+ },
+ "993": {
+  "to": "හෙතුං",
+  "basis": "scan"
+ },
+ "995": {
+  "to": "නව,",
+  "basis": "scan"
+ },
+ "996": {
+  "to": "",
+  "basis": "scan"
+ },
+ "999": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1000": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1001": {
+  "to": "",
+  "basis": "scan"
+ },
+ "1026": {
+  "to": "හෙතු",
+  "basis": "scan"
+ },
+ "1035": {
+  "to": "පච්චනීයං",
+  "basis": "scan"
+ },
+ "1037": {
+  "to": "හෙතුයා",
+  "basis": "scan"
+ },
+ "1050": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1051": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1059": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1066": {
+  "to": "හෙතුං",
+  "basis": "scan"
+ },
+ "1069": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1070": {
+  "to": null,
+  "why": "vowel length could not be told on the scan"
+ },
+ "1073": {
+  "to": null,
+  "why": "vowel length could not be told on the scan"
+ },
+ "1077": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1082": {
+  "to": "පච්චනියං",
+  "basis": "scan"
+ },
+ "1086": {
+  "to": "හෙතු හීනො ධම්මො උප්පජ්ජති",
+  "basis": "scan",
+  "note": "with the two other corrections in this entry, the first two answers now read as in the print"
+ },
+ "1087": {
+  "to": "හෙතු පච්චයා, හෙතුං හීනං ධම්මං පටිච්ච",
+  "basis": "scan"
+ },
+ "1097": {
+  "to": "",
+  "basis": "scan",
+  "note": "typed twice; the print has it once"
+ },
+ "1107": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1111": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1113": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1114": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1116": {
+  "to": "නව,",
+  "basis": "scan"
+ },
+ "1119": {
+  "to": "පටිච්ච සහෙතුකො",
+  "basis": "scan"
+ },
+ "1128": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1129": {
+  "to": "හෙතු",
+  "basis": "scan"
+ },
+ "1139": {
+  "to": "කුසලො ධම්මො ලොකියස්ස",
+  "basis": "scan",
+  "note": "words dropped in typing"
+ },
+ "1140": {
+  "to": "අකුසලො",
+  "basis": "scan"
+ },
+ "1142": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "1143": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1144": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1147": {
+  "to": "සාසවං",
+  "basis": "scan"
+ },
+ "1151": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1153": {
+  "to": "ලොකියලොකුත්තරදුකසදිසං,",
+  "basis": "scan"
+ },
+ "1169": {
+  "to": "",
+  "basis": "scan"
+ },
+ "1170": {
+  "to": "සහජාතවාරෙපි",
+  "basis": "scan"
+ },
+ "1175": {
+  "to": "",
+  "basis": "scan"
+ },
+ "1181": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1182": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1188": {
+  "to": "අනුපාදින්නමූලකං",
+  "basis": "scan"
+ },
+ "1190": {
+  "to": "අකුසල",
+  "basis": "scan"
+ },
+ "1200": {
+  "to": "ච",
+  "basis": "scan"
+ },
+ "1201": {
+  "to": "ඡ,",
+  "basis": "scan"
+ },
+ "1206": {
+  "to": "පඤ්හාවාරෙපි",
+  "basis": "scan"
+ },
+ "1207": {
+  "to": "ද්වෙ,",
+  "basis": "scan"
+ },
+ "1212": {
+  "to": "",
+  "basis": "scan"
+ },
+ "1222": {
+  "to": "මග්ගාධිපති",
+  "basis": "scan"
+ },
+ "1225": {
+  "to": null,
+  "why": "place not in the crop"
+ },
+ "1228": {
+  "to": "අකුසලස්ස",
+  "basis": "scan"
+ },
+ "1229": {
+  "to": "අනුලොම",
+  "basis": "scan"
+ },
+ "1232": {
+  "to": "අනන්තරපච්චයෙන",
+  "basis": "scan"
+ },
+ "1239": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1241": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1279": {
+  "to": "ආචයගාමී",
+  "basis": "scan"
+ },
+ "1295": {
+  "to": "ආරම්මණ",
+  "basis": "scan"
+ },
+ "1296": {
+  "to": "හීනං",
+  "basis": "scan"
+ },
+ "1305": {
+  "to": "සම්මත්තනියතො න හෙතුධම්මො අනියතස්ස න හෙතුස්ස ධම්මස්ස ආරම්මණපච්චයෙන පච්චයො,",
+  "basis": "scan"
+ },
+ "1306": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1314": {
+  "to": "පච්චුප්පන්නාරම්මණස්ස",
+  "basis": "scan"
+ },
+ "1315": {
+  "to": "ද්වෙ. න හෙතුපච්චයා ආරම්මණෙ",
+  "basis": "scan"
+ },
+ "1318": {
+  "to": "න හෙතු ච ධම්මා උප්පජ්ජන්ති හෙතුපච්චයා, අනිදස්සනඅප්පටිඝං න හෙතුං ධම්මං පටිච්ච සනිදස්සනසප්පටිඝො න හෙතු ච අනිදස්සනසප්පටිඝො",
+  "basis": "scan"
+ },
+ "1320": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1322": {
+  "to": "",
+  "basis": "scan"
+ },
+ "1331": {
+  "to": "අබ්යාකතො",
+  "basis": "scan"
+ },
+ "1340": {
+  "to": "",
+  "basis": "scan"
+ },
+ "1345": {
+  "to": "අබ්යාකතො ආසවවිප්පයුත්තො සාසවො ධම්මො අබ්යාකතස්ස ආසවවිප්පයුත්තස්ස සාසවස්ස ධම්මස්ස හෙතුපච්චයෙන පච්චයො.",
+  "basis": "scan"
+ },
+ "1348": {
+  "to": "ආරම්මණපච්චයෙන පච්චයො,",
+  "basis": "scan"
+ },
+ "1349": {
+  "to": "චිත්තසංසට්ඨසමුට්ඨානසහභුං-.",
+  "basis": "scan"
+ },
+ "1355": {
+  "to": "අබ්යාකතො",
+  "basis": "scan"
+ },
+ "1363": {
+  "to": "නව,",
+  "basis": "scan"
+ },
+ "1369": {
+  "to": "අබ්යාකතස්ස අනුත්තරස්ස ධම්මස්ස හෙතුපච්චයෙන පච්චයො. අබ්යාකතො අනුත්තරො ධම්මො",
+  "basis": "scan",
+  "note": "the root-condition sentence for abyākata dropped in typing"
+ },
+ "1380": {
+  "to": null,
+  "basis": "scan",
+  "why": "the OCR spelling of the printed word is not a known word; left for a later look"
+ },
+ "1384": {
+  "to": null,
+  "basis": "scan",
+  "why": "clause from the OCR has words that are not known words; left for a later look"
+ },
+ "1385": {
+  "to": "සබ්බත්ථ",
+  "basis": "scan"
+ },
+ "1390": {
+  "to": null,
+  "why": "place not in the crop"
+ },
+ "1393": {
+  "to": "සබ්බත්ථ",
+  "basis": "scan"
+ },
+ "1395": {
+  "to": "සබ්බත්ථ",
+  "basis": "scan"
+ },
+ "1396": {
+  "to": "සබ්බත්ථ",
+  "basis": "scan"
+ },
+ "1403": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1410": {
+  "to": null,
+  "basis": "scan",
+  "why": "the OCR spelling of the printed word is not a known word; left for a later look"
+ },
+ "1411": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1417": {
+  "to": "පරිත්තාරම්මණො",
+  "basis": "scan"
+ },
+ "1418": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1422": {
+  "to": null,
+  "why": "place not in the crop"
+ },
+ "1423": {
+  "to": "ධම්මො උප්පජ්ජති හෙතුපච්චයා. හෙතුං සහෙතුකඤ්ච න හෙතුං සහෙතුකඤ්ච ධම්මං පටිච්ච හෙතු සහෙතුකො",
+  "basis": "scan"
+ },
+ "1425": {
+  "to": "හෙතු",
+  "basis": "scan"
+ },
+ "1434": {
+  "to": "හෙතුං",
+  "basis": "scan"
+ },
+ "1437": {
+  "to": "රූපාවචරං",
+  "basis": "scan"
+ },
+ "1441": {
+  "to": "සහජාතෙ",
+  "basis": "scan"
+ },
+ "1442": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1443": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1446": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1447": {
+  "to": "ච",
+  "basis": "scan"
+ },
+ "1454": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1457": {
+  "to": null,
+  "basis": "scan",
+  "why": "open: adding this clause would repeat one already in the entry"
+ },
+ "1459": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1466": {
+  "to": "ආසවවිප්පයුත්තො",
+  "basis": "scan"
+ },
+ "1467": {
+  "to": "අසංයොජනියං",
+  "basis": "scan"
+ },
+ "1473": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1479": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1480": {
+  "to": "(සහජාතවාරෙපි",
+  "basis": "scan"
+ },
+ "1485": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1487": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1492": {
+  "to": "අජ්ඣත්තිකං",
+  "basis": "scan"
+ },
+ "1493": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1494": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1498": {
+  "to": "හෙතුං",
+  "basis": "scan"
+ },
+ "1500": {
+  "to": "හෙතුං",
+  "basis": "scan"
+ },
+ "1503": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1508": {
+  "to": "අනාගතාරම්මණං",
+  "basis": "scan"
+ },
+ "1514": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1524": {
+  "to": "න අකුසලො න දුක්ඛාය වෙදනාය සම්පයුත්තො ච",
+  "basis": "scan"
+ },
+ "1528": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "1529": {
+  "to": "හෙතුයා",
+  "basis": "scan"
+ },
+ "1531": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1532": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1536": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1537": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1543": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1550": {
+  "to": "චිත්තසංසට්ඨසමුට්ඨානපරිවත්තිං",
+  "basis": "scan"
+ },
+ "1555": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1559": {
+  "to": "ධම්මං",
+  "basis": "scan"
+ },
+ "1563": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1565": {
+  "to": "ධම්මං පටිච්ච, න සරණං න න කාමාවචරං ධම්මං පටිච්ච-. න සරණං න රූපාවචරං",
+  "basis": "scan"
+ },
+ "1570": {
+  "to": "පටිච්ච",
+  "basis": "scan"
+ },
+ "1572": {
+  "to": "පටිච්ච",
+  "basis": "scan"
+ },
+ "1573": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1576": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1579": {
+  "to": "පඤ්චපඤ්හා. විපාකධම්මධම්මං",
+  "basis": "scan"
+ },
+ "1585": {
+  "to": "ආචයගාමී",
+  "basis": "scan"
+ },
+ "1586": {
+  "to": null,
+  "why": "vowel length could not be told on the scan"
+ },
+ "1588": {
+  "to": "අපචයගාමි",
+  "basis": "scan"
+ },
+ "1594": {
+  "to": "ධම්මා උප්පජ්ජන්ති",
+  "basis": "scan"
+ },
+ "1599": {
+  "to": null,
+  "why": "open: could not be settled from the crop"
+ },
+ "1601": {
+  "to": "ච ධම්මා උප්පජ්ජන්ති හෙතුපච්චයා. අහෙතුකං ධම්මං පටිච්ච න අහෙතුකො",
+  "basis": "scan"
+ },
+ "1604": {
+  "to": "",
+  "basis": "scan"
+ },
+ "1605": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1613": {
+  "to": "ආසවවිප්පයුත්තඤ්ච",
+  "basis": "scan"
+ },
+ "1636": {
+  "to": "දෙව,",
+  "basis": "scan"
+ },
+ "1657": {
+  "to": "ආසවසම්පයුත්තො",
+  "basis": "scan"
+ },
+ "1665": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1680": {
+  "to": "ච",
+  "basis": "scan"
+ },
+ "1682": {
+  "to": "හෙතුං",
+  "basis": "scan"
+ },
+ "1689": {
+  "to": "පච්චයා",
+  "basis": "scan"
+ },
+ "1696": {
+  "to": "ධම්මා",
+  "basis": "scan"
+ },
+ "1706": {
+  "to": "",
+  "basis": "scan"
+ },
+ "1708": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1719": {
+  "to": "අකුසලෙ",
+  "basis": "scan"
+ },
+ "1728": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1737": {
+  "to": "හෙතුයා",
+  "basis": "scan"
+ },
+ "1742": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1744": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1784": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1811": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "1823": {
+  "to": "හෙතුයා",
+  "basis": "scan"
+ },
+ "1824": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1825": {
+  "to": "චිත්තසංසට්ඨසමුට්ඨානානුපරිවත්තිං",
+  "basis": "scan"
+ },
+ "1828": {
+  "to": "සරණස්ස",
+  "basis": "scan",
+  "note": "the typed text repeated the sentence before it; the print has සරණස්ස here"
+ },
+ "1834": {
+  "to": "ච",
+  "basis": "scan"
+ },
+ "1838": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1844": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1853": {
+  "to": "සප්පටිඝෙ",
+  "basis": "scan"
+ },
+ "1854": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1856": {
+  "to": "අනුලොම පච්චනියම්පි",
+  "basis": "scan"
+ },
+ "1858": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1859": {
+  "to": "",
+  "basis": "scan"
+ },
+ "1862": {
+  "to": "",
+  "basis": "scan"
+ },
+ "1863": {
+  "to": "විපාකං",
+  "basis": "scan"
+ },
+ "1866": {
+  "to": "සහෙතුකො",
+  "basis": "scan"
+ },
+ "1879": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1906": {
+  "to": "පහාතබ්බහෙතුකං ධම්මං පටිච්ච න හෙතු න දස්සනෙන",
+  "basis": "scan"
+ },
+ "1907": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1908": {
+  "to": "(අන්තිමන්තිම",
+  "basis": "scan"
+ },
+ "1911": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1914": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "1915": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "1917": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1924": {
+  "to": null,
+  "basis": "scan",
+  "why": "the OCR spelling of the printed word is not a known word; left for a later look"
+ },
+ "1928": {
+  "to": "උප්පජ්ජෙය්ය හෙතුපච්චයා:",
+  "basis": "scan"
+ },
+ "1941": {
+  "to": "හෙතුපච්චයා",
+  "basis": "scan"
+ },
+ "1942": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "1944": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "1950": {
+  "to": "ඛන්ධො",
+  "basis": "scan"
+ },
+ "1956": {
+  "to": "කුසලං",
+  "basis": "scan"
+ },
+ "1981": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "1991": {
+  "to": "",
+  "basis": "scan"
+ },
+ "2002": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2003": {
+  "to": "නඅනන්තරාදිමූලකං.",
+  "basis": "scan"
+ },
+ "2006": {
+  "to": "එකං,",
+  "basis": "scan"
+ },
+ "2014": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "2015": {
+  "to": "(තෙවීසමූලකං)",
+  "basis": "scan"
+ },
+ "2020": {
+  "to": "නආරම්මණෙ",
+  "basis": "scan"
+ },
+ "2021": {
+  "to": "හෙතුපච්චයා",
+  "basis": "scan"
+ },
+ "2024": {
+  "to": "",
+  "basis": "scan"
+ },
+ "2026": {
+  "to": "",
+  "basis": "scan"
+ },
+ "2027": {
+  "to": "ආරම්මණපච්චයා",
+  "basis": "scan"
+ },
+ "2040": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "2044": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "2053": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2061": {
+  "to": "අකුසලො",
+  "basis": "scan"
+ },
+ "2063": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2064": {
+  "to": "චිත්තසමුට්ඨානඤ්ච රූපං, ඛන්ධා",
+  "basis": "scan"
+ },
+ "2065": {
+  "to": "කුසලා",
+  "basis": "scan",
+  "note": "the answer to the kusala question had අකුසලා"
+ },
+ "2070": {
+  "to": "ඛන්ධෙ විප්පයුත්තපච්චයා.",
+  "basis": "scan"
+ },
+ "2092": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "2093": {
+  "to": "(තෙවීසමූලකං)",
+  "basis": "scan"
+ },
+ "2095": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2101": {
+  "to": "ආරම්මණෙ",
+  "basis": "scan"
+ },
+ "2103": {
+  "to": null,
+  "basis": "scan",
+  "why": "the OCR spelling of the printed word is not a known word; left for a later look"
+ },
+ "2104": {
+  "to": "ආසෙවනෙ සත්ත,",
+  "basis": "scan"
+ },
+ "2106": {
+  "to": "(දුමූලකං)",
+  "basis": "scan"
+ },
+ "2109": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "2114": {
+  "to": null,
+  "why": "kept as typed: the print repeats three lines here (a printer’s repetition); the typed text has the passage once"
+ },
+ "2115": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "2119": {
+  "to": "කුසලං",
+  "basis": "scan"
+ },
+ "2120": {
+  "to": "විප්පයුත්තමූලකං",
+  "basis": "scan"
+ },
+ "2126": {
+  "to": "නවිප්පයුත්තෙ",
+  "basis": "scan"
+ },
+ "2128": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2140": {
+  "to": "",
+  "basis": "scan"
+ },
+ "2141": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "2142": {
+  "to": "(සංඛිත්තං)",
+  "basis": "scan"
+ },
+ "2144": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "2146": {
+  "to": "",
+  "basis": "scan"
+ },
+ "2149": {
+  "to": "විපස්සති,",
+  "basis": "scan"
+ },
+ "2153": {
+  "to": "වුට්ඨහිත්වා",
+  "basis": "scan"
+ },
+ "2156": {
+  "to": "අනන්තරමූලකං.",
+  "basis": "scan"
+ },
+ "2169": {
+  "to": "නිස්සයපච්චයෙන",
+  "basis": "scan"
+ },
+ "2173": {
+  "to": null,
+  "why": "place not in the crop"
+ },
+ "2175": {
+  "to": "ද්වින්නං මහාභූතානං නිස්සයපච්චයෙන පච්චයො, මහාභූතා",
+  "basis": "scan",
+  "note": "a clause dropped in typing: two great elements as support for two"
+ },
+ "2192": {
+  "to": "කුසලො",
+  "basis": "scan"
+ },
+ "2197": {
+  "to": "ජිව්හාවිඤ්ඤාණස්ස කායින්ද්රියං කායවිඤ්ඤාණස්ස",
+  "basis": "scan"
+ },
+ "2205": {
+  "to": "අවිගතන්ති",
+  "basis": "scan"
+ },
+ "2206": {
+  "to": "අවිගතන්ති",
+  "basis": "scan"
+ },
+ "2210": {
+  "to": "උපනිස්සය අත්ථි අවිගතන්ති එකං, පුරෙජාත ආරම්මණාධිපති",
+  "basis": "scan"
+ },
+ "2215": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2218": {
+  "to": "අත්ථි අවිගතන්ති එකං, ඉන්ද්රිය සහජාත නිස්සය විපාක මග්ග විප්පයුත්ත",
+  "basis": "scan"
+ },
+ "2223": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2226": {
+  "to": "",
+  "basis": "scan",
+  "note": "typed twice; the print has it once"
+ },
+ "2229": {
+  "to": "මග්ග සහජාත අඤ්ඤමඤ්ඤ නිස්සය ඣාන අත්ථි අවිගතන්ති තීණි,",
+  "basis": "scan"
+ },
+ "2230": {
+  "to": "නිස්සය විපාක ඉන්ද්රිය ඣාන අත්ථි අවිගතන්ති එකං, මග්ග සහජාත අඤ්ඤමඤ්ඤ",
+  "basis": "scan",
+  "note": "one combination dropped in typing"
+ },
+ "2236": {
+  "to": "",
+  "basis": "scan",
+  "note": "typed twice; the print has it once"
+ },
+ "2239": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "2240": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2241": {
+  "to": "නාරම්මණපච්චයා නාධිපතිපච්චයා න අනන්තරපච්චයා න සමනන්තරපච්චයා න සහජාතෙ එකාදස, න අඤ්ඤමඤ්ඤෙ එකාදස, න නිස්සයෙ එකාදස, න උපනිස්සයෙ තෙරස, න පුරෙජාතෙ තෙරස, න පච්ඡාජාතෙ පන්නරස, න ආසෙවනෙ පන්නරස, න කම්මෙ පන්නරස, න විපාකෙ පන්නරස, න ආහාරෙ පන්නරස, න ඉන්ද්රියෙ පන්නරස, න ඣානෙ පන්නරස, න මග්ගෙ පන්නරස, න සම්පයුත්තෙ එකාදස, න විප්පයුත්තෙ නව, නො අත්ථියා නව, නො නත්ථියා පන්නරස, නො විගතෙ පන්නරස, නො අවිගතෙ නව. න හෙතුපච්චයා",
+  "basis": "scan",
+  "note": "a whole paragraph of the print (the count with five conditions negated) is missing from the typed text. It is added inside the same entry; it may deserve an entry of its own"
+ },
+ "2259": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "2268": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "2271": {
+  "to": "තීණි, නො නත්ථියා",
+  "basis": "scan"
+ },
+ "2274": {
+  "to": "නසම්පයුත්තෙ",
+  "basis": "scan"
+ },
+ "2280": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2287": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2302": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "2305": {
+  "to": "",
+  "basis": "scan"
+ },
+ "2306": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "2314": {
+  "to": "නිස්සයෙ",
+  "basis": "scan"
+ },
+ "2324": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "2326": {
+  "to": "එකං,",
+  "basis": "scan"
+ },
+ "2329": {
+  "to": "අඤ්ඤමඤ්ඤෙ",
+  "basis": "print slip",
+  "note": "typed and print both have a broken මඤ්ඤමඤ්ඤෙ; the list of conditions requires අඤ්ඤමඤ්ඤෙ"
+ },
+ "2333": {
+  "to": "ඉන්ද්‍රිය හෙතු",
+  "basis": "scan"
+ },
+ "2334": {
+  "to": "චත්තාරි, න පුරෙජාතෙ චත්තාරි, න පච්ඡාජාතෙ චත්තාරි, න ආසෙවනෙ",
+  "basis": "scan"
+ },
+ "2335": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "2338": {
+  "to": "",
+  "basis": "scan",
+  "note": "a half-repeated clause in the typed text; the print has it once"
+ },
+ "2339": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2340": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2342": {
+  "to": "",
+  "basis": "scan"
+ },
+ "2347": {
+  "to": "තීණි,",
+  "basis": "scan"
+ },
+ "2360": {
+  "to": "",
+  "basis": "scan"
+ },
+ "2365": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "2375": {
+  "to": "",
+  "basis": "scan"
+ },
+ "2386": {
+  "to": "දුක්ඛාය",
+  "basis": "scan"
+ },
+ "2393": {
+  "to": "අභිනන්දන්ති,",
+  "basis": "scan"
+ },
+ "2402": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2411": {
+  "to": "ද්වෙ.",
+  "basis": "scan"
+ },
+ "2413": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "2414": {
+  "to": "පච්චනියං",
+  "basis": "scan"
+ },
+ "2424": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "2436": {
+  "to": "චිත්තසමුට්ඨානං",
+  "basis": "scan"
+ },
+ "2438": {
+  "to": "නෙවවිපාකනවිපාකධම්මධම්මඤ්ච ධම්මං පටිච්ච",
+  "basis": "scan"
+ },
+ "2442": {
+  "to": null,
+  "why": "place not in the crop"
+ },
+ "2445": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "2446": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "2460": {
+  "to": null,
+  "why": "place not in the crop"
+ },
+ "2461": {
+  "to": null,
+  "why": "kept as typed: the print has the paragraph; the OCR skipped it"
+ },
+ "2465": {
+  "to": "ඉන්ද්රියෙ සත්තරස, ඣානෙ සත්තරස, මග්ගෙ සත්තරස,",
+  "basis": "scan"
+ },
+ "2467": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2470": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2475": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2479": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2480": {
+  "to": "අනුලොම පච්චනියං",
+  "basis": "scan"
+ },
+ "2484": {
+  "to": "චෙතොපරියඤාණස්ස,",
+  "basis": "scan"
+ },
+ "2492": {
+  "to": "ආකිඤ්චඤ්ඤායතනකුසලං නෙවසඤ්ඤානාසඤ්ඤායතනවිපාකස්ස",
+  "basis": "scan"
+ },
+ "2493": {
+  "to": "විඤ්ඤාණඤ්චායතනකිරියස්ස ආරම්මණපච්චයෙන පච්චයො, ආකිඤ්චඤ්ඤායතනකුසලං",
+  "basis": "scan"
+ },
+ "2495": {
+  "to": "චෙතොපරියඤාණෙන නෙවවිපාකනවිපාකධම්මධම්මචිත්තසමඞ්ගිස්ස",
+  "basis": "scan"
+ },
+ "2505": {
+  "to": "පානං",
+  "basis": "scan"
+ },
+ "2508": {
+  "to": "උපනිස්සයපච්චයෙන",
+  "basis": "scan"
+ },
+ "2511": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "2513": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "2520": {
+  "to": "නෙවවිපාකනවිපාකධම්මධම්මො",
+  "basis": "scan"
+ },
+ "2533": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2534": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2548": {
+  "to": "නිස්සාය",
+  "basis": "scan"
+ },
+ "2556": {
+  "to": "අනුපාදින්නුපාදානියෙ",
+  "basis": "scan"
+ },
+ "2562": {
+  "to": null,
+  "why": "place not in the crop"
+ },
+ "2565": {
+  "to": "අනුපාදින්නුපාදානියස්ස ධම්මස්ස නිස්සයපච්චයෙන",
+  "basis": "scan"
+ },
+ "2578": {
+  "to": "අනුපාදින්නුපාදානියස්ස",
+  "basis": "scan"
+ },
+ "2626": {
+  "to": "චිත්තසමුට්ඨානානං",
+  "basis": "scan"
+ },
+ "2628": {
+  "to": "චිත්තසමුට්ඨානානං",
+  "basis": "scan"
+ },
+ "2631": {
+  "to": null,
+  "why": "vowel length could not be told on the scan"
+ },
+ "2639": {
+  "to": null,
+  "why": "vowel length could not be told on the scan"
+ },
+ "2711": {
+  "to": "කාතූන අසංමොහන්තෙන",
+  "basis": "scan"
+ },
+ "2712": {
+  "to": null,
+  "why": "vowel length could not be told on the scan"
+ },
+ "2730": {
+  "to": "උප්පජ්ජන්ති",
+  "basis": "scan"
+ },
+ "2734": {
+  "to": "රූප. අසංකිලිට්ඨසංකිලෙසිකං",
+  "basis": "scan"
+ },
+ "2750": {
+  "to": "ඣානා වුට්ඨහිත්වා, ඣානං ගරුං කත්වා, අස්සාදෙති, අභිනන්දති,",
+  "basis": "scan"
+ },
+ "2765": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2777": {
+  "to": "සංකිලිට්ඨසංකිලෙසිකා",
+  "basis": "scan"
+ },
+ "2779": {
+  "to": "අසංකිලිට්ඨසංකිලෙසිකස්ස",
+  "basis": "scan"
+ },
+ "2785": {
+  "to": null,
+  "why": "editorial mark or number"
+ },
+ "2788": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2802": {
+  "to": "වත්ථුඤ්ච පටිච්ච තයො ඛන්ධා විතක්කො ච, ද්වෙ ඛන්ධෙ ච",
+  "basis": "scan"
+ },
+ "2808": {
+  "to": "උද්ධච්චසහගතො මොහො.",
+  "basis": "scan"
+ },
+ "2812": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "2814": {
+  "to": "විචාරඤ්ච පටිච්ච චිත්තසමුට්ඨානං රූපං, අවිතක්කවිචාරමත්තෙ ඛන්ධෙ ච මහාභූතෙ ච පටිච්ච චිත්තසමුට්ඨානං රූපං, විතක්කඤ්ච",
+  "basis": "scan"
+ },
+ "2817": {
+  "to": null,
+  "why": "spacing or punctuation only"
+ },
+ "2820": {
+  "to": "න",
+  "basis": "scan"
+ },
+ "2821": {
+  "to": "",
+  "basis": "scan"
+ },
+ "2825": {
+  "to": "අවිතක්කවිචාරමත්තං එකං ඛන්ධඤ්ච වත්ථුඤ්ච පච්චයා තයො ඛන්ධා. පටිසන්ධික්ඛණෙ.",
+  "basis": "scan"
+ },
+ "2827": {
+  "to": null,
+  "basis": "scan",
+  "why": "the OCR spelling of the printed word is not a known word; left for a later look"
+ },
+ "2829": {
+  "to": "තෙත්තිංස.",
+  "basis": "print slip",
+  "note": "the typed තෙනතිංස is not a word; the print glyph is තෙත්තිංස or තෙන්තිංස, and thirty-three is tettiṃsa"
+ },
+ "2836": {
+  "to": "පච්චනියං",
+  "basis": "scan"
+ },
+ "2837": {
+  "to": "ද්වෙපි",
+  "basis": "scan"
+ },
+ "2843": {
+  "to": "විපස්සති, අස්සාදෙති,",
+  "basis": "scan"
+ },
+ "2849": {
+  "to": "සොතං -පෙ- ඵොට්ඨබ්බං, වත්ථුං අවිතක්කඅවිචාරෙ ඛන්ධෙ ච විචාරඤ්ච අනිච්චතො දුක්ඛතො අනත්තතො විපස්සති, තං ආරබ්භ සවිතක්කසවිචාරා ඛන්ධා ච විතක්කො ච උප්පජ්ජන්ති.",
+  "basis": "scan",
+  "note": "a sentence dropped in typing"
+ },
+ "2872": {
+  "to": "විඤ්ඤාණඤ්චායතනස්ස පරිකම්මඤ්ච",
+  "basis": "scan"
+ },
+ "2876": {
+  "to": "සවිතක්කසවිචාරස්ස",
+  "basis": "scan"
+ },
+ "2889": {
+  "to": "ද්වින්නං ඛන්ධානං",
+  "basis": "scan"
+ },
+ "2907": {
+  "to": "ආකිඤ්චඤ්ඤායතනස්ස",
+  "basis": "scan"
+ },
+ "2916": {
+  "to": "චිත්තසමුට්ඨානානඤ්ච",
+  "basis": "scan"
+ },
+ "2924": {
+  "to": "චිත්තසමුට්ඨානානඤ්ච",
+  "basis": "scan"
+ },
+ "2925": {
+  "to": "ධම්මා අවිතක්ක අවිචාරස්ස",
+  "basis": "scan"
+ },
+ "2931": {
+  "to": "ච",
+  "basis": "scan"
+ },
+ "2933": {
+  "to": "පුරෙජාතං",
+  "basis": "scan"
+ },
+ "2935": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2942": {
+  "to": "පච්ඡාජාතා",
+  "basis": "scan"
+ },
+ "2944": {
+  "to": "ච මහාභූතා ච කටත්තාරූපානං අත්ථිපච්චයෙන, පටිසන්ධික්ඛණෙ විතක්කො",
+  "basis": "scan"
+ },
+ "2945": {
+  "to": null,
+  "why": "vowel length could not be told on the scan"
+ },
+ "2947": {
+  "to": "පච්ඡාජාතපච්චයෙන, කම්මපච්චයෙන",
+  "basis": "scan"
+ },
+ "2949": {
+  "to": "සවිතක්කසවිචාරස්ස",
+  "basis": "scan"
+ },
+ "2954": {
+  "to": "අවිතක්කවිචාරමත්තස්ස",
+  "basis": "scan"
+ },
+ "2962": {
+  "to": "සුඛසහගතස්ස",
+  "basis": "scan"
+ },
+ "2964": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2965": {
+  "to": "ආරම්මණපච්චයෙන",
+  "basis": "scan"
+ },
+ "2969": {
+  "to": "ච",
+  "basis": "scan"
+ },
+ "2971": {
+  "to": "",
+  "basis": "scan"
+ },
+ "2974": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "2988": {
+  "to": "උපෙක්ඛාසහගතා සද්ධා. පත්ථනා",
+  "basis": "scan"
+ },
+ "2991": {
+  "to": "ච සුඛසහගතස්ස",
+  "basis": "scan"
+ },
+ "2999": {
+  "to": "ආසෙවනපච්ච,",
+  "basis": "scan"
+ },
+ "3003": {
+  "to": "සුඛසහගතානං",
+  "basis": "scan"
+ },
+ "3016": {
+  "to": "උතුසමුට්ඨානං,",
+  "basis": "scan"
+ },
+ "3019": {
+  "to": "අනුලොම! පච්චනීයං.",
+  "basis": "scan"
+ },
+ "3023": {
+  "to": "සමනන්තරපච්චයා, ආරම්මණසදිසං, සහජාත",
+  "basis": "scan"
+ },
+ "3025": {
+  "to": null,
+  "why": "scan has the typed reading"
+ },
+ "3026": {
+  "to": "",
+  "basis": "scan"
+ },
+ "3033": {
+  "to": "උප්පජ්ජති. දිට්ඨිං අස්සාදෙති, අභිනන්දති, තං ආරබ්භ දස්සනෙන පහාතබ්බො රාගො උප්පජ්ජති, දිට්ඨි උප්පජ්ජති, විචිකිච්ඡා උප්පජ්ජති, දස්සනෙන පහාතබ්බං දොමනස්සං උප්පජ්ජති, විචිකිච්ඡං ආරබ්භ විචිකිච්ඡා උප්පජ්ජති. දිට්ඨි උප්පජ්ජති, දස්සනෙන පහාතබ්බං දොමනස්සං උප්පජ්ජති, දස්සනෙන පහාතබ්බං දොමනස්සං",
+  "basis": "scan"
+ },
+ "3048": {
+  "to": "චිත්තසමුට්ඨානානඤ්ච",
+  "basis": "scan"
+ },
+ "3060": {
+  "to": "උපනිස්සයපච්ච-. ආරම්මණූපනිස්සයො,",
+  "basis": "scan"
+ },
+ "3061": {
+  "to": "උපනිස්සාය පාණං හන්ති, සඞ්ඝං භින්දති, භාවනාය පහාතබ්බං",
+  "basis": "scan"
+ },
+ "3062": {
+  "to": "මානං, පත්ථනං උපනිස්සාය පාණං හන්ති, සඞ්ඝං භින්දති, භාවනාය පහාතබ්බො රාගො, දොසො, මොහො,",
+  "basis": "scan"
+ },
+ "3067": {
+  "to": "ඛන්ධානං නෙව",
+  "basis": "scan"
+ },
+ "3069": {
+  "to": "",
+  "basis": "scan"
+ },
+ "3071": {
+  "to": "",
+  "basis": "scan"
+ },
+ "3073": {
+  "to": "",
+  "basis": "scan"
+ },
+ "3074": {
+  "to": "උපනිස්සයපච්ච-. පුරෙජාතපච්ච- පච්ඡාජාතපච්ච-. කම්මපච්ච-. ආහාරපච්ච-.",
+  "basis": "scan"
+ },
+ "3076": {
+  "to": "අනුලොම පච්චනියං.",
+  "basis": "scan"
+ }
+}
