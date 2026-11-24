@@ -1,0 +1,642 @@
+{
+ "0": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "1": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "9": {
+  "to": "",
+  "basis": "scan",
+  "note": "Typed twice; the print has it once."
+ },
+ "18": {
+  "to": "",
+  "basis": "scan",
+  "note": "A stray යා in the typed text."
+ },
+ "27": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "30": {
+  "to": "",
+  "basis": "scan",
+  "note": "Typed twice; the print has it once."
+ },
+ "46": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "47": {
+  "to": "පීති",
+  "basis": "pattern",
+  "note": "The three-factored jhāna is pīti, sukha, ekaggatā; the typed text lacked පීති."
+ },
+ "49": {
+  "to": "සුඛං",
+  "basis": "scan",
+  "note": "The two-factored fourth jhāna of the fivefold scheme has sukha and ekaggatā; the typed text had උපෙක්ඛා."
+ },
+ "51": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "52": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "54": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "56": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "68": {
+  "to": "උපෙක්ඛායනා",
+  "basis": "pattern"
+ },
+ "77": {
+  "to": "චිත්තාධිපතෙය්යං",
+  "basis": "pattern"
+ },
+ "80": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "83": {
+  "to": "සික්ඛාපදවිභඞ්ගො",
+  "basis": "scan"
+ },
+ "84": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "88": {
+  "to": "අකුසලා.",
+  "basis": "scan",
+  "note": "The passage is on unwholesome consciousness; the typed text had කුසලා."
+ },
+ "90": {
+  "to": "අකුසලා.",
+  "basis": "scan",
+  "note": "As the one before it."
+ },
+ "97": {
+  "to": "අව්යාකතා.",
+  "basis": "pattern"
+ },
+ "99": {
+  "to": "චෙතනා හොති, චිත්තං හොති, විතක්කො හොති, විචාරො හොති,",
+  "basis": "scan",
+  "note": "Four factors dropped in typing."
+ },
+ "104": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "115": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "116": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "117": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "118": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "119": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "120": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "121": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "122": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "123": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "124": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "125": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "126": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "127": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "130": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "131": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "132": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "133": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "134": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "136": {
+  "to": "ආයකොසල්ලං.",
+  "basis": "scan",
+  "note": "The definition that ends here is of āyakosalla; apāyakosalla is the next one."
+ },
+ "142": {
+  "to": "සුකටදුක්කටානං",
+  "basis": "pattern"
+ },
+ "146": {
+  "to": "අප්පමාණාරම්මණා",
+  "basis": "scan",
+  "note": "Limited wisdom with a measureless object; the typed text repeated පරිත්තා."
+ },
+ "147": {
+  "to": "අප්පමාණා",
+  "basis": "scan",
+  "note": "Measureless wisdom with a limited object."
+ },
+ "150": {
+  "to": "විරාගධම්මං",
+  "basis": "pattern"
+ },
+ "156": {
+  "to": "නිබ්බානගාමිනීති",
+  "basis": "pattern"
+ },
+ "160": {
+  "to": "විපත්තීති",
+  "basis": "scan",
+  "note": "The fourth of the four: failure taken as failure. The typed text repeated the second."
+ },
+ "163": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "164": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "165": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "167": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "171": {
+  "to": "මානො, හීනස්ස සදිසොහමස්මීති මානො, හීනස්ස හීනොහමස්මීති",
+  "basis": "scan",
+  "note": "Two of the nine conceits were dropped in typing."
+ },
+ "172": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "177": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "179": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "185": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "186": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "194": {
+  "to": "අචරි",
+  "basis": "pattern",
+  "note": "“did, does, will do harm”; the typed text lacked the past form."
+ },
+ "197": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "199": {
+  "to": "ඉස්සරනිම්මාණහෙතූ’ති.",
+  "basis": "scan"
+ },
+ "209": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "218": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "219": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "221": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "222": {
+  "to": "කතමෙ",
+  "basis": "pattern"
+ },
+ "224": {
+  "to": "කතමෙ",
+  "basis": "pattern"
+ },
+ "225": {
+  "to": "විරොධවත්ථූනි.",
+  "basis": "scan"
+ },
+ "226": {
+  "to": "කතමෙ",
+  "basis": "pattern"
+ },
+ "228": {
+  "to": "කතමෙ",
+  "basis": "pattern"
+ },
+ "230": {
+  "to": "කතමෙ",
+  "basis": "pattern"
+ },
+ "235": {
+  "to": "",
+  "basis": "scan",
+  "note": "Typed twice; the print has it once."
+ },
+ "246": {
+  "to": "නං",
+  "basis": "pattern",
+  "note": "“na paññāpenti” typed for “naṃ paññāpenti”: a negation that is not there."
+ },
+ "261": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "280": {
+  "to": "සම්ඵස්සා.",
+  "basis": "pattern"
+ },
+ "281": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "287": {
+  "to": "චක්ඛුසම්ඵස්සො සොතසම්ඵස්සො ඝානසම්ඵස්සො ජිව්හාසම්ඵස්සො කායසම්ඵස්සො මනොධාතුසම්ඵස්සො",
+  "basis": "pattern"
+ },
+ "299": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "300": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "324": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "339": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "349": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "350": {
+  "to": "තතියං ඣානං පණීතං භාවෙත්වා කත්ථ උපපජ්ජන්ති:",
+  "basis": "scan",
+  "note": "The question was dropped in typing; only its answer stood."
+ },
+ "353": {
+  "to": "උපපජ්ජන්ති,",
+  "basis": "pattern"
+ },
+ "357": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "376": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "384": {
+  "to": "ඵොට්ඨබ්බායතනං: පඨවීධාතු",
+  "basis": "pattern"
+ },
+ "387": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "389": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "390": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "395": {
+  "to": "සඤ්ඤොජනවිප්පයුත්තඅසඤ්ඤොජනියා,",
+  "basis": "pattern"
+ },
+ "396": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "398": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "399": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "400": {
+  "to": "ආපොධාතු, තෙජොධාතු,",
+  "basis": "pattern"
+ },
+ "401": {
+  "to": "වක්කං",
+  "basis": "pattern",
+  "note": "Kidney (vakka); the typed text had චක්කං."
+ },
+ "403": {
+  "to": "ආපො",
+  "basis": "pattern"
+ },
+ "408": {
+  "to": null,
+  "why": "kept as typed: the print lacks this closing sentence of the air element, but the other elements and CST have it"
+ },
+ "425": {
+  "to": "අජ්ඣත්තබහිද්ධාරම්මණාති’පි. රූපධාතු",
+  "basis": "pattern"
+ },
+ "426": {
+  "to": "හෙතුසම්පයුත්තා",
+  "basis": "pattern"
+ },
+ "427": {
+  "to": "ආසවසම්පයුත්තාතිපි, ආසවසම්පයුත්තා",
+  "basis": "pattern"
+ },
+ "428": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "429": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "435": {
+  "to": "භොගව්යසනෙන",
+  "basis": "pattern"
+ },
+ "436": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "439": {
+  "to": "අවිහිංසාසඞ්කප්පො,",
+  "basis": "pattern"
+ },
+ "445": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "446": {
+  "to": "සඤ්ඤොජනියඤ්ච.",
+  "basis": "pattern"
+ },
+ "447": {
+  "to": "සඤ්ඤොජනසම්පයුත්තාති’පි,",
+  "basis": "scan"
+ },
+ "448": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "449": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "450": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "451": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "452": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "453": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "459": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "464": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "465": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "467": {
+  "to": "ආසවසම්පයුත්තාති’පි,",
+  "basis": "scan"
+ },
+ "468": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "473": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "474": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "477": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "478": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "481": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "485": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "486": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "508": {
+  "to": "ඤාණවිප්පයුත්තං",
+  "basis": "scan",
+  "note": "Both members of the pair are without knowledge in the print; the typed text had ඤාණසම්පයුත්තං in the first."
+ },
+ "514": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "516": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "523": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "554": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "555": {
+  "to": "උපපන්නො",
+  "basis": "pattern"
+ },
+ "557": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "558": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "563": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "566": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "568": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "581": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "604": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "605": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "606": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "609": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "613": {
+  "to": "අත්ථි දස්සනෙන",
+  "basis": "pattern"
+ },
+ "621": {
+  "to": "-පෙ- මනොසම්ඵස්සපච්චයා වෙදනාක්ඛන්ධො අත්ථි විපාකො",
+  "basis": "scan",
+  "note": "A clause dropped in typing."
+ },
+ "646": {
+  "to": "ඵස්සසම්පයුත්තො.",
+  "basis": "pattern"
+ },
+ "651": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "659": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "662": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "664": {
+  "to": "සඤ්ඤොජනියො",
+  "basis": "pattern"
+ },
+ "665": {
+  "to": "සඤ්ඤොජනන්ති’පි.",
+  "basis": "pattern"
+ },
+ "666": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "668": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "669": {
+  "to": null,
+  "why": "kept as typed"
+ },
+ "671": {
+  "to": null,
+  "why": "kept as typed"
+ }
+}
