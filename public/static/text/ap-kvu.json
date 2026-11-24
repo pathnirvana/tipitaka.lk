@@ -28,7 +28,8 @@
                     {
                         "type": "centered",
                         "text": "1. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -37,7 +38,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",

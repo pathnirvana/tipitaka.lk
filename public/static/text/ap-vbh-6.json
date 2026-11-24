@@ -3755,7 +3755,8 @@
                     {
                         "type": "centered",
                         "text": "",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",

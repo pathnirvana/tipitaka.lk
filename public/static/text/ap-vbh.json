@@ -8,7 +8,8 @@
                     {
                         "type": "centered",
                         "text": "අභිධම්මපිටකෙ",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -7799,7 +7800,8 @@
                     {
                         "type": "centered",
                         "text": "අභිධම්මභාජනියං.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",

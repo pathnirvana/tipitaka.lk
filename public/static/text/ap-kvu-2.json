@@ -8,12 +8,14 @@
                     {
                         "type": "heading",
                         "text": "දුතියො වග්ගො",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     },
                     {
                         "type": "centered",
                         "text": "2. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -22,7 +24,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -1778,7 +1781,8 @@
                     {
                         "type": "centered",
                         "text": "2. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1787,7 +1791,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3197,7 +3202,8 @@
                     {
                         "type": "centered",
                         "text": "2. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3206,7 +3212,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4353,7 +4360,8 @@
                     {
                         "type": "centered",
                         "text": "2. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4362,7 +4370,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5418,7 +5427,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": "අත්ථෙ’ව සුත්තන්තො’ති."
+                        "text": "අත්ථෙ’ව සුත්තන්තො’ති.",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5714,7 +5724,8 @@
                     {
                         "type": "centered",
                         "text": "2. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5723,7 +5734,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -7605,7 +7617,8 @@
                     {
                         "type": "centered",
                         "text": "2. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -7614,7 +7627,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -7736,7 +7750,8 @@
                     {
                         "type": "centered",
                         "text": "2. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -7745,7 +7760,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -7908,23 +7924,28 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -8398,7 +8419,8 @@
                     {
                         "type": "centered",
                         "text": "2. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -8407,7 +8429,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -9053,7 +9076,8 @@
                     {
                         "type": "centered",
                         "text": "2. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -9062,7 +9086,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -10576,7 +10601,8 @@
                     {
                         "type": "centered",
                         "text": "2. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -10585,7 +10611,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -11425,7 +11452,8 @@
                     {
                         "type": "centered",
                         "text": "2. 11.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -11434,7 +11462,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",

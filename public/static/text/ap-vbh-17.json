@@ -3584,7 +3584,8 @@
                     {
                         "type": "heading",
                         "text": "1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3700,7 +3701,8 @@
                     {
                         "type": "heading",
                         "text": "2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4170,7 +4172,8 @@
                     {
                         "type": "heading",
                         "text": "3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4502,7 +4505,8 @@
                     {
                         "type": "heading",
                         "text": "4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5082,7 +5086,8 @@
                     {
                         "type": "heading",
                         "text": "5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5189,7 +5194,8 @@
                     {
                         "type": "heading",
                         "text": "6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5494,7 +5500,8 @@
                     {
                         "type": "heading",
                         "text": "7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5675,7 +5682,8 @@
                     {
                         "type": "heading",
                         "text": "8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5830,7 +5838,8 @@
                     {
                         "type": "heading",
                         "text": "9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5953,7 +5962,8 @@
                     {
                         "type": "heading",
                         "text": "10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",

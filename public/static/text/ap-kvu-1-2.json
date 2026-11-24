@@ -8,7 +8,8 @@
                     {
                         "type": "centered",
                         "text": "1. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -17,7 +18,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5562,7 +5564,8 @@
                     {
                         "type": "centered",
                         "text": "1. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5571,7 +5574,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -7324,7 +7328,8 @@
                     {
                         "type": "centered",
                         "text": "1. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -7333,7 +7338,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -8153,7 +8159,8 @@
                     {
                         "type": "centered",
                         "text": "1. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -8162,7 +8169,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -9171,7 +9179,8 @@
                     {
                         "type": "centered",
                         "text": "1. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -9180,7 +9189,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -11052,35 +11062,43 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": "ප. පටිඤ්ඤා: ආමන්තා."
+                        "text": "ප. පටිඤ්ඤා: ආමන්තා.",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": "ස. අනු: අනාගතං විඤ්ඤාණං අත්ථි, අනාගතං විඤ්ඤාණං අනාගතභාවං න ජහතී’ති."
+                        "text": "ස. අනු: අනාගතං විඤ්ඤාණං අත්ථි, අනාගතං විඤ්ඤාණං අනාගතභාවං න ජහතී’ති.",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": "ප. පටි: න හෙවං වත්තබ්බෙ -පෙ-"
+                        "text": "ප. පටි: න හෙවං වත්තබ්බෙ -පෙ-",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": "**48.** ස. පු: අතීතං විඤ්ඤාණං අත්ථි, අතීතං විඤ්ඤාණං අතීතභාවං න ජහතී’ති."
+                        "text": "**48.** ස. පු: අතීතං විඤ්ඤාණං අත්ථි, අතීතං විඤ්ඤාණං අතීතභාවං න ජහතී’ති.",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": "ප. පටිඤ්ඤා: ආමන්තා."
+                        "text": "ප. පටිඤ්ඤා: ආමන්තා.",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": "ස. අනු: පච්චුප්පන්නං විඤ්ඤාණං අත්ථි, පච්චුප්පන්නං විඤ්ඤාණං පච්චුප්පන්නභාවං න ජහතී’ති."
+                        "text": "ස. අනු: පච්චුප්පන්නං විඤ්ඤාණං අත්ථි, පච්චුප්පන්නං විඤ්ඤාණං පච්චුප්පන්නභාවං න ජහතී’ති.",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": "ප. පටි: න හෙවං වත්තබ්බෙ -පෙ-"
+                        "text": "ප. පටි: න හෙවං වත්තබ්බෙ -පෙ-",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": "**49.** ස. පු: අනාගතං විඤ්ඤාණං අත්ථි, අනාගතං විඤ්ඤාණං අනාගතභාවං න ජහතී’ති."
+                        "text": "**49.** ස. පු: අනාගතං විඤ්ඤාණං අත්ථි, අනාගතං විඤ්ඤාණං අනාගතභාවං න ජහතී’ති.",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -12478,19 +12496,23 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": "ප. පටි: න හෙවං වත්තබ්බෙ -පෙ-"
+                        "text": "ප. පටි: න හෙවං වත්තබ්බෙ -පෙ-",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": "**79.** ස. පු: අතීතං ඤාණං අත්ථි, න ච තෙන ඤාණෙන දුක්ඛං පරිජානාති, සමුදයං පජහති, නිරොධං සච්ඡිකරොති, මග්ගං භාවෙතී’ති."
+                        "text": "**79.** ස. පු: අතීතං ඤාණං අත්ථි, න ච තෙන ඤාණෙන දුක්ඛං පරිජානාති, සමුදයං පජහති, නිරොධං සච්ඡිකරොති, මග්ගං භාවෙතී’ති.",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": "ප. පටිඤ්ඤා: ආමන්තා."
+                        "text": "ප. පටිඤ්ඤා: ආමන්තා.",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": "ස. අනු: පච්චුප්පන්නං ඤාණං අත්ථි, න ච තෙන ඤාණෙන දුක්ඛං පරිජානාති, සමුදයං පජහති, නිරොධං සච්ඡිකරොති, මග්ගං භාවෙතී’ති."
+                        "text": "ස. අනු: පච්චුප්පන්නං ඤාණං අත්ථි, න ච තෙන ඤාණෙන දුක්ඛං පරිජානාති, සමුදයං පජහති, නිරොධං සච්ඡිකරොති, මග්ගං භාවෙතී’ති.",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -15249,7 +15271,8 @@
                     {
                         "type": "centered",
                         "text": "1. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -15258,7 +15281,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -15589,11 +15613,13 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": "ස. පටි: න හෙවං වත්තබ්බෙ -පෙ-"
+                        "text": "ස. පටි: න හෙවං වත්තබ්බෙ -පෙ-",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": "**4.** ප. පු: පච්චුප්පන්නං ඛන්ධා, පච්චුප්පන්නං අත්ථි’ති."
+                        "text": "**4.** ප. පු: පච්චුප්පන්නං ඛන්ධා, පච්චුප්පන්නං අත්ථි’ති.",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -17098,7 +17124,8 @@
                     {
                         "type": "centered",
                         "text": "1. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -17107,7 +17134,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -18264,7 +18292,8 @@
                     {
                         "type": "centered",
                         "text": "1. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -18273,7 +18302,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -19003,7 +19033,8 @@
                     {
                         "type": "centered",
                         "text": "1. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -19012,7 +19043,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",

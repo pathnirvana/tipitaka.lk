@@ -13,7 +13,8 @@
                     {
                         "type": "centered",
                         "text": "5. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -22,7 +23,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -580,7 +582,8 @@
                     {
                         "type": "centered",
                         "text": "5. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -589,7 +592,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -884,7 +888,8 @@
                     {
                         "type": "centered",
                         "text": "5. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -893,7 +898,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -1496,7 +1502,8 @@
                     {
                         "type": "centered",
                         "text": "5. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -1505,7 +1512,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2010,7 +2018,8 @@
                     {
                         "type": "centered",
                         "text": "5. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2019,7 +2028,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2063,11 +2073,13 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": "ස. අනු: චෙතොපරියායෙ ඤාණං පටිසම්භිදා’ති."
+                        "text": "ස. අනු: චෙතොපරියායෙ ඤාණං පටිසම්භිදා’ති.",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
-                        "text": "ප. පටි: න හෙවං වත්තබ්බෙ -පෙ-"
+                        "text": "ප. පටි: න හෙවං වත්තබ්බෙ -පෙ-",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2322,7 +2334,8 @@
                     {
                         "type": "centered",
                         "text": "5. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2331,7 +2344,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2501,7 +2515,8 @@
                     {
                         "type": "centered",
                         "text": "5. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2510,7 +2525,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -2821,7 +2837,8 @@
                     {
                         "type": "centered",
                         "text": "5. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -2830,7 +2847,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3058,7 +3076,8 @@
                     {
                         "type": "centered",
                         "text": "5. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3067,7 +3086,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3316,7 +3336,8 @@
                     {
                         "type": "centered",
                         "text": "5. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3325,7 +3346,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -3630,7 +3652,8 @@
                     {
                         "type": "centered",
                         "text": "6. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -3639,7 +3662,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -4285,7 +4309,8 @@
                     {
                         "type": "centered",
                         "text": "6. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -4294,7 +4319,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5078,7 +5104,8 @@
                     {
                         "type": "centered",
                         "text": "6. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5087,7 +5114,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -5853,7 +5881,8 @@
                     {
                         "type": "centered",
                         "text": "6. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -5862,7 +5891,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -6274,7 +6304,8 @@
                     {
                         "type": "centered",
                         "text": "6. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -6283,7 +6314,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -6705,7 +6737,8 @@
                     {
                         "type": "centered",
                         "text": "6. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -6714,7 +6747,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -7123,7 +7157,8 @@
                     {
                         "type": "centered",
                         "text": "6. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -7132,7 +7167,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -7359,7 +7395,8 @@
                     {
                         "type": "centered",
                         "text": "6. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -7368,7 +7405,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -8196,7 +8234,8 @@
                     {
                         "type": "centered",
                         "text": "7. 1.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -8205,7 +8244,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -8656,7 +8696,8 @@
                     {
                         "type": "centered",
                         "text": "7. 2.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -8665,7 +8706,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -8867,7 +8909,8 @@
                     {
                         "type": "centered",
                         "text": "7. 3.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -8876,7 +8919,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -9226,7 +9270,8 @@
                     {
                         "type": "centered",
                         "text": "7. 4.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -9235,7 +9280,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -9821,7 +9867,8 @@
                     {
                         "type": "centered",
                         "text": "7. 5.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -9830,7 +9877,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -10455,7 +10503,8 @@
                     {
                         "type": "centered",
                         "text": "7. 6.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -10464,7 +10513,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -10866,7 +10916,8 @@
                     {
                         "type": "centered",
                         "text": "7. 7.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -10875,7 +10926,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -11534,7 +11586,8 @@
                     {
                         "type": "centered",
                         "text": "7. 8.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -11543,7 +11596,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -11984,7 +12038,8 @@
                     {
                         "type": "centered",
                         "text": "7. 9.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -11993,7 +12048,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -12710,7 +12766,8 @@
                     {
                         "type": "centered",
                         "text": "7. 10.",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
@@ -12719,7 +12776,8 @@
                     },
                     {
                         "type": "paragraph",
-                        "text": ""
+                        "text": "",
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",

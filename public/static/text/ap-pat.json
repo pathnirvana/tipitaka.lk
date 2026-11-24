@@ -387,12 +387,14 @@
                     {
                         "type": "heading",
                         "text": "$$පුච්ඡාවාරො$$",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "centered",
                         "text": "1. පටිච්චවාරො",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
@@ -883,12 +885,14 @@
                     {
                         "type": "heading",
                         "text": "$$1. කුසලත්තිකං$$",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "heading",
                         "text": "$$1. පටිච්චවාරො$$",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "centered",
@@ -8231,7 +8235,8 @@
                     {
                         "type": "heading",
                         "text": "$$පච්චනීය ගණනා$$",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "centered",
@@ -8761,7 +8766,8 @@
                     {
                         "type": "heading",
                         "text": "$$අනුලොමපච්චනීයං$$",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "centered",
@@ -10581,12 +10587,14 @@
                     {
                         "type": "centered",
                         "text": "ඉන්ද්රිය මූලකං",
-                        "level": 1
+                        "level": 1,
+                        "noAudio": true
                     },
                     {
                         "type": "centered",
                         "text": "ඣාන මූලකං.",
-                        "level": 2
+                        "level": 2,
+                        "noAudio": true
                     },
                     {
                         "type": "paragraph",
