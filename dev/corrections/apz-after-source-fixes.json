@@ -1,0 +1,42 @@
+[
+ {
+  "file": "ap-dhs-3",
+  "page": 12,
+  "entry": 5,
+  "old": "උපදින්නට හැකි ද, යම් ඇසක් නිසා රූප අරමුණ ඇති චක්ෂු ස්පර්ශය",
+  "new": "උපදින්නට හැකි ද, -පෙ- යම් ඇසක් නිසා රූප අරමුණ ඇති චක්ෂු ස්පර්ශය",
+  "why": "Corrected Pāḷi adds -පෙ- after the first cakkhuviññāṇa clause (before yaṃ cakkhuṃ nissāya rūpārammaṇo cakkhusamphasso); the modern Sinhala lacked it there."
+ },
+ {
+  "file": "ap-vbh-6",
+  "page": 27,
+  "entry": 6,
+  "old": "ඥානයෙන් යෙදුණු -පෙ-",
+  "new": "ඥානයෙන් නොයෙදුණු -පෙ-",
+  "why": "First citta is now ñāṇavippayutta (typed had ñāṇasampayutta); BJT Sinhala also has ඥානවිප්‍රයුක්ත."
+ },
+ {
+  "file": "ap-vbh-6",
+  "page": 73,
+  "entry": 3,
+  "old": "සම්බොජ්ඣංගයක් -පෙ- වේ ද",
+  "new": "සම්බොජ්ඣංගයක් වේ ද",
+  "why": "The second -පෙ- (before 'ayaṃ vuccati samādhi') was removed from the Pāḷi."
+ },
+ {
+  "file": "ap-vbh-6",
+  "page": 74,
+  "entry": 13,
+  "old": "සම්බොජ්ඣංගයක් -පෙ- වේ ද",
+  "new": "සම්බොජ්ඣංගයක් වේ ද",
+  "why": "The second -පෙ- (before 'ayaṃ vuccati samādhi') was removed from the Pāḷi."
+ },
+ {
+  "file": "ap-dhk",
+  "page": 68,
+  "entry": 5,
+  "old": " එක් ආයතනයකට හා එක් ධාතුවකට අයත් ඇතැම් ධර්ම සමඟ යෙදෙති.",
+  "new": "",
+  "why": "The clause 'ekenāyatanena ekāya dhātuyā kehici sampayuttā' was removed from the Pāḷi; BJT Sinhala lacks it too."
+ }
+]
