@@ -1,0 +1,96 @@
+<div class="wrap">
+  <header>
+    <h1>Suttanipāta Open Readings</h1>
+    <p>Places in the Suttanipāta Pāḷi where the typed text, the Buddha Jayanti print and CST do not settle the reading. Each shows the printed line, the typed verse, the CST form and the BJT Sinhala.</p>
+    <div class="legend">
+      <span><b>Your call</b>: three places where I chose a reading that is not plainly what the print has.</span>
+      <span><b>Vowel length</b>: a sample of the 51 places left alone because only the length differs.</span>
+      <span><b>OCR noise</b>: a sample of the 124 places skipped because the OCR form is not a real word.</span>
+    </div>
+  </header>
+  <nav class="tabs" role="tablist" aria-label="Lists">
+    <button role="tab" data-cat="call" aria-selected="true">Your call<span class="n" id="n-call"></span></button>
+    <button role="tab" data-cat="len" aria-selected="false">Vowel length<span class="n" id="n-len"></span></button>
+    <button role="tab" data-cat="noise" aria-selected="false">OCR noise<span class="n" id="n-noise"></span></button>
+  </nav>
+  <div id="status" class="status" hidden></div>
+  <p class="tabnote" id="tabnote"></p>
+  <div class="list" id="list" role="tabpanel"></div>
+</div>
+<script>
+const ITEMS = __ITEMS__;
+const NOTES = {
+  call: 'Choose a reading for each. Your choice is saved as you click; Claude applies them afterwards.',
+  len: 'The text was left as typed. “OCR” is what the OCR read, which is unreliable for vowel length, so go by the scan line.',
+  noise: 'The text was left as typed. If the scan line shows the typed word, keep it; if it shows something else, choose the other form or type the reading.'
+};
+const CATS = ['call', 'len', 'noise'];
+const decisions = new Map();
+let dbCol = null, current = 'call';
+try { const h = location.hash.slice(1); if (CATS.includes(h)) current = h } catch {}
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const markCtx = c => { const t = esc(c).replace(/\n/g, '<br>'); return t.replace('⟦', '<mark>').replace('⟧', '</mark>') };
+function counts() { for (const c of CATS) { const l = ITEMS.filter(i => i.grp === c); document.getElementById('n-' + c).textContent = `${l.filter(i => decisions.get(i.id)?.choice).length}/${l.length}` } }
+function slip(it) {
+  const d = decisions.get(it.id) || {}
+  let h = `<article class="slip" data-id="${esc(it.id)}">
+    <div class="meta"><span class="ref">${esc(it.ref)}</span><span class="sinh-in">${esc(it.title)}</span>${it.key ? `<a href="https://pitaka.lk/main/${esc(it.key)}" target="_blank" rel="noopener" style="color:var(--accent)">pitaka.lk/main/${esc(it.key)}</a>` : ''}</div>
+    <div class="email"><span class="lbl">Text</span><span class="sinh big">${esc(it.cur)}</span> &nbsp; <span class="lbl">${it.grp === 'call' ? 'Print' : 'OCR'}</span><span class="sinh big">${esc(it.pr)}</span> &nbsp; <span class="lbl">CST</span>${it.cst.length ? it.cst.map(([f, n]) => `<span class="sinh big">${esc(f)}</span>${it.cst.length > 1 ? ` <span class="num">${n}</span>` : ''}`).join(' · ') : '<span class="reason">not found in this spelling</span>'}</div>
+    <figure class="scan" style="margin:0"><img loading="lazy" src="crops/${esc(it.crop)}" alt="Scan of the printed line, ${esc(it.ref)}"><figcaption>printed line, ${esc(it.ref)}</figcaption></figure>
+    <div class="sinh">${markCtx(it.ctx)}</div>
+    ${it.sinh ? `<div class="sinh" style="color:var(--muted);font-size:.95rem"><span class="k">BJT Sinhala</span>${esc(it.sinh)}</div>` : ''}
+    <div class="reason sinh-in">${esc(it.note)}</div>`
+  const opts = [...it.opts, ['custom', 'Other']]
+  h += `<div class="controls">${opts.map(([v, l]) => `<button class="choice sinh-in" data-act="choose" data-v="${v}" aria-pressed="${d.choice === v}">${esc(l)}</button>`).join('')}
+    <input type="text" id="cv-${esc(it.id)}" data-act="value" placeholder="reading to apply (Sinhala)" value="${esc(d.value || '')}" ${d.choice === 'custom' ? '' : 'hidden'}>
+    <input type="text" id="nt-${esc(it.id)}" data-act="note" placeholder="note (optional)" value="${esc(d.note || '')}">
+    <span class="saved">${d.choice ? 'saved' : ''}</span></div>`
+  if (d.reply) h += `<div class="thread"><p><span class="who">Claude</span>${esc(d.reply)}</p></div>`
+  return h + '</article>'
+}
+function render() {
+  for (const b of document.querySelectorAll('nav.tabs button')) b.setAttribute('aria-selected', String(b.dataset.cat === current))
+  document.getElementById('tabnote').textContent = NOTES[current]
+  document.getElementById('list').innerHTML = ITEMS.filter(i => i.grp === current).map(slip).join('')
+  counts()
+}
+async function save(id, data) {
+  const next = { ...(decisions.get(id) || {}), ...data, at: new Date().toISOString() }
+  decisions.set(id, next); counts()
+  const el = document.querySelector(`.slip[data-id="${CSS.escape(id)}"] .saved`)
+  if (!dbCol) { if (el) el.textContent = 'not saved (no connection)'; return }
+  try { await dbCol.doc(id).set({ ...next, item: id }); if (el) el.textContent = 'saved' }
+  catch (e) { if (el) el.textContent = 'not saved: ' + (e?.message || e?.code || 'error') }
+}
+document.querySelector('nav.tabs').addEventListener('click', e => {
+  const b = e.target.closest('button[data-cat]'); if (!b) return
+  current = b.dataset.cat; try { history.replaceState(null, '', '#' + current) } catch {}
+  render(); window.scrollTo({ top: 0 })
+})
+document.getElementById('list').addEventListener('click', e => {
+  const b = e.target.closest('button[data-act="choose"]'); if (!b) return
+  const s = b.closest('.slip')
+  for (const x of s.querySelectorAll('button.choice')) x.setAttribute('aria-pressed', String(x === b))
+  s.querySelector('input[data-act="value"]').hidden = b.dataset.v !== 'custom'
+  save(s.dataset.id, { choice: b.dataset.v })
+})
+document.getElementById('list').addEventListener('change', e => {
+  const t = e.target, s = t.closest('.slip'); if (!s) return
+  if (t.dataset.act === 'value') save(s.dataset.id, { value: t.value.trim() })
+  if (t.dataset.act === 'note') save(s.dataset.id, { note: t.value.trim() })
+})
+render()
+;(async () => {
+  const status = document.getElementById('status')
+  const timer = setTimeout(() => { status.hidden = false; status.textContent = 'Saved decisions could not be loaded. Choices you make now will not be kept.' }, 10000)
+  const db = window.claude?.use ? await window.claude.use('db').catch(() => null) : null
+  if (!db) { clearTimeout(timer); status.hidden = false; status.textContent = 'Decisions cannot be saved in this view. Open the page signed in to claude.ai to record them.'; return }
+  dbCol = db.collection('decisions')
+  dbCol.onSnapshot(snap => {
+    clearTimeout(timer); status.hidden = true
+    for (const d of snap.docs) { const v = d.data() || {}; decisions.set(v.item || d.id, v) }
+    const a = document.activeElement
+    if (!(a && a.tagName === 'INPUT' && a.type === 'text')) render(); else counts()
+  }, err => { clearTimeout(timer); status.hidden = false; status.textContent = 'Saved decisions could not be loaded: ' + err.message })
+})()
+</script>

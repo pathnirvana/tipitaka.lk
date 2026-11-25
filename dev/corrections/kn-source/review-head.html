@@ -1,0 +1,85 @@
+<title>Suttanipāta Open Readings</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Sinhala:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* layout: one reading column of correction slips, a sticky tab bar for the three lists */
+:root {
+  --paper: #f7f6f2; --sheet: #ffffff; --ink: #1d2230; --muted: #626879; --rule: #dedbd2;
+  --accent: #2c4a8a; --accent-soft: #e7ecf7;
+  --del: #a3341f; --del-bg: #fbe9e4; --ins: #22663b; --ins-bg: #e3f2e8;
+  --warn: #8a5a00; --warn-bg: #fbf0d9;
+  --scan: #fbfaf6;
+  --f-sinh: "Noto Serif Sinhala", "Iskoola Pota", serif;
+  --f-pali: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --f-ui: "IBM Plex Sans", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #15171d; --sheet: #1d2029; --ink: #e6e4dd; --muted: #9a9fad; --rule: #333744;
+  --accent: #9bb4ef; --accent-soft: #263150;
+  --del: #f0937c; --del-bg: #3d221c; --ins: #84d29d; --ins-bg: #1b3324;
+  --warn: #e8bd63; --warn-bg: #3a2f17; --scan: #e9e7df; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #15171d; --sheet: #1d2029; --ink: #e6e4dd; --muted: #9a9fad; --rule: #333744;
+  --accent: #9bb4ef; --accent-soft: #263150;
+  --del: #f0937c; --del-bg: #3d221c; --ins: #84d29d; --ins-bg: #1b3324;
+  --warn: #e8bd63; --warn-bg: #3a2f17; --scan: #e9e7df; color-scheme: dark }
+
+body { background: var(--paper); color: var(--ink); font: 15px/1.5 var(--f-ui); }
+.wrap { max-width: 920px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 64px; }
+header h1 { font: 600 clamp(1.6rem, 4vw, 2.1rem)/1.15 var(--f-pali); margin: 0 0 6px; text-wrap: balance; }
+header p { margin: 0; color: var(--muted); max-width: 68ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; font-size: .86rem; color: var(--muted); }
+.legend b { color: var(--ink); font-weight: 600; }
+
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 22px 0 18px; padding-top: 6px; overflow-x: auto; }
+nav.tabs button { font: 500 .95rem var(--f-ui); color: var(--muted); background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 12px 9px; cursor: pointer; white-space: nowrap; }
+nav.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+nav.tabs .n { font-variant-numeric: tabular-nums; margin-left: 6px; padding: 1px 7px; border-radius: 99px; background: var(--accent-soft); color: var(--accent); font-size: .8rem; }
+.tabnote { color: var(--muted); font-size: .9rem; margin: -6px 0 16px; }
+.status { font-size: .85rem; padding: 8px 12px; border-radius: 6px; background: var(--warn-bg); color: var(--warn); margin-bottom: 14px; }
+
+.list { display: grid; gap: 14px; }
+.slip { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; display: grid; gap: 10px; min-width: 0; }
+.slip.off { opacity: .55; }
+.meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: .82rem; color: var(--muted); }
+.meta .ref { font: 500 .85rem var(--f-mono); color: var(--ink); }
+.meta .id { font: .78rem var(--f-mono); }
+.email { font-size: .92rem; }
+.email .lbl, .k { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-right: 6px; }
+.pali { font-family: var(--f-pali); font-size: 1.05rem; }
+.sinh { font-family: var(--f-sinh); font-size: 1.02rem; line-height: 1.75; overflow-wrap: anywhere; }
+.sinh.big { font-size: 1.12rem; font-weight: 600; }
+.sinh-in { font-family: var(--f-sinh); color: var(--ink); }
+.rom { font-family: var(--f-pali); font-size: .85rem; color: var(--muted); }
+mark { background: var(--warn-bg); color: var(--warn); padding: 0 2px; border-radius: 2px; }
+del { color: var(--del); background: var(--del-bg); text-decoration: line-through; text-decoration-thickness: 1px; padding: 0 2px; border-radius: 2px; }
+ins { color: var(--ins); background: var(--ins-bg); text-decoration: none; padding: 0 2px; border-radius: 2px; }
+.change { display: grid; gap: 2px; }
+.change .roman { font-family: var(--f-pali); color: var(--muted); }
+.readings { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-size: .9rem; }
+.readings .pali { font-size: 1rem; }
+.tag { font: 500 .72rem var(--f-ui); padding: 1px 7px; border-radius: 99px; margin-left: 6px; }
+.tag.same { background: var(--warn-bg); color: var(--warn); }
+.tag.diff { background: var(--ins-bg); color: var(--ins); }
+.tag.unclear { background: var(--rule); color: var(--muted); }
+.reason { font-size: .9rem; color: var(--muted); max-width: 72ch; }
+.scan { background: var(--scan); border: 1px solid var(--rule); border-radius: 4px; padding: 4px; overflow-x: auto; }
+.scan img { display: block; width: 100%; max-width: 100%; height: auto; }
+.scan figcaption { font: .72rem var(--f-mono); color: #6d6a60; padding: 2px 2px 0; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding-top: 4px; border-top: 1px dashed var(--rule); }
+.controls .choice { font: 500 .85rem var(--f-ui); border: 1px solid var(--rule); background: var(--sheet); color: var(--ink); border-radius: 99px; padding: 5px 12px; cursor: pointer; }
+.controls .choice[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--sheet); }
+.controls input[type=text] { font: .95rem var(--f-pali); border: 1px solid var(--rule); border-radius: 6px; padding: 5px 8px; background: var(--sheet); color: var(--ink); min-width: 0; flex: 1 1 180px; }
+.controls label.apply { display: inline-flex; gap: 8px; align-items: center; font-weight: 500; cursor: pointer; }
+.controls .saved { font-size: .78rem; color: var(--muted); margin-left: auto; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.empty { color: var(--muted); padding: 24px 0; }
+.thread { display: grid; gap: 6px; background: var(--accent-soft); border-radius: 6px; padding: 10px 12px; }
+.thread p { margin: 0; font-family: var(--f-sinh), var(--f-ui); font-size: .92rem; line-height: 1.6; max-width: 72ch; }
+.thread .who { font: 600 .72rem var(--f-ui); text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-right: 8px; }
+@media (max-width: 480px) { .slip { padding: 12px; } }
+</style>
