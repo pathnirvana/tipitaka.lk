@@ -4,6 +4,10 @@
  * on, with a terms list the run builds for itself.
  *
  *   npx tsx dev/apz-trans/flow.ts <file prefix> [--pages 0-29] [--files N] [--seed <terms.json>] [--max-usd N]
+ *       [--book <note.md>]  rules for this book, added to the rewrite and the review prompt
+ *       [--pin <terms.json>] rows of the terms list that no rewrite or review may change
+ *       [--units]            a packet ends only before a numbered paragraph or a heading (a pair of questions stays whole)
+ *       [--tag <t>]          a trial: state in out/flow-<prefix>-<t>, text in out/book-<file>-<t>
  *
  * For every file <prefix>, <prefix>-* in order (--pages: only those pages of the first file):
  *  1. packets of about 4,000 Pāḷi chars (as set.ts). An entry whose Pāḷi and BJT repeat an earlier entry takes that
@@ -28,7 +32,8 @@ const arg = (n: string) => { const i = process.argv.indexOf(n); return i > 0 ? p
 const prefix = process.argv[2]
 if (!prefix) throw new Error('usage: flow.ts <file prefix> [--pages 0-29] [--seed terms.json] [--max-usd N]')
 const OPUS = 'claude-opus-5-5', MAX_PALI = 4000, MIN_BREAK = 2000, MAX_GROUP = 18000, MAX_USD = Number(arg('--max-usd') ?? Infinity)
-const dir = path.join(OUT, `flow-${prefix}`)
+const TAG = arg('--tag') ? '-' + arg('--tag') : ''
+const dir = path.join(OUT, `flow-${prefix}${TAG}`)
 fs.mkdirSync(dir, { recursive: true })
 const log = (s: string) => { console.log(s); fs.appendFileSync(path.join(dir, 'log.txt'), s + '\n') }
 
@@ -42,7 +47,7 @@ requires.
 Where the Pāḷi puts cross-reference numbers after an item of a list (e.g. "කුසලා ධම්මා, 989, 1383") and BJT leaves them
 out, leave them out.
 
-`
+` + (arg('--book') ? fs.readFileSync(arg('--book')!, 'utf-8').trim() + '\n\n' : '')
 const TERMS_OUT = `"terms": the technical terms, names and fixed phrases that will come again in the book, each as {"pali", "si"}: "pali" is the
 term as a Pāḷi stem without its case ending (e.g. වෙදනාක්ඛන්ධ), "si" the Sinhala wording for it without a case ending, and
 without a bracket that only explains it at its first use.`
@@ -66,6 +71,8 @@ type Rw = { packet: string; items: { i: number; si: string }[]; terms: Term[]; u
 const termsFile = path.join(dir, 'terms.json')
 const ledger = new Map<string, string>(fs.existsSync(termsFile) ? JSON.parse(fs.readFileSync(termsFile, 'utf-8')) : arg('--seed') ? JSON.parse(fs.readFileSync(arg('--seed')!, 'utf-8')) : [])
 const saveLedger = () => fs.writeFileSync(termsFile, JSON.stringify([...ledger], null, 1))
+const pinned = new Map<string, string>(arg('--pin') ? JSON.parse(fs.readFileSync(arg('--pin')!, 'utf-8')) : [])
+for (const [p, si] of pinned) ledger.set(p, si)
 const rewrites = new Map(readJsonl<Rw>(path.join(dir, 'rewrite.jsonl')).map(r => [r.packet, r]))
 const reviews = new Map(readJsonl<{ group: string }>(path.join(dir, 'review.jsonl')).map(r => [r.group, r]))
 let spent = 0
@@ -74,7 +81,7 @@ const termsFor = (es: Entry[]) => {
   return [...ledger].filter(([p]) => p.length >= 4 && text.includes(p)).sort((a, b) => b[0].length - a[0].length).slice(0, 80).map(([p, si]) => `${p} → ${si}`)
 }
 const addTerms = (ts: Term[] | undefined, replace: boolean) => {
-  for (const t of ts ?? []) { const p = t.pali?.trim(), s = t.si?.trim(); if (p && s && (replace || !ledger.has(p))) ledger.set(p, s) }
+  for (const t of ts ?? []) { const p = t.pali?.trim(), s = t.si?.trim(); if (p && s && !pinned.has(p) && (replace || !ledger.has(p))) ledger.set(p, s) }
   saveLedger()
 }
 
@@ -97,10 +104,10 @@ function faults(e: Entry, si: string | undefined): string {
 // ---- the text store of each file (as book.ts)
 const stores = new Map<string, Record<string, { si: string; src: string }>>()
 const store = (file: string) => {
-  if (!stores.has(file)) { const f = path.join(OUT, `book-${file}`, 'text.json'); stores.set(file, fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf-8')) : {}) }
+  if (!stores.has(file)) { const f = path.join(OUT, `book-${file}${TAG}`, 'text.json'); stores.set(file, fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf-8')) : {}) }
   return stores.get(file)!
 }
-const saveStore = (file: string) => { fs.mkdirSync(path.join(OUT, `book-${file}`), { recursive: true }); fs.writeFileSync(path.join(OUT, `book-${file}`, 'text.json'), JSON.stringify(store(file), null, 1)) }
+const saveStore = (file: string) => { fs.mkdirSync(path.join(OUT, `book-${file}${TAG}`), { recursive: true }); fs.writeFileSync(path.join(OUT, `book-${file}${TAG}`, 'text.json'), JSON.stringify(store(file), null, 1)) }
 
 // ---- repeated entries: the same Pāḷi and BJT (but for the paragraph number) as an entry already done
 const stripNum = (s: string) => noFn(s).replace(/^\s*[\d.\s-–]+[.)]?\s*/, '').trim()
@@ -113,6 +120,7 @@ const db = openDb()
 const files = (db.prepare(`SELECT name FROM file ORDER BY name`).pluck().all() as string[]).filter(f => f === prefix || f.startsWith(prefix + '-'))
   .sort((x, y) => x.localeCompare(y, undefined, { numeric: true })).slice(0, Number(arg('--files') ?? 999))
 const pages = arg('--pages')
+const UNITS = process.argv.includes('--units')
 let prev: { key: string; si: string }[] = []
 
 for (const [fi, file] of files.entries()) {
@@ -124,7 +132,10 @@ for (const [fi, file] of files.entries()) {
   let cur: Entry[] = [], size = 0
   for (const e of all) {
     const heading = e.type === 'heading' || e.type === 'centered'
-    if (cur.length && (size + e.pali.length > MAX_PALI || (heading && size >= MIN_BREAK))) { chunks.push(cur); cur = []; size = 0 }
+    const over = size + e.pali.length > MAX_PALI
+    // (--units: the break waits for the next numbered paragraph or heading, up to twice the size)
+    const mayBreak = !UNITS || heading || leadNum(e.pali) !== undefined || size + e.pali.length > 2 * MAX_PALI
+    if (cur.length && ((over && mayBreak) || (heading && size >= MIN_BREAK))) { chunks.push(cur); cur = []; size = 0 }
     cur.push(e); size += e.pali.length
   }
   if (cur.length) chunks.push(cur)
