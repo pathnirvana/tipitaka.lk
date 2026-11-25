@@ -41,5 +41,86 @@
   "old": "67-69. යත්ථ කුසලා ධම්මා න උප්පජ්ජන්ති තත්ථ අකුසලා ධම්මා න නිරුජ්ඣිත්ථාති: --පෙ- (පච්චනීකඔකාස)",
   "new": "67-69. යත්ථ කුසලා ධම්මා න උප්පජ්ජන්ති තත්ථ අකුසලා ධම්මා න නිරුජ්ඣිත්ථාති: -පෙ- (පච්චනීකඔකාස)",
   "why": "a doubled hyphen left by the earlier correction"
+ },
+ {
+  "file": "ap-yam-4",
+  "page": 37,
+  "entry": 3,
+  "pageNum": 488,
+  "old": "නිරුජ්ඣතීති: අසඤ්ඤසත්තෙ තත්ථ දුක්ඛසච්චං නිරුජ්ඣති -පෙ- (අනුලොමපුග්ගල)",
+  "new": "නිරුජ්ඣතීති: නො. යස්ස වා පන මග්ගසච්චං නිරුජ්ඣති තස්ස සමුදයසච්චං නිරුජ්ඣතීති: නො. (අනුලොමපුග්ගල)",
+  "why": "print repeats the line of §3 here (dittography); CST has නො / නො, the BJT Sinhala has නැති twice (typed = print)"
+ },
+ {
+  "file": "ap-yam",
+  "page": 51,
+  "entry": 6,
+  "pageNum": 104,
+  "old": "පඤ්චවොකාරෙ පරිනිබ්බන්තානං, අසඤ්ඤසත්තං උපපජ්ජන්තානං",
+  "new": "පඤ්චවොකාරෙ පරිනිබ්බන්තානං, අසඤ්ඤසත්තා චවන්තානං තෙසං තත්ථ වෙදනාක්ඛන්ධො න නිරුජ්ඣිස්සති, නො ච තෙසං තත්ථ රූපක්ඛන්ධො න නිරුජ්ඣති. අරූපෙ පරිනිබ්බන්තානං, අසඤ්ඤසත්තං උපපජ්ජන්තානං",
+  "why": "print skips from one පරිනිබ්බන්තානං to the next; CST and the BJT Sinhala have the full answer (typed = print)"
+ },
+ {
+  "file": "ap-yam-6",
+  "page": 26,
+  "entry": 2,
+  "pageNum": 54,
+  "old": "තෙසං තත්ථ වචීසඞ්ඛාරො නූප්පජ්ජිත්ථ, අවිතක්ක",
+  "new": "තෙසං තත්ථ චිත්තසඞ්ඛාරො නූප්පජ්ජිස්සති, නො ච තෙසං තත්ථ වචීසඞ්ඛාරො නූප්පජ්ජිත්ථ. අවිතක්ක",
+  "why": "clause missing in the print; CST and the BJT Sinhala have it (typed = print)"
+ },
+ {
+  "file": "ap-yam-7",
+  "page": 61,
+  "entry": 0,
+  "pageNum": 240,
+  "old": "සො තතො විචිකිච්ඡානුසයෙන සානුසයො. ස්වෙව",
+  "new": "සො තතො විචිකිච්ඡානුසයෙන සානුසයො, නො ච සො තතො පටිඝානුසයෙන සානුසයො. ස්වෙව",
+  "why": "නො ච clause missing in the print; CST and the BJT Sinhala have it (typed = print)"
+ },
+ {
+  "file": "ap-yam-7-5",
+  "page": 23,
+  "entry": 5,
+  "pageNum": 440,
+  "old": "තතො භවරාගානුසයං න පරිජානාති, කාමධාතුයා",
+  "new": "තතො භවරාගානුසයං න පරිජානාති, නො ච තතො පටිඝානුසයං න පරිජානාති. කාමධාතුයා",
+  "why": "නො ච clause missing in the print; CST and the BJT Sinhala have it (typed = print)"
+ },
+ {
+  "file": "ap-yam-8",
+  "page": 29,
+  "entry": 11,
+  "pageNum": 658,
+  "old": "භඞ්ගක්ඛණං අතික්කන්තං,",
+  "new": "භඞ්ගක්ඛණං අවීතික්කන්තං,",
+  "why": "print අතික්කන්තං reverses the sense; CST අවීතික්කන්තං, BJT Sinhala නො ඉක්මිණි (typed = print)"
+ },
+ {
+  "file": "ap-yam-10-4",
+  "page": 23,
+  "entry": 2,
+  "pageNum": 534,
+  "old": "න භාවෙස්සන්ති, තෙ දොමනස්සින්ද්රියං නප්පජහිත්ථ.",
+  "new": "න භාවෙස්සන්ති, නො ච දොමනස්සින්ද්රියං නප්පජහිත්ථ.",
+  "why": "print තෙ for නො ච; CST නො ච, BJT Sinhala නො ද නො හළහ (typed = print)"
+ },
+ {
+  "file": "ap-yam-3",
+  "page": 115,
+  "entry": 1,
+  "pageNum": 370,
+  "old": "ධම්මායතනං නිරුජ්ඣිස්සතීති:",
+  "new": "ධම්මායතනං නිරුජ්ඣිස්සතීති: ආමන්තා.",
+  "why": "answer missing in the print; CST ආමන්තා, BJT Sinhala එසේ යි (typed = print)"
+ },
+ {
+  "file": "ap-yam-10-3-4",
+  "page": 12,
+  "entry": 4,
+  "pageNum": 322,
+  "old": "උප්පජ්ජිත්ථ, නො ච තෙසං තත්ථ සොමනස්ස සම්පයුත්ත චිත්තස්ස උප්පාදක්ඛණෙ තෙසං තත්ථ මනින්ද්රියං උප්පජ්ජිත්ථ, නො ච තෙසං",
+  "new": "උප්පජ්ජිත්ථ, නො ච තෙසං",
+  "why": "print repeats a line (dittography); CST and the BJT Sinhala have it once (typed = print)"
  }
 ]
