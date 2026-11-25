@@ -19,7 +19,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 TEXT = os.path.join(ROOT, '..', '..', '..', 'public', 'static', 'text')
 OCR = os.path.join(ROOT, '..', '..', 'ocr')
 # bookId -> (scan file prefix, scan page of printed page 0)
-BOOK = {28: ('KN1_Page_', 25), 29: ('KN2_Page_', 17), 30: ('KN3_Page_', 17)}
+BOOK = {28: ('KN1_Page_', 25), 29: ('KN2_Page_', 17), 30: ('KN3_Page_', 17), 31: ('KN4_Page_', 31)}
 SI = re.compile(r'[඀-෿]')
 PUNCT = '.,:;?!\'"‘’“”()[]{}-–—…*_¹²³⁴⁵⁶⁷⁸⁹⁰'
 
