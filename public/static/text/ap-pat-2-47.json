@@ -4778,7 +4778,8 @@
                     {
                         "type": "centered",
                         "text": "දුතියො භාගො නිට්ඨිතො.",
-                        "level": 3
+                        "level": 3,
+                        "noAudio": true
                     }
                 ],
                 "footnotes": []

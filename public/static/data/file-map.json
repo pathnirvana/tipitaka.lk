@@ -1078,5 +1078,110 @@
         "ap-kvu-3-1",
         "ap-kvu-3-7",
         "ap-kvu-4-4"
+    ],
+    "ap-dhk": [
+        "ap-dhk-2",
+        "ap-dhk-3",
+        "ap-dhk-7",
+        "ap-dhk-11",
+        "ap-dhk-14"
+    ],
+    "ap-pug": [
+        "ap-pug-2-1",
+        "ap-pug-2-3",
+        "ap-pug-2-4-b"
+    ],
+    "ap-pat-2-47": [
+        "ap-pat-2-47",
+        "ap-pat-2-50",
+        "ap-pat-2-53",
+        "ap-pat-2-57",
+        "ap-pat-2-59",
+        "ap-pat-2-63",
+        "ap-pat-2-73",
+        "ap-pat-2-76",
+        "ap-pat-2-79"
+    ],
+    "ap-pat-2": [
+        "ap-pat-2-1",
+        "ap-pat-2-2",
+        "ap-pat-2-3",
+        "ap-pat-2-7",
+        "ap-pat-2-11",
+        "ap-pat-2-14",
+        "ap-pat-2-17",
+        "ap-pat-2-22",
+        "ap-pat-2-26",
+        "ap-pat-2-29",
+        "ap-pat-2-37",
+        "ap-pat-2-43"
+    ],
+    "ap-pat-4": [
+        "ap-pat-4-1",
+        "ap-pat-4-6",
+        "ap-pat-4-12",
+        "ap-pat-4-24",
+        "ap-pat-4-29",
+        "ap-pat-5",
+        "ap-pat-6",
+        "ap-pat-8",
+        "ap-pat-9",
+        "ap-pat-11",
+        "ap-pat-13",
+        "ap-pat-14",
+        "ap-pat-16-a",
+        "ap-pat-16-b",
+        "ap-pat-18",
+        "ap-pat-20",
+        "ap-pat-22",
+        "ap-pat-23"
+    ],
+    "ap-pat-1-12": [
+        "ap-pat-1-12-a",
+        "ap-pat-1-12-b",
+        "ap-pat-1-13",
+        "ap-pat-1-14",
+        "ap-pat-1-16",
+        "ap-pat-1-18",
+        "ap-pat-1-19",
+        "ap-pat-1-21",
+        "ap-pat-1-23",
+        "ap-pat-1-25"
+    ],
+    "ap-pat": [
+        "ap-pat-1-1",
+        "ap-pat-1-4-1-a",
+        "ap-pat-1-4-1-b",
+        "ap-pat-1-4-3-a",
+        "ap-pat-1-4-3-b",
+        "ap-pat-1-4-6",
+        "ap-pat-1-4-7-b",
+        "ap-pat-1-4-10",
+        "ap-pat-1-4-11-b",
+        "ap-pat-1-4-11-c",
+        "ap-pat-1-4-12",
+        "ap-pat-1-5-b",
+        "ap-pat-1-6-b",
+        "ap-pat-1-7-a",
+        "ap-pat-1-7-b",
+        "ap-pat-1-8",
+        "ap-pat-1-9-a",
+        "ap-pat-1-9-b",
+        "ap-pat-1-9-c",
+        "ap-pat-1-9-d",
+        "ap-pat-1-10",
+        "ap-pat-1-11-b"
+    ],
+    "ap-pat-3": [
+        "ap-pat-3-1",
+        "ap-pat-3-5",
+        "ap-pat-3-12",
+        "ap-pat-3-23",
+        "ap-pat-3-27",
+        "ap-pat-3-33"
+    ],
+    "ap-pat-2-83": [
+        "ap-pat-2-83",
+        "ap-pat-2-85"
     ]
 }
