@@ -13,7 +13,7 @@ BOOKNAME = sys.argv[1]
 ZW = '‍'
 SKIP_PAGES = set()
 # automatic "print" decisions not taken (headings; පුබ්බණ්හ, where the scan has න්හ and only the OCR wrote ණ්හ)
-NOT = {'ud': {155, 303, 359, 374, 396}, 'iti': {0, 20}, 'snp': {877}, 'vv': {0, 107, 155, 142, 189}, 'pv': {91, 129}, 'thag': {84, 150, 168, 241, 76, 81}, 'bv': {0, 11, 225}, 'cp': {0, 24, 45, 59, 62, 78, 81}, 'ap': {377, 1111, 1476, 1480, 1485, 1539}}.get(BOOKNAME, set())
+NOT = {'ud': {155, 303, 359, 374, 396}, 'iti': {0, 20}, 'snp': {877}, 'vv': {0, 107, 155, 142, 189}, 'pv': {91, 129}, 'thag': {84, 150, 168, 241, 76, 81}, 'bv': {0, 11, 225}, 'cp': {0, 24, 45, 59, 62, 78, 81}, 'ap': {377, 1111, 1476, 1480, 1485, 1539}, 'jat': {248, 1340, 672}}.get(BOOKNAME, set())
 # read on the scan: index -> the words that replace the typed span ('' = remove; for an empty span = insert;
 # a leading '=' replaces the typed words whole, punctuation included)
 # khp and dhp were applied from an earlier decisions.json (see their changes.json); their indexes are not kept here.
@@ -125,6 +125,9 @@ READ = {
         1409: 'තපස්සීහි, මිගරාජාව’සම්භීතො', 1432: 'අභිධම්මනයඤ්ඤූ’හං', 1493: 'කූටාගාරවරූපෙතො', 1505: 'අබ්භුග්ගමි', 1517: 'සීහාසනදායකවග්ගො',
     },
 }.get(BOOKNAME, {})
+# the larger books keep their table beside the decisions: <book>/read.json
+if os.path.exists(os.path.join(ROOT, BOOKNAME, 'read.json')):
+    READ = {int(k): v for k, v in json.load(open(os.path.join(ROOT, BOOKNAME, 'read.json'))).items()}
 PRINT_SLIP = {}
 # changes outside the aligned spans: (file, pageNum, entry, old, new, why)
 EXTRA = [('kn-ud', 266, e, 'මතොගධං', 'තමොගධං', 'scan; also in the errata list of the volume') for e in (-1,)] if BOOKNAME == 'ud' else []

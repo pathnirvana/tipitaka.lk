@@ -95,8 +95,8 @@ describe('fixture corpus', () => {
     expect(isDeepStrictEqual(mine, legacy)).toBe(true)
     expect(Object.keys(mine)).toEqual(Object.keys(legacy))
   })
-  it('DFS order algorithm matches v2 (on the committed tree.json)', () => {
-    const tj = JSON.parse(fs.readFileSync('public/static/data/tree.json', 'utf-8'))
+  it('DFS order algorithm matches v2 (on the v2 tree.json kept with the goldens)', () => {
+    const tj = JSON.parse(fs.readFileSync('e2e/legacy/goldens/tree.json', 'utf-8'))
     const golden = JSON.parse(fs.readFileSync('e2e/legacy/goldens/ordered-keys.json', 'utf-8'))
     expect(dfsOrder(new Map(Object.entries(tj)) as Map<string, TreeTuple>)).toEqual(golden)
   })

@@ -9,11 +9,13 @@
  *        npx tsx dev/popular-suttas/build.ts --unmatched <gsc export.json…>   sutta queries no name matches, most searched first
  */
 import fs from 'node:fs'
+import { loadCorpus } from '../../build/corpus'
+import { buildTree } from '../../build/tree'
 import { romanFold, sinhFold, buildNameIndex, type PopularSutta } from '../../shared/sutta-names'
 
 const HERE = new URL('.', import.meta.url).pathname
 const OUT = new URL('../../shared/popular-suttas.json', import.meta.url).pathname
-const tree = JSON.parse(fs.readFileSync(new URL('../../public/static/data/tree.json', import.meta.url), 'utf8')) as Record<string, unknown>
+const tree = Object.fromEntries(buildTree(loadCorpus(new URL('../../public/static/text', import.meta.url).pathname).files).tree) as Record<string, unknown>
 const names = JSON.parse(fs.readFileSync(HERE + 'names.json', 'utf8')) as Record<string, { si: string[]; ro: string[]; review?: string }>
 
 const args = process.argv.slice(2), unmatched = args.includes('--unmatched')

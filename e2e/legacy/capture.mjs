@@ -87,7 +87,7 @@ function inlineDictSql(word, dicts = dictShort) {
 
 // ---------- Title search (src/views/TSearch.vue + src/store/tree.js) ----------
 function loadTree() {
-  const jTree = JSON.parse(fs.readFileSync(path.join(root, 'public/static/data/tree.json'), 'utf-8'))
+  const jTree = JSON.parse(fs.readFileSync(path.join(root, 'e2e/legacy/goldens/tree.json'), 'utf-8'))
   const index = { root: { children: [] } }
   Object.keys(jTree).forEach(key => {
     const [pali, sinh, level, eInd, parent, filename] = jTree[key]

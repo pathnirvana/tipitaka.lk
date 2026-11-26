@@ -1,6 +1,6 @@
 /**
  * Navigation tree. EXACT port of dev/build-tree.js (v2) + the DFS ordering done by src/store/tree.js.
- * Parity with public/static/data/tree.json is enforced by build/build.test.ts.
+ * Parity with the v2 script is enforced by build/build.test.ts (the last v2 tree.json is kept in e2e/legacy/goldens).
  */
 import type { JFile, JPage } from './corpus'
 

@@ -19,7 +19,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 TEXT = os.path.join(ROOT, '..', '..', '..', 'public', 'static', 'text')
 OCR = os.path.join(ROOT, '..', '..', 'ocr')
 # bookId -> (scan file prefix, scan page of printed page 0)
-BOOK = {28: ('KN1_Page_', 25), 29: ('KN2_Page_', 17), 30: ('KN3_Page_', 17), 31: ('KN4_Page_', 31), 39: ('KN12_Page_', 27), 40: ('KN13_Page_', 17), 41: ('KN14_Page_', 11), 42: ('KN15_Page_', 25)}
+BOOK = {28: ('KN1_Page_', 25), 29: ('KN2_Page_', 17), 30: ('KN3_Page_', 17), 31: ('KN4_Page_', 31), 32: ('KN5_Page_', 27), 33: ('KN6_Page_', 11), 34: ('KN7_Page_', 19), 39: ('KN12_Page_', 27), 40: ('KN13_Page_', 17), 41: ('KN14_Page_', 11), 42: ('KN15_Page_', 25)}
 SI = re.compile(r'[඀-෿]')
 PUNCT = '.,:;?!\'"‘’“”()[]{}-–—…*_¹²³⁴⁵⁶⁷⁸⁹⁰'
 
@@ -100,6 +100,7 @@ def main():
     book = sys.argv[1]
     freq = collections.Counter()
     files = sorted(glob.glob(os.path.join(TEXT, f'kn-{book}*.json')))
+    if book == 'jat': files = [f for f in files if 'kn-jat-22' not in f]   # the Mahānipāta is a book of its own: jat-22
     data = {os.path.basename(f)[:-5]: json.load(open(f)) for f in files}
     for d in data.values():
         for p in d['pages']:
