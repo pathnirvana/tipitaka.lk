@@ -125,6 +125,7 @@ READ = {
         1409: 'තපස්සීහි, මිගරාජාව’සම්භීතො', 1432: 'අභිධම්මනයඤ්ඤූ’හං', 1493: 'කූටාගාරවරූපෙතො', 1505: 'අබ්භුග්ගමි', 1517: 'සීහාසනදායකවග්ගො',
     },
 }.get(BOOKNAME, {})
+if os.path.exists(os.path.join(ROOT, BOOKNAME, 'not.json')): NOT = set(NOT) | set(json.load(open(os.path.join(ROOT, BOOKNAME, 'not.json'))))
 # the larger books keep their table beside the decisions: <book>/read.json
 if os.path.exists(os.path.join(ROOT, BOOKNAME, 'read.json')):
     READ = {int(k): v for k, v in json.load(open(os.path.join(ROOT, BOOKNAME, 'read.json'))).items()}

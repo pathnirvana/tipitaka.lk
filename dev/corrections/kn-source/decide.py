@@ -14,7 +14,7 @@ import collections, json, os, re, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 CST = '/Volumes/2TB/node/critical/pali-sources/cst/deva master/%s.mul.xml'
-FILES = {'khp': ['s0501m'], 'dhp': ['s0502m'], 'ud': ['s0503m'], 'iti': ['s0504m'], 'snp': ['s0505m'], 'vv': ['s0506m'], 'pv': ['s0507m'], 'thag': ['s0508m'], 'thig': ['s0509m'], 'bv': ['s0511m'], 'cp': ['s0512m'], 'ap': ['s0510m1', 's0510m2'], 'jat': ['s0513m', 's0514m'], 'jat-22': ['s0514m']}
+FILES = {'khp': ['s0501m'], 'dhp': ['s0502m'], 'ud': ['s0503m'], 'iti': ['s0504m'], 'snp': ['s0505m'], 'vv': ['s0506m'], 'pv': ['s0507m'], 'thag': ['s0508m'], 'thig': ['s0509m'], 'bv': ['s0511m'], 'cp': ['s0512m'], 'ap': ['s0510m1', 's0510m2'], 'jat': ['s0513m', 's0514m'], 'jat-22': ['s0514m'], 'mn': ['s0515m'], 'nc': ['s0516m']}
 DEVA = dict(zip('अआइईउऊएओकखगघङचछजझञटठडढणतथदधनपफबभमयरलवसहळंािीुूेो्', 'අආඉඊඋඌඑඔකඛගඝඞචඡජඣඤටඨඩඪණතථදධනපඵබභමයරලවසහළංාිීුූෙෝ'))
 
 
