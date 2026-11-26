@@ -239,6 +239,7 @@ export async function claude(model: string, system: string, user: string, schema
     const { code, stdout, stderr } = await new Promise<{ code: number; stdout: string; stderr: string }>((res, rej) => {
       const p = spawn(claudeBin(), args, { cwd, stdio: ['pipe', 'pipe', 'pipe'] })
       let stdout = '', stderr = ''
+      p.stdout.setEncoding('utf8'); p.stderr.setEncoding('utf8') // (a character split between two chunks must not be decoded per chunk)
       p.stdout.on('data', d => stdout += d); p.stderr.on('data', d => stderr += d)
       p.on('error', rej); p.on('close', code => res({ code: code ?? 1, stdout, stderr }))
       p.stdin.end(user)
@@ -273,6 +274,56 @@ function geminiKey() {
 
 /** gemini-4-argon prices per 1M tokens (input, output) for the cost estimate - set GEMINI_PRICE="in,out" if they differ */
 const [GIN, GOUT] = (process.env.GEMINI_PRICE ?? '2,12').split(',').map(Number)
+
+/**
+ * One call through an Antigravity agent conversation (the Google AI Pro subscription): Antigravity's own agentapi helper,
+ * with the address and local token of the running app; the reply is read from the conversation's full transcript, and the
+ * model that answered is checked there (an unknown model id falls back to the default without an error).
+ */
+export async function agy(model: string, system: string, user: string, schema: object): Promise<{ out: { items: Item[] }; usage: Result['usage'] }> {
+  const A = path.join(os.homedir(), '.gemini/antigravity')
+  const prompt = `${system}\n\n${user}\n\n# OUTPUT\nDo not use any tool and do not read or write any file. Reply with one JSON object only, nothing before or after it, of this JSON schema:\n${JSON.stringify(schema)}`
+  for (let attempt = 0; ; attempt++) {
+    const t0 = Date.now()
+    try {
+      const hubs = fs.readdirSync(path.join(A, 'daemon')).filter(f => /^hub_.*\.json$/.test(f)).map(f => path.join(A, 'daemon', f)).sort((a, b) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs)
+      const hub = JSON.parse(fs.readFileSync(hubs[0], 'utf-8'))
+      const stdout = await new Promise<string>((res, rej) => {
+        const p = spawn(path.join(A, 'bin/agentapi'), ['new-conversation', `--model=${model}`, '--title=apz-trans', prompt],
+          { env: { ...process.env, ANTIGRAVITY_LS_ADDRESS: `127.0.0.1:${hub.httpPort}`, ANTIGRAVITY_CSRF_TOKEN: hub.csrfToken }, stdio: ['ignore', 'pipe', 'pipe'] })
+        let o = ''; p.stdout.setEncoding('utf8'); p.stderr.setEncoding('utf8'); p.stdout.on('data', d => o += d); p.stderr.on('data', d => o += d); p.on('error', rej); p.on('close', () => res(o))
+      })
+      const cid = JSON.parse(stdout).response?.newConversation?.conversationId
+      if (!cid) throw new Error(stdout.slice(0, 300))
+      const log = path.join(A, 'brain', cid, '.system_generated/logs/transcript_full.jsonl')
+      for (;;) {
+        await sleep(5000)
+        if (Date.now() - t0 > 25 * 60_000) throw new Error('no answer in 25 minutes')
+        if (!fs.existsSync(log)) continue
+        const steps = fs.readFileSync(log, 'utf-8').split('\n').filter(Boolean).map(l => JSON.parse(l))
+        const last = steps.at(-1)
+        if (!last || Date.now() - fs.statSync(log).mtimeMs < 8000) continue
+        if (last.type === 'PLANNER_RESPONSE' && last.status === 'DONE' && last.content) {
+          const models = [...new Set(steps.map(s => s.model).filter(Boolean))]
+          if (models.length !== 1 || models[0] !== model) throw new Error(`answered by ${models.join(', ')}, not ${model}`)
+          const json = String(last.content).match(/\{[\s\S]*\}/)?.[0]
+          if (!json) throw new Error(`no JSON in the reply: ${String(last.content).slice(0, 200)}`)
+          // (raw line breaks inside the strings)
+          const out = JSON.parse(json.replace(/[\u0000-\u001f]+/g, ' '))
+          if (!Array.isArray(out.items)) throw new Error('no items')
+          const sum = (k: string) => steps.reduce((n, s) => n + (s[k] ?? 0), 0)
+          return { out, usage: { input: sum('input_tokens'), output: sum('output_tokens'), cacheRead: sum('cache_read_tokens'), cacheWrite: 0, costUsd: 0, ms: Date.now() - t0 } }
+        }
+        if (last.status === 'ERROR' || last.status === 'CANCELED') throw new Error(`step ${last.type} ${last.status}: ${JSON.stringify(last).slice(0, 300)}`)
+      }
+    } catch (e) {
+      if (attempt >= 8) throw e
+      const wait = Math.min(30, 2 ** attempt) * 60_000 / 2
+      console.error(`agy failed: ${String(e).slice(0, 300)} - waiting ${Math.round(wait / 60000)} min`)
+      await sleep(wait)
+    }
+  }
+}
 
 /** one Gemini call over REST (as dev/names-si/translate.ts) with the same JSON schema */
 export async function gemini(model: string, system: string, user: string, schema: object): Promise<{ out: { items: Item[] }; usage: Result['usage'] }> {

@@ -7,6 +7,9 @@
  *       [--book <note.md>]  rules for this book, added to the rewrite and the review prompt
  *       [--pin <terms.json>] rows of the terms list that no rewrite or review may change
  *       [--units]            a packet ends only before a numbered paragraph or a heading (a pair of questions stays whole)
+ *       [--rules <rules.md>] the rules in place of prompt-v2.md (a book translated from the Pāḷi: pat-rules.md)
+ *       [--witness <w.json>] {entry key: [text]} shown with the entry as SANNAYA lines (pat-sannaya.py)
+ *       [--mech pat]         entries that code words exactly (pat-mech.ts: the Paṭṭhāna's counting lists) are not sent
  *       [--tag <t>]          a trial: state in out/flow-<prefix>-<t>, text in out/book-<file>-<t>
  *
  * For every file <prefix>, <prefix>-* in order (--pages: only those pages of the first file):
@@ -26,7 +29,8 @@
  */
 import fs from 'node:fs'
 import path from 'node:path'
-import { DIR, OUT, REWRITE, SCHEMA, claude, entries, openDb, packet, render, readJsonl, appendJsonl, type Entry, type Packet } from './lib'
+import { mech as patMech } from './pat-mech'
+import { DIR, OUT, REWRITE, SCHEMA, agy, claude, entries, openDb, packet, render, readJsonl, appendJsonl, type Entry, type Packet } from './lib'
 
 const arg = (n: string) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : undefined }
 const prefix = process.argv[2]
@@ -38,7 +42,7 @@ fs.mkdirSync(dir, { recursive: true })
 const log = (s: string) => { console.log(s); fs.appendFileSync(path.join(dir, 'log.txt'), s + '\n') }
 
 // ---- prompts: prompt-v2.md's rules, the terms list, and what differs in these books
-const RULES = REWRITE.replace(/## Task[\s\S]*$/, '') + `## Terms list
+const RULES = (arg('--rules') ? fs.readFileSync(arg('--rules')!, 'utf-8') : REWRITE).replace(/## Task[\s\S]*$/, '') + `## Terms list
 # TERMS, when present, lists Pāḷi terms with the Sinhala wording already used for them earlier in this book. Use that
 wording wherever the term has the same meaning here; where the context gives it another meaning, word it as the context
 requires.
@@ -71,6 +75,14 @@ type Rw = { packet: string; items: { i: number; si: string }[]; terms: Term[]; u
 const termsFile = path.join(dir, 'terms.json')
 const ledger = new Map<string, string>(fs.existsSync(termsFile) ? JSON.parse(fs.readFileSync(termsFile, 'utf-8')) : arg('--seed') ? JSON.parse(fs.readFileSync(arg('--seed')!, 'utf-8')) : [])
 const saveLedger = () => fs.writeFileSync(termsFile, JSON.stringify([...ledger], null, 1))
+// (--witness: another translation or gloss of some entries, shown with the entry; a piece is shown once in a call)
+const witness: Record<string, string[]> = arg('--witness') ? JSON.parse(fs.readFileSync(arg('--witness')!, 'utf-8')) : {}
+const witnessLines = () => { const shown = new Set<string>(); return (e: Entry) => (witness[e.key] ?? []).filter(w => !shown.has(w) && shown.add(w)).map(w => `SANNAYA: ${w}`).join('\n') }
+// (--mech pat: entries that code words exactly are not sent, and no review may change them)
+// (--rewriter agy:<model id>: the rewrite goes to an Antigravity agent conversation; the review and the audit stay as they are)
+const REWRITER = arg('--rewriter') ?? 'opus'
+const rewriter = (system: string, user: string, schema: object) => REWRITER.startsWith('agy:') ? agy(REWRITER.slice(4), system, user, schema) : claude(OPUS, system, user, schema)
+const mechOf: (pali: string) => string | undefined = arg('--mech') === 'pat' ? patMech : () => undefined
 const pinned = new Map<string, string>(arg('--pin') ? JSON.parse(fs.readFileSync(arg('--pin')!, 'utf-8')) : [])
 for (const [p, si] of pinned) ledger.set(p, si)
 const rewrites = new Map(readJsonl<Rw>(path.join(dir, 'rewrite.jsonl')).map(r => [r.packet, r]))
@@ -158,16 +170,17 @@ for (const [fi, file] of files.entries()) {
     for (const chunk of group) {
       const id = `${file} ${chunk[0].key.split(' ')[1]}`
       // (entries that repeat an earlier one are not sent)
-      const fresh = chunk.filter(e => !(dupKey(e) && seen.has(dupKey(e))))
+      for (const e of chunk) { const m = e.type === 'paragraph' ? mechOf(e.pali) : undefined; if (m !== undefined && !text[e.key]) text[e.key] = { si: m, src: 'mech' } }
+      const fresh = chunk.filter(e => text[e.key]?.src !== 'mech' && !(dupKey(e) && seen.has(dupKey(e))))
       let r = rewrites.get(id)
       if (!r && fresh.length) {
         if (spent >= MAX_USD) { log(`stopped at ${id}: $${spent.toFixed(2)} used`); process.exit(0) }
         for (let tries = 1; tries <= 2; tries++) {
           const terms = termsFor(fresh)
-          const c = await claude(OPUS, RULES + REWRITE_TASK, render({ ...packet(db, id, 'rewrite', fresh), prev, ...(terms.length ? { terms } : {}) }), REWRITE_SCHEMA)
+          const c = await rewriter(RULES + REWRITE_TASK, render({ ...packet(db, id, 'rewrite', fresh), prev, ...(terms.length ? { terms } : {}) }, witnessLines()), REWRITE_SCHEMA)
           spent += c.usage.costUsd
           const bad = fresh.map((e, i) => [e.key, faults(e, c.out.items.find(x => x.i === i + 1)?.si)]).filter(x => x[1])
-          r = { packet: id, items: c.out.items, terms: (c.out as any).terms ?? [], usage: c.usage, tries }
+          r = { packet: id, items: c.out.items, terms: (c.out as any).terms ?? [], usage: c.usage, tries, ...(REWRITER === 'opus' ? {} : { by: REWRITER }) }
           log(`${id}: ${fresh.length} entries${chunk.length > fresh.length ? ` (+${chunk.length - fresh.length} repeated)` : ''}, terms ${terms.length} given ${r.terms.length} new, $${c.usage.costUsd.toFixed(3)}${bad.length ? `; failed checks: ${bad.map(b => b.join(' ')).join('; ')}` : ''}`)
           if (!bad.length) break
         }
@@ -189,12 +202,13 @@ for (const [fi, file] of files.entries()) {
       if (spent >= MAX_USD) { log(`stopped before the review of ${gid}: $${spent.toFixed(2)} used`); process.exit(0) }
       const terms = termsFor(es)
       const whole: Packet = { ...packet(db, gid, 'rewrite', es), ...(terms.length ? { terms } : {}) }
-      const c = await claude(OPUS, RULES + REVIEW_TASK, render(whole, e => `NEW: ${text[e.key].si}`), REVIEW_SCHEMA)
+      const c = await claude(OPUS, RULES + REVIEW_TASK, render(whole, (wl => (e: Entry) => [wl(e), `NEW: ${text[e.key].si}`].filter(Boolean).join('\n'))(witnessLines())), REVIEW_SCHEMA)
       spent += c.usage.costUsd
       const done: { key: string; before: string; errors: unknown }[] = [], refused: string[] = []
       for (const it of c.out.items as any[]) {
         const e = es[it.i - 1], old = e && text[e.key].si
         if (!e || !it.si?.trim() || it.si === old) continue
+        if (text[e.key].src === 'mech') { refused.push(`${e.key} (mech; proposed: ${it.si})`); continue }
         const bad = faults(e, it.si) || (count(it.si, /-පෙ-/g) !== count(old, /-පෙ-/g) ? '-පෙ- changed' : count(it.si, /\*\*/g) !== count(old, /\*\*/g) ? 'bold changed' : '')
         if (bad) { refused.push(`${e.key} (${bad})`); continue }
         done.push({ key: e.key, before: old, errors: it.errors }); text[e.key] = { si: noFn(it.si).trim(), src: 'review-flow' }
