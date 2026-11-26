@@ -19,7 +19,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 TEXT = os.path.join(ROOT, '..', '..', '..', 'public', 'static', 'text')
 OCR = os.path.join(ROOT, '..', '..', 'ocr')
 # bookId -> (scan file prefix, scan page of printed page 0)
-BOOK = {28: ('KN1_Page_', 25), 29: ('KN2_Page_', 17), 30: ('KN3_Page_', 17), 31: ('KN4_Page_', 31), 32: ('KN5_Page_', 27), 33: ('KN6_Page_', 11), 34: ('KN7_Page_', 19), 35: ('KN8_Page_', 23), 36: ('KN9_Page_', 15), 37: ('KN10_Page_', 21), 38: ('KN11_Page_', 11), 39: ('KN12_Page_', 27), 40: ('KN13_Page_', 17), 41: ('KN14_Page_', 11), 42: ('KN15_Page_', 25)}
+BOOK = {28: ('KN1_Page_', 25), 29: ('KN2_Page_', 17), 30: ('KN3_Page_', 17), 31: ('KN4_Page_', 31), 32: ('KN5_Page_', 27), 33: ('KN6_Page_', 11), 34: ('KN7_Page_', 19), 35: ('KN8_Page_', 23), 36: ('KN9_Page_', 15), 37: ('KN10_Page_', 21), 38: ('KN11_Page_', 11), 39: ('KN12_Page_', 27), 40: ('KN13_Page_', 17), 41: ('KN14_Page_', 11), 42: ('KN15_Page_', 25), 43: ('KN16_Page_', 17), 44: ('KN17_Page_', 21)}
 SI = re.compile(r'[඀-෿]')
 PUNCT = '.,:;?!\'"‘’“”()[]{}-–—…*_¹²³⁴⁵⁶⁷⁸⁹⁰'
 
