@@ -1,0 +1,200 @@
+[
+{
+"file": "kn-dhp",
+"page": 2,
+"pageNum": 30,
+"entry": 6,
+"old": "නිබ්බානං",
+"new": "නිබ්බාණං",
+"list": "7",
+"cstNew": 0,
+"cstOld": 1750
+},
+{
+"file": "kn-dhp",
+"page": 3,
+"pageNum": 32,
+"entry": 6,
+"old": "පරිහානාය",
+"new": "පරිහාණාය",
+"list": "7",
+"cstNew": 0,
+"cstOld": 122
+},
+{
+"file": "kn-dhp",
+"page": 10,
+"pageNum": 46,
+"entry": 6,
+"old": "සහස්සම්පි",
+"new": "සහස්සමපි",
+"list": "7",
+"cstNew": 8,
+"cstOld": 8
+},
+{
+"file": "kn-dhp",
+"page": 10,
+"pageNum": 46,
+"entry": 7,
+"old": "සහස්සම්පි",
+"new": "සහස්සමපි",
+"list": "7",
+"cstNew": 8,
+"cstOld": 8
+},
+{
+"file": "kn-dhp",
+"page": 15,
+"pageNum": 56,
+"entry": 6,
+"old": "නිබ්බානං",
+"new": "නිබ්බාණං",
+"list": "7",
+"cstNew": 0,
+"cstOld": 1750
+},
+{
+"file": "kn-dhp",
+"page": 17,
+"pageNum": 60,
+"entry": 1,
+"old": "විරියෙන",
+"new": "වීරියෙන",
+"list": "2",
+"cstNew": 68,
+"cstOld": 2
+},
+{
+"file": "kn-dhp",
+"page": 23,
+"pageNum": 72,
+"entry": 1,
+"old": "නිබ්බානං",
+"new": "නිබ්බාණං",
+"list": "7",
+"cstNew": 0,
+"cstOld": 1750
+},
+{
+"file": "kn-dhp",
+"page": 28,
+"pageNum": 82,
+"entry": 3,
+"old": "නිබ්බානං",
+"new": "නිබ්බාණං",
+"list": "7",
+"cstNew": 0,
+"cstOld": 1750
+},
+{
+"file": "kn-dhp",
+"page": 35,
+"pageNum": 96,
+"entry": 2,
+"old": "නිබ්බානං",
+"new": "නිබ්බාණං",
+"list": "7",
+"cstNew": 0,
+"cstOld": 1750
+},
+{
+"file": "kn-dhp",
+"page": 36,
+"pageNum": 98,
+"entry": 3,
+"old": "සොත්ථියෙ",
+"new": "සොත්තියෙ",
+"list": "7",
+"cstNew": 0,
+"cstOld": 6
+},
+{
+"file": "kn-dhp",
+"page": 44,
+"pageNum": 114,
+"entry": 4,
+"old": "ඝානෙන",
+"new": "ඝාණෙන",
+"list": "7",
+"cstNew": 0,
+"cstOld": 238
+},
+{
+"file": "kn-ud",
+"page": 80,
+"pageNum": 290,
+"entry": 10,
+"old": "අන්තං{3}",
+"new": "අනතං{3}",
+"list": "1",
+"cstNew": 8,
+"cstOld": 216
+},
+{
+"file": "kn-iti",
+"page": 60,
+"pageNum": 438,
+"entry": 6,
+"old": "නිබ්බානං.",
+"new": "නිබ්බාණං.",
+"list": "7",
+"cstNew": 0,
+"cstOld": 1750
+},
+{
+"file": "kn-snp-3",
+"page": 29,
+"pageNum": 180,
+"entry": 3,
+"old": "අට්ඨමී",
+"new": "අට්ඨමි",
+"list": "7",
+"cstNew": 4,
+"cstOld": 68
+},
+{
+"file": "kn-snp-3",
+"page": 32,
+"pageNum": 186,
+"entry": 4,
+"old": "සඤ්ඤාපෙතුං.",
+"new": "සඤ්ඤපෙතුං.",
+"list": "7",
+"cstNew": 0,
+"cstOld": 0
+},
+{
+"file": "kn-snp-3",
+"page": 46,
+"pageNum": 214,
+"entry": 2,
+"old": "අහම්පි",
+"new": "අහමපි",
+"list": "1",
+"cstNew": 8,
+"cstOld": 500
+},
+{
+"file": "kn-snp-3",
+"page": 52,
+"pageNum": 226,
+"entry": 3,
+"old": "වචනීයා,",
+"new": "වචනියා,",
+"list": "1",
+"cstNew": 0,
+"cstOld": 144
+},
+{
+"file": "kn-snp",
+"page": 31,
+"pageNum": 64,
+"entry": 3,
+"old": "සතිමං,",
+"new": "සතීමං,",
+"list": "7",
+"cstNew": 2,
+"cstOld": 30
+}
+]
